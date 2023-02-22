@@ -5,9 +5,7 @@ import { Loader2 } from "lucide-react";
 
 import { Button, buttonVariants } from "~/components/ui/Button";
 
-type PromptProps = {};
-
-const Prompt = ({}: PromptProps) => {
+const Prompt = () => {
   const [prompt, setPrompt] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const [logoImage, setLogoImage] = React.useState("");
@@ -46,9 +44,7 @@ const Prompt = ({}: PromptProps) => {
           Generate Poster
         </Button>
       </div>
-      {logoImage && (
-        <img src={`data:image/png;base64,${logoImage}`} className="image" />
-      )}
+      {logoImage && <img src={`data:image/png;base64,${logoImage}`} alt="" />}
     </>
   );
 };

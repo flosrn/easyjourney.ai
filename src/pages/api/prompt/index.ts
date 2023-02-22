@@ -11,8 +11,7 @@ const text2img = async (prompt: string) => {
       body: JSON.stringify({ prompt }),
     }
   );
-  const json = await res.json();
-  return json;
+  return res.json();
 };
 
 export default async function handler(
@@ -23,7 +22,7 @@ export default async function handler(
   try {
     const jsonData = await text2img(prompt);
     res.status(200).json(jsonData);
-  } catch (error) {
+  } catch (error: unknown) {
     // eslint-disable-next-line no-console
     console.log("🚨 Error", error);
     res.status(500).json(error || "Internal Server Error");
