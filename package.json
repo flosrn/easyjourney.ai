@@ -1,6 +1,6 @@
 {
-  "name": "homaide.ai",
-  "description": "Homaide is a marketplace to buy and sell AI generated art.",
+  "name": "homaide.art",
+  "description": "Homaide.art is a marketplace to buy and sell AI generated art.",
   "version": "0.0.1",
   "private": true,
   "scripts": {
