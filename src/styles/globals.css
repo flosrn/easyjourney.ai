@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.bg-header {
+  background: linear-gradient(90.66deg, #181818 25.52%, rgba(24, 24, 24, 0.66) 94.65%);
+  border: 1px solid #1F1F1F;
+  box-shadow: 0 4px 58px #000000;
+}
+
+.HeroAnimateIconsWrapper::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(270deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+  transform: rotate(-180deg);
+  will-change: transform;
+  width: 165px;
+  height: 100%;
+  z-index: 1;
+}
+
+.HeroAnimateIconsWrapper::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: linear-gradient(270deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+  width: 165px;
+  height: 100%;
+  z-index: 1;
+}
+
+.HeroAnimateIcons--blur-left {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50px;
+  background: linear-gradient(-90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%),
+  linear-gradient(-90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+  transform: rotate(150deg);
+  will-change: transform;
+  width: 200px;
+  height: 150%;
+  z-index: 1;
+}
+
+.HeroAnimateIcons--blur-right {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background: linear-gradient(90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%),
+  linear-gradient(90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+  transform: rotate(-150deg);
+  will-change: transform;
+  width: 200px;
+  height: 150%;
+  z-index: 1;
+}
+
+.HeroAnimateIcons--blur-bottom {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(0deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+  transform: rotate(0deg);
+  will-change: transform;
+  width: 100%;
+  height: 200px;
+  z-index: 1;
+}
+
+.HeroAnimateIcons--bg {
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  padding-top: 72px;
+  padding-bottom: 200px;
+  margin-bottom: -200px;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: clamp(696px, 100%, 1536px);
+  overflow-x: hidden;
+  pointer-events: none;
+}
