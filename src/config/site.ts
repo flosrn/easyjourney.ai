@@ -36,8 +36,8 @@ const mainNav: NavItem[] = [
     icon: User,
   },
   {
-    title: "Projects",
-    href: "/projects",
+    title: "Todos",
+    href: "/todos",
     icon: Layers,
   },
 ];

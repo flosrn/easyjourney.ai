@@ -11,7 +11,11 @@
     "lint:fix": "eslint src --fix && pnpm run format",
     "format": "prettier -w .",
     "preview": "next build && next start",
-    "packages:update": "pnpm update --latest --interactive"
+    "packages:update": "pnpm update --latest --interactive",
+    "migrate:dev": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy",
+    "migrate:status": "prisma migrate status",
+    "generate": "prisma generate"
   },
   "dependencies": {
     "@next/font": "^13.1.6",
@@ -50,6 +54,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "^0.31.3",
+    "swr": "^2.0.3",
     "tailwind-merge": "^1.10.0",
     "tailwindcss-animate": "^1.0.5"
   },
