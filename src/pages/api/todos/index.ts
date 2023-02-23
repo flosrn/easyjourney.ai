@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
     case "POST": {
       // create todo
-      const text = JSON.parse(req.body).text;
+      const { text } = req.body;
       const todo = await prisma.todo.create({
         data: { text, completed: false },
       });
@@ -30,7 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     case "PUT": {
       // update todo
       const id = req.query.todoId as string;
-      const data = JSON.parse(req.body);
+      const data = req.body;
       const todo = await prisma.todo.update({
         where: { id },
         data,

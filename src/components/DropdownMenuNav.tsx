@@ -34,8 +34,8 @@ const DropdownMenuNav = ({ items }: DropdownMenuNavProps) => {
       <DropdownMenuContent side="bottom" align="end" className="w-56">
         <DropdownMenuLabel>@flosrn</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {items.map((group) => (
-          <>
+        {items.map((group, index) => (
+          <React.Fragment key={index}>
             <DropdownMenuGroup>
               {group.map(({ title, href, icon: Icon }) => (
                 <DropdownMenuItem key={title} asChild>
@@ -48,7 +48,7 @@ const DropdownMenuNav = ({ items }: DropdownMenuNavProps) => {
               ))}
             </DropdownMenuGroup>
             {group !== items[items.length - 1] && <DropdownMenuSeparator />}
-          </>
+          </React.Fragment>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>

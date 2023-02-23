@@ -31,6 +31,7 @@ specifiers:
   '@radix-ui/react-tabs': ^1.0.2
   '@radix-ui/react-toggle-group': ^1.0.1
   '@radix-ui/react-tooltip': ^1.0.3
+  '@tanstack/react-query': ^4.24.10
   '@types/node': ^18.14.0
   '@types/react': ^18.0.28
   '@types/react-dom': ^18.0.11
@@ -62,7 +63,6 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   sharp: ^0.31.3
-  swr: ^2.0.3
   tailwind-merge: ^1.10.0
   tailwindcss: ^3.2.7
   tailwindcss-animate: ^1.0.5
@@ -97,6 +97,7 @@ dependencies:
   '@radix-ui/react-tabs': 1.0.2_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-toggle-group': 1.0.2_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-tooltip': 1.0.3_zula6vjvt3wdocc4mwcxqa6nzi
+  '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
   class-variance-authority: 0.4.0_typescript@4.9.5
   clsx: 1.2.1
   framer-motion: 9.0.7_biqbaboplfbrettd7655fr4n2y
@@ -106,7 +107,6 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   sharp: 0.31.3
-  swr: 2.0.3_react@18.2.0
   tailwind-merge: 1.10.0
   tailwindcss-animate: 1.0.5_tailwindcss@3.2.7
 
@@ -1718,6 +1718,28 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tanstack/query-core/4.24.10:
+    resolution: {integrity: sha512-2QywqXEAGBIUoTdgn1lAB4/C8QEqwXHj2jrCLeYTk2xVGtLiPEUD8jcMoeB2noclbiW2mMt4+Fq7fZStuz3wAQ==}
+    dev: false
+
+  /@tanstack/react-query/4.24.10_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-FY1DixytOcNNCydPQXLxuKEV7VSST32CAuJ55BjhDNqASnMLZn+6c30yQBMrODjmWMNwzfjMZnq0Vw7C62Fwow==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.24.10
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
   /@tsconfig/node10/1.0.9:
@@ -5320,16 +5342,6 @@ packages:
   /svg-element-attributes/1.3.1:
     resolution: {integrity: sha512-Bh05dSOnJBf3miNMqpsormfNtfidA/GxQVakhtn0T4DECWKeXQRQUceYjJ+OxYiiLdGe4Jo9iFV8wICFapFeIA==}
     dev: true
-
-  /swr/2.0.3_react@18.2.0:
-    resolution: {integrity: sha512-sGvQDok/AHEWTPfhUWXEHBVEXmgGnuahyhmRQbjl9XBYxT/MSlAzvXEKQpyM++bMPaI52vcWS2HiKNaW7+9OFw==}
-    engines: {pnpm: '7'}
-    peerDependencies:
-      react: ^16.11.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-      use-sync-external-store: 1.2.0_react@18.2.0
-    dev: false
 
   /synckit/0.8.5:
     resolution: {integrity: sha512-L1dapNV6vu2s/4Sputv8xGsCdAVlb5nRDMFU/E27D44l5U6cw1g0dGd45uLc+OXjNMmF4ntiMdCimzcjFKQI8Q==}
