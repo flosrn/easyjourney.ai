@@ -20,8 +20,10 @@ const Prompt = () => {
       body: JSON.stringify({ prompt }),
     });
     const response = await request.json();
-    response && setIsLoading(false);
-    response && setLogoImage(response.images[0]);
+    if (response) {
+      setIsLoading(false);
+      setLogoImage(response.images[0]);
+    }
   };
   return (
     <>
