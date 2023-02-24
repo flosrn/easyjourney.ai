@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export type Todo = {
   id: string;
-  created: string;
+  createdAt: Date | string;
   text: string;
   completed: boolean;
 };
@@ -28,7 +28,7 @@ const toggleTodo = async (todo: Todo) => {
   return res.json();
 };
 
-const TodoItem: React.FC<{ todo: Todo }> = ({ todo }) => {
+export const TodoItem: React.FC<{ todo: Todo }> = ({ todo }) => {
   const queryClient = useQueryClient();
 
   // Mutations

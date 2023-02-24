@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next/types";
 
 const text2img = async (prompt: string) => {
   const res = await fetch(

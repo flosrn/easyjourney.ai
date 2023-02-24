@@ -1,7 +1,13 @@
-import AddTodoInput from "~/components/AddTodoInput";
-import TodoList from "~/components/TodoList";
+import React from "react";
+import { prisma } from "~/server/db/prisma";
 
-export default function TodosPage() {
+import AddTodoInput from "~/components/AddTodoInput";
+import { TodoItem, type Todo } from "~/components/TodoList";
+
+export default async function TodosPage() {
+  const todos = await prisma.todo.findMany({
+    orderBy: { createdAt: "desc" },
+  });
   return (
     <>
       <section className="container mt-24 grid items-center gap-6 pt-6 pb-8 md:py-10">
@@ -11,7 +17,15 @@ export default function TodosPage() {
           </h1>
         </div>
         <AddTodoInput />
-        <TodoList />
+        {/*<TodoList />*/}
+        <ul>
+          {todos.map((todo: Todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={{ ...todo, createdAt: JSON.stringify(todo.createdAt) }}
+            />
+          ))}
+        </ul>
       </section>
     </>
   );
