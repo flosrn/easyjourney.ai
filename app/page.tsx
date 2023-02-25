@@ -3,7 +3,7 @@ import React from "react";
 import HeroAnimateIcons from "~/components/HeroAnimateIcons";
 import Prompt from "~/components/Prompt";
 
-export default function IndexPage() {
+export default async function IndexPage() {
   return (
     <>
       <section className="container grid items-center justify-center gap-6 pb-8">

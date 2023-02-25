@@ -9,6 +9,7 @@ import { buttonVariants } from "~/components/ui/Button";
 import { siteConfig } from "~/config/site";
 
 import { Icons } from "./Icons";
+import LoginButton from "./LoginButton";
 import ThemeToggle from "./ThemeToggle";
 
 const SiteHeader = () => {
@@ -17,6 +18,7 @@ const SiteHeader = () => {
       <nav className="bg-header container relative max-w-5xl rounded-xl backdrop-blur-[5.5px]">
         <div className="container flex h-16 items-center justify-center">
           <MainNav items={siteConfig.mainNav} />
+          <LoginButton />
           <div className="absolute right-8 flex items-center justify-end">
             <nav className="flex items-center space-x-1">
               <Link

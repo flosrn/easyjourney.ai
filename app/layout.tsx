@@ -11,7 +11,11 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return (
     <html lang="fr" className={inter.className} suppressHydrationWarning>
       <body className="min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-[#060606] dark:text-slate-50">

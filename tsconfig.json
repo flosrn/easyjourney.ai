@@ -31,7 +31,6 @@
     "next-env.d.ts",
     "./.eslintrc.cjs",
     ".next/types/**/*.ts",
-    "src/pages/**/page.tsx"
   ],
   "exclude": ["node_modules"]
 }
