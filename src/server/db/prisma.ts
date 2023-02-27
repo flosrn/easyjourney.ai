@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { env } from "~/env.mjs";
 
 declare global {
   // eslint-disable-next-line no-var
@@ -9,9 +10,7 @@ export const prisma =
   global.prisma ??
   new PrismaClient({
     log:
-      process.env.NODE_ENV === "development"
-        ? ["query", "error", "warn"]
-        : ["error"],
+      env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
   });
 
 if (process.env.NODE_ENV !== "production") {

@@ -57,6 +57,7 @@ export const TodoItem: React.FC<{ todo: Todo }> = ({ todo }) => {
           type="checkbox"
           checked={todo.completed}
           onChange={() => mutationToggle.mutate(todo)}
+          className="mr-2"
         />
         {todo.text}
       </label>

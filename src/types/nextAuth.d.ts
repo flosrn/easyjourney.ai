@@ -1,14 +1,23 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 import type { DefaultSession } from "next-auth";
 
+/**
+ * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
+ * object and keep type safety.
+ *
+ * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
+ */
 declare module "next-auth" {
-  /**
-   * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-   */
-  interface Session {
+  interface Session extends DefaultSession {
     user: DefaultSession["user"] & {
-      /** The user's postal address. */
-      id?: string;
+      id: string;
+      // ...other properties
+      // role: UserRole;
     };
   }
+
+  // interface User {
+  //   // ...other properties
+  //   // role: UserRole;
+  // }
 }
