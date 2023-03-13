@@ -18,10 +18,10 @@ model Todo {
   completed Boolean
 }
 
-model Work {
+model ArtWork {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
-  img       String
+  image     String
   likes     Int?
   user      User?    @relation(fields: [userId], references: [id])
   userId    String?
@@ -63,7 +63,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  works         Work[]
+  artworks      ArtWork[]
 }
 
 model VerificationToken {
