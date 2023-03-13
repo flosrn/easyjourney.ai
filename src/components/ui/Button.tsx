@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "~/lib/utils";
@@ -32,15 +33,45 @@ const buttonVariants = cva(
 );
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants>;
+  VariantProps<typeof buttonVariants> & {
+    href?: string;
+  };
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => {
     return (
       <button
-        className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
+        className={cn(buttonVariants({ variant, size, className }))}
+      />
+    );
+  }
+);
+ButtonBase.displayName = "ButtonBase";
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, href, ...props }, ref) => {
+    if (href) {
+      return (
+        <Link href={href}>
+          <ButtonBase
+            ref={ref}
+            {...props}
+            variant={variant}
+            size={size}
+            className={className}
+          />
+        </Link>
+      );
+    }
+    return (
+      <ButtonBase
+        ref={ref}
+        {...props}
+        variant={variant}
+        size={size}
+        className={className}
       />
     );
   }

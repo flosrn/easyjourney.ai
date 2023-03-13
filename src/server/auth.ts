@@ -1,4 +1,8 @@
-import type { GetServerSidePropsContext } from "next/types";
+import type {
+  GetServerSidePropsContext,
+  NextApiRequest,
+  NextApiResponse,
+} from "next/types";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { getServerSession, type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
@@ -36,9 +40,12 @@ export const authOptions: NextAuthOptions = {
  *
  * @see https://next-auth.js.org/configuration/nextjs
  */
-export const getServerAuthSession = async (ctx: {
-  req: GetServerSidePropsContext["req"];
-  res: GetServerSidePropsContext["res"];
-}) => {
-  return getServerSession(ctx.req, ctx.res, authOptions);
+
+type ParametersGetServerSession =
+  | []
+  | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
+  | [NextApiRequest, NextApiResponse];
+
+export const getSession = async (...parameters: ParametersGetServerSession) => {
+  return getServerSession(...parameters, authOptions);
 };

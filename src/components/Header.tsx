@@ -10,17 +10,6 @@ const Header = ({}: HeaderProps) => {
       <div className="container flex h-16 items-center">
         <div className="hidden md:flex">
           <a className="mr-6 flex items-center space-x-2" href="/">
-            <svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
-            >
-              <circle cx={12} cy={12} r={10} />
-            </svg>
             <span className="hidden font-bold sm:inline-block">
               homaide.art
             </span>

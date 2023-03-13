@@ -1,13 +1,11 @@
 import React from "react";
 
-import HeroAnimateIcons from "~/components/HeroAnimateIcons";
-import { Button } from "~/components/ui/Button";
+import Prompt from "~/components/Prompt";
 
-export default async function IndexPage() {
+export default async function GeneratePage() {
   return (
     <>
-      <section className="container grid items-center justify-center gap-6 pb-8">
-        <HeroAnimateIcons />
+      <section className="container mt-6 grid items-center justify-center gap-6 pb-8">
         <div className="flex max-w-[980px] flex-col items-center gap-2">
           <h1 className="text-center text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
             Homaide.art
@@ -20,10 +18,8 @@ export default async function IndexPage() {
             beautiful posters in seconds. Create it and print it, it's so easy,
             you will receive your poster in 3 days.
           </p>
-          <Button variant="outline" href="/generate">
-            Get Started
-          </Button>
         </div>
+        <Prompt />
       </section>
     </>
   );
