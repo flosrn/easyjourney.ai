@@ -1,10 +1,9 @@
 import type { ReactNode } from "react";
 import { Inter } from "@next/font/google";
 
-import SiteHeader from "~/components/SiteHeader";
-
 import Providers from "./providers";
 import "~/styles/globals.css";
+import Header from "~/components/Header";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,7 +19,7 @@ export default async function RootLayout({
     <html lang="fr" className={inter.className} suppressHydrationWarning>
       <body className="min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-[#060606] dark:text-slate-50">
         <Providers>
-          <SiteHeader />
+          <Header />
           <main>{children}</main>
         </Providers>
       </body>

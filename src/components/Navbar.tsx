@@ -55,7 +55,7 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ];
 
-export function NavigationMenuDemo() {
+export const Navbar = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -118,7 +118,7 @@ export function NavigationMenuDemo() {
       </NavigationMenuList>
     </NavigationMenu>
   );
-}
+};
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,

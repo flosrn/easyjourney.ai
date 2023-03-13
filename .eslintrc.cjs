@@ -13,7 +13,7 @@ module.exports = {
     "plugin:github/recommended",
     "plugin:import/recommended",
     "plugin:unicorn/recommended",
-    "plugin:tailwindcss/recommended"
+    "plugin:tailwindcss/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -97,7 +97,6 @@ module.exports = {
     "@typescript-eslint/type-annotation-spacing": "error",
     "@typescript-eslint/unified-signatures": "error",
     "@typescript-eslint/array-type": "error",
-    "@typescript-eslint/ban-types": "error",
     "@typescript-eslint/brace-style": "error",
     "@typescript-eslint/consistent-type-exports": "error",
     "@typescript-eslint/dot-notation": "error",
@@ -112,6 +111,16 @@ module.exports = {
     "import/no-namespace": 0,
     "prettier/prettier": 0,
     "i18n-text/no-en": 0,
+    "no-empty-pattern": 0,
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        extendDefaults: true,
+        types: {
+          "{}": false,
+        },
+      },
+    ],
     "import/no-duplicates": "error",
     "@next/next/no-img-element": 0,
     "@next/next/no-html-link-for-pages": ["error", "app"],

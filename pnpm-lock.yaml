@@ -33,6 +33,7 @@ specifiers:
   '@radix-ui/react-tabs': ^1.0.2
   '@radix-ui/react-toggle-group': ^1.0.1
   '@radix-ui/react-tooltip': ^1.0.4
+  '@tailwindcss/line-clamp': ^0.4.2
   '@tanstack/react-query': ^4.24.10
   '@types/node': ^18.14.4
   '@types/react': ^18.0.28
@@ -103,6 +104,7 @@ dependencies:
   '@radix-ui/react-tabs': 1.0.2_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-toggle-group': 1.0.2_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-tooltip': 1.0.4_zula6vjvt3wdocc4mwcxqa6nzi
+  '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.7
   '@tanstack/react-query': 4.24.10_biqbaboplfbrettd7655fr4n2y
   class-variance-authority: 0.4.0_typescript@4.9.5
   clsx: 1.2.1
@@ -1730,6 +1732,14 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.7:
+    resolution: {integrity: sha512-HFzAQuqYCjyy/SX9sLGB1lroPzmcnWv1FHkIpmypte10hptf4oPUfucryMKovZh2u0uiS9U5Ty3GghWfEJGwVw==}
+    peerDependencies:
+      tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
+    dependencies:
+      tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
     dev: false
 
   /@tanstack/query-core/4.24.10:
