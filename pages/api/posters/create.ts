@@ -2,18 +2,14 @@ import type { NextApiRequest, NextApiResponse } from "next/types";
 
 const text2img = async (prompt: string) => {
   const response = await fetch(
-    "https://allakhazam-anythingv4.hf.space/run/predict",
+    "https://0e5c7f5e-efa1-4d39.gradio.live/sdapi/v1/txt2img",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        data: [prompt],
-      }),
+      body: JSON.stringify({ prompt }),
     }
   );
-  const data = await response.json();
-  console.log("data :", data);
-  return data;
+  return response.json();
 };
 
 export default async function handler(

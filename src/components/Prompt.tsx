@@ -1,37 +1,64 @@
 "use client";
 
-import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import React, { useCallback } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
 import { Button, buttonVariants } from "~/components/ui/Button";
 
+import { cn } from "~/lib/utils";
+
 const Prompt = () => {
   const [promptInputValue, setPromptInputValue] = React.useState("");
-  const [isPromptSubmitted, setIsPromptSubmitted] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
   const [poster, setPoster] = React.useState("");
 
-  const createPoster = async () => {
-    const request = await fetch("/api/create", {
+  const createPosterMutation = useMutation(async () => {
+    const request = await fetch("/api/posters/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ prompt: promptInputValue }),
     });
-    const response = await request.json();
-    return response;
-  };
-
-  const { isFetching, isError, data } = useQuery({
-    queryKey: ["posters"],
-    queryFn: createPoster,
-    enabled: isPromptSubmitted,
-    onSuccess: (data) => {
-      setPoster(data.data[0]);
-      setIsPromptSubmitted(false);
-    },
+    return request.json();
   });
+
+  const savePosterMutation = useMutation(async () => {
+    const request = await fetch("/api/posters/save", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "Titre du poster",
+        prompt: promptInputValue,
+        poster,
+      }),
+    });
+    return request.json();
+  });
+
+  const createPoster = useCallback(async () => {
+    try {
+      const data = await createPosterMutation.mutateAsync();
+      if (!data?.images?.[0]) {
+        setErrorMessage(data.error || "Something went wrong!");
+        return;
+      }
+      setPoster(data?.images?.[0]);
+    } catch {
+      setErrorMessage("Something went wrong!");
+    }
+  }, [createPosterMutation]);
+
+  const savePoster = useCallback(async () => {
+    try {
+      return savePosterMutation.mutateAsync();
+    } catch {
+      setErrorMessage("Something went wrong!");
+    }
+  }, [savePosterMutation]);
 
   return (
     <>
@@ -46,17 +73,33 @@ const Prompt = () => {
       </div>
       <div className="flex gap-4">
         <Button
-          onClick={() => setIsPromptSubmitted(true)}
-          disabled={isFetching}
+          onClick={createPoster}
+          disabled={createPosterMutation.isLoading}
           className={buttonVariants({ variant: "subtle", size: "lg" })}
         >
-          {isFetching && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {createPosterMutation.isLoading && (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          )}
           Generate Poster
         </Button>
+        {poster && (
+          <Button
+            onClick={savePoster}
+            disabled={savePosterMutation.isLoading}
+            className={cn(
+              buttonVariants({ variant: "subtle", size: "lg" }),
+              "dark:bg-green-400 dark:hover:bg-green-500"
+            )}
+          >
+            {savePosterMutation.isLoading && (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            )}
+            Save Poster
+          </Button>
+        )}
       </div>
-      {isError && <p>Something went wrong!</p>}
-      {data && <p>Poster generated!</p>}
-      {poster && <img src={poster} alt="" />}
+      {(createPosterMutation.isError || errorMessage) && <p>{errorMessage}</p>}
+      {poster && <img src={`data:image/png;base64,${poster}`} alt="" />}
     </>
   );
 };

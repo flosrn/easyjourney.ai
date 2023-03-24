@@ -1,8 +1,12 @@
 import React from "react";
+import { prisma } from "~/server/db/prisma";
 
 import Prompt from "~/components/Prompt";
 
 export default async function CreatePage() {
+  const posters = await prisma.poster.findMany({
+    orderBy: { createdAt: "desc" },
+  });
   return (
     <>
       <section className="container mt-6 grid items-center justify-center gap-6 pb-8">
@@ -20,6 +24,16 @@ export default async function CreatePage() {
           </p>
         </div>
         <Prompt />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {posters.map((poster) => (
+            <img
+              key={poster.id}
+              src={`data:image/png;base64,${poster.image}`}
+              alt=""
+              className="h-auto w-full"
+            />
+          ))}
+        </div>
       </section>
     </>
   );

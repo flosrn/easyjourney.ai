@@ -11,19 +11,15 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Todo {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  text      String
-  completed Boolean
-}
-
-model ArtWork {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
+model Poster {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  title     String
+  prompt    String
   image     String
   likes     Int?
-  user      User?    @relation(fields: [userId], references: [id])
+  user      User?     @relation(fields: [userId], references: [id])
   userId    String?
 }
 
@@ -60,10 +56,11 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  updatedAt     DateTime? @updatedAt
   image         String?
   accounts      Account[]
   sessions      Session[]
-  artworks      ArtWork[]
+  posters       Poster[]
 }
 
 model VerificationToken {
