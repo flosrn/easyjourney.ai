@@ -1,36 +1,44 @@
 "use client";
 
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
 import { Button, buttonVariants } from "~/components/ui/Button";
 
 const Prompt = () => {
-  const [prompt, setPrompt] = React.useState("");
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [logoImage, setLogoImage] = React.useState("");
+  const [promptInputValue, setPromptInputValue] = React.useState("");
+  const [isPromptSubmitted, setIsPromptSubmitted] = React.useState(false);
+  const [poster, setPoster] = React.useState("");
 
-  const generatePoster = async () => {
-    setIsLoading(true);
-    const request = await fetch("/api/prompt", {
+  const createPoster = async () => {
+    const request = await fetch("/api/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({ prompt: promptInputValue }),
     });
     const response = await request.json();
-    if (response) {
-      setIsLoading(false);
-      setLogoImage(response.images[0]);
-    }
+    return response;
   };
+
+  const { isFetching, isError, data } = useQuery({
+    queryKey: ["posters"],
+    queryFn: createPoster,
+    enabled: isPromptSubmitted,
+    onSuccess: (data) => {
+      setPoster(data.data[0]);
+      setIsPromptSubmitted(false);
+    },
+  });
+
   return (
     <>
       <div className="">
         <textarea
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
+          value={promptInputValue}
+          onChange={(e) => setPromptInputValue(e.target.value)}
           rows={4}
           placeholder="Enter your prompt here"
           className="w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -38,15 +46,17 @@ const Prompt = () => {
       </div>
       <div className="flex gap-4">
         <Button
-          onClick={generatePoster}
-          disabled={isLoading}
+          onClick={() => setIsPromptSubmitted(true)}
+          disabled={isFetching}
           className={buttonVariants({ variant: "subtle", size: "lg" })}
         >
-          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isFetching && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Generate Poster
         </Button>
       </div>
-      {logoImage && <img src={`data:image/png;base64,${logoImage}`} alt="" />}
+      {isError && <p>Something went wrong!</p>}
+      {data && <p>Poster generated!</p>}
+      {poster && <img src={poster} alt="" />}
     </>
   );
 };
