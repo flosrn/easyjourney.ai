@@ -6,6 +6,7 @@ export type NavItem = {
   icon: LucideIcon;
   disabled?: boolean;
   external?: boolean;
+  onClick?: () => void;
 };
 
 export type MenuItem = {

@@ -20,7 +20,7 @@ export default async function IndexPage() {
             beautiful posters in seconds. Create it and print it, it's so easy,
             you will receive your poster in 3 days.
           </p>
-          <Button variant="outline" href="/generate">
+          <Button variant="outline" href="/create">
             Get Started
           </Button>
         </div>

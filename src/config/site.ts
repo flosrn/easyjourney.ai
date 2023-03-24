@@ -9,6 +9,7 @@ import {
   ShoppingCart,
   User,
 } from "lucide-react";
+import { signOut } from "next-auth/react";
 
 import type { MegaMenu, NavItem } from "~/types/nav";
 
@@ -110,7 +111,7 @@ const userMenu: NavItem[][] = [
     },
     {
       title: "Mes posters",
-      href: "/profile/posters",
+      href: "/create",
       icon: ShoppingCart,
     },
     {
@@ -153,6 +154,7 @@ const userMenu: NavItem[][] = [
       title: "Déconnexion",
       href: "/logout",
       icon: LogOut,
+      onClick: async () => signOut(),
     },
   ],
 ];
