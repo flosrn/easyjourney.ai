@@ -7,3 +7,15 @@ export type NavItem = {
   disabled?: boolean;
   external?: boolean;
 };
+
+export type MenuItem = {
+  title: string;
+  href: string;
+  description: string;
+};
+
+export type MegaMenu = {
+  title: string;
+  menu: MenuItem[];
+  hasLeftImage?: boolean;
+};

@@ -10,7 +10,7 @@ import {
   User,
 } from "lucide-react";
 
-import type { NavItem } from "~/types/nav";
+import type { MegaMenu, NavItem } from "~/types/nav";
 
 type SiteConfig = {
   name: string;
@@ -22,18 +22,6 @@ type SiteConfig = {
     github: string;
     docs: string;
   };
-};
-
-type MenuItem = {
-  title: string;
-  href: string;
-  description: string;
-};
-
-type MegaMenu = {
-  title: string;
-  menu: MenuItem[];
-  hasLeftImage?: boolean;
 };
 
 const megaMenu: MegaMenu[] = [
