@@ -11,7 +11,7 @@ export default async function handler(
   const session = await getSession({ req });
 
   if (!session) {
-    res.status(401).json({ message: "Non autorisé!" });
+    res.status(401).json({ message: "Non autorisé!!" });
     return;
   }
 
