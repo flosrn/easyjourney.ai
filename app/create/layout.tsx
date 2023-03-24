@@ -3,7 +3,7 @@ import { getSession } from "~/server/auth";
 
 import NotLoggedIn from "~/components/ui/error/NotLoggedIn";
 
-const GenerateLayout = async ({ children }: PropsWithChildren) => {
+const CreateLayout = async ({ children }: PropsWithChildren) => {
   const session = await getSession();
 
   if (!session) {
@@ -12,4 +12,4 @@ const GenerateLayout = async ({ children }: PropsWithChildren) => {
   return <>{children}</>;
 };
 
-export default GenerateLayout;
+export default CreateLayout;

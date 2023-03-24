@@ -17,11 +17,6 @@ type SiteConfig = {
   description: string;
   megaMenu: MegaMenu[];
   userMenu: NavItem[][];
-  links: {
-    twitter: string;
-    github: string;
-    docs: string;
-  };
 };
 
 const megaMenu: MegaMenu[] = [
@@ -51,12 +46,12 @@ const megaMenu: MegaMenu[] = [
     menu: [
       {
         title: "Générateur rapide",
-        href: "/create/quick",
+        href: "/create",
         description: "Créez rapidement un poster avec un prompt",
       },
       {
         title: "Générateur avancé",
-        href: "/create/advanced",
+        href: "/create",
         description: "Personnalisez votre poster avec des paramètres avancés",
       },
       {
@@ -168,9 +163,4 @@ export const siteConfig: SiteConfig = {
     "J'utilise des techniques modernes et les meilleures technologies pour développer toutes sortes de sites web et d'applications web.",
   megaMenu,
   userMenu,
-  links: {
-    twitter: "https://twitter.com/flo_srn",
-    github: "https://github.com/flosrn",
-    docs: "https://ui.shadcn.com",
-  },
 };

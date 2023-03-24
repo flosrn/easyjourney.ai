@@ -2,7 +2,7 @@ import React from "react";
 
 import Prompt from "~/components/Prompt";
 
-export default async function GeneratePage() {
+export default async function CreatePage() {
   return (
     <>
       <section className="container mt-6 grid items-center justify-center gap-6 pb-8">
