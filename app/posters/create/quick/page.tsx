@@ -1,10 +1,13 @@
 import React from "react";
+import { getSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
 import Prompt from "~/components/Prompt";
 
 export default async function CreatePage() {
+  const session = await getSession();
   const posters = await prisma.poster.findMany({
+    where: { userId: session?.user.id },
     orderBy: { createdAt: "desc" },
   });
   return (

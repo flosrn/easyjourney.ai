@@ -25,19 +25,21 @@ const megaMenu: MegaMenu[] = [
     title: "Explorer",
     menu: [
       {
-        title: "Thèmes",
-        href: "/themes",
-        description: "Explorez les posters par thèmes",
-      },
-      {
-        title: "Styles",
-        href: "/styles",
-        description: "Découvrez les posters selon différents styles",
+        title: "Catégories",
+        href: "/posters/categories",
+        description: "Explorez les posters par catégories, thèmes et styles",
       },
       {
         title: "Popularité",
-        href: "/popular",
-        description: "Parcourez les posters les plus populaires",
+        href: "/posters/popular",
+        description:
+          "Parcourez les posters les plus populaires et les mieux notés",
+      },
+      {
+        title: "Nouveautés",
+        href: "/posters/new",
+        description:
+          "Découvrez les dernières créations des membres de la communauté",
       },
     ],
     hasLeftImage: true,
@@ -57,12 +59,12 @@ const megaMenu: MegaMenu[] = [
       },
       {
         title: "Tutoriels et astuces",
-        href: "/tutorials",
+        href: "/posters/tutorials",
         description: "Apprenez à créer des posters uniques et efficaces",
       },
       {
         title: "Galerie de créations",
-        href: "/gallery",
+        href: "/posters/gallery",
         description: "Admirez les créations des membres de la communauté",
       },
     ],
@@ -87,10 +89,10 @@ const megaMenu: MegaMenu[] = [
           "Apprenez-en davantage sur l'intelligence artificielle utilisée pour générer les posters",
       },
       {
-        title: "Presse & Médias",
-        href: "/about/press",
+        title: "FAQ",
+        href: "/about/faq",
         description:
-          "Consultez les articles et reportages sur notre plateforme",
+          "Consultez les questions fréquemment posées par nos utilisateurs",
       },
       {
         title: "Contactez-nous",
