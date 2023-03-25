@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next/types";
 
 const text2img = async (prompt: string) => {
   const response = await fetch(
-    "https://5e990900-7abd-4995.gradio.live/sdapi/v1/txt2img",
+    "https://eb389fbb-dcaa-4266.gradio.live/sdapi/v1/txt2img",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
