@@ -47,12 +47,12 @@ const megaMenu: MegaMenu[] = [
     menu: [
       {
         title: "Générateur rapide",
-        href: "/create",
+        href: "/posters/create/quick",
         description: "Créez rapidement un poster avec un prompt",
       },
       {
         title: "Générateur avancé",
-        href: "/create",
+        href: "/posters/create/advanced",
         description: "Personnalisez votre poster avec des paramètres avancés",
       },
       {
@@ -111,7 +111,7 @@ const userMenu: NavItem[][] = [
     },
     {
       title: "Mes posters",
-      href: "/create",
+      href: "/profile/posters",
       icon: ShoppingCart,
     },
     {
@@ -152,17 +152,16 @@ const userMenu: NavItem[][] = [
   [
     {
       title: "Déconnexion",
-      href: "/logout",
       icon: LogOut,
-      onClick: async () => signOut(),
+      onClick: signOut,
     },
   ],
 ];
 
 export const siteConfig: SiteConfig = {
-  name: "flosrn.dev",
+  name: "Homaide.art",
   description:
-    "J'utilise des techniques modernes et les meilleures technologies pour développer toutes sortes de sites web et d'applications web.",
+    "Créez vos posters personnalisés en quelques clics et recevez-les chez vous !",
   megaMenu,
   userMenu,
 };

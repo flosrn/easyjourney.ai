@@ -54,18 +54,19 @@ const DropdownMenuNav = ({ items, user }: DropdownMenuNavProps) => {
           <React.Fragment key={index}>
             <DropdownMenuGroup>
               {group.map(({ title, href, icon: Icon, onClick }) => {
-                const handleClick = (event: React.MouseEvent) => {
-                  if (onClick) {
-                    event.preventDefault();
-                    onClick();
-                  }
-                };
                 return (
-                  <DropdownMenuItem key={title} onClick={handleClick} asChild>
-                    <Link href={href}>
-                      <Icon className="mr-2 h-4 w-4" />
-                      <span className="truncate">{title}</span>
-                    </Link>
+                  <DropdownMenuItem key={title} onClick={onClick} asChild>
+                    {href ? (
+                      <Link href={href}>
+                        <Icon className="mr-2 h-4 w-4" />
+                        <span className="truncate">{title}</span>
+                      </Link>
+                    ) : (
+                      <div>
+                        <Icon className="mr-2 h-4 w-4" />
+                        <span className="truncate">{title}</span>
+                      </div>
+                    )}
                   </DropdownMenuItem>
                 );
               })}
