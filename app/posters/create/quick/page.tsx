@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { getSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
@@ -29,12 +30,13 @@ export default async function CreatePage() {
         <Prompt />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {posters.map((poster) => (
-            <img
-              key={poster.id}
-              src={`data:image/png;base64,${poster.image}`}
-              alt=""
-              className="h-auto w-full"
-            />
+            <Link key={poster.id} href={`/posters/${poster.id}`}>
+              <img
+                src={`data:image/png;base64,${poster.image}`}
+                alt=""
+                className="h-auto w-full"
+              />
+            </Link>
           ))}
         </div>
       </section>

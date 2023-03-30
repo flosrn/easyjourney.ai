@@ -20,7 +20,7 @@ import type { NavItem } from "~/types/nav";
 
 type DropdownMenuNavProps = {
   items: NavItem[][];
-  user: Session["user"];
+  user?: Session["user"];
 };
 
 const getFirstLetters = (name: string) => {
@@ -37,10 +37,10 @@ const DropdownMenuNav = ({ items, user }: DropdownMenuNavProps) => {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="w-10 rounded-full p-0">
           <Avatar className="cursor-pointer">
-            {user.image && (
+            {user?.image && (
               <AvatarImage src={user.image} referrerPolicy="no-referrer" />
             )}
-            {user.name && (
+            {user?.name && (
               <AvatarFallback>{getFirstLetters(user.name)}</AvatarFallback>
             )}
             <span className="sr-only">Open popover</span>

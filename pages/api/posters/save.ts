@@ -9,8 +9,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const session = await getSession({ req });
-  // eslint-disable-next-line no-console
-  console.log("🚀 ~ file: save.ts ~ line 12 ~ handler ~ session", session);
 
   if (!session) {
     res.status(401).json({ message: "Non autorisé!!" });
