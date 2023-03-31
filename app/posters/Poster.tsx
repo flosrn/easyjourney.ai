@@ -3,21 +3,20 @@
 import React from "react";
 import useCartStore from "~/store/useCartStore";
 
-type PosterProps = {
+export type PosterProps = {
   id: string;
-  title: string;
   prompt: string;
   image: string;
 };
 
-const Poster = ({ id, title, prompt, image }: PosterProps) => {
+const Poster = ({ id, prompt, image }: PosterProps) => {
   const addItem = useCartStore((state) => state.addItem);
   return (
     <>
       <div className="">
         <img
           src={`data:image/png;base64,${image}`}
-          alt={title}
+          alt={prompt}
           className="w-full object-cover"
         />
       </div>

@@ -5,6 +5,8 @@ import { prisma } from "~/server/db/prisma";
 
 import Prompt from "~/components/Prompt";
 
+import Posters from "../../Posters";
+
 export default async function CreatePage() {
   const session = await getSession();
   const posters = await prisma.poster.findMany({
@@ -28,17 +30,7 @@ export default async function CreatePage() {
           </p>
         </div>
         <Prompt />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {posters.map((poster) => (
-            <Link key={poster.id} href={`/posters/${poster.id}`}>
-              <img
-                src={`data:image/png;base64,${poster.image}`}
-                alt=""
-                className="h-auto w-full"
-              />
-            </Link>
-          ))}
-        </div>
+        <Posters posters={posters} />
       </section>
     </>
   );

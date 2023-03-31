@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion, useCycle } from "framer-motion";
 import { ShoppingCart } from "lucide-react";
-import type { CartItemType } from "~/store/useCartStore";
+import { type CartItemType } from "~/store/useCartStore";
 
 import CartItem from "~/components/shopping-cart/CartItem";
 
@@ -55,11 +55,22 @@ const itemVariants = {
 };
 
 export const CartDrawer = ({ items }: CartDrawerProps) => {
+  const [count, setCount] = useState(0);
   const [open, cycleOpen] = useCycle(false, true);
   const onOpenChange = () => cycleOpen();
+
+  const total = items.reduce((acc, item) => acc + item.quantity, 0);
+
+  useEffect(() => {
+    setCount(total);
+  }, [total]);
+
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
-      <Dialog.Trigger className="flex-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900">
+      <Dialog.Trigger className="flex-center relative h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900">
+        <span className="absolute -top-1 -right-4 mr-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-red-100">
+          {count}
+        </span>
         <ShoppingCart size={20} />
       </Dialog.Trigger>
 
