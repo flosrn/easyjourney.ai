@@ -1,20 +1,14 @@
 "use client";
 
 import React from "react";
-import { useSession } from "next-auth/react";
-import useCartStore from "~/store/useCartStore";
 
 import DropdownMenuNav from "~/components/DropdownMenuNav";
 import { Navbar } from "~/components/Navbar";
 import { CartDrawer } from "~/components/shopping-cart/CartDrawer";
 
-import { siteConfig } from "~/config/site";
-
 type HeaderProps = {};
 
 const Header = ({}: HeaderProps) => {
-  const { data: session } = useSession();
-  const items = useCartStore((state) => state.items);
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
       <div className="container flex h-16 items-center">
@@ -36,8 +30,8 @@ const Header = ({}: HeaderProps) => {
             </nav>
           </div>
           <div className="flex items-center space-x-2">
-            <DropdownMenuNav items={siteConfig.userMenu} user={session?.user} />
-            <CartDrawer items={items} />
+            <DropdownMenuNav />
+            <CartDrawer />
           </div>
         </div>
       </div>

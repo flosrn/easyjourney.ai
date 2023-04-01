@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { type Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 import { Button } from "~/components/ui/Button";
@@ -16,12 +16,9 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/DropdownMenu";
 
-import type { NavItem } from "~/types/nav";
+import { siteConfig } from "~/config/site";
 
-type DropdownMenuNavProps = {
-  items: NavItem[][];
-  user?: Session["user"];
-};
+type DropdownMenuNavProps = {};
 
 const getFirstLetters = (name: string) => {
   const splitedName = name.split(" ");
@@ -31,26 +28,34 @@ const getFirstLetters = (name: string) => {
   return name.charAt(0).toUpperCase();
 };
 
-const DropdownMenuNav = ({ items, user }: DropdownMenuNavProps) => {
+const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
+  const { data: session } = useSession();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="w-10 rounded-full p-0">
-          <Avatar className="cursor-pointer">
-            {user?.image && (
-              <AvatarImage src={user.image} referrerPolicy="no-referrer" />
-            )}
-            {user?.name && (
-              <AvatarFallback>{getFirstLetters(user.name)}</AvatarFallback>
-            )}
-            <span className="sr-only">Open popover</span>
-          </Avatar>
-        </Button>
+        {session && (
+          <Button variant="outline" className="w-10 rounded-full p-0">
+            <Avatar className="cursor-pointer">
+              {session.user.image && (
+                <AvatarImage
+                  src={session.user.image}
+                  referrerPolicy="no-referrer"
+                />
+              )}
+              {session.user.name && (
+                <AvatarFallback>
+                  {getFirstLetters(session.user.name)}
+                </AvatarFallback>
+              )}
+              <span className="sr-only">Open popover</span>
+            </Avatar>
+          </Button>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent side="bottom" align="end" className="w-56">
         <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {items.map((group, index) => (
+        {siteConfig.userMenu.map((group, index) => (
           <React.Fragment key={index}>
             <DropdownMenuGroup>
               {group.map(({ title, href, icon: Icon, onClick }) => {
@@ -71,7 +76,9 @@ const DropdownMenuNav = ({ items, user }: DropdownMenuNavProps) => {
                 );
               })}
             </DropdownMenuGroup>
-            {group !== items[items.length - 1] && <DropdownMenuSeparator />}
+            {group !== siteConfig.userMenu[siteConfig.userMenu.length - 1] && (
+              <DropdownMenuSeparator />
+            )}
           </React.Fragment>
         ))}
       </DropdownMenuContent>

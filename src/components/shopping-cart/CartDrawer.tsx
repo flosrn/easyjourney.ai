@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion, useCycle } from "framer-motion";
 import { ShoppingCart, X } from "lucide-react";
-import { type CartItemType } from "~/store/useCartStore";
+import useCartStore from "~/store/useCartStore";
 
 import CartItem from "~/components/shopping-cart/CartItem";
 
-type CartDrawerProps = {
-  items: CartItemType[];
-};
+type CartDrawerProps = {};
 
 const sideVariants = {
   closed: {
@@ -54,10 +52,10 @@ const itemVariants = {
   },
 };
 
-export const CartDrawer = ({ items }: CartDrawerProps) => {
+export const CartDrawer = ({}: CartDrawerProps) => {
   const [count, setCount] = useState(0);
   const [open, cycleOpen] = useCycle(false, true);
-  const onOpenChange = () => cycleOpen();
+  const items = useCartStore((state) => state.items);
 
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = items.reduce((acc, item) => acc + item.quantity * 45, 0);
@@ -65,6 +63,8 @@ export const CartDrawer = ({ items }: CartDrawerProps) => {
   useEffect(() => {
     setCount(totalItems);
   }, [totalItems]);
+
+  const onOpenChange = () => cycleOpen();
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>

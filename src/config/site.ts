@@ -155,7 +155,7 @@ const userMenu: NavItem[][] = [
     {
       title: "Déconnexion",
       icon: LogOut,
-      onClick: signOut,
+      onClick: async () => signOut({ callbackUrl: "/" }),
     },
   ],
 ];
