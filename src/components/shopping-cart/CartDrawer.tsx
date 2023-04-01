@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion, useCycle } from "framer-motion";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, X } from "lucide-react";
 import { type CartItemType } from "~/store/useCartStore";
 
 import CartItem from "~/components/shopping-cart/CartItem";
@@ -59,11 +59,12 @@ export const CartDrawer = ({ items }: CartDrawerProps) => {
   const [open, cycleOpen] = useCycle(false, true);
   const onOpenChange = () => cycleOpen();
 
-  const total = items.reduce((acc, item) => acc + item.quantity, 0);
+  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = items.reduce((acc, item) => acc + item.quantity * 45, 0);
 
   useEffect(() => {
-    setCount(total);
-  }, [total]);
+    setCount(totalItems);
+  }, [totalItems]);
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -111,10 +112,10 @@ export const CartDrawer = ({ items }: CartDrawerProps) => {
                 transition={{ delay: 0.35 }}
               >
                 <button
-                  className="flex-center h-10 w-10 text-black"
+                  className="flex-center absolute top-2 right-2 h-10 w-10 text-black"
                   onClick={() => onOpenChange()}
                 >
-                  X
+                  <X size={26} />
                 </button>
 
                 <h2 className="mb-4 text-2xl font-bold text-black">
@@ -137,6 +138,10 @@ export const CartDrawer = ({ items }: CartDrawerProps) => {
                     </motion.li>
                   ))}
                 </motion.ul>
+
+                <div className="mt-4 flex justify-between">
+                  <span className="text-gray-600">Total: {totalPrice} €</span>
+                </div>
               </motion.div>
             </motion.aside>
           </Dialog.Content>
