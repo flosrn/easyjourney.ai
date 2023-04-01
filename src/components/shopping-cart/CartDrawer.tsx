@@ -69,9 +69,11 @@ export const CartDrawer = ({}: CartDrawerProps) => {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Trigger className="flex-center relative h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900">
-        <span className="absolute -top-1 -right-4 mr-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-red-100">
-          {count}
-        </span>
+        {count > 0 && (
+          <span className="absolute -top-1 -right-4 mr-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-red-100">
+            {count}
+          </span>
+        )}
         <ShoppingCart size={20} />
       </Dialog.Trigger>
 

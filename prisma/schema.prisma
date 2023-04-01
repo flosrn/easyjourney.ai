@@ -1,10 +1,8 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Learn more about Prisma schema file in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 generator client {
@@ -12,15 +10,19 @@ generator client {
 }
 
 model Poster {
-  id        String    @id @default(uuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
-  title     String
-  prompt    String
-  image     String
-  likes     Int?
-  user      User?     @relation(fields: [userId], references: [id])
-  userId    String?
+  id     String @id @default(uuid())
+  title  String
+  prompt String
+  image  String
+  likes  Int?
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String? @map(name: "user_id")
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+  @@map("posters")
 }
 
 // Necessary for Next auth
@@ -41,6 +43,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@map("accounts")
 }
 
 model Session {
@@ -49,19 +52,27 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
 }
 
 model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
-  emailVerified DateTime?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime? @updatedAt
+  emailVerified DateTime? @map("email_verified")
   image         String?
-  accounts      Account[]
-  sessions      Session[]
-  posters       Poster[]
+
+  accounts Account[]
+  sessions Session[]
+  posters  Poster[]
+
+  stripeCustomerId String? @unique @map(name: "stripe_customer_id")
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+  @@map("users")
 }
 
 model VerificationToken {
@@ -70,4 +81,5 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+  @@map("verification_tokens")
 }
