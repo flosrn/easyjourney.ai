@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as AvatarPrimivite from "@radix-ui/react-avatar";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/classNames";
 
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimivite.Root>,

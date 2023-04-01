@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion, useCycle } from "framer-motion";
 import { ShoppingCart, X } from "lucide-react";
+import { useShoppingCart } from "use-shopping-cart";
 import useCartStore from "~/store/useCartStore";
 
 import CartItem from "~/components/shopping-cart/CartItem";
+import { Button } from "~/components/ui/Button";
 
 type CartDrawerProps = {};
 
@@ -54,7 +56,10 @@ const itemVariants = {
 
 export const CartDrawer = ({}: CartDrawerProps) => {
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [open, cycleOpen] = useCycle(false, true);
+  const { redirectToCheckout } = useShoppingCart();
   const items = useCartStore((state) => state.items);
 
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
@@ -65,6 +70,33 @@ export const CartDrawer = ({}: CartDrawerProps) => {
   }, [totalItems]);
 
   const onOpenChange = () => cycleOpen();
+
+  const handleCheckout: React.FormEventHandler<HTMLFormElement> = async (
+    event
+  ) => {
+    event.preventDefault();
+    setLoading(true);
+    setErrorMessage("");
+
+    const response: any = await fetch("/api/checkout_sessions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ items }),
+    });
+
+    const data = await response.json();
+
+    if (response.statusCode > 399) {
+      console.error(response.message);
+      setErrorMessage(response.message);
+      setLoading(false);
+      return;
+    }
+    console.log("data :", data);
+    await redirectToCheckout(data.id);
+  };
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -144,6 +176,10 @@ export const CartDrawer = ({}: CartDrawerProps) => {
                 <div className="mt-4 flex justify-between">
                   <span className="text-gray-600">Total: {totalPrice} €</span>
                 </div>
+
+                <Button className="mt-4 w-full" onClick={handleCheckout}>
+                  Commander
+                </Button>
               </motion.div>
             </motion.aside>
           </Dialog.Content>

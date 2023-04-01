@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { Icons } from "~/components/Icons";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/classNames";
 
 import arc from "../../public/icons/arc.svg";
 import chatgpt from "../../public/icons/chatgpt.svg";

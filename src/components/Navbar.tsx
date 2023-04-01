@@ -11,7 +11,7 @@ import {
   NavigationMenuTrigger,
 } from "~/components/ui/NavigationMenu";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/classNames";
 import { siteConfig } from "~/config/site";
 
 import { Icons } from "./Icons";

@@ -6,7 +6,7 @@ import { Loader2 } from "lucide-react";
 
 import { Button, buttonVariants } from "~/components/ui/Button";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/classNames";
 
 const Prompt = () => {
   const [promptInputValue, setPromptInputValue] = React.useState("");
