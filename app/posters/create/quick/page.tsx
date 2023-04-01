@@ -1,7 +1,5 @@
-import React from "react";
-import Link from "next/link";
+import React, { Suspense } from "react";
 import { getSession } from "~/server/auth";
-import { prisma } from "~/server/db/prisma";
 
 import Prompt from "~/components/Prompt";
 
@@ -9,10 +7,6 @@ import Posters from "../../Posters";
 
 export default async function CreatePage() {
   const session = await getSession();
-  const posters = await prisma.poster.findMany({
-    where: { userId: session?.user.id },
-    orderBy: { createdAt: "desc" },
-  });
   return (
     <>
       <section className="container mt-6 grid items-center justify-center gap-6 pb-8">
@@ -30,7 +24,10 @@ export default async function CreatePage() {
           </p>
         </div>
         <Prompt />
-        <Posters posters={posters} />
+        <Suspense fallback={<div>Loading posters...</div>}>
+          {/* @ts-expect-error Server Component */}
+          <Posters userId={session.user.id} />
+        </Suspense>
       </section>
     </>
   );

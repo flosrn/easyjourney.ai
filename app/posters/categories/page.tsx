@@ -1,16 +1,15 @@
-import React from "react";
-import { prisma } from "~/server/db/prisma";
+import React, { Suspense } from "react";
 
 import Posters from "../Posters";
 
-export default async function CategoriesPage() {
-  const posters = await prisma.poster.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+export default function CategoriesPage() {
   return (
     <>
       <section className="container mt-6 grid items-center justify-center gap-6 pb-8">
-        <Posters posters={posters} />
+        <Suspense fallback={<div>Loading posters...</div>}>
+          {/* @ts-expect-error Server Component */}
+          <Posters />
+        </Suspense>
       </section>
     </>
   );
