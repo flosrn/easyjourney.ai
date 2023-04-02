@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion, useCycle } from "framer-motion";
 import { ShoppingCart, X } from "lucide-react";
 import { useShoppingCart } from "use-shopping-cart";
-import useCartStore from "~/store/useCartStore";
 
 import CartItem from "~/components/shopping-cart/CartItem";
 import { Button } from "~/components/ui/Button";
@@ -55,57 +54,48 @@ const itemVariants = {
 };
 
 export const CartDrawer = ({}: CartDrawerProps) => {
-  const [count, setCount] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const [open, cycleOpen] = useCycle(false, true);
-  const { redirectToCheckout } = useShoppingCart();
-  const items = useCartStore((state) => state.items);
-
-  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
-  const totalPrice = items.reduce((acc, item) => acc + item.quantity * 45, 0);
-
-  useEffect(() => {
-    setCount(totalItems);
-  }, [totalItems]);
+  const { formattedTotalPrice, cartCount, cartDetails, redirectToCheckout } =
+    useShoppingCart();
 
   const onOpenChange = () => cycleOpen();
 
-  const handleCheckout: React.FormEventHandler<HTMLFormElement> = async (
+  const handleCheckout: React.MouseEventHandler<HTMLButtonElement> = async (
     event
   ) => {
     event.preventDefault();
-    setLoading(true);
-    setErrorMessage("");
-
     const response: any = await fetch("/api/checkout_sessions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ items }),
+      body: JSON.stringify(cartDetails),
     });
 
     const data = await response.json();
 
     if (response.statusCode > 399) {
+      // eslint-disable-next-line no-console
       console.error(response.message);
-      setErrorMessage(response.message);
-      setLoading(false);
       return;
     }
+    // eslint-disable-next-line no-console
     console.log("data :", data);
     await redirectToCheckout(data.id);
   };
 
+  console.log("cartCount :", cartCount);
+
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Trigger className="flex-center relative h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900">
-        {count > 0 && (
-          <span className="absolute -top-1 -right-4 mr-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-red-100">
-            {count}
-          </span>
-        )}
+        {cartCount
+          ? cartCount > 0 && (
+              <span className="absolute -top-1 -right-4 mr-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-red-100">
+                {cartCount}
+              </span>
+            )
+          : null}
         <ShoppingCart size={20} />
       </Dialog.Trigger>
 
@@ -162,19 +152,27 @@ export const CartDrawer = ({}: CartDrawerProps) => {
                   variants={itemsVariants}
                   className="divide-y divide-gray-200"
                 >
-                  {items.map((item) => (
-                    <motion.li
-                      key={item.id}
-                      variants={itemVariants}
-                      className="flex py-4"
-                    >
-                      <CartItem {...item} />
-                    </motion.li>
-                  ))}
+                  {cartDetails && cartCount && cartCount > 0 ? (
+                    Object.keys(cartDetails).map((key) => (
+                      <motion.li
+                        key={key}
+                        variants={itemVariants}
+                        className="flex py-4"
+                      >
+                        <CartItem item={cartDetails[key]} />
+                      </motion.li>
+                    ))
+                  ) : (
+                    <div className="text-center">
+                      <p className="text-gray-600">Votre panier est vide</p>
+                    </div>
+                  )}
                 </motion.ul>
 
                 <div className="mt-4 flex justify-between">
-                  <span className="text-gray-600">Total: {totalPrice} €</span>
+                  <span className="text-gray-600">
+                    Total: {formattedTotalPrice}
+                  </span>
                 </div>
 
                 <Button className="mt-4 w-full" onClick={handleCheckout}>

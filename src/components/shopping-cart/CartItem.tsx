@@ -1,36 +1,49 @@
 import React from "react";
-import useCartStore, { type CartItemType } from "~/store/useCartStore";
+import { useShoppingCart } from "use-shopping-cart";
+import type { CartEntry } from "use-shopping-cart/core";
 
-const CartItem = ({ id, prompt, image, quantity }: CartItemType) => {
-  const addItem = useCartStore((state) => state.addItem);
-  const removeItem = useCartStore((state) => state.removeItem);
+export type CartItemProps = {
+  item: CartEntry & {
+    product_data?: {
+      prompt?: string;
+      image?: string;
+    };
+  };
+};
+
+const CartItem = ({ item }: CartItemProps) => {
+  const { id, name, image, quantity, formattedValue } = item;
+  const { incrementItem, decrementItem } = useShoppingCart();
   return (
     <>
       <img
-        src={`data:image/png;base64,${image}`}
-        alt={prompt}
+        src={image}
+        alt={name}
         className="mr-4 h-20 w-20 rounded object-cover"
       />
-      <div className="flex flex-col justify-between">
+      <div className="flex w-full flex-col">
         <div>
           <h3 className="truncate text-lg font-semibold text-gray-800">
-            {prompt}
+            {name}
           </h3>
         </div>
-        <div className="mt-2 flex items-center">
-          <button
-            onClick={() => removeItem({ id, prompt, image, quantity })}
-            className="mr-2 rounded bg-gray-200 px-2 py-1 text-gray-700"
-          >
-            -
-          </button>
-          <span className="text-gray-700">{quantity}</span>
-          <button
-            onClick={() => addItem({ id, prompt, image, quantity })}
-            className="ml-2 rounded bg-gray-200 px-2 py-1 text-gray-700"
-          >
-            +
-          </button>
+        <div className="mt-2 flex items-center justify-between">
+          <div>
+            <button
+              onClick={() => decrementItem(id)}
+              className="mr-2 rounded bg-gray-200 px-2 py-1 text-gray-700"
+            >
+              -
+            </button>
+            <span className="text-gray-700">{quantity}</span>
+            <button
+              onClick={() => incrementItem(id)}
+              className="ml-2 rounded bg-gray-200 px-2 py-1 text-gray-700"
+            >
+              +
+            </button>
+          </div>
+          <span className="ml-2 text-gray-700">{formattedValue}</span>
         </div>
       </div>
     </>

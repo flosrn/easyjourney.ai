@@ -4,12 +4,11 @@ import Cors from "micro-cors";
 import Stripe from "stripe";
 import { env } from "~/env.mjs";
 
-const stripe = new Stripe(env.STRIPE_SECRET_KEY!, {
-  // https://github.com/stripe/stripe-node#configuration
+const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
   apiVersion: "2022-11-15",
 });
 
-const webhookSecret: string = env.STRIPE_WEBHOOK_SECRET!;
+const webhookSecret: string = env.STRIPE_WEBHOOK_SECRET;
 
 // Stripe requires the raw body to construct the event.
 export const config = {
@@ -35,17 +34,21 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
         sig,
         webhookSecret
       );
-    } catch (error) {
+    } catch (error: unknown) {
       const errorMessage =
         error instanceof Error ? error.message : "Unknown error";
       // On error, log and return the error message.
       if (error! instanceof Error) console.log(error);
+      // eslint-disable-next-line no-console
       console.log(`❌ Error message: ${errorMessage}`);
       res.status(400).send(`Webhook Error: ${errorMessage}`);
       return;
     }
 
+    console.log("event :", event);
+
     // Successfully constructed event.
+    // eslint-disable-next-line no-console
     console.log("✅ Success:", event.id);
 
     // Cast event data to Stripe object.

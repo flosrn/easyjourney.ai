@@ -18,8 +18,7 @@ export default function Providers({ children }: { children: ReactNode }) {
           cartMode="checkout-session"
           stripe={env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
           currency="EUR"
-          // successUrl="http://localhost:3000/success"
-          // cancelUrl="http://localhost:3000/cancel"
+          language="fr"
           shouldPersist={true}
         >
           <ThemeProvider attribute="class">{children}</ThemeProvider>

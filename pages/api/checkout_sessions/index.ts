@@ -1,32 +1,29 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import { validateCartItems } from "use-shopping-cart/utilities";
-import inventory from "~/data/products";
 import { env } from "~/env.mjs";
 
-const stripe = new Stripe(env.STRIPE_SECRET_KEY!, {
-  // https://github.com/stripe/stripe-node#configuration
+type CartItem = {
+  id: string;
+  name: string;
+  quantity: number;
+  posterIds: string[];
+};
+
+type FormattedBody = Record<string, CartItem>;
+
+const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
   apiVersion: "2022-11-15",
 });
 
-const products = {
-  cartDetails: {
-    sku_GBJ2Ep8246qeeT: {
-      name: "Bananas",
-      description: "Yummy yellow fruit",
-      sku: "sku_GBJ2Ep8246qeeT",
-      price: 400,
-      image:
-        "https://images.unsplash.com/photo-1574226516831-e1dff420e562?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=225&q=80",
-      attribution: "Photo by Priscilla Du Preez on Unsplash",
-      currency: "USD",
-      quantity: 4,
-      value: 1600,
-      formattedValue: "16,00 $US",
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "4mb",
     },
   },
-  totalPrice: 2100,
-  cartCount: 9,
 };
 
 export default async function handler(
@@ -35,39 +32,69 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     try {
-      // console.log("req.body", req.body);
-      // const cart = JSON.parse(products);
-      // console.log("cart :", cart);
-      // Validate the cart details that were sent from the client.
-      // const line_items = validateCartItems(inventory as any, req.body);
-      const line_items = validateCartItems(
-        inventory as any,
-        products.cartDetails
+      // eslint-disable-next-line unicorn/no-array-reduce
+      const formattedBody = Object.keys(req.body).reduce<FormattedBody>(
+        (acc, key) => {
+          const priceId = key.split("-")[0];
+          const posterId = key.split("-").slice(1).join("-");
+          // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+          if (acc[priceId]) {
+            acc[priceId].quantity += req.body[key].quantity; // Incrémente la quantité pour les éléments ayant le même ID de prix
+            acc[priceId].posterIds.push(posterId); // Ajoute l'ID du poster au tableau des IDs de posters correspondants
+          } else {
+            acc[priceId] = {
+              id: priceId,
+              name: req.body[key].name,
+              quantity: req.body[key].quantity,
+              posterIds: [posterId],
+            };
+          }
+          return acc;
+        },
+        {}
       );
-      console.log("line_items :", line_items);
-      // const line_items = products;
-      // const hasSubscription = line_items.find((item) => {
-      //   return !!item.price_data.recurring;
-      // });
-      // Create Checkout Sessions from body params.
+
+      const inventory = await stripe.prices.list();
+
+      const formattedInventory = inventory.data
+        .map((item) => {
+          const cartItem = formattedBody[item.id];
+          // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+          if (!cartItem) {
+            return null;
+          }
+          return {
+            ...item,
+            name: cartItem.name,
+            price: item.unit_amount,
+            product_data: {
+              name: cartItem.name,
+              images: [
+                "https://cdn.midjourney.com/f25ad3aa-388c-44de-b6a5-e8e750a03b9c/0_3.webp",
+              ],
+              metadata: {
+                posterIds: cartItem.posterIds.join(","),
+              },
+            },
+          };
+        })
+        .filter(Boolean);
+
+      const line_items = validateCartItems(formattedInventory, formattedBody);
+
       const params: Stripe.Checkout.SessionCreateParams = {
         submit_type: "pay",
         payment_method_types: ["card"],
         billing_address_collection: "auto",
-        shipping_address_collection: {
-          allowed_countries: ["US", "CA"],
-        },
+        shipping_address_collection: { allowed_countries: ["FR"] },
         line_items,
-        success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/use-shopping-cart`,
-        // mode: hasSubscription ? "subscription" : "payment",
+        success_url: `${req.headers.origin}/checkout/success/{CHECKOUT_SESSION_ID}`,
+        cancel_url: `${req.headers.origin}`,
         mode: "payment",
       };
 
       const checkoutSession: Stripe.Checkout.Session =
         await stripe.checkout.sessions.create(params);
-
-      console.log("checkoutSession :", checkoutSession);
 
       res.status(200).json(checkoutSession);
     } catch (error: unknown) {
