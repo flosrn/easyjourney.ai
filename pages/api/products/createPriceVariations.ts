@@ -26,18 +26,18 @@ const frames = [
 const createPriceVariations = async () => {
   for (const size of sizes) {
     for (const frame of frames) {
-      const price = stripe.prices.create({
-        unit_amount: size.price,
-        currency,
-        product: productID,
-        metadata: {
-          size: size.name,
-          dimensions: size.dimensions,
-          frame_material: frame.material,
-          frame_color: frame.color,
-        },
-      });
-      console.log(`Created price variation: ${price.id}`);
+      // eslint-disable-next-line no-await-in-loop
+       await stripe.prices.create({
+         unit_amount: size.price,
+         currency,
+         product: productID,
+         metadata: {
+           size: size.name,
+           dimensions: size.dimensions,
+           frame_material: frame.material,
+           frame_color: frame.color,
+         },
+       });
     }
   }
 };
