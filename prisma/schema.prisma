@@ -91,5 +91,4 @@ model VerificationRequest {
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
   @@unique([identifier, token])
-  @@map("verification_requests")
 }
