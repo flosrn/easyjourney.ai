@@ -25,7 +25,28 @@ model Poster {
   @@map("posters")
 }
 
-// Necessary for Next auth
+// -----------------------------------------------------------------------------
+// NextAuth.js Models
+// -----------------------------------------------------------------------------
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map(name: "email_verified")
+  image         String?
+
+  accounts Account[]
+  sessions Session[]
+  posters  Poster[]
+
+  stripeCustomerId String? @unique @map(name: "stripe_customer_id")
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+
+  @@map("users")
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String  @map(name: "user_id")
@@ -48,31 +69,12 @@ model Account {
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique
+  sessionToken String   @unique @map(name: "session_token")
   userId       String   @map(name: "user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
-}
-
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-
-  accounts Account[]
-  sessions Session[]
-  posters  Poster[]
-
-  stripeCustomerId String? @unique @map(name: "stripe_customer_id")
-
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @default(now()) @map(name: "updated_at")
-
-  @@map("users")
 }
 
 model VerificationToken {
@@ -81,5 +83,5 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map("verification_tokens")
+  @@map("verificationtokens")
 }

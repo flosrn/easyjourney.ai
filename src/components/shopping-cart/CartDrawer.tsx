@@ -84,8 +84,6 @@ export const CartDrawer = ({}: CartDrawerProps) => {
     await redirectToCheckout(data.id);
   };
 
-  console.log("cartCount :", cartCount);
-
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Trigger className="flex-center relative h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900">
@@ -175,7 +173,11 @@ export const CartDrawer = ({}: CartDrawerProps) => {
                   </span>
                 </div>
 
-                <Button className="mt-4 w-full" onClick={handleCheckout}>
+                <Button
+                  disabled={cartCount === 0}
+                  className="mt-4 w-full"
+                  onClick={handleCheckout}
+                >
                   Commander
                 </Button>
               </motion.div>
