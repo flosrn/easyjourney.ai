@@ -21,7 +21,8 @@ export default async function handler(
   const { prompt } = req.body;
   try {
     const jsonData = await text2img(prompt);
-    // console.log("jsonData :", jsonData);
+    // eslint-disable-next-line no-console
+    console.log("jsonData :", jsonData);
     res.status(200).json(jsonData);
   } catch (error: unknown) {
     // eslint-disable-next-line no-console
