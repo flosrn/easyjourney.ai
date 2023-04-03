@@ -20,6 +20,7 @@ export default async function handler(
   try {
     const data = await prisma.poster.create({
       data: {
+        title: "",
         prompt,
         image: poster,
         likes: 0,
