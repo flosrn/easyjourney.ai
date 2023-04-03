@@ -8,20 +8,37 @@ import { Button, buttonVariants } from "~/components/ui/Button";
 
 import { cn } from "~/lib/classNames";
 
+const BASE_STABLE_DIFFUSION_URL = "https://82b53ca5-65f0-4750.gradio.live";
+
+const text2img = async (prompt: string) => {
+  const response = await fetch(
+    `${BASE_STABLE_DIFFUSION_URL}/sdapi/v1/txt2img`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({ prompt }),
+    }
+  );
+  return response.json();
+};
+
 const Prompt = () => {
   const [promptInputValue, setPromptInputValue] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [poster, setPoster] = React.useState("");
 
   const createPosterMutation = useMutation(async () => {
-    const request = await fetch("/api/posters/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ prompt: promptInputValue }),
-    });
-    return request.json();
+    const data = await text2img(promptInputValue);
+    // eslint-disable-next-line no-console
+    console.log("data :", data);
+    if (!data?.images?.[0]) {
+      setErrorMessage(data.error || "Something went wrong!");
+      return;
+    }
+    return data;
   });
 
   const savePosterMutation = useMutation(async () => {
