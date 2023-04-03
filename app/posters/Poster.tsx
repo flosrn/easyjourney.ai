@@ -9,7 +9,7 @@ import { useShoppingCart } from "use-shopping-cart";
 export type PosterProps = {
   id: string;
   prompt: string;
-  imageSrc: string;
+  image: string;
 };
 
 const fetchProduct = async () => {
@@ -19,7 +19,7 @@ const fetchProduct = async () => {
   return response.json();
 };
 
-const Poster = ({ id, prompt, imageSrc }: PosterProps) => {
+const Poster = ({ id, prompt, image }: PosterProps) => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedFrame, setSelectedFrame] = useState<{
     material: string;
@@ -105,7 +105,7 @@ const Poster = ({ id, prompt, imageSrc }: PosterProps) => {
     <>
       <div className="">
         <img
-          src={`data:image/png;base64,${imageSrc}`}
+          src={`data:image/png;base64,${image}`}
           alt={prompt}
           className="w-full object-cover"
         />
@@ -158,7 +158,7 @@ const Poster = ({ id, prompt, imageSrc }: PosterProps) => {
               name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,
               price: selectedPrice.unit_amount,
               currency: selectedPrice.currency,
-              image: `data:image/png;base64,${imageSrc}`,
+              image: `data:image/png;base64,${image}`,
               product_data: {
                 id: product.id,
                 description: prompt,

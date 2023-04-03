@@ -24,7 +24,7 @@ const Posters = async ({ userId }: PostersProps) => {
         posters.map((poster) => (
           <Link key={poster.id} href={`/posters/${poster.id}`}>
             <img
-              src={`data:image/png;base64,${poster.imageSrc}`}
+              src={`data:image/png;base64,${poster.image}`}
               alt=""
               className="h-auto w-full"
             />

@@ -21,12 +21,11 @@ export default async function handler(
     const data = await prisma.poster.create({
       data: {
         prompt,
-        imageSrc: poster,
+        image: poster,
         likes: 0,
         userId: session.user.id,
       },
     });
-    console.log("data :", data);
     res.status(200).json(data);
   } catch (error: unknown) {
     // eslint-disable-next-line no-console

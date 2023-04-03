@@ -10,11 +10,11 @@ generator client {
 }
 
 model Poster {
-  id       String  @id @default(uuid())
-  title    String?
-  prompt   String
-  imageSrc String
-  likes    Int?
+  id     String  @id @default(uuid())
+  title  String?
+  prompt String
+  image  String
+  likes  Int?
 
   user   User?   @relation(fields: [userId], references: [id])
   userId String? @map(name: "user_id")
