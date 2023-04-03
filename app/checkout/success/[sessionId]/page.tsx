@@ -2,16 +2,15 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 import { useShoppingCart } from "use-shopping-cart";
 
 type CheckoutSuccessProps = {};
 
 const CheckoutSuccess = ({}: CheckoutSuccessProps) => {
-  const params = useParams();
+  // Come in future release of Next.js
+  // const params = useParams();
   const { clearCart } = useShoppingCart();
-  // eslint-disable-next-line no-console
-  console.log("params :", params);
   useEffect(() => {
     clearCart();
   }, [clearCart]);
