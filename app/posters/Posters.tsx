@@ -20,15 +20,16 @@ const Posters = async ({ userId }: PostersProps) => {
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {posters.map((poster) => (
-        <Link key={poster.id} href={`/posters/${poster.id}`}>
-          <img
-            src={`data:image/png;base64,${poster.image}`}
-            alt=""
-            className="h-auto w-full"
-          />
-        </Link>
-      ))}
+      {posters.length > 0 &&
+        posters.map((poster) => (
+          <Link key={poster.id} href={`/posters/${poster.id}`}>
+            <img
+              src={`data:image/png;base64,${poster.imageSrc}`}
+              alt=""
+              className="h-auto w-full"
+            />
+          </Link>
+        ))}
     </div>
   );
 };

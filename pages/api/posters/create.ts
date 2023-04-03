@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next/types";
 
-const BASE_STABLE_DIFFUSION_URL = "https://85578915-a861-4c76.gradio.live";
+const BASE_STABLE_DIFFUSION_URL = "https://339767cc-1693-4523.gradio.live";
 
 const text2img = async (prompt: string) => {
   const response = await fetch(
@@ -21,6 +21,7 @@ export default async function handler(
   const { prompt } = req.body;
   try {
     const jsonData = await text2img(prompt);
+    // console.log("jsonData :", jsonData);
     res.status(200).json(jsonData);
   } catch (error: unknown) {
     // eslint-disable-next-line no-console

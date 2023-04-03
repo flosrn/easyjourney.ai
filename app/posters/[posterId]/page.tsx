@@ -49,7 +49,7 @@ export default async function PosterPage({
               <Poster
                 id={poster.id}
                 prompt={poster.prompt}
-                image={poster.image}
+                image={poster.imageSrc}
               />
             )}
           </div>
