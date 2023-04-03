@@ -1,8 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next/types";
 
+const BASE_STABLE_DIFFUSION_URL = "https://85578915-a861-4c76.gradio.live";
+
 const text2img = async (prompt: string) => {
   const response = await fetch(
-    "https://58534e13-a8c1-4379.gradio.live/sdapi/v1/txt2img",
+    `${BASE_STABLE_DIFFUSION_URL}/sdapi/v1/txt2img`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
