@@ -4,6 +4,15 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  plugins: [
+    "react",
+    "github",
+    "@typescript-eslint",
+    "json-format",
+    "promise",
+    "import",
+    "unicorn",
+  ],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -26,15 +35,6 @@ module.exports = {
     JSX: true,
     GLOBAL_APP_COLOR_THEME: true,
   },
-  plugins: [
-    "react",
-    "github",
-    "@typescript-eslint",
-    "json-format",
-    "promise",
-    "import",
-    "unicorn",
-  ],
   rules: {
     "linebreak-style": ["error", "unix"],
     semi: ["error", "always"],

@@ -1,9 +1,8 @@
 import React, { Suspense } from "react";
 import { getSession } from "~/server/auth";
 
-import Prompt from "~/components/Prompt";
-
 import Posters from "../../Posters";
+import Prompt from "../Prompt";
 
 export default async function CreatePage() {
   const session = await getSession();

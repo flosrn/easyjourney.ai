@@ -14,7 +14,7 @@ import {
 import { cn } from "~/lib/classNames";
 import { siteConfig } from "~/config/site";
 
-import { Icons } from "./Icons";
+import { Icons } from "../Icons";
 
 export const Navbar = () => {
   return (

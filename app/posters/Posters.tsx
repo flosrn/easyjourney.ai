@@ -14,22 +14,37 @@ const Posters = async ({ userId }: PostersProps) => {
     ? prisma.poster.findMany({
         where: { userId },
         orderBy: { createdAt: "desc" },
+        include: { user: true },
       })
     : prisma.poster.findMany({
         orderBy: { createdAt: "desc" },
+        include: { user: true },
       }));
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {posters.length > 0 &&
         posters.map((poster) => (
-          <Link key={poster.id} href={`/posters/${poster.id}`}>
+          <Link
+            key={poster.id}
+            href={`/posters/${poster.id}`}
+            className="w-[150px]"
+          >
             <Image
               alt={poster.prompt}
               src={poster.image}
-              width="400"
-              height="300"
+              width="150"
+              height="150"
+              className="rounded-lg transition duration-200 ease-in-out hover:scale-105"
             />
+            <div className="mt-1 text-gray-500">
+              <p className="truncate text-xs font-medium text-gray-600">
+                {poster.prompt}
+              </p>
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/* @ts-expect-error */}
+              <p className="text-[11px]">{poster.user.name}</p>
+            </div>
           </Link>
         ))}
     </div>

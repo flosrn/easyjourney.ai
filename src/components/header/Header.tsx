@@ -1,20 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Menu } from "lucide-react";
 
-import DropdownMenuNav from "~/components/DropdownMenuNav";
-import { Navbar } from "~/components/Navbar";
+import DropdownMenuNav from "~/components/header/DropdownMenuNav";
+import { Navbar } from "~/components/header/Navbar";
 import { CartDrawer } from "~/components/shopping-cart/CartDrawer";
 
 type HeaderProps = {};
 
 const Header = ({}: HeaderProps) => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
       <div className="container flex h-16 items-center">
@@ -22,7 +18,7 @@ const Header = ({}: HeaderProps) => {
           <div className="flex">
             <div className="md:hidden">
               <button
-                onClick={handleMenuToggle}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="rounded p-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
                 <Menu size={24} />
@@ -34,9 +30,9 @@ const Header = ({}: HeaderProps) => {
               </span>
             </a>
             <nav
+              dir="ltr"
               aria-label="Main"
               data-orientation="horizontal"
-              dir="ltr"
               className="relative z-10 hidden flex-1 md:flex md:items-center md:justify-center"
             >
               <Navbar />
