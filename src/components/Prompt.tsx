@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useCallback } from "react";
-import Image from "next/image";
 import { useMutation } from "@tanstack/react-query";
 import { uploadFile } from "@uploadcare/upload-client";
 import { Loader2 } from "lucide-react";
@@ -43,6 +42,20 @@ const uploadToUploadcare = async (blob: Blob, fileName: string) => {
   return response;
 };
 
+const savePosterToDatabase = async (poster: string, prompt: string) => {
+  const response = await fetch("/api/posters/save", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      image: poster,
+      prompt,
+    }),
+  });
+  return response.json();
+};
+
 const Prompt = () => {
   const [promptInputValue, setPromptInputValue] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -60,17 +73,10 @@ const Prompt = () => {
   const savePosterMutation = useMutation(async () => {
     const blob = await base64ToBlob(poster);
     const uploadcareResponse = await uploadToUploadcare(blob, promptInputValue);
-    const request = await fetch("/api/posters/save", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: promptInputValue,
-        image: uploadcareResponse.cdnUrl,
-      }),
-    });
-    return request.json();
+    const posterUrl = uploadcareResponse.cdnUrl;
+    const savePosterResponse =
+      posterUrl &&
+      (await savePosterToDatabase(uploadcareResponse.cdnUrl, promptInputValue));
   });
 
   const createPoster = useCallback(async () => {
@@ -133,15 +139,7 @@ const Prompt = () => {
         )}
       </div>
       {(createPosterMutation.isError || errorMessage) && <p>{errorMessage}</p>}
-      {poster && (
-        <Image
-          alt={promptInputValue}
-          src={poster}
-          width="400"
-          height="300"
-          quality="80"
-        />
-      )}
+      {poster && <img src={`data:image/png;base64,${poster}`} alt="" />}
     </>
   );
 };
