@@ -1,14 +1,17 @@
 "use client";
 
 import React, { useCallback } from "react";
+import Image from "next/image";
 import { useMutation } from "@tanstack/react-query";
+import { uploadFile } from "@uploadcare/upload-client";
 import { Loader2 } from "lucide-react";
+import { env } from "~/env.mjs";
 
 import { Button, buttonVariants } from "~/components/ui/Button";
 
 import { cn } from "~/lib/classNames";
 
-const BASE_STABLE_DIFFUSION_URL = "https://82b53ca5-65f0-4750.gradio.live";
+const BASE_STABLE_DIFFUSION_URL = "https://60af23cb-db2c-4b91.gradio.live";
 
 const text2img = async (prompt: string) => {
   const response = await fetch(
@@ -25,6 +28,21 @@ const text2img = async (prompt: string) => {
   return response.json();
 };
 
+const base64ToBlob = async (base64: string) => {
+  const response = await fetch(`data:image/jpeg;base64,${base64}`);
+  const blob = await response.blob();
+  return blob;
+};
+
+const uploadToUploadcare = async (blob: Blob, fileName: string) => {
+  const response = await uploadFile(blob, {
+    publicKey: env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY,
+    fileName,
+    store: true,
+  });
+  return response;
+};
+
 const Prompt = () => {
   const [promptInputValue, setPromptInputValue] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -32,8 +50,6 @@ const Prompt = () => {
 
   const createPosterMutation = useMutation(async () => {
     const data = await text2img(promptInputValue);
-    // eslint-disable-next-line no-console
-    console.log("data :", data);
     if (!data?.images?.[0]) {
       setErrorMessage(data.error || "Something went wrong!");
       return;
@@ -42,15 +58,16 @@ const Prompt = () => {
   });
 
   const savePosterMutation = useMutation(async () => {
+    const blob = await base64ToBlob(poster);
+    const uploadcareResponse = await uploadToUploadcare(blob, promptInputValue);
     const request = await fetch("/api/posters/save", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: "Titre du poster",
         prompt: promptInputValue,
-        poster,
+        image: uploadcareResponse.cdnUrl,
       }),
     });
     return request.json();
@@ -116,7 +133,15 @@ const Prompt = () => {
         )}
       </div>
       {(createPosterMutation.isError || errorMessage) && <p>{errorMessage}</p>}
-      {poster && <img src={`data:image/png;base64,${poster}`} alt="" />}
+      {poster && (
+        <Image
+          alt={promptInputValue}
+          src={poster}
+          width="400"
+          height="300"
+          quality="80"
+        />
+      )}
     </>
   );
 };

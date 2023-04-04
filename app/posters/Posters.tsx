@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "~/server/db/prisma";
 
@@ -23,10 +24,11 @@ const Posters = async ({ userId }: PostersProps) => {
       {posters.length > 0 &&
         posters.map((poster) => (
           <Link key={poster.id} href={`/posters/${poster.id}`}>
-            <img
-              src={`data:image/png;base64,${poster.image}`}
-              alt=""
-              className="h-auto w-full"
+            <Image
+              alt={poster.prompt}
+              src={poster.image}
+              width="400"
+              height="300"
             />
           </Link>
         ))}

@@ -10,6 +10,7 @@ type CartItem = {
   name: string;
   quantity: number;
   posterIds: string[];
+  images: string[];
 };
 
 type FormattedBody = Record<string, CartItem>;
@@ -41,12 +42,14 @@ export default async function handler(
           if (acc[priceId]) {
             acc[priceId].quantity += req.body[key].quantity; // Incrémente la quantité pour les éléments ayant le même ID de prix
             acc[priceId].posterIds.push(posterId); // Ajoute l'ID du poster au tableau des IDs de posters correspondants
+            acc[priceId].images.push(req.body[key].image); // Ajoute l'image au tableau des images correspondantes
           } else {
             acc[priceId] = {
               id: priceId,
               name: req.body[key].name,
               quantity: req.body[key].quantity,
               posterIds: [posterId],
+              images: [req.body[key].image],
             };
           }
           return acc;
@@ -69,9 +72,7 @@ export default async function handler(
             price: item.unit_amount,
             product_data: {
               name: cartItem.name,
-              images: [
-                "https://cdn.midjourney.com/f25ad3aa-388c-44de-b6a5-e8e750a03b9c/0_3.webp",
-              ],
+              images: cartItem.images,
               metadata: {
                 posterIds: cartItem.posterIds.join(","),
               },
@@ -80,6 +81,7 @@ export default async function handler(
         })
         .filter(Boolean);
 
+      // Vérifie que les entrées du panier correspondent à des produits existants
       const line_items = validateCartItems(formattedInventory, formattedBody);
 
       const params: Stripe.Checkout.SessionCreateParams = {

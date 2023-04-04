@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { useShoppingCart } from "use-shopping-cart";
 import type { CartEntry } from "use-shopping-cart/core";
 
@@ -16,11 +17,16 @@ const CartItem = ({ item }: CartItemProps) => {
   const { incrementItem, decrementItem } = useShoppingCart();
   return (
     <>
-      <img
-        src={image}
-        alt={name}
-        className="mr-4 h-20 w-20 rounded object-cover"
-      />
+      {image && (
+        <Image
+          alt={name}
+          src={image}
+          width="80"
+          height="80"
+          quality="10"
+          className="mr-4 rounded object-cover"
+        />
+      )}
       <div className="flex w-full flex-col">
         <div>
           <h3 className="truncate text-lg font-semibold text-gray-800">

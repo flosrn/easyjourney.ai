@@ -3,6 +3,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useShoppingCart } from "use-shopping-cart";
 
@@ -19,7 +20,7 @@ const fetchProduct = async () => {
   return response.json();
 };
 
-const Poster = ({ id, prompt, image }: PosterProps) => {
+const Poster = ({ id, title, prompt, image }: PosterProps) => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedFrame, setSelectedFrame] = useState<{
     material: string;
@@ -104,11 +105,7 @@ const Poster = ({ id, prompt, image }: PosterProps) => {
   return (
     <>
       <div className="">
-        <img
-          src={`data:image/png;base64,${image}`}
-          alt={prompt}
-          className="w-full object-cover"
-        />
+        <Image alt={title} src={image} width="400" height="300" quality="80" />
       </div>
       <div className="">
         <p className="mb-4 text-gray-600">{prompt}</p>
@@ -158,7 +155,7 @@ const Poster = ({ id, prompt, image }: PosterProps) => {
               name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,
               price: selectedPrice.unit_amount,
               currency: selectedPrice.currency,
-              image: `data:image/png;base64,${image}`,
+              image,
               product_data: {
                 id: product.id,
                 description: prompt,
