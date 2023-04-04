@@ -74,8 +74,7 @@ const Prompt = () => {
     const blob = await base64ToBlob(poster);
     const uploadcareResponse = await uploadToUploadcare(blob, promptInputValue);
     const posterUrl = uploadcareResponse.cdnUrl;
-    const savePosterResponse =
-      posterUrl &&
+    posterUrl &&
       (await savePosterToDatabase(uploadcareResponse.cdnUrl, promptInputValue));
   });
 
