@@ -21,7 +21,6 @@ const Posters = async ({ userId }: PostersProps) => {
         include: { user: true },
       }));
 
-  // @ts-ignore
   return (
     <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {posters.length > 0 &&
