@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { uploadFile } from "@uploadcare/upload-client";
 import { Loader2 } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
 import { env } from "~/env.mjs";
 
 import { Button, buttonVariants } from "~/components/ui/Button";
@@ -19,7 +20,6 @@ const text2img = async (prompt: string) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({ prompt }),
     }
@@ -57,37 +57,45 @@ const savePosterToDatabase = async (poster: string, prompt: string) => {
 };
 
 const Prompt = () => {
-  const [promptInputValue, setPromptInputValue] = React.useState("");
-  const [errorMessage, setErrorMessage] = React.useState("");
-  const [poster, setPoster] = React.useState("");
+  const [promptInputValue, setPromptInputValue] = useState("");
+  const [poster, setPoster] = useState("");
 
-  const createPosterMutation = useMutation(async () => {
-    const data = await text2img(promptInputValue);
-    if (!data?.images?.[0]) {
-      setErrorMessage(data.error || "Something went wrong!");
-      return;
+  const createPosterMutation = useMutation(
+    async () => text2img(promptInputValue),
+    {
+      onSuccess: () => {
+        toast.success("Poster generated!");
+      },
     }
-    return data;
-  });
+  );
 
-  const savePosterMutation = useMutation(async () => {
-    const blob = await base64ToBlob(poster);
-    const uploadcareResponse = await uploadToUploadcare(blob, promptInputValue);
-    const posterUrl = uploadcareResponse.cdnUrl;
-    posterUrl &&
-      (await savePosterToDatabase(uploadcareResponse.cdnUrl, promptInputValue));
-  });
+  const savePosterMutation = useMutation(
+    async () => {
+      const blob = await base64ToBlob(poster);
+      const uploadcareResponse = await uploadToUploadcare(
+        blob,
+        promptInputValue
+      );
+      const posterUrl = uploadcareResponse.cdnUrl;
+      posterUrl &&
+        (await savePosterToDatabase(
+          uploadcareResponse.cdnUrl,
+          promptInputValue
+        ));
+    },
+    {
+      onSuccess: () => {
+        toast.success("Poster saved!");
+      },
+    }
+  );
 
   const createPoster = useCallback(async () => {
     try {
       const data = await createPosterMutation.mutateAsync();
-      if (!data?.images?.[0]) {
-        setErrorMessage(data.error || "Something went wrong!");
-        return;
-      }
       setPoster(data?.images?.[0]);
     } catch {
-      setErrorMessage("Something went wrong!");
+      toast.error("Something went wrong!");
     }
   }, [createPosterMutation]);
 
@@ -95,7 +103,7 @@ const Prompt = () => {
     try {
       return savePosterMutation.mutateAsync();
     } catch {
-      setErrorMessage("Something went wrong!");
+      toast.error("Something went wrong!");
     }
   }, [savePosterMutation]);
 
@@ -137,8 +145,8 @@ const Prompt = () => {
           </Button>
         )}
       </div>
-      {(createPosterMutation.isError || errorMessage) && <p>{errorMessage}</p>}
-      {poster && <img src={`data:image/png;base64,${poster}`} alt="" />}
+      {poster && <img src={`data:image/png;base64,${poster}`} alt="poster" />}
+      <Toaster position="bottom-right" />
     </>
   );
 };

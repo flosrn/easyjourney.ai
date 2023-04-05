@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import type { User } from "next-auth";
 import { useSession } from "next-auth/react";
+import toast, { Toaster } from "react-hot-toast";
 import { useShoppingCart } from "use-shopping-cart";
 
 export type PosterProps = {
@@ -55,6 +56,14 @@ const Poster = ({ id, prompt, image, user }: PosterProps) => {
 
   useQuery(["delete"], async () => deletePoster(id), {
     enabled: isDeleteButtonClicked,
+    onSuccess: () => {
+      toast.success("Poster supprimé avec succès.");
+    },
+    onError: () => {
+      toast.error(
+        "Une erreur s'est produite lors de la suppression du poster."
+      );
+    },
   });
 
   const { product, prices, defaultPrice } = productData || {};
@@ -205,6 +214,7 @@ const Poster = ({ id, prompt, image, user }: PosterProps) => {
           </button>
         )}
       </div>
+      <Toaster position="bottom right" />
     </>
   );
 };
