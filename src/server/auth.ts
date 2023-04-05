@@ -3,10 +3,10 @@ import type {
   NextApiRequest,
   NextApiResponse,
 } from "next/types";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { getServerSession, type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { env } from "~/env.mjs";
+import { MyCustomAdapter } from "~/server/my-custom-adapter";
 
 import { prisma } from "./db/prisma";
 
@@ -16,7 +16,7 @@ import { prisma } from "./db/prisma";
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: MyCustomAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
@@ -34,13 +34,16 @@ export const authOptions: NextAuthOptions = {
      */
   ],
   callbacks: {
-    session({ session, user }) {
+    async session({ session, user }) {
       session.user.id = user.id;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      session.user.username = user.username;
       session.user.image = user.image;
       return session;
     },
   },
-  // debug: true,
+  debug: true,
 };
 
 /**

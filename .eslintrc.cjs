@@ -135,14 +135,6 @@ module.exports = {
     "unicorn/switch-case-braces": 0,
     "unicorn/no-useless-undefined": 0,
     "unicorn/no-useless-promise-resolve-reject": 0,
-    "unicorn/filename-case": [
-      "error",
-      {
-        cases: {
-          camelCase: true,
-          pascalCase: true,
-        },
-      },
-    ],
+    "unicorn/filename-case": 0,
   },
 };

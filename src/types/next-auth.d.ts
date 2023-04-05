@@ -1,6 +1,13 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 import type { DefaultSession } from "next-auth";
 
+/* eslint-disable no-shadow */
+export enum UserRole {
+  user = "user",
+  admin = "admin",
+}
+/* eslint-enable no-shadow */
+
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
  * object and keep type safety.
@@ -11,13 +18,9 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: DefaultSession["user"] & {
       id: string;
+      username: string;
+      role?: UserRole;
       // ...other properties
-      // role: UserRole;
     };
   }
-
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
 }

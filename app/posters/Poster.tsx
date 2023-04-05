@@ -48,7 +48,8 @@ const Poster = ({ id, prompt, image, user }: PosterProps) => {
   const [isDeleteButtonClicked, setIsDeleteButtonClicked] = useState(false);
   const { addItem } = useShoppingCart();
   const { data } = useSession();
-  const isPosterOwner = data?.user.id === user.id;
+  console.log("data :", data);
+  const isPosterOwner = data?.user.id === user?.id;
 
   const { data: productData } = useQuery(["product"], async () =>
     fetchProduct()

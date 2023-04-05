@@ -42,14 +42,16 @@ const Posters = async ({ userId }: PostersProps) => {
                 {poster.prompt}
               </p>
 
-              <p className="text-[11px]">
-                by{" "}
-                <Link href={`/`} className="text-gray-300">
-                  {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                  {/* @ts-expect-error */}
-                  {poster.user.name}
-                </Link>
-              </p>
+              {poster.user?.name && (
+                <p className="text-[11px]">
+                  by{" "}
+                  <Link href={`/`} className="text-gray-300">
+                    {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                    {/* @ts-expect-error */}
+                    {poster.user.name}
+                  </Link>
+                </p>
+              )}
             </div>
           </Link>
         ))}
