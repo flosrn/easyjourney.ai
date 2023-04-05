@@ -21,6 +21,7 @@ const Posters = async ({ userId }: PostersProps) => {
         include: { user: true },
       }));
 
+  // @ts-ignore
   return (
     <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {posters.length > 0 &&
@@ -46,8 +47,6 @@ const Posters = async ({ userId }: PostersProps) => {
                 <p className="text-[11px]">
                   by{" "}
                   <Link href={`/`} className="text-gray-300">
-                    {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                    {/* @ts-expect-error */}
                     {poster.user.name}
                   </Link>
                 </p>
