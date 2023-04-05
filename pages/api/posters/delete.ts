@@ -13,16 +13,13 @@ export default async function handler(
     return;
   }
 
-  if (req.method === "POST") {
+  if (req.method === "DELETE") {
     try {
-      const { prompt, image } = req.body;
+      const { posterId } = req.body;
 
-      const data = await prisma.poster.create({
-        data: {
-          title: "",
-          prompt,
-          image,
-          likes: 0,
+      const data = await prisma.poster.delete({
+        where: {
+          id: posterId,
         },
       });
       res.status(200).json(data);

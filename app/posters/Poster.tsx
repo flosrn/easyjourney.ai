@@ -5,12 +5,15 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
+import type { User } from "next-auth";
+import { useSession } from "next-auth/react";
 import { useShoppingCart } from "use-shopping-cart";
 
 export type PosterProps = {
   id: string;
   prompt: string;
   image: string;
+  user: User | null;
 };
 
 const fetchProduct = async () => {
@@ -20,7 +23,19 @@ const fetchProduct = async () => {
   return response.json();
 };
 
-const Poster = ({ id, title, prompt, image }: PosterProps) => {
+const deletePoster = async (posterId: string) => {
+  const response = await fetch(`/api/posters/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ posterId }),
+  });
+  return response.json();
+};
+
+const Poster = ({ id, prompt, image, user }: PosterProps) => {
+  const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedFrame, setSelectedFrame] = useState<{
     material: string;
@@ -29,15 +44,20 @@ const Poster = ({ id, title, prompt, image }: PosterProps) => {
     material: "Wood",
     color: "White",
   });
+  const [isDeleteButtonClicked, setIsDeleteButtonClicked] = useState(false);
   const { addItem } = useShoppingCart();
+  const { data } = useSession();
+  const isPosterOwner = data?.user.id === user.id;
 
   const { data: productData } = useQuery(["product"], async () =>
     fetchProduct()
   );
 
-  const { product, prices, defaultPrice } = productData || {};
+  useQuery(["delete"], async () => deletePoster(id), {
+    enabled: isDeleteButtonClicked,
+  });
 
-  const [selectedPrice, setSelectedPrice] = useState(null);
+  const { product, prices, defaultPrice } = productData || {};
 
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
@@ -105,7 +125,7 @@ const Poster = ({ id, title, prompt, image }: PosterProps) => {
   return (
     <>
       <div className="">
-        <Image alt={title} src={image} width="400" height="300" quality="80" />
+        <Image alt={prompt} src={image} width="400" height="300" quality="80" />
       </div>
       <div className="">
         <p className="mb-4 text-gray-600">{prompt}</p>
@@ -176,6 +196,14 @@ const Poster = ({ id, title, prompt, image }: PosterProps) => {
         >
           Ajouter au panier
         </button>
+        {isPosterOwner && (
+          <button
+            onClick={() => setIsDeleteButtonClicked(true)}
+            className="ml-2 rounded-md bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+          >
+            Supprimer
+          </button>
+        )}
       </div>
     </>
   );

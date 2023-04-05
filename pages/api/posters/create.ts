@@ -18,14 +18,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { prompt } = req.body;
-  try {
-    const jsonData = await text2img(prompt);
-    // console.log("jsonData :", jsonData);
-    res.status(200).json(jsonData);
-  } catch (error: unknown) {
-    // eslint-disable-next-line no-console
-    console.log("🚨 Error", error);
-    res.status(500).json(error || "Internal Server Error");
+  if (req.method === "POST") {
+    const { prompt } = req.body;
+    try {
+      const jsonData = await text2img(prompt);
+      // console.log("jsonData :", jsonData);
+      res.status(200).json(jsonData);
+    } catch (error: unknown) {
+      // eslint-disable-next-line no-console
+      console.log("🚨 Error", error);
+      res.status(500).json(error || "Internal Server Error");
+    }
+  } else {
+    res.status(405).json({ message: "Method not allowed" });
   }
 }

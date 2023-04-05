@@ -13,7 +13,10 @@ export default async function PosterPage({
   const { posterId } = params;
   const poster = await prisma.poster.findUnique({
     where: { id: posterId },
+    include: { user: true },
   });
+
+  console.log("poster :", poster);
 
   const nextPoster = await prisma.poster.findFirst({
     where: {
@@ -50,6 +53,7 @@ export default async function PosterPage({
                 id={poster.id}
                 prompt={poster.prompt}
                 image={poster.image}
+                user={poster.user}
               />
             )}
           </div>
