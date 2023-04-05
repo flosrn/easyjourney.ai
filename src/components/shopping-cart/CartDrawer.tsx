@@ -119,7 +119,7 @@ export const CartDrawer = ({}: CartDrawerProps) => {
 
       <AnimatePresence>
         {open && (
-          <Dialog.Content forceMount className="fixed inset-0 z-50 w-96">
+          <Dialog.Content forceMount className="fixed z-50">
             <motion.aside
               initial="closed"
               animate="open"
