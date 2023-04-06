@@ -9,7 +9,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model PosterProduct {
+model Poster {
   id     String  @id @default(uuid())
   title  String?
   prompt String
