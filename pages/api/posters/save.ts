@@ -1,12 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next/types";
-import { getSession } from "~/server/auth";
+import { getServerSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = await getSession(req, res);
+  const session = await getServerSession(req, res);
 
   if (!session) {
     res.status(401).json({ message: "Non autorisé!!" });

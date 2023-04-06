@@ -1,11 +1,18 @@
 import React, { Suspense } from "react";
-import { getSession } from "~/server/auth";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "~/server/auth";
 
 import Posters from "../../Posters";
 import Prompt from "../Prompt";
 
 export default async function CreatePage() {
-  const session = await getSession();
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
   return (
     <>
       <section className="container mt-6 grid items-center justify-center gap-6 pb-8">

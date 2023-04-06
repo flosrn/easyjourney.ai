@@ -3,7 +3,10 @@ import type {
   NextApiRequest,
   NextApiResponse,
 } from "next/types";
-import { getServerSession, type NextAuthOptions } from "next-auth";
+import {
+  getServerSession as getNextAuthServerSession,
+  type NextAuthOptions,
+} from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { env } from "~/env.mjs";
 import { MyCustomAdapter } from "~/server/my-custom-adapter";
@@ -57,6 +60,8 @@ type ParametersGetServerSession =
   | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
   | [NextApiRequest, NextApiResponse];
 
-export const getSession = async (...parameters: ParametersGetServerSession) => {
-  return getServerSession(...parameters, authOptions);
+export const getServerSession = async (
+  ...parameters: ParametersGetServerSession
+) => {
+  return getNextAuthServerSession(...parameters, authOptions);
 };
