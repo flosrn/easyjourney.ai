@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 
 import {
   NavigationMenu,
@@ -17,12 +18,17 @@ import { siteConfig } from "~/config/site";
 import { Icons } from "../Icons";
 
 export const Navbar = () => {
+  const router = useRouter();
   return (
     <NavigationMenu>
       <NavigationMenuList>
         {siteConfig.megaMenu.map((megaMenuItem) => (
           <NavigationMenuItem key={megaMenuItem.title}>
-            <NavigationMenuTrigger>{megaMenuItem.title}</NavigationMenuTrigger>
+            <NavigationMenuTrigger
+              onClick={() => router.push(megaMenuItem.menu[0].href)}
+            >
+              {megaMenuItem.title}
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul
                 className={cn(
@@ -36,7 +42,7 @@ export const Navbar = () => {
                     <NavigationMenuLink asChild>
                       <a
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-rose-500 to-indigo-700 p-6 no-underline outline-none focus:shadow-md"
-                        href="/"
+                        href="/posters/popular"
                       >
                         <Icons.logo className="h-6 w-6 text-white" />
                         <div className="mb-2 mt-4 text-lg font-medium text-white">
@@ -83,7 +89,7 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="text-sm leading-snug text-slate-500 line-clamp-2 dark:text-slate-400">
+          <p className="line-clamp-2 text-sm leading-snug text-slate-500 dark:text-slate-400">
             {children}
           </p>
         </a>
