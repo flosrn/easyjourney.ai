@@ -1,25 +1,9 @@
 "use client";
 
-import React, { Suspense } from "react";
-import { CogIcon } from "lucide-react";
-import { getSession } from "~/server/auth";
+import React from "react";
 
 import { cn } from "~/lib/classNames";
 
-import Posters from "../../posters/Posters";
-
-const navigation = [
-  { name: "Home", href: "#", icon: CogIcon, current: false },
-  { name: "All Files", href: "#", icon: CogIcon, current: false },
-  { name: "Photos", href: "#", icon: CogIcon, current: true },
-  { name: "Shared", href: "#", icon: CogIcon, current: false },
-  { name: "Albums", href: "#", icon: CogIcon, current: false },
-  { name: "Settings", href: "#", icon: CogIcon, current: false },
-];
-const userNavigation = [
-  { name: "Your profile", href: "#" },
-  { name: "Sign out", href: "#" },
-];
 const tabs = [
   { name: "Recently Viewed", href: "#", current: true },
   { name: "Recently Added", href: "#", current: false },
@@ -65,7 +49,7 @@ const currentFile = {
 
 export default function MyPostersPage() {
   // const session = await getSession();
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [, setMobileMenuOpen] = React.useState(false);
   return (
     <>
       <div className="flex flex-1 flex-col overflow-hidden">
@@ -344,7 +328,7 @@ export default function MyPostersPage() {
                     >
                       <dt className="text-gray-500">{key}</dt>
                       <dd className="text-gray-900">
-                        {currentFile.information[key]}
+                        {/*{currentFile.information[key]}*/}
                       </dd>
                     </div>
                   ))}
