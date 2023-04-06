@@ -55,22 +55,25 @@ const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="w-10 rounded-full p-0">
-            <Avatar className="cursor-pointer">
-              {session.user.image && (
-                <AvatarImage
-                  src={session.user.image}
-                  referrerPolicy="no-referrer"
-                />
-              )}
-              {session.user.name && (
-                <AvatarFallback>
-                  {getFirstLetters(session.user.name)}
-                </AvatarFallback>
-              )}
-              <span className="sr-only">Open popover</span>
-            </Avatar>
-          </Button>
+          {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+          {session !== undefined && (
+            <Button variant="outline" className="w-10 rounded-full p-0">
+              <Avatar className="cursor-pointer">
+                {session.user.image && (
+                  <AvatarImage
+                    src={session.user.image}
+                    referrerPolicy="no-referrer"
+                  />
+                )}
+                {session.user.name && (
+                  <AvatarFallback>
+                    {getFirstLetters(session.user.name)}
+                  </AvatarFallback>
+                )}
+                <span className="sr-only">Open popover</span>
+              </Avatar>
+            </Button>
+          )}
         </DropdownMenuTrigger>
         <DropdownMenuContent side="bottom" align="end" className="w-56">
           <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
