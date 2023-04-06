@@ -22,7 +22,6 @@ export default async function handler(
           title: "",
           prompt,
           image,
-          likes: 0,
         },
       });
       res.status(200).json(data);
