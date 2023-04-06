@@ -3,6 +3,8 @@ import { prisma } from "~/server/db/prisma";
 
 import Posters from "../Posters";
 
+export const revalidate = 5;
+
 export default async function NewPage() {
   const posters = await prisma.poster.findMany({
     orderBy: {
