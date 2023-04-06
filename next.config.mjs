@@ -5,6 +5,11 @@ const nextConfig = {
     appDir: true,
   },
   images: {
+    remotePatterns: [
+      {
+        hostname: "*.googleusercontent.com",
+      },
+    ],
     loader: "custom",
     loaderFile: "./node_modules/@uploadcare/nextjs-loader/build/loader.js",
   },
