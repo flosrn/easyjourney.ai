@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
@@ -31,10 +31,11 @@ const likePoster = async (posterId: string) => {
 const Poster = ({ id, prompt, image, likes, author }: PostersProps) => {
   const { data: session } = useSession();
   const [likesCount, setLikesCount] = useState(likes.length);
-  const [userHasLiked, setUserHasLiked] = useState(
-    // eslint-disable-next-line unicorn/prefer-array-some
-    !!likes.find((like) => like.userId === session?.user.id)
-  );
+  const [userHasLiked, setUserHasLiked] = useState(false);
+
+  useEffect(() => {
+    setUserHasLiked(likes.some((like) => like.userId === session?.user.id));
+  }, [session, likes]);
 
   const likeMutation = useMutation(likePoster, {
     onSuccess: (data) => {
