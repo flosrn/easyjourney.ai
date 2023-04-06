@@ -1,27 +1,19 @@
 import React from "react";
 import Link from "next/link";
-import { prisma } from "~/server/db/prisma";
 
 import Poster from "./Poster";
 
 type PostersProps = {
-  userId?: string;
+  posters: {
+    id: string;
+    prompt: string;
+    image: string;
+    likes: { userId: string }[];
+    user?: { username: string };
+  }[];
 };
 
-const Posters = async ({ userId }: PostersProps) => {
-  let posters = [];
-
-  posters = await (userId
-    ? prisma.poster.findMany({
-        where: { userId },
-        orderBy: { createdAt: "desc" },
-        include: { user: true, likes: true },
-      })
-    : prisma.poster.findMany({
-        orderBy: { createdAt: "desc" },
-        include: { user: true, likes: true },
-      }));
-
+const Posters = async ({ posters }: PostersProps) => {
   return (
     <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {posters.length > 0 &&

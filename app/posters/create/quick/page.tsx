@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "~/server/auth";
+import { prisma } from "~/server/db/prisma";
 
 import Posters from "../../Posters";
 import Prompt from "../Prompt";
@@ -12,6 +13,16 @@ export default async function CreatePage() {
   if (!session) {
     return redirect("/api/auth/signin");
   }
+
+  const posters = await prisma.poster.findMany({
+    where: {
+      userId: session.user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: { user: true, likes: true },
+  });
 
   return (
     <>
@@ -29,11 +40,12 @@ export default async function CreatePage() {
             you will receive your poster in 3 days.
           </p>
         </div>
-        <Prompt />
-        <Suspense fallback={<div>Loading posters...</div>}>
-          {/* @ts-expect-error Server Component */}
-          <Posters userId={session.user.id} />
-        </Suspense>
+        <Prompt>
+          <Suspense fallback={<div>Loading posters...</div>}>
+            {/* @ts-expect-error Server Component */}
+            <Posters posters={posters} />
+          </Suspense>
+        </Prompt>
       </section>
     </>
   );

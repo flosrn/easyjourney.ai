@@ -6,6 +6,7 @@ import { Menu } from "lucide-react";
 import DropdownMenuNav from "~/components/header/DropdownMenuNav";
 import { Navbar } from "~/components/header/Navbar";
 import { CartDrawer } from "~/components/shopping-cart/CartDrawer";
+import { Button } from "~/components/ui/Button";
 
 type HeaderProps = {};
 

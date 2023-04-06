@@ -13,6 +13,10 @@ import { cn } from "~/lib/classNames";
 
 const BASE_STABLE_DIFFUSION_URL = "https://61c4bd89-5ea2-4b21.gradio.live";
 
+type PromptProps = {
+  children: React.ReactNode;
+};
+
 const text2img = async (prompt: string) => {
   const response = await fetch(
     `${BASE_STABLE_DIFFUSION_URL}/sdapi/v1/txt2img`,
@@ -57,14 +61,16 @@ const savePosterToDatabase = async (poster: string, prompt: string) => {
   return response.json();
 };
 
-const Prompt = () => {
+const Prompt = ({ children }: PromptProps) => {
   const [promptInputValue, setPromptInputValue] = useState("");
   const [poster, setPoster] = useState("");
+  const [posterSaved, setPosterSaved] = useState(false);
 
   const createPosterMutation = useMutation(
     async () => text2img(promptInputValue),
     {
       onSuccess: () => {
+        setPosterSaved(false);
         toast.success("Poster generated!");
       },
     }
@@ -86,6 +92,8 @@ const Prompt = () => {
     },
     {
       onSuccess: () => {
+        setPosterSaved(true);
+        setPoster("");
         toast.success("Poster saved!");
       },
     }
@@ -130,7 +138,7 @@ const Prompt = () => {
           )}
           Generate Poster
         </Button>
-        {poster && (
+        {poster && !posterSaved && (
           <Button
             onClick={savePoster}
             disabled={savePosterMutation.isLoading}
@@ -148,6 +156,7 @@ const Prompt = () => {
       </div>
       {poster && <img src={`data:image/png;base64,${poster}`} alt="poster" />}
       <Toaster position="bottom-right" />
+      {children}
     </>
   );
 };

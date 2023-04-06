@@ -32,9 +32,17 @@ const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
   const { data: session } = useSession();
   const router = useRouter();
 
+  if (session === null) {
+    return (
+      <Button variant="outline" href="/api/auth/signin">
+        Se connecter
+      </Button>
+    );
+  }
+
   const handleItemClick = async (href?: string) => {
     if (href === "/profile/me") {
-      const username = session?.user.username;
+      const username = session.user.username;
       router.push(`/profile/${username}`);
     } else if (href === "/logout") {
       await signOut({ callbackUrl: "/" });
@@ -44,9 +52,9 @@ const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
   };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        {session && (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
           <Button variant="outline" className="w-10 rounded-full p-0">
             <Avatar className="cursor-pointer">
               {session.user.image && (
@@ -63,34 +71,35 @@ const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
               <span className="sr-only">Open popover</span>
             </Avatar>
           </Button>
-        )}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent side="bottom" align="end" className="w-56">
-        <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        {siteConfig.userMenu.map((group, index) => (
-          <React.Fragment key={index}>
-            <DropdownMenuGroup>
-              {group.map(({ title, href, icon: Icon }) => (
-                <DropdownMenuItem
-                  key={title}
-                  onClick={async () => handleItemClick(href)}
-                  asChild
-                >
-                  <div>
-                    <Icon className="mr-2 h-4 w-4" />
-                    <span className="truncate">{title}</span>
-                  </div>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuGroup>
-            {group !== siteConfig.userMenu[siteConfig.userMenu.length - 1] && (
-              <DropdownMenuSeparator />
-            )}
-          </React.Fragment>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent side="bottom" align="end" className="w-56">
+          <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          {siteConfig.userMenu.map((group, index) => (
+            <React.Fragment key={index}>
+              <DropdownMenuGroup>
+                {group.map(({ title, href, icon: Icon }) => (
+                  <DropdownMenuItem
+                    key={title}
+                    onClick={async () => handleItemClick(href)}
+                    asChild
+                  >
+                    <div>
+                      <Icon className="mr-2 h-4 w-4" />
+                      <span className="truncate">{title}</span>
+                    </div>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuGroup>
+              {group !==
+                siteConfig.userMenu[siteConfig.userMenu.length - 1] && (
+                <DropdownMenuSeparator />
+              )}
+            </React.Fragment>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   );
 };
 
