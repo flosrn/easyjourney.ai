@@ -50,7 +50,7 @@ const Posters = async ({ userId }: PostersProps) => {
                 <p className="text-[11px]">
                   by{" "}
                   <Link href={`/`} className="text-gray-300">
-                    {poster.user.name}
+                    @{poster.user.username}
                   </Link>
                 </p>
               )}

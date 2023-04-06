@@ -43,6 +43,9 @@ export const authOptions: NextAuthOptions = {
       // @ts-expect-error
       session.user.username = user.username;
       session.user.image = user.image;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      session.user.role = user.role;
       return session;
     },
   },

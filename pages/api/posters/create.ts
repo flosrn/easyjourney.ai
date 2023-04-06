@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next/types";
 
-const BASE_STABLE_DIFFUSION_URL = "https://339767cc-1693-4523.gradio.live";
+const BASE_STABLE_DIFFUSION_URL = "https://61c4bd89-5ea2-4b21.gradio.live";
 
 const text2img = async (prompt: string) => {
   const response = await fetch(

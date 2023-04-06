@@ -10,7 +10,7 @@ export default async function CreatePage() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect("/api/auth/signin");
+    return redirect("/api/auth/signin");
   }
 
   return (

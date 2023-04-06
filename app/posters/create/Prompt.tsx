@@ -11,7 +11,7 @@ import { Button, buttonVariants } from "~/components/ui/Button";
 
 import { cn } from "~/lib/classNames";
 
-const BASE_STABLE_DIFFUSION_URL = "https://60af23cb-db2c-4b91.gradio.live";
+const BASE_STABLE_DIFFUSION_URL = "https://61c4bd89-5ea2-4b21.gradio.live";
 
 const text2img = async (prompt: string) => {
   const response = await fetch(
@@ -20,6 +20,7 @@ const text2img = async (prompt: string) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({ prompt }),
     }

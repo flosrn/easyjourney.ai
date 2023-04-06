@@ -22,6 +22,7 @@ export default async function handler(
           title: "",
           prompt,
           image,
+          userId: session.user.id,
         },
       });
       res.status(200).json(data);

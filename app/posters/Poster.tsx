@@ -4,6 +4,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import type { User } from "next-auth";
 import { useSession } from "next-auth/react";
@@ -48,7 +49,8 @@ const Poster = ({ id, prompt, image, user }: PosterProps) => {
   const [isDeleteButtonClicked, setIsDeleteButtonClicked] = useState(false);
   const { addItem } = useShoppingCart();
   const { data } = useSession();
-  console.log("data :", data);
+  const router = useRouter();
+  const isAdmin = data?.user.role === "ADMIN";
   const isPosterOwner = data?.user.id === user?.id;
 
   const { data: productData } = useQuery(["product"], async () =>
@@ -59,6 +61,9 @@ const Poster = ({ id, prompt, image, user }: PosterProps) => {
     enabled: isDeleteButtonClicked,
     onSuccess: () => {
       toast.success("Poster supprimé avec succès.");
+      setTimeout(() => {
+        router.back();
+      }, 1000);
     },
     onError: () => {
       toast.error(
@@ -206,7 +211,7 @@ const Poster = ({ id, prompt, image, user }: PosterProps) => {
         >
           Ajouter au panier
         </button>
-        {isPosterOwner && (
+        {(isPosterOwner || isAdmin) && (
           <button
             onClick={() => setIsDeleteButtonClicked(true)}
             className="ml-2 rounded-md bg-red-500 px-4 py-2 text-white hover:bg-red-600"

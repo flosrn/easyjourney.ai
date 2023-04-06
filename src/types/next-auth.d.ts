@@ -3,8 +3,8 @@ import type { DefaultSession } from "next-auth";
 
 /* eslint-disable no-shadow */
 export enum UserRole {
-  user = "user",
-  admin = "admin",
+  USER = "USER",
+  ADMIN = "ADMIN",
 }
 /* eslint-enable no-shadow */
 
