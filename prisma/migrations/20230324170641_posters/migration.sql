@@ -11,7 +11,7 @@ ALTER TABLE "ArtWork" DROP CONSTRAINT "ArtWork_userId_fkey";
 DROP TABLE "ArtWork";
 
 -- CreateTable
-CREATE TABLE "Poster" (
+CREATE TABLE "PosterProduct" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "image" TEXT NOT NULL,
@@ -22,4 +22,4 @@ CREATE TABLE "Poster" (
 );
 
 -- AddForeignKey
-ALTER TABLE "Poster" ADD CONSTRAINT "Poster_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "PosterProduct" ADD CONSTRAINT "Poster_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;

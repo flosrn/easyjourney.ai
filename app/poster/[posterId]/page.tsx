@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 import { prisma } from "~/server/db/prisma";
 
-import Poster from "../../posters/Poster";
+import PosterProduct from "../../posters/PosterProduct";
 
 export default async function PosterPage({
   params,
@@ -47,7 +47,7 @@ export default async function PosterPage({
           </Link>
           <div className="">
             {poster && (
-              <Poster
+              <PosterProduct
                 id={poster.id}
                 prompt={poster.prompt}
                 image={poster.image}

@@ -1,7 +1,8 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "~/server/db/prisma";
+
+import Poster from "./Poster";
 
 type PostersProps = {
   userId?: string;
@@ -28,33 +29,15 @@ const Posters = async ({ userId }: PostersProps) => {
           <Link
             key={poster.id}
             href={`/poster/${poster.id}`}
-            className="w-[150px]"
+            className="relative w-[150px]"
           >
-            <Image
-              alt={poster.prompt}
-              src={poster.image}
-              width="150"
-              height="300"
-              className="rounded-lg transition duration-200 ease-in-out hover:scale-105"
+            <Poster
+              id={poster.id}
+              prompt={poster.prompt}
+              image={poster.image}
+              likes={poster.likes}
+              author={poster.user?.username}
             />
-            <div className="mt-1 text-gray-500">
-              <p className="text-[11px]">
-                {poster.likes.length}{" "}
-                {poster.likes.length > 1 ? "likes" : "like"}
-              </p>
-              <p className="truncate text-xs font-medium text-gray-600">
-                {poster.prompt}
-              </p>
-
-              {poster.user?.name && (
-                <p className="text-[11px]">
-                  by{" "}
-                  <Link href={`/`} className="text-gray-300">
-                    @{poster.user.username}
-                  </Link>
-                </p>
-              )}
-            </div>
           </Link>
         ))}
     </div>

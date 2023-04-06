@@ -2,7 +2,7 @@
   Warnings:
 
   - You are about to drop the `Account` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Poster` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `PosterProduct` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Session` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `VerificationToken` table. If the table is not empty, all the data it contains will be lost.
@@ -12,7 +12,7 @@
 ALTER TABLE "Account" DROP CONSTRAINT "Account_userId_fkey";
 
 -- DropForeignKey
-ALTER TABLE "Poster" DROP CONSTRAINT "Poster_userId_fkey";
+ALTER TABLE "PosterProduct" DROP CONSTRAINT "Poster_userId_fkey";
 
 -- DropForeignKey
 ALTER TABLE "Session" DROP CONSTRAINT "Session_userId_fkey";
@@ -21,7 +21,7 @@ ALTER TABLE "Session" DROP CONSTRAINT "Session_userId_fkey";
 DROP TABLE "Account";
 
 -- DropTable
-DROP TABLE "Poster";
+DROP TABLE "PosterProduct";
 
 -- DropTable
 DROP TABLE "Session";
