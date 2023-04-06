@@ -14,11 +14,11 @@ const Posters = async ({ userId }: PostersProps) => {
     ? prisma.poster.findMany({
         where: { userId },
         orderBy: { createdAt: "desc" },
-        include: { user: true },
+        include: { user: true, likes: true },
       })
     : prisma.poster.findMany({
         orderBy: { createdAt: "desc" },
-        include: { user: true },
+        include: { user: true, likes: true },
       }));
 
   return (
@@ -34,10 +34,14 @@ const Posters = async ({ userId }: PostersProps) => {
               alt={poster.prompt}
               src={poster.image}
               width="150"
-              height="150"
+              height="300"
               className="rounded-lg transition duration-200 ease-in-out hover:scale-105"
             />
             <div className="mt-1 text-gray-500">
+              <p className="text-[11px]">
+                {poster.likes.length}{" "}
+                {poster.likes.length > 1 ? "likes" : "like"}
+              </p>
               <p className="truncate text-xs font-medium text-gray-600">
                 {poster.prompt}
               </p>
