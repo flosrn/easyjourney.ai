@@ -27,7 +27,7 @@ const Posters = async ({ userId }: PostersProps) => {
         posters.map((poster) => (
           <Link
             key={poster.id}
-            href={`/posters/${poster.id}`}
+            href={`/poster/${poster.id}`}
             className="w-[150px]"
           >
             <Image

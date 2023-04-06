@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 import { Button } from "~/components/ui/Button";
@@ -30,6 +30,19 @@ const getFirstLetters = (name: string) => {
 
 const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  const handleItemClick = async (href?: string) => {
+    if (href === "/profile/me") {
+      const username = session?.user.username;
+      router.push(`/profile/${username}`);
+    } else if (href === "/logout") {
+      await signOut({ callbackUrl: "/" });
+    } else if (href) {
+      router.push(href);
+    }
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -58,23 +71,18 @@ const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
         {siteConfig.userMenu.map((group, index) => (
           <React.Fragment key={index}>
             <DropdownMenuGroup>
-              {group.map(({ title, href, icon: Icon, onClick }) => {
-                return (
-                  <DropdownMenuItem key={title} onClick={onClick} asChild>
-                    {href ? (
-                      <Link href={href}>
-                        <Icon className="mr-2 h-4 w-4" />
-                        <span className="truncate">{title}</span>
-                      </Link>
-                    ) : (
-                      <div>
-                        <Icon className="mr-2 h-4 w-4" />
-                        <span className="truncate">{title}</span>
-                      </div>
-                    )}
-                  </DropdownMenuItem>
-                );
-              })}
+              {group.map(({ title, href, icon: Icon }) => (
+                <DropdownMenuItem
+                  key={title}
+                  onClick={async () => handleItemClick(href)}
+                  asChild
+                >
+                  <div>
+                    <Icon className="mr-2 h-4 w-4" />
+                    <span className="truncate">{title}</span>
+                  </div>
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuGroup>
             {group !== siteConfig.userMenu[siteConfig.userMenu.length - 1] && (
               <DropdownMenuSeparator />

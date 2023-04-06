@@ -9,7 +9,6 @@ import {
   ShoppingCart,
   User,
 } from "lucide-react";
-import { signOut } from "next-auth/react";
 
 import type { MegaMenu, NavItem } from "~/types/nav";
 
@@ -25,21 +24,21 @@ const megaMenu: MegaMenu[] = [
     title: "Explorer",
     menu: [
       {
-        title: "Catégories",
-        href: "/posters/categories",
-        description: "Explorez les posters par catégories, thèmes et styles",
-      },
-      {
-        title: "Popularité",
+        title: "Par popularité",
         href: "/posters/popular",
         description:
           "Parcourez les posters les plus populaires et les mieux notés",
       },
       {
-        title: "Nouveautés",
+        title: "Par nouveauté",
         href: "/posters/new",
         description:
           "Découvrez les dernières créations des membres de la communauté",
+      },
+      {
+        title: "Par catégories",
+        href: "/posters/categories",
+        description: "Explorez les posters par catégories, thèmes et styles",
       },
     ],
     hasLeftImage: true,
@@ -107,61 +106,63 @@ const megaMenu: MegaMenu[] = [
 const userMenu: NavItem[][] = [
   [
     {
-      title: "Profil",
-      href: "/profile",
+      title: "Mon profil",
+      href: "/profile/me",
       icon: User,
+      onClick: () => null,
     },
     {
       title: "Mes posters",
-      href: "/profile/posters",
+      href: "/dashboard/my-posters",
       icon: ShoppingCart,
     },
     {
       title: "Mes favoris",
-      href: "/profile/favorites",
+      href: "/dashboard/favorites",
       icon: Heart,
     },
   ],
   [
     {
       title: "Gains",
-      href: "/profile/rewards",
+      href: "/dashboard/rewards",
       icon: DollarSign,
     },
     {
       title: "Abonnement",
-      href: "/profile/subscription",
+      href: "/dashboard/subscription",
       icon: CalendarCheck2,
     },
     {
       title: "Méthodes de paiement",
-      href: "/profile/payments",
+      href: "/dashboard/payments",
       icon: CreditCard,
     },
     {
       title: "Historique des transactions",
-      href: "/profile/transactions",
+      href: "/dashboard/transactions",
       icon: History,
     },
   ],
   [
     {
       title: "Réglages",
-      href: "/profile/settings",
+      href: "/dashboard/settings",
       icon: Settings,
     },
   ],
   [
     {
       title: "Déconnexion",
+      href: "/logout",
       icon: LogOut,
-      onClick: async () => signOut({ callbackUrl: "/" }),
+      onClick: () => null,
     },
   ],
 ];
 
 export const siteConfig: SiteConfig = {
-  name: "Homaide.art",
+  name: "myposter.ai",
   description:
     "Créez vos posters personnalisés en quelques clics et recevez-les chez vous !",
   megaMenu,

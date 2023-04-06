@@ -39,8 +39,8 @@ export const Navbar = () => {
                         href="/"
                       >
                         <Icons.logo className="h-6 w-6 text-white" />
-                        <div className="mt-4 mb-2 text-lg font-medium text-white">
-                          POSTERS
+                        <div className="mb-2 mt-4 text-lg font-medium text-white">
+                          EXPLORER
                         </div>
                         <p className="text-sm leading-tight text-white/90">
                           Explorez les posters par thèmes, styles et popularité

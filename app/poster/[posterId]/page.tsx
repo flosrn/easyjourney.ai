@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 import { prisma } from "~/server/db/prisma";
 
-import Poster from "../Poster";
+import Poster from "../../posters/Poster";
 
 export default async function PosterPage({
   params,
@@ -15,8 +15,6 @@ export default async function PosterPage({
     where: { id: posterId },
     include: { user: true },
   });
-
-  console.log("poster :", poster);
 
   const nextPoster = await prisma.poster.findFirst({
     where: {
@@ -44,7 +42,7 @@ export default async function PosterPage({
     <>
       <section className="container mt-8 grid items-center justify-center gap-6 pb-8">
         <div className="flex items-center justify-center space-x-5">
-          <Link href={`/posters/${previousPoster?.id}`}>
+          <Link href={`/poster/${previousPoster?.id}`}>
             <ArrowBigLeft size={24} />
           </Link>
           <div className="">
@@ -57,7 +55,7 @@ export default async function PosterPage({
               />
             )}
           </div>
-          <Link href={`/posters/${nextPoster?.id}`}>
+          <Link href={`/poster/${nextPoster?.id}`}>
             <ArrowBigRight size={24} />
           </Link>
         </div>
