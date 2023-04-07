@@ -11,7 +11,7 @@ import { Button, buttonVariants } from "~/components/ui/Button";
 
 import { cn } from "~/lib/classNames";
 
-const BASE_STABLE_DIFFUSION_URL = "https://61c4bd89-5ea2-4b21.gradio.live";
+const BASE_STABLE_DIFFUSION_URL = "https://5acaa901-ced0-4b55.gradio.live";
 
 type PromptProps = {
   children: React.ReactNode;
