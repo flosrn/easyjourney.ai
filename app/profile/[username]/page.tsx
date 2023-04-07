@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
+import Posters from "../../posters/Posters";
 import FollowButton from "./FollowButton";
 
 type UserProfileProps = {
@@ -17,7 +17,14 @@ export default async function UserProfile({
   const session = await getServerSession(authOptions);
   const user = await prisma.user.findUnique({
     where: { username },
-    include: { posters: true, likes: true, followers: true, following: true },
+    include: {
+      posters: {
+        orderBy: { createdAt: "desc" },
+        include: { likes: true },
+      },
+      followers: true,
+      following: true,
+    },
   });
 
   if (!user) {
@@ -25,6 +32,13 @@ export default async function UserProfile({
   }
 
   const isMe = session?.user.id === user.id;
+  const totalPosters = user.posters.length;
+  const totalLikes = user.posters.reduce(
+    (total, poster) => total + poster.likes.length,
+    0
+  );
+  const totalFollowers = user.followers.length;
+  const totalFollowing = user.following.length;
 
   return (
     <>
@@ -46,47 +60,28 @@ export default async function UserProfile({
 
         <div className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
           <div className="text-center">
-            <h2 className="text-2xl font-semibold">{user.posters.length}</h2>
+            <h2 className="text-2xl font-semibold">{totalPosters}</h2>
             <p className="text-gray-500">Posters</p>
           </div>
           <div className="text-center">
-            <h2 className="text-2xl font-semibold">{user.likes.length}</h2>
+            <h2 className="text-2xl font-semibold">{totalLikes}</h2>
             <p className="text-gray-500">Likes</p>
           </div>
           <div className="text-center">
-            <h2 className="text-2xl font-semibold">{user.followers.length}</h2>
+            <h2 className="text-2xl font-semibold">{totalFollowers}</h2>
             <p className="text-gray-500">Followers</p>
           </div>
           <div className="text-center">
-            <h2 className="text-2xl font-semibold">{user.following.length}</h2>
+            <h2 className="text-2xl font-semibold">{totalFollowing}</h2>
             <p className="text-gray-500">Following</p>
           </div>
         </div>
       </div>
       <div className="container max-w-4xl">
-        <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {user.posters.length > 0 &&
-            user.posters.map((poster) => (
-              <Link
-                key={poster.id}
-                href={`/poster/${poster.id}`}
-                className="w-[150px]"
-              >
-                <Image
-                  alt={poster.prompt}
-                  src={poster.image}
-                  width="150"
-                  height="150"
-                  className="rounded-lg transition duration-200 ease-in-out hover:scale-105"
-                />
-                <div className="mt-1 text-gray-500">
-                  <p className="truncate text-xs font-medium text-gray-600">
-                    {poster.prompt}
-                  </p>
-                </div>
-              </Link>
-            ))}
-        </div>
+        <Suspense fallback={<div>Loading posters...</div>}>
+          {/* @ts-expect-error Server Component */}
+          <Posters posters={user.posters} />
+        </Suspense>
       </div>
     </>
   );

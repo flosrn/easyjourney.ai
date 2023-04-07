@@ -90,7 +90,10 @@ const Poster = ({ id, prompt, image, likes, author }: PostersProps) => {
         {author && (
           <p className="text-[11px]">
             by{" "}
-            <Link href={`/`} className="text-gray-300">
+            <Link
+              href={`/profile/${author}`}
+              className="text-gray-300 hover:underline"
+            >
               @{author}
             </Link>
           </p>
