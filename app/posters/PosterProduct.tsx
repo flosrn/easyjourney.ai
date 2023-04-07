@@ -51,7 +51,7 @@ const PosterProduct = ({ id, prompt, image, user }: PosterProductProps) => {
   const { data } = useSession();
   const router = useRouter();
   const isAdmin = data?.user.role === "ADMIN";
-  const isPosterOwner = data?.user.id === user?.id;
+  const isPosterOwner = data?.user.id && user?.id && data.user.id === user.id;
 
   const { data: productData } = useQuery(["product"], async () =>
     fetchProduct()

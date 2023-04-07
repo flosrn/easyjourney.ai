@@ -30,10 +30,10 @@ const likePoster = async (posterId: string) => {
 };
 
 const Poster = ({ id, prompt, image, likes, author }: PostersProps) => {
-  const { data: session } = useSession();
-  const router = useRouter();
   const [likesCount, setLikesCount] = useState(likes.length);
   const [userHasLiked, setUserHasLiked] = useState(false);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     setUserHasLiked(likes.some((like) => like.userId === session?.user.id));
@@ -96,7 +96,7 @@ const Poster = ({ id, prompt, image, likes, author }: PostersProps) => {
       <div className="mt-1 text-gray-500">
         <p className="truncate text-xs font-medium text-gray-600">{prompt}</p>
         {author && (
-          <p className="text-[11px]">
+          <p className="text-[10px]">
             by{" "}
             <Link
               href={`/profile/${author}`}
