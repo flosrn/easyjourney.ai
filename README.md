@@ -21,10 +21,12 @@ cutting-edge AI technology, myposter.ai aims to be the leader in its sector.
 - Database ORM: Prisma
 - Authentication: next-auth
 - Payment processing: Stripe
-- Frontend hosting: Vercel
+- Content Delivery System (CDN): Vercel
 - Database: PostgresSQL hosted on Railway
+- Image storage & processing: Uploadcare
 - Package management: pnpm
 - Language: TypeScript
+- Linting & Formatting: ESLint + Prettier
 
 ## Getting Started
 
@@ -34,26 +36,32 @@ cutting-edge AI technology, myposter.ai aims to be the leader in its sector.
 git clone https://github.com/flosrn/myposter.ai.git
 ```
 
-2. Install dependencies:
+2. Change to the project directory:
+    
+```bash
+cd myposter.ai
+```
+
+3. Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-3. Copy the \`.env.example\` file and rename it to \`.env.local\`:
+4. Copy the \`.env.example\` file and rename it to \`.env\`:
 
 ```bash
 cp .env.example .env
 ```
 
-4. Generate a `NEXTAUTH_SECRET` using a random string generator or a password
+5. Generate a `NEXTAUTH_SECRET` using a random string generator or a password
    manager. You can also generate one using a command like:
 
 ```bash
 openssl rand -base64 32
 ```
 
-5. To obtain `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, follow these steps:
+6. To obtain `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, follow these steps:
 
     - Go to
       the [Google Developer Console](https://console.developers.google.com/)
@@ -69,12 +77,12 @@ openssl rand -base64 32
       and `GOOGLE_CLIENT_SECRET`
 
 
-6. For the rest of the environment variables, such as `DATABASE_URL`,
-   Stripe-related variables, and Uploadcare, please contact the main maintainer
-   of the project (flosrn).
+7. For the rest of the environment variables, such as `DATABASE_URL`,
+   Stripe-related variables, and Uploadcare, please send DM to the main maintainer
+   of the project ([flosrn](https://github.com/flosrn)).
 
 
-4. Run the development server:
+8. Run the development server:
 
 ```bash
 pnpm dev
