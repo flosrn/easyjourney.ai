@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Menu } from "lucide-react";
 
 import DropdownMenuNav from "~/components/header/DropdownMenuNav";
@@ -10,7 +11,7 @@ import { CartDrawer } from "~/components/shopping-cart/CartDrawer";
 type HeaderProps = {};
 
 const Header = ({}: HeaderProps) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
       <div className="container flex h-16 items-center">
@@ -24,11 +25,11 @@ const Header = ({}: HeaderProps) => {
                 <Menu size={24} />
               </button>
             </div>
-            <a className="mr-6 flex items-center space-x-2" href="/">
+            <Link href="/" className="mr-6 flex items-center space-x-2">
               <span className="hidden font-bold sm:inline-block">
                 myposter.ai
               </span>
-            </a>
+            </Link>
             <nav
               dir="ltr"
               aria-label="Main"

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import {
@@ -40,9 +41,9 @@ export const Navbar = () => {
                 {megaMenuItem.hasLeftImage && (
                   <li className="row-span-3">
                     <NavigationMenuLink asChild>
-                      <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-rose-500 to-indigo-700 p-6 no-underline outline-none focus:shadow-md"
+                      <Link
                         href="/posters/popular"
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-rose-500 to-indigo-700 p-6 no-underline outline-none focus:shadow-md"
                       >
                         <Icons.logo className="h-6 w-6 text-white" />
                         <div className="mb-2 mt-4 text-lg font-medium text-white">
@@ -51,7 +52,7 @@ export const Navbar = () => {
                         <p className="text-sm leading-tight text-white/90">
                           Explorez les posters par thèmes, styles et popularité
                         </p>
-                      </a>
+                      </Link>
                     </NavigationMenuLink>
                   </li>
                 )}
@@ -73,28 +74,36 @@ export const Navbar = () => {
   );
 };
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+const ListItem = ({
+  title,
+  href,
+  children,
+  ref,
+  className,
+}: {
+  title: string;
+  href: string;
+  children: React.ReactNode;
+  ref?: React.Ref<HTMLAnchorElement>;
+  className?: string;
+}) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
+        <Link
           ref={ref}
+          href={href}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-slate-700 dark:focus:bg-slate-700",
             className
           )}
-          {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
           <p className="line-clamp-2 text-sm leading-snug text-slate-500 dark:text-slate-400">
             {children}
           </p>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   );
-});
-ListItem.displayName = "ListItem";
+};
