@@ -53,10 +53,10 @@ cd myposter.ai
 pnpm install
 ```
 
-4. Copy the \`.env.example\` file and rename it to \`.env\`:
+4. Copy the \`.env.template\` file and rename it to \`.env\`:
 
 ```bash
-cp .env.example .env
+cp .env.template .env
 ```
 
 5. Generate a `NEXTAUTH_SECRET` using a random string generator or a password
