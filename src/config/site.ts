@@ -72,6 +72,11 @@ const megaMenu: MegaMenu[] = [
     title: "À propos",
     menu: [
       {
+        title: "Pricing",
+        href: "/pricing",
+        description: "Découvrez nos plans et tarifs",
+      },
+      {
         title: "Notre histoire",
         href: "/about/history",
         description: "Découvrez l'origine et l'évolution de notre plateforme",
