@@ -40,12 +40,7 @@ export default async function CreatePage() {
             you will receive your poster in 3 days.
           </p>
         </div>
-        <Prompt>
-          <Suspense fallback={<div>Loading posters...</div>}>
-            {/* @ts-expect-error Server Component */}
-            <Posters posters={posters} />
-          </Suspense>
-        </Prompt>
+        <Prompt />
       </section>
     </>
   );

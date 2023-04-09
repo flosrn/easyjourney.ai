@@ -5,7 +5,7 @@ import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
 import Posters from "../../posters/Posters";
-import FollowButton from "./FollowButton";
+import FollowButton from "../FollowButton";
 
 type UserProfileProps = {
   params: { username: User["username"] };
@@ -80,9 +80,13 @@ export default async function UserProfile({
           </div>
         </div>
       </div>
+      {/*<div className="container max-w-4xl">*/}
+      {/*  <Suspense fallback={<div>Loading posters...</div>}>*/}
+      {/*    <ProfilePosters userId={user.id} />*/}
+      {/*  </Suspense>*/}
+      {/*</div>*/}
       <div className="container max-w-4xl">
         <Suspense fallback={<div>Loading posters...</div>}>
-          {/* @ts-expect-error Server Component */}
           <Posters posters={user.posters} />
         </Suspense>
       </div>

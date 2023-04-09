@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { Suspense, useCallback, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { uploadFile } from "@uploadcare/upload-client";
 import { Loader2 } from "lucide-react";
@@ -11,11 +11,11 @@ import { Button, buttonVariants } from "~/components/ui/Button";
 
 import { cn } from "~/lib/classNames";
 
-const BASE_STABLE_DIFFUSION_URL = "https://5acaa901-ced0-4b55.gradio.live";
+import UserPosters from "./UserPosters";
 
-type PromptProps = {
-  children: React.ReactNode;
-};
+const BASE_STABLE_DIFFUSION_URL = "https://4df6301b-3687-4806.gradio.live";
+
+type PromptProps = {};
 
 const text2img = async (prompt: string) => {
   const response = await fetch(
@@ -61,7 +61,7 @@ const savePosterToDatabase = async (poster: string, prompt: string) => {
   return response.json();
 };
 
-const Prompt = ({ children }: PromptProps) => {
+const Prompt = ({}: PromptProps) => {
   const [promptInputValue, setPromptInputValue] = useState("");
   const [poster, setPoster] = useState("");
   const [posterSaved, setPosterSaved] = useState(false);
@@ -156,7 +156,9 @@ const Prompt = ({ children }: PromptProps) => {
       </div>
       {poster && <img src={`data:image/png;base64,${poster}`} alt="poster" />}
       <Toaster position="bottom-right" />
-      {children}
+      <Suspense fallback={<div>Loading...</div>}>
+        <UserPosters refetch={posterSaved} />
+      </Suspense>
     </>
   );
 };

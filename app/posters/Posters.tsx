@@ -8,7 +8,7 @@ type PostersProps = {
   posters: PosterType;
 };
 
-const Posters = async ({ posters }: PostersProps) => {
+const Posters = ({ posters }: PostersProps) => {
   const formattedPosters = posters.map((poster) => {
     const createdAt =
       poster.createdAt instanceof Date
