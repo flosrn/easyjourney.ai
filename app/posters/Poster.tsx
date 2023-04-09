@@ -11,14 +11,9 @@ import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 
 import { cn } from "~/lib/classNames";
+import type { PosterType } from "~/types/poster";
 
-type PostersProps = {
-  id: string;
-  prompt: string;
-  image: string;
-  likes: { userId: string }[];
-  author?: string;
-};
+type PostersProps = PosterType;
 
 const likePoster = async (posterId: string) => {
   const response = await fetch("/api/posters/like", {
@@ -29,11 +24,12 @@ const likePoster = async (posterId: string) => {
   return response;
 };
 
-const Poster = ({ id, prompt, image, likes, author }: PostersProps) => {
+const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
   const [likesCount, setLikesCount] = useState(likes.length);
   const [userHasLiked, setUserHasLiked] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
+  const author = user?.username;
 
   useEffect(() => {
     setUserHasLiked(likes.some((like) => like.userId === session?.user.id));

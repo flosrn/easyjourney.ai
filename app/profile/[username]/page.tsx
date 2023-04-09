@@ -1,21 +1,18 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "~/server/auth";
+import type { User } from "@prisma/client";
+import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
 import Posters from "../../posters/Posters";
 import FollowButton from "./FollowButton";
 
 type UserProfileProps = {
-  params: { username: string };
+  params: { username: User["username"] };
 };
 
-export default async function UserProfile({
-  params: { username },
-}: UserProfileProps) {
-  const session = await getServerSession(authOptions);
-  const user = await prisma.user.findUnique({
+const getUserInfos = async (username: User["username"]) =>
+  prisma.user.findUnique({
     where: { username },
     include: {
       posters: {
@@ -26,6 +23,12 @@ export default async function UserProfile({
       following: true,
     },
   });
+
+export default async function UserProfile({
+  params: { username },
+}: UserProfileProps) {
+  const session = await getServerAuthSession();
+  const user = await getUserInfos(username);
 
   if (!user) {
     return <div>User not found</div>;

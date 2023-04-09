@@ -1,20 +1,24 @@
 import React from "react";
 import Link from "next/link";
+import type { Poster } from "@prisma/client";
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 import { prisma } from "~/server/db/prisma";
 
 import PosterProduct from "../../posters/PosterProduct";
 
+const getCurrentPoster = async (posterId: Poster["id"]) =>
+  prisma.poster.findUnique({
+    where: { id: posterId },
+    include: { user: true, likes: true },
+  });
+
 export default async function PosterPage({
   params,
 }: {
-  params: { posterId: string };
+  params: { posterId: Poster["id"] };
 }) {
   const { posterId } = params;
-  const poster = await prisma.poster.findUnique({
-    where: { id: posterId },
-    include: { user: true },
-  });
+  const poster = await getCurrentPoster(posterId);
 
   const nextPoster = await prisma.poster.findFirst({
     where: {
@@ -45,16 +49,7 @@ export default async function PosterPage({
           <Link href={`/poster/${previousPoster?.id}`}>
             <ArrowBigLeft size={24} />
           </Link>
-          <div className="">
-            {poster && (
-              <PosterProduct
-                id={poster.id}
-                prompt={poster.prompt}
-                image={poster.image}
-                user={poster.user}
-              />
-            )}
-          </div>
+          <div className="">{poster && <PosterProduct {...poster} />}</div>
           <Link href={`/poster/${nextPoster?.id}`}>
             <ArrowBigRight size={24} />
           </Link>

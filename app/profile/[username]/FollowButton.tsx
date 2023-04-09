@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import type { User } from "@prisma/client";
 
 type FollowButtonProps = {
-  userId: string;
+  userId: User["id"];
 };
 
 const FollowButton = ({ userId }: FollowButtonProps) => {

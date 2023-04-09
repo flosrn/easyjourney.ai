@@ -6,17 +6,13 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import type { User } from "next-auth";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 import { useShoppingCart } from "use-shopping-cart";
 
-export type PosterProductProps = {
-  id: string;
-  prompt: string;
-  image: string;
-  user: User | null;
-};
+import type { PosterType } from "~/types/poster";
+
+export type PosterProductProps = PosterType;
 
 const fetchProduct = async () => {
   const response = await fetch(`/api/products`, {

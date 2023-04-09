@@ -63,7 +63,7 @@ type ParametersGetServerSession =
   | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
   | [NextApiRequest, NextApiResponse];
 
-export const getServerSession = async (
+export const getServerAuthSession = async (
   ...parameters: ParametersGetServerSession
 ) => {
   return getNextAuthServerSession(...parameters, authOptions);
