@@ -8,7 +8,6 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { useSession } from "next-auth/react";
 import { env } from "~/env.mjs";
 import { MyCustomAdapter } from "~/server/my-custom-adapter";
 

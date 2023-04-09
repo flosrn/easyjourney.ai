@@ -1,28 +1,15 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "~/server/auth";
-import { prisma } from "~/server/db/prisma";
+import { getServerAuthSession } from "~/server/auth";
 
-import Posters from "../../Posters";
 import Prompt from "../Prompt";
 
 export default async function CreatePage() {
-  const session = await getServerSession(authOptions);
+  const session = await getServerAuthSession();
 
   if (!session) {
     return redirect("/api/auth/signin");
   }
-
-  const posters = await prisma.poster.findMany({
-    where: {
-      userId: session.user.id,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-    include: { user: true, likes: true },
-  });
 
   return (
     <>

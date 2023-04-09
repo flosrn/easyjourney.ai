@@ -155,10 +155,10 @@ const Prompt = ({}: PromptProps) => {
         )}
       </div>
       {poster && <img src={`data:image/png;base64,${poster}`} alt="poster" />}
-      <Toaster position="bottom-right" />
       <Suspense fallback={<div>Loading...</div>}>
         <UserPosters refetch={posterSaved} />
       </Suspense>
+      <Toaster position="bottom-right" />
     </>
   );
 };
