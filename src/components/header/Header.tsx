@@ -11,7 +11,7 @@ import { CartDrawer } from "~/components/shopping-cart/CartDrawer";
 type HeaderProps = {};
 
 const Header = ({}: HeaderProps) => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
       <div className="container flex h-16 items-center">
@@ -19,7 +19,7 @@ const Header = ({}: HeaderProps) => {
           <div className="flex">
             <div className="md:hidden">
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="rounded p-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
                 <Menu size={24} />
@@ -46,7 +46,7 @@ const Header = ({}: HeaderProps) => {
           </div>
         </div>
       </div>
-      {isMenuOpen && (
+      {isMobileMenuOpen && (
         <div className="md:hidden">
           <nav aria-label="Mobile Main" className="w-full">
             <Navbar />
