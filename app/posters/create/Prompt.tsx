@@ -62,9 +62,9 @@ const savePosterToDatabase = async (poster: string, prompt: string) => {
 };
 
 const Prompt = ({}: PromptProps) => {
-  const [promptInputValue, setPromptInputValue] = useState("");
-  const [poster, setPoster] = useState("");
-  const [posterSaved, setPosterSaved] = useState(false);
+  const [promptInputValue, setPromptInputValue] = useState<string>("");
+  const [poster, setPoster] = useState<string>("");
+  const [posterSaved, setPosterSaved] = useState<boolean>(false);
 
   const createPosterMutation = useMutation(
     async () => text2img(promptInputValue),
