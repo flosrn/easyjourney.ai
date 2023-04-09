@@ -15,8 +15,14 @@ cutting-edge AI technology, myposter.ai aims to be the leader in its sector.
 
 ## Tech Stack
 
-- **Frontend**: [Next.js v13 (beta app directory)](https://beta.nextjs.org/docs/getting-started), [React.js v18](https://react.dev/), [Tailwind CSS v3](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/)
+- **Frontend**: [Next.js v13 (beta app directory)](https://beta.nextjs.org/docs/getting-started), [React.js v18](https://react.dev/)
 - **Backend**: Next.js serverless functions (API routes)
+- **Design system**: [Tailwind CSS v3](https://tailwindcss.com/)
+- **UI components**: [Radix UI](https://www.radix-ui.com/)
+- **UI Icons**: [Lucide](https://lucide.dev/)
+- **Forms**: [React Hook Form](https://react-hook-form.com/)
+- **Animations** & **Transitions**: [Framer Motion](https://www.framer.com/motion/)
+- **State management**: [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)
 - **Client-side API** calls: [React Query v4](https://tanstack.com/query/latest/)
 - **Database ORM**: [Prisma v4](https://www.prisma.io/)
 - **Authentication**: [NextAuth.js v4](https://authjs.dev/)
@@ -24,7 +30,6 @@ cutting-edge AI technology, myposter.ai aims to be the leader in its sector.
 - Content Delivery System (**CDN**): [Vercel](https://vercel.com/)
 - **Database**: PostgresSQL hosted on [Railway](https://railway.app/)
 - **Image** storage & processing: [Uploadcare](https://uploadcare.com/)
-- **Package management**: [pnpm](https://pnpm.io/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Linting** & **Formatting**: [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
 
