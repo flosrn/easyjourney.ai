@@ -1,6 +1,6 @@
 {
-  "name": "homaide.art",
-  "description": "Homaide.art is a marketplace to buy and sell AI generated art.",
+  "name": "myposter.ai",
+  "description": "Myposter.ai is a platform for creating and selling generative art posters. It is built with Next.js, Prisma, and Tailwind CSS.",
   "version": "0.0.1",
   "private": true,
   "scripts": {
