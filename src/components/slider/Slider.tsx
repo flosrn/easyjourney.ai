@@ -7,90 +7,31 @@ import {
   Scrollbar,
   Thumbs,
 } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import "swiper/swiper.min.css";
 import React, { useState } from "react";
 import Image from "next/image";
 
+const FrameData = [
+  { src: "/sliderBackground1.jpg", alt: "White wall with a poster" },
+  { src: "/sliderBackground2.jpg", alt: "White wall with a poster" },
+  { src: "/sliderBackground3.jpg", alt: "White wall with a poster" },
+  { src: "/sliderBackground4.jpg", alt: "White wall with a poster" },
+];
+
 export default function Slider({ prompt, image }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleSlideChange = (swiper) => {
+    setActiveIndex(swiper.activeIndex);
+    console.log("activeIndex", activeIndex);
+  };
+
   return (
     <>
-      <div className="w-1/3">
-        <Swiper
-          onSwiper={setThumbsSwiper}
-          loop={false}
-          spaceBetween={10}
-          slidesPerView={3}
-          direction="vertical"
-          mousewheel={true}
-          freeMode={true}
-          watchSlidesProgress={true}
-          modules={[FreeMode, Navigation, Thumbs, Mousewheel]}
-          className="h-full mySwiper"
-        >
-          <SwiperSlide>
-            <Image
-              alt={prompt}
-              src={image}
-              width="130"
-              height="121"
-              objectFit="contain"
-              className="h-full mx-auto"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              alt={prompt}
-              src={image}
-              width="130"
-              height="121"
-              className="h-full mx-auto"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              alt={prompt}
-              src={image}
-              width="130"
-              height="121"
-              className="h-full mx-auto"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              alt={prompt}
-              src={image}
-              width="130"
-              height="121"
-              objectFit="contain"
-              className="h-full mx-auto"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              alt={prompt}
-              src={image}
-              width="218"
-              height="121"
-              quality="80"
-              className="h-full"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              alt={prompt}
-              src={image}
-              width="218"
-              height="121"
-              quality="80"
-              className="h-full"
-            />
-          </SwiperSlide>
-        </Swiper>
-      </div>
       <div className="w-2/3">
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y, Thumbs]}
@@ -103,29 +44,42 @@ export default function Slider({ prompt, image }) {
           }}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
-          direction="vertical"
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
-          className="h-full"
+          onActiveIndexChange={(swiper) => handleSlideChange(swiper)}
         >
-          <SwiperSlide>
-            <Image
-              alt={prompt}
-              src={image}
-              width="400"
-              height="300"
-              quality="80"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              alt={prompt}
-              src={image}
-              width="400"
-              height="300"
-              quality="80"
-            />
-          </SwiperSlide>
+          {FrameData.map((frame) => (
+            <SwiperSlide key={frame.src}>
+              <Image
+                alt={frame.alt}
+                src={frame.src}
+                width="1280"
+                height="1280"
+                quality="80"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <Swiper
+          onSwiper={setThumbsSwiper}
+          loop={false}
+          spaceBetween={10}
+          slidesPerView={5}
+          mousewheel={true}
+          freeMode={true}
+          watchSlidesProgress={true}
+          modules={[FreeMode, Navigation, Thumbs, Mousewheel]}
+          className="mt-2 mySwiper"
+        >
+          {FrameData.map((frame) => (
+            <SwiperSlide key={frame.src}>
+              <Image
+                alt={frame.alt}
+                src={frame.src}
+                width="1280"
+                height="1280"
+                quality="80"
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </>
