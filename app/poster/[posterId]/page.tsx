@@ -44,15 +44,17 @@ export default async function PosterPage({
 
   return (
     <>
-      <section className="container mt-8 grid items-center justify-center gap-6 pb-8">
-        <div className="flex items-center justify-center space-x-5">
-          <Link href={`/poster/${previousPoster?.id}`}>
-            <ArrowBigLeft size={24} />
-          </Link>
+      <section className="container mt-8 items-center justify-center gap-6 pb-8">
+        <div className="w-full">
+          {/*<div className="flex items-center justify-center space-x-5">*/}
+          {/*<Link href={`/poster/${previousPoster?.id}`}>*/}
+          {/*  <ArrowBigLeft size={24} />*/}
+          {/*</Link>*/}
           <div className="">{poster && <PosterProduct {...poster} />}</div>
-          <Link href={`/poster/${nextPoster?.id}`}>
-            <ArrowBigRight size={24} />
-          </Link>
+
+          {/*<Link href={`/poster/${nextPoster?.id}`}>*/}
+          {/*  <ArrowBigRight size={24} />*/}
+          {/*</Link>*/}
         </div>
       </section>
     </>

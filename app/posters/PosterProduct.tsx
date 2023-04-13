@@ -5,9 +5,22 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { DirectionProvider } from "@radix-ui/react-direction";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  A11y,
+  FreeMode,
+  Mousewheel,
+  Navigation,
+  Pagination,
+  Scrollbar,
+  Thumbs,
+} from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/swiper.min.css";
 import { useShoppingCart } from "use-shopping-cart";
 
 import type { PosterType } from "~/types/poster";
@@ -133,89 +146,204 @@ const PosterProduct = ({ id, prompt, image, user }: PosterProductProps) => {
     return acc;
   }, []);
 
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
   return (
     <>
+      {/*<div className="">*/}
+      {/*  <Image alt={prompt} src={image} width="400" height="300" quality="80" />*/}
+      {/*</div>*/}
       <div className="">
-        <Image alt={prompt} src={image} width="400" height="300" quality="80" />
+        {/*  <p className="mb-4 text-gray-600">{prompt}</p>*/}
+        {/*  <div className="flex justify-between">*/}
+        {/*    <div>*/}
+        {/*      <select*/}
+        {/*        value={selectedSize}*/}
+        {/*        onChange={handleSizeChange}*/}
+        {/*        className="mb-4 mr-2"*/}
+        {/*      >*/}
+        {/*        <option value="">Sélectionnez la taille</option>*/}
+        {/*        {sizes?.map((size) => (*/}
+        {/*          <option key={size} value={size}>*/}
+        {/*            {size}*/}
+        {/*          </option>*/}
+        {/*        ))}*/}
+        {/*      </select>*/}
+        {/*      <select*/}
+        {/*        value={`${selectedFrame.material}-${selectedFrame.color}`}*/}
+        {/*        onChange={handleFrameChange}*/}
+        {/*        className="mb-4"*/}
+        {/*      >*/}
+        {/*        <option value="">Sélectionnez le cadre</option>*/}
+        {/*        {frames?.map((frame) => (*/}
+        {/*          <option*/}
+        {/*            key={`${frame.material}-${frame.color}`}*/}
+        {/*            value={`${frame.material}-${frame.color}`}*/}
+        {/*          >*/}
+        {/*            {frame.material} - {frame.color}*/}
+        {/*          </option>*/}
+        {/*        ))}*/}
+        {/*      </select>*/}
+        {/*    </div>*/}
+        {/*    {}*/}
+        {/*    /!* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition *!/*/}
+        {/*    {selectedPrice && (*/}
+        {/*      <h2 className="mb-4 text-2xl font-semibold">*/}
+        {/*        {selectedPrice.unit_amount / 100}{" "}*/}
+        {/*        {selectedPrice.currency.toUpperCase()}*/}
+        {/*      </h2>*/}
+        {/*    )}*/}
+        {/*  </div>*/}
+        {/*  <button*/}
+        {/*    onClick={() =>*/}
+        {/*      addItem({*/}
+        {/*        id: `${selectedPrice.id}-${id}`,*/}
+        {/*        name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,*/}
+        {/*        price: selectedPrice.unit_amount,*/}
+        {/*        currency: selectedPrice.currency,*/}
+        {/*        image,*/}
+        {/*        product_data: {*/}
+        {/*          id: product.id,*/}
+        {/*          description: prompt,*/}
+        {/*          metadata: {*/}
+        {/*            size: selectedSize,*/}
+        {/*            frame_material: selectedFrame.material,*/}
+        {/*            frame_color: selectedFrame.color,*/}
+        {/*          },*/}
+        {/*        },*/}
+        {/*        price_data: {*/}
+        {/*          size: selectedSize,*/}
+        {/*          frame: selectedFrame,*/}
+        {/*        },*/}
+        {/*      })*/}
+        {/*    }*/}
+        {/*    className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"*/}
+        {/*    disabled={!selectedPrice}*/}
+        {/*  >*/}
+        {/*    Ajouter au panier*/}
+        {/*  </button>*/}
+        {/*  {(isPosterOwner || isAdmin) && (*/}
+        {/*    <button*/}
+        {/*      onClick={() => setIsDeleteButtonClicked(true)}*/}
+        {/*      className="px-4 py-2 ml-2 text-white bg-red-500 rounded-md hover:bg-red-600"*/}
+        {/*    >*/}
+        {/*      Supprimer*/}
+        {/*    </button>*/}
+        {/*  )}*/}
       </div>
-      <div className="">
-        <p className="mb-4 text-gray-600">{prompt}</p>
-        <div className="flex justify-between">
-          <div>
-            <select
-              value={selectedSize}
-              onChange={handleSizeChange}
-              className="mb-4 mr-2"
-            >
-              <option value="">Sélectionnez la taille</option>
-              {sizes?.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </select>
-            <select
-              value={`${selectedFrame.material}-${selectedFrame.color}`}
-              onChange={handleFrameChange}
-              className="mb-4"
-            >
-              <option value="">Sélectionnez le cadre</option>
-              {frames?.map((frame) => (
-                <option
-                  key={`${frame.material}-${frame.color}`}
-                  value={`${frame.material}-${frame.color}`}
-                >
-                  {frame.material} - {frame.color}
-                </option>
-              ))}
-            </select>
-          </div>
-          {}
-          {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
-          {selectedPrice && (
-            <h2 className="mb-4 text-2xl font-semibold">
-              {selectedPrice.unit_amount / 100}{" "}
-              {selectedPrice.currency.toUpperCase()}
-            </h2>
-          )}
-        </div>
-        <button
-          onClick={() =>
-            addItem({
-              id: `${selectedPrice.id}-${id}`,
-              name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,
-              price: selectedPrice.unit_amount,
-              currency: selectedPrice.currency,
-              image,
-              product_data: {
-                id: product.id,
-                description: prompt,
-                metadata: {
-                  size: selectedSize,
-                  frame_material: selectedFrame.material,
-                  frame_color: selectedFrame.color,
-                },
-              },
-              price_data: {
-                size: selectedSize,
-                frame: selectedFrame,
-              },
-            })
-          }
-          className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-          disabled={!selectedPrice}
-        >
-          Ajouter au panier
-        </button>
-        {(isPosterOwner || isAdmin) && (
-          <button
-            onClick={() => setIsDeleteButtonClicked(true)}
-            className="ml-2 rounded-md bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+      <div className="flex w-3/5 h-96">
+        <div className="w-1/3">
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            loop={false}
+            spaceBetween={10}
+            slidesPerView={3}
+            direction="vertical"
+            mousewheel={true}
+            freeMode={true}
+            watchSlidesProgress={true}
+            modules={[FreeMode, Navigation, Thumbs, Mousewheel]}
+            className="h-full mySwiper"
           >
-            Supprimer
-          </button>
-        )}
+            <SwiperSlide>
+              <Image
+                alt={prompt}
+                src={image}
+                width="130"
+                height="121"
+                objectFit="contain"
+                className="h-full mx-auto"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                alt={prompt}
+                src={image}
+                width="130"
+                height="121"
+                className="h-full mx-auto"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                alt={prompt}
+                src={image}
+                width="130"
+                height="121"
+                className="h-full mx-auto"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                alt={prompt}
+                src={image}
+                width="130"
+                height="121"
+                objectFit="contain"
+                className="h-full mx-auto"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                alt={prompt}
+                src={image}
+                width="218"
+                height="121"
+                quality="80"
+                className="h-full"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                alt={prompt}
+                src={image}
+                width="218"
+                height="121"
+                quality="80"
+                className="h-full"
+              />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+        <div className="w-2/3">
+          <Swiper
+            modules={[Navigation, Pagination, Scrollbar, A11y, Thumbs]}
+            spaceBetween={0}
+            slidesPerView={1}
+            navigation
+            thumbs={{
+              swiper:
+                thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+            }}
+            pagination={{ clickable: true }}
+            scrollbar={{ draggable: true }}
+            direction="vertical"
+            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log("slide change")}
+            className="h-full"
+          >
+            <SwiperSlide>
+              <Image
+                alt={prompt}
+                src={image}
+                width="400"
+                height="300"
+                quality="80"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                alt={prompt}
+                src={image}
+                width="400"
+                height="300"
+                quality="80"
+              />
+            </SwiperSlide>
+          </Swiper>
+        </div>
       </div>
+
       <Toaster position="bottom right" />
     </>
   );
