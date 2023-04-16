@@ -2,14 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .flex-center {
-  @apply flex justify-center items-center;
+  @apply flex items-center justify-center;
 }
 
 .bg-header {
-  background: linear-gradient(90.66deg, #181818 25.52%, rgba(24, 24, 24, 0.66) 94.65%);
-  border: 1px solid #1F1F1F;
+  background: linear-gradient(
+    90.66deg,
+    #181818 25.52%,
+    rgba(24, 24, 24, 0.66) 94.65%
+  );
+  border: 1px solid #1f1f1f;
   box-shadow: 0 4px 58px #000000;
 }
 
@@ -43,7 +46,7 @@
   left: 0;
   top: 50px;
   background: linear-gradient(-90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%),
-  linear-gradient(-90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+    linear-gradient(-90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
   transform: rotate(150deg);
   will-change: transform;
   width: 200px;
@@ -57,7 +60,7 @@
   right: 0;
   top: 50px;
   background: linear-gradient(90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%),
-  linear-gradient(90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+    linear-gradient(90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
   transform: rotate(-150deg);
   will-change: transform;
   width: 200px;

@@ -42,7 +42,7 @@ const frameData = [
     index: 4,
     src: "/images/backgrounds/sliderBackground5.jpg",
     alt: "White wall with a poster",
-    position: "absolute z-10 w-4/12 left-[30%] top-[5%] transform",
+    position: "absolute z-10 w-4/12 left-[30%] top-[5%] rotate-y-custom",
   },
   {
     index: 5,
@@ -66,7 +66,6 @@ export default function Slider({ prompt, image }) {
         <div className="relative">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Thumbs]}
-            spaceBetween={0}
             slidesPerView={1}
             onSlideChange={(swiper) => handleSlideChange(swiper)}
             navigation
@@ -95,23 +94,10 @@ export default function Slider({ prompt, image }) {
             src={image}
             height="400"
             width="400"
-            className={`${
-              activeIndex === 0
-                ? frameData[0].position
-                : activeIndex === 1
-                ? frameData[1].position
-                : activeIndex === 2
-                ? frameData[2].position
-                : activeIndex === 3
-                ? frameData[3].position
-                : activeIndex === 4
-                ? frameData[4].position
-                : activeIndex === 5
-                ? frameData[5].position
-                : frameData[0].position
-            } transition-all duration-300`}
+            className={`${frameData[activeIndex].position} transition-all duration-300`}
           />
         </div>
+
         <Swiper
           onSwiper={setThumbsSwiper}
           spaceBetween={15}
