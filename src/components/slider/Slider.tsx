@@ -48,7 +48,7 @@ const frameData = [
     index: 5,
     src: "/images/backgrounds/sliderBackground6.jpg",
     alt: "White wall with a poster",
-    position: "absolute z-10 w-2/12 left-[74%] top-[17%]",
+    position: "absolute z-10 w-2/12 left-[74.5%] top-[18.5%]",
   },
 ];
 
@@ -81,7 +81,7 @@ export default function Slider({ prompt, image }) {
                 <Image
                   alt={frame.alt}
                   src={frame.src}
-                  width="1280"
+                  width="1280" //images must be imported in 1280x1280 to correctly fit
                   height="1280"
                   quality="80"
                 />
@@ -101,16 +101,23 @@ export default function Slider({ prompt, image }) {
         <Swiper
           onSwiper={setThumbsSwiper}
           spaceBetween={15}
-          slidesPerView={5}
+          slidesPerView={4.5}
           mousewheel={true}
           freeMode={true}
-          onSlideChange={(swiper) => handleSlideChange(swiper)}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs, Mousewheel]}
           className="mt-4 mySwiper"
         >
           {frameData.map((frame) => (
-            <SwiperSlide key={frame.src} position="relative">
+            <SwiperSlide
+              key={frame.index}
+              position="relative"
+              className={`overflow-hidden rounded-md ${
+                activeIndex === frame.index
+                  ? "border-2 border-blue-500 border-solid"
+                  : ""
+              } `}
+            >
               <Image
                 alt={frame.alt}
                 src={frame.src}

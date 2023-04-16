@@ -219,7 +219,7 @@ const PosterProduct = ({ id, prompt, image, user }: PosterProductProps) => {
         {/*    </button>*/}
         {/*  )}*/}
       </div>
-      <div className="flex w-3/5 h-96">
+      <div className="flex w-full md:w-3/5">
         <Slider prompt={prompt} image={image} />
       </div>
 
