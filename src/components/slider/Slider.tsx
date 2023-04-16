@@ -42,7 +42,7 @@ const frameData = [
     index: 4,
     src: "/images/backgrounds/sliderBackground5.jpg",
     alt: "White wall with a poster",
-    position: "absolute z-10 w-4/12 left-[30%] top-[5%] rotate-y-custom",
+    position: "absolute z-10 w-4/12 left-[30%] top-[5%]  -skew-y-3",
   },
   {
     index: 5,
@@ -63,7 +63,7 @@ export default function Slider({ prompt, image }) {
   return (
     <>
       <div className="w-full">
-        <div className="relative">
+        <div className="relative transform perspective">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Thumbs]}
             slidesPerView={1}
