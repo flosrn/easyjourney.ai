@@ -15,6 +15,8 @@ import Slider from "~/components/slider/Slider";
 
 import type { PosterType } from "~/types/poster";
 
+import PosterOptions from "./PosterOptions";
+
 export type PosterProductProps = PosterType;
 
 const fetchProduct = async () => {
@@ -35,7 +37,13 @@ const deletePoster = async (posterId: string) => {
   return response.json();
 };
 
-const PosterProduct = ({ id, prompt, image, user }: PosterProductProps) => {
+const PosterProduct = ({
+  id,
+  prompt,
+  image,
+  user,
+  createdAt,
+}: PosterProductProps) => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedFrame, setSelectedFrame] = useState<{
@@ -138,9 +146,6 @@ const PosterProduct = ({ id, prompt, image, user }: PosterProductProps) => {
 
   return (
     <>
-      {/*<div className="">*/}
-      {/*  <Image alt={prompt} src={image} width="400" height="300" quality="80" />*/}
-      {/*</div>*/}
       <div className="">
         {/*  <p className="mb-4 text-gray-600">{prompt}</p>*/}
         {/*  <div className="flex justify-between">*/}
@@ -219,8 +224,13 @@ const PosterProduct = ({ id, prompt, image, user }: PosterProductProps) => {
         {/*    </button>*/}
         {/*  )}*/}
       </div>
-      <div className="flex w-full md:w-3/5">
-        <Slider prompt={prompt} image={image} />
+      <div className="flex">
+        <div className="flex w-full md:w-6/12">
+          <Slider prompt={prompt} image={image} createdAt={createdAt} />
+        </div>
+        <div className="ml-4 flex w-full md:w-2/5">
+          <PosterOptions prompt={prompt} user={user} />
+        </div>
       </div>
 
       <Toaster position="bottom right" />

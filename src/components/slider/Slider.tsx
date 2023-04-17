@@ -52,7 +52,13 @@ const frameData = [
   },
 ];
 
-export default function Slider({ prompt, image }) {
+export default function Slider({
+  prompt,
+  image,
+}: {
+  prompt: string;
+  image: string;
+}) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -63,7 +69,7 @@ export default function Slider({ prompt, image }) {
   return (
     <>
       <div className="w-full">
-        <div className="relative transform perspective">
+        <div className="relative">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Thumbs]}
             slidesPerView={1}
@@ -106,7 +112,7 @@ export default function Slider({ prompt, image }) {
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs, Mousewheel]}
-          className="mt-4 mySwiper"
+          className="mySwiper mt-4"
         >
           {frameData.map((frame) => (
             <SwiperSlide
@@ -114,7 +120,7 @@ export default function Slider({ prompt, image }) {
               position="relative"
               className={`overflow-hidden rounded-md ${
                 activeIndex === frame.index
-                  ? "border-2 border-blue-500 border-solid"
+                  ? "border-2 border-solid border-blue-500"
                   : ""
               } `}
             >
