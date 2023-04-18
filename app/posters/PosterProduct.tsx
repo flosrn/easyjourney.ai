@@ -15,6 +15,7 @@ import Slider from "~/components/slider/Slider";
 
 import type { PosterType } from "~/types/poster";
 
+import PosterDetails from "./PosterDetails";
 import PosterOptions from "./PosterOptions";
 
 export type PosterProductProps = PosterType;
@@ -146,84 +147,6 @@ const PosterProduct = ({
 
   return (
     <>
-      <div className="">
-        {/*  <p className="mb-4 text-gray-600">{prompt}</p>*/}
-        {/*  <div className="flex justify-between">*/}
-        {/*    <div>*/}
-        {/*      <select*/}
-        {/*        value={selectedSize}*/}
-        {/*        onChange={handleSizeChange}*/}
-        {/*        className="mb-4 mr-2"*/}
-        {/*      >*/}
-        {/*        <option value="">Sélectionnez la taille</option>*/}
-        {/*        {sizes?.map((size) => (*/}
-        {/*          <option key={size} value={size}>*/}
-        {/*            {size}*/}
-        {/*          </option>*/}
-        {/*        ))}*/}
-        {/*      </select>*/}
-        {/*      <select*/}
-        {/*        value={`${selectedFrame.material}-${selectedFrame.color}`}*/}
-        {/*        onChange={handleFrameChange}*/}
-        {/*        className="mb-4"*/}
-        {/*      >*/}
-        {/*        <option value="">Sélectionnez le cadre</option>*/}
-        {/*        {frames?.map((frame) => (*/}
-        {/*          <option*/}
-        {/*            key={`${frame.material}-${frame.color}`}*/}
-        {/*            value={`${frame.material}-${frame.color}`}*/}
-        {/*          >*/}
-        {/*            {frame.material} - {frame.color}*/}
-        {/*          </option>*/}
-        {/*        ))}*/}
-        {/*      </select>*/}
-        {/*    </div>*/}
-        {/*    {}*/}
-        {/*    /!* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition *!/*/}
-        {/*    {selectedPrice && (*/}
-        {/*      <h2 className="mb-4 text-2xl font-semibold">*/}
-        {/*        {selectedPrice.unit_amount / 100}{" "}*/}
-        {/*        {selectedPrice.currency.toUpperCase()}*/}
-        {/*      </h2>*/}
-        {/*    )}*/}
-        {/*  </div>*/}
-        {/*  <button*/}
-        {/*    onClick={() =>*/}
-        {/*      addItem({*/}
-        {/*        id: `${selectedPrice.id}-${id}`,*/}
-        {/*        name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,*/}
-        {/*        price: selectedPrice.unit_amount,*/}
-        {/*        currency: selectedPrice.currency,*/}
-        {/*        image,*/}
-        {/*        product_data: {*/}
-        {/*          id: product.id,*/}
-        {/*          description: prompt,*/}
-        {/*          metadata: {*/}
-        {/*            size: selectedSize,*/}
-        {/*            frame_material: selectedFrame.material,*/}
-        {/*            frame_color: selectedFrame.color,*/}
-        {/*          },*/}
-        {/*        },*/}
-        {/*        price_data: {*/}
-        {/*          size: selectedSize,*/}
-        {/*          frame: selectedFrame,*/}
-        {/*        },*/}
-        {/*      })*/}
-        {/*    }*/}
-        {/*    className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"*/}
-        {/*    disabled={!selectedPrice}*/}
-        {/*  >*/}
-        {/*    Ajouter au panier*/}
-        {/*  </button>*/}
-        {/*  {(isPosterOwner || isAdmin) && (*/}
-        {/*    <button*/}
-        {/*      onClick={() => setIsDeleteButtonClicked(true)}*/}
-        {/*      className="px-4 py-2 ml-2 text-white bg-red-500 rounded-md hover:bg-red-600"*/}
-        {/*    >*/}
-        {/*      Supprimer*/}
-        {/*    </button>*/}
-        {/*  )}*/}
-      </div>
       <div className="flex">
         <div className="flex w-full md:w-6/12">
           <Slider prompt={prompt} image={image} createdAt={createdAt} />
@@ -231,6 +154,9 @@ const PosterProduct = ({
         <div className="ml-4 flex w-full md:w-2/5">
           <PosterOptions prompt={prompt} user={user} />
         </div>
+      </div>
+      <div>
+        <PosterDetails />
       </div>
 
       <Toaster position="bottom right" />
