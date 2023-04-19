@@ -147,8 +147,8 @@ const PosterProduct = ({
 
   return (
     <>
-      <div className="flex">
-        <div className="flex w-full md:w-6/12">
+      <div className=" flex-row md:flex">
+        <div className=" flex w-full md:w-6/12">
           <Slider prompt={prompt} image={image} createdAt={createdAt} />
         </div>
         <div className="ml-4 flex w-full md:w-2/5">
@@ -156,7 +156,7 @@ const PosterProduct = ({
         </div>
       </div>
       <div>
-        <PosterDetails />
+        <PosterDetails prompt={prompt} />
       </div>
 
       <Toaster position="bottom right" />

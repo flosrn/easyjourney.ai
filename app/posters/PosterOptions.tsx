@@ -9,7 +9,7 @@ export default function PosterOptions({ prompt, user, createdAt }) {
 
   return (
     <>
-      <div className="flex-row">
+      <div className="mt-4 flex-row md:mt-0">
         <div className="text-3xl font-medium capitalize">{trimmedPrompt}</div>
         {user ? (
           <div className="mt-4 font-extralight">
