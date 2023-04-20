@@ -9,6 +9,7 @@ cutting-edge AI technology, myposter.ai aims to be the leader in its sector.
 - AI-generated posters
 - Custom poster generation based on user input
 - User accounts with authentication and personalization
+- Social features such as likes, follows, and sharing
 - Shopping cart functionality
 - Secure payment processing with Stripe
 - Admin dashboard for order management and shipping
@@ -18,7 +19,7 @@ cutting-edge AI technology, myposter.ai aims to be the leader in its sector.
 - **Frontend**: [Next.js v13 (beta app directory)](https://beta.nextjs.org/docs/getting-started), [React.js v18](https://react.dev/)
 - **Backend**: Next.js serverless functions (API routes)
 - **Design system**: [Tailwind CSS v3](https://tailwindcss.com/)
-- **UI components**: [Radix UI](https://www.radix-ui.com/)
+- **UI components**: [Radix UI](https://www.radix-ui.com/) components designed by [shadcn](https://ui.shadcn.com/)
 - **UI Icons**: [Lucide](https://lucide.dev/)
 - **Forms**: [React Hook Form](https://react-hook-form.com/)
 - **Animations** & **Transitions**: [Framer Motion](https://www.framer.com/motion/)
@@ -28,7 +29,7 @@ cutting-edge AI technology, myposter.ai aims to be the leader in its sector.
 - **Authentication**: [NextAuth.js v4](https://authjs.dev/)
 - **Payment** processing: [Stripe](https://stripe.com/)
 - Content Delivery System (**CDN**): [Vercel](https://vercel.com/)
-- **Database**: PostgresSQL hosted on [Railway](https://railway.app/)
+- **Database**: [PostgresSQL](https://www.postgresql.org/) hosted on [Railway](https://railway.app/)
 - **Image** storage & processing: [Uploadcare](https://uploadcare.com/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Linting** & **Formatting**: [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
