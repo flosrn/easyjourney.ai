@@ -42,6 +42,8 @@ model Like {
 }
 
 model Follow {
+  id String @id @default(uuid())
+
   follower   User   @relation("follower", fields: [followerId], references: [id])
   followerId String @map(name: "follower_id")
 
@@ -79,8 +81,8 @@ model User {
   posters  Poster[]
 
   likes     Like[]   @relation("userLikes")
-  followers Follow[] @relation("follower")
-  following Follow[] @relation("following")
+  followers Follow[] @relation("following")
+  following Follow[] @relation("follower")
 
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")

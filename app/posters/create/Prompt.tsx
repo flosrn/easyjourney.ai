@@ -13,7 +13,7 @@ import { cn } from "~/lib/classNames";
 
 import UserPosters from "./UserPosters";
 
-const BASE_STABLE_DIFFUSION_URL = "https://4df6301b-3687-4806.gradio.live";
+const BASE_STABLE_DIFFUSION_URL = "https://79382359-a474-493e.gradio.live";
 
 type PromptProps = {};
 
@@ -39,9 +39,10 @@ const base64ToBlob = async (base64: string) => {
 };
 
 const uploadToUploadcare = async (blob: Blob, fileName: string) => {
+  const trimmedFileName = fileName.slice(0, 128);
   const response = await uploadFile(blob, {
     publicKey: env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY,
-    fileName,
+    fileName: trimmedFileName,
     store: true,
   });
   return response;

@@ -2,19 +2,37 @@
 
 import React, { useState } from "react";
 import type { User } from "@prisma/client";
+import toast, { Toaster } from "react-hot-toast";
 
 type FollowButtonProps = {
   userId: User["id"];
+  isFollowing: boolean;
 };
 
-const FollowButton = ({ userId }: FollowButtonProps) => {
-  const [isFollowing, setIsFollowing] = useState(false);
+const followUser = async (userId: User["id"]) => {
+  const response = await fetch(`/api/users/${userId}/follow`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userId }),
+  });
+  return response.json();
+};
 
-  const handleFollowClick = () => {
-    // Replace this with your own API logic to handle following
+const FollowButton = ({
+  userId,
+  isFollowing: isUserFollowing,
+}: FollowButtonProps) => {
+  const [isFollowing, setIsFollowing] = useState(isUserFollowing);
+
+  const handleFollowClick = async () => {
     setIsFollowing(!isFollowing);
-    // eslint-disable-next-line no-console
-    console.log("Follow button clicked", userId);
+    const data = await followUser(userId);
+    if (data.error) {
+      toast.error(data.error);
+      setIsFollowing(!isFollowing);
+    }
   };
 
   return (
@@ -33,6 +51,7 @@ const FollowButton = ({ userId }: FollowButtonProps) => {
           {isFollowing ? "Following" : "Follow"}
         </span>
       </button>
+      <Toaster position="bottom-right" />
     </>
   );
 };

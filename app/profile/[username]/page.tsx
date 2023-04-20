@@ -42,6 +42,9 @@ export default async function UserProfile({
   );
   const totalFollowers = user.followers.length;
   const totalFollowing = user.following.length;
+  const isFollowing = user.followers.some(
+    (follower) => follower.followerId === session?.user.id
+  );
 
   return (
     <>
@@ -59,7 +62,7 @@ export default async function UserProfile({
         <h1 className="mt-4 text-2xl font-semibold">{user.name}</h1>
         <p className="mt-2 text-lg">@{user.username}</p>
 
-        {!isMe && <FollowButton userId={user.id} />}
+        {!isMe && <FollowButton userId={user.id} isFollowing={isFollowing} />}
 
         <div className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
           <div className="text-center">
