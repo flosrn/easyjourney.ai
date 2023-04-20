@@ -36,7 +36,7 @@ export async function POST(
 ) {
   const session = await getServerAuthSession();
   if (!session) {
-    return NextResponse.redirect("/login");
+    return NextResponse.redirect(new URL("/api/auth/signin", request.url));
   }
 
   try {
