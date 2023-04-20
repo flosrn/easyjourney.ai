@@ -42,7 +42,7 @@ git clone https://github.com/flosrn/myposter.ai.git
 ```
 
 2. Change to the project directory:
-    
+
 ```bash
 cd myposter.ai
 ```
@@ -68,24 +68,22 @@ openssl rand -base64 32
 
 6. To obtain `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, follow these steps:
 
-    - Go to
-      the [Google Developer Console](https://console.developers.google.com/)
-    - Create a new project or select an existing one
-    - Click on "Credentials" in the left-hand menu
-    - Click on "Create credentials" and select "OAuth client ID"
-    - Choose "Web application" as the Application type
-    - Set the "Authorized JavaScript origins" to `http://localhost:3000` for
-      local development
-    - Set the "Authorized redirect URIs"
-      to `http://localhost:3000/api/auth/callback/google`
-    - Click "Create" to generate your `GOOGLE_CLIENT_ID`
-      and `GOOGLE_CLIENT_SECRET`
-
+   - Go to
+     the [Google Developer Console](https://console.developers.google.com/)
+   - Create a new project or select an existing one
+   - Click on "Credentials" in the left-hand menu
+   - Click on "Create credentials" and select "OAuth client ID"
+   - Choose "Web application" as the Application type
+   - Set the "Authorized JavaScript origins" to `http://localhost:3000` for
+     local development
+   - Set the "Authorized redirect URIs"
+     to `http://localhost:3000/api/auth/callback/google`
+   - Click "Create" to generate your `GOOGLE_CLIENT_ID`
+     and `GOOGLE_CLIENT_SECRET`
 
 7. For the rest of the environment variables, such as `DATABASE_URL`,
    Stripe-related variables, and Uploadcare, please send DM to the main maintainer
    of the project ([flosrn](https://github.com/flosrn)).
-
 
 8. Run the development server:
 

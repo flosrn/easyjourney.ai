@@ -89,7 +89,7 @@ export const CartDrawer = ({}: CartDrawerProps) => {
       <Dialog.Trigger className="flex-center relative h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900">
         {cartCount
           ? cartCount > 0 && (
-              <span className="absolute -top-1 -right-4 mr-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-red-100">
+              <span className="absolute -right-4 -top-1 mr-2 inline-flex items-center justify-center rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-red-100">
                 {cartCount}
               </span>
             )
@@ -125,7 +125,7 @@ export const CartDrawer = ({}: CartDrawerProps) => {
               animate="open"
               exit="closed"
               variants={sideVariants}
-              className="fixed top-0 right-0 h-full w-96 overflow-hidden bg-white p-6"
+              className="fixed right-0 top-0 h-full w-96 overflow-hidden bg-white p-6"
             >
               <motion.div
                 initial={{ opacity: 0 }}
@@ -134,7 +134,7 @@ export const CartDrawer = ({}: CartDrawerProps) => {
                 transition={{ delay: 0.35 }}
               >
                 <button
-                  className="flex-center absolute top-2 right-2 h-10 w-10 text-black"
+                  className="flex-center absolute right-2 top-2 h-10 w-10 text-black"
                   onClick={() => onOpenChange()}
                 >
                   <X size={26} />
