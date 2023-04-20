@@ -13,7 +13,7 @@ import { cn } from "~/lib/classNames";
 
 import UserPosters from "./UserPosters";
 
-const BASE_STABLE_DIFFUSION_URL = "https://79382359-a474-493e.gradio.live";
+const BASE_STABLE_DIFFUSION_URL = "https://56b127b1-b9cf-4d37.gradio.live";
 
 type PromptProps = {};
 
