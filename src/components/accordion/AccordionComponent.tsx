@@ -1,4 +1,5 @@
 import * as Accordion from "@radix-ui/react-accordion";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 
 export default function AccordionComponent() {
   return (
@@ -40,12 +41,16 @@ const AccordionItem = ({ children, ...props }) => {
 const AccordionTrigger = ({ children, ...props }) => {
   return (
     <>
-      <Accordion.Header className="flex ">
+      <Accordion.Header className="md:flex">
         <Accordion.Trigger
-          className="mx-4 my-8 w-full text-center text-lg font-bold md:text-left"
+          className="mx-4 w-full py-8 text-center text-lg font-bold md:flex md:justify-between md:text-left"
           {...props}
         >
           {children}
+          <ChevronDownIcon
+            className=" ease-[cubic-bezier(0.87,_0,_0.13,_1) hidden transition-transform duration-300 group-data-[state=open]:rotate-180 md:block"
+            aria-hidden
+          />
         </Accordion.Trigger>
       </Accordion.Header>
     </>
@@ -55,7 +60,7 @@ const AccordionTrigger = ({ children, ...props }) => {
 const AccordionContent = ({ children, ...props }) => {
   return (
     <Accordion.Content
-      className="text center mx-4 pb-8 text-center leading-5 md:text-left"
+      className="data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp mx-4 pb-8 text-center leading-5 md:text-left"
       {...props}
     >
       {children}
