@@ -33,13 +33,17 @@ export default function PosterDetails({ prompt }) {
     <>
       <div className="mt-8 flex w-full  border-b border-white">
         <div
-          className={`p-4 px-8 ${activeTab === "details" ? "border-b-4" : ""}`}
+          className={`p-4 px-8 text-xl font-bold ${
+            activeTab === "details" ? "border-b-4" : ""
+          }`}
           onClick={() => setActiveTab("details")}
         >
           Details du produit
         </div>
         <div
-          className={`p-4 px-8 ${activeTab === "FAQ" ? "border-b-4" : ""}`}
+          className={`p-4 px-8 text-xl font-bold ${
+            activeTab === "FAQ" ? "border-b-4" : ""
+          }`}
           onClick={() => setActiveTab("FAQ")}
         >
           FAQ
@@ -54,7 +58,7 @@ export default function PosterDetails({ prompt }) {
               </div>
               <div className="mt-4">
                 <span className="w-full">La prompt originale est : </span>
-                <div className="mx-4 my-2 w-full text-center align-middle">
+                <div className="mx-4 my-2  text-center align-middle">
                   <div className="text-sm sm:text-xs ">"{prompt}"</div>
                 </div>
               </div>
@@ -77,9 +81,7 @@ export default function PosterDetails({ prompt }) {
             </div>
           </div>
         ) : (
-          <div>
-            <AccordionComponent />
-          </div>
+          <AccordionComponent />
         )}
       </div>
     </>

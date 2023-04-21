@@ -3,18 +3,62 @@ import * as Accordion from "@radix-ui/react-accordion";
 export default function AccordionComponent() {
   return (
     <Accordion.Root
-      className="w-full rounded-md"
-      type="single"
-      defaultValue="item-1"
+      className=" w-full border-t border-white "
+      type="multiple"
+      collapsible="true"
     >
-      <Accordion.Item value="item-1">
-        <Accordion.Header>
-          <Accordion.Trigger>
-            En combien de temps recevrais je mon poster ?
-          </Accordion.Trigger>
-        </Accordion.Header>
-        <Accordion.Content>C'est cela </Accordion.Content>
-      </Accordion.Item>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>
+          En combien de temps recevrais-je mon poster ?
+        </AccordionTrigger>
+
+        <AccordionContent>
+          Votre poster devrait arriver dans les 3 à 5 jours ouvrables.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Can it be animated?</AccordionTrigger>
+        <AccordionContent>
+          Yes! You can animate the Accordion with CSS or JavaScript.
+        </AccordionContent>
+      </AccordionItem>
     </Accordion.Root>
   );
 }
+
+const AccordionItem = ({ children, ...props }) => {
+  return (
+    <Accordion.Item
+      className="w-full overflow-hidden border-b border-white"
+      {...props}
+    >
+      {children}
+    </Accordion.Item>
+  );
+};
+
+const AccordionTrigger = ({ children, ...props }) => {
+  return (
+    <>
+      <Accordion.Header className="flex ">
+        <Accordion.Trigger
+          className="mx-4 my-8 w-full text-center text-lg font-bold md:text-left"
+          {...props}
+        >
+          {children}
+        </Accordion.Trigger>
+      </Accordion.Header>
+    </>
+  );
+};
+
+const AccordionContent = ({ children, ...props }) => {
+  return (
+    <Accordion.Content
+      className="text center mx-4 pb-8 text-center leading-5 md:text-left"
+      {...props}
+    >
+      {children}
+    </Accordion.Content>
+  );
+};
