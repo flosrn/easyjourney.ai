@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 
-import DropdownMenuNav from "~/components/header/DropdownMenuNav";
+import DropdownUserMenuNav from "~/components/header/DropdownUserMenuNav";
 import { Navbar } from "~/components/header/Navbar";
 import { CartDrawer } from "~/components/shopping-cart/CartDrawer";
 
@@ -41,7 +41,7 @@ const Header = ({}: HeaderProps) => {
             </nav>
           </div>
           <div className="flex items-center space-x-2">
-            <DropdownMenuNav />
+            <DropdownUserMenuNav />
             <CartDrawer />
           </div>
         </div>
