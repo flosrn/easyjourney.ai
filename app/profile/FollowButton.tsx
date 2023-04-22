@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import type { User } from "@prisma/client";
+import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 
 type FollowButtonProps = {
@@ -25,8 +27,13 @@ const FollowButton = ({
   isFollowing: isUserFollowing,
 }: FollowButtonProps) => {
   const [isFollowing, setIsFollowing] = useState(isUserFollowing);
+  const session = useSession();
+  const router = useRouter();
 
   const handleFollowClick = async () => {
+    if (!session.data) {
+      router.push("/api/auth/signin");
+    }
     setIsFollowing(!isFollowing);
     const data = await followUser(userId);
     if (data.error) {

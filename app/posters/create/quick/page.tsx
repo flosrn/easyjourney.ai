@@ -8,7 +8,7 @@ export default async function CreatePage() {
   const session = await getServerAuthSession();
 
   if (!session) {
-    return redirect("/api/auth/signin");
+    redirect("/api/auth/signin");
   }
 
   return (
