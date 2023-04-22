@@ -151,12 +151,15 @@ const PosterProduct = ({
         <div className=" flex w-full md:w-6/12">
           <Slider prompt={prompt} image={image} createdAt={createdAt} />
         </div>
-        <div className="ml-4 flex w-full md:w-2/5">
-          <PosterOptions prompt={prompt} user={user} />
+        <div className="flex w-full flex-col">
+          <div className="ml-4 flex w-full">
+            <PosterOptions prompt={prompt} user={user} />
+          </div>
+
+          <div>
+            <PosterDetails prompt={prompt} />
+          </div>
         </div>
-      </div>
-      <div>
-        <PosterDetails prompt={prompt} />
       </div>
 
       <Toaster position="bottom right" />

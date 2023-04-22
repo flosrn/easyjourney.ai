@@ -1,6 +1,17 @@
 import Link from "next/link";
+import type { User } from "@prisma/client";
 
-export default function PosterOptions({ prompt, user, createdAt }) {
+type PosterOptionsProps = {
+  prompt: string;
+  user?: User | null;
+  createdAt: string;
+};
+
+export default function PosterOptions({
+  prompt,
+  user,
+  createdAt,
+}: PosterOptionsProps) {
   let trimmedPrompt = prompt.slice(0, 50);
   if (prompt.length > 50) {
     trimmedPrompt += "...";

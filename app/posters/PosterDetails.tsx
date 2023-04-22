@@ -1,8 +1,13 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import Accordion from "~/components/accordion/AccordionComponent";
-import AccordionComponent from "~/components/accordion/AccordionComponent";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "~/components/ui/Accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/Tabs";
 
 const posterDetailsData = [
   {
@@ -27,62 +32,65 @@ const posterDetailsData = [
   },
 ];
 
-export default function PosterDetails({ prompt }) {
-  const [activeTab, setActiveTab] = useState("details");
+type PosterDetailsProps = {
+  prompt: string;
+};
+
+export default function PosterDetails({ prompt }: PosterDetailsProps) {
   return (
     <>
-      <div className="mt-8 flex w-full  border-b border-white">
-        <div
-          className={`p-4 px-8 text-xl font-bold ${
-            activeTab === "details" ? "border-b-4" : ""
-          }`}
-          onClick={() => setActiveTab("details")}
-        >
-          Details du produit
-        </div>
-        <div
-          className={`p-4 px-8 text-xl font-bold ${
-            activeTab === "FAQ" ? "border-b-4" : ""
-          }`}
-          onClick={() => setActiveTab("FAQ")}
-        >
-          FAQ
-        </div>
-      </div>
-      <div className="flex w-full ">
-        {activeTab === "details" ? (
-          <div className=" sm:flex">
-            <div className="m-4 mt-8 w-full sm:w-1/2">
-              <div className="w-full">
-                Poster imprimé en France dans l'imprimerie de ..............
-              </div>
-              <div className="mt-4">
-                <span className="w-full">La prompt originale est : </span>
-                <div className="mx-4 my-2  text-center align-middle">
-                  <div className="text-sm sm:text-xs ">"{prompt}"</div>
+      <div className="w-full ">
+        <Tabs defaultValue="details" className="w-full">
+          <TabsList className="">
+            <TabsTrigger value="details">Details du produit</TabsTrigger>
+            <TabsTrigger value="faq">FAQ</TabsTrigger>
+          </TabsList>
+          <TabsContent value="details">
+            <div className=" sm:flex">
+              <div className="m-4 mt-8 w-full sm:w-1/2">
+                <div className="w-full">
+                  Poster imprimé en France dans l'imprimerie de ..............
                 </div>
-              </div>
-            </div>
-            <div className="w-full sm:w-1/2">
-              {posterDetailsData.map((data) => (
-                <div key={data.src} className="m-4 flex items-center">
-                  <div className="w-2/12 rounded-full bg-white">
-                    <Image
-                      src={data.src}
-                      alt={data.alt}
-                      width="256"
-                      height="256"
-                      className=""
-                    />
+                <div className="mt-4">
+                  <span className="w-full">La prompt originale est : </span>
+                  <div className="mx-4 my-2  text-center align-middle">
+                    <div className="text-sm sm:text-xs ">"{prompt}"</div>
                   </div>
-                  <span className="ml-4 w-9/12 text-xs">{data.text}</span>
                 </div>
-              ))}
+              </div>
+              <div className="w-full sm:w-1/2">
+                {posterDetailsData.map((data) => (
+                  <div key={data.src} className="m-4 flex items-center">
+                    <div className="w-2/12 rounded-full bg-white">
+                      <Image
+                        src={data.src}
+                        alt={data.alt}
+                        width="256"
+                        height="256"
+                        className=""
+                      />
+                    </div>
+                    <span className="ml-4 w-9/12 text-xs">{data.text}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ) : (
-          <AccordionComponent />
-        )}
+          </TabsContent>
+          <TabsContent value="faq">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1" className="w-full py-4">
+                <AccordionTrigger className=" mx-4 text-xl font-bold">
+                  Quel est le délai de livraison ?
+                </AccordionTrigger>
+                <AccordionContent className="mx-8">
+                  Vous recevrez votre colis sous 5 à 7 jours ouvrés. Si vous
+                  avez des questions, n'hésitez pas à nous contacter à l'adresse
+                  suivante :
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </TabsContent>
+        </Tabs>
       </div>
     </>
   );
