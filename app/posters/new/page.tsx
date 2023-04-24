@@ -1,18 +1,17 @@
-import React, { Suspense, cache } from "react";
+import React, { Suspense } from "react";
 import { prisma } from "~/server/db/prisma";
 
 import Posters from "../Posters";
 
 export const revalidate = 5;
 
-const getNewPosters = cache(async () =>
+const getNewPosters = async () =>
   prisma.poster.findMany({
     orderBy: {
       createdAt: "desc",
     },
     include: { user: true, likes: true },
-  })
-);
+  });
 
 export default async function NewPage() {
   const posters = await getNewPosters();

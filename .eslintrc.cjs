@@ -38,7 +38,7 @@ module.exports = {
   rules: {
     "linebreak-style": ["error", "unix"],
     semi: ["error", "always"],
-    "func-style": ["error", "expression"],
+    "func-style": ["error", "declaration", { allowArrowFunctions: true }],
     "no-extra-semi": "error",
     "default-case": "error",
     camelcase: 0,

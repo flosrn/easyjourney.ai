@@ -15,7 +15,7 @@ const CheckoutSuccess = ({}: CheckoutSuccessProps) => {
     clearCart();
   }, [clearCart]);
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-md">
         <div>
           <svg
@@ -40,7 +40,7 @@ const CheckoutSuccess = ({}: CheckoutSuccessProps) => {
         </p>
         <Link
           href="/"
-          className="flex-center mt-6 w-full rounded-md border border-transparent bg-green-500 py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+          className="flex-center mt-6 w-full rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
         >
           Retour à l'accueil
         </Link>

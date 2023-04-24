@@ -1,9 +1,9 @@
-import React, { Suspense, cache } from "react";
+import React, { Suspense } from "react";
 import { prisma } from "~/server/db/prisma";
 
 import Posters from "../Posters";
 
-const getPopularPosters = cache(async () =>
+const getPopularPosters = async () =>
   prisma.poster.findMany({
     orderBy: {
       likes: {
@@ -11,8 +11,7 @@ const getPopularPosters = cache(async () =>
       },
     },
     include: { user: true, likes: true },
-  })
-);
+  });
 
 export default async function PopularPage() {
   const posters = await getPopularPosters();

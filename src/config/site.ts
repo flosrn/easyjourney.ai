@@ -5,6 +5,7 @@ import {
   Heart,
   History,
   LogOut,
+  Palette,
   Settings,
   ShoppingCart,
   User,
@@ -150,6 +151,11 @@ const userMenu: NavItem[][] = [
     },
   ],
   [
+    {
+      title: "Dark mode",
+      href: "/theme",
+      icon: Palette,
+    },
     {
       title: "Réglages",
       href: "/dashboard/settings",

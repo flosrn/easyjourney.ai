@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import { useTheme } from "next-themes";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 import { Button } from "~/components/ui/Button";
@@ -15,10 +16,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/DropdownMenu";
+import { Switch } from "~/components/ui/Switch";
 
 import { siteConfig } from "~/config/site";
 
-type DropdownMenuNavProps = {};
+type DropdownUserMenuNavProps = {};
 
 const getFirstLetters = (name: string) => {
   const splitedName = name.split(" ");
@@ -28,9 +30,15 @@ const getFirstLetters = (name: string) => {
   return name.charAt(0).toUpperCase();
 };
 
-const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
+const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
+  const [isDarkTheme, setIsDarkTheme] = React.useState<boolean>(true);
   const { data: session } = useSession();
   const router = useRouter();
+  const { setTheme } = useTheme();
+
+  useEffect(() => {
+    setTheme(isDarkTheme ? "dark" : "light");
+  }, [isDarkTheme, setTheme]);
 
   if (session === null) {
     return (
@@ -40,14 +48,25 @@ const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
     );
   }
 
-  const handleItemClick = async (href?: string) => {
-    if (href === "/profile/me") {
-      const username = session.user.username;
-      router.push(`/profile/${username}`);
-    } else if (href === "/logout") {
-      await signOut({ callbackUrl: "/" });
-    } else if (href) {
-      router.push(href);
+  const handleItemClick = async (
+    event: React.MouseEvent<HTMLDivElement>,
+    href?: string
+  ) => {
+    switch (href) {
+      case "/profile/me": {
+        const username = session.user.username;
+        return router.push(`/profile/${username}`);
+      }
+      case "/theme": {
+        event.preventDefault();
+        return setIsDarkTheme(!isDarkTheme);
+      }
+      case "/logout": {
+        return signOut({ callbackUrl: "/" });
+      }
+      default: {
+        return href && router.push(href);
+      }
     }
   };
 
@@ -84,12 +103,15 @@ const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
                 {group.map(({ title, href, icon: Icon }) => (
                   <DropdownMenuItem
                     key={title}
-                    onClick={async () => handleItemClick(href)}
+                    onClick={async (event) => handleItemClick(event, href)}
                     asChild
                   >
-                    <div>
-                      <Icon className="mr-2 h-4 w-4" />
-                      <span className="truncate">{title}</span>
+                    <div className="flex justify-between">
+                      <div className="flex items-center">
+                        <Icon className="mr-2 h-4 w-4" />
+                        <span className="truncate">{title}</span>
+                      </div>
+                      {href === "/theme" && <Switch checked={isDarkTheme} />}
                     </div>
                   </DropdownMenuItem>
                 ))}
@@ -106,4 +128,4 @@ const DropdownMenuNav = ({}: DropdownMenuNavProps) => {
   );
 };
 
-export default DropdownMenuNav;
+export default DropdownUserMenuNav;
