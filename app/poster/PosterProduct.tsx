@@ -15,8 +15,8 @@ import Slider from "~/components/slider/Slider";
 
 import type { PosterType } from "~/types/poster";
 
-import PosterDetails from "./PosterDetails";
-import PosterOptions from "./PosterOptions";
+import PosterDetails from "../posters/PosterDetails";
+import PosterOptions from "../posters/PosterOptions";
 
 export type PosterProductProps = PosterType;
 

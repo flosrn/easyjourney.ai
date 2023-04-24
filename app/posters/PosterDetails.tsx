@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Image from "next/image";
 
 import {
@@ -39,11 +38,15 @@ type PosterDetailsProps = {
 export default function PosterDetails({ prompt }: PosterDetailsProps) {
   return (
     <>
-      <div className="w-full ">
-        <Tabs defaultValue="details" className="w-full">
-          <TabsList className="">
-            <TabsTrigger value="details">Details du produit</TabsTrigger>
-            <TabsTrigger value="faq">FAQ</TabsTrigger>
+      <div className=" ml-4 mt-10 w-full">
+        <Tabs defaultValue="details" className="">
+          <TabsList className="w-full">
+            <TabsTrigger value="details" className="w-1/2">
+              Details du produit
+            </TabsTrigger>
+            <TabsTrigger value="faq" className="w-1/2">
+              FAQ
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="details">
             <div className=" sm:flex">
@@ -86,6 +89,23 @@ export default function PosterDetails({ prompt }: PosterDetailsProps) {
                   Vous recevrez votre colis sous 5 à 7 jours ouvrés. Si vous
                   avez des questions, n'hésitez pas à nous contacter à l'adresse
                   suivante :
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2" className="w-full py-4">
+                <AccordionTrigger className=" mx-4 text-xl font-bold">
+                  A combien s'élèvent les frais d'envois ?
+                </AccordionTrigger>
+                <AccordionContent className="mx-8">
+                  les frais d'envois sont de 5€ pour la France et 10€ pour pour
+                  outre atlantique.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3" className="w-full py-4">
+                <AccordionTrigger className=" mx-4 text-xl font-bold">
+                  Quelle est la politique de retour ?
+                </AccordionTrigger>
+                <AccordionContent className="mx-8">
+                  La maison n'accepte pas les retours, c'est pas Amazon ici.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

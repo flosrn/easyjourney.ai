@@ -16,7 +16,6 @@ export default function PosterOptions({
   if (prompt.length > 50) {
     trimmedPrompt += "...";
   }
-  console.log("id");
 
   return (
     <>
