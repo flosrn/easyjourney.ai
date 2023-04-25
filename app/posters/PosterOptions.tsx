@@ -1,8 +1,6 @@
 import Link from "next/link";
 import type { User } from "@prisma/client";
 
-import { Button } from "~/components/ui/Button";
-
 type PosterOptionsProps = {
   prompt: string;
   user?: User | null;

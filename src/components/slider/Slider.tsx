@@ -59,10 +59,10 @@ export default function Slider({
   prompt: string;
   image: string;
 }) {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleSlideChange = (swiper) => {
+  const handleSlideChange = (swiper: t) => {
     setActiveIndex(swiper.activeIndex);
   };
 
@@ -105,7 +105,7 @@ export default function Slider({
         </div>
 
         <Swiper
-          onSwiper={setThumbsSwiper}
+          onSwiper={(swipe) => setThumbsSwiper(swipe)}
           spaceBetween={15}
           slidesPerView={4.5}
           mousewheel={true}
