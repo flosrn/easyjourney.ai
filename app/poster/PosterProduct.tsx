@@ -3,14 +3,19 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 import { useShoppingCart } from "use-shopping-cart";
 
+import Slider from "~/components/slider/Slider";
+import { Button } from "~/components/ui/Button";
+
 import type { PosterType } from "~/types/poster";
+
+import PosterDetails from "./PosterDetails";
+import PosterOptions from "./PosterOptions";
 
 export type PosterProductProps = PosterType;
 
@@ -32,7 +37,13 @@ const deletePoster = async (posterId: string) => {
   return response.json();
 };
 
-const PosterProduct = ({ id, prompt, image, user }: PosterProductProps) => {
+const PosterProduct = ({
+  id,
+  prompt,
+  image,
+  user,
+  createdAt,
+}: PosterProductProps) => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedFrame, setSelectedFrame] = useState<{
@@ -135,86 +146,47 @@ const PosterProduct = ({ id, prompt, image, user }: PosterProductProps) => {
 
   return (
     <>
-      <div className="">
-        <Image alt={prompt} src={image} width="400" height="300" quality="80" />
-      </div>
-      <div className="">
-        <p className="mb-4 text-gray-600">{prompt}</p>
-        <div className="flex justify-between">
-          <div>
-            <select
-              value={selectedSize}
-              onChange={handleSizeChange}
-              className="mb-4 mr-2"
-            >
-              <option value="">Sélectionnez la taille</option>
-              {sizes?.map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </select>
-            <select
-              value={`${selectedFrame.material}-${selectedFrame.color}`}
-              onChange={handleFrameChange}
-              className="mb-4"
-            >
-              <option value="">Sélectionnez le cadre</option>
-              {frames?.map((frame) => (
-                <option
-                  key={`${frame.material}-${frame.color}`}
-                  value={`${frame.material}-${frame.color}`}
-                >
-                  {frame.material} - {frame.color}
-                </option>
-              ))}
-            </select>
-          </div>
-          {}
-          {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
-          {selectedPrice && (
-            <h2 className="mb-4 text-2xl font-semibold">
-              {selectedPrice.unit_amount / 100}{" "}
-              {selectedPrice.currency.toUpperCase()}
-            </h2>
-          )}
+      <div className="md:flex">
+        <div className="md:w-1/2">
+          <Slider prompt={prompt} image={image} createdAt={createdAt} />
         </div>
-        <button
-          onClick={() =>
-            addItem({
-              id: `${selectedPrice.id}-${id}`,
-              name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,
-              price: selectedPrice.unit_amount,
-              currency: selectedPrice.currency,
-              image,
-              product_data: {
-                id: product.id,
-                description: prompt,
-                metadata: {
-                  size: selectedSize,
-                  frame_material: selectedFrame.material,
-                  frame_color: selectedFrame.color,
-                },
-              },
-              price_data: {
-                size: selectedSize,
-                frame: selectedFrame,
-              },
-            })
-          }
-          className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-          disabled={!selectedPrice}
-        >
-          Ajouter au panier
-        </button>
-        {(isPosterOwner || isAdmin) && (
-          <button
-            onClick={() => setIsDeleteButtonClicked(true)}
-            className="ml-2 rounded-md bg-red-500 px-4 py-2 text-white hover:bg-red-600"
-          >
-            Supprimer
-          </button>
-        )}
+        <div className="md:w-1/2">
+          <div className="w-full md:ml-4">
+            <PosterOptions prompt={prompt} user={user} addItem={addItem} />
+          </div>
+          <div>
+            <PosterDetails prompt={prompt} />
+            <div className="flex-center mt-8">
+              <Button
+                onClick={() =>
+                  addItem({
+                    id: `${selectedPrice.id}-${id}`,
+                    name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,
+                    price: selectedPrice.unit_amount,
+                    currency: selectedPrice.currency,
+                    image,
+                    product_data: {
+                      id: product.id,
+                      description: prompt,
+                      metadata: {
+                        size: selectedSize,
+                        frame_material: selectedFrame.material,
+                        frame_color: selectedFrame.color,
+                      },
+                    },
+                    price_data: {
+                      size: selectedSize,
+                      frame: selectedFrame,
+                    },
+                  })
+                }
+                size={"lg"}
+              >
+                Ajouter au panier
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
       <Toaster position="bottom right" />
     </>
