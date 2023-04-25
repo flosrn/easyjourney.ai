@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { User } from "@prisma/client";
 
+import { Button } from "~/components/ui/Button";
+
 type PosterOptionsProps = {
   prompt: string;
   user?: User | null;
@@ -19,7 +21,7 @@ export default function PosterOptions({
 
   return (
     <>
-      <div className="mt-4 flex-row md:mt-0">
+      <div className="mt-4 w-full  flex-row md:mt-0">
         <div className="text-3xl font-medium capitalize">{trimmedPrompt}</div>
         {user ? (
           <div className="mt-4 font-extralight">

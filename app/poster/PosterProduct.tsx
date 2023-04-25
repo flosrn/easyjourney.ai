@@ -12,6 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useShoppingCart } from "use-shopping-cart";
 
 import Slider from "~/components/slider/Slider";
+import { Button } from "~/components/ui/Button";
 
 import type { PosterType } from "~/types/poster";
 
@@ -152,10 +153,38 @@ const PosterProduct = ({
           <Slider prompt={prompt} image={image} createdAt={createdAt} />
         </div>
         <div className="flex w-full flex-col">
-          <div className="ml-4 flex w-full">
-            <PosterOptions prompt={prompt} user={user} />
+          <div className="flex w-full md:ml-4">
+            <PosterOptions prompt={prompt} user={user} addItem={addItem} />
           </div>
-
+          <div className="mt-8 w-full items-center text-center align-middle">
+            <Button
+              onClick={() =>
+                addItem({
+                  id: `${selectedPrice.id}-${id}`,
+                  name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,
+                  price: selectedPrice.unit_amount,
+                  currency: selectedPrice.currency,
+                  image,
+                  product_data: {
+                    id: product.id,
+                    description: prompt,
+                    metadata: {
+                      size: selectedSize,
+                      frame_material: selectedFrame.material,
+                      frame_color: selectedFrame.color,
+                    },
+                  },
+                  price_data: {
+                    size: selectedSize,
+                    frame: selectedFrame,
+                  },
+                })
+              }
+              size={"lg"}
+            >
+              Commander
+            </Button>
+          </div>
           <div>
             <PosterDetails prompt={prompt} />
           </div>

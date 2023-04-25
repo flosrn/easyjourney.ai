@@ -38,7 +38,7 @@ type PosterDetailsProps = {
 export default function PosterDetails({ prompt }: PosterDetailsProps) {
   return (
     <>
-      <div className=" ml-4 mt-10 w-full">
+      <div className=" mt-10 w-full md:ml-4">
         <Tabs defaultValue="details" className="">
           <TabsList className="w-full">
             <TabsTrigger value="details" className="w-1/2">
@@ -56,7 +56,7 @@ export default function PosterDetails({ prompt }: PosterDetailsProps) {
                 </div>
                 <div className="mt-4">
                   <span className="w-full">La prompt originale est : </span>
-                  <div className="mx-4 my-2  text-center align-middle">
+                  <div className="my-2 text-center  align-middle xl:mx-4">
                     <div className="text-sm sm:text-xs ">"{prompt}"</div>
                   </div>
                 </div>
