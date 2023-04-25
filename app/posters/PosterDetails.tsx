@@ -82,7 +82,7 @@ export default function PosterDetails({ prompt }: PosterDetailsProps) {
           <TabsContent value="faq">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1" className="w-full py-4">
-                <AccordionTrigger className=" mx-4 text-xl font-bold">
+                <AccordionTrigger className="mx-4 text-xl font-bold">
                   Quel est le délai de livraison ?
                 </AccordionTrigger>
                 <AccordionContent className="mx-8">
@@ -92,7 +92,7 @@ export default function PosterDetails({ prompt }: PosterDetailsProps) {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2" className="w-full py-4">
-                <AccordionTrigger className=" mx-4 text-xl font-bold">
+                <AccordionTrigger className="mx-4 text-xl font-bold">
                   A combien s'élèvent les frais d'envois ?
                 </AccordionTrigger>
                 <AccordionContent className="mx-8">
@@ -101,7 +101,7 @@ export default function PosterDetails({ prompt }: PosterDetailsProps) {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3" className="w-full py-4">
-                <AccordionTrigger className=" mx-4 text-xl font-bold">
+                <AccordionTrigger className="mx-4 text-xl font-bold">
                   Quelle est la politique de retour ?
                 </AccordionTrigger>
                 <AccordionContent className="mx-8">

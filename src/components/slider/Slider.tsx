@@ -6,12 +6,15 @@ import {
   Pagination,
   Scrollbar,
   Thumbs,
+  type Swiper as SwiperClass,
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/swiper.min.css";
 import React, { useState } from "react";
 import Image from "next/image";
+
+import { cn } from "~/lib/classNames";
 
 const frameData = [
   {
@@ -42,7 +45,7 @@ const frameData = [
     index: 4,
     src: "/images/backgrounds/sliderBackground5.jpg",
     alt: "White wall with a poster",
-    position: "absolute z-10 w-4/12 left-[30%] top-[5%]  -skew-y-3",
+    position: "absolute z-10 w-4/12 left-[30%] top-[5%] -skew-y-3",
   },
   {
     index: 5,
@@ -59,12 +62,8 @@ export default function Slider({
   prompt: string;
   image: string;
 }) {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleSlideChange = (swiper) => {
-    setActiveIndex(swiper.activeIndex);
-  };
 
   return (
     <>
@@ -73,12 +72,9 @@ export default function Slider({
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Thumbs]}
             slidesPerView={1}
-            onSlideChange={(swiper) => handleSlideChange(swiper)}
+            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
             navigation
-            thumbs={{
-              swiper:
-                thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
-            }}
+            thumbs={{ swiper: thumbsSwiper?.destroyed ? null : thumbsSwiper }}
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
           >
@@ -112,17 +108,15 @@ export default function Slider({
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs, Mousewheel]}
-          className="mySwiper mt-4"
+          className="mt-4"
         >
           {frameData.map((frame) => (
             <SwiperSlide
               key={frame.index}
-              position="relative"
-              className={`overflow-hidden rounded-md ${
-                activeIndex === frame.index
-                  ? "border-2 border-solid border-blue-500"
-                  : ""
-              } `}
+              className={cn("overflow-hidden rounded-md", {
+                "border-2 border-solid border-blue-500":
+                  activeIndex === frame.index,
+              })}
             >
               <Image
                 alt={frame.alt}
