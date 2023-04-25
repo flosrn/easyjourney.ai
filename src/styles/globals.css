@@ -67,6 +67,9 @@
     --ring: 216 34% 17%;
 
     --radius: 0.5rem;
+
+    --start-color: rgb(3, 7, 17);
+    --end-color: rgba(3, 7, 17, 0);
   }
 }
 
@@ -85,22 +88,12 @@
   @apply flex justify-center items-center;
 }
 
-.bg-header {
-  background: linear-gradient(
-    90.66deg,
-    #181818 25.52%,
-    rgba(24, 24, 24, 0.66) 94.65%
-  );
-  border: 1px solid #1f1f1f;
-  box-shadow: 0 4px 58px #000000;
-}
-
 .HeroAnimateIconsWrapper::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  background: linear-gradient(270deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+  background: linear-gradient(270deg, var(--start-color) 0%, var(--end-color) 100%);
   transform: rotate(-180deg);
   will-change: transform;
   width: 165px;
@@ -113,7 +106,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  background: linear-gradient(270deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+  background: linear-gradient(270deg, var(--start-color) 0%, var(--end-color) 100%);
   width: 165px;
   height: 100%;
   z-index: 1;
@@ -124,8 +117,8 @@
   position: absolute;
   left: 0;
   top: 50px;
-  background: linear-gradient(-90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%),
-    linear-gradient(-90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+  background: linear-gradient(-90deg, var(--start-color) 0%, var(--end-color) 100%),
+  linear-gradient(-90deg, var(--start-color) 0%, var(--end-color) 100%);
   transform: rotate(150deg);
   will-change: transform;
   width: 200px;
@@ -138,8 +131,8 @@
   position: absolute;
   right: 0;
   top: 50px;
-  background: linear-gradient(90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%),
-    linear-gradient(90deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+  background: linear-gradient(90deg, var(--start-color) 0%, var(--end-color) 100%),
+  linear-gradient(90deg, var(--start-color) 0%, var(--end-color) 100%);
   transform: rotate(-150deg);
   will-change: transform;
   width: 200px;
@@ -152,13 +145,14 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  background: linear-gradient(0deg, rgb(6, 6, 6) 0%, rgba(6, 6, 6, 0) 100%);
+  background: linear-gradient(0deg, var(--start-color) 0%, var(--end-color) 100%);
   transform: rotate(0deg);
   will-change: transform;
   width: 100%;
   height: 200px;
   z-index: 1;
 }
+
 
 .HeroAnimateIcons--bg {
   position: absolute;
