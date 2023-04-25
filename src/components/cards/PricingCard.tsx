@@ -26,11 +26,11 @@ export default function PricingCard({
                 <svg
                   fill="none"
                   height="16"
-                  shape-rendering="geometricPrecision"
+                  shapeRendering="geometricPrecision"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   viewBox="0 0 24 24"
                   width="24"
                 >
@@ -42,7 +42,7 @@ export default function PricingCard({
           ))}
         </ul>
       </div>
-      <Button className={buttonVariants({ variant: "subtle", size: "lg" })}>
+      <Button className={buttonVariants({ variant: "default", size: "lg" })}>
         Choose this plan
       </Button>
     </div>

@@ -136,5 +136,13 @@ module.exports = {
     "unicorn/no-useless-undefined": 0,
     "unicorn/no-useless-promise-resolve-reject": 0,
     "unicorn/filename-case": 0,
+    "tailwindcss/no-custom-classname": [
+      "warn",
+      {
+        callees: ["clsx", "cva"],
+        cssFiles: ["./src/styles/globals.css"],
+        whitelist: ["((bg|text)\\-).*"],
+      }
+    ]
   },
 };
