@@ -101,7 +101,7 @@ const Slider = ({ prompt, image }: SliderProps) => {
         </div>
 
         <Swiper
-          onSwiper={setThumbsSwiper}
+          onSwiper={(swipe) => setThumbsSwiper(swipe)}
           spaceBetween={15}
           slidesPerView={4.5}
           mousewheel={true}
