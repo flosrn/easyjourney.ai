@@ -13,7 +13,7 @@ type HeaderProps = {};
 const Header = ({}: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   return (
-    <header className="supports-backdrop-blur:bg-background/60 bg-background/95 sticky top-0 z-40 w-full border-b shadow-sm backdrop-blur">
+    <header className="bg-background/95 sticky top-0 z-40 w-full border-b shadow-sm">
       <div className="container flex h-14 items-center">
         <div className="flex flex-1 items-center justify-between">
           <div className="flex">
