@@ -55,15 +55,14 @@ const frameData = [
   },
 ];
 
-export default function Slider({
-  prompt,
-  image,
-}: {
+type SliderProps = {
   prompt: string;
   image: string;
-}) {
+};
+
+const Slider = ({ prompt, image }: SliderProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
   return (
     <>
@@ -86,6 +85,7 @@ export default function Slider({
                   width="1280" //images must be imported in 1280x1280 to correctly fit
                   height="1280"
                   quality="80"
+                  className="rounded-md"
                 />
               </SwiperSlide>
             ))}
@@ -138,4 +138,6 @@ export default function Slider({
       </div>
     </>
   );
-}
+};
+
+export default Slider;

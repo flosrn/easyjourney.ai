@@ -3,9 +3,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { DirectionProvider } from "@radix-ui/react-direction";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
@@ -16,8 +14,8 @@ import { Button } from "~/components/ui/Button";
 
 import type { PosterType } from "~/types/poster";
 
-import PosterDetails from "../posters/PosterDetails";
-import PosterOptions from "../posters/PosterOptions";
+import PosterDetails from "./PosterDetails";
+import PosterOptions from "./PosterOptions";
 
 export type PosterProductProps = PosterType;
 
@@ -148,49 +146,48 @@ const PosterProduct = ({
 
   return (
     <>
-      <div className=" flex-row md:flex">
-        <div className=" flex w-full md:w-6/12">
+      <div className="md:flex">
+        <div className="md:w-1/2">
           <Slider prompt={prompt} image={image} createdAt={createdAt} />
         </div>
-        <div className="flex w-full flex-col">
-          <div className="flex w-full md:ml-4">
+        <div className="md:w-1/2">
+          <div className="w-full md:ml-4">
             <PosterOptions prompt={prompt} user={user} addItem={addItem} />
-          </div>
-          <div className="mt-8 w-full items-center text-center align-middle">
-            <Button
-              onClick={() =>
-                addItem({
-                  id: `${selectedPrice.id}-${id}`,
-                  name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,
-                  price: selectedPrice.unit_amount,
-                  currency: selectedPrice.currency,
-                  image,
-                  product_data: {
-                    id: product.id,
-                    description: prompt,
-                    metadata: {
-                      size: selectedSize,
-                      frame_material: selectedFrame.material,
-                      frame_color: selectedFrame.color,
-                    },
-                  },
-                  price_data: {
-                    size: selectedSize,
-                    frame: selectedFrame,
-                  },
-                })
-              }
-              size={"lg"}
-            >
-              Commander
-            </Button>
           </div>
           <div>
             <PosterDetails prompt={prompt} />
+            <div className="flex-center mt-8">
+              <Button
+                onClick={() =>
+                  addItem({
+                    id: `${selectedPrice.id}-${id}`,
+                    name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,
+                    price: selectedPrice.unit_amount,
+                    currency: selectedPrice.currency,
+                    image,
+                    product_data: {
+                      id: product.id,
+                      description: prompt,
+                      metadata: {
+                        size: selectedSize,
+                        frame_material: selectedFrame.material,
+                        frame_color: selectedFrame.color,
+                      },
+                    },
+                    price_data: {
+                      size: selectedSize,
+                      frame: selectedFrame,
+                    },
+                  })
+                }
+                size={"lg"}
+              >
+                Ajouter au panier
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-
       <Toaster position="bottom right" />
     </>
   );
