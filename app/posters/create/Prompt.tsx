@@ -132,7 +132,7 @@ const Prompt = ({}: PromptProps) => {
         <Button
           onClick={createPoster}
           disabled={createPosterMutation.isLoading}
-          className={buttonVariants({ variant: "subtle", size: "lg" })}
+          className={buttonVariants({ variant: "default", size: "lg" })}
         >
           {createPosterMutation.isLoading && (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -144,7 +144,7 @@ const Prompt = ({}: PromptProps) => {
             onClick={savePoster}
             disabled={savePosterMutation.isLoading}
             className={cn(
-              buttonVariants({ variant: "subtle", size: "lg" }),
+              buttonVariants({ variant: "default", size: "lg" }),
               "dark:bg-green-400 dark:hover:bg-green-500"
             )}
           >
