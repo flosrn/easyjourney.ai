@@ -12,7 +12,7 @@ const imagineApi = async (
 ) => {
   const serverId = "662267976984297473";
   const channelId = "995431233121161246";
-  const salaiToken = env.DISCORD_SALAI_TOKEN;
+  const salaiToken = env.NEXT_PUBLIC_DISCORD_SALAI_TOKEN;
 
   const encoder = new TextEncoder();
 

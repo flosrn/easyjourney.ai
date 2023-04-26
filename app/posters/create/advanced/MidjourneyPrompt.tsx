@@ -1,9 +1,9 @@
 "use client";
 
-import React, { Suspense, useCallback, useEffect, useState } from "react";
-import Image from "next/image";
+import React, { Suspense, useCallback, useState } from "react";
 import { Loader2 } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
+import { imagineApiClient } from "~/services/midjourneyClient";
 
 import { Button, buttonVariants } from "~/components/ui/Button";
 
@@ -11,56 +11,40 @@ import UserPosters from "../UserPosters";
 
 type MidjourneyPromptProps = {};
 
+const imagineApi = async (
+  prompt: string,
+  onIteration: (uri: string) => void,
+  onComplete: (uri: string) => void
+) => {
+  await imagineApiClient(prompt, onIteration, onComplete);
+};
+
 const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   const [promptInputValue, setPromptInputValue] = useState<string>("");
   const [poster, setPoster] = useState<string>("");
   const [posterSaved, setPosterSaved] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const createPoster = () => {
+  const createPoster = useCallback(() => {
+    console.log("start generation");
     setIsLoading(true);
-    // Initialiser l'EventSource
-    const source = new EventSource(
-      `/api/imagine-sse?prompt=${encodeURIComponent(promptInputValue)}`
-    );
-    console.log("source :", source);
-    // Écouter les messages de l'EventSource
-    source.addEventListener("message", (event) => {
-      const data = JSON.parse(event.data);
-      switch (data.type) {
-        case "image":
-          console.log("new image iteration :", data.uri);
-          setPoster(data.uri);
-          break;
-        case "completed":
-          console.log("image generation completed :", data.data.uri);
-          setPoster(data.data.uri);
-          source.close();
-          setIsLoading(false);
-          toast.success("Poster generated successfully");
-          break;
-        case "error":
-          console.log("error :", data.error);
-          source.close();
-          setIsLoading(false);
-          toast.error("Error while generating poster");
-          break;
-        // No default
+    imagineApi(
+      promptInputValue,
+      (uri: string) => {
+        setPoster(uri);
+      },
+      (data: any) => {
+        console.log("data :", data);
+        setPoster(data.uri);
+        setIsLoading(false);
+        toast.success("Poster generated successfully");
       }
+    ).catch((error) => {
+      console.error("Error in imagineApi:", error);
+      setIsLoading(false);
+      toast.error("Error while generating poster");
     });
-
-    // Écouter les erreurs de l'EventSource
-    source.addEventListener("onerror", (event) => {
-      console.error("EventSource error:", event);
-      source.close();
-    });
-
-    // Écouter la fermeture de l'EventSource
-    source.addEventListener("onclose", (event) => {
-      console.log("EventSource closed:", event);
-      source.close();
-    });
-  };
+  }, [promptInputValue]);
 
   return (
     <>
