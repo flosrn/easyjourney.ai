@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import axios from "axios";
 
 export class MidjourneyMessage {
@@ -38,7 +40,7 @@ export class MidjourneyMessage {
 
         const imageUrl = item.attachments[0].url;
         if (!imageUrl.endsWith(".png")) {
-          loading && loading(imageUrl);
+          loading?.(imageUrl);
           break;
         }
         const content = item.content.split("**")[1];
@@ -124,7 +126,7 @@ export class Midjourney extends MidjourneyMessage {
       throw new Error(`ImagineApi failed with status ${httpStatus}`);
     }
     this.log(`await generate image`);
-    return await this.WaitMessage(prompt, loading);
+    return this.WaitMessage(prompt, loading);
   }
 
   async ImagineApi(prompt: string) {

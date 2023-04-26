@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { env } from "~/env.mjs";
 import { getServerAuthSession } from "~/server/auth";
 import { Midjourney } from "~/services/midjourneyService";
 
@@ -11,26 +12,21 @@ const imagineApi = async (
 ) => {
   const serverId = "662267976984297473";
   const channelId = "995431233121161246";
-  const salaiToken =
-    "MjQ2ODYzNzQ3ODMzMDA0MDM0.Gvwm54.1nTpb0HMitiaFcfxqkQuZ2vNm0LIlzlzgKEVbk";
+  const salaiToken = env.DISCORD_SALAI_TOKEN;
 
   const encoder = new TextEncoder();
 
   try {
     const client = new Midjourney(serverId, channelId, salaiToken, true);
-    const msg = await client.Imagine(
-      prompt,
-      async (uri: string, index: number) => {
-        console.log("loading", uri);
-        const data = JSON.stringify({
-          type: "image",
-          uri: uri || "no_attachment", // Ajouter "no_attachment" pour les itérations sans fichier trouvé
-          index,
-        });
-        console.log("Sending image data:", data);
-        await writer.write(encoder.encode(`data: ${data}\n\n`));
-      }
-    );
+    const msg = await client.Imagine(prompt, async (uri: string) => {
+      console.log("loading", uri);
+      const data = JSON.stringify({
+        type: "image",
+        uri: uri || "no_attachment",
+      });
+      console.log("Sending image data:", data);
+      await writer.write(encoder.encode(`data: ${data}\n\n`));
+    });
 
     console.log("Generated image:", msg);
     const completedData = JSON.stringify({
@@ -39,16 +35,16 @@ const imagineApi = async (
     });
     console.log("Sending completed data:", completedData);
     await writer.write(encoder.encode(`data: ${completedData}\n\n`));
-    writer.close();
-  } catch (error) {
+    await writer.close();
+  } catch (error: unknown) {
     console.error("Error generating image:", error);
     const errorData = JSON.stringify({
       type: "error",
-      message: error.message,
+      message: error,
     });
     console.log("Sending error data:", errorData);
     await writer.write(encoder.encode(`data: ${errorData}\n\n`));
-    writer.close();
+    await writer.close();
   }
 };
 
@@ -65,7 +61,13 @@ export async function GET(request: Request) {
     const responseStream = new TransformStream();
     const writer = responseStream.writable.getWriter();
 
-    imagineApi(prompt, writer);
+    if (prompt) {
+      imagineApi(prompt, writer).catch((error) => {
+        console.error("Error in imagineApi:", error);
+      });
+    } else {
+      throw new Error("Prompt is missing");
+    }
 
     return new Response(responseStream.readable, {
       headers: {
