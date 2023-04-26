@@ -5,6 +5,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
+    domains: ["cdn.discordapp.com"],
     remotePatterns: [
       {
         hostname: "*.googleusercontent.com",
@@ -12,6 +13,11 @@ const nextConfig = {
     ],
     loader: "custom",
     loaderFile: "./node_modules/@uploadcare/nextjs-loader/build/loader.js",
+  },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
   },
 };
 

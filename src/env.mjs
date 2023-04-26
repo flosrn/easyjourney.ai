@@ -24,6 +24,7 @@ const serverSchema = z.object({
   STRIPE_SECRET_KEY: z.string().min(1),
   STRIPE_WEBHOOK_SECRET: z.string().min(1),
   UPLOADCARE_PRIVATE_KEY: z.string().min(1),
+  DISCORD_SALAI_TOKEN: z.string().min(1),
 });
 
 /**
@@ -55,6 +56,7 @@ const processEnv = {
   NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY:
     process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY,
   UPLOADCARE_PRIVATE_KEY: process.env.UPLOADCARE_PRIVATE_KEY,
+  DISCORD_SALAI_TOKEN: process.env.DISCORD_SALAI_TOKEN,
 };
 
 // Don't touch the part below
