@@ -1,7 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-import axios from "axios";
-
 export class MidjourneyMessage {
   constructor(
     public ChannelId: string,
@@ -91,12 +87,12 @@ export class MidjourneyMessage {
   }
 
   async RetrieveMessages(limit = 50) {
-    const headers = { authorization: this.SalaiToken };
-    const response = await axios.get(
+    const headers = { Authorization: this.SalaiToken };
+    const response = await fetch(
       `https://discord.com/api/v10/channels/${this.ChannelId}/messages?limit=${limit}`,
       { headers }
     );
-    return response.data;
+    return await response.json();
   }
 
   async GetMessgeById(id: string) {
@@ -104,8 +100,8 @@ export class MidjourneyMessage {
     // GET/channels/{channel.id}/messages/{message.id}
     const url = `https://discord.com/api/v12/channels/${this.ChannelId}/messages/${id}`;
     const headers = { authorization: this.SalaiToken };
-    const response = await axios.get(url, { headers });
-    return response.data;
+    const response = await fetch(url, { headers });
+    return await response.json();
   }
 }
 
@@ -172,14 +168,15 @@ export class Midjourney extends MidjourneyMessage {
       },
     };
 
-    const headers = { authorization: this.SalaiToken };
-    const response = await axios.post(
-      "https://discord.com/api/v9/interactions",
-      payload,
-      {
-        headers,
-      }
-    );
+    const headers = { Authorization: this.SalaiToken };
+    const response = await fetch("https://discord.com/api/v9/interactions", {
+      method: "POST",
+      headers: {
+        ...headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
     return response.status;
   }
@@ -217,14 +214,15 @@ export class Midjourney extends MidjourneyMessage {
         custom_id: `MJ::JOB::variation::${index}::${messageHash}`,
       },
     };
-    const headers = { authorization: this.SalaiToken };
-    const response = await axios.post(
-      "https://discord.com/api/v9/interactions",
-      payload,
-      {
-        headers,
-      }
-    );
+    const headers = { Authorization: this.SalaiToken };
+    const response = await fetch("https://discord.com/api/v9/interactions", {
+      method: "POST",
+      headers: {
+        ...headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
     return response.status;
   }
 
@@ -258,14 +256,15 @@ export class Midjourney extends MidjourneyMessage {
       },
       session_id: "ec6524c8d2926e285a8232f7ed1ced98",
     };
-    const headers = { authorization: this.SalaiToken };
-    const response = await axios.post(
-      "https://discord.com/api/v9/interactions",
-      payload,
-      {
-        headers,
-      }
-    );
+    const headers = { Authorization: this.SalaiToken };
+    const response = await fetch("https://discord.com/api/v9/interactions", {
+      method: "POST",
+      headers: {
+        ...headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
     return response.status;
   }
 
@@ -303,12 +302,15 @@ export class Midjourney extends MidjourneyMessage {
       },
     };
 
-    const headers = { authorization: this.SalaiToken };
-    const response = await axios.post(
-      "https://discord.com/api/v9/interactions",
-      payload,
-      { headers }
-    );
+    const headers = { Authorization: this.SalaiToken };
+    const response = await fetch("https://discord.com/api/v9/interactions", {
+      method: "POST",
+      headers: {
+        ...headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
     return response.status;
   }
 }
@@ -329,7 +331,7 @@ export async function imagine(
   limit = 50,
   maxWait = 100,
   loading?: (uri: string) => void
-): Promise<Message> {
+): Promise<Message | undefined> {
   const mj = new Midjourney(serverId, channelId, salaiToken, debug);
   return await mj.Imagine(prompt, loading);
 }
