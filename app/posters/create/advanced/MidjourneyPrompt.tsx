@@ -16,6 +16,7 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   const [posterSaved, setPosterSaved] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // https://vercel.com/docs/concepts/functions/edge-functions/streaming#caveats
   const readStreamData = async (
     reader: ReadableStreamDefaultReader<Uint8Array>
   ) => {
@@ -44,19 +45,19 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
 
       try {
         const data = JSON.parse(chunkValue);
+        console.log("data :", data);
         if (data.type === "image_iteration") {
           // Mettez à jour l'état avec l'image de l'itération en cours
           const iterationImageUrl = data.iterationImage;
-          console.log("iterationImageUrl :", iterationImageUrl);
           setPoster(iterationImageUrl);
         } else if (data.type === "generation_complete") {
           // La génération est terminée, effectuez les actions nécessaires ici
           const finalImageUrl = data.finalImage;
-          console.log("finalImageUrl :", finalImageUrl);
           setPoster(finalImageUrl);
         }
       } catch {
         console.log("Error parsing json");
+        console.log("chunkValue :", chunkValue);
         // store the incomplete json string in the temporary value
         tempValue = chunkValue;
       }
@@ -67,12 +68,8 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
     setIsLoading(true);
     const response = await fetch("/api/streaming", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: promptInputValue,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: promptInputValue }),
     });
 
     if (response.body) {
