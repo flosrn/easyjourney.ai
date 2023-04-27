@@ -1,6 +1,7 @@
 import { env } from "~/env.mjs";
 import { imagine } from "~/services/midjourneyService";
 
+// https://vercel.com/docs/concepts/functions/edge-functions
 export const config = {
   runtime: "edge",
 };
@@ -56,7 +57,6 @@ export default async function handler(request: Request) {
       console.log("streaming data :", data);
 
       if (data) {
-        console.log("dataaaaaaaaaaaaaa :", data);
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image
         const message = JSON.stringify({
           type: "generation_complete",
@@ -67,13 +67,9 @@ export default async function handler(request: Request) {
       // Ferme le flux une fois que la fonction imagine est terminée
       streamController.close();
     } catch (error: unknown) {
-      console.error(
-        "Erreur lors de l'exécution de la fonction imagine :",
-        error
-      );
-
       const message = JSON.stringify({
         type: "generation_failed",
+        error: error instanceof Error ? error.message : "Unknown error",
       });
       streamController.enqueue(encoder.encode(message));
 

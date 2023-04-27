@@ -1,10 +1,13 @@
 "use client";
 
 import React, { Suspense, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 
 import { Button, buttonVariants } from "~/components/ui/Button";
+import { Textarea } from "~/components/ui/Textarea";
 
 import UserPosters from "../UserPosters";
 
@@ -15,6 +18,10 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   const [poster, setPoster] = useState<string>("");
   const [posterSaved, setPosterSaved] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>(" ");
+
+  const { data: session } = useSession();
+  const router = useRouter();
 
   // https://vercel.com/docs/concepts/functions/edge-functions/streaming#caveats
   const readStreamData = async (
@@ -44,7 +51,6 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
         for (const jsonString of jsonStrings) {
           try {
             const data = JSON.parse(jsonString);
-            console.log("data :", data);
             switch (data.type) {
               case "image_iteration": {
                 const iterationImageUrl = data.iterationImage;
@@ -55,9 +61,11 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
                 const finalImageUrl = data.finalImage;
                 setPoster(finalImageUrl);
                 toast.success("Poster successfully generated!");
+                setMessage("Click on the image you want to upscale");
                 break;
               }
               case "generation_failed": {
+                console.log("generation failed:", data.error);
                 toast.error("Poster generation failed");
                 break;
               }
@@ -67,10 +75,8 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
               default: {
                 break;
               }
-              // no default
             }
           } catch {
-            console.log("error jsonString :", jsonString);
             // store the incomplete json string in the temporary value
             tempValue = jsonString;
           }
@@ -80,6 +86,14 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   };
 
   const imaginePoster = async () => {
+    if (!session) {
+      toast.error("You need to be logged in to generate a poster");
+      setTimeout(() => {
+        router.push("/api/auth/signin");
+      }, 2000);
+      return;
+    }
+    setMessage("");
     setIsLoading(true);
     const response = await fetch("/api/streaming", {
       method: "POST",
@@ -97,26 +111,33 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
 
   return (
     <>
-      <div className="">
-        <textarea
-          value={promptInputValue}
-          onChange={(e) => setPromptInputValue(e.target.value)}
-          rows={4}
-          placeholder="Enter your prompt here"
-          className="w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-        />
+      <div className="flex-center">
+        <div className="mt-5 w-[400px]">
+          <Textarea
+            value={promptInputValue}
+            placeholder="Enter your prompt here"
+            onChange={(e) => setPromptInputValue(e.target.value)}
+            className="w-full"
+          />
+          <div className="my-3 h-5 text-sm">
+            <p>{message}</p>
+          </div>
+          <div className="my-5">
+            {poster && <img src={poster} alt="" className="w-full" />}
+          </div>
+          <div className="flex-center gap-4">
+            <Button
+              onClick={imaginePoster}
+              disabled={isLoading}
+              className={buttonVariants({ variant: "default", size: "lg" })}
+            >
+              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              Generate Poster
+            </Button>
+          </div>
+        </div>
       </div>
-      <div className="flex gap-4">
-        <Button
-          onClick={imaginePoster}
-          disabled={isLoading}
-          className={buttonVariants({ variant: "default", size: "lg" })}
-        >
-          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          Generate Poster
-        </Button>
-      </div>
-      {poster && <img src={poster} width={500} height={500} alt="" />}
+
       <Suspense fallback={<div>Loading...</div>}>
         <UserPosters refetch={posterSaved} />
       </Suspense>

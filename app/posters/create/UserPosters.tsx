@@ -32,15 +32,21 @@ const UserPosters = ({ refetch }: ProfilePostersProps) => {
     enabled: !!data?.user.id,
   });
 
+  const hasPosters = posters && posters.length > 0;
+
   return (
-    <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-      {posters &&
-        posters.length > 0 &&
-        posters.map((poster) => (
-          <React.Fragment key={poster.id}>
-            <Poster {...poster} />
-          </React.Fragment>
-        ))}
+    <div className="">
+      {hasPosters && (
+        <h2 className="my-5 text-xl font-bold">Your latest posters</h2>
+      )}
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        {hasPosters &&
+          posters.map((poster) => (
+            <React.Fragment key={poster.id}>
+              <Poster {...poster} />
+            </React.Fragment>
+          ))}
+      </div>
     </div>
   );
 };

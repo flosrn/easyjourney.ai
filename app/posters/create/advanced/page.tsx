@@ -1,16 +1,8 @@
 import React from "react";
-import { redirect } from "next/navigation";
-import { getServerAuthSession } from "~/server/auth";
 
 import MidjourneyPrompt from "./MidjourneyPrompt";
 
 export default async function CreatePage() {
-  const session = await getServerAuthSession();
-
-  if (!session) {
-    redirect("/api/auth/signin");
-  }
-
   return (
     <>
       <section className="container mt-6 grid items-center justify-center gap-6 pb-8">
@@ -22,9 +14,12 @@ export default async function CreatePage() {
             Generate beautiful posters in seconds with AI
           </h2>
           <p className="max-w-[700px] text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
-            Myposter.ai is a free tool that uses AI to generate your own
-            beautiful posters in seconds. Create it and print it, it's so easy,
-            you will receive your poster in 3 days.
+            Myposter.ai is a free tool that uses{" "}
+            <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text font-extrabold text-transparent">
+              MidJourney API
+            </span>{" "}
+            to generate your own beautiful posters in seconds. Create it and
+            print it, it's so easy, you will receive your poster in 3 days.
           </p>
         </div>
         <MidjourneyPrompt />
