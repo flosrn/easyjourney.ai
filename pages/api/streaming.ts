@@ -46,12 +46,14 @@ export default async function handler(request: Request) {
           const msgNotFound = event === "message-not-found";
           // Enfile les données dans le contrôleur de flux
           const message = JSON.stringify({
-            type: msgNotFound ? "message-not-found" : "image_iteration",
+            type: msgNotFound ? "message_not_found" : "image_iteration",
             iterationImage: msgNotFound ? null : event,
           });
           streamController.enqueue(encoder.encode(message));
         }
       );
+
+      console.log("streaming data :", data);
 
       if (data) {
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image
@@ -60,10 +62,10 @@ export default async function handler(request: Request) {
           finalImage: data.uri,
         });
         streamController.enqueue(encoder.encode(message));
-      }
 
-      // Ferme le flux une fois que la fonction imagine est terminée
-      streamController.close();
+        // Ferme le flux une fois que la fonction imagine est terminée
+        streamController.close();
+      }
     } catch (error: unknown) {
       console.error(
         "Erreur lors de l'exécution de la fonction imagine :",

@@ -46,14 +46,25 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
       try {
         const data = JSON.parse(chunkValue);
         console.log("data :", data);
-        if (data.type === "image_iteration") {
-          // Mettez à jour l'état avec l'image de l'itération en cours
-          const iterationImageUrl = data.iterationImage;
-          setPoster(iterationImageUrl);
-        } else if (data.type === "generation_complete") {
-          // La génération est terminée, effectuez les actions nécessaires ici
-          const finalImageUrl = data.finalImage;
-          setPoster(finalImageUrl);
+        switch (data.type) {
+          case "image_iteration": {
+            // Mettez à jour l'état avec l'image de l'itération en cours
+            const iterationImageUrl = data.iterationImage;
+            setPoster(iterationImageUrl);
+            break;
+          }
+          case "generation_complete": {
+            // La génération est terminée, effectuez les actions nécessaires ici
+            const finalImageUrl = data.finalImage;
+            setPoster(finalImageUrl);
+            break;
+          }
+          case "message_not_found": {
+            // Le message n'a pas été trouvé, effectuez les actions nécessaires ici
+            console.log("Message not found");
+            break;
+          }
+          // No default
         }
       } catch {
         console.log("Error parsing json");
