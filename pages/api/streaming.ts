@@ -14,7 +14,7 @@ export default async function handler(request: Request) {
 
   const encoder = new TextEncoder();
 
-  // Contrôleur de flux pour gérer les événements de streaming
+  // contrôleur de flux pour gérer les événements de streaming
   let streamController!: ReadableStreamDefaultController<Uint8Array>;
 
   const customReadable = new ReadableStream({
@@ -53,8 +53,9 @@ export default async function handler(request: Request) {
         }
       );
 
+      console.log("streaming data :", data);
+
       if (data) {
-        console.log("streaming data :", data);
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image
         const message = JSON.stringify({
           type: "generation_complete",
@@ -69,6 +70,11 @@ export default async function handler(request: Request) {
         "Erreur lors de l'exécution de la fonction imagine :",
         error
       );
+
+      const message = JSON.stringify({
+        type: "generation_failed",
+      });
+      streamController.enqueue(encoder.encode(message));
 
       // Ferme le flux en cas d'erreur
       streamController.error(error);

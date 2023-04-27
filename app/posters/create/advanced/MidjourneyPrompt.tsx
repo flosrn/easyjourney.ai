@@ -44,6 +44,7 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
         for (const jsonString of jsonStrings) {
           try {
             const data = JSON.parse(jsonString);
+            console.log("data :", data);
             switch (data.type) {
               case "image_iteration": {
                 const iterationImageUrl = data.iterationImage;
@@ -53,19 +54,20 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
               case "generation_complete": {
                 const finalImageUrl = data.finalImage;
                 setPoster(finalImageUrl);
-                toast.success("Poster generated!");
+                toast.success("Poster successfully generated!");
                 break;
               }
               case "generation_failed": {
                 toast.error("Poster generation failed");
                 break;
               }
-              case "message_not_found": {
-                break;
-              }
-              default: {
-                break;
-              }
+              // case "message_not_found": {
+              //   break;
+              // }
+              // default: {
+              //   break;
+              // }
+              // no default
             }
           } catch {
             // store the incomplete json string in the temporary value
