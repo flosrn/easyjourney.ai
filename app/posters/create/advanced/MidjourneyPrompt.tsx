@@ -21,18 +21,47 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   ) => {
     const decoder = new TextDecoder();
 
-    while (true) {
-      // eslint-disable-next-line no-await-in-loop
-      const { done, value } = await reader.read();
-      if (done) break;
+    let done = false;
+    let tempValue = ""; // temporary value to store incomplete json strings
 
-      const imageUrlReceived = decoder.decode(value);
-      console.log("imageUrlReceived :", imageUrlReceived);
-      setPoster(imageUrlReceived);
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      let chunkValue = decoder.decode(value);
+
+      // if there is a temp value, prepend it to the incoming chunk
+      if (tempValue) {
+        chunkValue = tempValue + chunkValue;
+        tempValue = "";
+      }
+
+      // match json string and extract it from the chunk
+      const match = chunkValue.match(/{(.*?)}/);
+      if (match) {
+        tempValue = chunkValue.replace(match[0], "");
+        chunkValue = match[0];
+      }
+
+      try {
+        const data = JSON.parse(chunkValue);
+        if (data.type === "image_iteration") {
+          // Mettez à jour l'état avec l'image de l'itération en cours
+          const iterationImageUrl = data.iterationImage;
+          console.log("iterationImageUrl :", iterationImageUrl);
+          setPoster(iterationImageUrl);
+        } else if (data.type === "generation_complete") {
+          // La génération est terminée, effectuez les actions nécessaires ici
+          const finalImageUrl = data.finalImage;
+          console.log("finalImageUrl :", finalImageUrl);
+          setPoster(finalImageUrl);
+        }
+      } catch {
+        console.log("Error parsing json");
+        // store the incomplete json string in the temporary value
+        tempValue = chunkValue;
+      }
     }
   };
-
-  console.log("isLoading :", isLoading);
 
   const imaginePoster = async () => {
     setIsLoading(true);

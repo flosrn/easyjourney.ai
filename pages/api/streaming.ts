@@ -44,18 +44,26 @@ export default async function handler(request: Request) {
           // eslint-disable-next-line no-console
           console.log("event :", event);
           // Enfile les données dans le contrôleur de flux
-          streamController.enqueue(encoder.encode(event));
+          const message = JSON.stringify({
+            type: "image_iteration",
+            iterationImage: event,
+          });
+          streamController.enqueue(encoder.encode(message));
         }
       );
 
       if (finalImageMessage) {
-        // Enfile les données dans le contrôleur de flux
-        streamController.enqueue(encoder.encode(finalImageMessage.uri));
+        // Envoie un message final pour indiquer la fin de la génération avec la dernière image
+        const message = JSON.stringify({
+          type: "generation_complete",
+          finalImage: finalImageMessage.uri,
+        });
+        streamController.enqueue(encoder.encode(message));
       }
 
       // Ferme le flux une fois que la fonction imagine est terminée
       streamController.close();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error(
         "Erreur lors de l'exécution de la fonction imagine :",
         error
