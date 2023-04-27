@@ -36,41 +36,42 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
         tempValue = "";
       }
 
-      // match json string and extract it from the chunk
-      const match = chunkValue.match(/{(.*?)}/);
-      if (match) {
-        tempValue = chunkValue.replace(match[0], "");
-        chunkValue = match[0];
-      }
+      // Extract all JSON strings from the chunk
+      const jsonStrings = chunkValue.match(/{.*?}/g);
 
-      try {
-        const data = JSON.parse(chunkValue);
-        console.log("data :", data);
-        switch (data.type) {
-          case "image_iteration": {
-            // Mettez à jour l'état avec l'image de l'itération en cours
-            const iterationImageUrl = data.iterationImage;
-            setPoster(iterationImageUrl);
-            break;
+      if (jsonStrings) {
+        chunkValue = chunkValue.replace(jsonStrings.join(""), "");
+        for (const jsonString of jsonStrings) {
+          try {
+            const data = JSON.parse(jsonString);
+            switch (data.type) {
+              case "image_iteration": {
+                const iterationImageUrl = data.iterationImage;
+                setPoster(iterationImageUrl);
+                break;
+              }
+              case "generation_complete": {
+                const finalImageUrl = data.finalImage;
+                setPoster(finalImageUrl);
+                toast.success("Poster generated!");
+                break;
+              }
+              case "generation_failed": {
+                toast.error("Poster generation failed");
+                break;
+              }
+              case "message_not_found": {
+                break;
+              }
+              default: {
+                break;
+              }
+            }
+          } catch {
+            // store the incomplete json string in the temporary value
+            tempValue = jsonString;
           }
-          case "generation_complete": {
-            // La génération est terminée, effectuez les actions nécessaires ici
-            const finalImageUrl = data.finalImage;
-            setPoster(finalImageUrl);
-            break;
-          }
-          case "message_not_found": {
-            // Le message n'a pas été trouvé, effectuez les actions nécessaires ici
-            console.log("Message not found");
-            break;
-          }
-          // No default
         }
-      } catch {
-        console.log("Error parsing json");
-        console.log("chunkValue :", chunkValue);
-        // store the incomplete json string in the temporary value
-        tempValue = chunkValue;
       }
     }
   };
@@ -89,7 +90,6 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
     }
 
     setIsLoading(false);
-    toast.success("Poster generated!");
   };
 
   return (

@@ -53,19 +53,17 @@ export default async function handler(request: Request) {
         }
       );
 
-      console.log("streaming data :", data);
-
       if (data) {
+        console.log("streaming data :", data);
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image
         const message = JSON.stringify({
           type: "generation_complete",
           finalImage: data.uri,
         });
         streamController.enqueue(encoder.encode(message));
-
-        // Ferme le flux une fois que la fonction imagine est terminée
-        streamController.close();
       }
+      // Ferme le flux une fois que la fonction imagine est terminée
+      streamController.close();
     } catch (error: unknown) {
       console.error(
         "Erreur lors de l'exécution de la fonction imagine :",

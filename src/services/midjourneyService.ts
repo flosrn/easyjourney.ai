@@ -49,6 +49,7 @@ export class MidjourneyMessage {
         return msg;
       }
     }
+    console.log("FilterMessages");
     loading?.("message-not-found");
     return null;
   }
