@@ -49,6 +49,7 @@ export class MidjourneyMessage {
         return msg;
       }
     }
+    loading?.("message-not-found");
     return null;
   }
 
