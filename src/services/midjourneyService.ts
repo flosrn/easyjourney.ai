@@ -4,7 +4,7 @@ export class MidjourneyMessage {
     protected SalaiToken: string,
     public debug = false,
     public Limit = 50,
-    public maxWait = 100
+    public maxWait = 200
   ) {
     this.log("MidjourneyMessage constructor");
   }
@@ -60,11 +60,12 @@ export class MidjourneyMessage {
   async WaitMessage(prompt: string, loading?: (uri: string) => void) {
     for (let i = 0; i < this.maxWait; i++) {
       const msg = await this.FilterMessages(prompt, loading);
+      console.log("msg :", msg);
       if (msg !== null) {
         return msg;
       }
       this.log(i, "wait no message found");
-      await this.Wait(1000 * 2);
+      await this.Wait(1000 * 3);
     }
   }
 

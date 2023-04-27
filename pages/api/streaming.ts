@@ -39,7 +39,7 @@ export default async function handler(request: Request) {
         prompt,
         true,
         50,
-        100,
+        200,
         (event) => {
           // eslint-disable-next-line no-console
           console.log("event :", event);
@@ -56,6 +56,7 @@ export default async function handler(request: Request) {
       console.log("streaming data :", data);
 
       if (data) {
+        console.log("dataaaaaaaaaaaaaa :", data);
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image
         const message = JSON.stringify({
           type: "generation_complete",

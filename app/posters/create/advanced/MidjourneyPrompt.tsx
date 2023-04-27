@@ -61,15 +61,16 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
                 toast.error("Poster generation failed");
                 break;
               }
-              // case "message_not_found": {
-              //   break;
-              // }
-              // default: {
-              //   break;
-              // }
+              case "message_not_found": {
+                break;
+              }
+              default: {
+                break;
+              }
               // no default
             }
           } catch {
+            console.log("error jsonString :", jsonString);
             // store the incomplete json string in the temporary value
             tempValue = jsonString;
           }
