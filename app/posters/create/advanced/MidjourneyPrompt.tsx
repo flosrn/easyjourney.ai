@@ -21,14 +21,27 @@ type PosterData = {
   content: string;
 };
 
+enum ButtonType {
+  GENERATION = "generation",
+  UPSCALING = "upscaling",
+}
+
 const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   const [promptInputValue, setPromptInputValue] = useState<string>("");
   const [poster, setPoster] = useState<string>("");
   const [posterData, setPosterData] = useState<PosterData | null>(null);
+  const [isPosterUpscaled, setIsPosterUpscaled] = useState<boolean>(false);
   const [showImageGrid, setShowImageGrid] = useState<boolean>(false);
   const [posterSaved, setPosterSaved] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>(" ");
+  const [imageSelected, setImageSelected] = useState<number>(0);
+  const [buttonType, setButtonType] = useState<ButtonType>(
+    ButtonType.GENERATION
+  );
+
+  const isGeneration = buttonType === ButtonType.GENERATION;
+  const isUpscaling = buttonType === ButtonType.UPSCALING;
 
   const { data: session } = useSession();
   const router = useRouter();
@@ -69,6 +82,9 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
             case "generation_complete": {
               setPoster(data.uri);
               setPosterData(data);
+              setShowImageGrid(true);
+              setButtonType(ButtonType.UPSCALING);
+              setIsPosterUpscaled(false);
               setTimeout(() => {
                 toast.success("Poster successfully generated!");
               }, 1000);
@@ -133,6 +149,7 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
               setPoster(data.uri);
               setPosterData(data);
               setShowImageGrid(false);
+              setIsPosterUpscaled(true);
               setTimeout(() => {
                 toast.success("Poster successfully upscaled!");
               }, 1000);
@@ -172,6 +189,7 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
     setMessage("");
     setIsLoading(true);
     setShowImageGrid(false);
+    setButtonType(ButtonType.GENERATION);
     const response = await fetch("/api/imagine", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -187,8 +205,13 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   };
 
   const upscalePoster = async (index: number) => {
+    if (imageSelected === 0) {
+      toast.error("You need to select an image to upscale");
+      return;
+    }
     setMessage("");
     setIsLoading(true);
+    setIsPosterUpscaled(false);
     const response = await fetch("/api/upscale", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -201,6 +224,13 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
     }
 
     setIsLoading(false);
+  };
+
+  const handleImageClick = (index: number) => {
+    setImageSelected(index);
+    setMessage(
+      `Image ${index} selected. Click on upscale button to start upscaling`
+    );
   };
 
   return (
@@ -220,20 +250,35 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
             <div className="relative">
               {poster && (
                 <>
-                  <img src={poster} alt="Divided image" className="w-full" />
-                  {showImageGrid && <ImageGrid clickHandler={upscalePoster} />}
+                  <a
+                    href={isPosterUpscaled ? poster : undefined}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img src={poster} alt="Divided image" className="w-full" />
+                  </a>
+                  {showImageGrid && (
+                    <ImageGrid
+                      imageSelected={imageSelected}
+                      clickHandler={handleImageClick}
+                    />
+                  )}
                 </>
               )}
             </div>
           </div>
           <div className="flex-center gap-4">
             <Button
-              onClick={imaginePoster}
+              onClick={async () =>
+                isGeneration ? imaginePoster() : upscalePoster(imageSelected)
+              }
               disabled={isLoading}
               className={buttonVariants({ variant: "default", size: "lg" })}
             >
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Generate Poster
+              {`${isGeneration ? "Generate" : "Upscale"} Poster ${
+                isUpscaling && imageSelected ? imageSelected : ""
+              }`}
             </Button>
           </div>
         </div>

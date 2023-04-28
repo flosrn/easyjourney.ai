@@ -1,32 +1,25 @@
 import React from "react";
 
+import { cn } from "~/lib/classNames";
+
 type ImageGridProps = {
+  imageSelected: number;
   clickHandler: (part: number) => void;
 };
 
-export const ImageGrid = ({ clickHandler }: ImageGridProps) => {
-  const handleClick = (part: number) => {
-    clickHandler(part);
-  };
-
+export const ImageGrid = ({ imageSelected, clickHandler }: ImageGridProps) => {
   return (
-    <div className="absolute left-0 top-0 grid h-full w-full grid-cols-2 grid-rows-2 gap-1">
-      <button
-        onClick={() => handleClick(1)}
-        className="hover:bg-white/10 focus:outline-none"
-      />
-      <button
-        onClick={() => handleClick(2)}
-        className="hover:bg-white/10 focus:outline-none"
-      />
-      <button
-        onClick={() => handleClick(3)}
-        className="hover:bg-white/10 focus:outline-none"
-      />
-      <button
-        onClick={() => handleClick(4)}
-        className="hover:bg-white/10 focus:outline-none"
-      />
+    <div className="absolute left-0 top-0 grid h-full w-full select-none grid-cols-2 grid-rows-2 gap-1">
+      {Array.from({ length: 4 }, (_, i) => i + 1).map((part) => (
+        <button
+          key={part}
+          onClick={() => clickHandler(part)}
+          className={cn(
+            "focus:outline-none",
+            imageSelected === part ? "bg-white/40" : "hover:bg-white/10"
+          )}
+        />
+      ))}
     </div>
   );
 };
