@@ -18,16 +18,21 @@ export class MidjourneyMessage {
     loading?: (uri: string) => void,
     options?: string
   ) {
+    console.log("options :", options);
     const data = await this.RetrieveMessages(this.Limit);
     for (const item of data) {
       if (
         item.author.id === "936929561302675456" &&
         item.content.includes(`**${prompt}`)
       ) {
-        // this.log(JSON.stringify(item))
-        if (options && !item.content.includes(options)) {
-          this.log("no options");
-          continue;
+        if (options && item.content.includes(options) && item.type === 19) {
+          this.log("upscaled image found");
+          return {
+            id: item.id,
+            uri: item.attachments[0].url,
+            hash: this.UriToHash(item.attachments[0].url),
+            content: item.content.split("**")[1],
+          };
         }
         if (item.attachments.length === 0) {
           this.log("no attachment");
@@ -39,14 +44,16 @@ export class MidjourneyMessage {
           loading?.(imageUrl);
           break;
         }
-        const content = item.content.split("**")[1];
-        const msg: Message = {
-          id: item.id,
-          uri: imageUrl,
-          hash: this.UriToHash(imageUrl),
-          content,
-        };
-        return msg;
+        if (!options) {
+          const content = item.content.split("**")[1];
+          const msg: Message = {
+            id: item.id,
+            uri: imageUrl,
+            hash: this.UriToHash(imageUrl),
+            content,
+          };
+          return msg;
+        }
       }
     }
     loading?.("message-not-found");
@@ -60,7 +67,6 @@ export class MidjourneyMessage {
   async WaitMessage(prompt: string, loading?: (uri: string) => void) {
     for (let i = 0; i < this.maxWait; i++) {
       const msg = await this.FilterMessages(prompt, loading);
-      console.log("msg :", msg);
       if (msg !== null) {
         return msg;
       }
@@ -74,6 +80,7 @@ export class MidjourneyMessage {
     options: string,
     loading?: (uri: string) => void
   ) {
+    console.log("content :", content);
     for (let i = 0; i < this.maxWait; i++) {
       const msg = await this.FilterMessages(content, loading, options);
       if (msg !== null) {
@@ -286,7 +293,7 @@ export class Midjourney extends MidjourneyMessage {
       throw new Error(`VariationApi failed with status ${httpStatus}`);
     }
     this.log(`await generate image`);
-    return await this.WaitOptionMessage(content, `Upscaled`, loading);
+    return await this.WaitOptionMessage(content, `Image #${index}`, loading);
   }
 
   async UpscaleApi(index: number, messageId: string, messageHash: string) {
@@ -336,4 +343,23 @@ export async function imagine(
 ): Promise<Message | undefined> {
   const mj = new Midjourney(serverId, channelId, salaiToken, debug);
   return await mj.Imagine(prompt, loading);
+}
+
+export async function upscale(
+  channelId: string,
+  salaiToken: string,
+  serverId: string,
+  content: string,
+  index: number,
+  msgId: string,
+  msgHash: string,
+  debug = false,
+  limit = 50,
+  maxWait = 100,
+  loading?: (uri: string) => void,
+  maxRetries = 5,
+  retryDelay = 1000
+): Promise<Message | undefined> {
+  const mj = new Midjourney(serverId, channelId, salaiToken, debug);
+  return await mj.Upscale(content, index, msgId, msgHash, loading);
 }

@@ -16,6 +16,7 @@ type MidjourneyPromptProps = {};
 const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   const [promptInputValue, setPromptInputValue] = useState<string>("");
   const [poster, setPoster] = useState<string>("");
+  const [posterData, setPosterData] = useState(null);
   const [posterSaved, setPosterSaved] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>(" ");
@@ -24,63 +25,128 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   const router = useRouter();
 
   // https://vercel.com/docs/concepts/functions/edge-functions/streaming#caveats
-  const readStreamData = async (
+  const readImagineStreamData = async (
     reader: ReadableStreamDefaultReader<Uint8Array>
   ) => {
     const decoder = new TextDecoder();
 
     let done = false;
-    let tempValue = ""; // temporary value to store incomplete json strings
+    const tempValue = ""; // temporary value to store incomplete json strings
+    let jsonStringBuffer = "";
 
     while (!done) {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
-      let chunkValue = decoder.decode(value);
+      const decodedValue = decoder.decode(value);
+      jsonStringBuffer += decodedValue;
 
-      // if there is a temp value, prepend it to the incoming chunk
-      if (tempValue) {
-        chunkValue = tempValue + chunkValue;
-        tempValue = "";
-      }
+      const jsonRegex = /{[^{}]*}/g;
+      let jsonMatch;
 
-      // Extract all JSON strings from the chunk
-      const jsonStrings = chunkValue.match(/{.*?}/g);
+      while ((jsonMatch = jsonRegex.exec(jsonStringBuffer)) !== null) {
+        const jsonString = jsonMatch[0];
 
-      if (jsonStrings) {
-        chunkValue = chunkValue.replace(jsonStrings.join(""), "");
-        for (const jsonString of jsonStrings) {
-          try {
-            const data = JSON.parse(jsonString);
-            switch (data.type) {
-              case "image_iteration": {
-                const iterationImageUrl = data.iterationImage;
-                setPoster(iterationImageUrl);
-                break;
-              }
-              case "generation_complete": {
-                const finalImageUrl = data.finalImage;
-                setPoster(finalImageUrl);
-                toast.success("Poster successfully generated!");
-                setMessage("Click on the image you want to upscale");
-                break;
-              }
-              case "generation_failed": {
-                console.log("generation failed:", data.error);
-                toast.error("Poster generation failed");
-                break;
-              }
-              case "message_not_found": {
-                break;
-              }
-              default: {
-                break;
-              }
+        try {
+          const data = JSON.parse(jsonString);
+
+          console.log("data :", data);
+
+          switch (data.type) {
+            case "image_iteration": {
+              const iterationImageUrl = data.iterationImage;
+              setPoster(iterationImageUrl);
+              break;
             }
-          } catch {
-            // store the incomplete json string in the temporary value
-            tempValue = jsonString;
+            case "generation_complete": {
+              setPoster(data.uri);
+              setPosterData(data);
+              setTimeout(() => {
+                toast.success("Poster successfully generated!");
+              }, 1000);
+              setMessage("Click on the image you want to upscale");
+              break;
+            }
+            case "generation_failed": {
+              console.log("generation failed:", data.error);
+              toast.error("Poster generation failed");
+              break;
+            }
+            case "message_not_found": {
+              break;
+            }
+            default: {
+              break;
+            }
           }
+        } catch (error) {
+          console.log("error :", error);
+          break;
         }
+
+        jsonStringBuffer = jsonStringBuffer.slice(jsonRegex.lastIndex);
+      }
+    }
+  };
+
+  const readUpscaleStreamData = async (
+    reader: ReadableStreamDefaultReader<Uint8Array>
+  ) => {
+    const decoder = new TextDecoder();
+
+    let done = false;
+    const tempValue = ""; // temporary value to store incomplete json strings
+    let jsonStringBuffer = "";
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const decodedValue = decoder.decode(value);
+      jsonStringBuffer += decodedValue;
+
+      const jsonRegex = /{[^{}]*}/g;
+      let jsonMatch;
+
+      while ((jsonMatch = jsonRegex.exec(jsonStringBuffer)) !== null) {
+        const jsonString = jsonMatch[0];
+
+        try {
+          const data = JSON.parse(jsonString);
+
+          console.log("data :", data);
+
+          switch (data.type) {
+            case "image_iteration": {
+              const iterationImageUrl = data.iterationImage;
+              setPoster(iterationImageUrl);
+              break;
+            }
+            case "generation_complete": {
+              setPoster(data.uri);
+              setPosterData(data);
+              setTimeout(() => {
+                toast.success("Poster successfully upscaled!");
+              }, 1000);
+              setMessage("Click on the image you want to upscale");
+              break;
+            }
+            case "generation_failed": {
+              console.log("generation failed:", data.error);
+              toast.error("Poster generation failed");
+              break;
+            }
+            case "message_not_found": {
+              break;
+            }
+            default: {
+              break;
+            }
+          }
+        } catch (error) {
+          console.log("error :", error);
+          break;
+        }
+
+        jsonStringBuffer = jsonStringBuffer.slice(jsonRegex.lastIndex);
       }
     }
   };
@@ -95,7 +161,7 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
     }
     setMessage("");
     setIsLoading(true);
-    const response = await fetch("/api/streaming", {
+    const response = await fetch("/api/imagine", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: promptInputValue }),
@@ -103,7 +169,25 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
 
     if (response.body) {
       const reader = response.body.getReader();
-      await readStreamData(reader);
+      await readImagineStreamData(reader);
+    }
+
+    setIsLoading(false);
+  };
+
+  const upscalePoster = async () => {
+    setMessage("");
+    setIsLoading(true);
+    console.log("poster data", posterData);
+    const response = await fetch("/api/upscale", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...posterData }),
+    });
+
+    if (response.body) {
+      const reader = response.body.getReader();
+      await readUpscaleStreamData(reader);
     }
 
     setIsLoading(false);
@@ -123,7 +207,14 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
             <p>{message}</p>
           </div>
           <div className="my-5">
-            {poster && <img src={poster} alt="" className="w-full" />}
+            {poster && (
+              <img
+                src={poster}
+                onClick={upscalePoster}
+                alt=""
+                className="w-full"
+              />
+            )}
           </div>
           <div className="flex-center gap-4">
             <Button
