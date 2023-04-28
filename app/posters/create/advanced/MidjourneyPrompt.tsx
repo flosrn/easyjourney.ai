@@ -13,10 +13,17 @@ import UserPosters from "../UserPosters";
 
 type MidjourneyPromptProps = {};
 
+type PosterData = {
+  id: string;
+  uri: string;
+  hash: string;
+  content: string;
+};
+
 const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   const [promptInputValue, setPromptInputValue] = useState<string>("");
   const [poster, setPoster] = useState<string>("");
-  const [posterData, setPosterData] = useState(null);
+  const [posterData, setPosterData] = useState<PosterData | null>(null);
   const [posterSaved, setPosterSaved] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>(" ");
@@ -178,7 +185,6 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   const upscalePoster = async () => {
     setMessage("");
     setIsLoading(true);
-    console.log("poster data", posterData);
     const response = await fetch("/api/upscale", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
