@@ -41,10 +41,12 @@ export class MidjourneyMessage {
 
         const imageUrl = item.attachments[0].url;
         if (!imageUrl.endsWith(".png")) {
+          this.log("image iteration found");
           loading?.(imageUrl);
           break;
         }
         if (!options) {
+          this.log("finalized image found");
           const content = item.content.split("**")[1];
           const msg: Message = {
             id: item.id,

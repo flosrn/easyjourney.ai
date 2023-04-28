@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { env } from "~/env.mjs";
 import { imagine } from "~/services/midjourneyService";
 

@@ -25,7 +25,7 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   const [promptInputValue, setPromptInputValue] = useState<string>("");
   const [poster, setPoster] = useState<string>("");
   const [posterData, setPosterData] = useState<PosterData | null>(null);
-  const [isPosterUpscaled, setIsPosterUpscaled] = useState<boolean>(false);
+  const [showImageGrid, setShowImageGrid] = useState<boolean>(false);
   const [posterSaved, setPosterSaved] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>(" ");
@@ -132,16 +132,16 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
             case "generation_complete": {
               setPoster(data.uri);
               setPosterData(data);
-              setIsPosterUpscaled(true);
+              setShowImageGrid(false);
               setTimeout(() => {
                 toast.success("Poster successfully upscaled!");
               }, 1000);
-              setMessage("Click on the image you want to upscale");
+              setMessage("");
               break;
             }
             case "generation_failed": {
-              console.log("generation failed:", data.error);
-              toast.error("Poster generation failed");
+              console.log("upscale failed:", data.error);
+              toast.error("Poster upscaling failed");
               break;
             }
             case "message_not_found": {
@@ -171,7 +171,7 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
     }
     setMessage("");
     setIsLoading(true);
-    setIsPosterUpscaled(false);
+    setShowImageGrid(false);
     const response = await fetch("/api/imagine", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -217,13 +217,14 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
             <p>{message}</p>
           </div>
           <div className="my-5">
-            {poster && (
-              <ImageGrid
-                imgUrl={poster}
-                clickHandler={upscalePoster}
-                showGrid={isPosterUpscaled}
-              />
-            )}
+            <div className="relative">
+              {poster && (
+                <>
+                  <img src={poster} alt="Divided image" className="w-full" />
+                  {showImageGrid && <ImageGrid clickHandler={upscalePoster} />}
+                </>
+              )}
+            </div>
           </div>
           <div className="flex-center gap-4">
             <Button
