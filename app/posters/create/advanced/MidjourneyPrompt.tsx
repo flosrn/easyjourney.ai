@@ -10,6 +10,7 @@ import { Button, buttonVariants } from "~/components/ui/Button";
 import { Textarea } from "~/components/ui/Textarea";
 
 import UserPosters from "../UserPosters";
+import { ImageGrid } from "./ImageGrid";
 
 type MidjourneyPromptProps = {};
 
@@ -24,6 +25,7 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   const [promptInputValue, setPromptInputValue] = useState<string>("");
   const [poster, setPoster] = useState<string>("");
   const [posterData, setPosterData] = useState<PosterData | null>(null);
+  const [isPosterUpscaled, setIsPosterUpscaled] = useState<boolean>(false);
   const [posterSaved, setPosterSaved] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>(" ");
@@ -130,6 +132,7 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
             case "generation_complete": {
               setPoster(data.uri);
               setPosterData(data);
+              setIsPosterUpscaled(true);
               setTimeout(() => {
                 toast.success("Poster successfully upscaled!");
               }, 1000);
@@ -168,6 +171,7 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
     }
     setMessage("");
     setIsLoading(true);
+    setIsPosterUpscaled(false);
     const response = await fetch("/api/imagine", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -182,13 +186,13 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
     setIsLoading(false);
   };
 
-  const upscalePoster = async () => {
+  const upscalePoster = async (index: number) => {
     setMessage("");
     setIsLoading(true);
     const response = await fetch("/api/upscale", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...posterData }),
+      body: JSON.stringify({ ...posterData, index }),
     });
 
     if (response.body) {
@@ -214,11 +218,10 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
           </div>
           <div className="my-5">
             {poster && (
-              <img
-                src={poster}
-                onClick={upscalePoster}
-                alt=""
-                className="w-full"
+              <ImageGrid
+                imgUrl={poster}
+                clickHandler={upscalePoster}
+                showGrid={isPosterUpscaled}
               />
             )}
           </div>
