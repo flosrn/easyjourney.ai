@@ -3,7 +3,7 @@ import React from "react";
 import { cn } from "~/lib/classNames";
 
 type ImageGridProps = {
-  imageSelected: number;
+  imageSelected: number | null;
   clickHandler: (part: number) => void;
 };
 
@@ -16,7 +16,7 @@ export const ImageGrid = ({ imageSelected, clickHandler }: ImageGridProps) => {
           onClick={() => clickHandler(part)}
           className={cn(
             "focus:outline-none",
-            imageSelected === part ? "bg-white/40" : "hover:bg-white/10"
+            imageSelected === part ? "bg-blue-400/40" : "hover:bg-white/10"
           )}
         />
       ))}

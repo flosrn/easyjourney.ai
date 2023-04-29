@@ -6,10 +6,13 @@ export const config = {
   runtime: "edge",
 };
 
+const uriToHash = (uri: string) => uri.split("_").pop()?.split(".")[0] ?? "";
+
 const retrieveMessagesUntilFinal = async (
   limit: number,
   prompt: string,
-  loading: (attachment: APIAttachment) => void
+  loading: (attachment: APIAttachment) => void,
+  index: number
 ) => {
   for (let i = 0; i < limit; i++) {
     // eslint-disable-next-line no-await-in-loop
@@ -20,16 +23,31 @@ const retrieveMessagesUntilFinal = async (
     );
 
     const attachment = message?.attachments[0];
-    if (attachment?.url.endsWith(".webp")) {
-      console.log("webp image found");
-      loading(attachment);
-      // eslint-disable-next-line no-await-in-loop
-      await wait(2000);
-    } else if (attachment) {
-      console.log("final image found:", attachment.url);
+
+    if (
+      index &&
+      message?.content.includes(`Image #${index}`) &&
+      message.type === 19
+    ) {
+      console.log("attachment :", attachment);
       return {
         ...attachment,
         content: message.content.split("**")[1],
+      };
+    }
+
+    if (attachment?.url.endsWith(".webp")) {
+      // console.log("webp image found");
+      loading(attachment);
+      // eslint-disable-next-line no-await-in-loop
+      await wait(2000);
+    } else if (attachment && !index) {
+      console.log("final image found:", attachment.url);
+      return {
+        ...attachment,
+        prompt: message.content.split("**")[1],
+        messageId: message.id,
+        messageHash: uriToHash(attachment.url),
       };
     }
     // eslint-disable-next-line no-await-in-loop
@@ -40,7 +58,7 @@ const retrieveMessagesUntilFinal = async (
 };
 
 export default async function handler(request: Request) {
-  const { prompt } = await request.json();
+  const { prompt, index } = await request.json();
 
   const encoder = new TextEncoder();
 
@@ -72,7 +90,8 @@ export default async function handler(request: Request) {
             ...attachment,
           });
           streamController.enqueue(encoder.encode(message));
-        }
+        },
+        index
       );
 
       // console.log("streaming data :", data);
@@ -80,7 +99,7 @@ export default async function handler(request: Request) {
       if (data) {
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image
         const message = JSON.stringify({
-          type: "generation_complete",
+          type: index ? "image_upscaled" : "generation_complete",
           ...data,
         });
         streamController.enqueue(encoder.encode(message));

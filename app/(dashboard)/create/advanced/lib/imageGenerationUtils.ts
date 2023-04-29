@@ -14,19 +14,24 @@ export const handleMessageData = (
 ) => {
   switch (data.type) {
     case "image_iteration": {
-      console.log("image_iteration");
       actions.setImage(data);
       break;
     }
     case "generation_complete": {
-      console.log("generation_complete");
-      toast.success("Poster successfully generated!");
       actions.setImage(data);
       actions.setIsLoading(false);
+      actions.setIsImageGenerated(true);
+      toast.success("Poster successfully generated!");
+      break;
+    }
+    case "image_upscaled": {
+      actions.setImage(data);
+      actions.setIsLoading(false);
+      actions.setIsImageUpscaled(true);
+      toast.success("Poster successfully upscaled!");
       break;
     }
     case "generation_failed": {
-      console.log("generation failed:", data.error);
       toast.error("Poster generation failed");
       actions.setIsLoading(false);
       actions.setError(data.error);
@@ -48,20 +53,24 @@ export const readStreamData = async (
   const decoder = new TextDecoder();
 
   let done = false;
-  let jsonStringBuffer = "";
+  let jsonStringBuffer = ""; // Buffer to store the decoded JSON strings
 
   while (!done) {
     // eslint-disable-next-line no-await-in-loop
     const { value, done: doneReading } = await reader.read();
     done = doneReading;
+
+    // Decode the value and add it to the jsonStringBuffer
     const decodedValue = decoder.decode(value);
     jsonStringBuffer += decodedValue;
 
+    // Regular expression to find JSON objects in the jsonStringBuffer
     const jsonRegex = /{[^{}]*}/g;
     let jsonMatch;
 
+    // Extract and process JSON objects from the jsonStringBuffer
     while ((jsonMatch = jsonRegex.exec(jsonStringBuffer)) !== null) {
-      const jsonString = jsonMatch[0];
+      const jsonString = jsonMatch[0]; // Extract the JSON string
 
       try {
         const data = JSON.parse(jsonString);
@@ -73,6 +82,7 @@ export const readStreamData = async (
         break;
       }
 
+      // Update the jsonStringBuffer to remove the processed JSON object
       jsonStringBuffer = jsonStringBuffer.slice(jsonRegex.lastIndex);
     }
   }

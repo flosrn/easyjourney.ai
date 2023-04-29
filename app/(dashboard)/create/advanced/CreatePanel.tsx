@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { BrushIcon, Loader2 } from "lucide-react";
+import { ArrowBigUp, BrushIcon, Loader2, Trash2Icon } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
 import { Button } from "~/components/ui/Button";
@@ -20,11 +20,26 @@ const CreatePanel = () => {
     (state) => state.selectedAspectRatio
   );
   const selectedFilter = useFilterStore((state) => state.selectedFilter);
-  const promptValue = usePromptStore((state) => state.promptValue);
-  const [isLoading, generateImage] = useImageGenerationStore((state) => [
-    state.isLoading,
-    state.generateImage,
+  const [promptValue, setPromptValue] = usePromptStore((state) => [
+    state.promptValue,
+    state.setPromptValue,
   ]);
+  const [isLoading, generateImage, upscaleImage] = useImageGenerationStore(
+    (state) => [state.isLoading, state.generateImage, state.upscaleImage]
+  );
+  const [image, isImageGenerated, isImageUpscaled, imageSelected, setClear] =
+    useImageGenerationStore((state) => [
+      state.image,
+      state.isImageGenerated,
+      state.isImageUpscaled,
+      state.imageSelected,
+      state.setClear,
+    ]);
+
+  const handleClear = () => {
+    setPromptValue("");
+    setClear();
+  };
 
   return (
     <>
@@ -44,10 +59,16 @@ const CreatePanel = () => {
                         Create your own poster
                       </p>
                     </div>
-                    <div className="ml-auto">
+                    <div className="ml-auto space-x-2">
+                      {(isImageGenerated || isImageUpscaled) && (
+                        <Button onClick={handleClear} variant="secondary">
+                          <Trash2Icon className="mr-2 h-4 w-4" />
+                          Clear
+                        </Button>
+                      )}
                       <Button
                         onClick={async () => generateImage(promptValue)}
-                        disabled={isLoading}
+                        disabled={isLoading || isImageUpscaled}
                       >
                         {isLoading ? (
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -62,6 +83,31 @@ const CreatePanel = () => {
                   <TextareaPrompt />
                   <Sidebar className="lg:hidden" />
                   <ImageContainer />
+                  {isImageGenerated && !isImageUpscaled && !imageSelected && (
+                    <div className="flex-center mt-4">
+                      Click on the image you want to upscale
+                    </div>
+                  )}
+                  {isImageGenerated && imageSelected && (
+                    <div className="flex-center mt-4">
+                      <Button
+                        onClick={async () =>
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-expect-error
+                          image ? upscaleImage(imageSelected, image) : null
+                        }
+                        disabled={isLoading || isImageUpscaled}
+                        variant="secondary"
+                      >
+                        {isLoading ? (
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                          <ArrowBigUp className="mr-2 h-4 w-4" />
+                        )}
+                        Upscale
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
