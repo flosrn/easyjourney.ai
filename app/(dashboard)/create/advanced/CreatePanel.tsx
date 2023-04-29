@@ -9,6 +9,7 @@ import { Separator } from "~/components/ui/Separator";
 import ImageContainer from "./components/ImageContainer";
 import Sidebar from "./components/Sidebar";
 import TextareaPrompt from "./components/TextareaPrompt";
+import useImageGeneration from "./hooks/usePosterGeneration";
 import { useFilterStore } from "./store/filterStore";
 import { usePromptStore } from "./store/promptStore";
 import { useRatioStore } from "./store/ratioStore";
@@ -19,6 +20,9 @@ const CreatePanel = () => {
   );
   const selectedFilter = useFilterStore((state) => state.selectedFilter);
   const promptValue = usePromptStore((state) => state.promptValue);
+  const { image, loading, error, generateImage } = useImageGeneration({
+    prompt: promptValue,
+  });
 
   return (
     <>
@@ -38,8 +42,8 @@ const CreatePanel = () => {
                         Create your own poster
                       </p>
                     </div>
-                    <div className="ml-auto mr-4">
-                      <Button>
+                    <div className="ml-auto">
+                      <Button onClick={generateImage}>
                         <BrushIcon className="mr-2 h-4 w-4" />
                         Generate
                       </Button>
@@ -48,7 +52,7 @@ const CreatePanel = () => {
                   <Separator className="my-4" />
                   <TextareaPrompt />
                   <Sidebar className="lg:hidden" />
-                  <ImageContainer />
+                  <ImageContainer image={image} />
                 </div>
               </div>
             </div>

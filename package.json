@@ -58,6 +58,7 @@
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
     "date-fns": "^2.29.3",
+    "discord-api-types": "^0.37.40",
     "framer-motion": "^10.12.4",
     "lucide-react": "0.171.0",
     "micro": "^10.0.1",

@@ -35,7 +35,7 @@ const Header = ({ expanded }: HeaderProps) => {
               </button>
             </div>
             <Link href="/" className="mr-6 flex items-center space-x-2">
-              <span className="hidden font-bold sm:inline-block">
+              <span className="hidden font-bold md:inline-block">
                 myposter.ai
               </span>
             </Link>
