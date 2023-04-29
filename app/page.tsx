@@ -1,11 +1,13 @@
 import React from "react";
 
 import HeroAnimateIcons from "~/components/HeroAnimateIcons";
+import Header from "~/components/header/Header";
 import { Button } from "~/components/ui/Button";
 
 export default async function IndexPage() {
   return (
     <>
+      <Header />
       <section className="container grid items-center justify-center gap-6 pb-8">
         <HeroAnimateIcons />
         <div className="flex max-w-[980px] flex-col items-center gap-2">

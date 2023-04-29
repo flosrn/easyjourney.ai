@@ -1,15 +1,21 @@
 "use client";
 
-import React, { Suspense, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 
 import { Button, buttonVariants } from "~/components/ui/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/Card";
 import { Textarea } from "~/components/ui/Textarea";
 
-import UserPosters from "../UserPosters";
 import { ImageGrid } from "./ImageGrid";
 
 type MidjourneyPromptProps = {};
@@ -87,8 +93,8 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
               setIsPosterUpscaled(false);
               setTimeout(() => {
                 toast.success("Poster successfully generated!");
-              }, 1000);
-              setMessage("Click on the image you want to upscale");
+                setMessage("Click on the image you want to upscale");
+              }, 2000);
               break;
             }
             case "generation_failed": {
@@ -236,57 +242,73 @@ const MidjourneyPrompt = ({}: MidjourneyPromptProps) => {
   return (
     <>
       <div className="flex-center">
-        <div className="mt-5 w-[400px]">
-          <Textarea
-            value={promptInputValue}
-            placeholder="Enter your prompt here"
-            onChange={(e) => setPromptInputValue(e.target.value)}
-            className="w-full"
-          />
-          <div className="my-3 h-5 text-sm">
-            <p>{message}</p>
-          </div>
-          <div className="my-5">
-            <div className="relative">
-              {poster && (
-                <>
-                  <a
-                    href={isPosterUpscaled ? poster : undefined}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={poster} alt="Divided image" className="w-full" />
-                  </a>
-                  {showImageGrid && (
-                    <ImageGrid
-                      imageSelected={imageSelected}
-                      clickHandler={handleImageClick}
-                    />
+        <Card className="w-full max-w-2xl rounded-[0.5rem]">
+          <CardHeader>
+            <CardTitle>Prompt</CardTitle>
+            <CardDescription>Write your prompt here</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="mt-5">
+              <Textarea
+                value={promptInputValue}
+                placeholder="Enter your prompt here"
+                onChange={(e) => setPromptInputValue(e.target.value)}
+                className="w-full"
+              />
+              <div className="my-3 h-5 text-sm">
+                <p>{message}</p>
+              </div>
+              <div className="my-5">
+                <div className="relative">
+                  {poster && (
+                    <>
+                      <a
+                        href={isPosterUpscaled ? poster : undefined}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img
+                          src={poster}
+                          alt="Divided image"
+                          className="w-full"
+                        />
+                      </a>
+                      {showImageGrid && (
+                        <ImageGrid
+                          imageSelected={imageSelected}
+                          clickHandler={handleImageClick}
+                        />
+                      )}
+                    </>
                   )}
-                </>
-              )}
+                </div>
+              </div>
+              <div className="flex-center gap-4">
+                <Button
+                  onClick={async () =>
+                    isGeneration
+                      ? imaginePoster()
+                      : upscalePoster(imageSelected)
+                  }
+                  disabled={isLoading}
+                  className={buttonVariants({ variant: "default", size: "lg" })}
+                >
+                  {isLoading && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  {`${isGeneration ? "Generate" : "Upscale"} Poster ${
+                    isUpscaling && imageSelected ? imageSelected : ""
+                  }`}
+                </Button>
+              </div>
             </div>
-          </div>
-          <div className="flex-center gap-4">
-            <Button
-              onClick={async () =>
-                isGeneration ? imaginePoster() : upscalePoster(imageSelected)
-              }
-              disabled={isLoading}
-              className={buttonVariants({ variant: "default", size: "lg" })}
-            >
-              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {`${isGeneration ? "Generate" : "Upscale"} Poster ${
-                isUpscaling && imageSelected ? imageSelected : ""
-              }`}
-            </Button>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <UserPosters refetch={posterSaved} />
-      </Suspense>
+      {/*<Suspense fallback={<div>Loading...</div>}>*/}
+      {/*  <UserPosters refetch={posterSaved} />*/}
+      {/*</Suspense>*/}
       <Toaster position="bottom-right" />
     </>
   );

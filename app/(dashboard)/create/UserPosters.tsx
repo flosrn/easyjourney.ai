@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 
 import type { PosterType } from "~/types/poster";
 
-import Poster from "../Poster";
+import Poster from "../../(marketing)/posters/Poster";
 
 type ProfilePostersProps = {
   refetch: boolean;
