@@ -26,13 +26,15 @@ const retrieveMessagesUntilFinal = async (
 
     if (
       index &&
-      message?.content.includes(`Image #${index}`) &&
+      attachment &&
+      message.content.includes(`Image #${index}`) &&
       message.type === 19
     ) {
-      console.log("attachment :", attachment);
       return {
         ...attachment,
-        content: message.content.split("**")[1],
+        prompt: message.content.split("**")[1],
+        messageId: message.id,
+        messageHash: uriToHash(attachment.url),
       };
     }
 
@@ -93,8 +95,6 @@ export default async function handler(request: Request) {
         },
         index
       );
-
-      // console.log("streaming data :", data);
 
       if (data) {
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image

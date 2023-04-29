@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { ImageIcon } from "lucide-react";
 
-import { ImageGrid } from "../ImageGrid";
 import { useImageGenerationStore } from "../store/imageGenerationStore";
+import { ImageGrid } from "./ImageGrid";
 import LoadingDots from "./LoadingDots";
 
 type ImageContainerProps = {};
