@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { BrushIcon } from "lucide-react";
+import { BrushIcon, Loader2 } from "lucide-react";
+import { Toaster } from "react-hot-toast";
 
 import { Button } from "~/components/ui/Button";
 import { Separator } from "~/components/ui/Separator";
@@ -9,8 +10,8 @@ import { Separator } from "~/components/ui/Separator";
 import ImageContainer from "./components/ImageContainer";
 import Sidebar from "./components/Sidebar";
 import TextareaPrompt from "./components/TextareaPrompt";
-import useImageGeneration from "./hooks/usePosterGeneration";
 import { useFilterStore } from "./store/filterStore";
+import { useImageGenerationStore } from "./store/imageGenerationStore";
 import { usePromptStore } from "./store/promptStore";
 import { useRatioStore } from "./store/ratioStore";
 
@@ -20,9 +21,10 @@ const CreatePanel = () => {
   );
   const selectedFilter = useFilterStore((state) => state.selectedFilter);
   const promptValue = usePromptStore((state) => state.promptValue);
-  const { image, loading, error, generateImage } = useImageGeneration({
-    prompt: promptValue,
-  });
+  const [isLoading, generateImage] = useImageGenerationStore((state) => [
+    state.isLoading,
+    state.generateImage,
+  ]);
 
   return (
     <>
@@ -43,8 +45,15 @@ const CreatePanel = () => {
                       </p>
                     </div>
                     <div className="ml-auto">
-                      <Button onClick={generateImage}>
-                        <BrushIcon className="mr-2 h-4 w-4" />
+                      <Button
+                        onClick={async () => generateImage(promptValue)}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? (
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                          <BrushIcon className="mr-2 h-4 w-4" />
+                        )}
                         Generate
                       </Button>
                     </div>
@@ -52,13 +61,14 @@ const CreatePanel = () => {
                   <Separator className="my-4" />
                   <TextareaPrompt />
                   <Sidebar className="lg:hidden" />
-                  <ImageContainer image={image} />
+                  <ImageContainer />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Toaster position="bottom-center" />
     </>
   );
 };

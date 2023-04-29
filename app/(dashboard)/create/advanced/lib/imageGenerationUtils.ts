@@ -1,6 +1,7 @@
-import type { Dispatch, SetStateAction } from "react";
 import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
+
+import type { ImageGenerationSetAction } from "../store/imageGenerationStore";
 
 type MessageData = APIAttachment & {
   type: string;
@@ -9,23 +10,26 @@ type MessageData = APIAttachment & {
 
 export const handleMessageData = (
   data: MessageData,
-  setImage: Dispatch<SetStateAction<APIAttachment | null>>
+  actions: ImageGenerationSetAction
 ) => {
   switch (data.type) {
     case "image_iteration": {
       console.log("image_iteration");
-      setImage(data);
+      actions.setImage(data);
       break;
     }
     case "generation_complete": {
       console.log("generation_complete");
       toast.success("Poster successfully generated!");
-      setImage(data);
+      actions.setImage(data);
+      actions.setIsLoading(false);
       break;
     }
     case "generation_failed": {
       console.log("generation failed:", data.error);
       toast.error("Poster generation failed");
+      actions.setIsLoading(false);
+      actions.setError(data.error);
       break;
     }
     case "message_not_found": {
@@ -39,7 +43,7 @@ export const handleMessageData = (
 
 export const readStreamData = async (
   reader: ReadableStreamDefaultReader<Uint8Array>,
-  setImage: Dispatch<SetStateAction<APIAttachment | null>>
+  actions: ImageGenerationSetAction
 ) => {
   const decoder = new TextDecoder();
 
@@ -62,7 +66,7 @@ export const readStreamData = async (
       try {
         const data = JSON.parse(jsonString);
 
-        handleMessageData(data, setImage);
+        handleMessageData(data, actions);
       } catch (error: unknown) {
         console.log("error :", error);
         toast.error("Poster generation failed");

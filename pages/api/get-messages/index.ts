@@ -20,10 +20,10 @@ const retrieveMessagesUntilFinal = async (
     );
 
     const attachment = message?.attachments[0];
-    // console.log("attachment :", attachment);
     if (attachment?.url.endsWith(".webp")) {
       console.log("webp image found");
       loading(attachment);
+      // eslint-disable-next-line no-await-in-loop
       await wait(2000);
     } else if (attachment) {
       console.log("final image found:", attachment.url);
@@ -32,7 +32,7 @@ const retrieveMessagesUntilFinal = async (
         content: message.content.split("**")[1],
       };
     }
-
+    // eslint-disable-next-line no-await-in-loop
     await wait(2000);
   }
 
