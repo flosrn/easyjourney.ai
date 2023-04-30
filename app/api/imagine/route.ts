@@ -42,11 +42,7 @@ const imaginePayload = {
   },
 };
 
-export const imagine = async ({
-  prompt,
-}: {
-  prompt: string;
-}): Promise<number> => {
+const imagine = async ({ prompt }: { prompt: string }): Promise<number> => {
   const response = await fetch("https://discord.com/api/v9/interactions", {
     method: "POST",
     headers: { ...headers, "Content-Type": "application/json" },

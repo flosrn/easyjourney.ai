@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { channelId, headers, serverId } from "~/utils/midjourneyUtils";
 
-export const upscale = async ({
+const upscale = async ({
   index,
   messageId,
   messageHash,

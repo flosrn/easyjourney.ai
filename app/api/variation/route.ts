@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { channelId, headers, serverId } from "~/utils/midjourneyUtils";
 
-export const variation = async ({
+const variation = async ({
   index,
   messageId,
   messageHash,
