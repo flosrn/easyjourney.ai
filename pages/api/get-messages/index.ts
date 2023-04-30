@@ -13,12 +13,14 @@ const findMessageByContent = (
   messages: APIMessage[],
   prompt: string,
   index?: number,
-  waitingToStart?: boolean
+  waitingToStart?: boolean,
+  option?: "upscale" | "variation"
 ): APIMessage | undefined => {
+  const content = option === "upscale" ? `Image #${index}` : "Variations";
   return messages.find(
     (msg) =>
       msg.content.includes(prompt) &&
-      (index ? msg.content.includes(`Image #${index}`) : true) &&
+      (index ? msg.content.includes(content) : true) &&
       msg.content.includes(waitingToStart ? "(Waiting to start)" : "")
   );
 };
@@ -27,7 +29,8 @@ const retrieveMessagesUntilFinal = async (
   limit: number,
   prompt: string,
   loading: (attachment: APIAttachment) => void,
-  index?: number
+  index?: number,
+  option?: "upscale" | "variation"
 ) => {
   let message: APIMessage | null | undefined = null;
   const isUpscaledImage = index !== undefined;
@@ -35,7 +38,13 @@ const retrieveMessagesUntilFinal = async (
   while (!message) {
     await wait(3000);
     const messages = await retrieveMessages(limit);
-    message = findMessageByContent(messages, prompt, index, !isUpscaledImage);
+    message = findMessageByContent(
+      messages,
+      prompt,
+      index,
+      !isUpscaledImage,
+      option
+    );
   }
 
   const targetMessageTimestamp: string = message.timestamp;
@@ -74,8 +83,19 @@ const retrieveMessagesUntilFinal = async (
   }
 };
 
+const getMessageType = (option?: "upscale" | "variation") => {
+  switch (option) {
+    case "upscale":
+      return "image_upscaled";
+    case "variation":
+      return "variation_complete";
+    default:
+      return "generation_complete";
+  }
+};
+
 export default async function handler(request: Request) {
-  const { prompt, index } = await request.json();
+  const { prompt, index, option } = await request.json();
 
   const encoder = new TextEncoder();
 
@@ -108,13 +128,14 @@ export default async function handler(request: Request) {
           });
           streamController.enqueue(encoder.encode(message));
         },
-        index
+        index,
+        option
       );
 
       if (data) {
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image
         const message = JSON.stringify({
-          type: index ? "image_upscaled" : "generation_complete",
+          type: getMessageType(option),
           ...data,
         });
         streamController.enqueue(encoder.encode(message));

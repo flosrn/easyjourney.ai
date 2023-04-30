@@ -29,6 +29,13 @@ export const handleMessageData = (
       toast.success("Poster successfully upscaled!");
       break;
     }
+    case "variation_complete": {
+      actions.setImage(data);
+      actions.setIsLoading(false);
+      actions.setSelectedImage(0);
+      toast.success("Variation successfully generated!");
+      break;
+    }
     case "generation_failed": {
       toast.error("Poster generation failed");
       actions.setIsLoading(false);

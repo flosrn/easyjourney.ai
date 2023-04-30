@@ -1,7 +1,14 @@
 "use client";
 
 import React from "react";
-import { ArrowBigUp, BrushIcon, Loader2, Trash2Icon, Undo } from "lucide-react";
+import {
+  ArrowBigUp,
+  BrushIcon,
+  HistoryIcon,
+  IterationCcw,
+  Loader2,
+  Trash2Icon,
+} from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
 import { Button } from "~/components/ui/Button";
@@ -31,6 +38,7 @@ const CreatePanel = () => {
     image,
     upscaledImage,
     setUpscaledImage,
+    variationImage,
     imageSelected,
     setSelectedImage,
     setClear,
@@ -38,6 +46,7 @@ const CreatePanel = () => {
     state.image,
     state.upscaledImage,
     state.setUpscaledImage,
+    state.variationImage,
     state.selectedImage,
     state.setSelectedImage,
     state.setClear,
@@ -76,7 +85,7 @@ const CreatePanel = () => {
                         <>
                           {upscaledImage && (
                             <Button onClick={handleUndo} variant="outline">
-                              <Undo className="mr-2 h-4 w-4" />
+                              <HistoryIcon className="mr-2 h-4 w-4" />
                               Undo
                             </Button>
                           )}
@@ -109,23 +118,44 @@ const CreatePanel = () => {
                     </div>
                   )}
                   {image && !!imageSelected && (
-                    <div className="flex-center mt-4">
-                      <Button
-                        onClick={async () =>
-                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                          // @ts-expect-error
-                          upscaleImage(imageSelected, image)
-                        }
-                        disabled={isLoading || !!upscaledImage}
-                        variant="secondary"
-                      >
-                        {isLoading ? (
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        ) : (
-                          <ArrowBigUp className="mr-2 h-4 w-4" />
-                        )}
-                        Upscale
-                      </Button>
+                    <div className="flex justify-center space-x-2">
+                      {" "}
+                      <div className="flex-center mt-4">
+                        <Button
+                          onClick={async () =>
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-expect-error
+                            variationImage(imageSelected, image)
+                          }
+                          disabled={isLoading || !!upscaledImage}
+                          variant="outline"
+                        >
+                          {isLoading ? (
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          ) : (
+                            <IterationCcw className="mr-2 h-4 w-4" />
+                          )}
+                          Variation
+                        </Button>
+                      </div>
+                      <div className="flex-center mt-4">
+                        <Button
+                          onClick={async () =>
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-expect-error
+                            upscaleImage(imageSelected, image)
+                          }
+                          disabled={isLoading || !!upscaledImage}
+                          variant="secondary"
+                        >
+                          {isLoading ? (
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          ) : (
+                            <ArrowBigUp className="mr-2 h-4 w-4" />
+                          )}
+                          Upscale
+                        </Button>
+                      </div>
                     </div>
                   )}
                 </div>

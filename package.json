@@ -60,7 +60,7 @@
     "date-fns": "^2.29.3",
     "discord-api-types": "^0.37.40",
     "framer-motion": "^10.12.4",
-    "lucide-react": "0.171.0",
+    "lucide-react": "0.188.0",
     "micro": "^10.0.1",
     "micro-cors": "^0.1.1",
     "next": "13.3.1",
