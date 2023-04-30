@@ -15,7 +15,6 @@ const variation = async ({
     headers: { ...headers, "Content-Type": "application/json" },
     body: JSON.stringify({
       type: 3,
-      nonce: "1102305268038893568",
       guild_id: serverId,
       channel_id: channelId,
       message_flags: 0,

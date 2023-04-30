@@ -31,26 +31,35 @@ const CreatePanel = () => {
     state.promptValue,
     state.setPromptValue,
   ]);
-  const [isLoading, generateImage, upscaleImage] = useImageGenerationStore(
-    (state) => [state.isLoading, state.generateImage, state.upscaleImage]
-  );
   const [
     image,
+    generateImage,
     upscaledImage,
+    upscaleImage,
     setUpscaledImage,
     variationImage,
     imageSelected,
     setSelectedImage,
     setClear,
+    isLoading,
+    loadingType,
   ] = useImageGenerationStore((state) => [
     state.image,
+    state.generateImage,
     state.upscaledImage,
+    state.upscaleImage,
     state.setUpscaledImage,
     state.variationImage,
     state.selectedImage,
     state.setSelectedImage,
     state.setClear,
+    state.isLoading,
+    state.loadingType,
   ]);
+
+  const isGenerationLoading = isLoading && loadingType === "generation";
+  const isUpscaleLoading = isLoading && loadingType === "upscale";
+  const isVariationLoading = isLoading && loadingType === "variation";
 
   const handleClear = () => {
     setClear();
@@ -99,7 +108,7 @@ const CreatePanel = () => {
                         onClick={async () => generateImage(promptValue)}
                         disabled={isLoading || !!upscaledImage}
                       >
-                        {isLoading && !image ? (
+                        {isGenerationLoading && !image ? (
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         ) : (
                           <BrushIcon className="mr-2 h-4 w-4" />
@@ -130,7 +139,7 @@ const CreatePanel = () => {
                           disabled={isLoading || !!upscaledImage}
                           variant="outline"
                         >
-                          {isLoading ? (
+                          {isVariationLoading ? (
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                           ) : (
                             <IterationCcw className="mr-2 h-4 w-4" />
@@ -148,7 +157,7 @@ const CreatePanel = () => {
                           disabled={isLoading || !!upscaledImage}
                           variant="secondary"
                         >
-                          {isLoading ? (
+                          {isUpscaleLoading ? (
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                           ) : (
                             <ArrowBigUp className="mr-2 h-4 w-4" />

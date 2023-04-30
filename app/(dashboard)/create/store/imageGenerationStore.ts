@@ -12,6 +12,7 @@ type ImageGenerationState = {
   error: string | unknown | null;
   message?: string;
   selectedImage: number | null;
+  loadingType: "generation" | "upscale" | "variation" | null;
 };
 
 type ImageData = APIAttachment & {
@@ -28,6 +29,9 @@ export type ImageGenerationSetAction = {
   setMessage: (message: string) => void;
   setSelectedImage: (imageSelected: number) => void;
   setClear: () => void;
+  setLoadingType: (
+    loadingType: "generation" | "upscale" | "variation" | null
+  ) => void;
 };
 
 type ImageGenerationAction = ImageGenerationSetAction & {
@@ -68,6 +72,11 @@ export const useImageGenerationStore = create<
       selectedImage: null,
     }));
   };
+  const setLoadingType = (
+    loadingType: "generation" | "upscale" | "variation" | null
+  ) => {
+    set(() => ({ loadingType }));
+  };
 
   const actions = {
     setImage,
@@ -77,6 +86,7 @@ export const useImageGenerationStore = create<
     setMessage,
     setSelectedImage,
     setClear,
+    setLoadingType,
   };
 
   return {
@@ -94,6 +104,7 @@ export const useImageGenerationStore = create<
       setIsLoading(true);
       setError(null);
       setMessage("");
+      setLoadingType("generation");
 
       try {
         const { status } = await fetch("/api/imagine", {
@@ -133,6 +144,7 @@ export const useImageGenerationStore = create<
       setIsLoading(true);
       setError(null);
       setMessage("");
+      setLoadingType("upscale");
 
       const { prompt, messageId, messageHash } = image;
 
@@ -178,6 +190,7 @@ export const useImageGenerationStore = create<
       setIsLoading(true);
       setError(null);
       setMessage("");
+      setLoadingType("variation");
 
       const { prompt, messageId, messageHash } = image;
 

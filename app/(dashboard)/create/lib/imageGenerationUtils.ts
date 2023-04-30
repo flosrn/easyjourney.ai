@@ -12,6 +12,7 @@ export const handleMessageData = (
   data: MessageData,
   actions: ImageGenerationSetAction
 ) => {
+  actions.setLoadingType(null);
   switch (data.type) {
     case "loading": {
       break;
