@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import type { APIAttachment, APIMessage } from "discord-api-types/v10";
-import { retrieveMessages, wait } from "~/services/midjourneyUtils";
+import { retrieveMessages, wait } from "~/utils/midjourneyUtils";
 
 // https://vercel.com/docs/concepts/functions/edge-functions
 export const config = {

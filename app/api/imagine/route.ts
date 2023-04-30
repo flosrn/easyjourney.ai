@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { channelId, headers, serverId } from "~/services/midjourneyUtils";
+import { channelId, headers, serverId } from "~/utils/midjourneyUtils";
 
 const imaginePayload = {
   type: 2,
