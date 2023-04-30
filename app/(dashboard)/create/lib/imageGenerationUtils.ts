@@ -13,6 +13,9 @@ export const handleMessageData = (
   actions: ImageGenerationSetAction
 ) => {
   switch (data.type) {
+    case "loading": {
+      break;
+    }
     case "image_iteration": {
       actions.setImage(data);
       break;

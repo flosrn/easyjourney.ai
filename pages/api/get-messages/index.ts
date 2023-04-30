@@ -28,7 +28,7 @@ const findMessageByContent = (
 const retrieveMessagesUntilFinal = async (
   limit: number,
   prompt: string,
-  loading: (attachment: APIAttachment) => void,
+  loading: (attachment: APIAttachment | null) => void,
   index?: number,
   option?: "upscale" | "variation"
 ) => {
@@ -56,6 +56,11 @@ const retrieveMessagesUntilFinal = async (
     await wait(3000);
     const messages = await retrieveMessages(limit);
     const targetMessage = findMessageByContent(messages, prompt);
+
+    if (!attachment) {
+      console.log("no attachment found");
+      loading(null);
+    }
 
     if (targetMessage && targetMessage.attachments.length > 0) {
       attachment = targetMessage.attachments[0];
@@ -123,7 +128,7 @@ export default async function handler(request: Request) {
         (attachment) => {
           // Enfile les données dans le contrôleur de flux
           const message = JSON.stringify({
-            type: "image_iteration",
+            type: attachment ? "image_iteration" : "loading",
             ...attachment,
           });
           streamController.enqueue(encoder.encode(message));

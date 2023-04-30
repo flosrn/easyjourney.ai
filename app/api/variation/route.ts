@@ -21,7 +21,7 @@ const variation = async ({
       message_flags: 0,
       message_id: messageId,
       application_id: "936929561302675456",
-      session_id: "65f2874151c7356c87116067588df7e5",
+      session_id: "1f3dbdf09efdf93d81a3a6420882c92c",
       data: {
         component_type: 2,
         custom_id: `MJ::JOB::variation::${index}::${messageHash}`,
