@@ -98,6 +98,7 @@ export const useImageGenerationStore = create<
     error: null,
     message: "",
     selectedImage: null,
+    loadingType: null,
     ...actions,
     generateImage: async (prompt) => {
       setImage(null);
