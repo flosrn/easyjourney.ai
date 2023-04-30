@@ -5,12 +5,13 @@ import { readStreamData } from "../lib/imageGenerationUtils";
 
 type ImageGenerationState = {
   image: APIAttachment | null;
+  upscaledImage: APIAttachment | null;
   isLoading: boolean;
   isImageGenerated: boolean;
   isImageUpscaled: boolean;
   error: string | unknown | null;
   message?: string;
-  imageSelected: number | null;
+  selectedImage: number | null;
 };
 
 type ImageData = APIAttachment & {
@@ -21,12 +22,11 @@ type ImageData = APIAttachment & {
 
 export type ImageGenerationSetAction = {
   setImage: (image: APIAttachment | null) => void;
+  setUpscaledImage: (image: APIAttachment | null) => void;
   setIsLoading: (isLoading: boolean) => void;
-  setIsImageGenerated: (isImageGenerated: boolean) => void;
-  setIsImageUpscaled: (isImageUpscaled: boolean) => void;
   setError: (error: string | unknown | null) => void;
-  setImageSelected: (imageSelected: number) => void;
   setMessage: (message: string) => void;
+  setSelectedImage: (imageSelected: number) => void;
   setClear: () => void;
 };
 
@@ -41,14 +41,11 @@ export const useImageGenerationStore = create<
   const setImage = (image: APIAttachment | null) => {
     set(() => ({ image }));
   };
+  const setUpscaledImage = (upscaledImage: APIAttachment | null) => {
+    set(() => ({ upscaledImage }));
+  };
   const setIsLoading = (isLoading: boolean) => {
     set(() => ({ isLoading }));
-  };
-  const setIsImageGenerated = (isImageGenerated: boolean) => {
-    set(() => ({ isImageGenerated }));
-  };
-  const setIsImageUpscaled = (isImageUpscaled: boolean) => {
-    set(() => ({ isImageUpscaled }));
   };
   const setError = (error: string | unknown | null) => {
     set(() => ({ error }));
@@ -56,8 +53,8 @@ export const useImageGenerationStore = create<
   const setMessage = (message: string) => {
     set(() => ({ message }));
   };
-  const setImageSelected = (index: number) => {
-    set(() => ({ imageSelected: index }));
+  const setSelectedImage = (index: number) => {
+    set(() => ({ selectedImage: index }));
   };
   const setClear = () => {
     set(() => ({
@@ -67,30 +64,33 @@ export const useImageGenerationStore = create<
       isImageUpscaled: false,
       error: null,
       message: "",
-      imageSelected: null,
+      selectedImage: null,
     }));
+  };
+
+  const actions = {
+    setImage,
+    setUpscaledImage,
+    setIsLoading,
+    setError,
+    setMessage,
+    setSelectedImage,
+    setClear,
   };
 
   return {
     image: null,
+    upscaledImage: null,
     isLoading: false,
     isImageGenerated: false,
     isImageUpscaled: false,
     error: null,
     message: "",
-    imageSelected: null,
-    setImageSelected,
-    setImage,
-    setIsLoading,
-    setIsImageGenerated,
-    setIsImageUpscaled,
-    setError,
-    setMessage,
-    setClear,
+    selectedImage: null,
+    ...actions,
     generateImage: async (prompt) => {
       setImage(null);
       setIsLoading(true);
-      setIsImageGenerated(false);
       setError(null);
       setMessage("");
 
@@ -113,16 +113,7 @@ export const useImageGenerationStore = create<
 
           if (response.body) {
             const reader = response.body.getReader();
-            await readStreamData(reader, {
-              setImage,
-              setIsLoading,
-              setIsImageGenerated,
-              setError,
-              setImageSelected,
-              setIsImageUpscaled,
-              setMessage,
-              setClear,
-            });
+            await readStreamData(reader, actions);
           }
         } else {
           setMessage(
@@ -138,9 +129,7 @@ export const useImageGenerationStore = create<
       }
     },
     upscaleImage: async (index, image) => {
-      // setImage(null);
       setIsLoading(true);
-      // setIsImageGenerated(false);
       setError(null);
       setMessage("");
 
@@ -169,16 +158,7 @@ export const useImageGenerationStore = create<
 
           if (response.body) {
             const reader = response.body.getReader();
-            await readStreamData(reader, {
-              setImage,
-              setIsLoading,
-              setIsImageGenerated,
-              setError,
-              setImageSelected,
-              setIsImageUpscaled,
-              setMessage,
-              setClear,
-            });
+            await readStreamData(reader, actions);
           }
         } else {
           setMessage(

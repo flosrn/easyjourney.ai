@@ -4,8 +4,8 @@ import { Button } from "~/components/ui/Button";
 
 import { cn } from "~/lib/classNames";
 
-import { aspectRatios } from "../data/aspectRatios";
-import { useRatioStore } from "../store/ratioStore";
+import { aspectRatios } from "../../data/aspectRatios";
+import { useRatioStore } from "../../store/ratioStore";
 
 type ButtonsAspectRatioProps = {};
 

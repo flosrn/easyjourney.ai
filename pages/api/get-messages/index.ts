@@ -1,4 +1,5 @@
-import type { APIAttachment } from "discord-api-types/v10";
+/* eslint-disable no-await-in-loop */
+import type { APIAttachment, APIMessage } from "discord-api-types/v10";
 import { retrieveMessages, wait } from "~/services/midjourneyUtils";
 
 // https://vercel.com/docs/concepts/functions/edge-functions
@@ -8,55 +9,69 @@ export const config = {
 
 const uriToHash = (uri: string) => uri.split("_").pop()?.split(".")[0] ?? "";
 
+const findMessageByContent = (
+  messages: APIMessage[],
+  prompt: string,
+  index?: number,
+  waitingToStart?: boolean
+): APIMessage | undefined => {
+  return messages.find(
+    (msg) =>
+      msg.content.includes(prompt) &&
+      (index ? msg.content.includes(`Image #${index}`) : true) &&
+      msg.content.includes(waitingToStart ? "(Waiting to start)" : "")
+  );
+};
+
 const retrieveMessagesUntilFinal = async (
   limit: number,
   prompt: string,
   loading: (attachment: APIAttachment) => void,
-  index: number
+  index?: number
 ) => {
-  for (let i = 0; i < limit; i++) {
-    // eslint-disable-next-line no-await-in-loop
+  let message: APIMessage | null | undefined = null;
+  const isUpscaledImage = index !== undefined;
+
+  while (!message) {
+    await wait(3000);
     const messages = await retrieveMessages(limit);
-
-    const message = messages.find(
-      (msg) => msg.content.includes(prompt) && msg.attachments.length > 0
-    );
-
-    const attachment = message?.attachments[0];
-
-    if (
-      index &&
-      attachment &&
-      message.content.includes(`Image #${index}`) &&
-      message.type === 19
-    ) {
-      return {
-        ...attachment,
-        prompt: message.content.split("**")[1],
-        messageId: message.id,
-        messageHash: uriToHash(attachment.url),
-      };
-    }
-
-    if (attachment?.url.endsWith(".webp")) {
-      // console.log("webp image found");
-      loading(attachment);
-      // eslint-disable-next-line no-await-in-loop
-      await wait(2000);
-    } else if (attachment && !index) {
-      console.log("final image found:", attachment.url);
-      return {
-        ...attachment,
-        prompt: message.content.split("**")[1],
-        messageId: message.id,
-        messageHash: uriToHash(attachment.url),
-      };
-    }
-    // eslint-disable-next-line no-await-in-loop
-    await wait(2000);
+    message = findMessageByContent(messages, prompt, index, !isUpscaledImage);
   }
 
-  return null;
+  const targetMessageTimestamp: string = message.timestamp;
+  let attachment: APIAttachment | null = null;
+  let finalImageFound = false;
+
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  while (!finalImageFound) {
+    await wait(3000);
+    const messages = await retrieveMessages(limit);
+    const targetMessage = findMessageByContent(messages, prompt);
+
+    if (targetMessage && targetMessage.attachments.length > 0) {
+      attachment = targetMessage.attachments[0];
+
+      const isWebp = attachment.url.endsWith(".webp");
+      const isPng = attachment.url.endsWith(".png");
+      const isFinalImage = isUpscaledImage
+        ? true
+        : targetMessage.timestamp > targetMessageTimestamp;
+
+      if (isWebp) {
+        console.log("webp image found");
+        loading(attachment);
+      } else if (isPng && isFinalImage) {
+        console.log("final image found:", attachment.url);
+        finalImageFound = true;
+        return {
+          ...attachment,
+          prompt: message.content.split("**")[1],
+          messageId: targetMessage.id,
+          messageHash: uriToHash(attachment.url),
+        };
+      }
+    }
+  }
 };
 
 export default async function handler(request: Request) {

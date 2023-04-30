@@ -20,14 +20,12 @@ export const handleMessageData = (
     case "generation_complete": {
       actions.setImage(data);
       actions.setIsLoading(false);
-      actions.setIsImageGenerated(true);
       toast.success("Poster successfully generated!");
       break;
     }
     case "image_upscaled": {
-      actions.setImage(data);
+      actions.setUpscaledImage(data);
       actions.setIsLoading(false);
-      actions.setIsImageUpscaled(true);
       toast.success("Poster successfully upscaled!");
       break;
     }
