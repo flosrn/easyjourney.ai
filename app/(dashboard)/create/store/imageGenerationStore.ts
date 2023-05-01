@@ -1,4 +1,5 @@
 import type { APIAttachment } from "discord-api-types/v10";
+import toast from "react-hot-toast";
 import { create } from "zustand";
 
 import { readStreamData } from "../lib/imageGenerationUtils";
@@ -13,16 +14,20 @@ export type ImageData = APIAttachment & {
 
 type ImageGenerationState = {
   images: ImageData[];
+  imageIndex: number;
   imageType: "generation" | "upscale" | "variation" | null;
   isLoading: boolean;
   error: string | unknown | null;
   message?: string;
   selectedImage: number | null;
   loadingType: "generation" | "upscale" | "variation" | null;
+  showActionsButtons: boolean;
 };
 
 export type ImageGenerationSetAction = {
   addImage: (image: ImageData) => void;
+  prevImage: () => void;
+  nextImage: () => void;
   setImageType: (
     imageType: "generation" | "upscale" | "variation" | null
   ) => void;
@@ -34,7 +39,7 @@ export type ImageGenerationSetAction = {
   setLoadingType: (
     loadingType: "generation" | "upscale" | "variation" | null
   ) => void;
-  undoImage: () => void;
+  setShowActionsButtons: (showActionsButtons: boolean) => void;
 };
 
 type ImageGenerationAction = ImageGenerationSetAction & {
@@ -46,38 +51,25 @@ type ImageGenerationAction = ImageGenerationSetAction & {
 export const useImageGenerationStore = create<
   ImageGenerationAction & ImageGenerationState
 >()((set) => {
-  const addImage = (image: ImageData) => {
-    set((state) => {
-      const isGenerated = image.type === "generation_complete";
-      const isUpscaled = image.type === "image_upscaled";
-      const isVariation = image.type === "variation_complete";
-      const isIteration = image.type === "image_iteration";
-      const isLoading = image.type === "loading";
-      if (isGenerated || isUpscaled || isVariation) {
-        const images = [...state.images, image];
-        return { images };
-      } else if (isIteration) {
-        return { images: [image] };
-      } else if (isLoading) {
-        return { images: [...state.images] };
-      } else {
-        return { images: [] };
-      }
-    });
-  };
   const setImageType = (
     imageType: "generation" | "upscale" | "variation" | null
   ) => {
     set(() => ({ imageType }));
   };
+  const prevImage = () => {
+    set((state) => ({ imageIndex: state.imageIndex - 1 }));
+  };
+  const nextImage = () => {
+    set((state) => ({ imageIndex: state.imageIndex + 1 }));
+  };
   const setIsLoading = (isLoading: boolean) => {
     set(() => ({ isLoading }));
   };
-  const setError = (error: string | unknown | null) => {
-    set(() => ({ error }));
-  };
   const setMessage = (message: string) => {
     set(() => ({ message }));
+  };
+  const setError = (error: string | unknown | null) => {
+    set(() => ({ error }));
   };
   const setSelectedImage = (index: number | null) => {
     set(() => ({ selectedImage: index }));
@@ -96,16 +88,44 @@ export const useImageGenerationStore = create<
   ) => {
     set(() => ({ loadingType }));
   };
-  const undoImage = () => {
+  const setShowActionsButtons = (showActionsButtons: boolean) => {
+    set(() => ({ showActionsButtons }));
+  };
+
+  const addImage = (image: ImageData) => {
     set((state) => {
-      const images = [...state.images];
-      images.pop();
-      return { images };
+      const isGenerated = image.type === "generation_complete";
+      const isUpscaled = image.type === "image_upscaled";
+      const isVariation = image.type === "variation_complete";
+      const isIteration = image.type === "image_iteration";
+      const isLoading = image.type === "loading";
+      setTimeout(() => {
+        isGenerated && toast.success("Poster successfully generated!");
+        isUpscaled && toast.success("Poster successfully upscaled!");
+        isVariation && toast.success("Poster successfully generated!");
+      }, 800);
+      if (isGenerated || isUpscaled || isVariation) {
+        return {
+          images: [...state.images, image],
+          imageIndex: [...state.images, image].length - 1,
+        };
+      } else if (isLoading) {
+        return {
+          images: [...state.images],
+          imageIndex: [...state.images].length - 1,
+        };
+      } else if (isIteration) {
+        return { images: [image], imageIndex: 0 };
+      } else {
+        return { images: [] };
+      }
     });
   };
 
   const actions = {
     addImage,
+    prevImage,
+    nextImage,
     setImageType,
     setIsLoading,
     setError,
@@ -113,17 +133,19 @@ export const useImageGenerationStore = create<
     setSelectedImage,
     setClear,
     setLoadingType,
-    undoImage,
+    setShowActionsButtons,
   };
 
   return {
     images: [],
+    imageIndex: 0,
     imageType: null,
     isLoading: false,
     error: null,
     message: "",
     selectedImage: null,
     loadingType: null,
+    showActionsButtons: false,
     ...actions,
     generateImage: async (prompt) => {
       setIsLoading(true);
@@ -139,9 +161,6 @@ export const useImageGenerationStore = create<
         });
 
         if (status === 200) {
-          setMessage(
-            "Your image is currently being generated by Midjourney, please wait a moment."
-          );
           const response = await fetch("/api/get-messages", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -186,9 +205,6 @@ export const useImageGenerationStore = create<
         });
 
         if (status === 200) {
-          setMessage(
-            "Your image is currently being generated by Midjourney, please wait a moment."
-          );
           const response = await fetch("/api/get-messages", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -233,9 +249,6 @@ export const useImageGenerationStore = create<
         });
 
         if (status === 200) {
-          setMessage(
-            "Your image is currently being generated by Midjourney, please wait a moment."
-          );
           const response = await fetch("/api/get-messages", {
             method: "POST",
             headers: { "Content-Type": "application/json" },

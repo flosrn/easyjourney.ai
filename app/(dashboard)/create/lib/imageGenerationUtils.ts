@@ -5,12 +5,15 @@ import type {
   ImageGenerationSetAction,
 } from "../store/imageGenerationStore";
 
-export const handleMessageData = (
-  image: ImageData | null,
-  setImageType: (
-    imageType: "generation" | "upscale" | "variation" | null
-  ) => void
-) => {
+export const handleMessageData = ({
+  image,
+  setImageType,
+  setMessage,
+}: {
+  image: ImageData | undefined;
+  setImageType: ImageGenerationSetAction["setImageType"];
+  setMessage: ImageGenerationSetAction["setMessage"];
+}) => {
   switch (image?.type) {
     case "loading": {
       break;
@@ -20,21 +23,20 @@ export const handleMessageData = (
     }
     case "generation_complete": {
       setImageType("generation");
-      toast.success("Poster successfully generated!");
+      setMessage("Tips: click on one of the four images to continue");
       break;
     }
     case "image_upscaled": {
       setImageType("upscale");
-      toast.success("Poster successfully upscaled!");
+      setMessage("");
       break;
     }
     case "variation_complete": {
       setImageType("variation");
-      toast.success("Variation successfully generated!");
+      setMessage("Tips: click on one of the four images to continue");
       break;
     }
     case "generation_failed": {
-      toast.error("Poster generation failed");
       break;
     }
     case "message_not_found": {
@@ -74,7 +76,6 @@ export const readStreamData = async (
 
       try {
         const data = JSON.parse(jsonString);
-        console.log("data :", data);
 
         data && actions.addImage(data);
         actions.setIsLoading(false);

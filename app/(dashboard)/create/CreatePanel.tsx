@@ -2,12 +2,13 @@
 
 import React, { useEffect } from "react";
 import {
-  ArrowBigUp,
+  ArrowBigUpIcon,
   BrushIcon,
-  HistoryIcon,
-  IterationCcw,
-  Loader2,
+  IterationCcwIcon,
+  Loader2Icon,
+  RedoIcon,
   Trash2Icon,
+  UndoIcon,
 } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
@@ -24,16 +25,11 @@ import { usePromptStore } from "./store/promptStore";
 import { useRatioStore } from "./store/ratioStore";
 
 const CreatePanel = () => {
-  const selectedAspectRatio = useRatioStore(
-    (state) => state.selectedAspectRatio
-  );
-  const selectedFilter = useFilterStore((state) => state.selectedFilter);
-  const [promptValue, setPromptValue] = usePromptStore((state) => [
-    state.promptValue,
-    state.setPromptValue,
-  ]);
   const [
     images,
+    imageIndex,
+    prevImage,
+    nextImage,
     generateImage,
     upscaleImage,
     variationImage,
@@ -42,11 +38,14 @@ const CreatePanel = () => {
     setClear,
     isLoading,
     loadingType,
-    imageType,
     setImageType,
-    undoImage,
+    message,
+    setMessage,
   ] = useImageGenerationStore((state) => [
     state.images,
+    state.imageIndex,
+    state.prevImage,
+    state.nextImage,
     state.generateImage,
     state.upscaleImage,
     state.variationImage,
@@ -55,45 +54,54 @@ const CreatePanel = () => {
     state.setClear,
     state.isLoading,
     state.loadingType,
-    state.imageType,
     state.setImageType,
-    state.undoImage,
+    state.message,
+    state.setMessage,
+  ]);
+  const selectedAspectRatio = useRatioStore(
+    (state) => state.selectedAspectRatio
+  );
+  const selectedFilter = useFilterStore((state) => state.selectedFilter);
+  const [promptValue, setPromptValue] = usePromptStore((state) => [
+    state.promptValue,
+    state.setPromptValue,
   ]);
 
+  const hasImages = images.length > 0;
+  const currentImage = images[imageIndex];
+  const isFirst = imageIndex === 0;
+  const isLast = imageIndex === images.length - 1;
   const isGenerationLoading = isLoading && loadingType === "generation";
   const isUpscaleLoading = isLoading && loadingType === "upscale";
   const isVariationLoading = isLoading && loadingType === "variation";
-
-  console.log("images :", images);
 
   const handleClear = () => {
     setClear();
     setPromptValue("");
   };
 
-  const handleUndo = () => {
-    undoImage();
+  const handlePreviousImage = () => {
+    prevImage();
     setSelectedImage(0);
   };
 
-  const hasImages = images.length > 0;
-  const lastImage = images[images.length - 1];
-
-  const isUpscaledImage = imageType === "upscale";
-  const isVariationImage = imageType === "variation";
+  const handleNextImage = () => {
+    nextImage();
+    setSelectedImage(0);
+  };
 
   useEffect(() => {
-    handleMessageData(lastImage, setImageType);
-  }, [lastImage, setImageType]);
+    handleMessageData({ image: currentImage, setImageType, setMessage });
+  }, [currentImage, setImageType, setMessage]);
 
   return (
     <>
       <div className="h-[calc(100vh-57px)]">
         <div className="bg-background h-full">
           <div className="grid h-full lg:grid-cols-5">
-            <Sidebar className="hidden p-4 lg:block xl:px-8" />
-            <div className="col-span-3 lg:col-span-4 lg:border-l">
-              <div className="h-full px-4 py-6 xl:px-8">
+            <Sidebar className="bg-background z-10 hidden p-4 lg:block xl:px-8" />
+            <div className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">
+              <div className="h-full grow px-4 py-6 xl:px-8">
                 <div className="h-full flex-col border-none p-0 data-[state=active]:flex">
                   <div className="flex items-center justify-between">
                     <div className="space-y-1">
@@ -105,14 +113,24 @@ const CreatePanel = () => {
                       </p>
                     </div>
                     <div className="ml-auto space-x-2">
-                      {(hasImages || isUpscaledImage) && (
+                      {hasImages && (
                         <>
-                          {isUpscaledImage && (
-                            <Button onClick={handleUndo} variant="outline">
-                              <HistoryIcon className="mr-2 h-4 w-4" />
-                              Undo
-                            </Button>
-                          )}
+                          <Button
+                            onClick={handlePreviousImage}
+                            disabled={isLoading || isFirst}
+                            variant="outline"
+                          >
+                            <UndoIcon className="mr-2 h-4 w-4" />
+                            Undo
+                          </Button>
+                          <Button
+                            onClick={handleNextImage}
+                            disabled={isLoading || isLast}
+                            variant="outline"
+                          >
+                            <RedoIcon className="mr-2 h-4 w-4" />
+                            Redo
+                          </Button>
                           <Button onClick={handleClear} variant="secondary">
                             <Trash2Icon className="mr-2 h-4 w-4" />
                             Clear
@@ -121,10 +139,10 @@ const CreatePanel = () => {
                       )}
                       <Button
                         onClick={async () => generateImage(promptValue)}
-                        disabled={isLoading || isUpscaledImage}
+                        disabled={isLoading || hasImages}
                       >
                         {isGenerationLoading && !hasImages ? (
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
                         ) : (
                           <BrushIcon className="mr-2 h-4 w-4" />
                         )}
@@ -136,26 +154,20 @@ const CreatePanel = () => {
                   <TextareaPrompt />
                   <Sidebar className="lg:hidden" />
                   <ImageContainer />
-                  {hasImages && !isUpscaledImage && !imageSelected && (
-                    <div className="flex-center mt-4">
-                      Click on the image you want to upscale
-                    </div>
-                  )}
-                  {hasImages && !!imageSelected && (
+                  {hasImages && (
                     <div className="flex justify-center space-x-2">
-                      {" "}
                       <div className="flex-center mt-4">
                         <Button
                           onClick={async () =>
-                            variationImage(imageSelected, lastImage)
+                            variationImage(imageSelected, currentImage)
                           }
-                          disabled={isLoading || isUpscaledImage}
+                          disabled={isLoading || imageSelected === 0}
                           variant="outline"
                         >
                           {isVariationLoading ? (
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
                           ) : (
-                            <IterationCcw className="mr-2 h-4 w-4" />
+                            <IterationCcwIcon className="mr-2 h-4 w-4" />
                           )}
                           Variation
                         </Button>
@@ -163,15 +175,15 @@ const CreatePanel = () => {
                       <div className="flex-center mt-4">
                         <Button
                           onClick={async () =>
-                            upscaleImage(imageSelected, lastImage)
+                            upscaleImage(imageSelected, currentImage)
                           }
-                          disabled={isLoading || isUpscaledImage}
+                          disabled={isLoading || imageSelected === 0}
                           variant="secondary"
                         >
                           {isUpscaleLoading ? (
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
                           ) : (
-                            <ArrowBigUp className="mr-2 h-4 w-4" />
+                            <ArrowBigUpIcon className="mr-2 h-4 w-4" />
                           )}
                           Upscale
                         </Button>
@@ -180,11 +192,14 @@ const CreatePanel = () => {
                   )}
                 </div>
               </div>
+              <div className="bg-background flex-center sticky bottom-0 h-6 border-t">
+                <p className="px-4 text-xs">{message}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <Toaster position="bottom-center" />
+      <Toaster position="bottom-right" />
     </>
   );
 };
