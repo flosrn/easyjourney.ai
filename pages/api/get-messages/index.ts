@@ -27,7 +27,6 @@ const findMessage = ({
   currentTimestamp?: number;
 }): APIMessage | undefined => {
   const content = option === "upscale" ? `Image #${index}` : "Variations";
-  console.log("currentTimestamp :", currentTimestamp);
   return messages.find(
     (msg) =>
       msg.content.includes(prompt) &&
@@ -100,6 +99,11 @@ const findAttachmentInMessages = async (
     await wait(2000);
     const messages = await retrieveMessages(50);
     const targetMessage = findMessage({ messages, prompt, index, option });
+
+    if (targetMessage && targetMessage.attachments.length === 0) {
+      console.log("no attachment found");
+      loading(null);
+    }
 
     if (targetMessage && targetMessage.attachments.length > 0) {
       attachment = targetMessage.attachments[0];
