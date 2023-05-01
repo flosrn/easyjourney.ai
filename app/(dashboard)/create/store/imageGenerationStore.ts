@@ -3,35 +3,38 @@ import { create } from "zustand";
 
 import { readStreamData } from "../lib/imageGenerationUtils";
 
+export type ImageData = APIAttachment & {
+  type?: string;
+  prompt: string;
+  messageId: string;
+  messageHash: string;
+  error?: string;
+};
+
 type ImageGenerationState = {
-  image: APIAttachment | null;
-  upscaledImage: APIAttachment | null;
+  images: ImageData[];
+  imageType: "generation" | "upscale" | "variation" | null;
   isLoading: boolean;
-  isImageGenerated: boolean;
-  isImageUpscaled: boolean;
   error: string | unknown | null;
   message?: string;
   selectedImage: number | null;
   loadingType: "generation" | "upscale" | "variation" | null;
 };
 
-type ImageData = APIAttachment & {
-  prompt: string;
-  messageId: string;
-  messageHash: string;
-};
-
 export type ImageGenerationSetAction = {
-  setImage: (image: APIAttachment | null) => void;
-  setUpscaledImage: (image: APIAttachment | null) => void;
+  addImage: (image: ImageData) => void;
+  setImageType: (
+    imageType: "generation" | "upscale" | "variation" | null
+  ) => void;
   setIsLoading: (isLoading: boolean) => void;
   setError: (error: string | unknown | null) => void;
   setMessage: (message: string) => void;
-  setSelectedImage: (imageSelected: number) => void;
+  setSelectedImage: (imageSelected: number | null) => void;
   setClear: () => void;
   setLoadingType: (
     loadingType: "generation" | "upscale" | "variation" | null
   ) => void;
+  undoImage: () => void;
 };
 
 type ImageGenerationAction = ImageGenerationSetAction & {
@@ -43,11 +46,29 @@ type ImageGenerationAction = ImageGenerationSetAction & {
 export const useImageGenerationStore = create<
   ImageGenerationAction & ImageGenerationState
 >()((set) => {
-  const setImage = (image: APIAttachment | null) => {
-    set(() => ({ image }));
+  const addImage = (image: ImageData) => {
+    set((state) => {
+      const isGenerated = image.type === "generation_complete";
+      const isUpscaled = image.type === "image_upscaled";
+      const isVariation = image.type === "variation_complete";
+      const isIteration = image.type === "image_iteration";
+      const isLoading = image.type === "loading";
+      if (isGenerated || isUpscaled || isVariation) {
+        const images = [...state.images, image];
+        return { images };
+      } else if (isIteration) {
+        return { images: [image] };
+      } else if (isLoading) {
+        return { images: [...state.images] };
+      } else {
+        return { images: [] };
+      }
+    });
   };
-  const setUpscaledImage = (upscaledImage: APIAttachment | null) => {
-    set(() => ({ upscaledImage }));
+  const setImageType = (
+    imageType: "generation" | "upscale" | "variation" | null
+  ) => {
+    set(() => ({ imageType }));
   };
   const setIsLoading = (isLoading: boolean) => {
     set(() => ({ isLoading }));
@@ -58,15 +79,13 @@ export const useImageGenerationStore = create<
   const setMessage = (message: string) => {
     set(() => ({ message }));
   };
-  const setSelectedImage = (index: number) => {
+  const setSelectedImage = (index: number | null) => {
     set(() => ({ selectedImage: index }));
   };
   const setClear = () => {
     set(() => ({
-      image: null,
+      images: [],
       isLoading: false,
-      isImageGenerated: false,
-      isImageUpscaled: false,
       error: null,
       message: "",
       selectedImage: null,
@@ -77,31 +96,36 @@ export const useImageGenerationStore = create<
   ) => {
     set(() => ({ loadingType }));
   };
+  const undoImage = () => {
+    set((state) => {
+      const images = [...state.images];
+      images.pop();
+      return { images };
+    });
+  };
 
   const actions = {
-    setImage,
-    setUpscaledImage,
+    addImage,
+    setImageType,
     setIsLoading,
     setError,
     setMessage,
     setSelectedImage,
     setClear,
     setLoadingType,
+    undoImage,
   };
 
   return {
-    image: null,
-    upscaledImage: null,
+    images: [],
+    imageType: null,
     isLoading: false,
-    isImageGenerated: false,
-    isImageUpscaled: false,
     error: null,
     message: "",
     selectedImage: null,
     loadingType: null,
     ...actions,
     generateImage: async (prompt) => {
-      setImage(null);
       setIsLoading(true);
       setError(null);
       setMessage("");
@@ -146,6 +170,7 @@ export const useImageGenerationStore = create<
       setError(null);
       setMessage("");
       setLoadingType("upscale");
+      setSelectedImage(0);
 
       const { prompt, messageId, messageHash } = image;
 
@@ -192,6 +217,7 @@ export const useImageGenerationStore = create<
       setError(null);
       setMessage("");
       setLoadingType("variation");
+      setSelectedImage(null);
 
       const { prompt, messageId, messageHash } = image;
 

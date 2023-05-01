@@ -1,49 +1,40 @@
-import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
 
-import type { ImageGenerationSetAction } from "../store/imageGenerationStore";
-
-type MessageData = APIAttachment & {
-  type: string;
-  error?: string;
-};
+import type {
+  ImageData,
+  ImageGenerationSetAction,
+} from "../store/imageGenerationStore";
 
 export const handleMessageData = (
-  data: MessageData,
-  actions: ImageGenerationSetAction
+  image: ImageData | null,
+  setImageType: (
+    imageType: "generation" | "upscale" | "variation" | null
+  ) => void
 ) => {
-  actions.setLoadingType(null);
-  switch (data.type) {
+  switch (image?.type) {
     case "loading": {
       break;
     }
     case "image_iteration": {
-      actions.setImage(data);
       break;
     }
     case "generation_complete": {
-      actions.setImage(data);
-      actions.setIsLoading(false);
+      setImageType("generation");
       toast.success("Poster successfully generated!");
       break;
     }
     case "image_upscaled": {
-      actions.setUpscaledImage(data);
-      actions.setIsLoading(false);
+      setImageType("upscale");
       toast.success("Poster successfully upscaled!");
       break;
     }
     case "variation_complete": {
-      actions.setImage(data);
-      actions.setIsLoading(false);
-      actions.setSelectedImage(0);
+      setImageType("variation");
       toast.success("Variation successfully generated!");
       break;
     }
     case "generation_failed": {
       toast.error("Poster generation failed");
-      actions.setIsLoading(false);
-      actions.setError(data.error);
       break;
     }
     case "message_not_found": {
@@ -83,8 +74,12 @@ export const readStreamData = async (
 
       try {
         const data = JSON.parse(jsonString);
+        console.log("data :", data);
 
-        handleMessageData(data, actions);
+        data && actions.addImage(data);
+        actions.setIsLoading(false);
+        actions.setLoadingType(null);
+        // handleMessageData(data, actions);
       } catch (error: unknown) {
         console.log("error :", error);
         toast.error("Poster generation failed");

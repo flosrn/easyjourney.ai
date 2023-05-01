@@ -8,24 +8,27 @@ import LoadingDots from "./LoadingDots";
 type ImageContainerProps = {};
 
 const ImageContainer = ({}: ImageContainerProps) => {
-  const [image, upscaledImage, message, selectedImage, setSelectedImage] =
+  const [images, message, selectedImage, setSelectedImage, imageType] =
     useImageGenerationStore((state) => [
-      state.image,
-      state.upscaledImage,
+      state.images,
       state.message,
       state.selectedImage,
       state.setSelectedImage,
+      state.imageType,
     ]);
+  const hasImage = images.length > 0;
+  const lastImage = images[images.length - 1];
+  const upscaledImage = imageType === "upscale";
   return (
     <div className="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed p-4">
-      {upscaledImage || image ? (
+      {upscaledImage || hasImage ? (
         <div className="relative h-full overflow-hidden">
           <img
-            src={upscaledImage?.url ?? image?.url}
+            src={lastImage.url}
             alt=""
             className="h-full min-w-[420px] rounded-md"
           />
-          {image && !upscaledImage && (
+          {hasImage && !upscaledImage && (
             <ImageGrid
               selectedImage={selectedImage}
               clickHandler={setSelectedImage}

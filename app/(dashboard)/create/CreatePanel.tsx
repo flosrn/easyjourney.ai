@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ArrowBigUp,
   BrushIcon,
@@ -17,6 +17,7 @@ import { Separator } from "~/components/ui/Separator";
 import ImageContainer from "./components/ImageContainer";
 import TextareaPrompt from "./components/TextareaPrompt";
 import Sidebar from "./components/sidebar/Sidebar";
+import { handleMessageData } from "./lib/imageGenerationUtils";
 import { useFilterStore } from "./store/filterStore";
 import { useImageGenerationStore } from "./store/imageGenerationStore";
 import { usePromptStore } from "./store/promptStore";
@@ -32,34 +33,38 @@ const CreatePanel = () => {
     state.setPromptValue,
   ]);
   const [
-    image,
+    images,
     generateImage,
-    upscaledImage,
     upscaleImage,
-    setUpscaledImage,
     variationImage,
     imageSelected,
     setSelectedImage,
     setClear,
     isLoading,
     loadingType,
+    imageType,
+    setImageType,
+    undoImage,
   ] = useImageGenerationStore((state) => [
-    state.image,
+    state.images,
     state.generateImage,
-    state.upscaledImage,
     state.upscaleImage,
-    state.setUpscaledImage,
     state.variationImage,
     state.selectedImage,
     state.setSelectedImage,
     state.setClear,
     state.isLoading,
     state.loadingType,
+    state.imageType,
+    state.setImageType,
+    state.undoImage,
   ]);
 
   const isGenerationLoading = isLoading && loadingType === "generation";
   const isUpscaleLoading = isLoading && loadingType === "upscale";
   const isVariationLoading = isLoading && loadingType === "variation";
+
+  console.log("images :", images);
 
   const handleClear = () => {
     setClear();
@@ -67,9 +72,19 @@ const CreatePanel = () => {
   };
 
   const handleUndo = () => {
-    setUpscaledImage(null);
+    undoImage();
     setSelectedImage(0);
   };
+
+  const hasImages = images.length > 0;
+  const lastImage = images[images.length - 1];
+
+  const isUpscaledImage = imageType === "upscale";
+  const isVariationImage = imageType === "variation";
+
+  useEffect(() => {
+    handleMessageData(lastImage, setImageType);
+  }, [lastImage, setImageType]);
 
   return (
     <>
@@ -90,9 +105,9 @@ const CreatePanel = () => {
                       </p>
                     </div>
                     <div className="ml-auto space-x-2">
-                      {(image || upscaledImage) && (
+                      {(hasImages || isUpscaledImage) && (
                         <>
-                          {upscaledImage && (
+                          {isUpscaledImage && (
                             <Button onClick={handleUndo} variant="outline">
                               <HistoryIcon className="mr-2 h-4 w-4" />
                               Undo
@@ -106,9 +121,9 @@ const CreatePanel = () => {
                       )}
                       <Button
                         onClick={async () => generateImage(promptValue)}
-                        disabled={isLoading || !!upscaledImage}
+                        disabled={isLoading || isUpscaledImage}
                       >
-                        {isGenerationLoading && !image ? (
+                        {isGenerationLoading && !hasImages ? (
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         ) : (
                           <BrushIcon className="mr-2 h-4 w-4" />
@@ -121,22 +136,20 @@ const CreatePanel = () => {
                   <TextareaPrompt />
                   <Sidebar className="lg:hidden" />
                   <ImageContainer />
-                  {image && !upscaledImage && !imageSelected && (
+                  {hasImages && !isUpscaledImage && !imageSelected && (
                     <div className="flex-center mt-4">
                       Click on the image you want to upscale
                     </div>
                   )}
-                  {image && !!imageSelected && (
+                  {hasImages && !!imageSelected && (
                     <div className="flex justify-center space-x-2">
                       {" "}
                       <div className="flex-center mt-4">
                         <Button
                           onClick={async () =>
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-expect-error
-                            variationImage(imageSelected, image)
+                            variationImage(imageSelected, lastImage)
                           }
-                          disabled={isLoading || !!upscaledImage}
+                          disabled={isLoading || isUpscaledImage}
                           variant="outline"
                         >
                           {isVariationLoading ? (
@@ -150,11 +163,9 @@ const CreatePanel = () => {
                       <div className="flex-center mt-4">
                         <Button
                           onClick={async () =>
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-expect-error
-                            upscaleImage(imageSelected, image)
+                            upscaleImage(imageSelected, lastImage)
                           }
-                          disabled={isLoading || !!upscaledImage}
+                          disabled={isLoading || isUpscaledImage}
                           variant="secondary"
                         >
                           {isUpscaleLoading ? (

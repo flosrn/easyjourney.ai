@@ -2,6 +2,8 @@
 import type { APIAttachment, APIMessage } from "discord-api-types/v10";
 import { retrieveMessages, wait } from "~/utils/midjourneyUtils";
 
+import type { ImageData } from "../../../app/(dashboard)/create/store/imageGenerationStore";
+
 // https://vercel.com/docs/concepts/functions/edge-functions
 export const config = {
   runtime: "edge",
@@ -9,12 +11,12 @@ export const config = {
 
 const uriToHash = (uri: string) => uri.split("_").pop()?.split(".")[0] ?? "";
 
-const findMessageByContent = (
+const findMessage = (
   messages: APIMessage[],
   prompt: string,
   index?: number,
-  waitingToStart?: boolean,
-  option?: "upscale" | "variation"
+  option?: "upscale" | "variation",
+  waitingToStart = false
 ): APIMessage | undefined => {
   const content = option === "upscale" ? `Image #${index}` : "Variations";
   return messages.find(
@@ -25,67 +27,86 @@ const findMessageByContent = (
   );
 };
 
-const retrieveMessagesUntilFinal = async (
-  limit: number,
+const waitForMessage = async (
+  prompt: string,
+  index?: number,
+  option?: "upscale" | "variation"
+): Promise<APIMessage> => {
+  let message: APIMessage | undefined;
+  while (!message) {
+    await wait(3000);
+    const messages = await retrieveMessages(50);
+    message = findMessage(messages, prompt, index, option);
+  }
+  return message;
+};
+
+const findAttachmentInMessages = async (
   prompt: string,
   loading: (attachment: APIAttachment | null) => void,
   index?: number,
   option?: "upscale" | "variation"
-) => {
-  let message: APIMessage | null | undefined = null;
-  const isUpscaledImage = index !== undefined;
+): Promise<ImageData | undefined> => {
+  const initialMessage = await waitForMessage(prompt, index, option);
+  const targetTimestamp = initialMessage.timestamp;
+  let attachment: APIAttachment | undefined;
 
-  while (!message) {
-    await wait(3000);
-    const messages = await retrieveMessages(limit);
-    message = findMessageByContent(
-      messages,
-      prompt,
-      index,
-      !isUpscaledImage,
-      option
-    );
+  if (
+    index &&
+    option &&
+    initialMessage.attachments.length > 0 &&
+    initialMessage.attachments[0].url.endsWith(".png")
+  ) {
+    attachment = initialMessage.attachments[0];
+    return {
+      ...attachment,
+      prompt: initialMessage.content.split("**")[1],
+      messageId: initialMessage.id,
+      messageHash: uriToHash(attachment.url),
+    };
   }
 
-  const targetMessageTimestamp: string = message.timestamp;
-  let attachment: APIAttachment | null = null;
-  let finalImageFound = false;
-
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  while (!finalImageFound) {
-    await wait(3000);
-    const messages = await retrieveMessages(limit);
-    const targetMessage = findMessageByContent(messages, prompt);
-
-    if (!attachment) {
-      console.log("no attachment found");
-      loading(null);
-    }
+  while (!attachment?.url.endsWith(".png")) {
+    await wait(2000);
+    const messages = await retrieveMessages(50);
+    const targetMessage = findMessage(messages, prompt, index, option);
 
     if (targetMessage && targetMessage.attachments.length > 0) {
       attachment = targetMessage.attachments[0];
 
-      const isWebp = attachment.url.endsWith(".webp");
-      const isPng = attachment.url.endsWith(".png");
-      const isFinalImage = isUpscaledImage
-        ? true
-        : targetMessage.timestamp > targetMessageTimestamp;
-
-      if (isWebp) {
-        console.log("webp image found");
+      if (attachment.url.endsWith(".webp")) {
+        console.log("webp found");
         loading(attachment);
-      } else if (isPng && isFinalImage) {
-        console.log("final image found:", attachment.url);
-        finalImageFound = true;
+      } else if (
+        attachment.url.endsWith(".png") &&
+        targetMessage.timestamp > targetTimestamp
+      ) {
+        console.log("png found");
         return {
           ...attachment,
-          prompt: message.content.split("**")[1],
+          prompt: initialMessage.content.split("**")[1],
           messageId: targetMessage.id,
           messageHash: uriToHash(attachment.url),
         };
       }
     }
   }
+};
+
+const retrieveMessagesUntilFinal = async (
+  limit: number,
+  prompt: string,
+  loading: (attachment: APIAttachment | null) => void,
+  index?: number,
+  option?: "upscale" | "variation"
+): Promise<ImageData | undefined> => {
+  const attachment = await findAttachmentInMessages(
+    prompt,
+    loading,
+    index,
+    option
+  );
+  return attachment;
 };
 
 const getMessageType = (option?: "upscale" | "variation") => {
