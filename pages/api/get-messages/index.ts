@@ -30,13 +30,16 @@ const findMessage = (
 const waitForMessage = async (
   prompt: string,
   index?: number,
-  option?: "upscale" | "variation"
+  option?: "upscale" | "variation",
+  loading?: (attachment: APIAttachment | null) => void
 ): Promise<APIMessage> => {
   let message: APIMessage | undefined;
   while (!message) {
     await wait(3000);
     const messages = await retrieveMessages(50);
     message = findMessage(messages, prompt, index, option);
+    !message && console.log("initial message not found");
+    !message && loading?.(null);
   }
   return message;
 };
@@ -47,7 +50,7 @@ const findAttachmentInMessages = async (
   index?: number,
   option?: "upscale" | "variation"
 ): Promise<ImageData | undefined> => {
-  const initialMessage = await waitForMessage(prompt, index, option);
+  const initialMessage = await waitForMessage(prompt, index, option, loading);
   const targetTimestamp = initialMessage.timestamp;
   let attachment: APIAttachment | undefined;
 
@@ -58,6 +61,7 @@ const findAttachmentInMessages = async (
     initialMessage.attachments[0].url.endsWith(".png")
   ) {
     attachment = initialMessage.attachments[0];
+    console.log("variation or upscale found");
     return {
       ...attachment,
       prompt: initialMessage.content.split("**")[1],

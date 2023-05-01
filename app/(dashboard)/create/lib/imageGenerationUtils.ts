@@ -16,6 +16,7 @@ export const handleMessageData = ({
 }) => {
   switch (image?.type) {
     case "loading": {
+      console.log("loading");
       break;
     }
     case "image_iteration": {

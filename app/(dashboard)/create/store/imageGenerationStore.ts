@@ -99,6 +99,7 @@ export const useImageGenerationStore = create<
       const isVariation = image.type === "variation_complete";
       const isIteration = image.type === "image_iteration";
       const isLoading = image.type === "loading";
+      console.log("image :", image);
       setTimeout(() => {
         isGenerated && toast.success("Poster successfully generated!");
         isUpscaled && toast.success("Poster successfully upscaled!");
@@ -143,7 +144,7 @@ export const useImageGenerationStore = create<
     isLoading: false,
     error: null,
     message: "",
-    selectedImage: null,
+    selectedImage: 0,
     loadingType: null,
     showActionsButtons: false,
     ...actions,
@@ -233,7 +234,7 @@ export const useImageGenerationStore = create<
       setError(null);
       setMessage("");
       setLoadingType("variation");
-      setSelectedImage(null);
+      setSelectedImage(0);
 
       const { prompt, messageId, messageHash } = image;
 
