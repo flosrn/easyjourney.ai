@@ -111,10 +111,7 @@ export const useImageGenerationStore = create<
           imageIndex: [...state.images, image].length - 1,
         };
       } else if (isLoading) {
-        return {
-          images: [...state.images],
-          imageIndex: [...state.images].length - 1,
-        };
+        return { images: [...state.images] };
       } else if (isIteration) {
         return { images: [image], imageIndex: 0 };
       } else {
@@ -150,9 +147,9 @@ export const useImageGenerationStore = create<
     ...actions,
     generateImage: async (prompt) => {
       setIsLoading(true);
+      setLoadingType("generation");
       setError(null);
       setMessage("");
-      setLoadingType("generation");
 
       try {
         const { status } = await fetch("/api/imagine", {
@@ -187,9 +184,9 @@ export const useImageGenerationStore = create<
     },
     upscaleImage: async (index, image) => {
       setIsLoading(true);
+      setLoadingType("upscale");
       setError(null);
       setMessage("");
-      setLoadingType("upscale");
       setSelectedImage(0);
 
       const { prompt, messageId, messageHash } = image;
@@ -231,9 +228,9 @@ export const useImageGenerationStore = create<
     },
     variationImage: async (index, image) => {
       setIsLoading(true);
+      setLoadingType("variation");
       setError(null);
       setMessage("");
-      setLoadingType("variation");
       setSelectedImage(0);
 
       const { prompt, messageId, messageHash } = image;

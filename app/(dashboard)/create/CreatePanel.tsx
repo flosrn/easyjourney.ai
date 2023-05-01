@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import {
   ArrowBigUpIcon,
   BrushIcon,
@@ -38,6 +38,8 @@ const CreatePanel = () => {
     setClear,
     isLoading,
     loadingType,
+    setIsLoading,
+    setLoadingType,
     setImageType,
     message,
     setMessage,
@@ -54,6 +56,8 @@ const CreatePanel = () => {
     state.setClear,
     state.isLoading,
     state.loadingType,
+    state.setIsLoading,
+    state.setLoadingType,
     state.setImageType,
     state.message,
     state.setMessage,
@@ -90,9 +94,19 @@ const CreatePanel = () => {
     setSelectedImage(0);
   };
 
+  const actions = useMemo(
+    () => ({
+      setImageType,
+      setMessage,
+      setIsLoading,
+      setLoadingType,
+    }),
+    [setImageType, setMessage, setIsLoading, setLoadingType]
+  );
+
   useEffect(() => {
-    handleMessageData({ image: currentImage, setImageType, setMessage });
-  }, [currentImage, setImageType, setMessage]);
+    handleMessageData({ image: currentImage, ...actions });
+  }, [currentImage, actions]);
 
   return (
     <>

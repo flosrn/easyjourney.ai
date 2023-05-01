@@ -11,19 +11,29 @@ export const config = {
 
 const uriToHash = (uri: string) => uri.split("_").pop()?.split(".")[0] ?? "";
 
-const findMessage = (
-  messages: APIMessage[],
-  prompt: string,
-  index?: number,
-  option?: "upscale" | "variation",
-  waitingToStart = false
-): APIMessage | undefined => {
+const findMessage = ({
+  messages,
+  prompt,
+  index,
+  option,
+  waitingToStart,
+  currentTimestamp,
+}: {
+  messages: APIMessage[];
+  prompt: string;
+  index?: number;
+  option?: "upscale" | "variation";
+  waitingToStart?: boolean;
+  currentTimestamp?: number;
+}): APIMessage | undefined => {
   const content = option === "upscale" ? `Image #${index}` : "Variations";
+  console.log("currentTimestamp :", currentTimestamp);
   return messages.find(
     (msg) =>
       msg.content.includes(prompt) &&
       (index ? msg.content.includes(content) : true) &&
-      msg.content.includes(waitingToStart ? "(Waiting to start)" : "")
+      msg.content.includes(waitingToStart ? "(Waiting to start)" : "") &&
+      (currentTimestamp ? Date.parse(msg.timestamp) > currentTimestamp : true)
   );
 };
 
@@ -31,13 +41,21 @@ const waitForMessage = async (
   prompt: string,
   index?: number,
   option?: "upscale" | "variation",
-  loading?: (attachment: APIAttachment | null) => void
+  loading?: (attachment: APIAttachment | null) => void,
+  currentTimestamp?: number
 ): Promise<APIMessage> => {
   let message: APIMessage | undefined;
   while (!message) {
     await wait(3000);
     const messages = await retrieveMessages(50);
-    message = findMessage(messages, prompt, index, option);
+    message = findMessage({
+      messages,
+      prompt,
+      index,
+      option,
+      currentTimestamp,
+      waitingToStart: !index && !option,
+    });
     !message && console.log("initial message not found");
     !message && loading?.(null);
   }
@@ -50,7 +68,15 @@ const findAttachmentInMessages = async (
   index?: number,
   option?: "upscale" | "variation"
 ): Promise<ImageData | undefined> => {
-  const initialMessage = await waitForMessage(prompt, index, option, loading);
+  const currentTimestamp = index && option && Date.now();
+  const initialMessage = await waitForMessage(
+    prompt,
+    index,
+    option,
+    loading,
+    currentTimestamp
+  );
+  console.log("initial message found");
   const targetTimestamp = initialMessage.timestamp;
   let attachment: APIAttachment | undefined;
 
@@ -73,7 +99,7 @@ const findAttachmentInMessages = async (
   while (!attachment?.url.endsWith(".png")) {
     await wait(2000);
     const messages = await retrieveMessages(50);
-    const targetMessage = findMessage(messages, prompt, index, option);
+    const targetMessage = findMessage({ messages, prompt, index, option });
 
     if (targetMessage && targetMessage.attachments.length > 0) {
       attachment = targetMessage.attachments[0];

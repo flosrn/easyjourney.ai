@@ -9,11 +9,16 @@ export const handleMessageData = ({
   image,
   setImageType,
   setMessage,
+  setIsLoading,
+  setLoadingType,
 }: {
   image: ImageData | undefined;
   setImageType: ImageGenerationSetAction["setImageType"];
   setMessage: ImageGenerationSetAction["setMessage"];
+  setIsLoading: ImageGenerationSetAction["setIsLoading"];
+  setLoadingType: ImageGenerationSetAction["setLoadingType"];
 }) => {
+  setLoadingType(null);
   switch (image?.type) {
     case "loading": {
       console.log("loading");
@@ -25,16 +30,19 @@ export const handleMessageData = ({
     case "generation_complete": {
       setImageType("generation");
       setMessage("Tips: click on one of the four images to continue");
+      setIsLoading(false);
       break;
     }
     case "image_upscaled": {
       setImageType("upscale");
       setMessage("");
+      setIsLoading(false);
       break;
     }
     case "variation_complete": {
       setImageType("variation");
       setMessage("Tips: click on one of the four images to continue");
+      setIsLoading(false);
       break;
     }
     case "generation_failed": {
@@ -79,9 +87,6 @@ export const readStreamData = async (
         const data = JSON.parse(jsonString);
 
         data && actions.addImage(data);
-        actions.setIsLoading(false);
-        actions.setLoadingType(null);
-        // handleMessageData(data, actions);
       } catch (error: unknown) {
         console.log("error :", error);
         toast.error("Poster generation failed");
