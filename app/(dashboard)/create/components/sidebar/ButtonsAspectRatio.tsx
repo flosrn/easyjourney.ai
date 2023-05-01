@@ -15,10 +15,10 @@ const ButtonsAspectRatio = ({}: ButtonsAspectRatioProps) => {
   );
   return (
     <div className="space-y-2">
-      {aspectRatios.map(({ ratio, name }) => (
+      {aspectRatios.map(({ ratio, name, value }) => (
         <Button
           key={ratio}
-          onClick={() => setSelectedAspectRatio({ ratio, name })}
+          onClick={() => setSelectedAspectRatio({ ratio, name, value })}
           variant="outline"
           size="xs"
           className={cn("mr-2", {

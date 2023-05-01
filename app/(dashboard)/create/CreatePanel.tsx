@@ -137,31 +137,31 @@ const CreatePanel = () => {
                         Create your own poster
                       </p>
                     </div>
-                    <div className="ml-auto space-x-2">
+                    <div className="ml-auto flex space-x-2">
                       <>
                         <Button
                           onClick={handlePreviousImage}
                           disabled={isLoading || isFirst}
                           variant="outline"
                         >
-                          <UndoIcon className="mr-2 h-4 w-4" />
-                          Undo
+                          <UndoIcon className="h-4 w-4 md:mr-2" />
+                          <span className="hidden md:block">Undo</span>
                         </Button>
                         <Button
                           onClick={handleNextImage}
                           disabled={isLoading || isLast || !hasImages}
                           variant="outline"
                         >
-                          <RedoIcon className="mr-2 h-4 w-4" />
-                          Redo
+                          <RedoIcon className="h-4 w-4 md:mr-2" />
+                          <span className="hidden md:block">Redo</span>
                         </Button>
                         <Button
                           onClick={handleClear}
                           variant="secondary"
                           disabled={isEmpty}
                         >
-                          <Trash2Icon className="mr-2 h-4 w-4" />
-                          Clear
+                          <Trash2Icon className="h-4 w-4 md:mr-2" />
+                          <span className="hidden md:block">Clear</span>
                         </Button>
                       </>
                       <Button
@@ -171,9 +171,9 @@ const CreatePanel = () => {
                         {isGenerationLoading ? (
                           <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
                         ) : (
-                          <BrushIcon className="mr-2 h-4 w-4" />
+                          <BrushIcon className="h-4 w-4 md:mr-2" />
                         )}
-                        Generate
+                        <span className="hidden md:block">Generate</span>
                       </Button>
                     </div>
                   </div>
@@ -181,42 +181,40 @@ const CreatePanel = () => {
                   <TextareaPrompt />
                   <Sidebar className="lg:hidden" />
                   <ImageContainer />
-                  {hasImages && (
-                    <div className="flex justify-center space-x-2">
-                      <div className="flex-center mt-4">
-                        <Button
-                          onClick={async () =>
-                            variationImage(imageSelected, currentImage)
-                          }
-                          disabled={isLoading || imageSelected === 0}
-                          variant="outline"
-                        >
-                          {isVariationLoading ? (
-                            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                          ) : (
-                            <IterationCcwIcon className="mr-2 h-4 w-4" />
-                          )}
-                          Variation
-                        </Button>
-                      </div>
-                      <div className="flex-center mt-4">
-                        <Button
-                          onClick={async () =>
-                            upscaleImage(imageSelected, currentImage)
-                          }
-                          disabled={isLoading || imageSelected === 0}
-                          variant="secondary"
-                        >
-                          {isUpscaleLoading ? (
-                            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                          ) : (
-                            <ArrowBigUpIcon className="mr-2 h-4 w-4" />
-                          )}
-                          Upscale
-                        </Button>
-                      </div>
+                  <div className="flex justify-center space-x-2">
+                    <div className="flex-center mt-4">
+                      <Button
+                        onClick={async () =>
+                          variationImage(imageSelected, currentImage)
+                        }
+                        disabled={isLoading || imageSelected === 0}
+                        variant="outline"
+                      >
+                        {isVariationLoading ? (
+                          <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                          <IterationCcwIcon className="mr-2 h-4 w-4" />
+                        )}
+                        Variation
+                      </Button>
                     </div>
-                  )}
+                    <div className="flex-center mt-4">
+                      <Button
+                        onClick={async () =>
+                          upscaleImage(imageSelected, currentImage)
+                        }
+                        disabled={isLoading || imageSelected === 0}
+                        variant="secondary"
+                      >
+                        {isUpscaleLoading ? (
+                          <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                          <ArrowBigUpIcon className="mr-2 h-4 w-4" />
+                        )}
+                        Upscale
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="bg-background flex-center sticky bottom-0 h-6 border-t">
