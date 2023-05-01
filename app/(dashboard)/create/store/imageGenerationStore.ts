@@ -99,7 +99,6 @@ export const useImageGenerationStore = create<
       const isVariation = image.type === "variation_complete";
       const isIteration = image.type === "image_iteration";
       const isLoading = image.type === "loading";
-      console.log("image :", image);
       setTimeout(() => {
         isGenerated && toast.success("Poster successfully generated!");
         isUpscaled && toast.success("Poster successfully upscaled!");

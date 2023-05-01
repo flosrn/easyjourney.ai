@@ -18,6 +18,8 @@ import { Separator } from "~/components/ui/Separator";
 import ImageContainer from "./components/ImageContainer";
 import TextareaPrompt from "./components/TextareaPrompt";
 import Sidebar from "./components/sidebar/Sidebar";
+import { aspectRatios } from "./data/aspectRatios";
+import { styleFilters } from "./data/styleFilters";
 import { handleMessageData } from "./lib/imageGenerationUtils";
 import { useFilterStore } from "./store/filterStore";
 import { useImageGenerationStore } from "./store/imageGenerationStore";
@@ -62,10 +64,13 @@ const CreatePanel = () => {
     state.message,
     state.setMessage,
   ]);
-  const selectedAspectRatio = useRatioStore(
-    (state) => state.selectedAspectRatio
+  const [selectedAspectRatio, setSelectedAspectRatio] = useRatioStore(
+    (state) => [state.selectedAspectRatio, state.setSelectedAspectRatio]
   );
-  const selectedFilter = useFilterStore((state) => state.selectedFilter);
+  const [selectedFilter, setSelectedFilter] = useFilterStore((state) => [
+    state.selectedFilter,
+    state.setSelectedFilter,
+  ]);
   const [promptValue, setPromptValue] = usePromptStore((state) => [
     state.promptValue,
     state.setPromptValue,
@@ -78,10 +83,16 @@ const CreatePanel = () => {
   const isGenerationLoading = isLoading && loadingType === "generation";
   const isUpscaleLoading = isLoading && loadingType === "upscale";
   const isVariationLoading = isLoading && loadingType === "variation";
+  const { style } = selectedFilter;
+  const { ratio } = selectedAspectRatio;
+  const prompt = `${promptValue}${style ? `, ${style}` : ""} ${ratio}`;
+  const isEmpty = !prompt || prompt.length <= 1;
 
   const handleClear = () => {
     setClear();
     setPromptValue("");
+    setSelectedAspectRatio(aspectRatios[0]);
+    setSelectedFilter(styleFilters[0]);
   };
 
   const handlePreviousImage = () => {
@@ -127,35 +138,37 @@ const CreatePanel = () => {
                       </p>
                     </div>
                     <div className="ml-auto space-x-2">
-                      {hasImages && (
-                        <>
-                          <Button
-                            onClick={handlePreviousImage}
-                            disabled={isLoading || isFirst}
-                            variant="outline"
-                          >
-                            <UndoIcon className="mr-2 h-4 w-4" />
-                            Undo
-                          </Button>
-                          <Button
-                            onClick={handleNextImage}
-                            disabled={isLoading || isLast}
-                            variant="outline"
-                          >
-                            <RedoIcon className="mr-2 h-4 w-4" />
-                            Redo
-                          </Button>
-                          <Button onClick={handleClear} variant="secondary">
-                            <Trash2Icon className="mr-2 h-4 w-4" />
-                            Clear
-                          </Button>
-                        </>
-                      )}
+                      <>
+                        <Button
+                          onClick={handlePreviousImage}
+                          disabled={isLoading || isFirst}
+                          variant="outline"
+                        >
+                          <UndoIcon className="mr-2 h-4 w-4" />
+                          Undo
+                        </Button>
+                        <Button
+                          onClick={handleNextImage}
+                          disabled={isLoading || isLast || !hasImages}
+                          variant="outline"
+                        >
+                          <RedoIcon className="mr-2 h-4 w-4" />
+                          Redo
+                        </Button>
+                        <Button
+                          onClick={handleClear}
+                          variant="secondary"
+                          disabled={isEmpty}
+                        >
+                          <Trash2Icon className="mr-2 h-4 w-4" />
+                          Clear
+                        </Button>
+                      </>
                       <Button
-                        onClick={async () => generateImage(promptValue)}
-                        disabled={isLoading || hasImages}
+                        onClick={async () => generateImage(prompt)}
+                        disabled={isLoading}
                       >
-                        {isGenerationLoading && !hasImages ? (
+                        {isGenerationLoading ? (
                           <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
                         ) : (
                           <BrushIcon className="mr-2 h-4 w-4" />

@@ -12,7 +12,7 @@ export const styleFilters: StyleFilter[] = [
     name: "None",
     description:
       "A simple and clean design style that doesn't use any special effects.",
-    style: "None",
+    style: "",
     image: "/images/none.jpg",
   },
   {
