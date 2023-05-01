@@ -82,6 +82,11 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                   {peekedFilter.description}
                 </div>
               </div>
+              <img
+                src={peekedFilter.image}
+                alt={peekedFilter.name}
+                className="mt-4 w-full"
+              />
             </HoverCardContent>
             <Command loop>
               <CommandList className="h-[var(--cmdk-list-height)] max-h-[400px]">

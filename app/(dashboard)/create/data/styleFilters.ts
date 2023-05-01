@@ -21,54 +21,46 @@ export const styleFilters: StyleFilter[] = [
     description:
       "A visually striking and dramatic style often found in movies and film photography.",
     style: "Cinematic",
-    image: "/images/cinematic.jpg",
+    image: "/images/create/styles/camera/Cinematic.png",
   },
   {
     id: "2",
-    name: "Illustration",
+    name: "Golden Hour",
     description:
-      "A hand-drawn or digitally created artistic style that resembles illustrations in books and magazines.",
-    style: "Illustration",
-    image: "/images/illustration.jpg",
+      "A warm and vibrant art style that mimics the look of golden hour photography.",
+    style: "Golden Hour",
+    image: "/images/create/styles/camera/Golden_Hour.png",
   },
   {
     id: "3",
-    name: "Pop Art",
+    name: "Portrait",
     description:
-      "A colorful and bold art style inspired by popular culture, advertising, and mass media.",
-    style: "Pop Art",
-    image: "/images/popart.jpg",
+      "A soft and subtle art style that focuses on the subject's face and expression.",
+    style: "Portrait",
+    image: "/images/create/styles/camera/Portrait.png",
   },
   {
     id: "4",
-    name: "Minimalist",
+    name: "Action Scene",
     description:
-      "A clean and simple design style that focuses on essential elements and minimal detail.",
-    style: "Minimalist",
-    image: "/images/minimalist.jpg",
+      "A dynamic and energetic art style that mimics the look of action scenes in movies.",
+    style: "Action Scene",
+    image: "/images/create/styles/camera/Action_Scene.png",
   },
   {
     id: "5",
-    name: "Watercolor",
+    name: "Product Photography",
     description:
-      "A soft and fluid art style that mimics the look of traditional watercolor painting.",
-    style: "Watercolor",
-    image: "/images/watercolor.jpg",
+      "A clean and professional art style that mimics the look of product photography.",
+    style: "Product Photography",
+    image: "/images/create/styles/camera/Product_Photography.png",
   },
   {
     id: "6",
-    name: "Pixel Art",
+    name: "Film Noir Style",
     description:
-      "A digital art style that features pixel-like elements reminiscent of old-school video games.",
-    style: "Pixel Art",
-    image: "/images/pixelart.jpg",
-  },
-  {
-    id: "7",
-    name: "Sketch",
-    description:
-      "A rough and unrefined art style that resembles hand-drawn sketches and doodles.",
-    style: "Sketch",
-    image: "/images/sketch.jpg",
+      "A dark and moody art style that mimics the look of film noir photography.",
+    style: "Film Noir Style",
+    image: "/images/create/styles/camera/Film_Noir_Style.png",
   },
 ];
