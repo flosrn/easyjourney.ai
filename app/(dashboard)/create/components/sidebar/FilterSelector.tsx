@@ -61,6 +61,13 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
             aria-label="Select a model"
             className="w-full justify-between"
           >
+            {selectedFilter.image && (
+              <img
+                src={selectedFilter.image}
+                alt={selectedFilter.name}
+                className="h-6 w-6"
+              />
+            )}
             {selectedFilter.name || "Select a filter..."}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
@@ -82,11 +89,13 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                   {peekedFilter.description}
                 </div>
               </div>
-              <img
-                src={peekedFilter.image}
-                alt={peekedFilter.name}
-                className="mt-4 w-full"
-              />
+              {peekedFilter.image && (
+                <img
+                  src={peekedFilter.image}
+                  alt={peekedFilter.name}
+                  className="mt-4 w-full"
+                />
+              )}
             </HoverCardContent>
             <Command loop>
               <CommandList className="h-[var(--cmdk-list-height)] max-h-[400px]">

@@ -13,7 +13,7 @@ export const styleFilters: StyleFilter[] = [
     description:
       "A simple and clean design style that doesn't use any special effects.",
     style: "",
-    image: "/images/none.jpg",
+    image: "",
   },
   {
     id: "1",
@@ -49,7 +49,7 @@ export const styleFilters: StyleFilter[] = [
   },
   {
     id: "5",
-    name: "Product Photography",
+    name: "Product Shot",
     description:
       "A clean and professional art style that mimics the look of product photography.",
     style: "Product Photography",
