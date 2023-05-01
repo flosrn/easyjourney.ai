@@ -55,7 +55,6 @@ module.exports = {
     "no-new-wrappers": "error",
     "no-obj-calls": "error",
     "no-path-concat": "error",
-    "no-return-await": "error",
     "no-script-url": "error",
     "no-self-compare": "error",
     "no-sequences": "error",
@@ -114,6 +113,7 @@ module.exports = {
     "prettier/prettier": 0,
     "i18n-text/no-en": 0,
     "no-empty-pattern": 0,
+    "no-return-await": 0,
     "@typescript-eslint/ban-types": [
       "error",
       {

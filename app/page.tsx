@@ -1,11 +1,13 @@
 import React from "react";
 
 import HeroAnimateIcons from "~/components/HeroAnimateIcons";
+import Header from "~/components/header/Header";
 import { Button } from "~/components/ui/Button";
 
 export default async function IndexPage() {
   return (
     <>
+      <Header />
       <section className="container grid items-center justify-center gap-6 pb-8">
         <HeroAnimateIcons />
         <div className="flex max-w-[980px] flex-col items-center gap-2">
@@ -20,9 +22,7 @@ export default async function IndexPage() {
             beautiful posters in seconds. Create it and print it, it's so easy,
             you will receive your poster in 3 days.
           </p>
-          <Button variant="outline" href="/posters/popular">
-            Explore
-          </Button>
+          <Button href="/create">Create</Button>
         </div>
       </section>
     </>

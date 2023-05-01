@@ -1,0 +1,167 @@
+"use client";
+
+import * as React from "react";
+import { useState } from "react";
+import type { PopoverProps } from "@radix-ui/react-popover";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { useMutationObserver } from "~/hooks/use-mutation-observer";
+
+import { Button } from "~/components/ui/Button";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "~/components/ui/Command";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "~/components/ui/HoverCard";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/components/ui/Popover";
+import { ScrollArea } from "~/components/ui/ScrollArea";
+
+import { cn } from "~/lib/classNames";
+
+import type { StyleFilter } from "../../data/styleFilters";
+import { useFilterStore } from "../../store/filterStore";
+
+type ModelSelectorProps = PopoverProps & {};
+
+export function FilterSelector({ ...props }: ModelSelectorProps) {
+  const [open, setOpen] = useState<boolean>(false);
+  const [
+    filters,
+    selectedFilter,
+    setSelectedFilter,
+    peekedFilter,
+    setPeekedFilter,
+  ] = useFilterStore((state) => [
+    state.filters,
+    state.selectedFilter,
+    state.setSelectedFilter,
+    state.peekedFilter,
+    state.setPeekedFilter,
+  ]);
+
+  return (
+    <div className="grid gap-2">
+      <Popover open={open} onOpenChange={setOpen} {...props}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            aria-label="Select a model"
+            className="w-full justify-between"
+          >
+            {selectedFilter.image && (
+              <img
+                src={selectedFilter.image}
+                alt={selectedFilter.name}
+                className="h-6 w-6"
+              />
+            )}
+            {selectedFilter.name || "Select a filter..."}
+            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent align="start" className="w-[250px] p-0">
+          <HoverCard>
+            <HoverCardContent
+              side="right"
+              align="start"
+              sideOffset={260}
+              forceMount
+              className="min-h-[280px]"
+            >
+              <div className="grid gap-2">
+                <h4 className="font-medium leading-none">
+                  {peekedFilter.name}
+                </h4>
+                <div className="text-muted-foreground text-sm">
+                  {peekedFilter.description}
+                </div>
+              </div>
+              {peekedFilter.image && (
+                <img
+                  src={peekedFilter.image}
+                  alt={peekedFilter.name}
+                  className="mt-4 w-full"
+                />
+              )}
+            </HoverCardContent>
+            <Command loop>
+              <CommandList className="h-[var(--cmdk-list-height)] max-h-[400px]">
+                <CommandInput placeholder="Search Models..." />
+                <CommandEmpty>No Models found.</CommandEmpty>
+                <HoverCardTrigger />
+                <CommandGroup>
+                  <ScrollArea className="h-56">
+                    {filters.map((filter) => (
+                      <FilterItem
+                        key={filter.id}
+                        filter={filter}
+                        isSelected={selectedFilter.id === filter.id}
+                        onPeek={(styleFilter) => setPeekedFilter(styleFilter)}
+                        onSelect={() => {
+                          setSelectedFilter(filter);
+                          setOpen(false);
+                        }}
+                      />
+                    ))}
+                  </ScrollArea>
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </HoverCard>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}
+
+type ModelItemProps = {
+  filter: StyleFilter;
+  isSelected: boolean;
+  onSelect: () => void;
+  onPeek: (model: StyleFilter) => void;
+};
+
+function FilterItem({ filter, isSelected, onSelect, onPeek }: ModelItemProps) {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  useMutationObserver(ref, (mutations) => {
+    for (const mutation of mutations) {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "aria-selected"
+      ) {
+        onPeek(filter);
+      }
+    }
+  });
+
+  return (
+    <CommandItem
+      key={filter.id}
+      onSelect={onSelect}
+      ref={ref}
+      className="aria-selected:bg-primary aria-selected:text-primary-foreground"
+    >
+      {filter.name}
+      <Check
+        className={cn(
+          "ml-auto h-4 w-4",
+          isSelected ? "opacity-100" : "opacity-0"
+        )}
+      />
+    </CommandItem>
+  );
+}

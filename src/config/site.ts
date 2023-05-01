@@ -49,12 +49,12 @@ const megaMenu: MegaMenu[] = [
     menu: [
       {
         title: "Générateur rapide",
-        href: "/posters/create/quick",
+        href: "/create/quick",
         description: "Créez rapidement un poster avec un prompt",
       },
       {
         title: "Générateur avancé",
-        href: "/posters/create/advanced",
+        href: "/create/advanced",
         description: "Personnalisez votre poster avec des paramètres avancés",
       },
       {

@@ -8,13 +8,22 @@ import DropdownUserMenuNav from "~/components/header/DropdownUserMenuNav";
 import { Navbar } from "~/components/header/Navbar";
 import { CartDrawer } from "~/components/shopping-cart/CartDrawer";
 
-type HeaderProps = {};
+import { cn } from "~/lib/classNames";
 
-const Header = ({}: HeaderProps) => {
+type HeaderProps = {
+  expanded?: boolean;
+};
+
+const Header = ({ expanded }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   return (
     <header className="bg-background/95 sticky top-0 z-40 w-full border-b shadow-sm">
-      <div className="container flex h-14 items-center">
+      <div
+        className={cn(
+          "flex h-14 items-center",
+          expanded ? "px-4 xl:px-8" : "container"
+        )}
+      >
         <div className="flex flex-1 items-center justify-between">
           <div className="flex">
             <div className="md:hidden">
@@ -26,7 +35,7 @@ const Header = ({}: HeaderProps) => {
               </button>
             </div>
             <Link href="/" className="mr-6 flex items-center space-x-2">
-              <span className="hidden font-bold sm:inline-block">
+              <span className="hidden font-bold md:inline-block">
                 myposter.ai
               </span>
             </Link>
