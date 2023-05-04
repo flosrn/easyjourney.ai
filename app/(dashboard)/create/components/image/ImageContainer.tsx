@@ -36,6 +36,9 @@ const ImageContainer = ({}: ImageContainerProps) => {
   const currentImageUrl = images[imageIndex]?.url;
   const hasImageGrid =
     hasImage && (imageType === "generation" || imageType === "variation");
+  console.log("imageType :", imageType);
+  console.log("hasImageGrid :", hasImageGrid);
+  console.log("isLoading :", isLoading);
   return (
     <div className="flex-center min-h-[calc(100vh-400px)] rounded-md border p-4">
       <div

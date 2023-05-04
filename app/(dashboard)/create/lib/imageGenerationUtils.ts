@@ -27,6 +27,7 @@ export const handleMessageData = ({
       break;
     }
     case "generation_complete": {
+      console.log("generation_complete");
       setImageType("generation");
       setMessage("Tips: click on one of the four images to continue");
       setIsLoading(false);
