@@ -11,7 +11,7 @@ export const headers = {
 
 export const retrieveMessages = async (limit = 50): Promise<APIMessage[]> => {
   const response = await fetch(
-    `https://discord.com/api/v10/channels/${channelId}/messages?limit=${limit}`,
+    `https://discord.com/api/v9/channels/${channelId}/messages?limit=${limit}`,
     { headers }
   );
   return await response.json();

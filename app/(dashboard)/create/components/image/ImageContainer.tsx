@@ -40,7 +40,7 @@ const ImageContainer = ({}: ImageContainerProps) => {
     <div className="flex-center min-h-[calc(100vh-400px)] rounded-md border p-4">
       <div
         className={cn(
-          "flex-center h-full rounded-md border border-dashed p-4 rounded-md h-full",
+          "flex-center h-full rounded-md border border-dashed p-4",
           {
             "aspect-[1/1] lg:w-[500px]": ratio === "1/1",
             "aspect-[4/5] lg:w-[400px]": ratio === "4/5",

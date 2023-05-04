@@ -26,23 +26,39 @@ const findMessage = ({
   waitingToStart?: boolean;
   currentTimestamp?: number;
 }): APIMessage | undefined => {
-  const content = option === "upscale" ? `Image #${index}` : "Variations";
-  return messages.find(
-    (msg) =>
-      msg.content.includes(prompt) &&
-      (index ? msg.content.includes(content) : true) &&
-      msg.content.includes(waitingToStart ? "(Waiting to start)" : "") &&
+  let content = "";
+  const isUpscale = index && option === "upscale";
+  const isVariation = index && option === "variation";
+  const isUpscaleOrVariation = isUpscale ?? isVariation;
+  if (isUpscale) {
+    content = `Image #${index}`;
+  } else if (isVariation) {
+    content = "Variations";
+  }
+  return messages.find((msg) => {
+    const msgContent = msg.content.trim();
+    return (
+      msgContent.includes(prompt.trim()) &&
+      (isUpscaleOrVariation ? msgContent.includes(content.trim()) : true) &&
+      (waitingToStart ? msgContent.includes("(Waiting to start)") : true) &&
       (currentTimestamp ? Date.parse(msg.timestamp) > currentTimestamp : true)
-  );
+    );
+  });
 };
 
-const waitForMessage = async (
-  prompt: string,
-  index?: number,
-  option?: "upscale" | "variation",
-  loading?: (attachment: APIAttachment | null) => void,
-  currentTimestamp?: number
-): Promise<APIMessage> => {
+const waitForMessage = async ({
+  prompt,
+  index,
+  option,
+  loading,
+  currentTimestamp,
+}: {
+  prompt: string;
+  index?: number;
+  option?: "upscale" | "variation";
+  loading?: (attachment: APIAttachment | null) => void;
+  currentTimestamp?: number;
+}): Promise<APIMessage> => {
   let message: APIMessage | undefined;
   while (!message) {
     await wait(3000);
@@ -55,8 +71,10 @@ const waitForMessage = async (
       currentTimestamp,
       waitingToStart: !index && !option,
     });
-    !message && console.log("initial message not found");
-    !message && loading?.(null);
+    if (!message) {
+      console.log("initial message not found");
+      loading?.(null);
+    }
   }
   return message;
 };
@@ -67,21 +85,21 @@ const findAttachmentInMessages = async (
   index?: number,
   option?: "upscale" | "variation"
 ): Promise<ImageData | undefined> => {
-  const currentTimestamp = index && option && Date.now();
-  const initialMessage = await waitForMessage(
+  const isUpscaleOrVariation = index && option;
+  const currentTimestamp = isUpscaleOrVariation && Date.now() - 10000;
+  const initialMessage = await waitForMessage({
     prompt,
     index,
     option,
     loading,
-    currentTimestamp
-  );
+    currentTimestamp,
+  });
   console.log("initial message found");
   const targetTimestamp = initialMessage.timestamp;
   let attachment: APIAttachment | undefined;
 
   if (
-    index &&
-    option &&
+    isUpscaleOrVariation &&
     initialMessage.attachments.length > 0 &&
     initialMessage.attachments[0].url.endsWith(".png")
   ) {
@@ -96,7 +114,7 @@ const findAttachmentInMessages = async (
   }
 
   while (!attachment?.url.endsWith(".png")) {
-    await wait(2000);
+    await wait(attachment ? 3000 : 10000);
     const messages = await retrieveMessages(50);
     const targetMessage = findMessage({ messages, prompt, index, option });
 
@@ -127,13 +145,20 @@ const findAttachmentInMessages = async (
   }
 };
 
-const retrieveMessagesUntilFinal = async (
-  limit: number,
-  prompt: string,
-  loading: (attachment: APIAttachment | null) => void,
-  index?: number,
-  option?: "upscale" | "variation"
-): Promise<ImageData | undefined> => {
+const retrieveMessagesUntilFinal = async ({
+  prompt,
+  loading,
+  index,
+  option,
+  limit,
+}: {
+  prompt: string;
+  loading: (attachment: APIAttachment | null) => void;
+  index?: number;
+  option?: "upscale" | "variation";
+  limit?: number;
+}): Promise<ImageData | undefined> => {
+  await wait(5000);
   const attachment = await findAttachmentInMessages(
     prompt,
     loading,
@@ -177,10 +202,9 @@ export default async function handler(request: Request) {
   // Exécute la fonction imagine dans une fonction async pour ne pas bloquer le flux
   void (async () => {
     try {
-      const data = await retrieveMessagesUntilFinal(
-        50,
+      const data = await retrieveMessagesUntilFinal({
         prompt,
-        (attachment) => {
+        loading: (attachment) => {
           // Enfile les données dans le contrôleur de flux
           const message = JSON.stringify({
             type: attachment ? "image_iteration" : "loading",
@@ -189,8 +213,9 @@ export default async function handler(request: Request) {
           streamController.enqueue(encoder.encode(message));
         },
         index,
-        option
-      );
+        option,
+        limit: 50,
+      });
 
       if (data) {
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image
