@@ -4,8 +4,8 @@ import React from "react";
 
 import { Textarea } from "~/components/ui/Textarea";
 
-import { useImageGenerationStore } from "../store/imageGenerationStore";
-import { usePromptStore } from "../store/promptStore";
+import { useImageGenerationStore } from "../../store/imageGenerationStore";
+import { usePromptStore } from "../../store/promptStore";
 
 type TextareaPromptProps = {};
 

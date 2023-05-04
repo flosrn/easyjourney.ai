@@ -5,8 +5,8 @@ import { ImageIcon } from "lucide-react";
 
 import { cn } from "~/lib/classNames";
 
-import { useImageGenerationStore } from "../store/imageGenerationStore";
-import { useRatioStore } from "../store/ratioStore";
+import { useImageGenerationStore } from "../../store/imageGenerationStore";
+import { useRatioStore } from "../../store/ratioStore";
 import { ImageGrid } from "./ImageGrid";
 import LoadingDots from "./LoadingDots";
 
