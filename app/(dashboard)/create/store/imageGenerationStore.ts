@@ -1,6 +1,8 @@
+import { uploadFile } from "@uploadcare/upload-client";
 import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
 import { create } from "zustand";
+import { env } from "~/env.mjs";
 
 import { readStreamData } from "../lib/imageGenerationUtils";
 
@@ -46,6 +48,7 @@ type ImageGenerationAction = ImageGenerationSetAction & {
   generateImage: (prompt: string) => Promise<void>;
   upscaleImage: (index: number | null, image: ImageData) => Promise<void>;
   variationImage: (index: number | null, image: ImageData) => Promise<void>;
+  uploadImage: (image: ImageData, prompt: string) => Promise<void>;
 };
 
 export const useImageGenerationStore = create<
@@ -267,6 +270,27 @@ export const useImageGenerationStore = create<
           `Something went wrong while upscaling the image, please try again.\n\n${error_}`
         );
         setError(error_);
+      }
+    },
+    uploadImage: async (image: ImageData, prompt: string) => {
+      const uploadResponse = await uploadFile(image.proxy_url, {
+        publicKey: env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY,
+        fileName: image.filename,
+        store: true,
+      });
+      console.log("uploadResponse :", uploadResponse);
+      const imageUrl = uploadResponse.cdnUrl;
+      if (imageUrl) {
+        const saveResponse = await fetch("/api/posters/save", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            image: imageUrl,
+            prompt,
+          }),
+        });
+        const data = await saveResponse.json();
+        console.log("data :", data);
       }
     },
   };

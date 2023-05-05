@@ -36,6 +36,7 @@ const MainColumn = () => {
     generateImage,
     upscaleImage,
     variationImage,
+    uploadImage,
     imageSelected,
     setSelectedImage,
     setClear,
@@ -43,6 +44,7 @@ const MainColumn = () => {
     loadingType,
     setIsLoading,
     setLoadingType,
+    imageType,
     setImageType,
     message,
     setMessage,
@@ -54,6 +56,7 @@ const MainColumn = () => {
     state.generateImage,
     state.upscaleImage,
     state.variationImage,
+    state.uploadImage,
     state.selectedImage,
     state.setSelectedImage,
     state.setClear,
@@ -61,6 +64,7 @@ const MainColumn = () => {
     state.loadingType,
     state.setIsLoading,
     state.setLoadingType,
+    state.imageType,
     state.setImageType,
     state.message,
     state.setMessage,
@@ -84,6 +88,7 @@ const MainColumn = () => {
   const isGenerationLoading = isLoading && loadingType === "generation";
   const isUpscaleLoading = isLoading && loadingType === "upscale";
   const isVariationLoading = isLoading && loadingType === "variation";
+  const isImageUpscaled = imageType === "upscale";
   const { style } = selectedFilter;
   const { ratio } = selectedAspectRatio;
   const prompt = `${promptValue}${style ? `, ${style}` : ""} ${ratio}`;
@@ -208,16 +213,21 @@ const MainColumn = () => {
                 Upscale
               </Button>
             </div>
-            <div className="flex-center mt-4">
-              <Button onClick={async () => null} variant="success">
-                {isVariationLoading ? (
-                  <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <SaveIcon className="mr-2 h-4 w-4" />
-                )}
-                Save
-              </Button>
-            </div>
+            {isImageUpscaled && (
+              <div className="flex-center mt-4">
+                <Button
+                  onClick={async () => uploadImage(currentImage, promptValue)}
+                  variant="success"
+                >
+                  {isVariationLoading ? (
+                    <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    <SaveIcon className="mr-2 h-4 w-4" />
+                  )}
+                  Save
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>
