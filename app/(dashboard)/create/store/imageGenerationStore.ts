@@ -2,6 +2,7 @@ import { uploadFile } from "@uploadcare/upload-client";
 import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
 import { create } from "zustand";
+import { blacklistedWords } from "~/data/bannedWords";
 import { env } from "~/env.mjs";
 
 import { readStreamData } from "../lib/imageGenerationUtils";
@@ -152,6 +153,18 @@ export const useImageGenerationStore = create<
       setLoadingType("generation");
       setError(null);
       setMessage("");
+
+      // verify if prompt not contains any of the blacklisted words
+      blacklistedWords.map((word) => {
+        if (prompt.toLowerCase().includes(word.toLowerCase())) {
+          setMessage(
+            `Your prompt contains a blacklisted word: ${word}. Please try again.`
+          );
+          setError("Blacklisted word");
+          setClear();
+          throw new Error("Blacklisted word");
+        }
+      });
 
       try {
         const { status } = await fetch("/api/imagine", {
