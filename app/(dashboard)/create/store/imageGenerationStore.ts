@@ -157,11 +157,11 @@ export const useImageGenerationStore = create<
       // verify if prompt not contains any of the blacklisted words
       blacklistedWords.map((word) => {
         if (prompt.toLowerCase().includes(word.toLowerCase())) {
+          setClear();
           setMessage(
             `Your prompt contains a blacklisted word: ${word}. Please try again.`
           );
-          setError("Blacklisted word");
-          setClear();
+          toast.error(`Your prompt contains a blacklisted word: ${word}`);
           throw new Error("Blacklisted word");
         }
       });
