@@ -61,7 +61,16 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
     }
   };
   return (
-    <div className="relative w-[150px]">
+    <div className="relative h-auto max-w-full rounded-lg">
+      <Image
+        alt={prompt}
+        src={image}
+        width="1000"
+        height="1000"
+        className=" rounded-lg transition duration-200 ease-in-out hover:scale-105"
+      />
+    </div>
+    /*  <div className="relative w-[150px]">
       <Link href={`/poster/${id}`}>
         <Image
           alt={prompt}
@@ -103,7 +112,7 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
           </p>
         )}
       </div>
-    </div>
+    </div> */
   );
 };
 
