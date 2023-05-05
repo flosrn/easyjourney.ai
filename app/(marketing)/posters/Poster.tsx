@@ -8,7 +8,10 @@ import { useMutation } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import getFirstLetters from "~/utils/getFirstLetter";
+
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 
 import { cn } from "~/lib/classNames";
 import type { PosterType } from "~/types/poster";
@@ -61,16 +64,26 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
     }
   };
   return (
-    <div className="relative w-[150px]">
+    <div className="group relative h-auto max-w-full overflow-hidden rounded-lg">
       <Link href={`/poster/${id}`}>
-        <Image
-          alt={prompt}
-          src={image}
-          width="150"
-          height="300"
-          className="rounded-lg transition duration-200 ease-in-out hover:scale-105"
-        />
-        <div className="absolute right-[2px] top-[2px]">
+        <Image alt={prompt} src={image} width="1000" height="1000" />
+        {author && (
+          <p className="absolute left-2 top-1 z-10 hidden w-full text-[10px] group-hover:block">
+            <Link
+              href={`/profile/${author}`}
+              className="flex items-center text-gray-300"
+            >
+              {user.image && (
+                <Avatar className="mr-2 h-7 w-7 cursor-pointer">
+                  <AvatarImage src={user.image} referrerPolicy="no-referrer" />
+                  <AvatarFallback>{getFirstLetters(author)}</AvatarFallback>
+                </Avatar>
+              )}
+              <span className="hover:underline">@{author}</span>
+            </Link>
+          </p>
+        )}
+        <div className="absolute right-[2px] top-[2px] z-10">
           <motion.button
             onClick={handleLike}
             whileHover={{ scale: 1.1 }}
@@ -86,23 +99,13 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
             />
           </motion.button>
         </div>
-        <Toaster position="bottom-right" />
-      </Link>
-
-      <div className="mt-1 text-gray-500">
-        <p className="truncate text-xs font-medium text-gray-600">{prompt}</p>
-        {author && (
-          <p className="text-[10px]">
-            by{" "}
-            <Link
-              href={`/profile/${author}`}
-              className="text-gray-300 hover:underline"
-            >
-              @{author}
-            </Link>
+        <div className="absolute inset-0 hidden bg-black/50 group-hover:block" />
+        <div className="absolute bottom-0 mt-1 hidden w-full truncate p-2 group-hover:block">
+          <p className="w-full truncate text-sm font-medium text-white">
+            {prompt}
           </p>
-        )}
-      </div>
+        </div>
+      </Link>
     </div>
   );
 };

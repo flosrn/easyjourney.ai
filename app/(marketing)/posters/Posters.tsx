@@ -19,13 +19,24 @@ const Posters = ({ posters }: PostersProps) => {
       createdAt,
     };
   });
+
+  const columns: PosterType[] = [[], [], [], []];
+
+  formattedPosters.map((poster, index) => {
+    columns[index % 4].push(poster);
+  });
+
   return (
-    <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+    <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 ">
       {formattedPosters.length > 0 &&
-        formattedPosters.map((poster) => (
-          <React.Fragment key={poster.id}>
-            <Poster {...poster} />
-          </React.Fragment>
+        columns.map((column, index) => (
+          <div className="grid h-fit gap-4" key={index}>
+            {column.map((poster) => (
+              <React.Fragment key={poster.id}>
+                <Poster {...poster} />
+              </React.Fragment>
+            ))}
+          </div>
         ))}
     </div>
   );
