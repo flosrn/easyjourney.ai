@@ -7,6 +7,7 @@ import {
   IterationCcwIcon,
   Loader2Icon,
   RedoIcon,
+  SaveIcon,
   Trash2Icon,
   UndoIcon,
 } from "lucide-react";
@@ -205,6 +206,16 @@ const MainColumn = () => {
                   <ArrowBigUpIcon className="mr-2 h-4 w-4" />
                 )}
                 Upscale
+              </Button>
+            </div>
+            <div className="flex-center mt-4">
+              <Button onClick={async () => null} variant="success">
+                {isVariationLoading ? (
+                  <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <SaveIcon className="mr-2 h-4 w-4" />
+                )}
+                Save
               </Button>
             </div>
           </div>

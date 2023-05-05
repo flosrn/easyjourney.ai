@@ -16,7 +16,7 @@ import { FilterSelector } from "./components/sidebar/FilterSelector";
 type SidebarProps = React.HTMLAttributes<HTMLDivElement> & {};
 
 const SideColumn = ({ className }: SidebarProps) => (
-  <aside className={cn("lg:mt-2", className)}>
+  <aside className={cn("bg-background z-10 lg:mt-2", className)}>
     <div className="space-y-4">
       <div className="">
         <HoverCard openDelay={200}>
