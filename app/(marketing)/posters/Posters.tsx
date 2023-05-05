@@ -1,5 +1,3 @@
-/* ts-nocheck */
-
 import React from "react";
 
 import type { Posters as PosterType } from "~/types/poster";
@@ -22,7 +20,8 @@ const Posters = ({ posters }: PostersProps) => {
     };
   });
 
-  const columns = [[], [], [], []];
+  const columns: PosterType[] = [[], [], [], []];
+
   formattedPosters.map((poster, index) => {
     columns[index % 4].push(poster);
   });

@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
+import getFirstLetters from "~/utils/getFirstLetter";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 import { Button } from "~/components/ui/Button";
@@ -21,14 +22,6 @@ import { Switch } from "~/components/ui/Switch";
 import { siteConfig } from "~/config/site";
 
 type DropdownUserMenuNavProps = {};
-
-const getFirstLetters = (name: string) => {
-  const splitedName = name.split(" ");
-  if (splitedName.length > 1) {
-    return splitedName[0][0] + splitedName[1][0];
-  }
-  return name.charAt(0).toUpperCase();
-};
 
 const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean>(true);
