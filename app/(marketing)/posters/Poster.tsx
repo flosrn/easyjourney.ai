@@ -61,15 +61,49 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
     }
   };
   return (
-    <div className="relative h-auto max-w-full rounded-lg">
-      <Image
-        alt={prompt}
-        src={image}
-        width="1000"
-        height="1000"
-        className=" rounded-lg transition duration-200 ease-in-out hover:scale-105"
-      />
+    <div className="group relative h-auto max-w-full overflow-hidden rounded-lg">
+      <Link href={`/poster/${id}`}>
+        <Image
+          alt={prompt}
+          src={image}
+          width="1000"
+          height="1000"
+          className="scale-[1.03] transition duration-200 ease-in-out hover:scale-100"
+        />
+        <div className="absolute right-[2px] top-[2px] z-10">
+          <motion.button
+            onClick={handleLike}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="flex items-center p-1"
+          >
+            <span className="mr-1 text-xs">{likesCount}</span>
+            <HeartIcon
+              className={cn(
+                "h-4 w-4",
+                userHasLiked ? "text-red-500 fill-current" : "text-white"
+              )}
+            />
+          </motion.button>
+        </div>
+        <div className="absolute inset-0 hidden bg-black/30 group-hover:block" />
+        <div className="absolute bottom-0 mt-1 hidden p-1 group-hover:block">
+          <p className="truncate text-base font-medium text-white">{prompt}</p>
+          {author && (
+            <p className="text-[10px]">
+              by{" "}
+              <Link
+                href={`/profile/${author}`}
+                className="text-gray-300 hover:underline"
+              >
+                @{author}
+              </Link>
+            </p>
+          )}
+        </div>
+      </Link>
     </div>
+
     /*  <div className="relative w-[150px]">
       <Link href={`/poster/${id}`}>
         <Image

@@ -1,3 +1,5 @@
+/* ts-nocheck */
+
 import React from "react";
 
 import type { Posters as PosterType } from "~/types/poster";
@@ -28,8 +30,8 @@ const Posters = ({ posters }: PostersProps) => {
   return (
     <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 ">
       {formattedPosters.length > 0 &&
-        columns.map((column) => (
-          <div className="grid h-fit gap-4 ">
+        columns.map((column, index) => (
+          <div className="grid h-fit gap-4" key={index}>
             {column.map((poster) => (
               <React.Fragment key={poster.id}>
                 <Poster {...poster} />
