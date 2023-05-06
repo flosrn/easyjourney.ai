@@ -86,7 +86,7 @@ const findAttachmentInMessages = async (
   option?: "upscale" | "variation"
 ): Promise<ImageData | undefined> => {
   const isUpscaleOrVariation = index && option;
-  const currentTimestamp = isUpscaleOrVariation && Date.now() - 10000;
+  const currentTimestamp = isUpscaleOrVariation && Date.now() - 600000;
   const initialMessage = await waitForMessage({
     prompt,
     index,
@@ -121,10 +121,9 @@ const findAttachmentInMessages = async (
     if (targetMessage && targetMessage.attachments.length === 0) {
       console.log("no attachment found");
       loading(null);
-    }
-
-    if (targetMessage && targetMessage.attachments.length > 0) {
+    } else if (targetMessage) {
       attachment = targetMessage.attachments[0];
+      console.log("targetMessage.attachments :", targetMessage.attachments);
 
       if (attachment.url.endsWith(".webp")) {
         console.log("webp found");
@@ -158,7 +157,6 @@ const retrieveMessagesUntilFinal = async ({
   option?: "upscale" | "variation";
   limit?: number;
 }): Promise<ImageData | undefined> => {
-  await wait(5000);
   const attachment = await findAttachmentInMessages(
     prompt,
     loading,

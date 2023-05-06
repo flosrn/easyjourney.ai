@@ -48,6 +48,7 @@ const MainColumn = () => {
     setImageType,
     message,
     setMessage,
+    isImageUploaded,
   ] = useImageGenerationStore((state) => [
     state.images,
     state.imageIndex,
@@ -68,6 +69,7 @@ const MainColumn = () => {
     state.setImageType,
     state.message,
     state.setMessage,
+    state.isImageUploaded,
   ]);
   const [selectedAspectRatio, setSelectedAspectRatio] = useRatioStore(
     (state) => [state.selectedAspectRatio, state.setSelectedAspectRatio]
@@ -88,6 +90,7 @@ const MainColumn = () => {
   const isGenerationLoading = isLoading && loadingType === "generation";
   const isUpscaleLoading = isLoading && loadingType === "upscale";
   const isVariationLoading = isLoading && loadingType === "variation";
+  const isUploadLoading = isLoading && loadingType === "upload";
   const isImageUpscaled = imageType === "upscale";
   const { style } = selectedFilter;
   const { ratio } = selectedAspectRatio;
@@ -217,9 +220,10 @@ const MainColumn = () => {
               <div className="flex-center mt-4">
                 <Button
                   onClick={async () => uploadImage(currentImage, promptValue)}
+                  disabled={isUploadLoading || isImageUploaded}
                   variant="success"
                 >
-                  {isVariationLoading ? (
+                  {isUploadLoading ? (
                     <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
                   ) : (
                     <SaveIcon className="mr-2 h-4 w-4" />

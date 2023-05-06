@@ -23,8 +23,9 @@ type ImageGenerationState = {
   error: string | unknown | null;
   message?: string;
   selectedImage: number | null;
-  loadingType: "generation" | "upscale" | "variation" | null;
+  loadingType: "generation" | "upload" | "upscale" | "variation" | null;
   showActionsButtons: boolean;
+  isImageUploaded: boolean;
 };
 
 export type ImageGenerationSetAction = {
@@ -43,6 +44,7 @@ export type ImageGenerationSetAction = {
     loadingType: "generation" | "upscale" | "variation" | null
   ) => void;
   setShowActionsButtons: (showActionsButtons: boolean) => void;
+  setIsImageUploaded: (isImageUploaded: boolean) => void;
 };
 
 type ImageGenerationAction = ImageGenerationSetAction & {
@@ -85,15 +87,19 @@ export const useImageGenerationStore = create<
       error: null,
       message: "",
       selectedImage: null,
+      isImageUploaded: false,
     }));
   };
   const setLoadingType = (
-    loadingType: "generation" | "upscale" | "variation" | null
+    loadingType: "generation" | "upload" | "upscale" | "variation" | null
   ) => {
     set(() => ({ loadingType }));
   };
   const setShowActionsButtons = (showActionsButtons: boolean) => {
     set(() => ({ showActionsButtons }));
+  };
+  const setIsImageUploaded = (isImageUploaded: boolean) => {
+    set(() => ({ isImageUploaded }));
   };
 
   const addImage = (image: ImageData) => {
@@ -135,6 +141,7 @@ export const useImageGenerationStore = create<
     setClear,
     setLoadingType,
     setShowActionsButtons,
+    setIsImageUploaded,
   };
 
   return {
@@ -147,12 +154,14 @@ export const useImageGenerationStore = create<
     selectedImage: 0,
     loadingType: null,
     showActionsButtons: false,
+    isImageUploaded: false,
     ...actions,
     generateImage: async (prompt) => {
       setIsLoading(true);
       setLoadingType("generation");
       setError(null);
       setMessage("");
+      setIsImageUploaded(false);
 
       // verify if prompt not contains any of the blacklisted words
       blacklistedWords.map((word) => {
@@ -203,6 +212,7 @@ export const useImageGenerationStore = create<
       setError(null);
       setMessage("");
       setSelectedImage(0);
+      setIsImageUploaded(false);
 
       const { prompt, messageId, messageHash } = image;
 
@@ -247,6 +257,7 @@ export const useImageGenerationStore = create<
       setError(null);
       setMessage("");
       setSelectedImage(0);
+      setIsImageUploaded(false);
 
       const { prompt, messageId, messageHash } = image;
 
@@ -286,6 +297,12 @@ export const useImageGenerationStore = create<
       }
     },
     uploadImage: async (image: ImageData, prompt: string) => {
+      setIsLoading(true);
+      setLoadingType("upload");
+      setError(null);
+      setMessage("");
+      setSelectedImage(0);
+
       const uploadResponse = await uploadFile(image.proxy_url, {
         publicKey: env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY,
         fileName: image.filename,
@@ -304,6 +321,12 @@ export const useImageGenerationStore = create<
         });
         const data = await saveResponse.json();
         console.log("data :", data);
+        if (data.image) {
+          toast.success("Image saved successfully");
+          setIsLoading(false);
+          setLoadingType(null);
+          setIsImageUploaded(true);
+        }
       }
     },
   };

@@ -173,5 +173,5 @@ export const blacklistedWords: string[] = [
   "Succubus",
   "1488",
   "Surgery",
-  "sex",
+  "dark net",
 ];
