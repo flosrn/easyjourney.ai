@@ -164,8 +164,9 @@ export const useImageGenerationStore = create<
       setIsImageUploaded(false);
 
       // verify if prompt not contains any of the blacklisted words
+      const inputWords = prompt.toLowerCase().split(/\s+/);
       blacklistedWords.map((word) => {
-        if (prompt.toLowerCase().includes(word.toLowerCase())) {
+        if (inputWords.includes(word.toLowerCase())) {
           setClear();
           setMessage(
             `Your prompt contains a blacklisted word: ${word}. Please try again.`
