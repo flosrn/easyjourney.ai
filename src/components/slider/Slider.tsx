@@ -19,9 +19,10 @@ import { cn } from "~/lib/classNames";
 const frameData = [
   {
     index: 0,
-    src: "/images/backgrounds/sliderBackground1.jpg",
+    src: "",
     alt: "White wall with a poster",
-    position: "absolute z-10 w-9/12 left-[13%] top-[13%]",
+    position:
+      "absolute z-10 w-9/12 left-1/2 transform top-0 -translate-x-1/2 rounded-md",
   },
   {
     index: 1,
@@ -76,28 +77,30 @@ const Slider = ({ prompt, image }: SliderProps) => {
             thumbs={{ swiper: thumbsSwiper?.destroyed ? null : thumbsSwiper }}
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
+            className="h-[600px]"
           >
             {frameData.map((frame) => (
               <SwiperSlide key={frame.src}>
+                {frame.src && (
+                  <Image
+                    alt={frame.alt}
+                    src={frame.src}
+                    width="1280" //images must be imported in 1280x1280 to correctly fit
+                    height="1280"
+                    quality="80"
+                    className="rounded-md"
+                  />
+                )}
                 <Image
-                  alt={frame.alt}
-                  src={frame.src}
-                  width="1280" //images must be imported in 1280x1280 to correctly fit
-                  height="1280"
-                  quality="80"
-                  className="rounded-md"
+                  alt={prompt}
+                  src={image}
+                  height="400"
+                  width="400"
+                  className={`${frameData[activeIndex].position} h-full transition-all duration-300`}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
-
-          <Image
-            alt={prompt}
-            src={image}
-            height="400"
-            width="400"
-            className={`${frameData[activeIndex].position} transition-all duration-300`}
-          />
         </div>
 
         <Swiper
@@ -108,7 +111,7 @@ const Slider = ({ prompt, image }: SliderProps) => {
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs, Mousewheel]}
-          className="mt-4"
+          className="mt-4 h-[136px]"
         >
           {frameData.map((frame) => (
             <SwiperSlide
@@ -118,19 +121,21 @@ const Slider = ({ prompt, image }: SliderProps) => {
                   activeIndex === frame.index,
               })}
             >
-              <Image
-                alt={frame.alt}
-                src={frame.src}
-                width="1280"
-                height="1280"
-                quality="80"
-              />
+              {frame.src && (
+                <Image
+                  alt={frame.alt}
+                  src={frame.src}
+                  width="1280"
+                  height="1280"
+                  quality="80"
+                />
+              )}
               <Image
                 alt={prompt}
                 src={image}
                 height="400"
                 width="400"
-                className={frame.position}
+                className={`${frame.position} h-full`}
               />
             </SwiperSlide>
           ))}
