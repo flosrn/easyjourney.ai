@@ -51,7 +51,11 @@ type ImageGenerationAction = ImageGenerationSetAction & {
   generateImage: (prompt: string) => Promise<void>;
   upscaleImage: (index: number | null, image: ImageData) => Promise<void>;
   variationImage: (index: number | null, image: ImageData) => Promise<void>;
-  uploadImage: (image: ImageData, prompt: string) => Promise<void>;
+  uploadImage: (
+    image: ImageData,
+    prompt: string,
+    ratio: string
+  ) => Promise<void>;
 };
 
 export const useImageGenerationStore = create<
@@ -297,7 +301,7 @@ export const useImageGenerationStore = create<
         setError(error_);
       }
     },
-    uploadImage: async (image: ImageData, prompt: string) => {
+    uploadImage: async (image: ImageData, prompt: string, ratio: string) => {
       setIsLoading(true);
       setLoadingType("upload");
       setError(null);
@@ -311,13 +315,16 @@ export const useImageGenerationStore = create<
       });
       console.log("uploadResponse :", uploadResponse);
       const imageUrl = uploadResponse.cdnUrl;
-      if (imageUrl) {
+      if (imageUrl && uploadResponse.imageInfo) {
         const saveResponse = await fetch("/api/posters/save", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             image: imageUrl,
             prompt,
+            width: uploadResponse.imageInfo.width,
+            height: uploadResponse.imageInfo.height,
+            ratio,
           }),
         });
         const data = await saveResponse.json();

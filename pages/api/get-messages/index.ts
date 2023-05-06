@@ -61,8 +61,8 @@ const waitForMessage = async ({
 }): Promise<APIMessage> => {
   let message: APIMessage | undefined;
   while (!message) {
-    await wait(3000);
     const messages = await retrieveMessages(50);
+    await wait(3000);
     message = findMessage({
       messages,
       prompt,

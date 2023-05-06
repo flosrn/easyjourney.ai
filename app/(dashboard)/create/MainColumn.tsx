@@ -93,8 +93,8 @@ const MainColumn = () => {
   const isUploadLoading = isLoading && loadingType === "upload";
   const isImageUpscaled = imageType === "upscale";
   const { style } = selectedFilter;
-  const { ratio } = selectedAspectRatio;
-  const prompt = `${promptValue}${style ? `, ${style}` : ""} ${ratio}`;
+  const { ratio, value: ratioValue } = selectedAspectRatio;
+  const prompt = `${promptValue.trim()}${style ? `, ${style}` : ""} ${ratio}`;
   const isEmpty = !prompt || prompt.length <= 1;
 
   const handleClear = () => {
@@ -219,7 +219,9 @@ const MainColumn = () => {
             {isImageUpscaled && (
               <div className="flex-center mt-4">
                 <Button
-                  onClick={async () => uploadImage(currentImage, promptValue)}
+                  onClick={async () =>
+                    uploadImage(currentImage, promptValue, ratioValue)
+                  }
                   disabled={isUploadLoading || isImageUploaded}
                   variant="success"
                 >
