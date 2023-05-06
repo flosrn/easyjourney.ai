@@ -95,7 +95,7 @@ const findAttachmentInMessages = async (
     currentTimestamp,
   });
   console.log("initial message found");
-  const targetTimestamp = initialMessage.timestamp;
+  const targetTimestamp = initialMessage.timestamp + 600000;
   let attachment: APIAttachment | undefined;
 
   if (
