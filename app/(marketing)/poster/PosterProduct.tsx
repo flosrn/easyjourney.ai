@@ -184,6 +184,16 @@ const PosterProduct = ({
               >
                 Ajouter au panier
               </Button>
+              {(isAdmin || isPosterOwner) && (
+                <Button
+                  onClick={() => setIsDeleteButtonClicked(true)}
+                  variant="outline"
+                  size={"lg"}
+                  className="ml-2"
+                >
+                  Delete
+                </Button>
+              )}
             </div>
           </div>
         </div>
