@@ -62,7 +62,7 @@ const ImageContainer = ({}: ImageContainerProps) => {
         )}
       >
         {hasImage ? (
-          <div className="flex-center group relative h-full overflow-hidden">
+          <div className="flex-center group relative overflow-hidden">
             {currentImageUrl && (
               <ControlledZoom
                 isZoomed={isZoomed}

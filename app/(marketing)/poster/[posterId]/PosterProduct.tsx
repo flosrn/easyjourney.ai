@@ -9,13 +9,13 @@ import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 import { useShoppingCart } from "use-shopping-cart";
 
-import Slider from "~/components/slider/Slider";
 import { Button } from "~/components/ui/Button";
 
 import type { PosterType } from "~/types/poster";
 
-import PosterDetails from "./PosterDetails";
-import PosterOptions from "./PosterOptions";
+import PosterDetails from "./components/PosterDetails";
+import PosterOptions from "./components/PosterOptions";
+import Slider from "./components/Slider";
 
 export type PosterProductProps = PosterType;
 

@@ -27,7 +27,7 @@ const Posters = ({ posters }: PostersProps) => {
   });
 
   return (
-    <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 ">
+    <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 ">
       {formattedPosters.length > 0 &&
         columns.map((column, index) => (
           <div className="grid h-fit gap-4" key={index}>
