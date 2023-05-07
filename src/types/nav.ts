@@ -13,6 +13,7 @@ export type MenuItem = {
   title: string;
   href: string;
   description: string;
+  disabled?: boolean;
 };
 
 export type MegaMenu = {
