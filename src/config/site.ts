@@ -25,16 +25,16 @@ const megaMenu: MegaMenu[] = [
     title: "Explorer",
     menu: [
       {
-        title: "Par popularité",
-        href: "/posters/popular",
-        description:
-          "Parcourez les posters les plus populaires et les mieux notés",
-      },
-      {
         title: "Par nouveauté",
         href: "/posters/new",
         description:
           "Découvrez les dernières créations des membres de la communauté",
+      },
+      {
+        title: "Par popularité",
+        href: "/posters/popular",
+        description:
+          "Parcourez les posters les plus populaires et les mieux notés",
       },
       {
         title: "Par catégories",
