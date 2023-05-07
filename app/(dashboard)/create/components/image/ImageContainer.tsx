@@ -62,7 +62,7 @@ const ImageContainer = ({}: ImageContainerProps) => {
         )}
       >
         {hasImage ? (
-          <div className="flex-center relative h-full overflow-hidden">
+          <div className="flex-center group relative h-full overflow-hidden">
             {currentImageUrl && (
               <ControlledZoom
                 isZoomed={isZoomed}
@@ -73,7 +73,7 @@ const ImageContainer = ({}: ImageContainerProps) => {
             )}
             <div
               onClick={() => setIsZoomed(true)}
-              className="flex-center absolute inset-0 left-1/2 top-1/2 z-10 h-min w-min -translate-x-1/2 -translate-y-1/2 cursor-zoom-in p-3"
+              className="absolute inset-0 left-1/2 top-1/2 z-10 hidden h-min w-min -translate-x-1/2 -translate-y-1/2 cursor-zoom-in p-3 group-hover:flex"
             >
               <ZoomInIcon className="h-10 w-10 text-white opacity-30" />
             </div>
