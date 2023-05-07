@@ -43,12 +43,8 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
 
   const handleItemClick = async (
     event: React.MouseEvent<HTMLDivElement>,
-    href?: string,
-    disabled?: boolean
+    href?: string
   ) => {
-    if (disabled) {
-      return;
-    }
     switch (href) {
       case "/profile/me": {
         const username = session.user.username;
@@ -100,9 +96,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
                 {group.map(({ title, href, icon: Icon, disabled }) => (
                   <DropdownMenuItem
                     key={title}
-                    onClick={async (event) =>
-                      handleItemClick(event, href, disabled)
-                    }
+                    onClick={async (event) => handleItemClick(event, href)}
                     disabled={disabled}
                     asChild
                   >
