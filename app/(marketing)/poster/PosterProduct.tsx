@@ -41,6 +41,9 @@ const PosterProduct = ({
   id,
   prompt,
   image,
+  width,
+  height,
+  ratio,
   user,
   createdAt,
 }: PosterProductProps) => {
@@ -148,7 +151,14 @@ const PosterProduct = ({
     <>
       <div className="md:flex">
         <div className="md:w-1/2">
-          <Slider prompt={prompt} image={image} createdAt={createdAt} />
+          <Slider
+            prompt={prompt}
+            image={image}
+            width={width}
+            height={height}
+            ratio={ratio}
+            createdAt={createdAt}
+          />
         </div>
         <div className="md:w-1/2">
           <div className="w-full md:ml-4">

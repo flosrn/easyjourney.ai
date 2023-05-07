@@ -19,6 +19,7 @@ export default async function PosterPage({
 }) {
   const { posterId } = params;
   const poster = await getCurrentPoster(posterId);
+  console.log("poster", poster);
 
   const nextPoster = await prisma.poster.findFirst({
     where: {
