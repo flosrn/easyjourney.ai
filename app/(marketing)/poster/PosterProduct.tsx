@@ -165,7 +165,7 @@ const PosterProduct = ({
             <PosterOptions prompt={prompt} user={user} addItem={addItem} />
           </div>
           <div>
-            <PosterDetails prompt={prompt} />
+            <PosterDetails prompt={prompt} ratio={ratio} />
             <div className="flex-center mt-8">
               <Button
                 onClick={() =>
