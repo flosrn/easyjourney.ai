@@ -166,6 +166,7 @@ export const useImageGenerationStore = create<
       setLoadingType("generation");
       setError(null);
       setMessage("");
+      setImageType(null);
       setIsImageUploaded(false);
 
       // verify if prompt not contains any of the blacklisted words
@@ -218,6 +219,7 @@ export const useImageGenerationStore = create<
       setError(null);
       setMessage("");
       setSelectedImage(0);
+      setImageType(null);
       setIsImageUploaded(false);
 
       const { prompt, messageId, messageHash } = image;
@@ -263,6 +265,7 @@ export const useImageGenerationStore = create<
       setError(null);
       setMessage("");
       setSelectedImage(0);
+      setImageType(null);
       setIsImageUploaded(false);
 
       const { prompt, messageId, messageHash } = image;

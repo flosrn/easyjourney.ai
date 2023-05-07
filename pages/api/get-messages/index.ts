@@ -86,7 +86,8 @@ const findAttachmentInMessages = async (
   option?: "upscale" | "variation"
 ): Promise<ImageData | undefined> => {
   const isUpscaleOrVariation = index && option;
-  const currentTimestamp = isUpscaleOrVariation && Date.now() - 600000;
+  const minutesAgo = isUpscaleOrVariation ? 5000 : 600000;
+  const currentTimestamp = isUpscaleOrVariation && Date.now() - minutesAgo;
   const initialMessage = await waitForMessage({
     prompt,
     index,
@@ -120,35 +121,31 @@ const findAttachmentInMessages = async (
     const targetMessageTimestamp =
       targetMessage && Date.parse(targetMessage.timestamp);
     const targetTimestamp = Date.parse(initialMessage.timestamp) - 10000;
-
     const isIntervalOk =
       targetMessageTimestamp && targetMessageTimestamp >= targetTimestamp;
-    // console.log("targetMessageTimestamp :", targetMessageTimestamp);
-    // console.log("targetTimestamp :", targetTimestamp);
-    // console.log("isIntervalOk :", isIntervalOk);
 
     if (targetMessage && targetMessage.attachments.length === 0) {
       console.log("no attachment found");
       loading(null);
     } else if (targetMessage) {
       attachment = targetMessage.attachments[0];
-      // console.log("attachment.url :", attachment.url);
-      // console.log(
-      //   "attachment.url.endsWith('.png') :",
-      //   attachment.url.endsWith(".png")
-      // );
-      // console.log("isIntervalOk :", isIntervalOk);
-      if (attachment.url.endsWith(".webp")) {
+      if (
+        attachment.url.endsWith("grid_0.webp") &&
+        attachment.filename === "grid_0.webp"
+      ) {
         console.log("webp found");
         loading(attachment);
-      } else if (attachment.url.endsWith(".png") && isIntervalOk) {
-        console.log("png found");
-        return {
-          ...attachment,
-          prompt: initialMessage.content.split("**")[1],
-          messageId: targetMessage.id,
-          messageHash: uriToHash(attachment.url),
-        };
+        attachment = undefined;
+      } else {
+        console.log("final image found");
+        if (isIntervalOk) {
+          return {
+            ...attachment,
+            prompt: initialMessage.content.split("**")[1],
+            messageId: targetMessage.id,
+            messageHash: uriToHash(attachment.url),
+          };
+        }
       }
     }
   }
