@@ -131,12 +131,13 @@ const findAttachmentInMessages = async (
       attachment = targetMessage.attachments[0];
       if (
         attachment.url.endsWith("grid_0.webp") &&
-        attachment.filename === "grid_0.webp"
+        attachment.filename === "grid_0.webp" &&
+        targetMessage.interaction
       ) {
         console.log("webp found");
         loading(attachment);
         attachment = undefined;
-      } else {
+      } else if (!targetMessage.interaction) {
         console.log("final image found");
         if (isIntervalOk) {
           return {
