@@ -145,15 +145,13 @@ const Slider = ({ prompt, image, height, width, ratio }: SliderProps) => {
 
   const findPositionThroughRatio = () => {
     const ratioObject = ratioPositions.find(
-      (item) => item.ratio === (ratio ? ratio : "1/1")
+      (item) => item.ratio === (ratio || "1/1")
     );
-    return ratioObject.positions;
+    return ratioObject ? ratioObject.positions : ratioPositions[0].positions;
   };
 
-  const positions: string = findPositionThroughRatio();
+  const positions: string[] = findPositionThroughRatio();
   const position = positions[activeIndex];
-
-  console.log(ratio);
 
   return (
     <>
