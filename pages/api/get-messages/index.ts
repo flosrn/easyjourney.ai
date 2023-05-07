@@ -95,7 +95,6 @@ const findAttachmentInMessages = async (
     currentTimestamp,
   });
   console.log("initial message found");
-  const targetTimestamp = initialMessage.timestamp + 600000;
   let attachment: APIAttachment | undefined;
 
   if (
@@ -118,20 +117,31 @@ const findAttachmentInMessages = async (
     const messages = await retrieveMessages(50);
     const targetMessage = findMessage({ messages, prompt, index, option });
 
+    const targetMessageTimestamp =
+      targetMessage && Date.parse(targetMessage.timestamp);
+    const targetTimestamp = Date.parse(initialMessage.timestamp) - 10000;
+
+    const isIntervalOk =
+      targetMessageTimestamp && targetMessageTimestamp >= targetTimestamp;
+    // console.log("targetMessageTimestamp :", targetMessageTimestamp);
+    // console.log("targetTimestamp :", targetTimestamp);
+    // console.log("isIntervalOk :", isIntervalOk);
+
     if (targetMessage && targetMessage.attachments.length === 0) {
       console.log("no attachment found");
       loading(null);
     } else if (targetMessage) {
       attachment = targetMessage.attachments[0];
-      console.log("targetMessage.attachments :", targetMessage.attachments);
-
+      // console.log("attachment.url :", attachment.url);
+      // console.log(
+      //   "attachment.url.endsWith('.png') :",
+      //   attachment.url.endsWith(".png")
+      // );
+      // console.log("isIntervalOk :", isIntervalOk);
       if (attachment.url.endsWith(".webp")) {
         console.log("webp found");
         loading(attachment);
-      } else if (
-        attachment.url.endsWith(".png") &&
-        targetMessage.timestamp > targetTimestamp
-      ) {
+      } else if (attachment.url.endsWith(".png") && isIntervalOk) {
         console.log("png found");
         return {
           ...attachment,

@@ -91,6 +91,7 @@ export const useImageGenerationStore = create<
       error: null,
       message: "",
       selectedImage: null,
+      imageType: null,
       isImageUploaded: false,
     }));
   };
