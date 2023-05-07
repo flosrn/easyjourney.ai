@@ -2,7 +2,7 @@ import { uploadFile } from "@uploadcare/upload-client";
 import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
 import { create } from "zustand";
-import { blacklistedWords } from "~/data/bannedWords";
+import { blacklistedWords } from "~/data/blacklistedWords";
 import { env } from "~/env.mjs";
 
 import { readStreamData } from "../lib/imageGenerationUtils";
