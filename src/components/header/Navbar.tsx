@@ -100,7 +100,7 @@ const ListItem = ({
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
             disabled
-              ? "opacity-50 cursor-not-allowed"
+              ? "opacity-50 pointer-events-none"
               : "hover:text-slate-900 dark:hover:text-slate-100 focus:text-slate-900 dark:focus:text-slate-100",
             className
           )}
