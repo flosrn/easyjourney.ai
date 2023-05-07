@@ -134,8 +134,8 @@ const frameData = [
 type SliderProps = {
   prompt: string;
   image: string;
-  height: string;
-  width: string;
+  height: number | undefined;
+  width: number | undefined;
   ratio: string;
 };
 
