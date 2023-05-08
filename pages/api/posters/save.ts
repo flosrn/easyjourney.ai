@@ -17,7 +17,7 @@ export default async function handler(
     try {
       const { prompt } = req.body;
 
-      const title = prompt.split(" ").slice(0, 3).join(" ");
+      const title = prompt.split(" ").slice(0, 3).join(" ").replaceAll(",", "");
       console.log("title :", title);
 
       const data = await prisma.poster.create({
