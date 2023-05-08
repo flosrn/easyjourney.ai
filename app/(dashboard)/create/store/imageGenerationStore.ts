@@ -54,7 +54,8 @@ type ImageGenerationAction = ImageGenerationSetAction & {
   uploadImage: (
     image: ImageData,
     prompt: string,
-    ratio: string
+    ratio: string,
+    style: string
   ) => Promise<void>;
 };
 
@@ -305,7 +306,12 @@ export const useImageGenerationStore = create<
         setError(error_);
       }
     },
-    uploadImage: async (image: ImageData, prompt: string, ratio: string) => {
+    uploadImage: async (
+      image: ImageData,
+      prompt: string,
+      ratio: string,
+      style: string
+    ) => {
       setIsLoading(true);
       setLoadingType("upload");
       setError(null);
@@ -317,7 +323,6 @@ export const useImageGenerationStore = create<
         fileName: image.filename,
         store: true,
       });
-      console.log("uploadResponse :", uploadResponse);
       const imageUrl = uploadResponse.cdnUrl;
       if (imageUrl && uploadResponse.imageInfo) {
         const saveResponse = await fetch("/api/posters/save", {
@@ -328,11 +333,16 @@ export const useImageGenerationStore = create<
             prompt,
             width: uploadResponse.imageInfo.width,
             height: uploadResponse.imageInfo.height,
+            filename: image.filename,
             ratio,
+            style,
+            model: "MJ Version 5.1",
+            chaos: 0,
+            quality: 1,
+            stylize: 100,
           }),
         });
         const data = await saveResponse.json();
-        console.log("data :", data);
         if (data.image) {
           toast.success("Image saved successfully");
           setIsLoading(false);

@@ -224,6 +224,7 @@ export default async function handler(request: Request) {
       });
 
       if (data) {
+        console.log("data :", data);
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image
         const message = JSON.stringify({
           type: getMessageType(option),
