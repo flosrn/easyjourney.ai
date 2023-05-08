@@ -143,7 +143,7 @@ module.exports = {
         callees: ["clsx", "cva"],
         cssFiles: ["./src/styles/globals.css"],
         whitelist: ["((bg|text)\\-).*"],
-      }
-    ]
+      },
+    ],
   },
 };
