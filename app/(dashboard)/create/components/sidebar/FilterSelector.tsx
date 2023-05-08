@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useState } from "react";
+import Image from "next/image";
 import type { PopoverProps } from "@radix-ui/react-popover";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useMutationObserver } from "~/hooks/use-mutation-observer";
@@ -62,9 +63,11 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
             className="w-full justify-between"
           >
             {selectedFilter.image && (
-              <img
+              <Image
                 src={selectedFilter.image}
                 alt={selectedFilter.name}
+                width={24}
+                height={24}
                 className="h-6 w-6"
               />
             )}
@@ -90,9 +93,11 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                 </div>
               </div>
               {peekedFilter.image && (
-                <img
+                <Image
                   src={peekedFilter.image}
                   alt={peekedFilter.name}
+                  width={200}
+                  height={200}
                   className="mt-4 w-full"
                 />
               )}

@@ -95,7 +95,9 @@ const MainColumn = () => {
   const isImageUpscaled = imageType === "upscale";
   const { style } = selectedFilter;
   const { ratio, value: ratioValue } = selectedAspectRatio;
-  const prompt = `${promptValue.trim()}${style ? `, ${style}` : ""} ${ratio}`;
+  const prompt = `${promptValue.trim()}${
+    style ? `, ${style.toLowerCase()}` : ""
+  } ${ratio}`;
   const isEmpty = !prompt || prompt.length <= 1;
 
   const handleClear = () => {
@@ -221,7 +223,7 @@ const MainColumn = () => {
               <motion.div layout className="flex-center mt-4">
                 <Button
                   onClick={async () =>
-                    uploadImage(currentImage, promptValue, ratioValue)
+                    uploadImage(currentImage, promptValue, ratioValue, style)
                   }
                   disabled={isUploadLoading || isImageUploaded}
                   variant="success"

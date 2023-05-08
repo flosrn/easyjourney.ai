@@ -10,13 +10,20 @@ generator client {
 }
 
 model Poster {
-  id     String  @id @default(uuid())
-  title  String?
-  prompt String
-  image  String
-  width  Int?
-  height Int?
-  ratio  String?
+  id       String  @id @default(uuid())
+  title    String?
+  prompt   String
+  image    String
+  filename String?
+
+  width   Int?
+  height  Int?
+  ratio   String?
+  style   String?
+  model   String?
+  chaos   Int?
+  quality Float?
+  stylize Int?
 
   likes Like[] @relation("posterLikes")
 

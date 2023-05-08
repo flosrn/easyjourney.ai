@@ -15,17 +15,15 @@ export default async function handler(
 
   if (req.method === "POST") {
     try {
-      const { prompt, image, ratio, width, height } = req.body;
-      console.log("req.body :", req.body);
+      const { prompt } = req.body;
+
+      const title = prompt.split(" ").slice(0, 3).join(" ");
+      console.log("title :", title);
 
       const data = await prisma.poster.create({
         data: {
-          title: "",
-          prompt,
-          ratio,
-          width,
-          height,
-          image,
+          title,
+          ...req.body,
           userId: session.user.id,
         },
       });
