@@ -44,7 +44,7 @@ export default async function PosterPage({
 
   return (
     <>
-      <section className="container mt-8 items-center justify-center gap-6 pb-8">
+      <section className="container mt-8 max-w-5xl items-center justify-center gap-6 pb-8">
         <div className="w-full">
           {/*<div className="flex items-center justify-center space-x-5">*/}
           {/*<Link href={`/poster/${previousPoster?.id}`}>*/}

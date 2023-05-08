@@ -13,9 +13,9 @@ import { Button } from "~/components/ui/Button";
 
 import type { PosterType } from "~/types/poster";
 
-import PosterDetails from "./components/PosterDetails";
-import PosterOptions from "./components/PosterOptions";
-import Slider from "./components/Slider";
+import PosterDetails from "./components-old/PosterDetails";
+import PosterOptions from "./components-old/PosterOptions";
+import Slider from "./components-old/Slider";
 
 export type PosterProductProps = PosterType;
 
@@ -149,7 +149,7 @@ const PosterProduct = ({
 
   return (
     <>
-      <div className="md:flex">
+      <div className="w-full md:flex">
         <div className="md:w-1/2">
           <Slider
             prompt={prompt}

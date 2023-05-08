@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Image from "next/image";
+import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 import {
   A11y,
   FreeMode,
@@ -12,6 +13,7 @@ import {
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import "react-medium-image-zoom/dist/styles.css";
 import { cn } from "~/lib/classNames";
 
 import "swiper/swiper.min.css";
@@ -20,7 +22,7 @@ const ratioPositions = [
   {
     ratio: "1/1",
     positions: [
-      "absolute z-10 w-11/12 left-[5%]",
+      "absolute z-10 w-11/12 top-0 left-[5%]",
       "absolute z-10 w-4/12 left-[10%] top-[13%]",
       "absolute z-10 w-2/12 left-[48%] top-[26%]",
       "absolute z-10 w-5/12 left-[40%] top-[13%]",
@@ -31,7 +33,7 @@ const ratioPositions = [
   {
     ratio: "4/5",
     positions: [
-      "absolute z-10 h-full w-auto left-[15%] ",
+      "absolute z-10 h-full top-0 w-auto left-[15%] ",
       "absolute z-10 w-4/12 left-[13%] top-[11%]",
       "absolute z-10 w-2/12 left-[48%] top-[24%]",
       "absolute z-10 w-5/12 left-[40%] top-[13%]",
@@ -42,7 +44,7 @@ const ratioPositions = [
   {
     ratio: "2/3",
     positions: [
-      "absolute z-10 h-full w-auto left-[20%] ",
+      "absolute z-10 h-full top-0 w-auto left-[20%] ",
       "absolute z-10 w-3/12 left-[13%] top-[9%]",
       "absolute z-10 w-2/12 left-[48%] top-[20%]",
       "absolute z-10 w-4/12 left-[40%] top-[13%]",
@@ -53,7 +55,7 @@ const ratioPositions = [
   {
     ratio: "4/7",
     positions: [
-      "absolute z-10 h-full w-auto left-[26%] ",
+      "absolute z-10 h-full top-0 w-auto left-[26%] ",
       "absolute z-10 w-3/12 left-[13%] top-[9%]",
       "absolute z-10 w-2/12 left-[48%] top-[15%]",
       "absolute z-10 w-3/12 left-[40%] top-[13%]",
@@ -64,7 +66,7 @@ const ratioPositions = [
   {
     ratio: "5/4",
     positions: [
-      "absolute z-10 w-full h-auto top-[5%]",
+      "absolute z-10 w-full top-0 h-auto top-[5%]",
       "absolute z-10 w-5/12 left-[3%] top-[9%]",
       "absolute z-10 w-2/12 left-[48%] top-[27%]",
       "absolute z-10 w-5/12 left-[40%] top-[13%]",
@@ -76,7 +78,7 @@ const ratioPositions = [
   {
     ratio: "3/2",
     positions: [
-      "absolute z-10 w-full h-auto top-[12%]",
+      "absolute z-10 w-full top-0 h-auto top-[12%]",
       "absolute z-10 w-5/12 left-[3%] top-[20%]",
       "absolute z-10 w-3/12 left-[40%] top-[27%]",
       "absolute z-10 w-6/12 left-[35%] top-[15%]",
@@ -88,7 +90,7 @@ const ratioPositions = [
   {
     ratio: "7/4",
     positions: [
-      "absolute z-10 w-full h-auto top-[18%]",
+      "absolute z-10 w-full top-0 h-auto top-[18%]",
       "absolute z-10 w-5/12 left-[3%] top-[20%]",
       "absolute z-10 w-3/12 left-[40%] top-[27%]",
       "absolute z-10 w-7/12 left-[30%] top-[20%]",
@@ -142,6 +144,13 @@ type SliderProps = {
 const Slider = ({ prompt, image, height, width, ratio }: SliderProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isZoomed, setIsZoomed] = useState<boolean>(false);
+
+  const handleZoomChange = useCallback((shouldZoom: boolean) => {
+    setIsZoomed(shouldZoom);
+  }, []);
+
+  console.log("isZoomed :", isZoomed);
 
   const findPositionThroughRatio = () => {
     const ratioObject = ratioPositions.find(
@@ -165,7 +174,7 @@ const Slider = ({ prompt, image, height, width, ratio }: SliderProps) => {
             thumbs={{ swiper: thumbsSwiper?.destroyed ? null : thumbsSwiper }}
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
-            className="h-[600px]"
+            className="h-[668px]"
           >
             {frameData.map((frame) => (
               <SwiperSlide key={frame.src}>
@@ -180,6 +189,7 @@ const Slider = ({ prompt, image, height, width, ratio }: SliderProps) => {
                   />
                 )}
                 <Image
+                  onClick={() => setIsZoomed(true)}
                   alt={prompt}
                   src={image}
                   height="400"
@@ -188,6 +198,17 @@ const Slider = ({ prompt, image, height, width, ratio }: SliderProps) => {
                 />
               </SwiperSlide>
             ))}
+            <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
+              <Image
+                alt={prompt}
+                src={image}
+                height="400"
+                width="400"
+                className={cn(`w-full h-full`, {
+                  block: isZoomed,
+                })}
+              />
+            </ControlledZoom>
           </Swiper>
         </div>
 
@@ -199,7 +220,7 @@ const Slider = ({ prompt, image, height, width, ratio }: SliderProps) => {
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs, Mousewheel]}
-          className="mt-4 h-[136px]"
+          className="mt-4 h-[106px]"
         >
           {frameData.map((frame) => (
             <SwiperSlide
