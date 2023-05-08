@@ -43,6 +43,8 @@ const PosterProduct = ({
   ratio,
   user,
   createdAt,
+  model,
+  style,
 }: PosterProductProps) => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedSize, setSelectedSize] = useState("M");
@@ -158,6 +160,8 @@ const PosterProduct = ({
             prompt={prompt}
             user={user}
             createdAt={createdAt}
+            model={model}
+            style={style}
           />
         </div>
       </div>

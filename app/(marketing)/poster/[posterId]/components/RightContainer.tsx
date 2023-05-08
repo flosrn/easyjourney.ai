@@ -17,7 +17,16 @@ function truncateString(str: string, maxLength: number) {
   return str;
 }
 
-const RightContainer = ({ ratio, width, height, user, createdAt, prompt }) => {
+const RightContainer = ({
+  ratio,
+  width,
+  height,
+  user,
+  createdAt,
+  prompt,
+  model,
+  style,
+}) => {
   const author = user?.username;
 
   const titlePrompt = truncateString(prompt, 50);
@@ -64,11 +73,11 @@ const RightContainer = ({ ratio, width, height, user, createdAt, prompt }) => {
         </div>
         <div className="flex flex-col">
           <span className="text-gray-500">Filter</span>
-          <span className=""></span>
+          <span className="">{style}</span>
         </div>
         <div className="flex flex-col">
           <span className="text-gray-500">Model of AI</span>
-          <span className=""></span>
+          <span className="">{model}</span>
         </div>
       </div>
     </>
