@@ -333,6 +333,7 @@ export const useImageGenerationStore = create<
             prompt,
             width: uploadResponse.imageInfo.width,
             height: uploadResponse.imageInfo.height,
+            filename: image.filename,
             ratio,
             style,
             model: "MJ Version 5.1",
