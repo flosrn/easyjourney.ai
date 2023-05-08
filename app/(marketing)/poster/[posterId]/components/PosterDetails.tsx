@@ -33,9 +33,10 @@ const posterDetailsData = [
 
 type PosterDetailsProps = {
   prompt: string;
+  ratio: string;
 };
 
-const PosterDetails = ({ prompt }: PosterDetailsProps) => (
+const PosterDetails = ({ prompt, ratio }: PosterDetailsProps) => (
   <div className="mt-10 w-full md:ml-4">
     <Tabs defaultValue="details">
       <TabsList className="w-full">
@@ -49,14 +50,14 @@ const PosterDetails = ({ prompt }: PosterDetailsProps) => (
       <TabsContent value="details">
         <div className="sm:flex">
           <div className="m-4 mt-8 w-full sm:w-1/2">
-            <div className="w-full">
-              Poster imprimé en France dans l'imprimerie de ..............
+            <span className="w-full">Prompt Originale : </span>
+            <div className="my-2 text-center  align-middle xl:mx-4">
+              <div className="text-sm sm:text-xs ">"{prompt}"</div>
             </div>
+
             <div className="mt-4">
-              <span className="w-full">La prompt originale est : </span>
-              <div className="my-2 text-center  align-middle xl:mx-4">
-                <div className="text-sm sm:text-xs ">"{prompt}"</div>
-              </div>
+              <span className="w-full">Format : </span>
+              <span className="text-sm sm:text-xs ">{ratio}</span>
             </div>
           </div>
           <div className="w-full sm:w-1/2">

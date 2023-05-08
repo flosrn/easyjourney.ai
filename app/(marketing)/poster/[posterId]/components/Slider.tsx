@@ -173,8 +173,8 @@ const Slider = ({ prompt, image, height, width, ratio }: SliderProps) => {
                   <Image
                     alt={frame.alt}
                     src={frame.src}
-                    width={width}
-                    height={height}
+                    width={width ?? "1280"}
+                    height={height ?? "1280"}
                     quality="80"
                     className="rounded-md"
                   />
