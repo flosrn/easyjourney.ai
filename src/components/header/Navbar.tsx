@@ -1,8 +1,5 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 import {
   NavigationMenu,
@@ -19,17 +16,12 @@ import { siteConfig } from "~/config/site";
 import { Icons } from "../Icons";
 
 export const Navbar = () => {
-  const router = useRouter();
   return (
     <NavigationMenu>
       <NavigationMenuList>
         {siteConfig.megaMenu.map((megaMenuItem) => (
           <NavigationMenuItem key={megaMenuItem.title}>
-            <NavigationMenuTrigger
-              onClick={() => router.push(megaMenuItem.menu[0].href)}
-            >
-              {megaMenuItem.title}
-            </NavigationMenuTrigger>
+            <NavigationMenuTrigger>{megaMenuItem.title}</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul
                 className={cn(
