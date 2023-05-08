@@ -93,10 +93,11 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
           {siteConfig.userMenu.map((group, index) => (
             <React.Fragment key={index}>
               <DropdownMenuGroup>
-                {group.map(({ title, href, icon: Icon }) => (
+                {group.map(({ title, href, icon: Icon, disabled }) => (
                   <DropdownMenuItem
                     key={title}
                     onClick={async (event) => handleItemClick(event, href)}
+                    disabled={disabled}
                     asChild
                   >
                     <div className="flex justify-between">
@@ -109,8 +110,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuGroup>
-              {group !==
-                siteConfig.userMenu[siteConfig.userMenu.length - 1] && (
+              {group !== siteConfig.userMenu.at(-1) && (
                 <DropdownMenuSeparator />
               )}
             </React.Fragment>

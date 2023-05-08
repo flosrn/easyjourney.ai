@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { ImageIcon } from "lucide-react";
+import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 
 import { cn } from "~/lib/classNames";
 
@@ -9,10 +10,18 @@ import { useImageGenerationStore } from "../../store/imageGenerationStore";
 import { useRatioStore } from "../../store/ratioStore";
 import { ImageGrid } from "./ImageGrid";
 import LoadingDots from "./LoadingDots";
+import "react-medium-image-zoom/dist/styles.css";
+import { ZoomInIcon } from "@radix-ui/react-icons";
 
 type ImageContainerProps = {};
 
 const ImageContainer = ({}: ImageContainerProps) => {
+  const [isZoomed, setIsZoomed] = useState<boolean>(false);
+
+  const handleZoomChange = useCallback((shouldZoom: boolean) => {
+    setIsZoomed(shouldZoom);
+  }, []);
+
   const [
     images,
     imageIndex,
@@ -53,10 +62,21 @@ const ImageContainer = ({}: ImageContainerProps) => {
         )}
       >
         {hasImage ? (
-          <div className="flex-center relative h-full overflow-hidden">
+          <div className="flex-center group relative overflow-hidden">
             {currentImageUrl && (
-              <img src={currentImageUrl} alt="" className="rounded-md" />
+              <ControlledZoom
+                isZoomed={isZoomed}
+                onZoomChange={handleZoomChange}
+              >
+                <img src={currentImageUrl} alt="" className="rounded-md" />
+              </ControlledZoom>
             )}
+            <div
+              onClick={() => setIsZoomed(true)}
+              className="absolute inset-0 left-1/2 top-1/2 z-10 hidden h-min w-min -translate-x-1/2 -translate-y-1/2 cursor-zoom-in p-3 group-hover:flex"
+            >
+              <ZoomInIcon className="h-10 w-10 text-white opacity-30" />
+            </div>
             {hasImageGrid && !isLoading && (
               <ImageGrid
                 selectedImage={selectedImage}

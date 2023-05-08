@@ -9,7 +9,7 @@ type ImageGridProps = {
 
 export const ImageGrid = ({ selectedImage, clickHandler }: ImageGridProps) => {
   return (
-    <div className="absolute left-0 top-0 grid h-full w-full select-none grid-cols-2 grid-rows-2">
+    <div className="absolute left-0 top-0 grid h-full w-full select-none grid-cols-2 grid-rows-2 overflow-hidden">
       {Array.from({ length: 4 }, (_, i) => i + 1).map((part) => (
         <button
           key={part}

@@ -2,7 +2,7 @@ import { uploadFile } from "@uploadcare/upload-client";
 import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
 import { create } from "zustand";
-import { blacklistedWords } from "~/data/bannedWords";
+import { blacklistedWords } from "~/data/blacklistedWords";
 import { env } from "~/env.mjs";
 
 import { readStreamData } from "../lib/imageGenerationUtils";
@@ -91,6 +91,7 @@ export const useImageGenerationStore = create<
       error: null,
       message: "",
       selectedImage: null,
+      imageType: null,
       isImageUploaded: false,
     }));
   };
@@ -165,6 +166,7 @@ export const useImageGenerationStore = create<
       setLoadingType("generation");
       setError(null);
       setMessage("");
+      setImageType(null);
       setIsImageUploaded(false);
 
       // verify if prompt not contains any of the blacklisted words
@@ -217,6 +219,7 @@ export const useImageGenerationStore = create<
       setError(null);
       setMessage("");
       setSelectedImage(0);
+      setImageType(null);
       setIsImageUploaded(false);
 
       const { prompt, messageId, messageHash } = image;
@@ -262,6 +265,7 @@ export const useImageGenerationStore = create<
       setError(null);
       setMessage("");
       setSelectedImage(0);
+      setImageType(null);
       setIsImageUploaded(false);
 
       const { prompt, messageId, messageHash } = image;

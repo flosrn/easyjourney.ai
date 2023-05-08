@@ -68,7 +68,7 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
       <Link href={`/poster/${id}`}>
         <Image alt={prompt} src={image} width="1000" height="1000" />
         {author && (
-          <p className="absolute left-2 top-1 z-10 hidden w-full text-[10px] group-hover:block">
+          <p className="absolute left-2 top-1 z-10 hidden w-full text-[10px] md:group-hover:block">
             <Link
               href={`/profile/${author}`}
               className="flex items-center text-gray-300"
@@ -99,8 +99,8 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
             />
           </motion.button>
         </div>
-        <div className="absolute inset-0 hidden bg-black/50 group-hover:block" />
-        <div className="absolute bottom-0 mt-1 hidden w-full truncate p-2 group-hover:block">
+        <div className="absolute inset-0 hidden bg-black/50 md:group-hover:block" />
+        <div className="absolute bottom-0 mt-1 hidden w-full truncate p-2 md:group-hover:block">
           <p className="w-full truncate text-sm font-medium text-white">
             {prompt}
           </p>

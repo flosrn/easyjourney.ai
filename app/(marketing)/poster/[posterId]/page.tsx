@@ -4,7 +4,7 @@ import type { Poster } from "@prisma/client";
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 import { prisma } from "~/server/db/prisma";
 
-import PosterProduct from "../PosterProduct";
+import PosterProduct from "./PosterProduct";
 
 const getCurrentPoster = async (posterId: Poster["id"]) =>
   prisma.poster.findUnique({

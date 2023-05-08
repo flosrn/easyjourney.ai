@@ -2,11 +2,13 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 
 import DropdownUserMenuNav from "~/components/header/DropdownUserMenuNav";
 import { Navbar } from "~/components/header/Navbar";
 import { CartDrawer } from "~/components/shopping-cart/CartDrawer";
+import { Button } from "~/components/ui/Button";
 
 import { cn } from "~/lib/classNames";
 
@@ -16,6 +18,8 @@ type HeaderProps = {
 
 const Header = ({ expanded }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const pathname = usePathname();
+  const isCreatePage = pathname === "/create";
   return (
     <header className="bg-background/95 sticky top-0 z-40 w-full border-b shadow-sm">
       <div
@@ -50,6 +54,11 @@ const Header = ({ expanded }: HeaderProps) => {
             </nav>
           </div>
           <div className="flex items-center space-x-2">
+            {!isCreatePage && (
+              <Button href="/create" variant="outline" className="mr-2">
+                Create
+              </Button>
+            )}
             <DropdownUserMenuNav />
             <CartDrawer />
           </div>

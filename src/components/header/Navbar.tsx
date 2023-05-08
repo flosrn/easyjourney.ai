@@ -61,6 +61,7 @@ export const Navbar = () => {
                     key={menuItem.title}
                     title={menuItem.title}
                     href={menuItem.href}
+                    disabled={menuItem.disabled}
                   >
                     {menuItem.description}
                   </ListItem>
@@ -77,12 +78,14 @@ export const Navbar = () => {
 const ListItem = ({
   title,
   href,
+  disabled,
   children,
   ref,
   className,
 }: {
   title: string;
   href: string;
+  disabled?: boolean;
   children: React.ReactNode;
   ref?: React.Ref<HTMLAnchorElement>;
   className?: string;
@@ -93,8 +96,12 @@ const ListItem = ({
         <Link
           ref={ref}
           href={href}
+          onClick={(event) => disabled && event.preventDefault()}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-slate-700 dark:focus:bg-slate-700",
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
+            disabled
+              ? "opacity-50 pointer-events-none"
+              : "hover:text-slate-900 dark:hover:text-slate-100 focus:text-slate-900 dark:focus:text-slate-100",
             className
           )}
         >

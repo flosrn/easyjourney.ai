@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
 import {
   ArrowBigUpIcon,
   BrushIcon,
@@ -185,8 +186,8 @@ const MainColumn = () => {
           <TextareaPrompt />
           <SideColumn className="lg:hidden" />
           <ImageContainer />
-          <div className="flex justify-center space-x-2">
-            <div className="flex-center mt-4">
+          <motion.div layout className="flex justify-center space-x-2">
+            <motion.div layout className="flex-center mt-4">
               <Button
                 onClick={async () =>
                   variationImage(imageSelected, currentImage)
@@ -201,8 +202,8 @@ const MainColumn = () => {
                 )}
                 Variation
               </Button>
-            </div>
-            <div className="flex-center mt-4">
+            </motion.div>
+            <motion.div layout className="flex-center mt-4">
               <Button
                 onClick={async () => upscaleImage(imageSelected, currentImage)}
                 disabled={isLoading || imageSelected === 0}
@@ -215,9 +216,9 @@ const MainColumn = () => {
                 )}
                 Upscale
               </Button>
-            </div>
+            </motion.div>
             {isImageUpscaled && (
-              <div className="flex-center mt-4">
+              <motion.div layout className="flex-center mt-4">
                 <Button
                   onClick={async () =>
                     uploadImage(currentImage, promptValue, ratioValue)
@@ -232,9 +233,9 @@ const MainColumn = () => {
                   )}
                   Save
                 </Button>
-              </div>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
       <div className="bg-background flex-center sticky bottom-0 h-6 border-t">
