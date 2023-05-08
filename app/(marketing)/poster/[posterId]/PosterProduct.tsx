@@ -9,13 +9,10 @@ import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 import { useShoppingCart } from "use-shopping-cart";
 
-import { Button } from "~/components/ui/Button";
-
 import type { PosterType } from "~/types/poster";
 
-import PosterDetails from "./components-old/PosterDetails";
-import PosterOptions from "./components-old/PosterOptions";
-import Slider from "./components-old/Slider";
+import LeftContainer from "./components/LeftContainer";
+import RightContainer from "./components/RightContainer";
 
 export type PosterProductProps = PosterType;
 
@@ -149,63 +146,19 @@ const PosterProduct = ({
 
   return (
     <>
-      <div className="w-full md:flex">
-        <div className="md:w-1/2">
-          <Slider
-            prompt={prompt}
-            image={image}
+      <div className="flex">
+        <div className="w-[60%]">
+          <LeftContainer id={id} image={image} prompt={prompt} />
+        </div>
+        <div className="w-[40%] pl-8 pt-4">
+          <RightContainer
+            ratio={ratio}
             width={width}
             height={height}
-            ratio={ratio}
+            prompt={prompt}
+            user={user}
             createdAt={createdAt}
           />
-        </div>
-        <div className="md:w-1/2">
-          <div className="w-full md:ml-4">
-            <PosterOptions prompt={prompt} user={user} addItem={addItem} />
-          </div>
-          <div>
-            <PosterDetails prompt={prompt} ratio={ratio} />
-            <div className="flex-center mt-8">
-              <Button
-                onClick={() =>
-                  addItem({
-                    id: `${selectedPrice.id}-${id}`,
-                    name: `Poster (taille: ${selectedSize} - ${selectedFrame.material} - ${selectedFrame.color})`,
-                    price: selectedPrice.unit_amount,
-                    currency: selectedPrice.currency,
-                    image,
-                    product_data: {
-                      id: product.id,
-                      description: prompt,
-                      metadata: {
-                        size: selectedSize,
-                        frame_material: selectedFrame.material,
-                        frame_color: selectedFrame.color,
-                      },
-                    },
-                    price_data: {
-                      size: selectedSize,
-                      frame: selectedFrame,
-                    },
-                  })
-                }
-                size={"lg"}
-              >
-                Ajouter au panier
-              </Button>
-              {(isAdmin || isPosterOwner) && (
-                <Button
-                  onClick={() => setIsDeleteButtonClicked(true)}
-                  variant="outline"
-                  size={"lg"}
-                  className="ml-2"
-                >
-                  Delete
-                </Button>
-              )}
-            </div>
-          </div>
         </div>
       </div>
       <Toaster position="bottom right" />
