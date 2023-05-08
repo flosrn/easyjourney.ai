@@ -42,10 +42,34 @@ const RightContainer = ({ ratio, width, height, user, createdAt, prompt }) => {
           </p>
         )}
       </div>
-      <div className="text-3xl font-bold">{titlePrompt}</div>
-      <div className="my-2 flex flex-col">
+      <div className="mt-8 text-3xl font-bold">{titlePrompt}</div>
+      <div className="my-2 mb-4 flex flex-col">
         <span className="text-gray-500">Prompt</span>
         <span className="">{prompt}</span>
+      </div>
+      <div className="mt-4 grid  grid-cols-2 gap-4">
+        <div className="flex flex-col">
+          <span className="text-gray-500">Resolution</span>
+          <span className="">
+            {width}px/{height}px
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-gray-500">Ratio</span>
+          <span className="">{ratio}</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-gray-500">Created at</span>
+          <span className=""></span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-gray-500">Filter</span>
+          <span className=""></span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-gray-500">Model of AI</span>
+          <span className=""></span>
+        </div>
       </div>
     </>
   );
