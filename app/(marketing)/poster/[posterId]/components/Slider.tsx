@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import Image from "next/image";
 import {
   A11y,
   FreeMode,
@@ -10,11 +12,9 @@ import {
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import "swiper/swiper.min.css";
-import React, { useState } from "react";
-import Image from "next/image";
-
 import { cn } from "~/lib/classNames";
+
+import "swiper/swiper.min.css";
 
 const ratioPositions = [
   {
