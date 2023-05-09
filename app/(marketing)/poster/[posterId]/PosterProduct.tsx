@@ -45,6 +45,7 @@ const PosterProduct = ({
   createdAt,
   model,
   style,
+  likes,
 }: PosterProductProps) => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedSize, setSelectedSize] = useState("M");
