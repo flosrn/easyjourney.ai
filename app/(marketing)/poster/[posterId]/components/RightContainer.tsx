@@ -1,7 +1,10 @@
 import Link from "next/link";
+import formateDate from "~/utils/formateDate";
 import getFirstLetters from "~/utils/getFirstLetter";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
+
+import { PosterProductProps } from "../PosterProduct";
 
 function truncateString(str: string, maxLength: number) {
   if (str.length > maxLength) {
@@ -26,10 +29,13 @@ const RightContainer = ({
   prompt,
   model,
   style,
-}) => {
+}: PosterProductProps) => {
   const author = user?.username;
 
   const titlePrompt = truncateString(prompt, 50);
+
+  const date = formateDate(createdAt);
+  console.log("data", date);
 
   return (
     <>
@@ -69,16 +75,20 @@ const RightContainer = ({
         </div>
         <div className="flex flex-col">
           <span className="text-gray-500">Created at</span>
-          <span className=""></span>
+          <span className="">{date}</span>
         </div>
-        <div className="flex flex-col">
-          <span className="text-gray-500">Filter</span>
-          <span className="">{style}</span>
-        </div>
-        <div className="flex flex-col">
-          <span className="text-gray-500">Model of AI</span>
-          <span className="">{model}</span>
-        </div>
+        {style && (
+          <div className="flex flex-col">
+            <span className="text-gray-500">Filter</span>
+            <span className="">{style}</span>
+          </div>
+        )}
+        {model && (
+          <div className="flex flex-col">
+            <span className="text-gray-500">Model of AI</span>
+            <span className="">{model}</span>
+          </div>
+        )}
       </div>
     </>
   );
