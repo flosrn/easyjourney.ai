@@ -35,7 +35,6 @@ const RightContainer = ({
   const titlePrompt = truncateString(prompt, 50);
 
   const date = formatDate({ dateObject: createdAt });
-  console.log("data", date);
 
   return (
     <>
@@ -58,11 +57,12 @@ const RightContainer = ({
         )}
       </div>
       <div className="mt-8 text-3xl font-bold">{titlePrompt}</div>
-      <div className="my-2 mb-4 flex flex-col">
+      <div className="my-2  mt-8 flex flex-col">
         <span className="text-gray-500">Prompt</span>
-        <span className="">{prompt}</span>
+        <span className="tracking-wider">{prompt}</span>
       </div>
-      <div className="mt-4 grid  grid-cols-2 gap-4">
+
+      <div className=" mt-8 grid w-auto grid-cols-2 gap-4 border-t border-gray-500 pt-4">
         <div className="flex flex-col">
           <span className="text-gray-500">Resolution</span>
           <span className="">
@@ -77,12 +77,12 @@ const RightContainer = ({
           <span className="text-gray-500">Created at</span>
           <span className="">{date}</span>
         </div>
-        {style && (
-          <div className="flex flex-col">
-            <span className="text-gray-500">Filter</span>
-            <span className="">{style}</span>
-          </div>
-        )}
+
+        <div className="flex flex-col">
+          <span className="text-gray-500">Filter</span>
+          <span className="">{style ? style : "none"}</span>
+        </div>
+
         {model && (
           <div className="flex flex-col">
             <span className="text-gray-500">Model of AI</span>

@@ -42,8 +42,6 @@ export default async function PosterPage({
     },
   });
 
-  console.log("poster", poster);
-
   return (
     <>
       <section className="container mt-8  items-center justify-center gap-6 pb-8">
