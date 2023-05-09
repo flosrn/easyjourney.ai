@@ -1,16 +1,39 @@
 import React from "react";
+import { prisma } from "~/server/db/prisma";
 
 import AnimatedPosters from "~/components/AnimatedPosters";
 import Header from "~/components/header/Header";
 import { Button } from "~/components/ui/Button";
 
+import type { Posters as PosterType } from "~/types/poster";
+
+const getPopularPosters = async () =>
+  prisma.poster.findMany({
+    orderBy: {
+      likes: {
+        _count: "desc",
+      },
+    },
+    include: { user: true, likes: true },
+  });
+
 export default async function IndexPage() {
+  const posters = await getPopularPosters();
+  const columns: PosterType[] = [[], [], [], [], [], [], [], [], [], []];
+
+  posters.slice(0, 100).map((poster, index) => {
+    columns[index % 10].push(poster);
+  });
+  posters.slice(0, 100).map((poster, index) => {
+    columns[index % 10].push(poster);
+  });
+
   return (
     <>
       <div className="h-screen overflow-hidden">
         <Header />
-        <section className="flex items-center justify-center relative z-10 p-5 mx-auto bg-background rounded-lg mt-40 md:w-3/5 md:mt-52 xl:w-2/5 xl:mt-60">
-          <div className="flex max-w-[980px] flex-col items-center gap-2">
+        <section className="flex-center bg-background/80 absolute inset-0 z-10">
+          <div className="flex max-w-[680px] flex-col items-center gap-2">
             <h1 className="text-center text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl">
               myposter.ai
             </h1>
@@ -26,7 +49,7 @@ export default async function IndexPage() {
           </div>
         </section>
         <div className="z-0 -mt-52">
-          <AnimatedPosters />
+          <AnimatedPosters columns={columns} />
         </div>
       </div>
     </>
