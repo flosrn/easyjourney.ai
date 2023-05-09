@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Poster } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
@@ -25,6 +24,7 @@ const LeftContainer = ({ image, prompt, likes, id }: PosterType) => {
   const [userHasLiked, setUserHasLiked] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
+
   useEffect(() => {
     setUserHasLiked(likes.some((like) => like.userId === session?.user.id));
   }, [session, likes]);
