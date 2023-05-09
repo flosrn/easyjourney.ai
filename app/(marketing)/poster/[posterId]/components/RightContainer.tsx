@@ -1,10 +1,10 @@
 import Link from "next/link";
-import formateDate from "~/utils/formateDate";
+import { formatDate } from "~/utils/formatDate";
 import getFirstLetters from "~/utils/getFirstLetter";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 
-import { PosterProductProps } from "../PosterProduct";
+import type { PosterProductProps } from "../PosterProduct";
 
 function truncateString(str: string, maxLength: number) {
   if (str.length > maxLength) {
@@ -34,7 +34,7 @@ const RightContainer = ({
 
   const titlePrompt = truncateString(prompt, 50);
 
-  const date = formateDate(createdAt);
+  const date = formatDate({ dateObject: createdAt });
   console.log("data", date);
 
   return (

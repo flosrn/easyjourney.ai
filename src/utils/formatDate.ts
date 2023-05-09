@@ -1,4 +1,4 @@
-const formateDate = ({ dateObject }: { dateObject: Date }) => {
+export const formatDate = ({ dateObject }: { dateObject: Date }) => {
   if (!dateObject) {
     return "none"; // ou une autre valeur par défaut que vous souhaitez utiliser
   }
@@ -13,5 +13,3 @@ const formateDate = ({ dateObject }: { dateObject: Date }) => {
   const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
   return formattedDate;
 };
-
-export default formateDate;
