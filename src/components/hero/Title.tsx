@@ -7,7 +7,7 @@ import type { Hero } from "~/types/nav";
 type TitleProps = Hero;
 
 const Title = ({ title, subtitle, description }: TitleProps) => (
-  <div className="flex-center bg-gradient-radial from-background/90 to-background/70 via-background/90 absolute inset-0 z-10 backdrop-blur-[3px]">
+  <div className="flex-center bg-gradient-radial from-background/95 to-background/5 via-background/60 absolute inset-0 z-10 backdrop-blur-[1.5px]">
     <section className="flex max-w-2xl flex-col items-center gap-2 space-y-2 px-5">
       <h1 className="text-center text-4xl font-extrabold leading-tight tracking-tighter md:text-5xl lg:text-6xl">
         {title}
