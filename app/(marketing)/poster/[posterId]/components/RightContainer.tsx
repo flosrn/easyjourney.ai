@@ -107,7 +107,7 @@ const RightContainer = ({
               permission given to the IA, between 0 and 100.
             </HoverCardContent>
           </HoverCard>
-          <span className="">{chaos}</span>
+          <span className="">{chaos ?? ""}</span>
         </div>
 
         <div className="flex flex-col">
@@ -123,7 +123,7 @@ const RightContainer = ({
               the image.
             </HoverCardContent>
           </HoverCard>
-          <span className="">{quality}</span>
+          <span className="">{quality ?? ""}</span>
         </div>
 
         <div className="flex flex-col">

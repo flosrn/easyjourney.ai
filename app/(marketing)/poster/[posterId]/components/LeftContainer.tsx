@@ -28,19 +28,19 @@ const LeftContainer = ({
   height,
   ratio,
 }: PosterType) => {
-  const [likesCount, setLikesCount] = useState(likes.length);
+  const [likesCount, setLikesCount] = useState(likes?.length);
   const [userHasLiked, setUserHasLiked] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    setUserHasLiked(likes.some((like) => like.userId === session?.user.id));
+    setUserHasLiked(!!likes?.some((like) => like.userId === session?.user.id));
   }, [session, likes]);
 
   const likeMutation = useMutation(likePoster, {
     onSuccess: (data) => {
       if (data.status === 409) {
-        setLikesCount(likesCount - 1);
+        setLikesCount(likesCount && likesCount - 1);
         setUserHasLiked(false);
         toast.error("You already liked this poster!");
       }
@@ -52,7 +52,7 @@ const LeftContainer = ({
     if (!session) {
       return router.push("/api/auth/signin");
     }
-    setLikesCount(likesCount + 1);
+    setLikesCount(likesCount && likesCount + 1);
     setUserHasLiked(true);
     try {
       await likeMutation.mutateAsync(id);
