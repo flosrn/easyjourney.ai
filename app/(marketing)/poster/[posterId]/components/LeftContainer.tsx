@@ -19,7 +19,14 @@ const likePoster = async (posterId: string) => {
   return response;
 };
 
-const LeftContainer = ({ image, prompt, likes, id }: PosterType) => {
+const LeftContainer = ({
+  image,
+  prompt,
+  likes,
+  id,
+  width,
+  height,
+}: PosterType) => {
   const [likesCount, setLikesCount] = useState(likes.length);
   const [userHasLiked, setUserHasLiked] = useState(false);
   const { data: session } = useSession();
@@ -55,28 +62,31 @@ const LeftContainer = ({ image, prompt, likes, id }: PosterType) => {
     }
   };
   return (
-    <div className="flex flex-col">
+    <div className="flex max-h-[50vh] flex-col">
       <Image
         src={image}
         alt={prompt}
-        width="1280"
-        height="1280"
-        className="rounded-lg"
+        width={width}
+        height={height}
+        className="h-auto rounded-lg"
       />
-      <div>
+      <div
+        className="m-1 mt-2 inline-block max-w-max
+       rounded-3xl border bg-gray-700/20 px-2 py-1 hover:bg-gray-700/80"
+      >
         <motion.button
           onClick={handleLike}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           className="flex items-center p-1"
         >
-          <span className="mr-1 text-xs">{likesCount}</span>
           <HeartIcon
             className={cn(
-              "h-4 w-4",
+              "h-5 w-5",
               userHasLiked ? "text-red-500 fill-current" : "text-white"
             )}
           />
+          <span className="ml-2 mr-1 text-sm">{likesCount}</span>
         </motion.button>
       </div>
     </div>

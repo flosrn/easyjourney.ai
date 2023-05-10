@@ -149,9 +149,16 @@ const PosterProduct = ({
 
   return (
     <>
-      <div className=" md:flex">
+      <div className=" md:flex ">
         <div className="md:w-[60%]">
-          <LeftContainer id={id} image={image} prompt={prompt} likes={likes} />
+          <LeftContainer
+            id={id}
+            image={image}
+            prompt={prompt}
+            width={width}
+            height={height}
+            likes={likes}
+          />
         </div>
         <div className="pt-4 md:w-[40%] md:pl-8">
           <RightContainer
