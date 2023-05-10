@@ -68,7 +68,7 @@ const LeftContainer = ({
         alt={prompt}
         width={width}
         height={height}
-        className="h-auto max-h-[80vh] rounded-lg"
+        className="max-h-[80vh] w-auto rounded-lg"
       />
       <div
         className="m-1 mt-2 inline-block max-w-max
