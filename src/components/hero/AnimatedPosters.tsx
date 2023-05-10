@@ -1,4 +1,6 @@
 import React from "react";
+// use next/legacy/image to avoid nextjs 13.x issue with blur placeholder
+// TODO: replace next/legacy/image by next/image when nextjs Image blur is stable
 import Image from "next/legacy/image";
 
 import { cn } from "~/lib/classNames";
