@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import { cn } from "~/lib/classNames";
 import type { Posters as PosterType } from "~/types/poster";
@@ -18,15 +18,19 @@ const AnimatedPosters = ({ columns }: AnimatedPostersProps) => (
           index % 2 === 0 ? "animate-slidetop" : "animate-slidetop-slower"
         )}
       >
-        {column.map((poster) => (
-          <React.Fragment key={poster.id}>
-            <Image
-              src={poster.image}
-              alt={poster.prompt}
-              width={500}
-              height={500}
-            />
-          </React.Fragment>
+        {column.map((poster, posterIndex) => (
+          <Image
+            key={`${poster.id}-${posterIndex}`}
+            src={poster.image}
+            alt={poster.prompt}
+            width={poster.width ?? 500}
+            height={poster.height ?? 500}
+            priority
+            quality={1}
+            // seems not working on nextjs 13.x yet, see https://github.com/vercel/next.js/issues/42140
+            placeholder="blur"
+            blurDataURL={`${poster.image}/-/blur/500/`}
+          />
         ))}
       </div>
     ))}
