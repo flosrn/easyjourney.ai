@@ -8,8 +8,7 @@ export const formatDate = ({ dateObject }: { dateObject?: Date | string }) => {
   const year = dateObject.getFullYear().toString();
   const hours = dateObject.getHours().toString().padStart(2, "0");
   const minutes = dateObject.getMinutes().toString().padStart(2, "0");
-  const seconds = dateObject.getSeconds().toString().padStart(2, "0");
 
-  const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  const formattedDate = `${day}/${month}/${year}, ${hours}:${minutes}`;
   return formattedDate;
 };

@@ -56,42 +56,63 @@ const RightContainer = ({
       <div className="mt-8 grid w-full grid-cols-2 gap-4 border-t border-gray-500 pt-4">
         <div className="flex flex-col">
           <span className="select-none text-gray-500">Resolution</span>
-          <span className="">
+          <span>
             {width}px / {height}px
           </span>
         </div>
 
         <div className="flex flex-col">
-          <span className="select-none text-gray-500">Ratio</span>
-          <span className="">{ratio}</span>
+          <span className="select-none text-gray-500">Created at</span>
+          <span>{date}</span>
         </div>
 
         <div className="flex flex-col">
-          <span className="select-none text-gray-500">Created at</span>
-          <span className="">{date}</span>
+          <HoverCard>
+            <HoverCardTrigger>
+              <div className="flex select-none">
+                <span className="text-gray-500 ">Aspect Ratio</span>
+                <Info size={13} color="grey" className="ml-1" />
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent>
+              Aspect ratio is the width-to-height ratio of an image
+            </HoverCardContent>
+          </HoverCard>
+          <span>{ratio ?? "1/1"}</span>
         </div>
 
-        {model && (
-          <div className="flex flex-col">
-            <span className="select-none text-gray-500">Model of AI</span>
-            <span>{model}</span>
-          </div>
-        )}
+        <div className="flex flex-col">
+          <HoverCard>
+            <HoverCardTrigger>
+              <div className="flex select-none">
+                <span className="text-gray-500 ">Model Version</span>
+                <Info size={13} color="grey" className="ml-1" />
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent>
+              The model version is the version of Midjourney used to create the
+              image.
+            </HoverCardContent>
+          </HoverCard>
+          <span>{model ?? "MJ version 5.1"}</span>
+        </div>
 
         <div className="flex flex-col">
           <HoverCard>
             <HoverCardTrigger>
               <div className="flex select-none">
                 <span className="text-gray-500 ">Filter</span>
-                <Info size={13} color="grey" className="ml-2" />
+                <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>
             <HoverCardContent>
               The filter gives a special render to the image, as cinematic,
-              epic, film noir, etc...
+              epic, product shot, etc.
             </HoverCardContent>
           </HoverCard>
-          <span className="">{style ?? "none"}</span>
+          <span className="line-clamp-3">
+            {style?.length === 0 ? "None" : style}
+          </span>
         </div>
 
         <div className="flex flex-col">
@@ -99,7 +120,7 @@ const RightContainer = ({
             <HoverCardTrigger>
               <div className="flex select-none">
                 <span className="text-gray-500">Chaos</span>
-                <Info size={13} color="grey" className="ml-2" />
+                <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>
             <HoverCardContent>
@@ -107,7 +128,7 @@ const RightContainer = ({
               permission given to the IA, between 0 and 100.
             </HoverCardContent>
           </HoverCard>
-          <span className="">{chaos ?? ""}</span>
+          <span>{chaos ?? "0"}</span>
         </div>
 
         <div className="flex flex-col">
@@ -115,7 +136,7 @@ const RightContainer = ({
             <HoverCardTrigger>
               <div className="flex select-none">
                 <span className="text-gray-500">Quality</span>
-                <Info size={13} color="grey" className="ml-2" />
+                <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>
             <HoverCardContent>
@@ -123,7 +144,7 @@ const RightContainer = ({
               the image.
             </HoverCardContent>
           </HoverCard>
-          <span className="">{quality ?? "1"}</span>
+          <span>{quality ?? "1"}</span>
         </div>
 
         <div className="flex flex-col">
@@ -131,7 +152,7 @@ const RightContainer = ({
             <HoverCardTrigger>
               <div className="flex select-none">
                 <span className="text-gray-500">Stylise</span>
-                <Info size={13} color="grey" className="ml-2" />
+                <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>
             <HoverCardContent>
@@ -139,7 +160,7 @@ const RightContainer = ({
               rendering with a much more artistic style.
             </HoverCardContent>
           </HoverCard>
-          <span className="">{stylise ?? "none"}</span>
+          <span>{stylise ?? "None"}</span>
         </div>
       </div>
     </>

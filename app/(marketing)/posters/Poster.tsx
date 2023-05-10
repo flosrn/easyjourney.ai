@@ -27,10 +27,16 @@ const likePoster = async (posterId: string) => {
   return response;
 };
 
-const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
-  const [likesCount, setLikesCount] = useState<number | undefined>(
-    likes?.length
-  );
+const Poster = ({
+  id,
+  prompt,
+  image,
+  width,
+  height,
+  likes,
+  user,
+}: PostersProps) => {
+  const [likesCount, setLikesCount] = useState<number>(likes?.length ?? 0);
   const [userHasLiked, setUserHasLiked] = useState<boolean>(false);
   const { data: session } = useSession();
   const router = useRouter();
@@ -43,7 +49,7 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
   const likeMutation = useMutation(likePoster, {
     onSuccess: (data) => {
       if (data.status === 409) {
-        setLikesCount(likesCount && likesCount - 1);
+        setLikesCount((prevState) => prevState - 1);
         setUserHasLiked(false);
         toast.error("You already liked this poster!");
       }
@@ -55,7 +61,7 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
     if (!session) {
       return router.push("/api/auth/signin");
     }
-    setLikesCount(likesCount && likesCount + 1);
+    setLikesCount((prevState) => prevState + 1);
     setUserHasLiked(true);
     try {
       await likeMutation.mutateAsync(id);
@@ -68,39 +74,12 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
   return (
     <div className="group relative h-auto max-w-full overflow-hidden rounded-lg">
       <Link href={`/poster/${id}`}>
-        <Image alt={prompt} src={image} width="1000" height="1000" />
-        {author && (
-          <p className="absolute left-2 top-1 z-10 hidden w-full text-[10px] md:group-hover:block">
-            <Link
-              href={`/profile/${author}`}
-              className="flex items-center text-gray-300"
-            >
-              {user.image && (
-                <Avatar className="mr-2 h-7 w-7 cursor-pointer">
-                  <AvatarImage src={user.image} referrerPolicy="no-referrer" />
-                  <AvatarFallback>{getFirstLetters(author)}</AvatarFallback>
-                </Avatar>
-              )}
-              <span className="hover:underline">@{author}</span>
-            </Link>
-          </p>
-        )}
-        <div className="absolute right-[2px] top-[2px] z-10">
-          <motion.button
-            onClick={handleLike}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="flex items-center p-1"
-          >
-            <span className="mr-1 text-xs">{likesCount}</span>
-            <HeartIcon
-              className={cn(
-                "h-4 w-4",
-                userHasLiked ? "text-red-500 fill-current" : "text-white"
-              )}
-            />
-          </motion.button>
-        </div>
+        <Image
+          alt={prompt}
+          src={image}
+          width={width ?? 500}
+          height={height ?? 500}
+        />
         <div className="absolute inset-0 hidden bg-black/50 md:group-hover:block" />
         <div className="absolute bottom-0 mt-1 hidden w-full truncate p-2 md:group-hover:block">
           <p className="w-full truncate text-sm font-medium text-white">
@@ -108,6 +87,38 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
           </p>
         </div>
       </Link>
+      {author && (
+        <p className="absolute left-2 top-1 z-10 hidden w-full text-[10px] md:group-hover:block">
+          <Link
+            href={`/profile/${author}`}
+            className="flex items-center text-gray-300"
+          >
+            {user.image && (
+              <Avatar className="mr-2 h-7 w-7 cursor-pointer">
+                <AvatarImage src={user.image} referrerPolicy="no-referrer" />
+                <AvatarFallback>{getFirstLetters(author)}</AvatarFallback>
+              </Avatar>
+            )}
+            <span className="hover:underline">@{author}</span>
+          </Link>
+        </p>
+      )}
+      <div className="absolute right-[2px] top-[2px] z-10">
+        <motion.button
+          onClick={handleLike}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="flex items-center p-1"
+        >
+          <span className="mr-1 text-xs">{likesCount}</span>
+          <HeartIcon
+            className={cn(
+              "h-4 w-4",
+              userHasLiked ? "text-red-500 fill-current" : "text-white"
+            )}
+          />
+        </motion.button>
+      </div>
     </div>
   );
 };

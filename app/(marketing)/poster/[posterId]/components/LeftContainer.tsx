@@ -28,8 +28,8 @@ const LeftContainer = ({
   height,
   ratio,
 }: PosterType) => {
-  const [likesCount, setLikesCount] = useState(likes?.length);
-  const [userHasLiked, setUserHasLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState<number>(likes?.length ?? 0);
+  const [userHasLiked, setUserHasLiked] = useState<boolean>(false);
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -52,7 +52,7 @@ const LeftContainer = ({
     if (!session) {
       return router.push("/api/auth/signin");
     }
-    setLikesCount(likesCount && likesCount + 1);
+    setLikesCount((prevState) => prevState + 1);
     setUserHasLiked(true);
     try {
       await likeMutation.mutateAsync(id);
@@ -79,7 +79,6 @@ const LeftContainer = ({
       <div className="mt-2 inline-block max-w-max rounded-3xl border bg-gray-700/20 px-2 py-1 hover:bg-gray-700/80">
         <motion.button
           onClick={handleLike}
-          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           className="flex items-center space-x-2 p-1"
         >
