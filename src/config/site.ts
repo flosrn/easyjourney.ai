@@ -11,11 +11,9 @@ import {
   User,
 } from "lucide-react";
 
-import type { MegaMenu, NavItem } from "~/types/nav";
+import type { Hero, MegaMenu, NavItem } from "~/types/nav";
 
-type SiteConfig = {
-  name: string;
-  description: string;
+type SiteConfig = Hero & {
   megaMenu: MegaMenu[];
   userMenu: NavItem[][];
 };
@@ -183,9 +181,10 @@ const userMenu: NavItem[][] = [
 ];
 
 export const siteConfig: SiteConfig = {
-  name: "myposter.ai",
+  title: "myposter.ai",
+  subtitle: "Generate beautiful posters in seconds with AI",
   description:
-    "Créez vos posters personnalisés en quelques clics et recevez-les chez vous !",
+    "Unlock the power of Midjourney with a beautiful and user-friendly interface. Create stunning visuals with ease, no AI or prompt engineering expertise required",
   megaMenu,
   userMenu,
 };

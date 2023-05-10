@@ -1,5 +1,11 @@
 import type { LucideIcon } from "lucide-react";
 
+export type Hero = {
+  title: string;
+  subtitle: string;
+  description: string;
+};
+
 export type NavItem = {
   title: string;
   href: string;

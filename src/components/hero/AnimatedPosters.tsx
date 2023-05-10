@@ -19,19 +19,18 @@ const AnimatedPosters = ({ columns }: AnimatedPostersProps) => (
         )}
       >
         {column.map((poster) => (
-          <React.Fragment key={poster.id}>
-            <Image
-              src={poster.image}
-              alt={poster.prompt}
-              width={poster.width ?? 500}
-              height={poster.height ?? 500}
-              priority
-              quality={10}
-              // seems not working on nextjs 13.x yet, see https://github.com/vercel/next.js/issues/42140
-              placeholder="blur"
-              blurDataURL={`${poster.image}/-/blur/500/`}
-            />
-          </React.Fragment>
+          <Image
+            key={poster.id}
+            src={poster.image}
+            alt={poster.prompt}
+            width={poster.width ?? 500}
+            height={poster.height ?? 500}
+            priority
+            quality={10}
+            // seems not working on nextjs 13.x yet, see https://github.com/vercel/next.js/issues/42140
+            placeholder="blur"
+            blurDataURL={`${poster.image}/-/blur/500/`}
+          />
         ))}
       </div>
     ))}
