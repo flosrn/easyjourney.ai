@@ -46,6 +46,9 @@ const PosterProduct = ({
   model,
   style,
   likes,
+  chaos,
+  quality,
+  stylise,
 }: PosterProductProps) => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedSize, setSelectedSize] = useState("M");
@@ -170,6 +173,9 @@ const PosterProduct = ({
             createdAt={createdAt}
             model={model}
             style={style}
+            chaos={chaos}
+            quality={quality}
+            stylise={stylise}
           />
         </div>
       </div>

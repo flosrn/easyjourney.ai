@@ -1,8 +1,14 @@
 import Link from "next/link";
+import { Info } from "lucide-react";
 import { formatDate } from "~/utils/formatDate";
 import getFirstLetters from "~/utils/getFirstLetter";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "~/components/ui/HoverCard";
 
 import type { PosterProductProps } from "../PosterProduct";
 
@@ -15,6 +21,9 @@ const RightContainer = ({
   prompt,
   model,
   style,
+  chaos,
+  quality,
+  stylise,
 }: PosterProductProps) => {
   const author = user?.username;
   const date = formatDate({ dateObject: createdAt });
@@ -51,18 +60,15 @@ const RightContainer = ({
             {width}px/{height}px
           </span>
         </div>
+
         <div className="flex flex-col">
           <span className="text-gray-500">Ratio</span>
           <span className="">{ratio}</span>
         </div>
+
         <div className="flex flex-col">
           <span className="text-gray-500">Created at</span>
           <span className="">{date}</span>
-        </div>
-
-        <div className="flex flex-col">
-          <span className="text-gray-500">Filter</span>
-          <span className="">{style ?? "none"}</span>
         </div>
 
         {model && (
@@ -71,6 +77,70 @@ const RightContainer = ({
             <span>{model}</span>
           </div>
         )}
+
+        <div className="flex flex-col">
+          <HoverCard>
+            <HoverCardTrigger>
+              <div className="flex ">
+                <span className="text-gray-500">Filter</span>
+                <Info size={13} color="grey" className="ml-2" />
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent>
+              The filter gives a special render to the image, as cinematic,
+              epic, film noir, etc
+            </HoverCardContent>
+          </HoverCard>
+          <span className="">{style ? style : "none"}</span>
+        </div>
+
+        <div className="flex flex-col">
+          <HoverCard>
+            <HoverCardTrigger>
+              <div className="flex">
+                <span className="text-gray-500">Chaos</span>
+                <Info size={13} color="grey" className="ml-2" />
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent>
+              Chaos is the amount of randomness in the image and originiality
+              permission given to the IA, between 0 and 100.
+            </HoverCardContent>
+          </HoverCard>
+          <span className="">{chaos}</span>
+        </div>
+
+        <div className="flex flex-col">
+          <HoverCard>
+            <HoverCardTrigger>
+              <div className="flex">
+                <span className="text-gray-500">Quality</span>
+                <Info size={13} color="grey" className="ml-2" />
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent>
+              The Quality Parameter will define how long the AI spends creating
+              the image.
+            </HoverCardContent>
+          </HoverCard>
+          <span className="">{quality}</span>
+        </div>
+
+        <div className="flex flex-col">
+          <HoverCard>
+            <HoverCardTrigger>
+              <div className="flex">
+                <span className="text-gray-500">Stylise</span>
+                <Info size={13} color="grey" className="ml-2" />
+              </div>
+            </HoverCardTrigger>
+            <HoverCardContent>
+              The Stylize Parameter will make your image more stylized,
+              rendering with a much more artistic style.
+            </HoverCardContent>
+          </HoverCard>
+          <span className="">{stylise ? stylise : "none"}</span>
+        </div>
       </div>
     </>
   );
