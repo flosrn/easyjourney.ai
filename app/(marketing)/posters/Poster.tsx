@@ -28,20 +28,22 @@ const likePoster = async (posterId: string) => {
 };
 
 const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
-  const [likesCount, setLikesCount] = useState(likes.length);
-  const [userHasLiked, setUserHasLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState<number | undefined>(
+    likes?.length
+  );
+  const [userHasLiked, setUserHasLiked] = useState<boolean>(false);
   const { data: session } = useSession();
   const router = useRouter();
   const author = user?.username;
 
   useEffect(() => {
-    setUserHasLiked(likes.some((like) => like.userId === session?.user.id));
+    setUserHasLiked(!!likes?.some((like) => like.userId === session?.user.id));
   }, [session, likes]);
 
   const likeMutation = useMutation(likePoster, {
     onSuccess: (data) => {
       if (data.status === 409) {
-        setLikesCount(likesCount - 1);
+        setLikesCount(likesCount && likesCount - 1);
         setUserHasLiked(false);
         toast.error("You already liked this poster!");
       }
@@ -53,7 +55,7 @@ const Poster = ({ id, prompt, image, likes, user }: PostersProps) => {
     if (!session) {
       return router.push("/api/auth/signin");
     }
-    setLikesCount(likesCount + 1);
+    setLikesCount(likesCount && likesCount + 1);
     setUserHasLiked(true);
     try {
       await likeMutation.mutateAsync(id);

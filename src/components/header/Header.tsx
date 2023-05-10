@@ -55,7 +55,7 @@ const Header = ({ expanded }: HeaderProps) => {
           </div>
           <div className="flex items-center space-x-2">
             {!isCreatePage && (
-              <Button href="/create" variant="outline" className="mr-2">
+              <Button href="/create" className="mr-2">
                 Create
               </Button>
             )}

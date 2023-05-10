@@ -63,36 +63,34 @@ const LeftContainer = ({
     }
   };
   return (
-    <>
-      <div className="flex flex-col justify-center">
-        <Image
-          src={image}
-          alt={prompt}
-          width={width ?? 500}
-          height={height ?? 500}
-          className={cn("h-auto max-h-[85vh] w-full rounded-md object-cover", {
-            "sm:max-w-[90%]": ratio === "2/3",
-            "sm:max-w-[80%]": ratio === "4/7",
-          })}
-        />
-        <div className="mt-2 inline-block max-w-max rounded-3xl border bg-gray-700/20 px-2 py-1 hover:bg-gray-700/80">
-          <motion.button
-            onClick={handleLike}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="flex items-center space-x-2 p-1"
-          >
-            <HeartIcon
-              className={cn(
-                "h-5 w-5",
-                userHasLiked ? "text-red-500 fill-current" : "text-white"
-              )}
-            />
-            <span className="text-sm">{likesCount}</span>
-          </motion.button>
-        </div>
+    <div className="flex flex-col justify-center">
+      <Image
+        src={image}
+        alt={prompt}
+        width={width ?? 500}
+        height={height ?? 500}
+        className={cn("h-auto max-h-[85vh] w-full rounded-md object-cover", {
+          "sm:max-w-[90%]": ratio === "2/3",
+          "sm:max-w-[80%]": ratio === "4/7",
+        })}
+      />
+      <div className="mt-2 inline-block max-w-max rounded-3xl border bg-gray-700/20 px-2 py-1 hover:bg-gray-700/80">
+        <motion.button
+          onClick={handleLike}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="flex items-center space-x-2 p-1"
+        >
+          <HeartIcon
+            className={cn(
+              "h-5 w-5",
+              userHasLiked ? "text-red-500 fill-current" : "text-white"
+            )}
+          />
+          <span className="text-sm">{likesCount}</span>
+        </motion.button>
       </div>
-    </>
+    </div>
   );
 };
 

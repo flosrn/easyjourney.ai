@@ -52,6 +52,9 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
       borderRadius: {
         lg: `var(--radius)`,
         md: `calc(var(--radius) - 2px)`,
@@ -70,19 +73,20 @@ export default {
           to: { height: 0 },
         },
         slidetop: {
+          //NE PAS CHANGER LES -10% ET -60.21%
           from: {
-            transform: "translateY(-20%)",
+            transform: "translateY(-10%)",
           },
           to: {
-            transform: "translateY(-500%)",
+            transform: "translateY(-60.21%)",
           },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        slidetop: "slidetop 17s linear infinite",
-        "slidetop-slower": "slidetop 13s linear infinite",
+        slidetop: "slidetop 60s linear infinite",
+        "slidetop-slower": "slidetop 80s linear infinite",
       },
     },
   },
