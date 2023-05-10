@@ -15,7 +15,7 @@ const getPopularPosters = async () =>
         _count: "desc",
       },
     },
-    include: { user: true, likes: true },
+    take: 100,
   });
 
 export default async function IndexPage() {
