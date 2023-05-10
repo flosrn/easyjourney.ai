@@ -55,25 +55,25 @@ const RightContainer = ({
 
       <div className="mt-8 grid w-auto grid-cols-2 gap-4 border-t border-gray-500 pt-4">
         <div className="flex flex-col">
-          <span className="text-gray-500">Resolution</span>
+          <span className="select-none text-gray-500">Resolution</span>
           <span className="">
             {width}px/{height}px
           </span>
         </div>
 
         <div className="flex flex-col">
-          <span className="text-gray-500">Ratio</span>
+          <span className="select-none text-gray-500">Ratio</span>
           <span className="">{ratio}</span>
         </div>
 
         <div className="flex flex-col">
-          <span className="text-gray-500">Created at</span>
+          <span className="select-none text-gray-500">Created at</span>
           <span className="">{date}</span>
         </div>
 
         {model && (
           <div className="flex flex-col">
-            <span className="text-gray-500">Model of AI</span>
+            <span className="select-none text-gray-500">Model of AI</span>
             <span>{model}</span>
           </div>
         )}
@@ -81,14 +81,14 @@ const RightContainer = ({
         <div className="flex flex-col">
           <HoverCard>
             <HoverCardTrigger>
-              <div className="flex ">
-                <span className="text-gray-500">Filter</span>
+              <div className="flex select-none">
+                <span className="text-gray-500 ">Filter</span>
                 <Info size={13} color="grey" className="ml-2" />
               </div>
             </HoverCardTrigger>
             <HoverCardContent>
               The filter gives a special render to the image, as cinematic,
-              epic, film noir, etc
+              epic, film noir, etc...
             </HoverCardContent>
           </HoverCard>
           <span className="">{style ? style : "none"}</span>
@@ -97,13 +97,13 @@ const RightContainer = ({
         <div className="flex flex-col">
           <HoverCard>
             <HoverCardTrigger>
-              <div className="flex">
+              <div className="flex select-none">
                 <span className="text-gray-500">Chaos</span>
                 <Info size={13} color="grey" className="ml-2" />
               </div>
             </HoverCardTrigger>
             <HoverCardContent>
-              Chaos is the amount of randomness in the image and originiality
+              Chaos is the amount of randomness in the image and originality
               permission given to the IA, between 0 and 100.
             </HoverCardContent>
           </HoverCard>
@@ -113,7 +113,7 @@ const RightContainer = ({
         <div className="flex flex-col">
           <HoverCard>
             <HoverCardTrigger>
-              <div className="flex">
+              <div className="flex select-none">
                 <span className="text-gray-500">Quality</span>
                 <Info size={13} color="grey" className="ml-2" />
               </div>
@@ -129,7 +129,7 @@ const RightContainer = ({
         <div className="flex flex-col">
           <HoverCard>
             <HoverCardTrigger>
-              <div className="flex">
+              <div className="flex select-none">
                 <span className="text-gray-500">Stylise</span>
                 <Info size={13} color="grey" className="ml-2" />
               </div>

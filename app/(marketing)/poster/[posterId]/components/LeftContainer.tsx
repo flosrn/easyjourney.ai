@@ -62,13 +62,13 @@ const LeftContainer = ({
     }
   };
   return (
-    <div className="flex max-h-[50vh] flex-col">
+    <div className="flex flex-col">
       <Image
         src={image}
         alt={prompt}
         width={width}
         height={height}
-        className="h-auto rounded-lg"
+        className="h-auto max-h-[80vh] rounded-lg"
       />
       <div
         className="m-1 mt-2 inline-block max-w-max

@@ -152,7 +152,7 @@ const PosterProduct = ({
 
   return (
     <>
-      <div className=" md:flex ">
+      <div className=" flex-row md:flex ">
         <div className="md:w-[60%]">
           <LeftContainer
             id={id}
