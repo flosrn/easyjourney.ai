@@ -153,7 +153,7 @@ const PosterProduct = ({
   return (
     <>
       <div className="mx-auto max-w-5xl md:flex md:flex-row md:space-x-8">
-        <div className="md:w-8/12">
+        <div className="flex justify-center md:w-8/12">
           <LeftContainer
             id={id}
             image={image}

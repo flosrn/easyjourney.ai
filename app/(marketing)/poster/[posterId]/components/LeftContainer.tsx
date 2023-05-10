@@ -63,18 +63,20 @@ const LeftContainer = ({
     }
   };
   return (
-    <div className="flex flex-col justify-center">
+    <div
+      className={cn("flex-col", {
+        "sm:max-w-[90%]": ratio === "2/3",
+        "sm:max-w-[80%]": ratio === "4/7",
+      })}
+    >
       <Image
         src={image}
         alt={prompt}
         width={width ?? 500}
         height={height ?? 500}
-        className={cn("h-auto max-h-[85vh] w-full rounded-md object-cover", {
-          "sm:max-w-[90%]": ratio === "2/3",
-          "sm:max-w-[80%]": ratio === "4/7",
-        })}
+        className="h-auto max-h-[85vh] w-full rounded-md object-cover"
       />
-      <div className="mt-2 inline-block max-w-max rounded-3xl border bg-gray-700/20 px-2 py-1 hover:bg-gray-700/80">
+      <div className="mt-2 inline-block max-w-max self-start rounded-3xl border bg-gray-700/20 px-2 py-1 hover:bg-gray-700/80">
         <motion.button
           onClick={handleLike}
           whileHover={{ scale: 1.1 }}
