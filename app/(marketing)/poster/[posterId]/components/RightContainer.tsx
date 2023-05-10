@@ -91,7 +91,7 @@ const RightContainer = ({
               epic, film noir, etc...
             </HoverCardContent>
           </HoverCard>
-          <span className="">{style ? style : "none"}</span>
+          <span className="">{style ?? "none"}</span>
         </div>
 
         <div className="flex flex-col">
@@ -123,7 +123,7 @@ const RightContainer = ({
               the image.
             </HoverCardContent>
           </HoverCard>
-          <span className="">{quality ?? ""}</span>
+          <span className="">{quality ?? "1"}</span>
         </div>
 
         <div className="flex flex-col">

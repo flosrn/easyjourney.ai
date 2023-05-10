@@ -6,6 +6,7 @@ export type PosterType = Omit<Poster, "createdAt" | "updatedAt"> & {
   user?: User | null;
   model?: string | null;
   style?: string | null;
+  stylise?: string | null;
 };
 
 export type Posters = PosterType[];
