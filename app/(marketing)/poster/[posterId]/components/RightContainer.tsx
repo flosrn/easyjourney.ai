@@ -53,11 +53,11 @@ const RightContainer = ({
         <span className="tracking-wider">{prompt}</span>
       </div>
 
-      <div className="mt-8 grid w-auto grid-cols-2 gap-4 border-t border-gray-500 pt-4">
+      <div className="mt-8 grid w-full grid-cols-2 gap-4 border-t border-gray-500 pt-4">
         <div className="flex flex-col">
           <span className="select-none text-gray-500">Resolution</span>
           <span className="">
-            {width}px/{height}px
+            {width}px / {height}px
           </span>
         </div>
 
@@ -139,7 +139,7 @@ const RightContainer = ({
               rendering with a much more artistic style.
             </HoverCardContent>
           </HoverCard>
-          <span className="">{stylise ? stylise : "none"}</span>
+          <span className="">{stylise ?? "none"}</span>
         </div>
       </div>
     </>
