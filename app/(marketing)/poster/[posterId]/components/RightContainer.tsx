@@ -27,6 +27,7 @@ const RightContainer = ({
 }: PosterProductProps) => {
   const author = user?.username;
   const date = formatDate({ dateObject: createdAt });
+  console.log("style :", style);
   return (
     <>
       <div>
@@ -111,7 +112,7 @@ const RightContainer = ({
             </HoverCardContent>
           </HoverCard>
           <span className="line-clamp-3">
-            {style?.length === 0 ? "None" : style}
+            {!style || style.length === 0 ? "None" : style}
           </span>
         </div>
 
