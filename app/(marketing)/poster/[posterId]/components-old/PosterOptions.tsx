@@ -9,9 +9,6 @@ type PosterOptionsProps = {
 
 const PosterOptions = ({ prompt, user, createdAt }: PosterOptionsProps) => (
   <div className="mt-4 w-full flex-row truncate md:mt-0">
-    <div className="w-full truncate text-3xl font-medium capitalize">
-      {prompt}
-    </div>
     {user ? (
       <div className="mt-4 font-extralight">
         By{" "}
