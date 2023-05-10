@@ -18,7 +18,7 @@ const Title = ({ title, subtitle, description }: TitleProps) => (
       <p className="text-center text-lg text-slate-700 dark:text-slate-400">
         {description}
       </p>
-      <Button href="/posters/new" className="mt-5">
+      <Button href="/posters/new" variant="secondary" className="mt-5">
         Explore
       </Button>
     </section>

@@ -18,15 +18,15 @@ const AnimatedPosters = ({ columns }: AnimatedPostersProps) => (
           index % 2 === 0 ? "animate-slidetop" : "animate-slidetop-slower"
         )}
       >
-        {column.map((poster) => (
+        {column.map((poster, posterIndex) => (
           <Image
-            key={poster.id}
+            key={`${poster.id}-${posterIndex}`}
             src={poster.image}
             alt={poster.prompt}
             width={poster.width ?? 500}
             height={poster.height ?? 500}
             priority
-            quality={10}
+            quality={1}
             // seems not working on nextjs 13.x yet, see https://github.com/vercel/next.js/issues/42140
             placeholder="blur"
             blurDataURL={`${poster.image}/-/blur/500/`}
