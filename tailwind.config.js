@@ -82,8 +82,8 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        slidetop: "slidetop 60s linear infinite",
-        "slidetop-slower": "slidetop 80s linear infinite",
+        slidetop: "slidetop 40s linear infinite",
+        "slidetop-slower": "slidetop 60s linear infinite",
       },
     },
   },

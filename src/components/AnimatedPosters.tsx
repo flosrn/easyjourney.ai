@@ -23,8 +23,13 @@ const AnimatedPosters = ({ columns }: AnimatedPostersProps) => (
             <Image
               src={poster.image}
               alt={poster.prompt}
-              width={500}
-              height={500}
+              width={poster.width ?? 500}
+              height={poster.height ?? 500}
+              priority
+              quality={10}
+              // seems not working on nextjs 13.x yet, see https://github.com/vercel/next.js/issues/42140
+              placeholder="blur"
+              blurDataURL={`${poster.image}/-/blur/500/`}
             />
           </React.Fragment>
         ))}
