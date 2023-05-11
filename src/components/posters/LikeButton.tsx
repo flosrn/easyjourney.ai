@@ -14,6 +14,7 @@ import { cn } from "~/lib/classNames";
 type LikeButtonProps = {
   id: string;
   likes?: Like[];
+  hasHoverAnim?: boolean;
 };
 
 const likePoster = async (posterId: string) => {
@@ -25,7 +26,7 @@ const likePoster = async (posterId: string) => {
   return response;
 };
 
-const LikeButton = ({ id, likes }: LikeButtonProps) => {
+const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
   const [likesCount, setLikesCount] = useState<number>(likes?.length ?? 0);
   const [userHasLiked, setUserHasLiked] = useState<boolean>(false);
   const { data: session } = useSession();
@@ -63,6 +64,7 @@ const LikeButton = ({ id, likes }: LikeButtonProps) => {
   return (
     <motion.button
       onClick={handleLike}
+      whileHover={hasHoverAnim ? { scale: 1.1 } : {}}
       whileTap={{ scale: 0.9 }}
       className="flex items-center space-x-2 p-1"
     >

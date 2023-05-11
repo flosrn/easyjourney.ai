@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
+import LikeButton from "~/components/posters/LikeButton";
+
 import { cn } from "~/lib/classNames";
 import type { PosterType } from "~/types/poster";
-
-import LikeButton from "./LikeButton";
 
 const PosterImageContainer = ({
   image,
