@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import { useSession} from "next-auth/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu } from "lucide-react";
 
 import DropdownUserMenuNav from "~/components/header/DropdownUserMenuNav";
@@ -20,6 +21,8 @@ const Header = ({ expanded }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const pathname = usePathname();
   const isCreatePage = pathname === "/create";
+  const router = useRouter();
+  const { data: session } = useSession()
   return (
     <header className="bg-background/95 sticky top-0 z-40 w-full border-b shadow-sm">
       <div
@@ -54,8 +57,8 @@ const Header = ({ expanded }: HeaderProps) => {
             </nav>
           </div>
           <div className="flex items-center space-x-2">
-            {!isCreatePage && (
-              <Button href="/create" className="mr-2">
+            {!isCreatePage && (              
+              <Button href={session ? "/create" : "/api/auth/signin"} className="mr-2">
                 Create
               </Button>
             )}
