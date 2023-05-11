@@ -101,13 +101,13 @@ const PosterInfoContainer = ({
           <HoverCard>
             <HoverCardTrigger>
               <div className="flex select-none">
-                <span className="text-gray-500 ">Filter</span>
+                <span className="text-gray-500 ">Filter Style</span>
                 <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>
             <HoverCardContent>
-              The filter gives a special render to the image, as cinematic,
-              epic, product shot, etc.
+              The filter style gives a special render to the image, as
+              cinematic, epic, product shot, etc.
             </HoverCardContent>
           </HoverCard>
           <span className="line-clamp-3">
