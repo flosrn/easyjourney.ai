@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import type { Like } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
@@ -8,7 +10,11 @@ import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import { cn } from "~/lib/classNames";
-import type { PosterType } from "~/types/poster";
+
+type LikeButtonProps = {
+  id: string;
+  likes?: Like[];
+};
 
 const likePoster = async (posterId: string) => {
   const response = await fetch("/api/posters/like", {
@@ -19,15 +25,7 @@ const likePoster = async (posterId: string) => {
   return response;
 };
 
-const LeftContainer = ({
-  image,
-  prompt,
-  likes,
-  id,
-  width,
-  height,
-  ratio,
-}: PosterType) => {
+const LikeButton = ({ id, likes }: LikeButtonProps) => {
   const [likesCount, setLikesCount] = useState<number>(likes?.length ?? 0);
   const [userHasLiked, setUserHasLiked] = useState<boolean>(false);
   const { data: session } = useSession();
@@ -63,36 +61,20 @@ const LeftContainer = ({
     }
   };
   return (
-    <div
-      className={cn("flex-col", {
-        "sm:max-w-[90%]": ratio === "2/3",
-        "sm:max-w-[80%]": ratio === "4/7",
-      })}
+    <motion.button
+      onClick={handleLike}
+      whileTap={{ scale: 0.9 }}
+      className="flex items-center space-x-2 p-1"
     >
-      <Image
-        src={image}
-        alt={prompt}
-        width={width ?? 500}
-        height={height ?? 500}
-        className="h-auto max-h-[85vh] w-full rounded-md object-cover"
+      <HeartIcon
+        className={cn(
+          "h-5 w-5",
+          userHasLiked ? "text-red-500 fill-current" : "text-white"
+        )}
       />
-      <div className="mt-2 inline-block max-w-max rounded-3xl border bg-gray-700/20 px-2 py-1 hover:bg-gray-700/80">
-        <motion.button
-          onClick={handleLike}
-          whileTap={{ scale: 0.9 }}
-          className="flex items-center space-x-2 p-1"
-        >
-          <HeartIcon
-            className={cn(
-              "h-5 w-5",
-              userHasLiked ? "text-red-500 fill-current" : "text-white"
-            )}
-          />
-          <span className="text-sm">{likesCount}</span>
-        </motion.button>
-      </div>
-    </div>
+      <span className="text-sm">{likesCount}</span>
+    </motion.button>
   );
 };
 
-export default LeftContainer;
+export default LikeButton;

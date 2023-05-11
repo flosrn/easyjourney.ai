@@ -1,10 +1,10 @@
 import React from "react";
-import Link from "next/link";
 import type { Poster } from "@prisma/client";
-import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
+import { Toaster } from "react-hot-toast";
 import { prisma } from "~/server/db/prisma";
 
-import PosterProduct from "./PosterProduct";
+import PosterImageContainer from "./components/PosterImageContainer";
+import PosterInfoContainer from "./components/PosterInfoContainer";
 
 const getCurrentPoster = async (posterId: Poster["id"]) =>
   prisma.poster.findUnique({
@@ -19,43 +19,18 @@ export default async function PosterPage({
 }) {
   const { posterId } = params;
   const poster = await getCurrentPoster(posterId);
-
-  const nextPoster = await prisma.poster.findFirst({
-    where: {
-      id: {
-        gt: posterId,
-      },
-    },
-    orderBy: {
-      id: "asc",
-    },
-  });
-
-  const previousPoster = await prisma.poster.findFirst({
-    where: {
-      id: {
-        lt: posterId,
-      },
-    },
-    orderBy: {
-      id: "desc",
-    },
-  });
-
   return (
     <>
       <section className="container mt-8  items-center justify-center gap-6 pb-8">
-        <div className="w-full">
-          {/*<div className="flex items-center justify-center space-x-5">*/}
-          {/*<Link href={`/poster/${previousPoster?.id}`}>*/}
-          {/*  <ArrowBigLeft size={24} />*/}
-          {/*</Link>*/}
-          <div className="">{poster && <PosterProduct {...poster} />}</div>
-
-          {/*<Link href={`/poster/${nextPoster?.id}`}>*/}
-          {/*  <ArrowBigRight size={24} />*/}
-          {/*</Link>*/}
+        <div className="mx-auto max-w-5xl md:flex md:flex-row md:space-x-8">
+          <div className="flex justify-center md:w-8/12">
+            {poster && <PosterImageContainer {...poster} />}
+          </div>
+          <div className="pt-4 md:w-5/12">
+            {poster && <PosterInfoContainer {...poster} />}
+          </div>
         </div>
+        <Toaster position="bottom-right" />
       </section>
     </>
   );

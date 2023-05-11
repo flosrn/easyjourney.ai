@@ -10,24 +10,23 @@ import {
   HoverCardTrigger,
 } from "~/components/ui/HoverCard";
 
-import type { PosterProductProps } from "../PosterProduct";
+import type { PosterType } from "~/types/poster";
 
-const RightContainer = ({
-  ratio,
-  width,
-  height,
+const PosterInfoContainer = ({
+  prompt,
   user,
   createdAt,
-  prompt,
+  width,
+  height,
+  ratio,
   model,
   style,
   chaos,
   quality,
-  stylise,
-}: PosterProductProps) => {
+  stylize,
+}: PosterType) => {
   const author = user?.username;
   const date = formatDate({ dateObject: createdAt });
-  console.log("style :", style);
   return (
     <>
       <div>
@@ -161,11 +160,11 @@ const RightContainer = ({
               rendering with a much more artistic style.
             </HoverCardContent>
           </HoverCard>
-          <span>{stylise ?? "None"}</span>
+          <span>{stylize ?? "None"}</span>
         </div>
       </div>
     </>
   );
 };
 
-export default RightContainer;
+export default PosterInfoContainer;
