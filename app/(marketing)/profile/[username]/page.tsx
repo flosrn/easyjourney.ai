@@ -83,11 +83,6 @@ export default async function UserProfile({
           </div>
         </div>
       </div>
-      {/*<div className="container max-w-4xl">*/}
-      {/*  <Suspense fallback={<div>Loading posters...</div>}>*/}
-      {/*    <ProfilePosters userId={user.id} />*/}
-      {/*  </Suspense>*/}
-      {/*</div>*/}
       <div className="container max-w-4xl">
         <Suspense fallback={<div>Loading posters...</div>}>
           <Posters posters={user.posters} />
