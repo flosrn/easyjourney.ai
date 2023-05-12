@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import type { PopoverProps } from "@radix-ui/react-popover";
 import { Check, ChevronsUpDown } from "lucide-react";
@@ -39,14 +39,14 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [
     filters,
-    selectedFilter,
-    setSelectedFilter,
+    selectedFilters,
+    setSelectedFilters,
     peekedFilter,
     setPeekedFilter,
   ] = useFilterStore((state) => [
     state.filters,
-    state.selectedFilter,
-    state.setSelectedFilter,
+    state.selectedFilters,
+    state.setSelectedFilters,
     state.peekedFilter,
     state.setPeekedFilter,
   ]);
@@ -62,16 +62,29 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
             aria-label="Select a model"
             className="w-full justify-between"
           >
-            {selectedFilter.image && (
-              <Image
-                src={selectedFilter.image}
-                alt={selectedFilter.name}
-                width={24}
-                height={24}
-                className="h-6 w-6"
-              />
+            {selectedFilters.length === 0 && <div>Select a filter...</div>}
+            {selectedFilters.length === 1 && <div>1 filter selected</div>}
+            {selectedFilters.length > 1 && (
+              <div>{selectedFilters.length} filters selected</div>
             )}
-            {selectedFilter.name || "Select a filter..."}
+            {/* {selectedFilters.length > 0 ? (
+              selectedFilters.map((selectedFilter) => (
+                <div key={selectedFilter.id}>
+                  {selectedFilter.image && (
+                    <Image
+                      src={selectedFilter.image}
+                      alt={selectedFilter.name}
+                      width={24}
+                      height={24}
+                      className="h-6 w-6"
+                    />
+                  )}
+                  {selectedFilter.name}
+                </div>
+              ))
+            ) : (
+              <div>Select a filter...</div>
+            )} */}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
@@ -113,11 +126,22 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                       <FilterItem
                         key={filter.id}
                         filter={filter}
-                        isSelected={selectedFilter.id === filter.id}
+                        isSelected={selectedFilters.some(
+                          (selectedFilter) => selectedFilter.id === filter.id
+                        )}
                         onPeek={(styleFilter) => setPeekedFilter(styleFilter)}
                         onSelect={() => {
-                          setSelectedFilter(filter);
+                          const filterIndex = selectedFilters.findIndex((selectedFilter) => parseInt(selectedFilter.id) === parseInt(filter.id));
+                          if (filterIndex !== -1) {
+                            console.log("yes");
+                            const updatedFilters = selectedFilters;                            
+                            updatedFilters.splice(filterIndex, 1);
+                            setSelectedFilters(updatedFilters);
+                          } else {
+                            setSelectedFilters([...selectedFilters, filter]);
+                          }
                           setOpen(false);
+                          console.log(selectedFilters);
                         }}
                       />
                     ))}
@@ -131,7 +155,6 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     </div>
   );
 }
-
 type ModelItemProps = {
   filter: StyleFilter;
   isSelected: boolean;

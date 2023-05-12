@@ -4,19 +4,25 @@ import { styleFilters, type StyleFilter } from "../data/styleFilters";
 
 type FilterState = {
   filters: StyleFilter[];
-  selectedFilter: StyleFilter;
+  selectedFilters: StyleFilter[];
   peekedFilter: StyleFilter;
 };
 
 type FilterAction = {
-  setSelectedFilter: (filter: StyleFilter) => void;
+  setSelectedFilters: (filter: StyleFilter[]) => void;
   setPeekedFilter: (filter: StyleFilter) => void;
 };
 
 export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
   filters: styleFilters,
-  selectedFilter: styleFilters[0],
-  setSelectedFilter: (filter) => set(() => ({ selectedFilter: filter })),
+  selectedFilters: [styleFilters[0]],
+  setSelectedFilters: (filters) => {
+    set((state) => {
+      const uniqueFilters = Array.from(new Set([...state.selectedFilters, ...filters]));
+      return { selectedFilters: uniqueFilters };
+    });
+  },
+  
   peekedFilter: styleFilters[0],
   setPeekedFilter: (filter) => set(() => ({ peekedFilter: filter })),
 }));

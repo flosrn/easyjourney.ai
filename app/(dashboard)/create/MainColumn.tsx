@@ -75,9 +75,9 @@ const MainColumn = () => {
   const [selectedAspectRatio, setSelectedAspectRatio] = useRatioStore(
     (state) => [state.selectedAspectRatio, state.setSelectedAspectRatio]
   );
-  const [selectedFilter, setSelectedFilter] = useFilterStore((state) => [
-    state.selectedFilter,
-    state.setSelectedFilter,
+  const [selectedFilters, setSelectedFilters] = useFilterStore((state) => [
+    state.selectedFilters,
+    state.setSelectedFilters,
   ]);
   const [promptValue, setPromptValue] = usePromptStore((state) => [
     state.promptValue,
@@ -93,18 +93,16 @@ const MainColumn = () => {
   const isVariationLoading = isLoading && loadingType === "variation";
   const isUploadLoading = isLoading && loadingType === "upload";
   const isImageUpscaled = imageType === "upscale";
-  const { style } = selectedFilter;
   const { ratio, value: ratioValue } = selectedAspectRatio;
-  const prompt = `${promptValue.trim()}${
-    style ? `, ${style.toLowerCase()}` : ""
-  } ${ratio}`;
+  const styles: string[] = selectedFilters.map((selectedFilter) => selectedFilter.style);
+  const prompt = `${promptValue.trim()}${styles.length > 0 ? `, ${styles.join(", ").toLowerCase()}` : ""} ${ratio}`;  
   const isEmpty = !prompt || prompt.length <= 1;
 
   const handleClear = () => {
     setClear();
     setPromptValue("");
     setSelectedAspectRatio(aspectRatios[0]);
-    setSelectedFilter(styleFilters[0]);
+    setSelectedFilters([styleFilters[0]]);
   };
 
   const handlePreviousImage = () => {
@@ -223,7 +221,7 @@ const MainColumn = () => {
               <motion.div layout className="flex-center mt-4">
                 <Button
                   onClick={async () =>
-                    uploadImage(currentImage, promptValue, ratioValue, style)
+                    uploadImage(currentImage, promptValue, ratioValue, styles[0])
                   }
                   disabled={isUploadLoading || isImageUploaded}
                   variant="success"

@@ -196,4 +196,5 @@ export const blacklistedWords: string[] = [
   "demon",
   "demons",
   "virgin",
+  "horn",
 ];
