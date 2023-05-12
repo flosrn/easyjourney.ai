@@ -12,6 +12,7 @@ type FilterAction = {
   addFilter: (filter: StyleFilter) => void;
   removeFilter: (filter: StyleFilter) => void;
   setPeekedFilter: (filter: StyleFilter) => void;
+  clearFilters: () => void;
 };
 
 export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
@@ -34,4 +35,5 @@ export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
   },
   peekedFilter: styleFilters[0],
   setPeekedFilter: (filter) => set(() => ({ peekedFilter: filter })),
+  clearFilters: () => set(() => ({ selectedFilters: [] })),
 }));
