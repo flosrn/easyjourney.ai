@@ -40,13 +40,15 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
   const [
     filters,
     selectedFilters,
-    setSelectedFilters,
+    addFilter,
+    removeFilter,
     peekedFilter,
     setPeekedFilter,
   ] = useFilterStore((state) => [
     state.filters,
     state.selectedFilters,
-    state.setSelectedFilters,
+    state.addFilter,
+    state.removeFilter,
     state.peekedFilter,
     state.setPeekedFilter,
   ]);
@@ -63,28 +65,27 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
             className="w-full justify-between"
           >
             {selectedFilters.length === 0 && <div>Select a filter...</div>}
-            {selectedFilters.length === 1 && <div>1 filter selected</div>}
             {selectedFilters.length > 1 && (
               <div>{selectedFilters.length} filters selected</div>
             )}
-            {/* {selectedFilters.length > 0 ? (
+            {selectedFilters.length === 1 &&
               selectedFilters.map((selectedFilter) => (
-                <div key={selectedFilter.id}>
+                <div
+                  key={selectedFilter.id}
+                  className="flex items-center space-x-2"
+                >
                   {selectedFilter.image && (
                     <Image
                       src={selectedFilter.image}
                       alt={selectedFilter.name}
                       width={24}
                       height={24}
-                      className="h-6 w-6"
+                      className="h-6 w-6 rounded-sm"
                     />
                   )}
-                  {selectedFilter.name}
+                  <span>{selectedFilter.name}</span>
                 </div>
-              ))
-            ) : (
-              <div>Select a filter...</div>
-            )} */}
+              ))}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
@@ -131,17 +132,13 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                         )}
                         onPeek={(styleFilter) => setPeekedFilter(styleFilter)}
                         onSelect={() => {
-                          const filterIndex = selectedFilters.findIndex((selectedFilter) => parseInt(selectedFilter.id) === parseInt(filter.id));
-                          if (filterIndex !== -1) {
-                            console.log("yes");
-                            const updatedFilters = selectedFilters;                            
-                            updatedFilters.splice(filterIndex, 1);
-                            setSelectedFilters(updatedFilters);
-                          } else {
-                            setSelectedFilters([...selectedFilters, filter]);
-                          }
+                          const isAlreadySelected = selectedFilters.some(
+                            (selectedFilter) => selectedFilter.id === filter.id
+                          );
+                          isAlreadySelected
+                            ? removeFilter(filter)
+                            : addFilter(filter);
                           setOpen(false);
-                          console.log(selectedFilters);
                         }}
                       />
                     ))}

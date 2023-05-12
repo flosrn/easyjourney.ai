@@ -9,20 +9,29 @@ type FilterState = {
 };
 
 type FilterAction = {
-  setSelectedFilters: (filter: StyleFilter[]) => void;
+  addFilter: (filter: StyleFilter) => void;
+  removeFilter: (filter: StyleFilter) => void;
   setPeekedFilter: (filter: StyleFilter) => void;
 };
 
 export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
   filters: styleFilters,
-  selectedFilters: [styleFilters[0]],
-  setSelectedFilters: (filters) => {
-    set((state) => {
-      const uniqueFilters = Array.from(new Set([...state.selectedFilters, ...filters]));
-      return { selectedFilters: uniqueFilters };
-    });
+  selectedFilters: [],
+  addFilter: (filter) => {
+    set((state) => ({
+      selectedFilters: [
+        ...state.selectedFilters,
+        { ...filter, isSelected: true },
+      ],
+    }));
   },
-  
+  removeFilter: (filter) => {
+    set((state) => ({
+      selectedFilters: state.selectedFilters.filter(
+        (selectedFilter) => selectedFilter.id !== filter.id
+      ),
+    }));
+  },
   peekedFilter: styleFilters[0],
   setPeekedFilter: (filter) => set(() => ({ peekedFilter: filter })),
 }));

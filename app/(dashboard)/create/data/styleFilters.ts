@@ -4,17 +4,10 @@ export type StyleFilter = {
   description: string;
   style: string;
   image: string;
+  isSelected?: boolean;
 };
 
 export const styleFilters: StyleFilter[] = [
-  {
-    id: "0",
-    name: "None",
-    description:
-      "A simple and clean design style that doesn't use any special effects.",
-    style: "",
-    image: "",
-  },
   {
     id: "1",
     name: "Cinematic",
@@ -22,6 +15,7 @@ export const styleFilters: StyleFilter[] = [
       "A visually striking and dramatic style often found in movies and film photography.",
     style: "Cinematic",
     image: "/images/create/styles/camera/Cinematic.png",
+    isSelected: false,
   },
   {
     id: "2",
@@ -30,6 +24,7 @@ export const styleFilters: StyleFilter[] = [
       "A warm and vibrant art style that mimics the look of golden hour photography.",
     style: "Golden Hour",
     image: "/images/create/styles/camera/Golden_Hour.png",
+    isSelected: false,
   },
   {
     id: "3",
@@ -38,6 +33,7 @@ export const styleFilters: StyleFilter[] = [
       "A soft and subtle art style that focuses on the subject's face and expression.",
     style: "Portrait",
     image: "/images/create/styles/camera/Portrait.png",
+    isSelected: false,
   },
   {
     id: "4",
@@ -46,6 +42,7 @@ export const styleFilters: StyleFilter[] = [
       "A dynamic and energetic art style that mimics the look of action scenes in movies.",
     style: "Action Scene",
     image: "/images/create/styles/camera/Action_Scene.png",
+    isSelected: false,
   },
   {
     id: "5",
@@ -54,6 +51,7 @@ export const styleFilters: StyleFilter[] = [
       "A clean and professional art style that mimics the look of product photography.",
     style: "Product Photography",
     image: "/images/create/styles/camera/Product_Photography.png",
+    isSelected: false,
   },
   {
     id: "6",
@@ -62,5 +60,6 @@ export const styleFilters: StyleFilter[] = [
       "A dark and moody art style that mimics the look of film noir photography.",
     style: "Film Noir Style",
     image: "/images/create/styles/camera/Film_Noir_Style.png",
+    isSelected: false,
   },
 ];
