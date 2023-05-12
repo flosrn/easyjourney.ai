@@ -39,6 +39,11 @@ const variation = async ({
 };
 
 export async function POST(request: Request) {
+  const session = await getServerAuthSession();
+  if (!session) {
+    console.log(session);
+    return NextResponse.json({ status: 401 });
+  }
   const body = await request.json();
   const status = await variation(body);
   console.log("status :", status);

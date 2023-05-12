@@ -1,3 +1,4 @@
+import { error } from "console";
 import { IncomingMessage, ServerResponse } from "http";
 import { NextApiRequest, NextApiResponse } from "next";
 import { redirect } from "next/navigation";
@@ -47,12 +48,8 @@ const imaginePayload = {
 };
 
 const imagine = async ({ prompt }: { prompt: string }): Promise<number> => {
-
-  const session = await getServerAuthSession();
-  if (!session) {
-    throw Error('user not logged in');
-  }
-
+  console.log("imagine");
+  
   const response = await fetch("https://discord.com/api/v9/interactions", {
     method: "POST",
     headers: { ...headers, "Content-Type": "application/json" },
@@ -68,6 +65,12 @@ const imagine = async ({ prompt }: { prompt: string }): Promise<number> => {
 };
 
 export async function POST(request: Request) {
+  const session = await getServerAuthSession();
+  if (!session) {
+    console.log(session);
+    return NextResponse.json({ status: 401 });
+  }
+  console.log("post");
   const { prompt } = await request.json();
   const status = await imagine({ prompt });
   return NextResponse.json({ status });

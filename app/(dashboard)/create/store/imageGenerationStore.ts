@@ -1,3 +1,4 @@
+import { error } from "console";
 import { uploadFile } from "@uploadcare/upload-client";
 import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
@@ -184,13 +185,21 @@ export const useImageGenerationStore = create<
       });
 
       try {
-        const { status } = await fetch("/api/imagine", {
+        const response  = await fetch("/api/imagine", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt }),
         });
 
-        if (status === 200) {
+        const { status } = await response.json();
+
+        console.log("status", status);
+
+        if (status === 401) {
+          console.log(status);
+          setMessage(`User not logged in, please authenticate`);
+        } else if (status === 204) {
+          console.log(status);
           const response = await fetch("/api/get-messages", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -236,7 +245,10 @@ export const useImageGenerationStore = create<
           }),
         });
 
-        if (status === 200) {
+        if (status === 401) {
+          console.log(status);
+          setMessage(`User not logged in, please authenticate`);
+        } else if (status === 204) {
           const response = await fetch("/api/get-messages", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -282,7 +294,10 @@ export const useImageGenerationStore = create<
           }),
         });
 
-        if (status === 200) {
+        if (status === 401) {
+          console.log(status);
+          setMessage(`User not logged in, please authenticate`);
+        } else if (status === 204) {
           const response = await fetch("/api/get-messages", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
