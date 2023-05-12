@@ -1,4 +1,6 @@
+import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
+import { getServerAuthSession } from "~/server/auth";
 import { channelId, headers, serverId } from "~/utils/midjourneyUtils";
 
 const upscale = async ({
@@ -10,7 +12,13 @@ const upscale = async ({
   messageId: string;
   messageHash: string;
 }): Promise<number> => {
-  const response = await fetch("https://discord.com/api/v9/interactions", {
+
+  const session = await getServerAuthSession();
+  if (!session) {
+    throw Error('user not logged in');
+  }
+
+  const response = await fetch("https://discord.com/api/v9/interactions", {    
     method: "POST",
     headers: { ...headers, "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -31,6 +39,11 @@ const upscale = async ({
 };
 
 export async function POST(request: Request) {
+  const session = await getServerAuthSession();
+  if (!session) {
+    console.log(session);
+    return NextResponse.json({ status: 401 });
+  }
   const body = await request.json();
   const status = await upscale(body);
   return NextResponse.json({ status });
