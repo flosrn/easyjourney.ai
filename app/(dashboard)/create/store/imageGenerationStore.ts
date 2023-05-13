@@ -190,13 +190,8 @@ export const useImageGenerationStore = create<
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt }),
         });
-
         const { status } = await response.json();
-
-        console.log("status", status);
-
         if (status === 401) {
-          console.log(status);
           setMessage(`User not logged in, please authenticate`);
         } else if (status === 204) {
           console.log(status);
@@ -248,7 +243,7 @@ export const useImageGenerationStore = create<
         if (status === 401) {
           console.log(status);
           setMessage(`User not logged in, please authenticate`);
-        } else if (status === 204) {
+        } else if (status === 200) {
           const response = await fetch("/api/get-messages", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -297,7 +292,7 @@ export const useImageGenerationStore = create<
         if (status === 401) {
           console.log(status);
           setMessage(`User not logged in, please authenticate`);
-        } else if (status === 204) {
+        } else if (status === 200) {
           const response = await fetch("/api/get-messages", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
