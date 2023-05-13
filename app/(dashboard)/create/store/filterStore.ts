@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { styleFilters, type StyleFilter } from "../data/styleFilters";
+import { styleFilters, type StyleFilter } from "../data/filter/styleFilters";
 
 type FilterState = {
   filters: StyleFilter[];

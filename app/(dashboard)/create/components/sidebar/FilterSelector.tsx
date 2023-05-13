@@ -30,7 +30,7 @@ import { ScrollArea } from "~/components/ui/ScrollArea";
 
 import { cn } from "~/lib/classNames";
 
-import type { StyleFilter } from "../../data/styleFilters";
+import type { StyleFilter } from "../../data/filter/styleFilters";
 import { useFilterStore } from "../../store/filterStore";
 
 type ModelSelectorProps = PopoverProps & {};
