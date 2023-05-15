@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { User } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
@@ -61,6 +62,7 @@ export default async function UserProfile({
         )}
         <h1 className="mt-4 text-2xl font-semibold">{user.name}</h1>
         <p className="mt-2 text-lg">@{user.username}</p>
+        <Link href={`/profile/${user.username}/likes`}>Test</Link>
 
         {!isMe && <FollowButton userId={user.id} isFollowing={isFollowing} />}
 
