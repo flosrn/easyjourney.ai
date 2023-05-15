@@ -21,7 +21,6 @@ import SideColumn from "./SideColumn";
 import ImageContainer from "./components/image/ImageContainer";
 import TextareaPrompt from "./components/input/TextareaPrompt";
 import { aspectRatios } from "./data/aspectRatios";
-import { styleFilters } from "./data/filter/styleFilters";
 import { handleMessageData } from "./lib/imageGenerationUtils";
 import { useFilterStore } from "./store/filterStore";
 import { useImageGenerationStore } from "./store/imageGenerationStore";

@@ -1,4 +1,3 @@
-import { error } from "console";
 import { uploadFile } from "@uploadcare/upload-client";
 import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
@@ -194,7 +193,7 @@ export const useImageGenerationStore = create<
         if (status === 401) {
           setMessage(`User not logged in, please authenticate`);
         } else if (status === 204) {
-          console.log(status);
+          // eslint-disable-next-line no-shadow
           const response = await fetch("/api/get-messages", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -241,7 +240,6 @@ export const useImageGenerationStore = create<
         });
 
         if (status === 401) {
-          console.log(status);
           setMessage(`User not logged in, please authenticate`);
         } else if (status === 200) {
           const response = await fetch("/api/get-messages", {
@@ -290,7 +288,6 @@ export const useImageGenerationStore = create<
         });
 
         if (status === 401) {
-          console.log(status);
           setMessage(`User not logged in, please authenticate`);
         } else if (status === 200) {
           const response = await fetch("/api/get-messages", {
