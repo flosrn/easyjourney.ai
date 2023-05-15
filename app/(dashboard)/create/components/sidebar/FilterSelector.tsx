@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import type { PopoverProps } from "@radix-ui/react-popover";
 import { Check, ChevronsUpDown } from "lucide-react";
@@ -30,7 +30,7 @@ import { ScrollArea } from "~/components/ui/ScrollArea";
 
 import { cn } from "~/lib/classNames";
 
-import type { StyleFilter } from "../../data/styleFilters";
+import type { Filter } from "../../data/filter/typeFilters";
 import { useFilterStore } from "../../store/filterStore";
 
 type ModelSelectorProps = PopoverProps & {};
@@ -153,10 +153,10 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
   );
 }
 type ModelItemProps = {
-  filter: StyleFilter;
+  filter: Filter;
   isSelected: boolean;
   onSelect: () => void;
-  onPeek: (model: StyleFilter) => void;
+  onPeek: (model: Filter) => void;
 };
 
 function FilterItem({ filter, isSelected, onSelect, onPeek }: ModelItemProps) {

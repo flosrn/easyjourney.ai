@@ -1,13 +1,6 @@
-export type StyleFilter = {
-  id: string;
-  name: string;
-  description: string;
-  style: string;
-  image: string;
-  isSelected?: boolean;
-};
+import type { Filter } from "./typeFilters";
 
-export const styleFilters: StyleFilter[] = [
+export const mostPopularFilters: Filter[] = [
   {
     id: "1",
     name: "Cinematic",

@@ -1,22 +1,23 @@
 import { create } from "zustand";
 
-import { styleFilters, type StyleFilter } from "../data/styleFilters";
+import { mostPopularFilters } from "../data/filter/mostPopularFilters";
+import type { Filter } from "../data/filter/typeFilters";
 
 type FilterState = {
-  filters: StyleFilter[];
-  selectedFilters: StyleFilter[];
-  peekedFilter: StyleFilter;
+  filters: Filter[];
+  selectedFilters: Filter[];
+  peekedFilter: Filter;
 };
 
 type FilterAction = {
-  addFilter: (filter: StyleFilter) => void;
-  removeFilter: (filter: StyleFilter) => void;
-  setPeekedFilter: (filter: StyleFilter) => void;
+  addFilter: (filter: Filter) => void;
+  removeFilter: (filter: Filter) => void;
+  setPeekedFilter: (filter: Filter) => void;
   clearFilters: () => void;
 };
 
 export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
-  filters: styleFilters,
+  filters: mostPopularFilters,
   selectedFilters: [],
   addFilter: (filter) => {
     set((state) => ({
@@ -33,7 +34,7 @@ export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
       ),
     }));
   },
-  peekedFilter: styleFilters[0],
+  peekedFilter: mostPopularFilters[0],
   setPeekedFilter: (filter) => set(() => ({ peekedFilter: filter })),
   clearFilters: () => set(() => ({ selectedFilters: [] })),
 }));
