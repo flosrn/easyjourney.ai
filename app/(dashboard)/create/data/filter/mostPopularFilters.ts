@@ -1,6 +1,6 @@
-import { Filter } from "./typeFilters";
+import type { Filter } from "./typeFilters";
 
-export const styleFilters:Filter[] = [
+export const mostPopularFilters: Filter[] = [
   {
     id: "1",
     name: "Cinematic",

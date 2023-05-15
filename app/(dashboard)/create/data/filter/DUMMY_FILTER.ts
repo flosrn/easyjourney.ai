@@ -1,4 +1,4 @@
-import { Filter } from "./typeFilters";
+import type { Filter } from "./typeFilters";
 
 export const EX: Filter[] = [
   {
@@ -81,4 +81,4 @@ export const EX: Filter[] = [
     image: "/images/filters/themes//.png",
     isSelected: false,
   },
-]
+];
