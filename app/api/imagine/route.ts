@@ -67,7 +67,6 @@ const imagine = async ({ prompt }: { prompt: string }): Promise<number> => {
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
   if (!session) {
-    console.log(session);
     return NextResponse.json({ status: 401 });
   }
   console.log("post");

@@ -41,7 +41,6 @@ const upscale = async ({
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
   if (!session) {
-    console.log(session);
     return NextResponse.json({ status: 401 });
   }
   const body = await request.json();
