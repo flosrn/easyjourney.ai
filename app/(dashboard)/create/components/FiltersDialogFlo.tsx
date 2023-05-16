@@ -11,8 +11,8 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "~/components/ui/Dialog";
+import { ScrollArea } from "~/components/ui/ScrollArea";
 
 import { categoryFilters } from "../data/filter/categoryFilters";
 import { themesSubCategoryFilters } from "../data/filter/themes/themesSubCategoryFilters";
@@ -44,8 +44,7 @@ const FilterDialog = ({}: FilterDialogProps) => {
 
   return (
     <Dialog open={hasFilter}>
-      {/*<DialogTrigger>Open</DialogTrigger>*/}
-      <DialogContent>
+      <DialogContent className="sm:max-w-[70vw]">
         <DialogHeader>
           <DialogTitle>Are you sure absolutely sure?</DialogTitle>
           <DialogDescription>
@@ -53,46 +52,48 @@ const FilterDialog = ({}: FilterDialogProps) => {
             account and remove your data from our servers.
             <Button onClick={() => router.push("/create")}>Close</Button>
           </DialogDescription>
-          {hasFilter && !filterCategory && (
-            <ul>
-              {categoryFilters.map((category) => (
-                <li key={category.id}>
-                  <Link
-                    href={`/create?filterCategory=${category.name.toLowerCase()}`}
-                  >
-                    {category.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-          {selectedCategory && (
-            <div>
-              <button onClick={() => router.back()} className="mb-5">
-                back
-              </button>
-
-              {!selectedSubCategory &&
-                selectedCategory.options.map((subCategory) => (
-                  <div key={subCategory.id}>
+          <ScrollArea className="h-[70vh]">
+            {hasFilter && !filterCategory && (
+              <ul>
+                {categoryFilters.map((category) => (
+                  <li key={category.id}>
                     <Link
-                      href={`/create?filterCategory=${selectedCategory.name.toLowerCase()}&filterSubCategory=${subCategory.name.toLowerCase()}`}
+                      href={`/create?filterCategory=${category.name.toLowerCase()}`}
                     >
-                      {subCategory.name}
+                      {category.name}
                     </Link>
-                  </div>
+                  </li>
                 ))}
-              {selectedSubCategory && (
-                <>
-                  {selectedSubCategory.options.slice(0, 10).map((filter) => (
-                    <ul key={filter.id}>
-                      <li>{filter.name}</li>
-                    </ul>
+              </ul>
+            )}
+            {selectedCategory && (
+              <div>
+                <button onClick={() => router.back()} className="mb-5">
+                  back
+                </button>
+
+                {!selectedSubCategory &&
+                  selectedCategory.options.map((subCategory) => (
+                    <div key={subCategory.id}>
+                      <Link
+                        href={`/create?filterCategory=${selectedCategory.name.toLowerCase()}&filterSubCategory=${subCategory.name.toLowerCase()}`}
+                      >
+                        {subCategory.name}
+                      </Link>
+                    </div>
                   ))}
-                </>
-              )}
-            </div>
-          )}
+                {selectedSubCategory && (
+                  <>
+                    {selectedSubCategory.options.map((filter) => (
+                      <ul key={filter.id}>
+                        <li>{filter.name}</li>
+                      </ul>
+                    ))}
+                  </>
+                )}
+              </div>
+            )}
+          </ScrollArea>
         </DialogHeader>
       </DialogContent>
     </Dialog>
