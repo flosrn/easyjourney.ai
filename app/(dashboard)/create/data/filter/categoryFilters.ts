@@ -10,20 +10,20 @@ export const categoryFilters: CategoryFilter[] = [
   },
   {
     id: "2",
-    icon: "🎭",
-    name: "Themes",
+    icon: "🚀",
+    name: "Styles",
     options: themesSubCategoryFilters,
   },
   {
     id: "3",
-    icon: "🎭",
-    name: "Themes",
+    icon: "📸",
+    name: "Lens",
     options: themesSubCategoryFilters,
   },
   {
     id: "4",
-    icon: "🎭",
-    name: "Themes",
+    icon: "🎥",
+    name: "Camera",
     options: themesSubCategoryFilters,
   },
   {

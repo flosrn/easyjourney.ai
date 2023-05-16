@@ -30,14 +30,13 @@ import { ScrollArea } from "~/components/ui/ScrollArea";
 
 import { cn } from "~/lib/classNames";
 
-import { categoryFilters } from "../../data/filter/categoryFilters";
 import type {
   CategoryFilter,
   Filter,
   SubCategoryFilter,
 } from "../../data/filter/typeFilters";
 import { useFilterStore } from "../../store/filterStore";
-import Modal from "./Modal";
+import FiltersDialogFlo from "../FiltersDialogFlo";
 
 type ModelSelectorProps = PopoverProps & {};
 
@@ -172,67 +171,15 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                       />
                     ))}
                   </ScrollArea>
+                  <Button href="/create?filterCategory">
+                    view all filters
+                  </Button>
                 </CommandGroup>
               </CommandList>
             </Command>
           </HoverCard>
         </PopoverContent>
-
-        <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-          {selectedCategory ? (
-            <>
-              <h2>{selectedCategory.name}</h2>
-              <ul className="">
-                {selectedCategory.options.map((subCategory) => (
-                  <li key={subCategory.id}>
-                    <div
-                      onClick={() =>
-                        selectedSubCategory
-                          ? handleSubCategoryClick(null)
-                          : handleSubCategoryClick(subCategory)
-                      }
-                    >
-                      {subCategory.icon} {subCategory.name}
-                    </div>
-                    {subCategory === selectedSubCategory &&
-                      selectedSubCategory.options.map((filter) => {
-                        const isAlreadySelected = selectedFilters.some(
-                          (selectedFilter) => selectedFilter.id === filter.id
-                        );
-                        return (
-                          <div
-                            key={filter.id}
-                            onClick={() => {
-                              isAlreadySelected
-                                ? removeFilter(filter)
-                                : addFilter(filter);
-                            }}
-                          >
-                            {filter.name}
-                          </div>
-                        );
-                      })}
-                  </li>
-                ))}
-              </ul>
-            </>
-          ) : (
-            <div className="grid grid-cols-3 gap-3">
-              {categoryFilters.map((category) => (
-                <div
-                  className="flex justify-center rounded border border-solid border-white"
-                  key={category.id}
-                  onClick={() => handleCategoryClick(category)}
-                >
-                  {category.icon} {category.name}
-                </div>
-              ))}
-            </div>
-          )}
-          <Button className="absolute right-0 top-0" onClick={toggleModal}>
-            X
-          </Button>
-        </Modal>
+        <FiltersDialogFlo />
       </Popover>
     </div>
   );
