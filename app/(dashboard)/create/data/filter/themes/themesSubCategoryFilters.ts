@@ -9,37 +9,37 @@ import { sciFiFilters } from "./sciFiFilters";
 export const themesSubCategoryFilters: SubCategoryFilter[] = [
   {
     id: "1",
-    icone: "🎭⛱",
+    icon: "🎭⛱",
     name: "Realism/Abstraction",
     options: realismAbstractionFilters,
   },
   {
     id: "2",
-    icone: "🎭💾",
+    icon: "🎭💾",
     name: "Retro/Modern",
     options: retroModernFilters,
   },
   {
     id: "3",
-    icone: "🎭🪐",
+    icon: "🎭🪐",
     name: "Sci-fi",
     options: sciFiFilters,
   },
   {
     id: "4",
-    icone: "🎭🌅 ",
+    icon: "🎭🌅 ",
     name: "Atmosphere",
     options: atmosphereFilters,
   },
   {
     id: "5",
-    icone: "🎭🛋",
+    icon: "🎭🛋",
     name: "Rooms",
     options: roomsFilters,
   },
   {
     id: "6",
-    icone: "🎭⚙",
+    icon: "🎭⚙",
     name: "Architecture and Manufactured",
     options: architectureAndManufacturedFilters,
   },

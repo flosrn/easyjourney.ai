@@ -64,16 +64,20 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     state.peekedFilter,
     state.setPeekedFilter,
   ]);
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
   const handleCloseModal = () => {
     setSelectedCategory(null);
     setSelectedSubCategory(null);
   };
+
   const handleCategoryClick = (category: CategoryFilter) => {
     setSelectedCategory(category);
   };
+
   const handleSubCategoryClick = (subCategory: SubCategoryFilter | null) => {
     setSelectedSubCategory(subCategory);
   };
@@ -174,14 +178,13 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
           </HoverCard>
         </PopoverContent>
 
-        <Button onClick={toggleModal}>All filters</Button>
         <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
           {selectedCategory ? (
             <>
               <h2>{selectedCategory.name}</h2>
               <ul className="">
                 {selectedCategory.options.map((subCategory) => (
-                  <li className="" key={subCategory.id}>
+                  <li key={subCategory.id}>
                     <div
                       onClick={() =>
                         selectedSubCategory
@@ -189,25 +192,26 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                           : handleSubCategoryClick(subCategory)
                       }
                     >
-                      {subCategory.icone} {subCategory.name}
+                      {subCategory.icon} {subCategory.name}
                     </div>
                     {subCategory === selectedSubCategory &&
-                      selectedSubCategory.options.map((filter) => (
-                        <div
-                          key={filter.id}
-                          onClick={() => {
-                            const isAlreadySelected = selectedFilters.some(
-                              (selectedFilter) =>
-                                selectedFilter.id === filter.id
-                            );
-                            isAlreadySelected
-                              ? removeFilter(filter)
-                              : addFilter(filter);
-                          }}
-                        >
-                          {filter.name}
-                        </div>
-                      ))}
+                      selectedSubCategory.options.map((filter) => {
+                        const isAlreadySelected = selectedFilters.some(
+                          (selectedFilter) => selectedFilter.id === filter.id
+                        );
+                        return (
+                          <div
+                            key={filter.id}
+                            onClick={() => {
+                              isAlreadySelected
+                                ? removeFilter(filter)
+                                : addFilter(filter);
+                            }}
+                          >
+                            {filter.name}
+                          </div>
+                        );
+                      })}
                   </li>
                 ))}
               </ul>
@@ -220,7 +224,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                   key={category.id}
                   onClick={() => handleCategoryClick(category)}
                 >
-                  {category.icone} {category.name}
+                  {category.icon} {category.name}
                 </div>
               ))}
             </div>
