@@ -1,8 +1,8 @@
-import { Filter } from "../typeFilters";
+import type { Filter } from "../typeFilters";
 
 export const architectureAndManufacturedFilters: Filter[] = [
   {
-    id: "1",
+    id: "architecture_and_manufactured_1",
     name: "Architecture",
     description: "Explore the world of architectural design and styles.",
     style: "Architecture",
@@ -11,7 +11,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "2",
+    id: "architecture_and_manufactured_2",
     name: "Autonomous",
     description:
       "Discover futuristic and self-sustaining architectural concepts.",
@@ -21,7 +21,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "3",
+    id: "architecture_and_manufactured_3",
     name: "Balinese Architecture",
     description:
       "Immerse yourself in the beauty of Balinese architectural traditions.",
@@ -31,7 +31,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "4",
+    id: "architecture_and_manufactured_4",
     name: "Barbiecore",
     description:
       "Experience the whimsical and vibrant world of Barbie-inspired architecture.",
@@ -41,7 +41,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "5",
+    id: "architecture_and_manufactured_5",
     name: "Bombacore",
     description:
       "Discover the fusion of architecture and bombastic aesthetics.",
@@ -50,7 +50,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "6",
+    id: "architecture_and_manufactured_6",
     name: "Bronzepunk",
     description:
       "Step into a world where bronze and steampunk aesthetics intertwine.",
@@ -60,7 +60,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "7",
+    id: "architecture_and_manufactured_7",
     name: "Brutalism",
     description:
       "Appreciate the raw and imposing beauty of brutalist architecture.",
@@ -69,7 +69,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "8",
+    id: "architecture_and_manufactured_8",
     name: "Carnival",
     description:
       "Delight in the whimsy and flamboyance of carnival-inspired architecture.",
@@ -78,7 +78,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "9",
+    id: "architecture_and_manufactured_9",
     name: "Cassettepunk",
     description:
       "Travel back in time to the era of cassette tapes and retro-futuristic designs.",
@@ -88,7 +88,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "10",
+    id: "architecture_and_manufactured_10",
     name: "Castle",
     description:
       "Immerse yourself in the grandeur and charm of medieval castles.",
@@ -97,7 +97,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "11",
+    id: "architecture_and_manufactured_11",
     name: "Cityscape",
     description:
       "Explore the urban landscape and iconic cityscapes from around the world.",
@@ -106,7 +106,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "12",
+    id: "architecture_and_manufactured_12",
     name: "Clockpunk",
     description:
       "Immerse yourself in a world where clockwork mechanisms and Victorian aesthetics blend.",
@@ -115,7 +115,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "13",
+    id: "architecture_and_manufactured_13",
     name: "Company",
     description:
       "Discover the architectural wonders created by renowned companies and corporations.",
@@ -124,7 +124,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "14",
+    id: "architecture_and_manufactured_14",
     name: "Craftcore",
     description:
       "Appreciate the craftsmanship and handmade aesthetics of craftcore architecture.",
@@ -133,7 +133,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "15",
+    id: "architecture_and_manufactured_15",
     name: "Cyborgism",
     description:
       "Enter a world where architecture merges with advanced technology and cyborg aesthetics.",
@@ -142,7 +142,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "16",
+    id: "architecture_and_manufactured_16",
     name: "Dieselpunk",
     description:
       "Step into an alternate reality with retro-futuristic diesel-powered architecture.",
@@ -152,7 +152,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "17",
+    id: "architecture_and_manufactured_17",
     name: "Dollcore",
     description:
       "Experience the enchanting and whimsical world of doll-inspired architecture.",
@@ -161,7 +161,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "18",
+    id: "architecture_and_manufactured_18",
     name: "Dollpunk",
     description:
       "Explore a fusion of doll-like aesthetics and punk-inspired architectural designs.",
@@ -170,7 +170,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "19",
+    id: "architecture_and_manufactured_19",
     name: "Formicapunk",
     description:
       "Discover a world where Formica surfaces and punk elements shape architectural styles.",
@@ -180,7 +180,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "20",
+    id: "architecture_and_manufactured_20",
     name: "Funhouse",
     description:
       "Embark on a playful and surreal architectural journey through funhouse-inspired designs.",
@@ -189,7 +189,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "21",
+    id: "architecture_and_manufactured_21",
     name: "Gadgetpunk",
     description:
       "Immerse yourself in a world of futuristic gadgets and high-tech architectural designs.",
@@ -199,7 +199,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "22",
+    id: "architecture_and_manufactured_22",
     name: "Googie",
     description:
       "Explore the vibrant and space-age aesthetics of Googie architecture.",
@@ -208,7 +208,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "23",
+    id: "architecture_and_manufactured_23",
     name: "House",
     description:
       "Discover various house styles from traditional to modern and everything in between.",
@@ -217,7 +217,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "24",
+    id: "architecture_and_manufactured_24",
     name: "Industrial Design",
     description:
       "Appreciate the utilitarian and raw beauty of industrial-inspired architectural designs.",
@@ -227,7 +227,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "25",
+    id: "architecture_and_manufactured_25",
     name: "Kingdom",
     description:
       "Enter the majestic world of castle-like structures and grand architectural kingdoms.",
@@ -236,7 +236,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "26",
+    id: "architecture_and_manufactured_26",
     name: "Labcore",
     description:
       "Step into the realm of scientific laboratories and high-tech research facilities.",
@@ -245,7 +245,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "27",
+    id: "architecture_and_manufactured_27",
     name: "Legogearpunk",
     description:
       "Experience a unique blend of LEGO-inspired aesthetics and steampunk elements.",
@@ -255,7 +255,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "28",
+    id: "architecture_and_manufactured_28",
     name: "Legopunk",
     description:
       "Discover a world where LEGO bricks shape architectural designs with a punk twist.",
@@ -264,7 +264,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "29",
+    id: "architecture_and_manufactured_29",
     name: "Machine",
     description:
       "Explore the symbiotic relationship between architecture and mechanical systems.",
@@ -273,7 +273,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "30",
+    id: "architecture_and_manufactured_30",
     name: "Machinescape",
     description:
       "Witness a landscape dominated by machines and futuristic architectural structures.",
@@ -283,7 +283,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "31",
+    id: "architecture_and_manufactured_31",
     name: "Makeshift",
     description:
       "Explore temporary and improvised architectural structures that adapt to different needs.",
@@ -292,7 +292,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "32",
+    id: "architecture_and_manufactured_32",
     name: "Mansion",
     description:
       "Experience the grandeur and opulence of architectural mansions and palatial residences.",
@@ -301,7 +301,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "33",
+    id: "architecture_and_manufactured_33",
     name: "Manufactured",
     description:
       "Discover the world of prefabricated and mass-produced architectural designs.",
@@ -311,7 +311,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "34",
+    id: "architecture_and_manufactured_34",
     name: "Multiplex",
     description:
       "Explore the architectural complexity and functionality of multiplex buildings.",
@@ -320,7 +320,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "35",
+    id: "architecture_and_manufactured_35",
     name: "Normcore",
     description:
       "Embrace simplicity and ordinary architectural designs with a focus on functionality.",
@@ -329,7 +329,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "36",
+    id: "architecture_and_manufactured_36",
     name: "Nuclear",
     description:
       "Discover architectural designs inspired by nuclear power and atomic aesthetics.",
@@ -338,7 +338,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "37",
+    id: "architecture_and_manufactured_37",
     name: "Palewave",
     description:
       "Experience a soothing and calming architectural aesthetic with soft and pale colors.",
@@ -347,7 +347,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "38",
+    id: "architecture_and_manufactured_38",
     name: "Pillar",
     description:
       "Focus on the architectural prominence and significance of pillars and columns.",
@@ -356,7 +356,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "39",
+    id: "architecture_and_manufactured_39",
     name: "Playground",
     description:
       "Discover playful and imaginative architectural designs for recreational spaces.",
@@ -366,7 +366,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "40",
+    id: "architecture_and_manufactured_40",
     name: "Poolcore",
     description:
       "Dive into a world of architectural designs centered around pools and aquatic elements.",
@@ -375,7 +375,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "41",
+    id: "architecture_and_manufactured_41",
     name: "Property",
     description:
       "Explore architectural designs that revolve around properties and real estate.",
@@ -384,7 +384,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "42",
+    id: "architecture_and_manufactured_42",
     name: "Robotic",
     description:
       "Discover futuristic and robotic-inspired architectural designs.",
@@ -393,7 +393,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "43",
+    id: "architecture_and_manufactured_43",
     name: "Salvagepunk",
     description:
       "Experience architectural designs that incorporate salvaged and repurposed materials.",
@@ -403,7 +403,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "44",
+    id: "architecture_and_manufactured_44",
     name: "Sandalpunk",
     description:
       "Discover architectural designs inspired by sandalwood and wooden elements.",
@@ -413,7 +413,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "45",
+    id: "architecture_and_manufactured_45",
     name: "Sanriocore",
     description:
       "Embrace the cute and colorful world of architectural designs influenced by Sanrio characters.",
@@ -423,7 +423,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "46",
+    id: "architecture_and_manufactured_46",
     name: "Scaffolding",
     description:
       "Explore the aesthetic and functional aspects of architectural scaffolding.",
@@ -433,7 +433,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "47",
+    id: "architecture_and_manufactured_47",
     name: "Shack",
     description:
       "Experience the simplicity and charm of architectural designs inspired by shacks and cabins.",
@@ -442,7 +442,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "48",
+    id: "architecture_and_manufactured_48",
     name: "Silkpunk",
     description:
       "Discover architectural designs influenced by silk, luxurious fabrics, and intricate patterns.",
@@ -451,7 +451,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "49",
+    id: "architecture_and_manufactured_49",
     name: "Sphinx",
     description:
       "Explore architectural designs inspired by the mystique and grandeur of ancient Egyptian sphinxes.",
@@ -460,7 +460,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "50",
+    id: "architecture_and_manufactured_50",
     name: "Steampunk",
     description:
       "Enter a world of architectural designs with a retro-futuristic steampunk aesthetic.",
@@ -469,7 +469,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "51",
+    id: "architecture_and_manufactured_51",
     name: "Steelpunk",
     description:
       "Experience architectural designs with an industrial and metallic steelpunk aesthetic.",
@@ -478,7 +478,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "52",
+    id: "architecture_and_manufactured_52",
     name: "Stimwave",
     description:
       "Discover architectural designs inspired by the vibrant and energetic world of stimwave.",
@@ -487,7 +487,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "53",
+    id: "architecture_and_manufactured_53",
     name: "Structural",
     description:
       "Explore architectural designs that focus on the structural elements and form.",
@@ -497,7 +497,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "54",
+    id: "architecture_and_manufactured_54",
     name: "Structure",
     description:
       "Discover architectural designs that celebrate the beauty and complexity of structural elements.",
@@ -506,7 +506,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "55",
+    id: "architecture_and_manufactured_55",
     name: "Submachine",
     description:
       "Experience architectural designs that evoke the futuristic and enigmatic submachine world.",
@@ -516,7 +516,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "56",
+    id: "architecture_and_manufactured_56",
     name: "Swordpunk",
     description:
       "Explore architectural designs inspired by swordplay, samurai culture, and ancient weapons.",
@@ -525,7 +525,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "57",
+    id: "architecture_and_manufactured_57",
     name: "Thriftcore",
     description:
       "Discover architectural designs that incorporate thrifted and repurposed elements.",
@@ -535,7 +535,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "58",
+    id: "architecture_and_manufactured_58",
     name: "Tinkercore",
     description:
       "Embrace the world of architectural designs with a playful and tinkering spirit.",
@@ -545,7 +545,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "59",
+    id: "architecture_and_manufactured_59",
     name: "Toyland",
     description:
       "Enter a whimsical world of architectural designs inspired by toys and childhood imagination.",
@@ -554,7 +554,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "60",
+    id: "architecture_and_manufactured_60",
     name: "Wormcore",
     description:
       "Experience architectural designs inspired by earthworms and organic forms.",
@@ -563,7 +563,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "61",
+    id: "architecture_and_manufactured_61",
     name: "Ziggurat",
     description: "Ancient-inspired architectural marvel of grand proportions",
     style: "Ziggurat",

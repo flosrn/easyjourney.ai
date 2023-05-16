@@ -30,13 +30,25 @@ import { ScrollArea } from "~/components/ui/ScrollArea";
 
 import { cn } from "~/lib/classNames";
 
-import type { Filter } from "../../data/filter/typeFilters";
+import { categoryFilters } from "../../data/filter/categoryFilters";
+import type {
+  CategoryFilter,
+  Filter,
+  SubCategoryFilter,
+} from "../../data/filter/typeFilters";
 import { useFilterStore } from "../../store/filterStore";
+import Modal from "./Modal";
 
 type ModelSelectorProps = PopoverProps & {};
 
 export function FilterSelector({ ...props }: ModelSelectorProps) {
   const [open, setOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedCategory, setSelectedCategory] =
+    useState<CategoryFilter | null>();
+  const [selectedSubCategory, setSelectedSubCategory] =
+    useState<SubCategoryFilter | null>();
+
   const [
     filters,
     selectedFilters,
@@ -52,6 +64,19 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     state.peekedFilter,
     state.setPeekedFilter,
   ]);
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+  const handleCloseModal = () => {
+    setSelectedCategory(null);
+    setSelectedSubCategory(null);
+  };
+  const handleCategoryClick = (category: CategoryFilter) => {
+    setSelectedCategory(category);
+  };
+  const handleSubCategoryClick = (subCategory: SubCategoryFilter | null) => {
+    setSelectedSubCategory(subCategory);
+  };
 
   return (
     <div className="grid gap-2">
@@ -148,6 +173,62 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
             </Command>
           </HoverCard>
         </PopoverContent>
+
+        <Button onClick={toggleModal}>All filters</Button>
+        <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+          {selectedCategory ? (
+            <>
+              <h2>{selectedCategory.name}</h2>
+              <ul className="">
+                {selectedCategory.options.map((subCategory) => (
+                  <li className="" key={subCategory.id}>
+                    <div
+                      onClick={() =>
+                        selectedSubCategory
+                          ? handleSubCategoryClick(null)
+                          : handleSubCategoryClick(subCategory)
+                      }
+                    >
+                      {subCategory.icone} {subCategory.name}
+                    </div>
+                    {subCategory === selectedSubCategory &&
+                      selectedSubCategory.options.map((filter) => (
+                        <div
+                          key={filter.id}
+                          onClick={() => {
+                            const isAlreadySelected = selectedFilters.some(
+                              (selectedFilter) =>
+                                selectedFilter.id === filter.id
+                            );
+                            isAlreadySelected
+                              ? removeFilter(filter)
+                              : addFilter(filter);
+                          }}
+                        >
+                          {filter.name}
+                        </div>
+                      ))}
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <div className="grid grid-cols-3 gap-3">
+              {categoryFilters.map((category) => (
+                <div
+                  className="flex justify-center rounded border border-solid border-white"
+                  key={category.id}
+                  onClick={() => handleCategoryClick(category)}
+                >
+                  {category.icone} {category.name}
+                </div>
+              ))}
+            </div>
+          )}
+          <Button className="absolute right-0 top-0" onClick={toggleModal}>
+            X
+          </Button>
+        </Modal>
       </Popover>
     </div>
   );

@@ -1,8 +1,8 @@
-import { Filter } from "../typeFilters";
+import type { Filter } from "../typeFilters";
 
 export const retroModernFilters: Filter[] = [
   {
-    id: "1",
+    id: "retro_modern_1",
     name: "Afrofuturist",
     description: "Combining African culture and futuristic elements.",
     style: "Afrofuturist",
@@ -10,7 +10,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "2",
+    id: "retro_modern_2",
     name: "Antique",
     description: "Inspired by or resembling antiques and historical periods.",
     style: "Antique",
@@ -18,7 +18,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "3",
+    id: "retro_modern_3",
     name: "Atompunk",
     description: "Retro-futuristic world powered by atomic energy.",
     style: "Atompunk",
@@ -26,7 +26,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "4",
+    id: "retro_modern_4",
     name: "Cassette Futurism",
     description:
       "Nostalgia for the futuristic visions of the cassette tape era.",
@@ -35,7 +35,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "5",
+    id: "retro_modern_5",
     name: "Cyberpunk",
     description:
       "Blending futuristic elements with a gritty and urban atmosphere.",
@@ -44,7 +44,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "6",
+    id: "retro_modern_6",
     name: "Future Funk",
     description: "Retro-futuristic world with a funky and vibrant aesthetic.",
     style: "Future Funk",
@@ -52,7 +52,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "7",
+    id: "retro_modern_7",
     name: "Futurism",
     description: "Emphasizing the dynamism and speed of the modern world.",
     style: "Futurism",
@@ -60,7 +60,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "8",
+    id: "retro_modern_8",
     name: "Futuristic",
     description:
       "Envisioning a future world with advanced technology and aesthetics.",
@@ -69,7 +69,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "9",
+    id: "retro_modern_9",
     name: "Historic",
     description:
       "Representation of historical periods, events, and cultural influences.",
@@ -78,7 +78,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "10",
+    id: "retro_modern_10",
     name: "Ice Age",
     description:
       "Exploration of the prehistoric Ice Age and its ancient landscapes.",
@@ -87,7 +87,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "11",
+    id: "retro_modern_11",
     name: "Jurassic",
     description:
       "Exploration of the prehistoric Jurassic era and its ancient creatures.",
@@ -96,7 +96,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "12",
+    id: "retro_modern_12",
     name: "Modern",
     description:
       "Reflecting the contemporary style and aesthetics of the modern era.",
@@ -105,7 +105,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "13",
+    id: "retro_modern_13",
     name: "Modernismo",
     description: "Artistic movement characterized by modernist influences.",
     style: "Modernismo",
@@ -113,7 +113,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "14",
+    id: "retro_modern_14",
     name: "Nanopunk",
     description: "Blending futuristic technology with nano-scale advancements.",
     style: "Nanopunk",
@@ -121,7 +121,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "15",
+    id: "retro_modern_15",
     name: "Nostalgia",
     description: "Evoking sentimental longing for the past and fond memories.",
     style: "Nostalgia",
@@ -129,7 +129,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "16",
+    id: "retro_modern_16",
     name: "Nostalgiacore",
     description:
       "Capturing the essence of nostalgic aesthetics and cultural references.",
@@ -138,7 +138,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "17",
+    id: "retro_modern_17",
     name: "Postcyberpunk",
     description:
       "Subgenre of cyberpunk with a focus on societal and technological advancements.",
@@ -147,7 +147,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "18",
+    id: "retro_modern_18",
     name: "Pre-Historic",
     description: "Exploration of the ancient times before recorded history.",
     style: "Pre-Historic",
@@ -155,7 +155,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "19",
+    id: "retro_modern_19",
     name: "Prehistoricore",
     description:
       "Artistic representation of prehistoric times with a core aesthetic.",
@@ -164,7 +164,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "20",
+    id: "retro_modern_20",
     name: "Raypunk",
     description:
       "Retro-futuristic style inspired by the aesthetics of ray guns and pulp science fiction.",
@@ -173,7 +173,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "21",
+    id: "retro_modern_21",
     name: "Retro-Futurism",
     description:
       "Blending retro aesthetics with futuristic elements and concepts.",
@@ -182,7 +182,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "22",
+    id: "retro_modern_22",
     name: "Retro",
     description: "Evoking the style and nostalgia of the past eras.",
     style: "Retro",
@@ -190,7 +190,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "23",
+    id: "retro_modern_23",
     name: "Retrowave",
     description: "Reviving the aesthetics and music of the 80s and early 90s.",
     style: "Retrowave",
@@ -198,7 +198,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "24",
+    id: "retro_modern_24",
     name: "Rococopunk",
     description: "Combining rococo style with futuristic elements and themes.",
     style: "Rococopunk",
@@ -206,7 +206,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "25",
+    id: "retro_modern_25",
     name: "Rollerwave",
     description:
       "Inspired by the vibrant and nostalgic aesthetics of roller skating culture.",
@@ -215,7 +215,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "26",
+    id: "retro_modern_26",
     name: "Rustic",
     description:
       "Capturing the charm and simplicity of rural and rustic settings.",
@@ -224,7 +224,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "27",
+    id: "retro_modern_27",
     name: "Rusticcore",
     description: "Blending rustic aesthetics with core elements and themes.",
     style: "Rusticcore",
@@ -232,7 +232,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "28",
+    id: "retro_modern_28",
     name: "Vintage",
     description:
       "Evoking the style and nostalgia of past eras, particularly the mid-20th century.",
@@ -241,7 +241,7 @@ export const retroModernFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "29",
+    id: "retro_modern_29",
     name: "Wild West",
     description:
       "Capturing the rugged and adventurous spirit of the American Wild West.",

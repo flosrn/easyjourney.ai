@@ -1,11 +1,13 @@
 export type CategoryFilter = {
     id: string;
+    icone: string;
     name: string;
     options: SubCategoryFilter[];
   };
 
 export type SubCategoryFilter = {
     id: string;
+    icone: string;
     name: string;
     options: Filter[];
   };
