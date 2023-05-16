@@ -30,7 +30,11 @@ import { ScrollArea } from "~/components/ui/ScrollArea";
 
 import { cn } from "~/lib/classNames";
 
-import type { Filter } from "../../data/filter/typeFilters";
+import type {
+  CategoryFilter,
+  Filter,
+  SubCategoryFilter,
+ Filter } from "../../data/filter/typeFilters";
 import { useFilterStore } from "../../store/filterStore";
 import FiltersDialog from "../dialog/FiltersDialog";
 
@@ -144,12 +148,15 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                       />
                     ))}
                   </ScrollArea>
-                  <FiltersDialog />
+                  <Button href="/create?filterCategory">
+                    view all filters
+                  </Button>
                 </CommandGroup>
               </CommandList>
             </Command>
           </HoverCard>
         </PopoverContent>
+        <FiltersDialogFlo />
       </Popover>
     </div>
   );
