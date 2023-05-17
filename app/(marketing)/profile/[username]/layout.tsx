@@ -82,13 +82,17 @@ export default async function LayoutProfileHeader({
         </div>
       </div>
       <div className="container max-w-6xl">
-        <Tabs defaultValue="created" className="w-full">
-          <TabsList>
-            <Link href={`/profile/${username}`}>
-              <TabsTrigger value="created">Created by {username}</TabsTrigger>
+        <Tabs defaultValue="created" className="mt-4 w-full">
+          <TabsList className="w-full">
+            <Link href={`/profile/${username}`} className="w-1/2">
+              <TabsTrigger value="created" className="w-full">
+                Created by {username}
+              </TabsTrigger>
             </Link>
-            <Link href={`/profile/${username}/likes`}>
-              <TabsTrigger value="liked">Liked by {username}</TabsTrigger>
+            <Link href={`/profile/${username}/likes`} className="w-1/2">
+              <TabsTrigger value="liked" className="w-full">
+                Liked by {username}
+              </TabsTrigger>
             </Link>
           </TabsList>
         </Tabs>
