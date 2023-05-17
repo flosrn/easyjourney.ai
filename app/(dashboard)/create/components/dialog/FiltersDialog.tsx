@@ -1,5 +1,4 @@
-import { create } from "node:domain";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -18,7 +17,6 @@ import {
 import { ScrollArea } from "~/components/ui/ScrollArea";
 
 import { categoryFilters } from "../../data/filter/categoryFilters";
-import { themesSubCategoryFilters } from "../../data/filter/themes/themesSubCategoryFilters";
 import type {
   CategoryFilter,
   SubCategoryFilter,
@@ -28,11 +26,20 @@ import { useFilterStore } from "../../store/filterStore";
 type FilterDialogProps = {};
 
 const FiltersDialog = ({}: FilterDialogProps) => {
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const router = useRouter();
   const searchParams = useSearchParams();
   const hasFilter = searchParams?.has("filterCategory");
   const filterCategory = searchParams?.get("filterCategory");
   const filterSubCategory = searchParams?.get("filterSubCategory");
+
+  useEffect(() => {
+    hasFilter && setIsDialogOpen(hasFilter);
+  }, [hasFilter]);
+
+  useEffect(() => {
+    !isDialogOpen && router.push("/create");
+  }, [isDialogOpen, router]);
 
   const [selectedFilters, addFilter, removeFilter] = useFilterStore((state) => [
     state.selectedFilters,
@@ -52,7 +59,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
 
   // eslint-disable-next-line no-shadow
   const getSubFilter = (filterSubCategory: string | null | undefined) => {
-    return themesSubCategoryFilters.find(
+    return selectedCategory?.options.find(
       (filter) => filter.name.toLowerCase() === filterSubCategory
     );
   };
@@ -60,44 +67,41 @@ const FiltersDialog = ({}: FilterDialogProps) => {
     getSubFilter(filterSubCategory);
 
   return (
-    <Dialog open={hasFilter}>
-      <Close>
-        <button onClick={() => router.push("/create")}></button>
-      </Close>
-      {/* <DialogTrigger>Open</DialogTrigger> */}
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogContent className="p-8 sm:max-h-[75vh] sm:min-h-[75vh] sm:min-w-[75vw] sm:max-w-[75vw]">
         <DialogHeader className=" h-[65vh] ">
           <DialogTitle className="h-[5vh]">
-            {!filterCategory && (
-              <div>
-                <button onClick={() => router.push("/create")}>Close</button>
-              </div>
-            )}
             {selectedCategory && (
               <>
-                {!selectedSubCategory && (
-                  <div>
-                    <button onClick={() => router.back()} className="mb-5">
-                      Back /
+                <div>
+                  <button
+                    onClick={() => router.push("/create?filterCategory")}
+                    className="mb-5"
+                  >
+                    All categories /
+                  </button>
+                  <button
+                    onClick={() =>
+                      router.push(
+                        `/create?filterCategory=${selectedCategory.name.toLowerCase()}`
+                      )
+                    }
+                  >
+                    {selectedCategory.icon} {selectedCategory.name}
+                  </button>
+                  {selectedSubCategory && (
+                    <button
+                      onClick={() =>
+                        router.push(
+                          `/create?filterCategory=${selectedCategory.name.toLowerCase()}&filterSubCategory=${selectedSubCategory.name.toLowerCase()}`
+                        )
+                      }
+                    >
+                      {" "}
+                      / {selectedSubCategory.icon} {selectedSubCategory.name}
                     </button>
-                    <span>
-                      {selectedCategory.icon} {selectedCategory.name}
-                    </span>
-                  </div>
-                )}
-                {selectedSubCategory && (
-                  <div>
-                    <button onClick={() => router.back()} className="mb-5">
-                      Back /
-                    </button>
-                    <span>
-                      {selectedCategory.icon} {selectedCategory.name} /
-                    </span>
-                    <span>
-                      {selectedSubCategory.icon} {selectedSubCategory.name}
-                    </span>
-                  </div>
-                )}
+                  )}
+                </div>
               </>
             )}
           </DialogTitle>
@@ -122,11 +126,13 @@ const FiltersDialog = ({}: FilterDialogProps) => {
                     <div className="grid grid-cols-3 gap-4">
                       {selectedCategory.options.map((subCategory) => (
                         <Link
-                          className="flex justify-center rounded border border-solid border-white text-xl"
+                          // className="flex justify-center rounded border border-solid border-white text-xl"
                           href={`/create?filterCategory=${selectedCategory.name.toLowerCase()}&filterSubCategory=${subCategory.name.toLowerCase()}`}
                           key={subCategory.id}
                         >
-                          {subCategory.icon}
+                          <span role="img" aria-label="">
+                            {subCategory.icon}
+                          </span>
                           {subCategory.name}
                         </Link>
                       ))}
