@@ -21,6 +21,7 @@ import type {
   SubCategoryFilter,
 } from "../../data/filter/typeFilters";
 import { useFilterStore } from "../../store/filterStore";
+import FiltersBadge from "../badge/FiltersBadge";
 
 type FilterDialogProps = {};
 
@@ -186,27 +187,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className=" h-full">
-          <ScrollArea className=" max-h-[8vh]">
-            {selectedFilters.map((filter) => {
-              const isAlreadySelected = selectedFilters.some(
-                (selectedFilter) => selectedFilter.id === filter.id
-              );
-              return (
-                <Badge
-                  key={filter.id}
-                  className="m-1 cursor-pointer"
-                  onClick={() => {
-                    isAlreadySelected
-                      ? removeFilter(filter)
-                      : addFilter(filter);
-                  }}
-                  variant="outline"
-                >
-                  {filter.name}
-                </Badge>
-              );
-            })}
-          </ScrollArea>
+          <FiltersBadge />
         </DialogFooter>
       </DialogContent>
     </Dialog>
