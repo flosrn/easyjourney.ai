@@ -5,6 +5,8 @@ import type { User } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/Tabs";
+
 import FollowButton from "../FollowButton";
 
 const getUserInfos = async (username: User["username"]) =>
@@ -57,7 +59,6 @@ export default async function LayoutProfileHeader({
         )}
         <h1 className="mt-4 text-2xl font-semibold">{user.name}</h1>
         <p className="mt-2 text-lg">@{user.username}</p>
-        <Link href={`/profile/${user.username}/likes`}>Test</Link>
 
         {!isMe && <FollowButton userId={user.id} isFollowing={isFollowing} />}
 
@@ -80,7 +81,19 @@ export default async function LayoutProfileHeader({
           </div>
         </div>
       </div>
-      <div className="container max-w-6xl">{children}</div>
+      <div className="container max-w-6xl">
+        <Tabs defaultValue="created" className="w-full">
+          <TabsList>
+            <Link href={`/profile/${username}`}>
+              <TabsTrigger value="created">Created by {username}</TabsTrigger>
+            </Link>
+            <Link href={`/profile/${username}/likes`}>
+              <TabsTrigger value="liked">Liked by {username}</TabsTrigger>
+            </Link>
+          </TabsList>
+        </Tabs>
+        {children}
+      </div>
     </>
   );
 }
