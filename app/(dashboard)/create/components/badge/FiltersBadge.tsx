@@ -14,7 +14,7 @@ const FiltersBadge = () => {
   ]);
 
   return (
-    <Card className=" max-h-[8vh]">
+    <Card className=" max-h-[8vh] min-w-full">
       <ScrollArea className=" h-[8vh]">
         {selectedFilters.map((filter) => {
           const isAlreadySelected = selectedFilters.some(
