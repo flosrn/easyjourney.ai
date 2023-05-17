@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import { create } from "node:domain";
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Close, DialogTrigger } from "@radix-ui/react-dialog";
+import { Button } from "react-day-picker";
 
 import { Badge } from "~/components/ui/Badge";
 import {
@@ -9,118 +14,162 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "~/components/ui/Dialog";
+import { ScrollArea } from "~/components/ui/ScrollArea";
 
 import { categoryFilters } from "../../data/filter/categoryFilters";
+import { themesSubCategoryFilters } from "../../data/filter/themes/themesSubCategoryFilters";
 import type {
   CategoryFilter,
   SubCategoryFilter,
 } from "../../data/filter/typeFilters";
 import { useFilterStore } from "../../store/filterStore";
 
-const FiltersDialog = () => {
+type FilterDialogProps = {};
+
+const FiltersDialog = ({}: FilterDialogProps) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const hasFilter = searchParams?.has("filterCategory");
+  const filterCategory = searchParams?.get("filterCategory");
+  const filterSubCategory = searchParams?.get("filterSubCategory");
+
   const [selectedFilters, addFilter, removeFilter] = useFilterStore((state) => [
     state.selectedFilters,
     state.addFilter,
     state.removeFilter,
   ]);
 
-  const [selectedCategory, setSelectedCategory] =
-    useState<CategoryFilter | null>();
-  const handleCategoryClick = (category: CategoryFilter) => {
-    setSelectedCategory(category);
+  // eslint-disable-next-line no-shadow
+  const getFilter = (filterCategory: string | null | undefined) => {
+    return categoryFilters.find(
+      (filter) => filter.name.toLowerCase() === filterCategory
+    );
   };
 
-  const [selectedSubCategory, setSelectedSubCategory] =
-    useState<SubCategoryFilter | null>();
-  const handleSubCategoryClick = (subCategory: SubCategoryFilter | null) => {
-    setSelectedSubCategory(subCategory);
+  const selectedCategory: CategoryFilter | undefined =
+    getFilter(filterCategory);
+
+  // eslint-disable-next-line no-shadow
+  const getSubFilter = (filterSubCategory: string | null | undefined) => {
+    return themesSubCategoryFilters.find(
+      (filter) => filter.name.toLowerCase() === filterSubCategory
+    );
   };
+  const selectedSubCategory: SubCategoryFilter | undefined =
+    getSubFilter(filterSubCategory);
 
   return (
-    <Dialog>
-      <DialogTrigger>All Filters</DialogTrigger>
-      <DialogContent className="h-screen w-screen p-8">
-        <DialogHeader className=" h-4/5 overflow-y-auto">
-          <DialogTitle>
-            <div onClick={() => setSelectedCategory(null)}>
-              {selectedCategory?.icon} {selectedCategory?.name}
-            </div>
+    <Dialog open={hasFilter}>
+      <Close>
+        <button onClick={() => router.push("/create")}></button>
+      </Close>
+      {/* <DialogTrigger>Open</DialogTrigger> */}
+      <DialogContent className="p-8 sm:max-h-[75vh] sm:min-h-[75vh] sm:min-w-[75vw] sm:max-w-[75vw]">
+        <DialogHeader className=" h-[65vh] ">
+          <DialogTitle className="h-[5vh]">
+            {!filterCategory && (
+              <div>
+                <button onClick={() => router.push("/create")}>Close</button>
+              </div>
+            )}
+            {selectedCategory && (
+              <>
+                {!selectedSubCategory && (
+                  <div>
+                    <button onClick={() => router.back()} className="mb-5">
+                      Back /
+                    </button>
+                    <span>
+                      {selectedCategory.icon} {selectedCategory.name}
+                    </span>
+                  </div>
+                )}
+                {selectedSubCategory && (
+                  <div>
+                    <button onClick={() => router.back()} className="mb-5">
+                      Back /
+                    </button>
+                    <span>
+                      {selectedCategory.icon} {selectedCategory.name} /
+                    </span>
+                    <span>
+                      {selectedSubCategory.icon} {selectedSubCategory.name}
+                    </span>
+                  </div>
+                )}
+              </>
+            )}
           </DialogTitle>
           <DialogDescription>
-            <div>
-              {selectedCategory ? (
-                <>
-                  <ul>
-                    {selectedCategory.options.map((subCategory) => (
-                      <li key={subCategory.id}>
-                        <div
-                          onClick={() =>
-                            selectedSubCategory
-                              ? handleSubCategoryClick(null)
-                              : handleSubCategoryClick(subCategory)
-                          }
-                        >
-                          {subCategory.icon} {subCategory.name}
-                        </div>
-                        <div className="flex flex-wrap">
-                          {subCategory === selectedSubCategory &&
-                            selectedSubCategory.options.map((filter) => {
-                              const isAlreadySelected = selectedFilters.some(
-                                (selectedFilter) =>
-                                  selectedFilter.id === filter.id
-                              );
-                              return (
-                                <div
-                                  className="w-1/5"
-                                  key={filter.id}
-                                  onClick={() => {
-                                    isAlreadySelected
-                                      ? removeFilter(filter)
-                                      : addFilter(filter);
-                                  }}
-                                >
-                                  <div className=" w-1/5 border border-white">
-                                    <div className="border border-white">
-                                      {filter.name}
-                                    </div>
-                                    <div className="border border-white">
-                                      {filter.description}
-                                    </div>
-                                    <Image
-                                      src={filter.image}
-                                      alt={filter.name}
-                                      width={200}
-                                      height={200}
-                                      className="mt-4 w-full"
-                                    />
-                                  </div>
-                                </div>
-                              );
-                            })}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ) : (
-                <div className="grid grid-cols-3 gap-3">
+            <ScrollArea className="h-[60vh]">
+              {hasFilter && !filterCategory && (
+                <div className="grid grid-cols-3 gap-4">
                   {categoryFilters.map((category) => (
-                    <div
-                      className="flex justify-center rounded border border-solid border-white"
+                    <Link
+                      className="flex justify-center rounded border border-solid border-white text-xl"
+                      href={`/create?filterCategory=${category.name.toLowerCase()}`}
                       key={category.id}
-                      onClick={() => handleCategoryClick(category)}
                     >
                       {category.icon} {category.name}
-                    </div>
+                    </Link>
                   ))}
                 </div>
               )}
-            </div>
+              {selectedCategory && (
+                <>
+                  {!selectedSubCategory && (
+                    <div className="grid grid-cols-3 gap-4">
+                      {selectedCategory.options.map((subCategory) => (
+                        <Link
+                          className="flex justify-center rounded border border-solid border-white text-xl"
+                          href={`/create?filterCategory=${selectedCategory.name.toLowerCase()}&filterSubCategory=${subCategory.name.toLowerCase()}`}
+                          key={subCategory.id}
+                        >
+                          {subCategory.icon}
+                          {subCategory.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                  {selectedSubCategory && (
+                    <div className="flex flex-wrap">
+                      {selectedSubCategory.options.map((filter) => {
+                        const isAlreadySelected = selectedFilters.some(
+                          (selectedFilter) => selectedFilter.id === filter.id
+                        );
+                        return (
+                          <div
+                            className="m-3 w-1/6 border border-gray-200 "
+                            key={filter.id}
+                            onClick={() => {
+                              isAlreadySelected
+                                ? removeFilter(filter)
+                                : addFilter(filter);
+                            }}
+                          >
+                            <div className=" p-1 text-center text-base text-gray-200">
+                              {filter.name}
+                            </div>
+                            <Image
+                              src={filter.image}
+                              alt={filter.name}
+                              width={200}
+                              height={200}
+                              className="w-full"
+                            />
+                            <div className="m-3">{filter.description}</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </>
+              )}
+            </ScrollArea>
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="w-auto overflow-x-scroll">
+        <DialogFooter className="h-[10vh]">
           {selectedFilters.map((filter) => {
             const isAlreadySelected = selectedFilters.some(
               (selectedFilter) => selectedFilter.id === filter.id

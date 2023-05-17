@@ -289,10 +289,10 @@ export const realismAbstractionFilters: Filter[] = [
   },
   {
     id: "realism_abstraction_35",
-    name: "New_Realism",
+    name: "New Realism",
     description:
       "Artistic movement emphasizing realism in contemporary contexts.",
-    style: "New_Realism",
+    style: "New Realism",
     image: "/images/filters/themes/realism_abstraction/New_Realism.png",
     isSelected: false,
   },

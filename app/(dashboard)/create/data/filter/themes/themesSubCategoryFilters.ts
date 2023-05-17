@@ -10,13 +10,13 @@ export const themesSubCategoryFilters: SubCategoryFilter[] = [
   {
     id: "1",
     icon: "🎭⛱",
-    name: "Realism/Abstraction",
+    name: "Realism and Abstraction",
     options: realismAbstractionFilters,
   },
   {
     id: "2",
     icon: "🎭💾",
-    name: "Retro/Modern",
+    name: "Retro and Modern",
     options: retroModernFilters,
   },
   {

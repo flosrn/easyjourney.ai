@@ -39,7 +39,6 @@ const FilterDialog = ({}: FilterDialogProps) => {
   };
 
   const selectedCategory = getFilter(filterCategory);
-  console.log("selectedCategory :", selectedCategory);
   const selectedSubCategory = getSubFilter(filterSubCategory);
 
   return (
