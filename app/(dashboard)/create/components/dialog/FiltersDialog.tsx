@@ -126,7 +126,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
                         <Card
                           key={filter.id}
                           className={cn(
-                            "md:m-3 m-1 w-full md:w-1/6 cursor-pointer",
+                            "flex flex-col md:m-3 m-1 w-full md:w-1/6 cursor-pointer",
                             {
                               "outline outline-1 outline-offset-2 outline-blue-500":
                                 isAlreadySelected,
@@ -141,15 +141,18 @@ const FiltersDialog = ({}: FilterDialogProps) => {
                           <div className="p-1 text-center text-base font-bold md:p-3">
                             {filter.name}
                           </div>
-                          <Image
-                            src={filter.image}
-                            alt={filter.name}
-                            width={200}
-                            height={200}
-                            className="hidden md:block md:w-full"
-                          />
-                          <div className="p-1 text-center md:p-3">
-                            {filter.description}
+                          <Separator />
+                          <div className="flex flex-row md:flex-col">
+                            <Image
+                              src={filter.image}
+                              alt={filter.name}
+                              width={200}
+                              height={200}
+                              className="w-1/5 rounded-bl-lg bg-left md:block md:w-full md:rounded-none"
+                            />
+                            <div className="w-4/5 p-2 text-center md:w-full md:p-3">
+                              {filter.description}
+                            </div>
                           </div>
                         </Card>
                       );
