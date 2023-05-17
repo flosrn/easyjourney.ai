@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Close, DialogTrigger } from "@radix-ui/react-dialog";
-import { Button } from "react-day-picker";
 
 import { Badge } from "~/components/ui/Badge";
+import { Card } from "~/components/ui/Card";
 import {
   Dialog,
   DialogContent,
@@ -68,18 +67,18 @@ const FiltersDialog = ({}: FilterDialogProps) => {
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogContent className="p-8 sm:max-h-[75vh] sm:min-h-[75vh] sm:min-w-[75vw] sm:max-w-[75vw]">
-        <DialogHeader className=" h-[65vh] ">
-          <DialogTitle className="h-[5vh]">
-            {selectedCategory && (
-              <>
-                <div>
-                  <button
-                    onClick={() => router.push("/create?filterCategory")}
-                    className="mb-5"
-                  >
-                    All categories /
-                  </button>
+      <DialogContent className=" flex flex-col sm:max-h-[75vh] sm:min-h-[75vh] sm:min-w-[75vw] sm:max-w-[75vw]">
+        <DialogHeader className="h-4/5">
+          <DialogTitle className="h-[10%]">
+            <div>
+              <button
+                onClick={() => router.push("/create?filterCategory")}
+                className="mb-5"
+              >
+                All categories
+              </button>
+              {selectedCategory && (
+                <>
                   <button
                     onClick={() =>
                       router.push(
@@ -87,7 +86,9 @@ const FiltersDialog = ({}: FilterDialogProps) => {
                       )
                     }
                   >
-                    {selectedCategory.icon} {selectedCategory.name}
+                    {" "}
+                    /{selectedCategory.icon}
+                    {selectedCategory.name}
                   </button>
                   {selectedSubCategory && (
                     <button
@@ -98,25 +99,28 @@ const FiltersDialog = ({}: FilterDialogProps) => {
                       }
                     >
                       {" "}
-                      / {selectedSubCategory.icon} {selectedSubCategory.name}
+                      /{selectedSubCategory.icon}
+                      {selectedSubCategory.name}
                     </button>
                   )}
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </div>
           </DialogTitle>
           <DialogDescription>
-            <ScrollArea className="h-[60vh]">
+            <ScrollArea className="h-[55vh]">
               {hasFilter && !filterCategory && (
                 <div className="grid grid-cols-3 gap-4">
                   {categoryFilters.map((category) => (
-                    <Link
-                      className="flex justify-center rounded border border-solid border-white text-xl"
-                      href={`/create?filterCategory=${category.name.toLowerCase()}`}
-                      key={category.id}
-                    >
-                      {category.icon} {category.name}
-                    </Link>
+                    <Card key={category.id} className="p-3">
+                      <Link
+                        className="flex justify-center text-xl"
+                        href={`/create?filterCategory=${category.name.toLowerCase()}`}
+                      >
+                        {category.icon}
+                        {category.name}
+                      </Link>
+                    </Card>
                   ))}
                 </div>
               )}
@@ -125,16 +129,16 @@ const FiltersDialog = ({}: FilterDialogProps) => {
                   {!selectedSubCategory && (
                     <div className="grid grid-cols-3 gap-4">
                       {selectedCategory.options.map((subCategory) => (
-                        <Link
-                          // className="flex justify-center rounded border border-solid border-white text-xl"
-                          href={`/create?filterCategory=${selectedCategory.name.toLowerCase()}&filterSubCategory=${subCategory.name.toLowerCase()}`}
-                          key={subCategory.id}
-                        >
-                          <span role="img" aria-label="">
+                        <Card key={subCategory.id} className="p-3">
+                          <Link
+                            className="flex justify-center text-xl"
+                            href={`/create?filterCategory=${selectedCategory.name.toLowerCase()}&filterSubCategory=${subCategory.name.toLowerCase()}`}
+                            key={subCategory.id}
+                          >
                             {subCategory.icon}
-                          </span>
-                          {subCategory.name}
-                        </Link>
+                            {subCategory.name}
+                          </Link>
+                        </Card>
                       ))}
                     </div>
                   )}
@@ -145,16 +149,20 @@ const FiltersDialog = ({}: FilterDialogProps) => {
                           (selectedFilter) => selectedFilter.id === filter.id
                         );
                         return (
-                          <div
-                            className="m-3 w-1/6 border border-gray-200 "
+                          <Card
                             key={filter.id}
+                            className={`m-3 w-1/6 cursor-pointer ${
+                              isAlreadySelected
+                                ? "outline outline-1 outline-offset-2 outline-blue-500"
+                                : ""
+                            }`}
                             onClick={() => {
                               isAlreadySelected
                                 ? removeFilter(filter)
                                 : addFilter(filter);
                             }}
                           >
-                            <div className=" p-1 text-center text-base text-gray-200">
+                            <div className="p-3 text-center text-base font-bold">
                               {filter.name}
                             </div>
                             <Image
@@ -164,8 +172,10 @@ const FiltersDialog = ({}: FilterDialogProps) => {
                               height={200}
                               className="w-full"
                             />
-                            <div className="m-3">{filter.description}</div>
-                          </div>
+                            <div className="p-3 text-center">
+                              {filter.description}
+                            </div>
+                          </Card>
                         );
                       })}
                     </div>
@@ -175,23 +185,28 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             </ScrollArea>
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="h-[10vh]">
-          {selectedFilters.map((filter) => {
-            const isAlreadySelected = selectedFilters.some(
-              (selectedFilter) => selectedFilter.id === filter.id
-            );
-            return (
-              <Badge
-                key={filter.id}
-                onClick={() => {
-                  isAlreadySelected ? removeFilter(filter) : addFilter(filter);
-                }}
-                variant="outline"
-              >
-                {filter.name}
-              </Badge>
-            );
-          })}
+        <DialogFooter className=" h-full">
+          <ScrollArea className=" max-h-[8vh]">
+            {selectedFilters.map((filter) => {
+              const isAlreadySelected = selectedFilters.some(
+                (selectedFilter) => selectedFilter.id === filter.id
+              );
+              return (
+                <Badge
+                  key={filter.id}
+                  className="m-1 cursor-pointer"
+                  onClick={() => {
+                    isAlreadySelected
+                      ? removeFilter(filter)
+                      : addFilter(filter);
+                  }}
+                  variant="outline"
+                >
+                  {filter.name}
+                </Badge>
+              );
+            })}
+          </ScrollArea>
         </DialogFooter>
       </DialogContent>
     </Dialog>

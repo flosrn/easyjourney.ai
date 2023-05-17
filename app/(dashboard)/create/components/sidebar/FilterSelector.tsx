@@ -145,7 +145,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                     ))}
                   </ScrollArea>
                   <Button href="/create?filterCategory">
-                    view all filters
+                    View all filters
                   </Button>
                   <FiltersDialog />
                 </CommandGroup>
