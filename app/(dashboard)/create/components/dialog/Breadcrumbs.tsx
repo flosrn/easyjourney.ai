@@ -35,7 +35,7 @@ const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
           </button>
         </>
       )}
-      {subCategory && (
+      {category && subCategory && (
         <>
           <span>/</span>
           <button
