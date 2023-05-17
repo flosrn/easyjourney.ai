@@ -32,6 +32,7 @@ import { cn } from "~/lib/classNames";
 
 import type { Filter } from "../../data/filter/typeFilters";
 import { useFilterStore } from "../../store/filterStore";
+import FiltersDialog from "../dialog/FiltersDialog";
 
 type ModelSelectorProps = PopoverProps & {};
 
@@ -143,6 +144,10 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                       />
                     ))}
                   </ScrollArea>
+                  <Button href="/create?filterCategory">
+                    View all filters
+                  </Button>
+                  <FiltersDialog />
                 </CommandGroup>
               </CommandList>
             </Command>

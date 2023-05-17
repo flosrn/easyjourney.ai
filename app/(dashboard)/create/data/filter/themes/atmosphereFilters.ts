@@ -1,8 +1,8 @@
-import { Filter } from "../typeFilters";
+import type { Filter } from "../typeFilters";
 
 export const atmosphereFilters: Filter[] = [
   {
-    id: "1",
+    id: "atmosphere_1",
     name: "Blissful Atmosphere",
     description: "Immerse yourself in pure serenity and tranquility.",
     style: "Blissful Atmosphere",
@@ -10,7 +10,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "2",
+    id: "atmosphere_2",
     name: "Calm Atmosphere",
     description:
       "Indulge in a soothing and peaceful ambiance for ultimate relaxation.",
@@ -19,7 +19,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "3",
+    id: "atmosphere_3",
     name: "Chill Atmosphere",
     description: "Experience a cool and laid-back vibe to unwind and destress.",
     style: "Chill Atmosphere",
@@ -27,7 +27,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "4",
+    id: "atmosphere_4",
     name: "Dark Atmosphere",
     description:
       "Immerse yourself in the mystical allure of darkness and enchantment.",
@@ -36,7 +36,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "5",
+    id: "atmosphere_5",
     name: "Dreamy Atmosphere",
     description: "Get lost in a mesmerizing and ethereal dreamscape of wonder.",
     style: "Dreamy Atmosphere",
@@ -44,7 +44,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "6",
+    id: "atmosphere_6",
     name: "Enchanting Atmosphere",
     description:
       "Step into a world of enchantment and magic, captivating your senses.",
@@ -53,7 +53,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "7",
+    id: "atmosphere_7",
     name: "Enigmatic Atmosphere",
     description:
       "Unravel the mysteries of an intriguing and captivating ambiance.",
@@ -62,7 +62,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "8",
+    id: "atmosphere_8",
     name: "Ethereal Atmosphere",
     description:
       "Immerse yourself in a celestial and otherworldly realm of beauty.",
@@ -71,7 +71,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "9",
+    id: "atmosphere_9",
     name: "Festive Atmosphere",
     description:
       "Celebrate and embrace a joyous and lively atmosphere of festivity.",
@@ -80,7 +80,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "10",
+    id: "atmosphere_10",
     name: "Gothic Atmosphere",
     description:
       "Experience the dark and mysterious allure of a gothic ambiance.",
@@ -89,7 +89,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "11",
+    id: "atmosphere_11",
     name: "Hazy Atmosphere",
     description:
       "Step into a hazy and atmospheric world of mystery and intrigue.",
@@ -98,7 +98,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "12",
+    id: "atmosphere_12",
     name: "Industrial Atmosphere",
     description:
       "Immerse yourself in the raw and gritty ambiance of an industrial setting.",
@@ -107,7 +107,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "13",
+    id: "atmosphere_13",
     name: "Intense Atmosphere",
     description:
       "Experience an intense and powerful ambiance that will captivate your senses.",
@@ -116,7 +116,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "14",
+    id: "atmosphere_14",
     name: "Light Atmosphere",
     description:
       "Bask in the gentle and uplifting glow of a light-filled atmosphere.",
@@ -125,7 +125,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "15",
+    id: "atmosphere_15",
     name: "Melancholic Atmosphere",
     description:
       "Indulge in a nostalgic and bittersweet ambiance of melancholy.",
@@ -134,7 +134,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "16",
+    id: "atmosphere_16",
     name: "Mellow Atmosphere",
     description:
       "Relax and unwind in a calm and soothing atmosphere of tranquility.",
@@ -143,7 +143,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "17",
+    id: "atmosphere_17",
     name: "Moody Atmosphere",
     description:
       "Enter a world of ever-changing moods and emotions with this atmospheric filter.",
@@ -152,7 +152,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "18",
+    id: "atmosphere_18",
     name: "Mysterious Atmosphere",
     description:
       "Uncover the enigmatic secrets of a mysterious and captivating ambiance.",
@@ -161,7 +161,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "19",
+    id: "atmosphere_19",
     name: "Mystical Atmosphere",
     description:
       "Immerse yourself in the ethereal and magical allure of a mystical ambiance.",
@@ -170,7 +170,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "20",
+    id: "atmosphere_20",
     name: "Nostalgic Atmosphere",
     description:
       "Travel back in time and embrace the nostalgic charm of this atmospheric filter.",
@@ -179,7 +179,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "21",
+    id: "atmosphere_21",
     name: "Peaceful Atmosphere",
     description:
       "Immerse yourself in a serene and harmonious ambiance of peace.",
@@ -188,7 +188,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "22",
+    id: "atmosphere_22",
     name: "Playful Atmosphere",
     description:
       "Embrace a whimsical and joyful atmosphere filled with playfulness.",
@@ -197,7 +197,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "23",
+    id: "atmosphere_23",
     name: "Reflective Atmosphere",
     description:
       "Get lost in deep thoughts and contemplation with this reflective filter.",
@@ -206,7 +206,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "24",
+    id: "atmosphere_24",
     name: "Relaxing Atmosphere",
     description:
       "Unwind and find inner calmness in this soothing and relaxing ambiance.",
@@ -215,7 +215,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "25",
+    id: "atmosphere_25",
     name: "Romantic Atmosphere",
     description:
       "Ignite the flames of romance and passion with this enchanting filter.",
@@ -224,7 +224,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "26",
+    id: "atmosphere_26",
     name: "Rustic Atmosphere",
     description:
       "Immerse yourself in the charming and rustic beauty of this atmospheric filter.",
@@ -233,7 +233,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "27",
+    id: "atmosphere_27",
     name: "Serendipitous Atmosphere",
     description:
       "Embrace unexpected discoveries and joyful moments in this serendipitous ambiance.",
@@ -242,7 +242,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "28",
+    id: "atmosphere_28",
     name: "Serene Atmosphere",
     description:
       "Find inner peace and tranquility in this serene and calm atmospheric filter.",
@@ -251,7 +251,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "29",
+    id: "atmosphere_29",
     name: "Sophisticated Atmosphere",
     description:
       "Indulge in the refined and elegant ambiance of sophistication and class.",
@@ -260,7 +260,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "30",
+    id: "atmosphere_30",
     name: "Tranquil Atmosphere",
     description:
       "Immerse yourself in a peaceful and harmonious ambiance of tranquility.",
@@ -269,7 +269,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "31",
+    id: "atmosphere_31",
     name: "Whimsical Atmosphere",
     description:
       "Step into a whimsical and magical world filled with joy and wonder.",
@@ -278,7 +278,7 @@ export const atmosphereFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "32",
+    id: "atmosphere_32",
     name: "Zen Atmosphere",
     description:
       "Find inner peace and serenity in this harmonious and Zen-like ambiance.",

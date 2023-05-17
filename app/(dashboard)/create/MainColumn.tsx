@@ -15,9 +15,11 @@ import {
 import { Toaster } from "react-hot-toast";
 
 import { Button } from "~/components/ui/Button";
+import { Card } from "~/components/ui/Card";
 import { Separator } from "~/components/ui/Separator";
 
 import SideColumn from "./SideColumn";
+import FiltersBadge from "./components/badge/FiltersBadge";
 import ImageContainer from "./components/image/ImageContainer";
 import TextareaPrompt from "./components/input/TextareaPrompt";
 import { aspectRatios } from "./data/aspectRatios";
@@ -186,6 +188,7 @@ const MainColumn = () => {
             </div>
           </div>
           <Separator className="my-4" />
+          <FiltersBadge />
           <TextareaPrompt />
           <SideColumn className="lg:hidden" />
           <ImageContainer />

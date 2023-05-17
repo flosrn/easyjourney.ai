@@ -1,8 +1,8 @@
-import { Filter } from "../typeFilters";
+import type { Filter } from "../typeFilters";
 
 export const sciFiFilters: Filter[] = [
   {
-    id: "1",
+    id: "sci-fi_1",
     name: "Aetherpunk",
     description:
       "Combining steampunk elements with the concept of aether, a fictional form of energy.",
@@ -11,7 +11,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "2",
+    id: "sci-fi_2",
     name: "Alchemy",
     description:
       "Exploring the mystical art of alchemy and its transformative powers.",
@@ -20,7 +20,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "3",
+    id: "sci-fi_3",
     name: "Alien",
     description:
       "Drawing inspiration from extraterrestrial life forms and sci-fi portrayals of aliens.",
@@ -29,7 +29,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "4",
+    id: "sci-fi_4",
     name: "Angelcore",
     description:
       "Incorporating angelic aesthetics and symbolism into a futuristic setting.",
@@ -38,7 +38,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "5",
+    id: "sci-fi_5",
     name: "Auroracore",
     description:
       "Inspired by the magical phenomenon of the aurora borealis and its mesmerizing lights.",
@@ -47,7 +47,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "6",
+    id: "sci-fi_6",
     name: "Cryptidcore",
     description:
       "Exploring mythical creatures and legendary beings from folklore and cryptozoology.",
@@ -56,7 +56,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "7",
+    id: "sci-fi_7",
     name: "Cypernoir",
     description:
       "Combining elements of cyberpunk and film noir, creating a dark and futuristic atmosphere.",
@@ -65,7 +65,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "8",
+    id: "sci-fi_8",
     name: "Decopunk",
     description:
       "Blending the retro-futuristic aesthetics of art deco with sci-fi themes.",
@@ -74,7 +74,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "9",
+    id: "sci-fi_9",
     name: "Dracopunk",
     description:
       "Incorporating dragon-inspired elements and themes into a futuristic setting.",
@@ -84,7 +84,7 @@ export const sciFiFilters: Filter[] = [
   },
 
   {
-    id: "10",
+    id: "sci-fi_10",
     name: "Dragoncore",
     description:
       "Embracing the power and symbolism of dragons in a futuristic and sci-fi context.",
@@ -93,7 +93,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "11",
+    id: "sci-fi_11",
     name: "Extraterrestrial",
     description:
       "Exploring the concept of beings or entities originating from beyond planet Earth.",
@@ -102,7 +102,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "12",
+    id: "sci-fi_12",
     name: "Eye of Providence",
     description:
       "Incorporating the iconic symbol of the all-seeing eye into a futuristic theme.",
@@ -111,7 +111,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "13",
+    id: "sci-fi_13",
     name: "Fairy Folk",
     description:
       "Drawing inspiration from the enchanting world of fairies and magical creatures.",
@@ -120,7 +120,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "14",
+    id: "sci-fi_14",
     name: "Fairycore",
     description:
       "Embracing the whimsical and ethereal aesthetics of fairy tales and magical realms.",
@@ -129,7 +129,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "15",
+    id: "sci-fi_15",
     name: "Ghostcore",
     description:
       "Incorporating ghostly and supernatural elements into a futuristic and sci-fi setting.",
@@ -138,7 +138,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "16",
+    id: "sci-fi_16",
     name: "Goblincore",
     description:
       "Embracing the unconventional beauty of goblins and nature-inspired aesthetics.",
@@ -147,7 +147,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "17",
+    id: "sci-fi_17",
     name: "Illuminati",
     description:
       "Exploring the mysterious and secretive world of the Illuminati conspiracy theories.",
@@ -156,7 +156,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "18",
+    id: "sci-fi_18",
     name: "Invaded",
     description:
       "Portraying a futuristic world invaded or influenced by extraterrestrial forces.",
@@ -165,7 +165,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "19",
+    id: "sci-fi_19",
     name: "Invasion",
     description:
       "Embracing the concept of large-scale invasions from outer space or other dimensions.",
@@ -174,7 +174,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "20",
+    id: "sci-fi_20",
     name: "Lightsaber",
     description:
       "Inspired by the iconic weapon from the Star Wars franchise, emphasizing futuristic swordplay.",
@@ -183,7 +183,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "21",
+    id: "sci-fi_21",
     name: "Magewave",
     description:
       "Blending futuristic technology with mystical and magical elements.",
@@ -192,7 +192,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "22",
+    id: "sci-fi_22",
     name: "Magic",
     description:
       "Exploring the integration of magic and supernatural phenomena in a futuristic setting.",
@@ -201,7 +201,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "23",
+    id: "sci-fi_23",
     name: "Magical",
     description:
       "Embracing a futuristic world where magic and advanced technology coexist harmoniously.",
@@ -210,7 +210,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "24",
+    id: "sci-fi_24",
     name: "Magicpunk",
     description:
       "Combining elements of magic and punk aesthetics in a futuristic and rebellious style.",
@@ -219,7 +219,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "25",
+    id: "sci-fi_25",
     name: "Metaphysical",
     description:
       "Exploring the nature of existence, consciousness, and reality in a futuristic context.",
@@ -228,7 +228,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "26",
+    id: "sci-fi_26",
     name: "Mystic",
     description:
       "Embracing mysterious and mystical elements in a futuristic and otherworldly theme.",
@@ -237,7 +237,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "27",
+    id: "sci-fi_27",
     name: "Mystical",
     description:
       "Incorporating enchanting and magical elements into a futuristic and sci-fi context.",
@@ -246,7 +246,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "28",
+    id: "sci-fi_28",
     name: "Mythpunk",
     description:
       "Blending elements of mythology and punk aesthetics in a futuristic and subversive style.",
@@ -255,7 +255,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "29",
+    id: "sci-fi_29",
     name: "Psychic",
     description:
       "Focusing on psychic powers and abilities in a futuristic and mind-bending context.",
@@ -264,7 +264,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "30",
+    id: "sci-fi_30",
     name: "Rangercore",
     description:
       "Drawing inspiration from nature and wilderness, combining it with futuristic and sci-fi elements.",
@@ -273,7 +273,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "31",
+    id: "sci-fi_31",
     name: "Sci-fi",
     description:
       "Embracing the core elements of science fiction, including futuristic technology and advanced concepts.",
@@ -282,7 +282,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "32",
+    id: "sci-fi_32",
     name: "Spell",
     description:
       "Exploring the use of spells and magical incantations in a futuristic and sci-fi context.",
@@ -291,7 +291,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "33",
+    id: "sci-fi_33",
     name: "Spiritcore",
     description:
       "Incorporating spiritual and ethereal elements into a futuristic and otherworldly style.",
@@ -300,7 +300,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "34",
+    id: "sci-fi_34",
     name: "Spriggancore",
     description:
       "Inspired by the mythical creature Spriggan, combining it with futuristic and technological elements.",
@@ -309,7 +309,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "35",
+    id: "sci-fi_35",
     name: "Supernatural",
     description:
       "Exploring paranormal and supernatural phenomena in a futuristic and sci-fi context.",
@@ -318,7 +318,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "36",
+    id: "sci-fi_36",
     name: "Terrestrial",
     description:
       "Focusing on earthly and terrestrial elements within a futuristic and sci-fi setting.",
@@ -327,7 +327,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "37",
+    id: "sci-fi_37",
     name: "UFO",
     description:
       "Centered around unidentified flying objects and extraterrestrial encounters.",
@@ -336,7 +336,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "38",
+    id: "sci-fi_38",
     name: "Unicorncore",
     description:
       "Incorporating unicorns and their mystical symbolism into a futuristic and sci-fi theme.",
@@ -345,7 +345,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "39",
+    id: "sci-fi_39",
     name: "Weirdcore Aurora",
     description:
       "Embracing the bizarre, surreal, and uncanny in a futuristic and aurora-inspired style.",
@@ -354,7 +354,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "40",
+    id: "sci-fi_40",
     name: "Witchcore",
     description:
       "Incorporating witchcraft and occult elements into a futuristic and sci-fi aesthetic.",
@@ -363,7 +363,7 @@ export const sciFiFilters: Filter[] = [
     isSelected: false,
   },
   {
-    id: "41",
+    id: "sci-fi_41",
     name: "Wizardcore",
     description:
       "Drawing inspiration from wizards, magic, and mystical elements in a futuristic and sci-fi context.",
