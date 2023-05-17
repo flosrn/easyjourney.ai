@@ -13,6 +13,7 @@ import {
   DialogTitle,
 } from "~/components/ui/Dialog";
 import { ScrollArea } from "~/components/ui/ScrollArea";
+import { Separator } from "~/components/ui/Separator";
 
 import { cn } from "~/lib/classNames";
 
@@ -71,8 +72,8 @@ const FiltersDialog = ({}: FilterDialogProps) => {
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogContent className="flex flex-col sm:max-h-[75vh] sm:min-h-[75vh] sm:min-w-[75vw] sm:max-w-[75vw]">
-        <DialogHeader className="h-10">
+      <DialogContent className="flex max-h-screen min-h-screen flex-col md:max-h-[75vh] md:min-h-[75vh] md:min-w-[75vw] md:max-w-[75vw]">
+        <DialogHeader className="max-h-[10vh] md:h-10">
           <DialogTitle>
             <Breadcrumbs
               category={selectedCategory}
@@ -80,15 +81,15 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             />
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className="">
-          <ScrollArea className="h-[55vh]">
+        <DialogDescription className="max-h-[80%]">
+          <ScrollArea className="h-[70vh] md:h-[55vh]">
             {hasFilter && !filterCategory && (
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:text-lg">
                 {categoryFilters.map((category) => (
                   <Card key={category.id} className="p-3">
                     <Link
                       href={`/create?filterCategory=${category.name.toLowerCase()}`}
-                      className="flex-center text-xl"
+                      className="flex-center  text-sm md:text-xl"
                     >
                       <EmojiIcon icon={category.icon} />
                       {category.name}
@@ -100,12 +101,12 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             {selectedCategory && (
               <>
                 {!selectedSubCategory && (
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3 ">
                     {selectedCategory.options.map((subCategory) => (
                       <Card key={subCategory.id} className="p-3">
                         <Link
                           href={`/create?filterCategory=${selectedCategory.name.toLowerCase()}&filterSubCategory=${subCategory.name.toLowerCase()}`}
-                          className="flex-center text-xl"
+                          className="flex-center text-sm md:text-xl"
                           key={subCategory.id}
                         >
                           <EmojiIcon icon={subCategory.icon} />
@@ -124,28 +125,34 @@ const FiltersDialog = ({}: FilterDialogProps) => {
                       return (
                         <Card
                           key={filter.id}
-                          className={cn("m-3 w-1/6 cursor-pointer", {
-                            "outline outline-1 outline-offset-2 outline-blue-500":
-                              isAlreadySelected,
-                          })}
+                          className={cn(
+                            "flex flex-col md:m-3 m-1 w-full md:w-1/6 cursor-pointer",
+                            {
+                              "outline outline-1 outline-offset-2 outline-blue-500":
+                                isAlreadySelected,
+                            }
+                          )}
                           onClick={() => {
                             isAlreadySelected
                               ? removeFilter(filter)
                               : addFilter(filter);
                           }}
                         >
-                          <div className="p-3 text-center text-base font-bold">
+                          <div className="p-1 text-center text-base font-bold md:p-3">
                             {filter.name}
                           </div>
-                          <Image
-                            src={filter.image}
-                            alt={filter.name}
-                            width={200}
-                            height={200}
-                            className="w-full"
-                          />
-                          <div className="p-3 text-center">
-                            {filter.description}
+                          <Separator />
+                          <div className="flex flex-row md:flex-col">
+                            <Image
+                              src={filter.image}
+                              alt={filter.name}
+                              width={200}
+                              height={200}
+                              className="w-1/5 rounded-bl-lg bg-left md:block md:w-full md:rounded-none"
+                            />
+                            <div className="w-4/5 p-2 text-center md:w-full md:p-3">
+                              {filter.description}
+                            </div>
                           </div>
                         </Card>
                       );
@@ -156,6 +163,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             )}
           </ScrollArea>
         </DialogDescription>
+        <Separator className="my-1" />
         <DialogFooter className="h-full">
           <FiltersBadge />
         </DialogFooter>
