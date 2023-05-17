@@ -72,8 +72,8 @@ const FiltersDialog = ({}: FilterDialogProps) => {
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogContent className="flex max-h-screen min-h-screen flex-col md:max-h-[75vh] md:min-h-[75vh] md:min-w-[75vw] md:max-w-[75vw]">
-        <DialogHeader className="max-h-[10vh] md:h-10">
+      <DialogContent className="flex max-h-screen min-h-screen flex-col md:max-h-[80vh] md:min-h-[80vh] md:min-w-[80vw] md:max-w-[80vw]">
+        <DialogHeader className="max-h-[10vh] md:h-[10]">
           <DialogTitle>
             <Breadcrumbs
               category={selectedCategory}
@@ -81,8 +81,8 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             />
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className="max-h-[80%]">
-          <ScrollArea className="h-[70vh] md:h-[55vh]">
+        <DialogDescription className="h-[70vh] md:h-[56vh]">
+          <ScrollArea className="h-[70vh] md:h-[56vh]">
             {hasFilter && !filterCategory && (
               <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:text-lg">
                 {categoryFilters.map((category) => (
@@ -163,7 +163,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             )}
           </ScrollArea>
         </DialogDescription>
-        <Separator className="my-1" />
+        <Separator className="" />
         <DialogFooter className="h-full">
           <FiltersBadge />
         </DialogFooter>

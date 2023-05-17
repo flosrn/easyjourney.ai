@@ -44,7 +44,7 @@ const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
                 `/create?filterCategory=${category.name.toLowerCase()}&filterSubCategory=${subCategory.name.toLowerCase()}`
               )
             }
-            className="flex items-center"
+            className=" flex items-center "
           >
             <EmojiIcon icon={subCategory.icon} />
             {subCategory.name}
