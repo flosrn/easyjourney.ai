@@ -10,7 +10,6 @@ const FiltersBadge = () => {
     state.addFilter,
     state.removeFilter,
   ]);
-
   return (
     <div className="mt-6 flex h-[30px] justify-start space-x-1">
       {selectedFilters.map((filter) => {

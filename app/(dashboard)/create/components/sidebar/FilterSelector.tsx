@@ -150,7 +150,9 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                   <CommandSeparator alwaysRender />
                   <CommandGroup className="-mx-1 -mb-1">
                     <CommandItem
-                      onSelect={() => router.push("/create?filterCategory")}
+                      onSelect={() => {
+                        router.push("/create?filterCategory");
+                      }}
                       className="text-muted-foreground flex-center text-sm"
                     >
                       <LayoutListIcon className="mr-2 h-4 w-4" />
