@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { Button } from "~/components/ui/Button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -43,6 +43,11 @@ const FiltersDialog = ({}: FilterDialogProps) => {
     !isDialogOpen && router.push("/create");
   }, [isDialogOpen, router]);
 
+  const handleDialogChange = (isOpen: boolean) => {
+    setIsDialogOpen(isOpen);
+    !isOpen && router.push("/create");
+  };
+
   const [selectedFilters, addFilter, removeFilter] = useFilterStore((state) => [
     state.selectedFilters,
     state.addFilter,
@@ -64,58 +69,69 @@ const FiltersDialog = ({}: FilterDialogProps) => {
     getSubFilter(filterSubCategory);
 
   return (
-    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogContent className="flex max-h-screen min-h-screen flex-col md:max-h-[80vh] md:min-h-[80vh] md:min-w-[80vw] md:max-w-[80vw]">
-        <DialogHeader className="max-h-[10vh] md:h-[10]">
+    <Dialog open={isDialogOpen} onOpenChange={handleDialogChange}>
+      <DialogContent className="relative flex h-[95vh] w-[90vw] flex-col md:max-h-[85vh] md:max-w-[80vw] lg:max-w-5xl">
+        <DialogHeader className="max-h-[10vh] pl-1 md:h-[10]">
           <DialogTitle>
             <Breadcrumbs
               category={selectedCategory}
               subCategory={selectedSubCategory}
             />
+            <FiltersBadge />
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription>
-          <ScrollArea className="h-[70vh] md:h-[56vh]">
-            {hasFilter && !filterCategory && (
-              <CategoryListCards
-                type={CategoryFilterType.CATEGORY}
-                categories={categoryFilters}
-                selectedCategory={selectedCategory?.name.toLowerCase()}
-              />
-            )}
-            {selectedCategory && (
-              <>
-                {!selectedSubCategory && (
-                  <CategoryListCards
-                    type={CategoryFilterType.SUBCATEGORY}
-                    categories={selectedCategory.options}
-                    selectedCategory={selectedCategory.name.toLowerCase()}
-                  />
-                )}
-                {selectedSubCategory && (
-                  <div className="flex flex-wrap">
-                    {selectedSubCategory.options.map((filter) => {
-                      const isActive = selectedFilters.some(
-                        (selectedFilter) => selectedFilter.id === filter.id
-                      );
-                      return (
-                        <FilterCard
-                          key={filter.id}
-                          {...filter}
-                          isActive={isActive}
-                          clickHandler={isActive ? removeFilter : addFilter}
-                        />
-                      );
-                    })}
-                  </div>
-                )}
-              </>
-            )}
+        <div>
+          <ScrollArea className="h-[calc(70vh+82px)] md:h-[calc(56vh+82px)]">
+            <div className="h-full pb-14 pl-1 pr-4">
+              {hasFilter && !filterCategory && (
+                <CategoryListCards
+                  type={CategoryFilterType.CATEGORY}
+                  categories={categoryFilters}
+                  selectedCategory={selectedCategory?.name.toLowerCase()}
+                />
+              )}
+              {selectedCategory && (
+                <>
+                  {!selectedSubCategory && (
+                    <CategoryListCards
+                      type={CategoryFilterType.SUBCATEGORY}
+                      categories={selectedCategory.options}
+                      selectedCategory={selectedCategory.name.toLowerCase()}
+                    />
+                  )}
+                  {selectedSubCategory && (
+                    <div className="grid gap-3 pt-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+                      {selectedSubCategory.options.map((filter) => {
+                        const isActive = selectedFilters.some(
+                          (selectedFilter) => selectedFilter.id === filter.id
+                        );
+                        return (
+                          <FilterCard
+                            key={filter.id}
+                            {...filter}
+                            isActive={isActive}
+                            clickHandler={isActive ? removeFilter : addFilter}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
           </ScrollArea>
-        </DialogDescription>
-        <Separator />
-        <DialogFooter className="h-full">
-          <FiltersBadge />
+        </div>
+        <DialogFooter className="bg-background absolute bottom-0 left-0 h-16 w-full rounded-xl md:h-20">
+          <div className="relative flex w-full items-center justify-end px-10">
+            <Separator className="absolute left-0 top-0 w-full" />
+            <Button
+              variant="success"
+              onClick={() => setIsDialogOpen(false)}
+              className="px-4 sm:w-min"
+            >
+              Done
+            </Button>
+          </div>
         </DialogFooter>
       </DialogContent>
     </Dialog>

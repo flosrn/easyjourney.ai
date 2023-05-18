@@ -26,23 +26,25 @@ const FilterCard = ({
   return (
     <Card
       onClick={() => clickHandler(filter)}
-      className={cn("flex flex-col md:m-3 m-1 w-full md:w-1/6 cursor-pointer", {
+      className={cn("cursor-pointer", {
         "outline outline-1 outline-offset-2 outline-blue-500": isActive,
       })}
     >
-      <div className="p-1 text-center text-base font-bold md:p-3">{name}</div>
+      <div className="md:text-md truncate px-3 py-2 text-center text-sm font-bold">
+        {name}
+      </div>
       <Separator />
-      <div className="flex flex-row md:flex-col">
+      <div className="flex flex-row sm:flex-col">
         <Image
           src={image}
           alt={name}
-          width={200}
-          height={200}
+          width={150}
+          height={150}
           placeholder="blur"
           blurDataURL={image}
-          className="w-1/5 rounded-bl-lg bg-left md:block md:w-full md:rounded-none"
+          className="h-20 w-20 shrink-0 rounded-bl-lg bg-left sm:h-full sm:w-full md:block md:rounded-none"
         />
-        <div className="w-4/5 p-2 text-center md:w-full md:p-3">
+        <div className="line-clamp-4 h-20 p-2 text-left text-xs sm:h-[105px] sm:text-center md:p-3 md:text-sm">
           {description}
         </div>
       </div>
