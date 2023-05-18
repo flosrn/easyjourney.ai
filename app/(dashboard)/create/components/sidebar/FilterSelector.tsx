@@ -3,8 +3,9 @@
 import * as React from "react";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import type { PopoverProps } from "@radix-ui/react-popover";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown, Edit2, LayoutListIcon } from "lucide-react";
 import { useMutationObserver } from "~/hooks/use-mutation-observer";
 
 import { Button } from "~/components/ui/Button";
@@ -15,6 +16,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandSeparator,
 } from "~/components/ui/Command";
 import {
   HoverCard,
@@ -38,6 +40,7 @@ type ModelSelectorProps = PopoverProps & {};
 
 export function FilterSelector({ ...props }: ModelSelectorProps) {
   const [open, setOpen] = useState<boolean>(false);
+  const router = useRouter();
   const [
     filters,
     selectedFilters,
@@ -119,8 +122,8 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
             </HoverCardContent>
             <Command loop>
               <CommandList className="h-[var(--cmdk-list-height)] max-h-[400px]">
-                <CommandInput placeholder="Search Models..." />
-                <CommandEmpty>No Models found.</CommandEmpty>
+                <CommandInput placeholder="Search Filters..." />
+                <CommandEmpty>No Filters found.</CommandEmpty>
                 <HoverCardTrigger />
                 <CommandGroup>
                   <ScrollArea className="h-56">
@@ -144,9 +147,16 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                       />
                     ))}
                   </ScrollArea>
-                  <Button href="/create?filterCategory">
-                    View all filters
-                  </Button>
+                  <CommandSeparator alwaysRender />
+                  <CommandGroup className="-mx-1 -mb-1">
+                    <CommandItem
+                      onSelect={() => router.push("/create?filterCategory")}
+                      className="text-muted-foreground flex-center text-sm"
+                    >
+                      <LayoutListIcon className="mr-2 h-4 w-4" />
+                      View all filters
+                    </CommandItem>
+                  </CommandGroup>
                   <FiltersDialog />
                 </CommandGroup>
               </CommandList>
