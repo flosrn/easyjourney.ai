@@ -5,7 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { PopoverProps } from "@radix-ui/react-popover";
-import { Check, ChevronsUpDown, Edit2, LayoutListIcon } from "lucide-react";
+import { Check, ChevronsUpDown, LayoutListIcon } from "lucide-react";
 import { useMutationObserver } from "~/hooks/use-mutation-observer";
 
 import { Button } from "~/components/ui/Button";
@@ -167,6 +167,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     </div>
   );
 }
+
 type ModelItemProps = {
   filter: Filter;
   isSelected: boolean;
@@ -174,7 +175,12 @@ type ModelItemProps = {
   onPeek: (model: Filter) => void;
 };
 
-function FilterItem({ filter, isSelected, onSelect, onPeek }: ModelItemProps) {
+const FilterItem = ({
+  filter,
+  isSelected,
+  onSelect,
+  onPeek,
+}: ModelItemProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   useMutationObserver(ref, (mutations) => {
@@ -204,4 +210,4 @@ function FilterItem({ filter, isSelected, onSelect, onPeek }: ModelItemProps) {
       />
     </CommandItem>
   );
-}
+};

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { Card } from "~/components/ui/Card";
 import {
   Dialog,
   DialogContent,
@@ -15,8 +12,6 @@ import {
 import { ScrollArea } from "~/components/ui/ScrollArea";
 import { Separator } from "~/components/ui/Separator";
 
-import { cn } from "~/lib/classNames";
-
 import { categoryFilters } from "../../data/filter/categoryFilters";
 import type {
   CategoryFilter,
@@ -25,7 +20,10 @@ import type {
 import { useFilterStore } from "../../store/filterStore";
 import FiltersBadge from "../badge/FiltersBadge";
 import Breadcrumbs from "./Breadcrumbs";
-import EmojiIcon from "./EmojiIcon";
+import CategoryListCards, {
+  CategoryFilterType,
+} from "./cards/CategoryListCards";
+import FilterCard from "./cards/FilterCard";
 
 type FilterDialogProps = {};
 
@@ -51,22 +49,17 @@ const FiltersDialog = ({}: FilterDialogProps) => {
     state.removeFilter,
   ]);
 
-  // eslint-disable-next-line no-shadow
-  const getFilter = (filterCategory: string | null | undefined) => {
-    return categoryFilters.find(
-      (filter) => filter.name.toLowerCase() === filterCategory
+  const getFilter = (category: string | null | undefined) =>
+    categoryFilters.find((filter) => filter.name.toLowerCase() === category);
+
+  const getSubFilter = (subCategory: string | null | undefined) =>
+    selectedCategory?.options.find(
+      (filter) => filter.name.toLowerCase() === subCategory
     );
-  };
 
   const selectedCategory: CategoryFilter | undefined =
     getFilter(filterCategory);
 
-  // eslint-disable-next-line no-shadow
-  const getSubFilter = (filterSubCategory: string | null | undefined) => {
-    return selectedCategory?.options.find(
-      (filter) => filter.name.toLowerCase() === filterSubCategory
-    );
-  };
   const selectedSubCategory: SubCategoryFilter | undefined =
     getSubFilter(filterSubCategory);
 
@@ -81,80 +74,37 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             />
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className="h-[70vh] md:h-[56vh]">
+        <DialogDescription>
           <ScrollArea className="h-[70vh] md:h-[56vh]">
             {hasFilter && !filterCategory && (
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:text-lg">
-                {categoryFilters.map((category) => (
-                  <Card key={category.id} className="p-3">
-                    <Link
-                      href={`/create?filterCategory=${category.name.toLowerCase()}`}
-                      className="flex-center  text-sm md:text-xl"
-                    >
-                      <EmojiIcon icon={category.icon} />
-                      {category.name}
-                    </Link>
-                  </Card>
-                ))}
-              </div>
+              <CategoryListCards
+                type={CategoryFilterType.CATEGORY}
+                categories={categoryFilters}
+                selectedCategory={selectedCategory?.name.toLowerCase()}
+              />
             )}
             {selectedCategory && (
               <>
                 {!selectedSubCategory && (
-                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3 ">
-                    {selectedCategory.options.map((subCategory) => (
-                      <Card key={subCategory.id} className="p-3">
-                        <Link
-                          href={`/create?filterCategory=${selectedCategory.name.toLowerCase()}&filterSubCategory=${subCategory.name.toLowerCase()}`}
-                          className="flex-center text-sm md:text-xl"
-                          key={subCategory.id}
-                        >
-                          <EmojiIcon icon={subCategory.icon} />
-                          {subCategory.name}
-                        </Link>
-                      </Card>
-                    ))}
-                  </div>
+                  <CategoryListCards
+                    type={CategoryFilterType.SUBCATEGORY}
+                    categories={selectedCategory.options}
+                    selectedCategory={selectedCategory.name.toLowerCase()}
+                  />
                 )}
                 {selectedSubCategory && (
                   <div className="flex flex-wrap">
                     {selectedSubCategory.options.map((filter) => {
-                      const isAlreadySelected = selectedFilters.some(
+                      const isActive = selectedFilters.some(
                         (selectedFilter) => selectedFilter.id === filter.id
                       );
                       return (
-                        <Card
+                        <FilterCard
                           key={filter.id}
-                          className={cn(
-                            "flex flex-col md:m-3 m-1 w-full md:w-1/6 cursor-pointer",
-                            {
-                              "outline outline-1 outline-offset-2 outline-blue-500":
-                                isAlreadySelected,
-                            }
-                          )}
-                          onClick={() => {
-                            isAlreadySelected
-                              ? removeFilter(filter)
-                              : addFilter(filter);
-                          }}
-                        >
-                          <div className="p-1 text-center text-base font-bold md:p-3">
-                            {filter.name}
-                          </div>
-                          <Separator />
-                          <div className="flex flex-row md:flex-col">
-                            <Image
-                              src={filter.image}
-                              alt={filter.name}
-                              width={200}
-                              height={200}
-                              className="w-1/5 rounded-bl-lg bg-left md:block md:w-full md:rounded-none"
-                            />
-                            <div className="w-4/5 p-2 text-center md:w-full md:p-3">
-                              {filter.description}
-                            </div>
-                          </div>
-                        </Card>
+                          {...filter}
+                          isActive={isActive}
+                          clickHandler={isActive ? removeFilter : addFilter}
+                        />
                       );
                     })}
                   </div>
@@ -163,7 +113,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             )}
           </ScrollArea>
         </DialogDescription>
-        <Separator className="" />
+        <Separator />
         <DialogFooter className="h-full">
           <FiltersBadge />
         </DialogFooter>
