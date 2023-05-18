@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { PopoverProps } from "@radix-ui/react-popover";
 import { Check, ChevronsUpDown, LayoutListIcon } from "lucide-react";
-import { useMutationObserver } from "~/hooks/use-mutation-observer";
 
 import { Button } from "~/components/ui/Button";
 import {
@@ -62,6 +61,10 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     hasFilter && setOpen(false);
   }, [hasFilter]);
 
+  useEffect(() => {
+    !open && setPeekedFilter(null);
+  }, [open, setPeekedFilter]);
+
   return (
     <div className="grid gap-2">
       <Popover open={open} onOpenChange={setOpen} {...props}>
@@ -100,31 +103,33 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
         </PopoverTrigger>
         <PopoverContent align="start" className="w-[250px] p-0">
           <HoverCard>
-            <HoverCardContent
-              side="right"
-              align="start"
-              sideOffset={260}
-              forceMount
-              className="min-h-[280px]"
-            >
-              <div className="grid gap-2">
-                <h4 className="font-medium leading-none">
-                  {peekedFilter.name}
-                </h4>
-                <div className="text-muted-foreground text-sm">
-                  {peekedFilter.description}
+            {peekedFilter && (
+              <HoverCardContent
+                side="right"
+                align="start"
+                sideOffset={260}
+                forceMount
+                className="hidden min-h-[280px] md:block"
+              >
+                <div className="grid gap-2">
+                  <h4 className="font-medium leading-none">
+                    {peekedFilter.name}
+                  </h4>
+                  <div className="text-muted-foreground text-sm">
+                    {peekedFilter.description}
+                  </div>
                 </div>
-              </div>
-              {peekedFilter.image && (
-                <Image
-                  src={peekedFilter.image}
-                  alt={peekedFilter.name}
-                  width={200}
-                  height={200}
-                  className="mt-4 w-full"
-                />
-              )}
-            </HoverCardContent>
+                {peekedFilter.image && (
+                  <Image
+                    src={peekedFilter.image}
+                    alt={peekedFilter.name}
+                    width={200}
+                    height={200}
+                    className="mt-4 w-full"
+                  />
+                )}
+              </HoverCardContent>
+            )}
             <Command loop>
               <CommandList className="h-[var(--cmdk-list-height)] max-h-[400px]">
                 <CommandInput placeholder="Search Filters..." />
@@ -139,7 +144,6 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                         isSelected={selectedFilters.some(
                           (selectedFilter) => selectedFilter.id === filter.id
                         )}
-                        onPeek={(styleFilter) => setPeekedFilter(styleFilter)}
                         onSelect={() => {
                           const isAlreadySelected = selectedFilters.some(
                             (selectedFilter) => selectedFilter.id === filter.id
@@ -147,7 +151,6 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                           isAlreadySelected
                             ? removeFilter(filter)
                             : addFilter(filter);
-                          setOpen(false);
                         }}
                       />
                     ))}
@@ -178,33 +181,20 @@ type ModelItemProps = {
   filter: Filter;
   isSelected: boolean;
   onSelect: () => void;
-  onPeek: (model: Filter) => void;
 };
 
-const FilterItem = ({
-  filter,
-  isSelected,
-  onSelect,
-  onPeek,
-}: ModelItemProps) => {
+const FilterItem = ({ filter, isSelected, onSelect }: ModelItemProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
-
-  useMutationObserver(ref, (mutations) => {
-    for (const mutation of mutations) {
-      if (
-        mutation.type === "attributes" &&
-        mutation.attributeName === "aria-selected"
-      ) {
-        onPeek(filter);
-      }
-    }
-  });
-
+  const onPeek = useFilterStore((state) => state.setPeekedFilter);
   return (
     <CommandItem
       key={filter.id}
-      onSelect={onSelect}
       ref={ref}
+      onSelect={onSelect}
+      onMouseEnter={(event) => {
+        event.preventDefault();
+        onPeek(filter);
+      }}
       className="aria-selected:bg-primary aria-selected:text-primary-foreground"
     >
       {filter.name}

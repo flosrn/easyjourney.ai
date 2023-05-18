@@ -6,13 +6,13 @@ import type { Filter } from "../data/filter/typeFilters";
 type FilterState = {
   filters: Filter[];
   selectedFilters: Filter[];
-  peekedFilter: Filter;
+  peekedFilter: Filter | null;
 };
 
 type FilterAction = {
   addFilter: (filter: Filter) => void;
   removeFilter: (filter: Filter) => void;
-  setPeekedFilter: (filter: Filter) => void;
+  setPeekedFilter: (filter: Filter | null) => void;
   clearFilters: () => void;
 };
 
@@ -34,7 +34,7 @@ export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
       ),
     }));
   },
-  peekedFilter: mostPopularFilters[0],
+  peekedFilter: null,
   setPeekedFilter: (filter) => set(() => ({ peekedFilter: filter })),
   clearFilters: () => set(() => ({ selectedFilters: [] })),
 }));
