@@ -16,7 +16,10 @@ const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
   const router = useRouter();
   return (
     <div className="flex items-center space-x-2 text-xs md:text-lg">
-      <button onClick={() => router.push("/create?filterCategory")}>
+      <button
+        onClick={() => router.push("/create?filterCategory")}
+        className="focus-visible:outline-none"
+      >
         All categories
       </button>
       {category && (

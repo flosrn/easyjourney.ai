@@ -39,10 +39,6 @@ const FiltersDialog = ({}: FilterDialogProps) => {
     hasFilter && setIsDialogOpen(hasFilter);
   }, [hasFilter]);
 
-  useEffect(() => {
-    !isDialogOpen && router.push("/create");
-  }, [isDialogOpen, router]);
-
   const handleDialogChange = (isOpen: boolean) => {
     setIsDialogOpen(isOpen);
     !isOpen && router.push("/create");
@@ -126,7 +122,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             <Separator className="absolute left-0 top-0 w-full" />
             <Button
               variant="success"
-              onClick={() => setIsDialogOpen(false)}
+              onClick={() => handleDialogChange(false)}
               className="px-4 sm:w-min"
             >
               Done

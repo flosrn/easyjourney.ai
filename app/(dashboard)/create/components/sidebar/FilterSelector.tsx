@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { PopoverProps } from "@radix-ui/react-popover";
 import { Check, ChevronsUpDown, LayoutListIcon } from "lucide-react";
 import { useMutationObserver } from "~/hooks/use-mutation-observer";
@@ -34,13 +34,14 @@ import { cn } from "~/lib/classNames";
 
 import type { Filter } from "../../data/filter/typeFilters";
 import { useFilterStore } from "../../store/filterStore";
-import FiltersDialog from "../dialog/FiltersDialog";
 
 type ModelSelectorProps = PopoverProps & {};
 
 export function FilterSelector({ ...props }: ModelSelectorProps) {
   const [open, setOpen] = useState<boolean>(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const hasFilter = searchParams?.has("filterCategory");
   const [
     filters,
     selectedFilters,
@@ -56,6 +57,10 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     state.peekedFilter,
     state.setPeekedFilter,
   ]);
+
+  useEffect(() => {
+    hasFilter && setOpen(false);
+  }, [hasFilter]);
 
   return (
     <div className="grid gap-2">
@@ -159,7 +164,6 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                       View all filters
                     </CommandItem>
                   </CommandGroup>
-                  <FiltersDialog />
                 </CommandGroup>
               </CommandList>
             </Command>
