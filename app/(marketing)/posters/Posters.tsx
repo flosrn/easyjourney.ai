@@ -22,6 +22,8 @@ const Posters = ({ posters }: PostersProps) => {
 
   const columns: PosterType[] = [[], [], [], []];
 
+  console.log("posters recu dans <Posters>", posters);
+
   formattedPosters.map((poster, index) => {
     columns[index % 4].push(poster);
   });

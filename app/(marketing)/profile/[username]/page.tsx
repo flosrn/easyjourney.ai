@@ -26,6 +26,7 @@ const getUserCreatedPosters = async (username: User["username"]) =>
 
 export default async function CreatedByUser({ params: { username } }) {
   const user = await getUserCreatedPosters(username);
+
   return (
     <>
       <Suspense fallback={<div>Loading posters...</div>}>
