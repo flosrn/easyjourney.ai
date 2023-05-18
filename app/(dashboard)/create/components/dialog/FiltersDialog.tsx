@@ -70,7 +70,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={handleDialogChange}>
-      <DialogContent className="relative flex h-[95svh] w-[90vw] flex-col md:max-h-[85svh] md:max-w-[80vw] lg:max-w-5xl">
+      <DialogContent className="relative flex h-[95svh] w-[90vw] flex-col overflow-hidden md:max-h-[85svh] md:max-w-[80vw] lg:max-w-5xl">
         <DialogHeader className="max-h-[10vh] pl-1 md:h-[10]">
           <DialogTitle>
             <Breadcrumbs
