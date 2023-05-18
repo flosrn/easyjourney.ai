@@ -1,4 +1,5 @@
 import { designStylesSubCategoryFilters } from "./designStyles/designStylesSubCategoryFilters";
+import { digitalSubCategoryFilters } from "./digital/digitalSubCategoryFilters";
 import { themesSubCategoryFilters } from "./themes/themesSubCategoryFilters";
 import type { CategoryFilter } from "./typeFilters";
 
@@ -19,7 +20,7 @@ export const categoryFilters: CategoryFilter[] = [
     id: "3",
     icon: "🖥",
     name: "Digital",
-    options: themesSubCategoryFilters,
+    options: digitalSubCategoryFilters,
   },
   {
     id: "4",
