@@ -6,7 +6,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "OS",
     description: "Filter for operating system-related images.",
     style: "OS",
-    image: "/images/filters/digital/operatingSystems/OS.png",
+    image: "/images/filters/OS.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Operating System",
     description: "Filter for operating system-related images.",
     style: "Operating System",
-    image: "/images/filters/digital/operatingSystems/Operating_System.png",
+    image: "/images/filters/Operating_System.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "DOS",
     description: "Filter for DOS-related images.",
     style: "DOS",
-    image: "/images/filters/digital/operatingSystems/DOS.png",
+    image: "/images/filters/DOS.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "MS-DOS",
     description: "Filter for MS-DOS-related images.",
     style: "MS-DOS",
-    image: "/images/filters/digital/operatingSystems/MS-DOS.png",
+    image: "/images/filters/MS-DOS.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-95",
     description: "Filter for Windows 95-related images.",
     style: "Windows-95",
-    image: "/images/filters/digital/operatingSystems/Windows-95.png",
+    image: "/images/filters/Windows-95.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-XP",
     description: "Filter for Windows XP-related images.",
     style: "Windows-XP",
-    image: "/images/filters/digital/operatingSystems/Windows-XP.png",
+    image: "/images/filters/Windows-XP.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-Vista",
     description: "Filter for Windows Vista-related images.",
     style: "Windows-Vista",
-    image: "/images/filters/digital/operatingSystems/Windows-Vista.png",
+    image: "/images/filters/Windows-Vista.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-7",
     description: "Filter for Windows 7-related images.",
     style: "Windows-7",
-    image: "/images/filters/digital/operatingSystems/Windows-7.png",
+    image: "/images/filters/Windows-7.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-8",
     description: "Filter for Windows 8-related images.",
     style: "Windows-8",
-    image: "/images/filters/digital/operatingSystems/Windows-8.png",
+    image: "/images/filters/Windows-8.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-10",
     description: "Filter for Windows 10-related images.",
     style: "Windows-10",
-    image: "/images/filters/digital/operatingSystems/Windows-10.png",
+    image: "/images/filters/Windows-10.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-11",
     description: "Filter for Windows 11-related images.",
     style: "Windows-11",
-    image: "/images/filters/digital/operatingSystems/Windows-11.png",
+    image: "/images/filters/Windows-11.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Classic-Mac-OS",
     description: "Filter for Classic Mac OS-related images.",
     style: "Classic-Mac-OS",
-    image: "/images/filters/digital/operatingSystems/Classic-Mac-OS.png",
+    image: "/images/filters/Classic-Mac-OS.webp",
     isSelected: false,
   },
   {
@@ -102,7 +102,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Mac-OSX",
     description: "Filter for Mac OS X-related images.",
     style: "Mac-OSX",
-    image: "/images/filters/digital/operatingSystems/Mac-OSX.png",
+    image: "/images/filters/Mac-OSX.webp",
     isSelected: false,
   },
   {
@@ -110,7 +110,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "MacOS",
     description: "Filter for macOS-related images.",
     style: "MacOS",
-    image: "/images/filters/digital/operatingSystems/MacOS.png",
+    image: "/images/filters/MacOS.webp",
     isSelected: false,
   },
   {
@@ -118,7 +118,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "iOS",
     description: "Filter for iOS-related images.",
     style: "iOS",
-    image: "/images/filters/digital/operatingSystems/iOS.png",
+    image: "/images/filters/iOS.webp",
     isSelected: false,
   },
   {
@@ -126,7 +126,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "watchOS",
     description: "Filter for watchOS-related images.",
     style: "watchOS",
-    image: "/images/filters/digital/operatingSystems/watchOS.png",
+    image: "/images/filters/watchOS.webp",
     isSelected: false,
   },
   {
@@ -134,7 +134,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "WearOS",
     description: "Filter for Wear OS-related images.",
     style: "WearOS",
-    image: "/images/filters/digital/operatingSystems/WearOS.png",
+    image: "/images/filters/WearOS.webp",
     isSelected: false,
   },
   {
@@ -142,7 +142,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Unix",
     description: "Filter for Unix-related images.",
     style: "Unix",
-    image: "/images/filters/digital/operatingSystems/Unix.png",
+    image: "/images/filters/Unix.webp",
     isSelected: false,
   },
   {
@@ -150,7 +150,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Linux",
     description: "Filter for Linux-related images.",
     style: "Linux",
-    image: "/images/filters/digital/operatingSystems/Linux.png",
+    image: "/images/filters/Linux.webp",
     isSelected: false,
   },
   {
@@ -158,7 +158,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Ubuntu",
     description: "Filter for Ubuntu-related images.",
     style: "Ubuntu",
-    image: "/images/filters/digital/operatingSystems/Ubuntu.png",
+    image: "/images/filters/Ubuntu.webp",
     isSelected: false,
   },
   {
@@ -166,7 +166,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Chrome OS",
     description: "Filter for Chrome OS-related images.",
     style: "Chrome OS",
-    image: "/images/filters/digital/operatingSystems/Chrome_OS.png",
+    image: "/images/filters/Chrome_OS.webp",
     isSelected: false,
   },
   {
@@ -174,7 +174,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "AmigaOS",
     description: "Filter for AmigaOS-related images.",
     style: "AmigaOS",
-    image: "/images/filters/digital/operatingSystems/AmigaOS.png",
+    image: "/images/filters/AmigaOS.webp",
     isSelected: false,
   },
   {
@@ -182,7 +182,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "OS",
     description: "Filter for operating system-related images.",
     style: "OS",
-    image: "/images/filters/digital/operatingSystems/OS.png",
+    image: "/images/filters/OS.webp",
     isSelected: false,
   },
   {
@@ -190,7 +190,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Operating System",
     description: "Filter for operating system-related images.",
     style: "Operating System",
-    image: "/images/filters/digital/operatingSystems/Operating_System.png",
+    image: "/images/filters/Operating_System.webp",
     isSelected: false,
   },
   {
@@ -198,7 +198,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "DOS",
     description: "Filter for DOS-related images.",
     style: "DOS",
-    image: "/images/filters/digital/operatingSystems/DOS.png",
+    image: "/images/filters/DOS.webp",
     isSelected: false,
   },
   {
@@ -206,7 +206,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "MS-DOS",
     description: "Filter for MS-DOS-related images.",
     style: "MS-DOS",
-    image: "/images/filters/digital/operatingSystems/MS-DOS.png",
+    image: "/images/filters/MS-DOS.webp",
     isSelected: false,
   },
   {
@@ -214,7 +214,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-95",
     description: "Filter for Windows 95-related images.",
     style: "Windows-95",
-    image: "/images/filters/digital/operatingSystems/Windows-95.png",
+    image: "/images/filters/Windows-95.webp",
     isSelected: false,
   },
   {
@@ -222,7 +222,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-XP",
     description: "Filter for Windows XP-related images.",
     style: "Windows-XP",
-    image: "/images/filters/digital/operatingSystems/Windows-XP.png",
+    image: "/images/filters/Windows-XP.webp",
     isSelected: false,
   },
   {
@@ -230,7 +230,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-Vista",
     description: "Filter for Windows Vista-related images.",
     style: "Windows-Vista",
-    image: "/images/filters/digital/operatingSystems/Windows-Vista.png",
+    image: "/images/filters/Windows-Vista.webp",
     isSelected: false,
   },
   {
@@ -238,7 +238,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-7",
     description: "Filter for Windows 7-related images.",
     style: "Windows-7",
-    image: "/images/filters/digital/operatingSystems/Windows-7.png",
+    image: "/images/filters/Windows-7.webp",
     isSelected: false,
   },
   {
@@ -246,7 +246,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-8",
     description: "Filter for Windows 8-related images.",
     style: "Windows-8",
-    image: "/images/filters/digital/operatingSystems/Windows-8.png",
+    image: "/images/filters/Windows-8.webp",
     isSelected: false,
   },
   {
@@ -254,7 +254,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-10",
     description: "Filter for Windows 10-related images.",
     style: "Windows-10",
-    image: "/images/filters/digital/operatingSystems/Windows-10.png",
+    image: "/images/filters/Windows-10.webp",
     isSelected: false,
   },
   {
@@ -262,7 +262,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Windows-11",
     description: "Filter for Windows 11-related images.",
     style: "Windows-11",
-    image: "/images/filters/digital/operatingSystems/Windows-11.png",
+    image: "/images/filters/Windows-11.webp",
     isSelected: false,
   },
   {
@@ -270,7 +270,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Classic-Mac-OS",
     description: "Filter for Classic Mac OS-related images.",
     style: "Classic-Mac-OS",
-    image: "/images/filters/digital/operatingSystems/Classic-Mac-OS.png",
+    image: "/images/filters/Classic-Mac-OS.webp",
     isSelected: false,
   },
   {
@@ -278,7 +278,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Mac-OSX",
     description: "Filter for Mac OS X-related images.",
     style: "Mac-OSX",
-    image: "/images/filters/digital/operatingSystems/Mac-OSX.png",
+    image: "/images/filters/Mac-OSX.webp",
     isSelected: false,
   },
   {
@@ -286,7 +286,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "MacOS",
     description: "Filter for macOS-related images.",
     style: "MacOS",
-    image: "/images/filters/digital/operatingSystems/MacOS.png",
+    image: "/images/filters/MacOS.webp",
     isSelected: false,
   },
   {
@@ -294,7 +294,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "iOS",
     description: "Filter for iOS-related images.",
     style: "iOS",
-    image: "/images/filters/digital/operatingSystems/iOS.png",
+    image: "/images/filters/iOS.webp",
     isSelected: false,
   },
   {
@@ -302,7 +302,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "watchOS",
     description: "Filter for watchOS-related images.",
     style: "watchOS",
-    image: "/images/filters/digital/operatingSystems/watchOS.png",
+    image: "/images/filters/watchOS.webp",
     isSelected: false,
   },
   {
@@ -310,7 +310,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "WearOS",
     description: "Filter for Wear OS-related images.",
     style: "WearOS",
-    image: "/images/filters/digital/operatingSystems/WearOS.png",
+    image: "/images/filters/WearOS.webp",
     isSelected: false,
   },
   {
@@ -318,7 +318,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Unix",
     description: "Filter for Unix-related images.",
     style: "Unix",
-    image: "/images/filters/digital/operatingSystems/Unix.png",
+    image: "/images/filters/Unix.webp",
     isSelected: false,
   },
   {
@@ -326,7 +326,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Linux",
     description: "Filter for Linux-related images.",
     style: "Linux",
-    image: "/images/filters/digital/operatingSystems/Linux.png",
+    image: "/images/filters/Linux.webp",
     isSelected: false,
   },
   {
@@ -334,7 +334,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Ubuntu",
     description: "Filter for Ubuntu-related images.",
     style: "Ubuntu",
-    image: "/images/filters/digital/operatingSystems/Ubuntu.png",
+    image: "/images/filters/Ubuntu.webp",
     isSelected: false,
   },
   {
@@ -342,7 +342,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "Chrome OS",
     description: "Filter for Chrome OS-related images.",
     style: "Chrome OS",
-    image: "/images/filters/digital/operatingSystems/Chrome_OS.png",
+    image: "/images/filters/Chrome_OS.webp",
     isSelected: false,
   },
   {
@@ -350,7 +350,7 @@ export const operatingSystemsFilters: Filter[] = [
     name: "AmigaOS",
     description: "Filter for AmigaOS-related images.",
     style: "AmigaOS",
-    image: "/images/filters/digital/operatingSystems/AmigaOS.png",
+    image: "/images/filters/AmigaOS.webp",
     isSelected: false,
   },
 ];

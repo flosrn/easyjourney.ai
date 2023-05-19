@@ -6,7 +6,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     name: "PC Graphics",
     description: "Artwork created using PC graphics style.",
     style: "PC Graphics",
-    image: "/images/filters/digital/computerSystemGraphics/PC_Graphics.png",
+    image: "/images/filters/PC_Graphics.webp",
     isSelected: false,
   },
   {
@@ -15,8 +15,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created in the style of computer graphics from the 90s.",
     style: "90s Computer Graphics",
-    image:
-      "/images/filters/digital/computerSystemGraphics/90s_Computer_Graphics.png",
+    image: "/images/filters/90s_Computer_Graphics.webp",
     isSelected: false,
   },
   {
@@ -25,8 +24,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created in the style of computer graphics from the 1990s.",
     style: "1990s Computer Graphics",
-    image:
-      "/images/filters/digital/computerSystemGraphics/1990s_Computer_Graphics.png",
+    image: "/images/filters/1990s_Computer_Graphics.webp",
     isSelected: false,
   },
   {
@@ -34,7 +32,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     name: "Commodore 64",
     description: "Artwork created in the style of the Commodore 64 computer.",
     style: "Commodore 64",
-    image: "/images/filters/digital/computerSystemGraphics/Commodore_64.png",
+    image: "/images/filters/Commodore_64.webp",
     isSelected: false,
   },
   {
@@ -43,8 +41,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created using the color palette of the Commodore 64 computer.",
     style: "Commodore 64 Palette",
-    image:
-      "/images/filters/digital/computerSystemGraphics/Commodore_64_Palette.png",
+    image: "/images/filters/Commodore_64_Palette.webp",
     isSelected: false,
   },
   {
@@ -52,7 +49,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     name: "Commodore 128",
     description: "Artwork created in the style of the Commodore 128 computer.",
     style: "Commodore 128",
-    image: "/images/filters/digital/computerSystemGraphics/Commodore_128.png",
+    image: "/images/filters/Commodore_128.webp",
     isSelected: false,
   },
   {
@@ -61,8 +58,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created using the color palette of the Commodore 128 computer.",
     style: "Commodore 128 Palette",
-    image:
-      "/images/filters/digital/computerSystemGraphics/Commodore_128_Palette.png",
+    image: "/images/filters/Commodore_128_Palette.webp",
     isSelected: false,
   },
   {
@@ -71,8 +67,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created in the style of the Commodore VIC-20 computer.",
     style: "Commodore VIC-20",
-    image:
-      "/images/filters/digital/computerSystemGraphics/Commodore_VIC-20.png",
+    image: "/images/filters/Commodore_VIC-20.webp",
     isSelected: false,
   },
   {
@@ -81,8 +76,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created using the color palette of the Commodore VIC-20 computer.",
     style: "Commodore VIC-20 Palette",
-    image:
-      "/images/filters/digital/computerSystemGraphics/Commodore_VIC-20_Palette.png",
+    image: "/images/filters/Commodore_VIC-20_Palette.webp",
     isSelected: false,
   },
   {
@@ -90,8 +84,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     name: "Amiga OCS Graphics",
     description: "Artwork created in the style of Amiga OCS graphics.",
     style: "Amiga OCS Graphics",
-    image:
-      "/images/filters/digital/computerSystemGraphics/Amiga_OCS_Graphics.png",
+    image: "/images/filters/Amiga_OCS_Graphics.webp",
     isSelected: false,
   },
   {
@@ -99,7 +92,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     name: "Teletext",
     description: "Artwork created in the style of Teletext graphics.",
     style: "Teletext",
-    image: "/images/filters/digital/computerSystemGraphics/Teletext.png",
+    image: "/images/filters/Teletext.webp",
     isSelected: false,
   },
   {
@@ -108,8 +101,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created using the color palette of Teletext graphics.",
     style: "Teletext Palette",
-    image:
-      "/images/filters/digital/computerSystemGraphics/Teletext_Palette.png",
+    image: "/images/filters/Teletext_Palette.webp",
     isSelected: false,
   },
   {
@@ -117,7 +109,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     name: "Apple II",
     description: "Artwork created in the style of the Apple II computer.",
     style: "Apple II",
-    image: "/images/filters/digital/computerSystemGraphics/Apple_II.png",
+    image: "/images/filters/Apple_II.webp",
     isSelected: false,
   },
   {
@@ -126,8 +118,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created using the color palette of the Apple II computer.",
     style: "Apple II Palette",
-    image:
-      "/images/filters/digital/computerSystemGraphics/Apple_II_Palette.png",
+    image: "/images/filters/Apple_II_Palette.webp",
     isSelected: false,
   },
   {
@@ -135,7 +126,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     name: "Apple IIGS",
     description: "Artwork created in the style of the Apple IIGS computer.",
     style: "Apple IIGS",
-    image: "/images/filters/digital/computerSystemGraphics/Apple_IIGS.png",
+    image: "/images/filters/Apple_IIGS.webp",
     isSelected: false,
   },
   {
@@ -144,7 +135,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created in the graphics style of the Apple IIGS computer.",
     style: "IIGS Graphics",
-    image: "/images/filters/digital/computerSystemGraphics/IIGS_Graphics.png",
+    image: "/images/filters/IIGS_Graphics.webp",
     isSelected: false,
   },
   {
@@ -153,8 +144,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created using the color palette of the Apple IIGS computer.",
     style: "Apple IIGS Palette",
-    image:
-      "/images/filters/digital/computerSystemGraphics/Apple_IIGS_Palette.png",
+    image: "/images/filters/Apple_IIGS_Palette.webp",
     isSelected: false,
   },
   {
@@ -162,7 +152,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     name: "ZX Spectrum",
     description: "Artwork created in the style of the ZX Spectrum computer.",
     style: "ZX Spectrum",
-    image: "/images/filters/digital/computerSystemGraphics/ZX_Spectrum.png",
+    image: "/images/filters/ZX_Spectrum.webp",
     isSelected: false,
   },
   {
@@ -171,8 +161,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created using the color palette of the ZX Spectrum computer.",
     style: "ZX Spectrum Palette",
-    image:
-      "/images/filters/digital/computerSystemGraphics/ZX_Spectrum_Palette.png",
+    image: "/images/filters/ZX_Spectrum_Palette.webp",
     isSelected: false,
   },
   {
@@ -181,7 +170,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created in the style of the Mattel Aquarius computer.",
     style: "Mattel Aquarius",
-    image: "/images/filters/digital/computerSystemGraphics/Mattel_Aquarius.png",
+    image: "/images/filters/Mattel_Aquarius.webp",
     isSelected: false,
   },
   {
@@ -190,8 +179,7 @@ export const computerSystemGraphicsFilters: Filter[] = [
     description:
       "Artwork created using the color palette of the Mattel Aquarius computer.",
     style: "Mattel Aquarius Palette",
-    image:
-      "/images/filters/digital/computerSystemGraphics/Mattel_Aquarius_Palette.png",
+    image: "/images/filters/Mattel_Aquarius_Palette.webp",
     isSelected: false,
   },
 ];

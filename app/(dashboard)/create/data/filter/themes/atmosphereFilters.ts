@@ -6,7 +6,7 @@ export const atmosphereFilters: Filter[] = [
     name: "Blissful Atmosphere",
     description: "Immerse yourself in pure serenity and tranquility.",
     style: "Blissful Atmosphere",
-    image: "/images/filters/themes/atmosphere/Blissful_Atmosphere.png",
+    image: "/images/filters/Blissful_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -15,7 +15,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Indulge in a soothing and peaceful ambiance for ultimate relaxation.",
     style: "Calm Atmosphere",
-    image: "/images/filters/themes/atmosphere/Calm_Atmosphere.png",
+    image: "/images/filters/Calm_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -23,7 +23,7 @@ export const atmosphereFilters: Filter[] = [
     name: "Chill Atmosphere",
     description: "Experience a cool and laid-back vibe to unwind and destress.",
     style: "Chill Atmosphere",
-    image: "/images/filters/themes/atmosphere/Chill_Atmosphere.png",
+    image: "/images/filters/Chill_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -32,7 +32,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Immerse yourself in the mystical allure of darkness and enchantment.",
     style: "Dark Atmosphere",
-    image: "/images/filters/themes/atmosphere/Dark_Atmosphere.png",
+    image: "/images/filters/Dark_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -40,7 +40,7 @@ export const atmosphereFilters: Filter[] = [
     name: "Dreamy Atmosphere",
     description: "Get lost in a mesmerizing and ethereal dreamscape of wonder.",
     style: "Dreamy Atmosphere",
-    image: "/images/filters/themes/atmosphere/Dreamy_Atmosphere.png",
+    image: "/images/filters/Dreamy_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -49,7 +49,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Step into a world of enchantment and magic, captivating your senses.",
     style: "Enchanting Atmosphere",
-    image: "/images/filters/themes/atmosphere/Enchanting_Atmosphere.png",
+    image: "/images/filters/Enchanting_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -58,7 +58,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Unravel the mysteries of an intriguing and captivating ambiance.",
     style: "Enigmatic Atmosphere",
-    image: "/images/filters/themes/atmosphere/Enigmatic_Atmosphere.png",
+    image: "/images/filters/Enigmatic_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -67,7 +67,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Immerse yourself in a celestial and otherworldly realm of beauty.",
     style: "Ethereal Atmosphere",
-    image: "/images/filters/themes/atmosphere/Ethereal_Atmosphere.png",
+    image: "/images/filters/Ethereal_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -76,7 +76,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Celebrate and embrace a joyous and lively atmosphere of festivity.",
     style: "Festive Atmosphere",
-    image: "/images/filters/themes/atmosphere/Festive_Atmosphere.png",
+    image: "/images/filters/Festive_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -85,7 +85,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Experience the dark and mysterious allure of a gothic ambiance.",
     style: "Gothic Atmosphere",
-    image: "/images/filters/themes/atmosphere/Gothic_Atmosphere.png",
+    image: "/images/filters/Gothic_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Step into a hazy and atmospheric world of mystery and intrigue.",
     style: "Hazy Atmosphere",
-    image: "/images/filters/themes/atmosphere/Hazy_Atmosphere.png",
+    image: "/images/filters/Hazy_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -103,7 +103,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Immerse yourself in the raw and gritty ambiance of an industrial setting.",
     style: "Industrial Atmosphere",
-    image: "/images/filters/themes/atmosphere/Industrial_Atmosphere.png",
+    image: "/images/filters/Industrial_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -112,7 +112,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Experience an intense and powerful ambiance that will captivate your senses.",
     style: "Intense Atmosphere",
-    image: "/images/filters/themes/atmosphere/Intense_Atmosphere.png",
+    image: "/images/filters/Intense_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -121,7 +121,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Bask in the gentle and uplifting glow of a light-filled atmosphere.",
     style: "Light Atmosphere",
-    image: "/images/filters/themes/atmosphere/Light_Atmosphere.png",
+    image: "/images/filters/Light_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -130,7 +130,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Indulge in a nostalgic and bittersweet ambiance of melancholy.",
     style: "Melancholic Atmosphere",
-    image: "/images/filters/themes/atmosphere/Melancholic_Atmosphere.png",
+    image: "/images/filters/Melancholic_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -139,7 +139,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Relax and unwind in a calm and soothing atmosphere of tranquility.",
     style: "Mellow Atmosphere",
-    image: "/images/filters/themes/atmosphere/Mellow_Atmosphere.png",
+    image: "/images/filters/Mellow_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -148,7 +148,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Enter a world of ever-changing moods and emotions with this atmospheric filter.",
     style: "Moody Atmosphere",
-    image: "/images/filters/themes/atmosphere/Moody_Atmosphere.png",
+    image: "/images/filters/Moody_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -157,7 +157,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Uncover the enigmatic secrets of a mysterious and captivating ambiance.",
     style: "Mysterious Atmosphere",
-    image: "/images/filters/themes/atmosphere/Mysterious_Atmosphere.png",
+    image: "/images/filters/Mysterious_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -166,7 +166,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Immerse yourself in the ethereal and magical allure of a mystical ambiance.",
     style: "Mystical Atmosphere",
-    image: "/images/filters/themes/atmosphere/Mystical_Atmosphere.png",
+    image: "/images/filters/Mystical_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -175,7 +175,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Travel back in time and embrace the nostalgic charm of this atmospheric filter.",
     style: "Nostalgic Atmosphere",
-    image: "/images/filters/themes/atmosphere/Nostalgic_Atmosphere.png",
+    image: "/images/filters/Nostalgic_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -184,7 +184,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Immerse yourself in a serene and harmonious ambiance of peace.",
     style: "Peaceful Atmosphere",
-    image: "/images/filters/themes/atmosphere/Peaceful_Atmosphere.png",
+    image: "/images/filters/Peaceful_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -193,7 +193,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Embrace a whimsical and joyful atmosphere filled with playfulness.",
     style: "Playful Atmosphere",
-    image: "/images/filters/themes/atmosphere/Playful_Atmosphere.png",
+    image: "/images/filters/Playful_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -202,7 +202,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Get lost in deep thoughts and contemplation with this reflective filter.",
     style: "Reflective Atmosphere",
-    image: "/images/filters/themes/atmosphere/Reflective_Atmosphere.png",
+    image: "/images/filters/Reflective_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -211,7 +211,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Unwind and find inner calmness in this soothing and relaxing ambiance.",
     style: "Relaxing Atmosphere",
-    image: "/images/filters/themes/atmosphere/Relaxing_Atmosphere.png",
+    image: "/images/filters/Relaxing_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -220,7 +220,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Ignite the flames of romance and passion with this enchanting filter.",
     style: "Romantic Atmosphere",
-    image: "/images/filters/themes/atmosphere/Romantic_Atmosphere.png",
+    image: "/images/filters/Romantic_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -229,7 +229,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Immerse yourself in the charming and rustic beauty of this atmospheric filter.",
     style: "Rustic Atmosphere",
-    image: "/images/filters/themes/atmosphere/Rustic_Atmosphere.png",
+    image: "/images/filters/Rustic_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -238,7 +238,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Embrace unexpected discoveries and joyful moments in this serendipitous ambiance.",
     style: "Serendipitous Atmosphere",
-    image: "/images/filters/themes/atmosphere/Serendipitous_Atmosphere.png",
+    image: "/images/filters/Serendipitous_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -247,7 +247,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Find inner peace and tranquility in this serene and calm atmospheric filter.",
     style: "Serene Atmosphere",
-    image: "/images/filters/themes/atmosphere/Serene_Atmosphere.png",
+    image: "/images/filters/Serene_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -256,7 +256,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Indulge in the refined and elegant ambiance of sophistication and class.",
     style: "Sophisticated Atmosphere",
-    image: "/images/filters/themes/atmosphere/Sophisticated_Atmosphere.png",
+    image: "/images/filters/Sophisticated_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -265,7 +265,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Immerse yourself in a peaceful and harmonious ambiance of tranquility.",
     style: "Tranquil Atmosphere",
-    image: "/images/filters/themes/atmosphere/Tranquil_Atmosphere.png",
+    image: "/images/filters/Tranquil_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -274,7 +274,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Step into a whimsical and magical world filled with joy and wonder.",
     style: "Whimsical Atmosphere",
-    image: "/images/filters/themes/atmosphere/Whimsical_Atmosphere.png",
+    image: "/images/filters/Whimsical_Atmosphere.webp",
     isSelected: false,
   },
   {
@@ -283,7 +283,7 @@ export const atmosphereFilters: Filter[] = [
     description:
       "Find inner peace and serenity in this harmonious and Zen-like ambiance.",
     style: "Zen Atmosphere",
-    image: "/images/filters/themes/atmosphere/Zen_Atmosphere.png",
+    image: "/images/filters/Zen_Atmosphere.webp",
     isSelected: false,
   },
 ];

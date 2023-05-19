@@ -6,7 +6,7 @@ export const stylizedFilters: Filter[] = [
     name: "Design",
     description: "Applies a unique and intentional design approach.",
     style: "Design",
-    image: "/images/filters/design_Styles/stylized/Design.png",
+    image: "/images/filters/Design.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const stylizedFilters: Filter[] = [
     name: "Style",
     description: "Incorporates a distinct and recognizable artistic style.",
     style: "Style",
-    image: "/images/filters/design_Styles/stylized/Style.png",
+    image: "/images/filters/Style.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const stylizedFilters: Filter[] = [
     name: "Stylized",
     description: "Infuses a unique and artistic interpretation.",
     style: "Stylized",
-    image: "/images/filters/design_Styles/stylized/Stylized.png",
+    image: "/images/filters/Stylized.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const stylizedFilters: Filter[] = [
     name: "Combine",
     description: "Blends different elements or styles together.",
     style: "Combine",
-    image: "/images/filters/design_Styles/stylized/Combine.png",
+    image: "/images/filters/Combine.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const stylizedFilters: Filter[] = [
     name: "Combination",
     description: "Incorporates a mix of different artistic elements.",
     style: "Combination",
-    image: "/images/filters/design_Styles/stylized/Combination.png",
+    image: "/images/filters/Combination.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const stylizedFilters: Filter[] = [
     name: "Seamless",
     description: "Creates a seamless and continuous visual effect.",
     style: "Seamless",
-    image: "/images/filters/design_Styles/stylized/Seamless.png",
+    image: "/images/filters/Seamless.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const stylizedFilters: Filter[] = [
     name: "Layered",
     description: "Utilizes multiple layers and depth in the composition.",
     style: "Layered",
-    image: "/images/filters/design_Styles/stylized/Layered.png",
+    image: "/images/filters/Layered.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const stylizedFilters: Filter[] = [
     name: "Photobash",
     description: "Combines and manipulates photographic elements.",
     style: "Photobash",
-    image: "/images/filters/design_Styles/stylized/Photobash.png",
+    image: "/images/filters/Photobash.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const stylizedFilters: Filter[] = [
     name: "Cut",
     description: "Uses cut-out and collage techniques in the design.",
     style: "Cut",
-    image: "/images/filters/design_Styles/stylized/Cut.png",
+    image: "/images/filters/Cut.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const stylizedFilters: Filter[] = [
     name: "Bubble Design",
     description: "Incorporates bubble-like shapes and forms in the design.",
     style: "Bubble Design",
-    image: "/images/filters/design_Styles/stylized/Bubble_Design.png",
+    image: "/images/filters/Bubble_Design.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const stylizedFilters: Filter[] = [
     name: "Extreme Bubble Design",
     description: "Takes the bubble design to an extreme level.",
     style: "Extreme Bubble Design",
-    image: "/images/filters/design_Styles/stylized/Extreme_Bubble_Design.png",
+    image: "/images/filters/Extreme_Bubble_Design.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const stylizedFilters: Filter[] = [
     name: "Liquify",
     description: "Applies distortions and fluid-like effects to the design.",
     style: "Liquify",
-    image: "/images/filters/design_Styles/stylized/Liquify.png",
+    image: "/images/filters/Liquify.webp",
     isSelected: false,
   },
   {
@@ -102,7 +102,7 @@ export const stylizedFilters: Filter[] = [
     name: "Jewel Tones",
     description: "Incorporates rich and vibrant jewel-like color tones.",
     style: "Jewel Tones",
-    image: "/images/filters/design_Styles/stylized/Jewel_Tones.png",
+    image: "/images/filters/Jewel_Tones.webp",
     isSelected: false,
   },
   {
@@ -110,7 +110,7 @@ export const stylizedFilters: Filter[] = [
     name: "Blocky",
     description: "Uses bold and geometric shapes in a block-like arrangement.",
     style: "Blocky",
-    image: "/images/filters/design_Styles/stylized/Blocky.png",
+    image: "/images/filters/Blocky.webp",
     isSelected: false,
   },
   {
@@ -118,7 +118,7 @@ export const stylizedFilters: Filter[] = [
     name: "Lissajous",
     description: "Incorporates Lissajous curves and patterns in the design.",
     style: "Lissajous",
-    image: "/images/filters/design_Styles/stylized/Lissajous.png",
+    image: "/images/filters/Lissajous.webp",
     isSelected: false,
   },
   {
@@ -126,7 +126,7 @@ export const stylizedFilters: Filter[] = [
     name: "Patched",
     description: "Creates a patched or quilted effect in the design.",
     style: "Patched",
-    image: "/images/filters/design_Styles/stylized/Patched.png",
+    image: "/images/filters/Patched.webp",
     isSelected: false,
   },
   {
@@ -134,7 +134,7 @@ export const stylizedFilters: Filter[] = [
     name: "Alignment",
     description: "Emphasizes precise alignment and symmetry in the design.",
     style: "Alignment",
-    image: "/images/filters/design_Styles/stylized/Alignment.png",
+    image: "/images/filters/Alignment.webp",
     isSelected: false,
   },
   {
@@ -142,7 +142,7 @@ export const stylizedFilters: Filter[] = [
     name: "Misalignment",
     description: "Intentionally creates a sense of misalignment and chaos.",
     style: "Misalignment",
-    image: "/images/filters/design_Styles/stylized/Misalignment.png",
+    image: "/images/filters/Misalignment.webp",
     isSelected: false,
   },
   {
@@ -150,7 +150,7 @@ export const stylizedFilters: Filter[] = [
     name: "Compression",
     description: "Applies compression and distortion effects to the design.",
     style: "Compression",
-    image: "/images/filters/design_Styles/stylized/Compression.png",
+    image: "/images/filters/Compression.webp",
     isSelected: false,
   },
   {
@@ -158,7 +158,7 @@ export const stylizedFilters: Filter[] = [
     name: "Droste Effect",
     description: "Creates a recursive and self-referential visual effect.",
     style: "Droste Effect",
-    image: "/images/filters/design_Styles/stylized/Droste_Effect.png",
+    image: "/images/filters/Droste_Effect.webp",
     isSelected: false,
   },
   {
@@ -166,7 +166,7 @@ export const stylizedFilters: Filter[] = [
     name: "Stabilimentum",
     description: "Incorporates spider web-like patterns and structures.",
     style: "Stabilimentum",
-    image: "/images/filters/design_Styles/stylized/Stabilimentum.png",
+    image: "/images/filters/Stabilimentum.webp",
     isSelected: false,
   },
   {
@@ -174,7 +174,7 @@ export const stylizedFilters: Filter[] = [
     name: "Precision",
     description: "Focuses on intricate details and precise execution.",
     style: "Precision",
-    image: "/images/filters/design_Styles/stylized/Precision.png",
+    image: "/images/filters/Precision.webp",
     isSelected: false,
   },
   {
@@ -182,7 +182,7 @@ export const stylizedFilters: Filter[] = [
     name: "Molecular",
     description: "Incorporates molecular and atomic-like structures.",
     style: "Molecular",
-    image: "/images/filters/design_Styles/stylized/Molecular.png",
+    image: "/images/filters/Molecular.webp",
     isSelected: false,
   },
   {
@@ -191,7 +191,7 @@ export const stylizedFilters: Filter[] = [
     description:
       "Inspired by quantum computing and qubit-like visual elements.",
     style: "Qubit",
-    image: "/images/filters/design_Styles/stylized/Qubit.png",
+    image: "/images/filters/Qubit.webp",
     isSelected: false,
   },
   {
@@ -199,7 +199,7 @@ export const stylizedFilters: Filter[] = [
     name: "Shockwave",
     description: "Depicts the visual impact and energy of a shockwave.",
     style: "Shockwave",
-    image: "/images/filters/design_Styles/stylized/Shockwave.png",
+    image: "/images/filters/Shockwave.webp",
     isSelected: false,
   },
   {
@@ -207,7 +207,7 @@ export const stylizedFilters: Filter[] = [
     name: "Edge-To-Edge",
     description: "Expands the design to the edges, creating a dynamic effect.",
     style: "Edge-To-Edge",
-    image: "/images/filters/design_Styles/stylized/Edge-To-Edge.png",
+    image: "/images/filters/Edge-To-Edge.webp",
     isSelected: false,
   },
   {
@@ -215,7 +215,7 @@ export const stylizedFilters: Filter[] = [
     name: "Oddly Satisfying",
     description: "Creates a visually pleasing and satisfying aesthetic.",
     style: "Oddly Satisfying",
-    image: "/images/filters/design_Styles/stylized/Oddly_Satisfying.png",
+    image: "/images/filters/Oddly_Satisfying.webp",
     isSelected: false,
   },
   {
@@ -223,7 +223,7 @@ export const stylizedFilters: Filter[] = [
     name: "Zygomorphic",
     description: "Incorporates patterns and forms found in nature.",
     style: "Zygomorphic",
-    image: "/images/filters/design_Styles/stylized/Zygomorphic.png",
+    image: "/images/filters/Zygomorphic.webp",
     isSelected: false,
   },
 ];

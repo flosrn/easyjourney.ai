@@ -6,7 +6,7 @@ export const resolutionFilters: Filter[] = [
     name: "4k",
     description: "High-resolution format",
     style: "4k",
-    image: "/images/filters/digital/resolution/4k.png",
+    image: "/images/filters/4k.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const resolutionFilters: Filter[] = [
     name: "8k",
     description: "Ultra-high-definition resolution",
     style: "8k",
-    image: "/images/filters/digital/resolution/8k.png",
+    image: "/images/filters/8k.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const resolutionFilters: Filter[] = [
     name: "16k",
     description: "Extremely high-resolution",
     style: "16k",
-    image: "/images/filters/digital/resolution/16k.png",
+    image: "/images/filters/16k.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const resolutionFilters: Filter[] = [
     name: "32k",
     description: "Super high-resolution",
     style: "32k",
-    image: "/images/filters/digital/resolution/32k.png",
+    image: "/images/filters/32k.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const resolutionFilters: Filter[] = [
     name: "Super-Resolution",
     description: "Enhanced image resolution",
     style: "Super-Resolution",
-    image: "/images/filters/digital/resolution/Super-Resolution.png",
+    image: "/images/filters/Super-Resolution.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const resolutionFilters: Filter[] = [
     name: "UHD",
     description: "Ultra high-definition",
     style: "UHD",
-    image: "/images/filters/digital/resolution/UHD.png",
+    image: "/images/filters/UHD.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const resolutionFilters: Filter[] = [
     name: "Ultra-HD",
     description: "High-definition resolution",
     style: "Ultra-HD",
-    image: "/images/filters/digital/resolution/Ultra-HD.png",
+    image: "/images/filters/Ultra-HD.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const resolutionFilters: Filter[] = [
     name: "HD",
     description: "High-definition format",
     style: "HD",
-    image: "/images/filters/digital/resolution/HD.png",
+    image: "/images/filters/HD.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const resolutionFilters: Filter[] = [
     name: "Full-HD",
     description: "Full high-definition resolution",
     style: "Full-HD",
-    image: "/images/filters/digital/resolution/Full-HD.png",
+    image: "/images/filters/Full-HD.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const resolutionFilters: Filter[] = [
     name: "144p",
     description: "Low-resolution format",
     style: "144p",
-    image: "/images/filters/digital/resolution/144p.png",
+    image: "/images/filters/144p.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const resolutionFilters: Filter[] = [
     name: "240p",
     description: "Standard-definition resolution",
     style: "240p",
-    image: "/images/filters/digital/resolution/240p.png",
+    image: "/images/filters/240p.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const resolutionFilters: Filter[] = [
     name: "480p",
     description: "Enhanced-definition resolution",
     style: "480p",
-    image: "/images/filters/digital/resolution/480p.png",
+    image: "/images/filters/480p.webp",
     isSelected: false,
   },
   {
@@ -102,7 +102,7 @@ export const resolutionFilters: Filter[] = [
     name: "720p",
     description: "High-definition resolution",
     style: "720p",
-    image: "/images/filters/digital/resolution/720p.png",
+    image: "/images/filters/720p.webp",
     isSelected: false,
   },
   {
@@ -110,7 +110,7 @@ export const resolutionFilters: Filter[] = [
     name: "1080p",
     description: "Full high-definition format",
     style: "1080p",
-    image: "/images/filters/digital/resolution/1080p.png",
+    image: "/images/filters/1080p.webp",
     isSelected: false,
   },
 ];

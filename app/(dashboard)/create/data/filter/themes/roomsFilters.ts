@@ -7,7 +7,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Experience the comfort and convenience of a modern apartment setting.",
     style: "Apartment",
-    image: "/images/filters/themes/rooms/Apartment.png",
+    image: "/images/filters/Apartment.webp",
     isSelected: false,
   },
   {
@@ -16,7 +16,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Immerse yourself in a spacious and open atrium with abundant natural light.",
     style: "Atrium",
-    image: "/images/filters/themes/rooms/Atrium.png",
+    image: "/images/filters/Atrium.webp",
     isSelected: false,
   },
   {
@@ -24,7 +24,7 @@ export const roomsFilters: Filter[] = [
     name: "Attic",
     description: "Discover the charm and hidden treasures of an attic space.",
     style: "Attic",
-    image: "/images/filters/themes/rooms/Attic.png",
+    image: "/images/filters/Attic.webp",
     isSelected: false,
   },
   {
@@ -33,7 +33,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Enjoy the fresh air and panoramic views from a beautiful balcony.",
     style: "Balcony",
-    image: "/images/filters/themes/rooms/Balcony.png",
+    image: "/images/filters/Balcony.webp",
     isSelected: false,
   },
   {
@@ -42,7 +42,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Explore the depths of a basement filled with mystery and potential.",
     style: "Basement",
-    image: "/images/filters/themes/rooms/Basement.png",
+    image: "/images/filters/Basement.webp",
     isSelected: false,
   },
   {
@@ -50,7 +50,7 @@ export const roomsFilters: Filter[] = [
     name: "Bathroom",
     description: "Indulge in a luxurious and relaxing bathroom oasis.",
     style: "Bathroom",
-    image: "/images/filters/themes/rooms/Bathroom.png",
+    image: "/images/filters/Bathroom.webp",
     isSelected: false,
   },
   {
@@ -59,7 +59,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Create a cozy and peaceful sanctuary in your own personal bedroom.",
     style: "Bedroom",
-    image: "/images/filters/themes/rooms/Bedroom.png",
+    image: "/images/filters/Bedroom.webp",
     isSelected: false,
   },
   {
@@ -68,7 +68,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Delve into a cellar filled with a collection of fine wines and treasures.",
     style: "Cellar",
-    image: "/images/filters/themes/rooms/Cellar.png",
+    image: "/images/filters/Cellar.webp",
     isSelected: false,
   },
   {
@@ -77,7 +77,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Organize your belongings and step into a stylish and functional closet.",
     style: "Closet",
-    image: "/images/filters/themes/rooms/Closet.png",
+    image: "/images/filters/Closet.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Surround yourself with lush greenery and natural beauty in a conservatory.",
     style: "Conservatory",
-    image: "/images/filters/themes/rooms/Conservatory.png",
+    image: "/images/filters/Conservatory.webp",
     isSelected: false,
   },
   {
@@ -95,7 +95,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Enter a small and confined crawlspace, filled with intrigue and mystery.",
     style: "Crawlspace",
-    image: "/images/filters/themes/rooms/Crawlspace.png",
+    image: "/images/filters/Crawlspace.webp",
     isSelected: false,
   },
   {
@@ -104,7 +104,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Create a cozy and comfortable den, perfect for relaxation and leisure.",
     style: "Den",
-    image: "/images/filters/themes/rooms/Den.png",
+    image: "/images/filters/Den.webp",
     isSelected: false,
   },
   {
@@ -113,7 +113,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Gather with loved ones and enjoy delicious meals in a stylish dining room.",
     style: "Dining Room",
-    image: "/images/filters/themes/rooms/Dining_Room.png",
+    image: "/images/filters/Dining_Room.webp",
     isSelected: false,
   },
   {
@@ -121,7 +121,7 @@ export const roomsFilters: Filter[] = [
     name: "External",
     description: "Step outside and embrace the beauty of an external space.",
     style: "External",
-    image: "/images/filters/themes/rooms/External.png",
+    image: "/images/filters/External.webp",
     isSelected: false,
   },
   {
@@ -129,7 +129,7 @@ export const roomsFilters: Filter[] = [
     name: "Front Room",
     description: "Welcome guests into a warm and inviting front room.",
     style: "Front Room",
-    image: "/images/filters/themes/rooms/Front_Room.png",
+    image: "/images/filters/Front_Room.webp",
     isSelected: false,
   },
   {
@@ -138,7 +138,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Indulge in endless entertainment and fun in a dedicated game room.",
     style: "Game Room",
-    image: "/images/filters/themes/rooms/Game_Room.png",
+    image: "/images/filters/Game_Room.webp",
     isSelected: false,
   },
   {
@@ -147,7 +147,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Discover a space for vehicles and storage in a functional garage.",
     style: "Garage",
-    image: "/images/filters/themes/rooms/Garage.png",
+    image: "/images/filters/Garage.webp",
     isSelected: false,
   },
   {
@@ -156,7 +156,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Surround yourself with nature and cultivate plants in a serene greenhouse.",
     style: "Greenhouse",
-    image: "/images/filters/themes/rooms/Greenhouse.png",
+    image: "/images/filters/Greenhouse.webp",
     isSelected: false,
   },
   {
@@ -165,7 +165,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Provide comfort and hospitality to guests in a cozy guest room.",
     style: "Guest Room",
-    image: "/images/filters/themes/rooms/Guest_Room.png",
+    image: "/images/filters/Guest_Room.webp",
     isSelected: false,
   },
   {
@@ -174,7 +174,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Stay active and fit in a dedicated gym room with state-of-the-art equipment.",
     style: "Gym Room",
-    image: "/images/filters/themes/rooms/Gym_Room.png",
+    image: "/images/filters/Gym_Room.webp",
     isSelected: false,
   },
   {
@@ -183,7 +183,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Connect different rooms and spaces with a stylish and welcoming hallway.",
     style: "Hallway",
-    image: "/images/filters/themes/rooms/Hallway.png",
+    image: "/images/filters/Hallway.webp",
     isSelected: false,
   },
   {
@@ -192,7 +192,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Create a cinematic experience with a dedicated home theater room.",
     style: "Home Theater",
-    image: "/images/filters/themes/rooms/Home_Theater.png",
+    image: "/images/filters/Home_Theater.webp",
     isSelected: false,
   },
   {
@@ -201,7 +201,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Work efficiently and comfortably in a well-designed home office space.",
     style: "Home-Office",
-    image: "/images/filters/themes/rooms/Home-Office.png",
+    image: "/images/filters/Home-Office.webp",
     isSelected: false,
   },
   {
@@ -209,7 +209,7 @@ export const roomsFilters: Filter[] = [
     name: "Hotel Room",
     description: "Experience the luxury and comfort of a stylish hotel room.",
     style: "Hotel Room",
-    image: "/images/filters/themes/rooms/Hotel_Room.png",
+    image: "/images/filters/Hotel_Room.webp",
     isSelected: false,
   },
   {
@@ -218,7 +218,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Discover the inner beauty and charm of a space from the inside.",
     style: "Inside",
-    image: "/images/filters/themes/rooms/Inside.png",
+    image: "/images/filters/Inside.webp",
     isSelected: false,
   },
   {
@@ -226,7 +226,7 @@ export const roomsFilters: Filter[] = [
     name: "Internal",
     description: "Explore the internal spaces of a building or structure.",
     style: "Internal",
-    image: "/images/filters/themes/rooms/Internal.png",
+    image: "/images/filters/Internal.webp",
     isSelected: false,
   },
   {
@@ -235,7 +235,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Cook and create delicious meals in a functional and stylish kitchen.",
     style: "Kitchen",
-    image: "/images/filters/themes/rooms/Kitchen.png",
+    image: "/images/filters/Kitchen.webp",
     isSelected: false,
   },
   {
@@ -243,7 +243,7 @@ export const roomsFilters: Filter[] = [
     name: "Labyrinth",
     description: "Get lost in a maze-like labyrinth full of twists and turns.",
     style: "Labyrinth",
-    image: "/images/filters/themes/rooms/Labyrinth.png",
+    image: "/images/filters/Labyrinth.webp",
     isSelected: false,
   },
   {
@@ -252,7 +252,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Efficiently clean and organize your laundry in a dedicated laundry room.",
     style: "Laundry Room",
-    image: "/images/filters/themes/rooms/Laundry_Room.png",
+    image: "/images/filters/Laundry_Room.webp",
     isSelected: false,
   },
   {
@@ -261,7 +261,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Surround yourself with knowledge and books in a quiet and cozy library.",
     style: "Library",
-    image: "/images/filters/themes/rooms/Library.png",
+    image: "/images/filters/Library.webp",
     isSelected: false,
   },
   {
@@ -270,7 +270,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Relax and unwind in the heart of the home, the cozy living room.",
     style: "Living Room",
-    image: "/images/filters/themes/rooms/Living_Room.png",
+    image: "/images/filters/Living_Room.webp",
     isSelected: false,
   },
   {
@@ -279,7 +279,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Sink into comfort and enjoy socializing in a stylish lounge space.",
     style: "Lounge",
-    image: "/images/filters/themes/rooms/Lounge.png",
+    image: "/images/filters/Lounge.webp",
     isSelected: false,
   },
   {
@@ -288,7 +288,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Keep dirt and clutter at bay in a functional and organized mudroom.",
     style: "Mud-Room",
-    image: "/images/filters/themes/rooms/Mud-Room.png",
+    image: "/images/filters/Mud-Room.webp",
     isSelected: false,
   },
   {
@@ -297,7 +297,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Create a nurturing and safe environment for your little ones in a nursery.",
     style: "Nursery",
-    image: "/images/filters/themes/rooms/Nursery.png",
+    image: "/images/filters/Nursery.webp",
     isSelected: false,
   },
   {
@@ -306,7 +306,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Boost productivity and focus in a well-designed and comfortable office.",
     style: "Office",
-    image: "/images/filters/themes/rooms/Office.png",
+    image: "/images/filters/Office.webp",
     isSelected: false,
   },
   {
@@ -314,7 +314,7 @@ export const roomsFilters: Filter[] = [
     name: "Outside",
     description: "Step into the great outdoors and embrace nature's beauty.",
     style: "Outside",
-    image: "/images/filters/themes/rooms/Outside.png",
+    image: "/images/filters/Outside.webp",
     isSelected: false,
   },
   {
@@ -323,7 +323,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Navigate through a passageway connecting different areas and rooms.",
     style: "Passageway",
-    image: "/images/filters/themes/rooms/Passageway.png",
+    image: "/images/filters/Passageway.webp",
     isSelected: false,
   },
   {
@@ -331,7 +331,7 @@ export const roomsFilters: Filter[] = [
     name: "Porch",
     description: "Enjoy the fresh air and relax on a welcoming porch area.",
     style: "Porch",
-    image: "/images/filters/themes/rooms/Porch.png",
+    image: "/images/filters/Porch.webp",
     isSelected: false,
   },
   {
@@ -340,7 +340,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Find solace and serenity in a dedicated space for prayer and reflection.",
     style: "Prayer Room",
-    image: "/images/filters/themes/rooms/Prayer_Room.png",
+    image: "/images/filters/Prayer_Room.webp",
     isSelected: false,
   },
   {
@@ -349,7 +349,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Experience breathtaking views and open skies on a stunning rooftop.",
     style: "Rooftop",
-    image: "/images/filters/themes/rooms/Rooftop.png",
+    image: "/images/filters/Rooftop.webp",
     isSelected: false,
   },
   {
@@ -358,7 +358,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Create a versatile and personalized space in a functional room.",
     style: "Room",
-    image: "/images/filters/themes/rooms/Room.png",
+    image: "/images/filters/Room.webp",
     isSelected: false,
   },
   {
@@ -367,7 +367,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Utilize a shed for storage or as a workspace in your outdoor area.",
     style: "Shed",
-    image: "/images/filters/themes/rooms/Shed.png",
+    image: "/images/filters/Shed.webp",
     isSelected: false,
   },
   {
@@ -376,7 +376,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Organize and store your belongings in a spacious storage room.",
     style: "Storage Room",
-    image: "/images/filters/themes/rooms/Storage_Room.png",
+    image: "/images/filters/Storage_Room.webp",
     isSelected: false,
   },
   {
@@ -385,7 +385,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Focus and concentrate in a dedicated study room or home office.",
     style: "Study",
-    image: "/images/filters/themes/rooms/Study.png",
+    image: "/images/filters/Study.webp",
     isSelected: false,
   },
   {
@@ -394,7 +394,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Bask in natural sunlight and enjoy the warmth in a sun-filled room.",
     style: "Sun-Room",
-    image: "/images/filters/themes/rooms/Sun-Room.png",
+    image: "/images/filters/Sun-Room.webp",
     isSelected: false,
   },
   {
@@ -402,7 +402,7 @@ export const roomsFilters: Filter[] = [
     name: "Underground",
     description: "Explore the hidden depths of an underground room or space.",
     style: "Underground",
-    image: "/images/filters/themes/rooms/Underground.png",
+    image: "/images/filters/Underground.webp",
     isSelected: false,
   },
   {
@@ -411,7 +411,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Handle essential tasks and chores in a well-equipped utility room.",
     style: "Utility Room",
-    image: "/images/filters/themes/rooms/Utility_Room.png",
+    image: "/images/filters/Utility_Room.webp",
     isSelected: false,
   },
   {
@@ -420,7 +420,7 @@ export const roomsFilters: Filter[] = [
     description:
       "Store and showcase your wine collection in a sophisticated wine cellar.",
     style: "Wine-Cellar",
-    image: "/images/filters/themes/rooms/Wine-Cellar.png",
+    image: "/images/filters/Wine-Cellar.webp",
     isSelected: false,
   },
 ];

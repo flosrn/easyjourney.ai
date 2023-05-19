@@ -6,7 +6,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Dark Aesthetic",
     description: "Gothic and dark-themed aesthetics with a moody atmosphere.",
     style: "Dark Aesthetic",
-    image: "/images/filters/themes/otherThemes/Dark_Aesthetic.png",
+    image: "/images/filters/Dark_Aesthetic.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Gourmet",
     description: "Food-inspired aesthetics with a focus on culinary delights.",
     style: "Gourmet",
-    image: "/images/filters/themes/otherThemes/Gourmet.png",
+    image: "/images/filters/Gourmet.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Archetype",
     description: "Aesthetics inspired by iconic and classic archetypes.",
     style: "Archetype",
-    image: "/images/filters/themes/otherThemes/Archetype.png",
+    image: "/images/filters/Archetype.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Circus",
     description: "Whimsical and playful aesthetics inspired by circus themes.",
     style: "Circus",
-    image: "/images/filters/themes/otherThemes/Circus.png",
+    image: "/images/filters/Circus.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Circus Archetype",
     description: "Aesthetics combining circus elements with iconic archetypes.",
     style: "Circus Archetype",
-    image: "/images/filters/themes/otherThemes/Circus_Archetype.png",
+    image: "/images/filters/Circus_Archetype.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Airborne",
     description: "Aesthetics inspired by the sky, flight, and aerial themes.",
     style: "Airborne",
-    image: "/images/filters/themes/otherThemes/Airborne.png",
+    image: "/images/filters/Airborne.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Cloudism",
     description: "Visually dreamy and ethereal aesthetics featuring clouds.",
     style: "Cloudism",
-    image: "/images/filters/themes/otherThemes/Cloudism.png",
+    image: "/images/filters/Cloudism.webp",
     isSelected: false,
   },
   {
@@ -63,7 +63,7 @@ export const otherThemesFilters: Filter[] = [
     description:
       "Aesthetics inspired by microscopic worlds and tiny organisms.",
     style: "Microcosm",
-    image: "/images/filters/themes/otherThemes/Microcosm.png",
+    image: "/images/filters/Microcosm.webp",
     isSelected: false,
   },
   {
@@ -72,7 +72,7 @@ export const otherThemesFilters: Filter[] = [
     description:
       "Aesthetics representing vast and expansive cosmic landscapes.",
     style: "Macrocosm",
-    image: "/images/filters/themes/otherThemes/Macrocosm.png",
+    image: "/images/filters/Macrocosm.webp",
     isSelected: false,
   },
   {
@@ -81,7 +81,7 @@ export const otherThemesFilters: Filter[] = [
     description:
       "Minimalistic and clean aesthetics with a focus on simplicity.",
     style: "Cleancore",
-    image: "/images/filters/themes/otherThemes/Cleancore.png",
+    image: "/images/filters/Cleancore.webp",
     isSelected: false,
   },
   {
@@ -89,7 +89,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Safetycore",
     description: "Aesthetics emphasizing safety, caution, and preparedness.",
     style: "Safetycore",
-    image: "/images/filters/themes/otherThemes/Safetycore.png",
+    image: "/images/filters/Safetycore.webp",
     isSelected: false,
   },
   {
@@ -98,7 +98,7 @@ export const otherThemesFilters: Filter[] = [
     description:
       "Aesthetics inspired by academic settings and intellectual pursuits.",
     style: "Academia",
-    image: "/images/filters/themes/otherThemes/Academia.png",
+    image: "/images/filters/Academia.webp",
     isSelected: false,
   },
   {
@@ -106,7 +106,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Tinycore",
     description: "Aesthetics featuring miniature worlds and tiny objects.",
     style: "Tinycore",
-    image: "/images/filters/themes/otherThemes/Tinycore.png",
+    image: "/images/filters/Tinycore.webp",
     isSelected: false,
   },
   {
@@ -115,7 +115,7 @@ export const otherThemesFilters: Filter[] = [
     description:
       "Visually enchanting aesthetics with a focus on miniaturization.",
     style: "Miniaturecore",
-    image: "/images/filters/themes/otherThemes/Miniaturecore.png",
+    image: "/images/filters/Miniaturecore.webp",
     isSelected: false,
   },
   {
@@ -123,7 +123,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Miniature World",
     description: "Aesthetics depicting entire worlds in miniature form.",
     style: "Miniature World",
-    image: "/images/filters/themes/otherThemes/Miniature_World.png",
+    image: "/images/filters/Miniature_World.webp",
     isSelected: false,
   },
   {
@@ -131,7 +131,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Honeycore",
     description: "Aesthetics featuring the warm and sweet vibes of honey.",
     style: "Honeycore",
-    image: "/images/filters/themes/otherThemes/Honeycore.png",
+    image: "/images/filters/Honeycore.webp",
     isSelected: false,
   },
   {
@@ -139,7 +139,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Jamcore",
     description: "Aesthetics inspired by jams, spreads, and fruity delights.",
     style: "Jamcore",
-    image: "/images/filters/themes/otherThemes/Jamcore.png",
+    image: "/images/filters/Jamcore.webp",
     isSelected: false,
   },
   {
@@ -148,7 +148,7 @@ export const otherThemesFilters: Filter[] = [
     description:
       "Aesthetics representing the concept of infinity and endlessness.",
     style: "Infinitywave",
-    image: "/images/filters/themes/otherThemes/Infinitywave.png",
+    image: "/images/filters/Infinitywave.webp",
     isSelected: false,
   },
   {
@@ -157,7 +157,7 @@ export const otherThemesFilters: Filter[] = [
     description:
       "Aesthetics with infinite patterns and limitless visual elements.",
     style: "Infinitycore",
-    image: "/images/filters/themes/otherThemes/Infinitycore.png",
+    image: "/images/filters/Infinitycore.webp",
     isSelected: false,
   },
   {
@@ -165,7 +165,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Infinitypunk",
     description: "Cyberpunk aesthetics with a focus on infinite possibilities.",
     style: "Infinitypunk",
-    image: "/images/filters/themes/otherThemes/Infinitypunk.png",
+    image: "/images/filters/Infinitypunk.webp",
     isSelected: false,
   },
   {
@@ -174,7 +174,7 @@ export const otherThemesFilters: Filter[] = [
     description:
       "Aesthetics inspired by the MLG (Major League Gaming) subculture.",
     style: "MLG",
-    image: "/images/filters/themes/otherThemes/MLG.png",
+    image: "/images/filters/MLG.webp",
     isSelected: false,
   },
   {
@@ -183,7 +183,7 @@ export const otherThemesFilters: Filter[] = [
     description:
       "Aesthetics focusing on material design and tangible elements.",
     style: "Materialisimo",
-    image: "/images/filters/themes/otherThemes/Materialisimo.png",
+    image: "/images/filters/Materialisimo.webp",
     isSelected: false,
   },
   {
@@ -191,7 +191,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Slimepunk",
     description: "Punk aesthetics featuring slimy, gooey, and oozing visuals.",
     style: "Slimepunk",
-    image: "/images/filters/themes/otherThemes/Slimepunk.png",
+    image: "/images/filters/Slimepunk.webp",
     isSelected: false,
   },
   {
@@ -200,7 +200,7 @@ export const otherThemesFilters: Filter[] = [
     description:
       "Aesthetics combining cyberpunk elements with cube-like visuals.",
     style: "Cuberpunk",
-    image: "/images/filters/themes/otherThemes/Cuberpunk.png",
+    image: "/images/filters/Cuberpunk.webp",
     isSelected: false,
   },
   {
@@ -208,7 +208,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Piwave",
     description: "Aesthetics inspired by the mathematical constant Pi (π).",
     style: "Piwave",
-    image: "/images/filters/themes/otherThemes/Piwave.png",
+    image: "/images/filters/Piwave.webp",
     isSelected: false,
   },
   {
@@ -216,7 +216,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Fibonacciwave",
     description: "Aesthetics incorporating the Fibonacci sequence and spirals.",
     style: "Fibonacciwave",
-    image: "/images/filters/themes/otherThemes/Fibonacciwave.png",
+    image: "/images/filters/Fibonacciwave.webp",
     isSelected: false,
   },
   {
@@ -224,8 +224,7 @@ export const otherThemesFilters: Filter[] = [
     name: "Misterboombasic Superfantasticwave",
     description: "Aesthetics inspired by the art of Misterboombastic.",
     style: "Misterboombasic Superfantasticwave",
-    image:
-      "/images/filters/themes/otherThemes/Misterboombasicsuperfantasticwave.png",
+    image: "/images/filters/Misterboombasicsuperfantasticwave.webp",
     isSelected: false,
   },
 ];

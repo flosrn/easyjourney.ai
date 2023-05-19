@@ -6,8 +6,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Psychedelic",
     description: "Vibrant and mind-altering patterns",
     style: "Psychedelic",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Psychedelic.png",
+    image: "/images/filters/Psychedelic.webp",
     isSelected: false,
   },
   {
@@ -15,8 +14,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Psychedelia",
     description: "Artistic expressions of psychedelia",
     style: "Psychedelia",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Psychedelia.png",
+    image: "/images/filters/Psychedelia.webp",
     isSelected: false,
   },
   {
@@ -24,8 +22,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Psychedelica",
     description: "Intense and colorful psychedelic imagery",
     style: "Psychedelica",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Psychedelica.png",
+    image: "/images/filters/Psychedelica.webp",
     isSelected: false,
   },
   {
@@ -33,8 +30,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Psychedelic Design",
     description: "Abstract and vibrant psychedelic designs",
     style: "Psychedelic Design",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Psychedelic_Design.png",
+    image: "/images/filters/Psychedelic_Design.webp",
     isSelected: false,
   },
   {
@@ -42,8 +38,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Trippy",
     description: "Surreal and hallucinatory visuals",
     style: "Trippy",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Trippy.png",
+    image: "/images/filters/Trippy.webp",
     isSelected: false,
   },
   {
@@ -51,8 +46,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Hallucination",
     description: "Visions and perceptions of altered states",
     style: "Hallucination",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Hallucination.png",
+    image: "/images/filters/Hallucination.webp",
     isSelected: false,
   },
   {
@@ -60,8 +54,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Acidwave",
     description: "Retro and vibrant acidwave aesthetic",
     style: "Acidwave",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Acidwave.png",
+    image: "/images/filters/Acidwave.webp",
     isSelected: false,
   },
   {
@@ -69,8 +62,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "LSD",
     description: "Artistic interpretation of the LSD experience",
     style: "LSD",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/LSD.png",
+    image: "/images/filters/LSD.webp",
     isSelected: false,
   },
   {
@@ -78,8 +70,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "DMT",
     description: "Visions and imagery associated with DMT",
     style: "DMT",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/DMT.png",
+    image: "/images/filters/DMT.webp",
     isSelected: false,
   },
   {
@@ -87,8 +78,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Lysergic",
     description: "Artistic representations of LSD effects",
     style: "Lysergic",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Lysergic.png",
+    image: "/images/filters/Lysergic.webp",
     isSelected: false,
   },
   {
@@ -96,8 +86,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Tryptamine",
     description: "Visuals inspired by tryptamine compounds",
     style: "Tryptamine",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Tryptamine.png",
+    image: "/images/filters/Tryptamine.webp",
     isSelected: false,
   },
   {
@@ -105,8 +94,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Mescaline",
     description: "Artistic representations of mescaline experiences",
     style: "Mescaline",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Mescaline.png",
+    image: "/images/filters/Mescaline.webp",
     isSelected: false,
   },
   {
@@ -114,8 +102,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Kaleidoscope",
     description: "Symmetrical and colorful kaleidoscope patterns",
     style: "Kaleidoscope",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Kaleidoscope.png",
+    image: "/images/filters/Kaleidoscope.webp",
     isSelected: false,
   },
   {
@@ -123,8 +110,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Teleidoscope",
     description: "Ever-changing kaleidoscopic imagery",
     style: "Teleidoscope",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Teleidoscope.png",
+    image: "/images/filters/Teleidoscope.webp",
     isSelected: false,
   },
   {
@@ -132,8 +118,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Spirograph",
     description: "Geometric patterns created with a spirograph",
     style: "Spirograph",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Spirograph.png",
+    image: "/images/filters/Spirograph.webp",
     isSelected: false,
   },
   {
@@ -141,8 +126,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Mandala",
     description: "Intricate and symmetrical mandala designs",
     style: "Mandala",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Mandala.png",
+    image: "/images/filters/Mandala.webp",
     isSelected: false,
   },
   {
@@ -150,8 +134,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Hippie",
     description: "Flower power and peace-loving vibes",
     style: "Hippie",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Hippie.png",
+    image: "/images/filters/Hippie.webp",
     isSelected: false,
   },
   {
@@ -159,8 +142,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Hyperbolic",
     description: "Hyperbolic geometries and fractals",
     style: "Hyperbolic",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Hyperbolic.png",
+    image: "/images/filters/Hyperbolic.webp",
     isSelected: false,
   },
   {
@@ -168,8 +150,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Flower of Life",
     description: "Sacred symbol representing the interconnectedness of life",
     style: "Flower of Life",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Flower_of_Life.png",
+    image: "/images/filters/Flower_of_Life.webp",
     isSelected: false,
   },
   {
@@ -178,8 +159,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     description:
       "Geometric patterns with spiritual and metaphysical significance",
     style: "Sacred Geometry",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Sacred_Geometry.png",
+    image: "/images/filters/Sacred_Geometry.webp",
     isSelected: false,
   },
   {
@@ -187,8 +167,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Chakra",
     description: "Symbolic representations of the chakra energy centers",
     style: "Chakra",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Chakra.png",
+    image: "/images/filters/Chakra.webp",
     isSelected: false,
   },
   {
@@ -196,8 +175,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Aura",
     description: "Energetic auras and radiant light patterns",
     style: "Aura",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Aura.png",
+    image: "/images/filters/Aura.webp",
     isSelected: false,
   },
   {
@@ -205,8 +183,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Quantum",
     description: "Visual representations of quantum concepts",
     style: "Quantum",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Quantum.png",
+    image: "/images/filters/Quantum.webp",
     isSelected: false,
   },
   {
@@ -214,8 +191,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Divine",
     description: "Artistic expressions of the divine and spiritual realms",
     style: "Divine",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Divine.png",
+    image: "/images/filters/Divine.webp",
     isSelected: false,
   },
   {
@@ -223,8 +199,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Ineffable",
     description: "Beyond words and description, transcendent visuals",
     style: "Ineffable",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Ineffable.png",
+    image: "/images/filters/Ineffable.webp",
     isSelected: false,
   },
   {
@@ -232,8 +207,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Sacred",
     description: "Visions of sacred and mystical realms",
     style: "Sacred",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Sacred.png",
+    image: "/images/filters/Sacred.webp",
     isSelected: false,
   },
   {
@@ -241,8 +215,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Transcendent",
     description: "Transcending ordinary reality, spiritual visions",
     style: "Transcendent",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Transcendent.png",
+    image: "/images/filters/Transcendent.webp",
     isSelected: false,
   },
   {
@@ -250,8 +223,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Transcendental",
     description: "Transcending the material plane, ethereal visuals",
     style: "Transcendental",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Transcendental.png",
+    image: "/images/filters/Transcendental.webp",
     isSelected: false,
   },
   {
@@ -259,8 +231,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Astral",
     description: "Visions of the astral realm and cosmic dimensions",
     style: "Astral",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Astral.png",
+    image: "/images/filters/Astral.webp",
     isSelected: false,
   },
   {
@@ -268,8 +239,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Soul",
     description: "Artistic expressions of the soul and spiritual essence",
     style: "Soul",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Soul.png",
+    image: "/images/filters/Soul.webp",
     isSelected: false,
   },
   {
@@ -277,8 +247,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Karma",
     description: "Visual representations of the concept of karma",
     style: "Karma",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Karma.png",
+    image: "/images/filters/Karma.webp",
     isSelected: false,
   },
   {
@@ -286,8 +255,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Fractal",
     description: "Complex and self-repeating mathematical patterns",
     style: "Fractal",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Fractal.png",
+    image: "/images/filters/Fractal.webp",
     isSelected: false,
   },
   {
@@ -295,8 +263,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Fractal Art",
     description: "Artistic interpretations of fractal patterns",
     style: "Fractal Art",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Fractal_Art.png",
+    image: "/images/filters/Fractal_Art.webp",
     isSelected: false,
   },
   {
@@ -304,8 +271,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Fractal Environment",
     description: "Fractal landscapes and virtual environments",
     style: "Fractal Environment",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Fractal_Environment.png",
+    image: "/images/filters/Fractal_Environment.webp",
     isSelected: false,
   },
   {
@@ -313,8 +279,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Mandelbrot",
     description: "Images generated using the Mandelbrot set",
     style: "Mandelbrot",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Mandelbrot.png",
+    image: "/images/filters/Mandelbrot.webp",
     isSelected: false,
   },
   {
@@ -322,8 +287,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Multibrot",
     description: "Fractal patterns with multiple degrees of iteration",
     style: "Multibrot",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Multibrot.png",
+    image: "/images/filters/Multibrot.webp",
     isSelected: false,
   },
   {
@@ -331,8 +295,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Mandelbox",
     description: "3D fractal structures resembling a Mandelbox",
     style: "Mandelbox",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Mandelbox.png",
+    image: "/images/filters/Mandelbox.webp",
     isSelected: false,
   },
   {
@@ -340,8 +303,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Mandelbulb",
     description: "Fractal structures based on the Mandelbulb formula",
     style: "Mandelbulb",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Mandelbulb.png",
+    image: "/images/filters/Mandelbulb.webp",
     isSelected: false,
   },
   {
@@ -349,8 +311,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Julia-Set",
     description: "Fractal patterns created using the Julia set",
     style: "Julia-Set",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Julia-Set.png",
+    image: "/images/filters/Julia-Set.webp",
     isSelected: false,
   },
   {
@@ -358,8 +319,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Lyapunov-Fractal",
     description: "Fractal patterns based on the Lyapunov exponent",
     style: "Lyapunov-Fractal",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Lyapunov-Fractal.png",
+    image: "/images/filters/Lyapunov-Fractal.webp",
     isSelected: false,
   },
   {
@@ -367,8 +327,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Burning-Ship-Fractal",
     description: "Fractal patterns resembling a burning ship",
     style: "Burning-Ship-Fractal",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Burning-Ship-Fractal.png",
+    image: "/images/filters/Burning-Ship-Fractal.webp",
     isSelected: false,
   },
   {
@@ -376,8 +335,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Newton Fractal",
     description: "Fractal patterns based on Newton's method",
     style: "Newton Fractal",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Newton_Fractal.png",
+    image: "/images/filters/Newton_Fractal.webp",
     isSelected: false,
   },
   {
@@ -385,8 +343,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Newton-Fractal",
     description: "Artistic representations of Newton fractals",
     style: "Newton-Fractal",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Newton-Fractal.png",
+    image: "/images/filters/Newton-Fractal.webp",
     isSelected: false,
   },
   {
@@ -394,8 +351,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Noisy",
     description: "Artistic interpretations of noise patterns",
     style: "Noisy",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Noisy.png",
+    image: "/images/filters/Noisy.webp",
     isSelected: false,
   },
   {
@@ -403,8 +359,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Noise",
     description: "Visual representations of random noise",
     style: "Noise",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Noise.png",
+    image: "/images/filters/Noise.webp",
     isSelected: false,
   },
   {
@@ -412,8 +367,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "White Noise",
     description: "Random noise with equal intensity at all frequencies",
     style: "White Noise",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/White_Noise.png",
+    image: "/images/filters/White_Noise.webp",
     isSelected: false,
   },
   {
@@ -421,8 +375,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Cell Noise",
     description: "Random noise patterns resembling cells or grains",
     style: "Cell Noise",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Cell_Noise.png",
+    image: "/images/filters/Cell_Noise.webp",
     isSelected: false,
   },
   {
@@ -430,8 +383,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Perlin Noise",
     description: "Smooth and natural-looking random noise",
     style: "Perlin Noise",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Perlin_Noise.png",
+    image: "/images/filters/Perlin_Noise.webp",
     isSelected: false,
   },
   {
@@ -439,8 +391,7 @@ export const psychedelicDivineFractalAndNoiseFilters: Filter[] = [
     name: "Simplex Noise",
     description: "Improved version of Perlin noise for smoother patterns",
     style: "Simplex Noise",
-    image:
-      "/images/filters/design_Styles/psychedelicDivineFractalAndNoise/Simplex_Noise.png",
+    image: "/images/filters/Simplex_Noise.webp",
     isSelected: false,
   },
 ];

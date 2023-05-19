@@ -6,7 +6,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "AR",
     description: "Augmented Reality-inspired style.",
     style: "AR",
-    image: "/images/filters/digital/digitalStyles/AR.png",
+    image: "/images/filters/AR.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "VR",
     description: "Virtual Reality-inspired style.",
     style: "VR",
-    image: "/images/filters/digital/digitalStyles/VR.png",
+    image: "/images/filters/VR.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "HQ",
     description: "High-quality digital artwork.",
     style: "HQ",
-    image: "/images/filters/digital/digitalStyles/HQ.png",
+    image: "/images/filters/HQ.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Demoscene",
     description: "Influenced by the Demoscene culture.",
     style: "Demoscene",
-    image: "/images/filters/digital/digitalStyles/Demoscene_Art.png",
+    image: "/images/filters/Demoscene_Art.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Televisual",
     description: "Graphics with a Televisual aesthetic.",
     style: "Televisual",
-    image: "/images/filters/digital/digitalStyles/Televisual.png",
+    image: "/images/filters/Televisual.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Virtualcore",
     description: "Graphics with a Virtualcore aesthetic.",
     style: "Virtualcore",
-    image: "/images/filters/digital/digitalStyles/Virtualcore.png",
+    image: "/images/filters/Virtualcore.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Technocore",
     description: "Graphics with a Technocore aesthetic.",
     style: "Technocore",
-    image: "/images/filters/digital/digitalStyles/Technocore.png",
+    image: "/images/filters/Technocore.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Cyberspace",
     description: "Graphics with a Cyberspace aesthetic.",
     style: "Cyberspace",
-    image: "/images/filters/digital/digitalStyles/Cyberspace.png",
+    image: "/images/filters/Cyberspace.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Cyberdelic",
     description: "Graphics with a Cyberdelic aesthetic.",
     style: "Cyberdelic",
-    image: "/images/filters/digital/digitalStyles/Cyberdelic.png",
+    image: "/images/filters/Cyberdelic.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Cyberprep",
     description: "Graphics with a Cyberprep aesthetic.",
     style: "Cyberprep",
-    image: "/images/filters/digital/digitalStyles/Cyberprep.png",
+    image: "/images/filters/Cyberprep.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Cybernoir",
     description: "Graphics with a Cybernoir aesthetic.",
     style: "Cybernoir",
-    image: "/images/filters/digital/digitalStyles/Cybernoir.png",
+    image: "/images/filters/Cybernoir.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Cybernetics",
     description: "Graphics with a Cybernetics aesthetic.",
     style: "Cybernetics",
-    image: "/images/filters/digital/digitalStyles/Cybernetics.png",
+    image: "/images/filters/Cybernetics.webp",
     isSelected: false,
   },
   {
@@ -102,7 +102,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Hexatron",
     description: "Art with a Hexatron-inspired style.",
     style: "Hexatron",
-    image: "/images/filters/digital/digitalStyles/Hexatron.png",
+    image: "/images/filters/Hexatron.webp",
     isSelected: false,
   },
   {
@@ -110,7 +110,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Trillwave",
     description: "Art with a Trillwave-inspired style.",
     style: "Trillwave",
-    image: "/images/filters/digital/digitalStyles/Trillwave.png",
+    image: "/images/filters/Trillwave.webp",
     isSelected: false,
   },
   {
@@ -118,7 +118,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Analog",
     description: "Art with an Analog-inspired style.",
     style: "Analog",
-    image: "/images/filters/digital/digitalStyles/Analog.png",
+    image: "/images/filters/Analog.webp",
     isSelected: false,
   },
   {
@@ -126,7 +126,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Analogpunk",
     description: "Art with an Analogpunk-inspired style.",
     style: "Analogpunk",
-    image: "/images/filters/digital/digitalStyles/Analogpunk.png",
+    image: "/images/filters/Analogpunk.webp",
     isSelected: false,
   },
   {
@@ -134,7 +134,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Digital",
     description: "Distinct digital art style.",
     style: "Digital",
-    image: "/images/filters/digital/digitalStyles/Digital.png",
+    image: "/images/filters/Digital.webp",
     isSelected: false,
   },
   {
@@ -142,7 +142,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Digitalpunk",
     description: "Art with a Digitalpunk-inspired style.",
     style: "Digitalpunk",
-    image: "/images/filters/digital/digitalStyles/Digitalpunk.png",
+    image: "/images/filters/Digitalpunk.webp",
     isSelected: false,
   },
   {
@@ -150,7 +150,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Cyber Minimalism",
     description: "Art with a Cyber Minimalism style.",
     style: "Cyber Minimalism",
-    image: "/images/filters/digital/digitalStyles/Cyber_Minimalism.png",
+    image: "/images/filters/Cyber_Minimalism.webp",
     isSelected: false,
   },
   {
@@ -158,7 +158,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Frutiger Aero",
     description: "Art with a Frutiger Aero style.",
     style: "Frutiger Aero",
-    image: "/images/filters/digital/digitalStyles/Frutiger_Aero.png",
+    image: "/images/filters/Frutiger_Aero.webp",
     isSelected: false,
   },
   {
@@ -166,7 +166,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Abstract Tech",
     description: "Art with an Abstract Tech style.",
     style: "Abstract Tech",
-    image: "/images/filters/digital/digitalStyles/Abstract_Tech.png",
+    image: "/images/filters/Abstract_Tech.webp",
     isSelected: false,
   },
   {
@@ -174,7 +174,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Emulated",
     description: "Art with an Emulated style.",
     style: "Emulated",
-    image: "/images/filters/digital/digitalStyles/Emulated.png",
+    image: "/images/filters/Emulated.webp",
     isSelected: false,
   },
   {
@@ -182,7 +182,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Pixelscape",
     description: "Art with a Pixelscape style.",
     style: "Pixelscape",
-    image: "/images/filters/digital/digitalStyles/Pixelscape.png",
+    image: "/images/filters/Pixelscape.webp",
     isSelected: false,
   },
   {
@@ -190,7 +190,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Memecore",
     description: "Art with a Memecore style.",
     style: "Memecore",
-    image: "/images/filters/digital/digitalStyles/Memecore.png",
+    image: "/images/filters/Memecore.webp",
     isSelected: false,
   },
   {
@@ -198,7 +198,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Old Memecore",
     description: "Art with an Old Memecore style.",
     style: "Old Memecore",
-    image: "/images/filters/digital/digitalStyles/Old_Memecore.png",
+    image: "/images/filters/Old_Memecore.webp",
     isSelected: false,
   },
   {
@@ -206,7 +206,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Old Web",
     description: "Art with an Old Web style.",
     style: "Old Web",
-    image: "/images/filters/digital/digitalStyles/Old_Web.png",
+    image: "/images/filters/Old_Web.webp",
     isSelected: false,
   },
   {
@@ -214,7 +214,7 @@ export const digitalStylesFilters: Filter[] = [
     name: "Algorithmic",
     description: "Art with an Algorithmic style.",
     style: "Algorithmic",
-    image: "/images/filters/digital/digitalStyles/Algorithmic.png",
+    image: "/images/filters/Algorithmic.webp",
     isSelected: false,
   },
 ];

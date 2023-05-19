@@ -7,7 +7,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Visual representation of data using different graphical elements.",
     style: "Chart",
-    image: "/images/filters/design_Styles/chartsAndDiagrams/Chart.png",
+    image: "/images/filters/Chart.webp",
     isSelected: false,
   },
   {
@@ -16,7 +16,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Illustration showing the relationship between variables or data points.",
     style: "Graph",
-    image: "/images/filters/design_Styles/chartsAndDiagrams/Graph.png",
+    image: "/images/filters/Graph.webp",
     isSelected: false,
   },
   {
@@ -25,7 +25,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Graphic representation of information or processes using visual elements.",
     style: "Diagram",
-    image: "/images/filters/design_Styles/chartsAndDiagrams/Diagram.png",
+    image: "/images/filters/Diagram.webp",
     isSelected: false,
   },
   {
@@ -34,7 +34,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Relating to or characterized by diagrams or graphic representations.",
     style: "Diagrammatic",
-    image: "/images/filters/design_Styles/chartsAndDiagrams/Diagrammatic.png",
+    image: "/images/filters/Diagrammatic.webp",
     isSelected: false,
   },
   {
@@ -42,7 +42,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     name: "Ideogram",
     description: "Symbolic representation of an idea, concept, or object.",
     style: "Ideogram",
-    image: "/images/filters/design_Styles/chartsAndDiagrams/Ideogram.png",
+    image: "/images/filters/Ideogram.webp",
     isSelected: false,
   },
   {
@@ -51,7 +51,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Simple, iconic representation of objects, concepts, or instructions.",
     style: "Pictogram",
-    image: "/images/filters/design_Styles/chartsAndDiagrams/Pictogram.png",
+    image: "/images/filters/Pictogram.webp",
     isSelected: false,
   },
   {
@@ -60,7 +60,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Representation of the state of a dynamic system in a multi-dimensional space.",
     style: "Phase-Space",
-    image: "/images/filters/design_Styles/chartsAndDiagrams/Phase-Space.png",
+    image: "/images/filters/Phase-Space.webp",
     isSelected: false,
   },
   {
@@ -69,8 +69,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Visualization of particle interactions in quantum field theory.",
     style: "Feynman Diagram",
-    image:
-      "/images/filters/design_Styles/chartsAndDiagrams/Feynman_Diagram.png",
+    image: "/images/filters/Feynman_Diagram.webp",
     isSelected: false,
   },
   {
@@ -79,7 +78,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Representational depiction of geographical areas, landmarks, or data.",
     style: "Map",
-    image: "/images/filters/design_Styles/chartsAndDiagrams/Map.png",
+    image: "/images/filters/Map.webp",
     isSelected: false,
   },
   {
@@ -88,7 +87,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Simplified, systematic representation of a system, process, or concept.",
     style: "Schematic",
-    image: "/images/filters/design_Styles/chartsAndDiagrams/Schematic.png",
+    image: "/images/filters/Schematic.webp",
     isSelected: false,
   },
   {
@@ -97,8 +96,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Illustration displaying the components of an object or structure in an exploded arrangement.",
     style: "Exploded-View Diagram",
-    image:
-      "/images/filters/design_Styles/chartsAndDiagrams/Exploded-View_Diagram.png",
+    image: "/images/filters/Exploded-View_Diagram.webp",
     isSelected: false,
   },
   {
@@ -107,8 +105,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Visual representation of an electrical circuit using standardized symbols.",
     style: "Circuit Diagram",
-    image:
-      "/images/filters/design_Styles/chartsAndDiagrams/Circuit_Diagram.png",
+    image: "/images/filters/Circuit_Diagram.webp",
     isSelected: false,
   },
   {
@@ -117,7 +114,7 @@ export const chartsAndDiagramsFilters: Filter[] = [
     description:
       "Representation of data using colors to visualize intensity or density.",
     style: "Heatmap",
-    image: "/images/filters/design_Styles/chartsAndDiagrams/Heatmap.png",
+    image: "/images/filters/Heatmap.webp",
     isSelected: false,
   },
 ];

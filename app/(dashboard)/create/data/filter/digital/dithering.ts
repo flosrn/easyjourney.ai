@@ -6,7 +6,7 @@ export const ditheringFilters: Filter[] = [
     name: "Dither",
     description: "Image with a dither effect applied.",
     style: "Dither",
-    image: "/images/filters/digital/dithering/Dither.png",
+    image: "/images/filters/Dither.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const ditheringFilters: Filter[] = [
     name: "Dithering",
     description: "Artwork featuring dithering technique.",
     style: "Dithering",
-    image: "/images/filters/digital/dithering/Dithering.png",
+    image: "/images/filters/Dithering.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const ditheringFilters: Filter[] = [
     name: "Floyd-Steinberg Dithering",
     description: "Artwork utilizing Floyd-Steinberg dithering.",
     style: "Floyd-Steinberg Dithering",
-    image: "/images/filters/digital/dithering/FloydSteinberg_Dithering.png",
+    image: "/images/filters/FloydSteinberg_Dithering.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const ditheringFilters: Filter[] = [
     name: "Bayer-Matrix Dithering",
     description: "Artwork employing Bayer-Matrix dithering technique.",
     style: "Bayer-Matrix Dithering",
-    image: "/images/filters/digital/dithering/Bayer-Matrix_Dithering.png",
+    image: "/images/filters/Bayer-Matrix_Dithering.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const ditheringFilters: Filter[] = [
     name: "2x2-Bayer-Matrix Dithering",
     description: "Artwork with 2x2 pattern dithering effect.",
     style: "2x2-Bayer-Matrix Dithering",
-    image: "/images/filters/digital/dithering/2x2-Bayer-Matrix_Dithering.png",
+    image: "/images/filters/2x2-Bayer-Matrix_Dithering.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const ditheringFilters: Filter[] = [
     name: "4x4-Bayer-Matrix Dithering",
     description: "Artwork featuring 4x4 pattern dithering technique.",
     style: "4x4-Bayer-Matrix Dithering",
-    image: "/images/filters/digital/dithering/4x4-Bayer-Matrix_Dithering.png",
+    image: "/images/filters/4x4-Bayer-Matrix_Dithering.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const ditheringFilters: Filter[] = [
     name: "8x8-Bayer-Matrix Dithering",
     description: "Artwork showcasing 8x8 pattern dithering effect.",
     style: "8x8-Bayer-Matrix Dithering",
-    image: "/images/filters/digital/dithering/8x8-Bayer-Matrix_Dithering.png",
+    image: "/images/filters/8x8-Bayer-Matrix_Dithering.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const ditheringFilters: Filter[] = [
     name: "Burkes Dithering",
     description: "Artwork employing Burkes dithering technique.",
     style: "Burkes Dithering",
-    image: "/images/filters/digital/dithering/Burkes_Dithering.png",
+    image: "/images/filters/Burkes_Dithering.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const ditheringFilters: Filter[] = [
     name: "Stucki Dithering",
     description: "Artwork with Stucki dithering applied.",
     style: "Stucki Dithering",
-    image: "/images/filters/digital/dithering/Stucki_Dithering.png",
+    image: "/images/filters/Stucki_Dithering.webp",
     isSelected: false,
   },
 ];

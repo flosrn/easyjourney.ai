@@ -7,7 +7,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Combining steampunk elements with the concept of aether, a fictional form of energy.",
     style: "Aetherpunk",
-    image: "/images/filters/themes/sci-fi/Aetherpunk.png",
+    image: "/images/filters/Aetherpunk.webp",
     isSelected: false,
   },
   {
@@ -16,7 +16,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Exploring the mystical art of alchemy and its transformative powers.",
     style: "Alchemy",
-    image: "/images/filters/themes/sci-fi/Alchemy.png",
+    image: "/images/filters/Alchemy.webp",
     isSelected: false,
   },
   {
@@ -25,7 +25,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Drawing inspiration from extraterrestrial life forms and sci-fi portrayals of aliens.",
     style: "Alien",
-    image: "/images/filters/themes/sci-fi/Alien.png",
+    image: "/images/filters/Alien.webp",
     isSelected: false,
   },
   {
@@ -34,7 +34,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Incorporating angelic aesthetics and symbolism into a futuristic setting.",
     style: "Angelcore",
-    image: "/images/filters/themes/sci-fi/Angelcore.png",
+    image: "/images/filters/Angelcore.webp",
     isSelected: false,
   },
   {
@@ -43,7 +43,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Inspired by the magical phenomenon of the aurora borealis and its mesmerizing lights.",
     style: "Auroracore",
-    image: "/images/filters/themes/sci-fi/Auroracore.png",
+    image: "/images/filters/Auroracore.webp",
     isSelected: false,
   },
   {
@@ -52,7 +52,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Exploring mythical creatures and legendary beings from folklore and cryptozoology.",
     style: "Cryptidcore",
-    image: "/images/filters/themes/sci-fi/Cryptidcore.png",
+    image: "/images/filters/Cryptidcore.webp",
     isSelected: false,
   },
   {
@@ -61,7 +61,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Combining elements of cyberpunk and film noir, creating a dark and futuristic atmosphere.",
     style: "Cypernoir",
-    image: "/images/filters/themes/sci-fi/Cypernoir.png",
+    image: "/images/filters/Cypernoir.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Blending the retro-futuristic aesthetics of art deco with sci-fi themes.",
     style: "Decopunk",
-    image: "/images/filters/themes/sci-fi/Decopunk.png",
+    image: "/images/filters/Decopunk.webp",
     isSelected: false,
   },
   {
@@ -79,7 +79,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Incorporating dragon-inspired elements and themes into a futuristic setting.",
     style: "Dracopunk",
-    image: "/images/filters/themes/sci-fi/Dracopunk.png",
+    image: "/images/filters/Dracopunk.webp",
     isSelected: false,
   },
 
@@ -89,7 +89,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Embracing the power and symbolism of dragons in a futuristic and sci-fi context.",
     style: "Dragoncore",
-    image: "/images/filters/themes/sci-fi/Dragoncore.png",
+    image: "/images/filters/Dragoncore.webp",
     isSelected: false,
   },
   {
@@ -98,7 +98,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Exploring the concept of beings or entities originating from beyond planet Earth.",
     style: "Extraterrestrial",
-    image: "/images/filters/themes/sci-fi/Extraterrestrial.png",
+    image: "/images/filters/Extraterrestrial.webp",
     isSelected: false,
   },
   {
@@ -107,7 +107,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Incorporating the iconic symbol of the all-seeing eye into a futuristic theme.",
     style: "Eye of Providence",
-    image: "/images/filters/themes/sci-fi/Eye_of_Providence.png",
+    image: "/images/filters/Eye_of_Providence.webp",
     isSelected: false,
   },
   {
@@ -116,7 +116,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Drawing inspiration from the enchanting world of fairies and magical creatures.",
     style: "Fairy Folk",
-    image: "/images/filters/themes/sci-fi/Fairy_Folk.png",
+    image: "/images/filters/Fairy_Folk.webp",
     isSelected: false,
   },
   {
@@ -125,7 +125,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Embracing the whimsical and ethereal aesthetics of fairy tales and magical realms.",
     style: "Fairycore",
-    image: "/images/filters/themes/sci-fi/Fairycore.png",
+    image: "/images/filters/Fairycore.webp",
     isSelected: false,
   },
   {
@@ -134,7 +134,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Incorporating ghostly and supernatural elements into a futuristic and sci-fi setting.",
     style: "Ghostcore",
-    image: "/images/filters/themes/sci-fi/Ghostcore.png",
+    image: "/images/filters/Ghostcore.webp",
     isSelected: false,
   },
   {
@@ -143,7 +143,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Embracing the unconventional beauty of goblins and nature-inspired aesthetics.",
     style: "Goblincore",
-    image: "/images/filters/themes/sci-fi/Goblincore.png",
+    image: "/images/filters/Goblincore.webp",
     isSelected: false,
   },
   {
@@ -152,7 +152,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Exploring the mysterious and secretive world of the Illuminati conspiracy theories.",
     style: "Illuminati",
-    image: "/images/filters/themes/sci-fi/Illuminati.png",
+    image: "/images/filters/Illuminati.webp",
     isSelected: false,
   },
   {
@@ -161,7 +161,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Portraying a futuristic world invaded or influenced by extraterrestrial forces.",
     style: "Invaded",
-    image: "/images/filters/themes/sci-fi/Invaded.png",
+    image: "/images/filters/Invaded.webp",
     isSelected: false,
   },
   {
@@ -170,7 +170,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Embracing the concept of large-scale invasions from outer space or other dimensions.",
     style: "Invasion",
-    image: "/images/filters/themes/sci-fi/Invasion.png",
+    image: "/images/filters/Invasion.webp",
     isSelected: false,
   },
   {
@@ -179,7 +179,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Inspired by the iconic weapon from the Star Wars franchise, emphasizing futuristic swordplay.",
     style: "Lightsaber",
-    image: "/images/filters/themes/sci-fi/Lightsaber.png",
+    image: "/images/filters/Lightsaber.webp",
     isSelected: false,
   },
   {
@@ -188,7 +188,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Blending futuristic technology with mystical and magical elements.",
     style: "Magewave",
-    image: "/images/filters/themes/sci-fi/Magewave.png",
+    image: "/images/filters/Magewave.webp",
     isSelected: false,
   },
   {
@@ -197,7 +197,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Exploring the integration of magic and supernatural phenomena in a futuristic setting.",
     style: "Magic",
-    image: "/images/filters/themes/sci-fi/Magic.png",
+    image: "/images/filters/Magic.webp",
     isSelected: false,
   },
   {
@@ -206,7 +206,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Embracing a futuristic world where magic and advanced technology coexist harmoniously.",
     style: "Magical",
-    image: "/images/filters/themes/sci-fi/Magical.png",
+    image: "/images/filters/Magical.webp",
     isSelected: false,
   },
   {
@@ -215,7 +215,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Combining elements of magic and punk aesthetics in a futuristic and rebellious style.",
     style: "Magicpunk",
-    image: "/images/filters/themes/sci-fi/Magicpunk.png",
+    image: "/images/filters/Magicpunk.webp",
     isSelected: false,
   },
   {
@@ -224,7 +224,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Exploring the nature of existence, consciousness, and reality in a futuristic context.",
     style: "Metaphysical",
-    image: "/images/filters/themes/sci-fi/Metaphysical.png",
+    image: "/images/filters/Metaphysical.webp",
     isSelected: false,
   },
   {
@@ -233,7 +233,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Embracing mysterious and mystical elements in a futuristic and otherworldly theme.",
     style: "Mystic",
-    image: "/images/filters/themes/sci-fi/Mystic.png",
+    image: "/images/filters/Mystic.webp",
     isSelected: false,
   },
   {
@@ -242,7 +242,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Incorporating enchanting and magical elements into a futuristic and sci-fi context.",
     style: "Mystical",
-    image: "/images/filters/themes/sci-fi/Mystical.png",
+    image: "/images/filters/Mystical.webp",
     isSelected: false,
   },
   {
@@ -251,7 +251,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Blending elements of mythology and punk aesthetics in a futuristic and subversive style.",
     style: "Mythpunk",
-    image: "/images/filters/themes/sci-fi/Mythpunk.png",
+    image: "/images/filters/Mythpunk.webp",
     isSelected: false,
   },
   {
@@ -260,7 +260,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Focusing on psychic powers and abilities in a futuristic and mind-bending context.",
     style: "Psychic",
-    image: "/images/filters/themes/sci-fi/Psychic.png",
+    image: "/images/filters/Psychic.webp",
     isSelected: false,
   },
   {
@@ -269,7 +269,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Drawing inspiration from nature and wilderness, combining it with futuristic and sci-fi elements.",
     style: "Rangercore",
-    image: "/images/filters/themes/sci-fi/Rangercore.png",
+    image: "/images/filters/Rangercore.webp",
     isSelected: false,
   },
   {
@@ -278,7 +278,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Embracing the core elements of science fiction, including futuristic technology and advanced concepts.",
     style: "Sci-fi",
-    image: "/images/filters/themes/sci-fi/Sci-fi.png",
+    image: "/images/filters/Sci-fi.webp",
     isSelected: false,
   },
   {
@@ -287,7 +287,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Exploring the use of spells and magical incantations in a futuristic and sci-fi context.",
     style: "Spell",
-    image: "/images/filters/themes/sci-fi/Spell.png",
+    image: "/images/filters/Spell.webp",
     isSelected: false,
   },
   {
@@ -296,7 +296,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Incorporating spiritual and ethereal elements into a futuristic and otherworldly style.",
     style: "Spiritcore",
-    image: "/images/filters/themes/sci-fi/Spiritcore.png",
+    image: "/images/filters/Spiritcore.webp",
     isSelected: false,
   },
   {
@@ -305,7 +305,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Inspired by the mythical creature Spriggan, combining it with futuristic and technological elements.",
     style: "Spriggancore",
-    image: "/images/filters/themes/sci-fi/Spriggancore.png",
+    image: "/images/filters/Spriggancore.webp",
     isSelected: false,
   },
   {
@@ -314,7 +314,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Exploring paranormal and supernatural phenomena in a futuristic and sci-fi context.",
     style: "Supernatural",
-    image: "/images/filters/themes/sci-fi/Supernatural.png",
+    image: "/images/filters/Supernatural.webp",
     isSelected: false,
   },
   {
@@ -323,7 +323,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Focusing on earthly and terrestrial elements within a futuristic and sci-fi setting.",
     style: "Terrestrial",
-    image: "/images/filters/themes/sci-fi/Terrestrial.png",
+    image: "/images/filters/Terrestrial.webp",
     isSelected: false,
   },
   {
@@ -332,7 +332,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Centered around unidentified flying objects and extraterrestrial encounters.",
     style: "UFO",
-    image: "/images/filters/themes/sci-fi/UFO.png",
+    image: "/images/filters/UFO.webp",
     isSelected: false,
   },
   {
@@ -341,7 +341,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Incorporating unicorns and their mystical symbolism into a futuristic and sci-fi theme.",
     style: "Unicorncore",
-    image: "/images/filters/themes/sci-fi/Unicorncore.png",
+    image: "/images/filters/Unicorncore.webp",
     isSelected: false,
   },
   {
@@ -350,7 +350,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Embracing the bizarre, surreal, and uncanny in a futuristic and aurora-inspired style.",
     style: "Weirdcore Aurora",
-    image: "/images/filters/themes/sci-fi/Weirdcore_Aurora.png",
+    image: "/images/filters/Weirdcore_Aurora.webp",
     isSelected: false,
   },
   {
@@ -359,7 +359,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Incorporating witchcraft and occult elements into a futuristic and sci-fi aesthetic.",
     style: "Witchcore",
-    image: "/images/filters/themes/sci-fi/Witchcore.png",
+    image: "/images/filters/Witchcore.webp",
     isSelected: false,
   },
   {
@@ -368,7 +368,7 @@ export const sciFiFilters: Filter[] = [
     description:
       "Drawing inspiration from wizards, magic, and mystical elements in a futuristic and sci-fi context.",
     style: "Wizardcore",
-    image: "/images/filters/themes/sci-fi/Wizardcore.png",
+    image: "/images/filters/Wizardcore.webp",
     isSelected: false,
   },
 ];

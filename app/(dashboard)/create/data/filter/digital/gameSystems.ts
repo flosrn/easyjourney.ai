@@ -6,7 +6,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Atari",
     description: "Classic gaming console from Atari.",
     style: "Atari",
-    image: "/images/filters/digital/gameSystems/Atari.png",
+    image: "/images/filters/Atari.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Atari 2600",
     description: "Iconic gaming console: Atari 2600.",
     style: "Atari 2600",
-    image: "/images/filters/digital/gameSystems/Atari_2600.png",
+    image: "/images/filters/Atari_2600.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Atari ST",
     description: "Vintage computer: Atari ST.",
     style: "Atari ST",
-    image: "/images/filters/digital/gameSystems/Atari_ST.png",
+    image: "/images/filters/Atari_ST.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "PlayStation 1",
     description: "Revolutionary gaming console: PlayStation 1.",
     style: "PlayStation 1",
-    image: "/images/filters/digital/gameSystems/PlayStation_1.png",
+    image: "/images/filters/PlayStation_1.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "PlayStation 2",
     description: "Popular gaming console: PlayStation 2.",
     style: "PlayStation 2",
-    image: "/images/filters/digital/gameSystems/PlayStation_2.png",
+    image: "/images/filters/PlayStation_2.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "PlayStation 3",
     description: "Advanced gaming console: PlayStation 3.",
     style: "PlayStation 3",
-    image: "/images/filters/digital/gameSystems/PlayStation_3.png",
+    image: "/images/filters/PlayStation_3.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "PlayStation 4",
     description: "Next-generation gaming console: PlayStation 4.",
     style: "PlayStation 4",
-    image: "/images/filters/digital/gameSystems/PlayStation_4.png",
+    image: "/images/filters/PlayStation_4.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "PlayStation 5",
     description: "Cutting-edge gaming console: PlayStation 5.",
     style: "PlayStation 5",
-    image: "/images/filters/digital/gameSystems/PlayStation_5.png",
+    image: "/images/filters/PlayStation_5.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "PSP",
     description: "Portable gaming system: PSP (PlayStation Portable).",
     style: "PSP",
-    image: "/images/filters/digital/gameSystems/PSP.png",
+    image: "/images/filters/PSP.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "PlayStation Portable",
     description: "Handheld gaming device: PlayStation Portable.",
     style: "PlayStation Portable",
-    image: "/images/filters/digital/gameSystems/PlayStation_Portable.png",
+    image: "/images/filters/PlayStation_Portable.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "PS Vita",
     description: "Portable gaming console: PS Vita (PlayStation Vita).",
     style: "PS Vita",
-    image: "/images/filters/digital/gameSystems/PS_Vita.png",
+    image: "/images/filters/PS_Vita.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "PlayStation Vita",
     description: "Handheld gaming system: PlayStation Vita.",
     style: "PlayStation Vita",
-    image: "/images/filters/digital/gameSystems/PlayStation_Vita.png",
+    image: "/images/filters/PlayStation_Vita.webp",
     isSelected: false,
   },
   {
@@ -102,7 +102,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Xbox",
     description: "Original Xbox gaming console.",
     style: "Xbox",
-    image: "/images/filters/digital/gameSystems/Xbox.png",
+    image: "/images/filters/Xbox.webp",
     isSelected: false,
   },
   {
@@ -110,7 +110,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Xbox 360",
     description: "Popular gaming console: Xbox 360.",
     style: "Xbox 360",
-    image: "/images/filters/digital/gameSystems/Xbox_360.png",
+    image: "/images/filters/Xbox_360.webp",
     isSelected: false,
   },
   {
@@ -118,7 +118,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Xbox One",
     description: "Next-generation gaming console: Xbox One.",
     style: "Xbox One",
-    image: "/images/filters/digital/gameSystems/Xbox_One.png",
+    image: "/images/filters/Xbox_One.webp",
     isSelected: false,
   },
   {
@@ -126,7 +126,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Xbox One X",
     description: "High-performance gaming console: Xbox One X.",
     style: "Xbox One X",
-    image: "/images/filters/digital/gameSystems/Xbox_One_X.png",
+    image: "/images/filters/Xbox_One_X.webp",
     isSelected: false,
   },
   {
@@ -134,7 +134,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "NES",
     description: "Nintendo Entertainment System: NES.",
     style: "NES",
-    image: "/images/filters/digital/gameSystems/NES.png",
+    image: "/images/filters/NES.webp",
     isSelected: false,
   },
   {
@@ -142,8 +142,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Nintendo Entertainment System",
     description: "Classic gaming console: Nintendo Entertainment System.",
     style: "Nintendo Entertainment System",
-    image:
-      "/images/filters/digital/gameSystems/Nintendo_Entertainment_System.png",
+    image: "/images/filters/Nintendo_Entertainment_System.webp",
     isSelected: false,
   },
   {
@@ -151,7 +150,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "SNES",
     description: "Super Nintendo Entertainment System: SNES.",
     style: "SNES",
-    image: "/images/filters/digital/gameSystems/SNES.png",
+    image: "/images/filters/SNES.webp",
     isSelected: false,
   },
   {
@@ -159,8 +158,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Super Nintendo Entertainment System",
     description: "Iconic gaming console: Super Nintendo Entertainment System.",
     style: "Super Nintendo Entertainment System",
-    image:
-      "/images/filters/digital/gameSystems/Super_Nintendo_Entertainment_System.png",
+    image: "/images/filters/Super_Nintendo_Entertainment_System.webp",
     isSelected: false,
   },
   {
@@ -168,7 +166,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Famicom",
     description: "Nintendo Family Computer: Famicom.",
     style: "Famicom",
-    image: "/images/filters/digital/gameSystems/Famicom.png",
+    image: "/images/filters/Famicom.webp",
     isSelected: false,
   },
   {
@@ -176,7 +174,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Nintendo Famicom",
     description: "Classic gaming console: Nintendo Famicom.",
     style: "Nintendo Famicom",
-    image: "/images/filters/digital/gameSystems/Nintendo_Famicom.png",
+    image: "/images/filters/Nintendo_Famicom.webp",
     isSelected: false,
   },
   {
@@ -184,7 +182,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Nintendo 64",
     description: "64-bit gaming console: Nintendo 64.",
     style: "Nintendo 64",
-    image: "/images/filters/digital/gameSystems/Nintendo_64.png",
+    image: "/images/filters/Nintendo_64.webp",
     isSelected: false,
   },
   {
@@ -192,7 +190,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "GameCube",
     description: "Nintendo GameCube gaming console.",
     style: "GameCube",
-    image: "/images/filters/digital/gameSystems/GameCube.png",
+    image: "/images/filters/GameCube.webp",
     isSelected: false,
   },
   {
@@ -200,7 +198,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Wii",
     description: "Revolutionary gaming console: Wii.",
     style: "Wii",
-    image: "/images/filters/digital/gameSystems/Wii.png",
+    image: "/images/filters/Wii.webp",
     isSelected: false,
   },
   {
@@ -208,7 +206,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Wii U",
     description: "Gaming console: Wii U.",
     style: "Wii U",
-    image: "/images/filters/digital/gameSystems/Wii_U.png",
+    image: "/images/filters/Wii_U.webp",
     isSelected: false,
   },
   {
@@ -216,7 +214,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Nintendo Switch",
     description: "Hybrid gaming console: Nintendo Switch.",
     style: "Nintendo Switch",
-    image: "/images/filters/digital/gameSystems/Nintendo_Switch.png",
+    image: "/images/filters/Nintendo_Switch.webp",
     isSelected: false,
   },
   {
@@ -224,7 +222,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Game Boy",
     description: "Classic handheld gaming device: Game Boy.",
     style: "Game Boy",
-    image: "/images/filters/digital/gameSystems/Game_Boy.png",
+    image: "/images/filters/Game_Boy.webp",
     isSelected: false,
   },
   {
@@ -232,7 +230,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Game Boy Color",
     description: "Handheld gaming device: Game Boy Color.",
     style: "Game Boy Color",
-    image: "/images/filters/digital/gameSystems/Game_Boy_Color.png",
+    image: "/images/filters/Game_Boy_Color.webp",
     isSelected: false,
   },
   {
@@ -240,7 +238,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Game Boy Advance",
     description: "Handheld gaming console: Game Boy Advance.",
     style: "Game Boy Advance",
-    image: "/images/filters/digital/gameSystems/Game_Boy_Advance.png",
+    image: "/images/filters/Game_Boy_Advance.webp",
     isSelected: false,
   },
   {
@@ -248,7 +246,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Nintendo DS",
     description: "Dual-screen handheld gaming device: Nintendo DS.",
     style: "Nintendo DS",
-    image: "/images/filters/digital/gameSystems/Nintendo_DS.png",
+    image: "/images/filters/Nintendo_DS.webp",
     isSelected: false,
   },
   {
@@ -256,7 +254,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Nintendo DSi",
     description: "Portable gaming device: Nintendo DSi.",
     style: "Nintendo DSi",
-    image: "/images/filters/digital/gameSystems/Nintendo_DSi.png",
+    image: "/images/filters/Nintendo_DSi.webp",
     isSelected: false,
   },
   {
@@ -264,7 +262,7 @@ export const gameSystemsFilters: Filter[] = [
     name: "Nintendo 3DS",
     description: "Glasses-free 3D handheld gaming device: Nintendo 3DS.",
     style: "Nintendo 3DS",
-    image: "/images/filters/digital/gameSystems/Nintendo_3DS.png",
+    image: "/images/filters/Nintendo_3DS.webp",
     isSelected: false,
   },
 ];

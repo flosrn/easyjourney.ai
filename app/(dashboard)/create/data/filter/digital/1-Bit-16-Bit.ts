@@ -6,7 +6,7 @@ export const BitFilters: Filter[] = [
     name: "1-bit",
     description: "Simulating a retro 1-bit digital aesthetic",
     style: "1-bit",
-    image: "/images/filters/digital/1-Bit-16-Bit/1-bit.png",
+    image: "/images/filters/1-bit.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const BitFilters: Filter[] = [
     name: "2-bit",
     description: "Recreating a nostalgic 2-bit digital look",
     style: "2-bit",
-    image: "/images/filters/digital/1-Bit-16-Bit/2-bit.png",
+    image: "/images/filters/2-bit.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const BitFilters: Filter[] = [
     name: "3-bit",
     description: "Emulating the visual style of 3-bit graphics",
     style: "3-bit",
-    image: "/images/filters/digital/1-Bit-16-Bit/3-bit.png",
+    image: "/images/filters/3-bit.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const BitFilters: Filter[] = [
     name: "4-bit",
     description: "Recreating the charm of 4-bit digital graphics",
     style: "4-bit",
-    image: "/images/filters/digital/1-Bit-16-Bit/4-bit.png",
+    image: "/images/filters/4-bit.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const BitFilters: Filter[] = [
     name: "4-bit RGB",
     description: "Simulating a 4-bit color palette for a vibrant look",
     style: "4-bit RGB",
-    image: "/images/filters/digital/1-Bit-16-Bit/4-bit_RGB.png",
+    image: "/images/filters/4-bit_RGB.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const BitFilters: Filter[] = [
     name: "6-bit",
     description: "Emulating the visual style of 6-bit graphics",
     style: "6-bit",
-    image: "/images/filters/digital/1-Bit-16-Bit/6-bit.png",
+    image: "/images/filters/6-bit.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const BitFilters: Filter[] = [
     name: "8-bit",
     description: "Recreating the iconic look of 8-bit graphics",
     style: "8-bit",
-    image: "/images/filters/digital/1-Bit-16-Bit/8-bit.png",
+    image: "/images/filters/8-bit.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const BitFilters: Filter[] = [
     name: "8-bit RGB",
     description: "Simulating the vibrant colors of 8-bit RGB graphics",
     style: "8-bit RGB",
-    image: "/images/filters/digital/1-Bit-16-Bit/8-bit_RGB.png",
+    image: "/images/filters/8-bit_RGB.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const BitFilters: Filter[] = [
     name: "12-bit",
     description: "Emulating the visual style of 12-bit graphics",
     style: "12-bit",
-    image: "/images/filters/digital/1-Bit-16-Bit/12-bit.png",
+    image: "/images/filters/12-bit.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const BitFilters: Filter[] = [
     name: "12-bit RGB",
     description: "Simulating the colors of 12-bit RGB graphics",
     style: "12-bit RGB",
-    image: "/images/filters/digital/1-Bit-16-Bit/12-bit_RGB.png",
+    image: "/images/filters/12-bit_RGB.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const BitFilters: Filter[] = [
     name: "16-bit",
     description: "Recreating the visual style of 16-bit graphics",
     style: "16-bit",
-    image: "/images/filters/digital/1-Bit-16-Bit/16-bit.png",
+    image: "/images/filters/16-bit.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const BitFilters: Filter[] = [
     name: "16-bit RGB",
     description: "Simulating the colors of 16-bit RGB graphics",
     style: "16-bit RGB",
-    image: "/images/filters/digital/1-Bit-16-Bit/16-bit_RGB.png",
+    image: "/images/filters/16-bit_RGB.webp",
     isSelected: false,
   },
 ];

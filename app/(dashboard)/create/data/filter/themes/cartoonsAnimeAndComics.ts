@@ -6,7 +6,7 @@ export const cartoonsAnimeAndComicsFilters: Filter[] = [
     name: "Cartoon",
     description: "Vibrant and playful art inspired by cartoons.",
     style: "Cartoon",
-    image: "/images/filters/themes/cartoonsAnimeAndComics/Cartoon.png",
+    image: "/images/filters/Cartoon.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const cartoonsAnimeAndComicsFilters: Filter[] = [
     name: "Marvel Comics",
     description: "Iconic superheroes and stories from Marvel Comics.",
     style: "Marvel Comics",
-    image: "/images/filters/themes/cartoonsAnimeAndComics/Marvel_Comics.png",
+    image: "/images/filters/Marvel_Comics.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const cartoonsAnimeAndComicsFilters: Filter[] = [
     name: "Anime",
     description: "Expressive art style capturing the essence of anime.",
     style: "Anime",
-    image: "/images/filters/themes/cartoonsAnimeAndComics/Anime.png",
+    image: "/images/filters/Anime.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const cartoonsAnimeAndComicsFilters: Filter[] = [
     name: "Animecore",
     description: "Blend of anime aesthetics with diverse subcultures.",
     style: "Animecore",
-    image: "/images/filters/themes/cartoonsAnimeAndComics/Animecore.png",
+    image: "/images/filters/Animecore.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const cartoonsAnimeAndComicsFilters: Filter[] = [
     name: "Manga",
     description: "Artistic style and storytelling techniques found in manga.",
     style: "Manga",
-    image: "/images/filters/themes/cartoonsAnimeAndComics/Manga.png",
+    image: "/images/filters/Manga.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const cartoonsAnimeAndComicsFilters: Filter[] = [
     name: "Horror Anime",
     description: "Eerie and suspenseful elements inspired by horror anime.",
     style: "Horror Anime",
-    image: "/images/filters/themes/cartoonsAnimeAndComics/Horror_Anime.png",
+    image: "/images/filters/Horror_Anime.webp",
     isSelected: false,
   },
   {
@@ -54,8 +54,7 @@ export const cartoonsAnimeAndComicsFilters: Filter[] = [
     name: "Vampirella Styled",
     description: "Unique art style combining horror and pin-up aesthetics.",
     style: "Vampirella Styled",
-    image:
-      "/images/filters/themes/cartoonsAnimeAndComics/Vampirella_Styled.png",
+    image: "/images/filters/Vampirella_Styled.webp",
     isSelected: false,
   },
   {
@@ -63,7 +62,7 @@ export const cartoonsAnimeAndComicsFilters: Filter[] = [
     name: "Kawaii",
     description: "Adorable and charming aesthetics embodying Kawaii culture.",
     style: "Kawaii",
-    image: "/images/filters/themes/cartoonsAnimeAndComics/Kawaii.png",
+    image: "/images/filters/Kawaii.webp",
     isSelected: false,
   },
   {
@@ -71,7 +70,7 @@ export const cartoonsAnimeAndComicsFilters: Filter[] = [
     name: "UwU",
     description: "Wholesome and affectionate emotions captured through art.",
     style: "UwU",
-    image: "/images/filters/themes/cartoonsAnimeAndComics/UwU.png",
+    image: "/images/filters/UwU.webp",
     isSelected: false,
   },
 ];

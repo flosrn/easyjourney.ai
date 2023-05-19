@@ -6,7 +6,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Elegant",
     description: "Refined and graceful style",
     style: "Elegant",
-    image: "/images/filters/design_Styles/eleganceBeautyAndAppeal/Elegant.png",
+    image: "/images/filters/Elegant.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Elegance",
     description: "Sophisticated and timeless beauty",
     style: "Elegance",
-    image: "/images/filters/design_Styles/eleganceBeautyAndAppeal/Elegance.png",
+    image: "/images/filters/Elegance.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Beauty",
     description: "Aesthetic appeal and attractiveness",
     style: "Beauty",
-    image: "/images/filters/design_Styles/eleganceBeautyAndAppeal/Beauty.png",
+    image: "/images/filters/Beauty.webp",
     isSelected: false,
   },
   {
@@ -30,8 +30,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Beautiful",
     description: "Lovely and visually pleasing",
     style: "Beautiful",
-    image:
-      "/images/filters/design_Styles/eleganceBeautyAndAppeal/Beautiful.png",
+    image: "/images/filters/Beautiful.webp",
     isSelected: false,
   },
   {
@@ -39,7 +38,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Appeal",
     description: "Captivating and attractive style",
     style: "Appeal",
-    image: "/images/filters/design_Styles/eleganceBeautyAndAppeal/Appeal.png",
+    image: "/images/filters/Appeal.webp",
     isSelected: false,
   },
   {
@@ -47,8 +46,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Appealing",
     description: "Alluring and charming style",
     style: "Appealing",
-    image:
-      "/images/filters/design_Styles/eleganceBeautyAndAppeal/Appealing.png",
+    image: "/images/filters/Appealing.webp",
     isSelected: false,
   },
   {
@@ -56,8 +54,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Marvelous",
     description: "Evokes wonder and admiration",
     style: "Marvelous",
-    image:
-      "/images/filters/design_Styles/eleganceBeautyAndAppeal/Marvelous.png",
+    image: "/images/filters/Marvelous.webp",
     isSelected: false,
   },
   {
@@ -65,7 +62,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Luxury",
     description: "Opulent and exclusive style",
     style: "Luxury",
-    image: "/images/filters/design_Styles/eleganceBeautyAndAppeal/Luxury.png",
+    image: "/images/filters/Luxury.webp",
     isSelected: false,
   },
   {
@@ -73,8 +70,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Luxurious",
     description: "Lavish and grand style",
     style: "Luxurious",
-    image:
-      "/images/filters/design_Styles/eleganceBeautyAndAppeal/Luxurious.png",
+    image: "/images/filters/Luxurious.webp",
     isSelected: false,
   },
   {
@@ -82,7 +78,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Luxe",
     description: "Elegant and luxurious style",
     style: "Luxe",
-    image: "/images/filters/design_Styles/eleganceBeautyAndAppeal/Luxe.png",
+    image: "/images/filters/Luxe.webp",
     isSelected: false,
   },
   {
@@ -90,8 +86,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Low-Quality",
     description: "Substandard and inferior quality",
     style: "Low-Quality",
-    image:
-      "/images/filters/design_Styles/eleganceBeautyAndAppeal/Low-Quality.png",
+    image: "/images/filters/Low-Quality.webp",
     isSelected: false,
   },
   {
@@ -99,8 +94,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Medium-Quality",
     description: "Average and moderate quality",
     style: "Medium-Quality",
-    image:
-      "/images/filters/design_Styles/eleganceBeautyAndAppeal/Medium-Quality.png",
+    image: "/images/filters/Medium-Quality.webp",
     isSelected: false,
   },
   {
@@ -108,8 +102,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "High-Quality",
     description: "Superior and excellent quality",
     style: "High-Quality",
-    image:
-      "/images/filters/design_Styles/eleganceBeautyAndAppeal/High-Quality.png",
+    image: "/images/filters/High-Quality.webp",
     isSelected: false,
   },
   {
@@ -117,8 +110,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Ultra-Quality",
     description: "Exceptional and top-tier quality",
     style: "Ultra-Quality",
-    image:
-      "/images/filters/design_Styles/eleganceBeautyAndAppeal/Ultra-Quality.png",
+    image: "/images/filters/Ultra-Quality.webp",
     isSelected: false,
   },
   {
@@ -126,8 +118,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Ultra Quality",
     description: "Unmatched and supreme quality",
     style: "Ultra Quality",
-    image:
-      "/images/filters/design_Styles/eleganceBeautyAndAppeal/Ultra_Quality.png",
+    image: "/images/filters/Ultra_Quality.webp",
     isSelected: false,
   },
   {
@@ -135,8 +126,7 @@ export const eleganceBeautyAndAppealFilters: Filter[] = [
     name: "Perfection",
     description: "Impeccable and flawless style",
     style: "Perfection",
-    image:
-      "/images/filters/design_Styles/eleganceBeautyAndAppeal/Perfection.png",
+    image: "/images/filters/Perfection.webp",
     isSelected: false,
   },
 ];

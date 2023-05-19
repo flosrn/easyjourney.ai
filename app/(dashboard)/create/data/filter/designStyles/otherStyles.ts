@@ -6,7 +6,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Generic",
     description: "Versatile and adaptable design style",
     style: "Generic",
-    image: "/images/filters/design_Styles/otherStyles/Generic.png",
+    image: "/images/filters/Generic.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Balance",
     description: "Harmonious and proportional design approach",
     style: "Balance",
-    image: "/images/filters/design_Styles/otherStyles/Balance.png",
+    image: "/images/filters/Balance.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Proportion",
     description: "Emphasizes the relationship of elements in design",
     style: "Proportion",
-    image: "/images/filters/design_Styles/otherStyles/Proportion.png",
+    image: "/images/filters/Proportion.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Blending",
     description: "Smooth and seamless integration of design elements",
     style: "Blending",
-    image: "/images/filters/design_Styles/otherStyles/Blending.png",
+    image: "/images/filters/Blending.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Representation",
     description: "Depicts objects or ideas in a realistic manner",
     style: "Representation",
-    image: "/images/filters/design_Styles/otherStyles/Representation.png",
+    image: "/images/filters/Representation.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Lossy",
     description: "Intentional degradation of quality or information",
     style: "Lossy",
-    image: "/images/filters/design_Styles/otherStyles/Lossy.png",
+    image: "/images/filters/Lossy.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Rodilius",
     description: "Playful and whimsical design with curvy elements",
     style: "Rodilius",
-    image: "/images/filters/design_Styles/otherStyles/Rodilius.png",
+    image: "/images/filters/Rodilius.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Kerkythea",
     description: "Inspired by the Kerkythea rendering engine",
     style: "Kerkythea",
-    image: "/images/filters/design_Styles/otherStyles/Kerkythea.png",
+    image: "/images/filters/Kerkythea.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Mottled",
     description: "Speckled or spotted design with texture",
     style: "Mottled",
-    image: "/images/filters/design_Styles/otherStyles/Mottled.png",
+    image: "/images/filters/Mottled.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Qbist",
     description: "Abstract geometric design influenced by Qbism",
     style: "Qbist",
-    image: "/images/filters/design_Styles/otherStyles/Qbist.png",
+    image: "/images/filters/Qbist.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Oilify",
     description: "Simulates the appearance of an oil painting",
     style: "Oilify",
-    image: "/images/filters/design_Styles/otherStyles/Oilify.png",
+    image: "/images/filters/Oilify.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Entropy",
     description: "Chaotic and unpredictable design elements",
     style: "Entropy",
-    image: "/images/filters/design_Styles/otherStyles/Entropy.png",
+    image: "/images/filters/Entropy.webp",
     isSelected: false,
   },
   {
@@ -102,7 +102,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Zalgo",
     description: "Distorted and corrupted design with glitch effects",
     style: "Zalgo",
-    image: "/images/filters/design_Styles/otherStyles/Zalgo.png",
+    image: "/images/filters/Zalgo.webp",
     isSelected: false,
   },
   {
@@ -110,7 +110,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Liminal",
     description: "Transitional or in-between design style",
     style: "Liminal",
-    image: "/images/filters/design_Styles/otherStyles/Liminal.png",
+    image: "/images/filters/Liminal.webp",
     isSelected: false,
   },
   {
@@ -118,7 +118,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Crooked",
     description: "Tilted or skewed design elements",
     style: "Crooked",
-    image: "/images/filters/design_Styles/otherStyles/Crooked.png",
+    image: "/images/filters/Crooked.webp",
     isSelected: false,
   },
   {
@@ -126,7 +126,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Cockeyed",
     description: "Off-kilter or askew design approach",
     style: "Cockeyed",
-    image: "/images/filters/design_Styles/otherStyles/Cockeyed.png",
+    image: "/images/filters/Cockeyed.webp",
     isSelected: false,
   },
   {
@@ -134,7 +134,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Extreme",
     description: "Bold and daring design with exaggerated elements",
     style: "Extreme",
-    image: "/images/filters/design_Styles/otherStyles/Extreme.png",
+    image: "/images/filters/Extreme.webp",
     isSelected: false,
   },
   {
@@ -142,7 +142,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Elite",
     description: "Sophisticated and refined design style",
     style: "Elite",
-    image: "/images/filters/design_Styles/otherStyles/Elite.png",
+    image: "/images/filters/Elite.webp",
     isSelected: false,
   },
   {
@@ -150,7 +150,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Artifact",
     description: "Design with intentional imperfections or artifacts",
     style: "Artifact",
-    image: "/images/filters/design_Styles/otherStyles/Artifact.png",
+    image: "/images/filters/Artifact.webp",
     isSelected: false,
   },
   {
@@ -158,7 +158,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Serendipity",
     description: "Design with unexpected and fortunate discoveries",
     style: "Serendipity",
-    image: "/images/filters/design_Styles/otherStyles/Serendipity.png",
+    image: "/images/filters/Serendipity.webp",
     isSelected: false,
   },
   {
@@ -166,7 +166,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Acidic",
     description: "Vibrant and psychedelic design with acid-inspired colors",
     style: "Acidic",
-    image: "/images/filters/design_Styles/otherStyles/Acidic.png",
+    image: "/images/filters/Acidic.webp",
     isSelected: false,
   },
   {
@@ -174,7 +174,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Oudemansiella-Mucida",
     description: "Design inspired by the Oudemansiella mucida fungus",
     style: "Oudemansiella-Mucida",
-    image: "/images/filters/design_Styles/otherStyles/Oudemansiella-Mucida.png",
+    image: "/images/filters/Oudemansiella-Mucida.webp",
     isSelected: false,
   },
   {
@@ -182,7 +182,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Podoserpula-Miranda",
     description: "Design inspired by the Podoserpula miranda fungus",
     style: "Podoserpula-Miranda",
-    image: "/images/filters/design_Styles/otherStyles/Podoserpula-Miranda.png",
+    image: "/images/filters/Podoserpula-Miranda.webp",
     isSelected: false,
   },
   {
@@ -190,8 +190,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Gliophorus-Psittacinus",
     description: "Design inspired by the Gliophorus psittacinus fungus",
     style: "Gliophorus-Psittacinus",
-    image:
-      "/images/filters/design_Styles/otherStyles/Gliophorus-Psittacinus.png",
+    image: "/images/filters/Gliophorus-Psittacinus.webp",
     isSelected: false,
   },
   {
@@ -199,7 +198,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Tint",
     description: "Design with a slight color tint or hue variation",
     style: "Tint",
-    image: "/images/filters/design_Styles/otherStyles/Tint.png",
+    image: "/images/filters/Tint.webp",
     isSelected: false,
   },
   {
@@ -207,7 +206,7 @@ export const otherStylesFilters: Filter[] = [
     name: "Shade",
     description: "Design with subtle shading or shadow effects",
     style: "Shade",
-    image: "/images/filters/design_Styles/otherStyles/Shade.png",
+    image: "/images/filters/Shade.webp",
     isSelected: false,
   },
 ];

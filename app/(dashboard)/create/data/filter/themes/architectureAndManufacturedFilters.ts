@@ -6,8 +6,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     name: "Architecture",
     description: "Explore the world of architectural design and styles.",
     style: "Architecture",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Architecture.png",
+    image: "/images/filters/Architecture.webp",
     isSelected: false,
   },
   {
@@ -16,8 +15,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover futuristic and self-sustaining architectural concepts.",
     style: "Autonomous",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Autonomous.png",
+    image: "/images/filters/Autonomous.webp",
     isSelected: false,
   },
   {
@@ -26,8 +24,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Immerse yourself in the beauty of Balinese architectural traditions.",
     style: "Balinese Architecture",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Balinese_Architecture.png",
+    image: "/images/filters/Balinese_Architecture.webp",
     isSelected: false,
   },
   {
@@ -36,8 +33,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Experience the whimsical and vibrant world of Barbie-inspired architecture.",
     style: "Barbiecore",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Barbiecore.png",
+    image: "/images/filters/Barbiecore.webp",
     isSelected: false,
   },
   {
@@ -46,7 +42,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover the fusion of architecture and bombastic aesthetics.",
     style: "Bombacore",
-    image: "/images/filters/themes/architecture_and_manufactured/Bombacore.png",
+    image: "/images/filters/Bombacore.webp",
     isSelected: false,
   },
   {
@@ -55,8 +51,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Step into a world where bronze and steampunk aesthetics intertwine.",
     style: "Bronzepunk",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Bronzepunk.png",
+    image: "/images/filters/Bronzepunk.webp",
     isSelected: false,
   },
   {
@@ -65,7 +60,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Appreciate the raw and imposing beauty of brutalist architecture.",
     style: "Brutalism",
-    image: "/images/filters/themes/architecture_and_manufactured/Brutalism.png",
+    image: "/images/filters/Brutalism.webp",
     isSelected: false,
   },
   {
@@ -74,7 +69,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Delight in the whimsy and flamboyance of carnival-inspired architecture.",
     style: "Carnival",
-    image: "/images/filters/themes/architecture_and_manufactured/Carnival.png",
+    image: "/images/filters/Carnival.webp",
     isSelected: false,
   },
   {
@@ -83,8 +78,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Travel back in time to the era of cassette tapes and retro-futuristic designs.",
     style: "Cassettepunk",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Cassettepunk.png",
+    image: "/images/filters/Cassettepunk.webp",
     isSelected: false,
   },
   {
@@ -93,7 +87,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Immerse yourself in the grandeur and charm of medieval castles.",
     style: "Castle",
-    image: "/images/filters/themes/architecture_and_manufactured/Castle.png",
+    image: "/images/filters/Castle.webp",
     isSelected: false,
   },
   {
@@ -102,7 +96,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore the urban landscape and iconic cityscapes from around the world.",
     style: "Cityscape",
-    image: "/images/filters/themes/architecture_and_manufactured/Cityscape.png",
+    image: "/images/filters/Cityscape.webp",
     isSelected: false,
   },
   {
@@ -111,7 +105,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Immerse yourself in a world where clockwork mechanisms and Victorian aesthetics blend.",
     style: "Clockpunk",
-    image: "/images/filters/themes/architecture_and_manufactured/Clockpunk.png",
+    image: "/images/filters/Clockpunk.webp",
     isSelected: false,
   },
   {
@@ -120,7 +114,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover the architectural wonders created by renowned companies and corporations.",
     style: "Company",
-    image: "/images/filters/themes/architecture_and_manufactured/Company.png",
+    image: "/images/filters/Company.webp",
     isSelected: false,
   },
   {
@@ -129,7 +123,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Appreciate the craftsmanship and handmade aesthetics of craftcore architecture.",
     style: "Craftcore",
-    image: "/images/filters/themes/architecture_and_manufactured/Craftcore.png",
+    image: "/images/filters/Craftcore.webp",
     isSelected: false,
   },
   {
@@ -138,7 +132,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Enter a world where architecture merges with advanced technology and cyborg aesthetics.",
     style: "Cyborgism",
-    image: "/images/filters/themes/architecture_and_manufactured/Cyborgism.png",
+    image: "/images/filters/Cyborgism.webp",
     isSelected: false,
   },
   {
@@ -147,8 +141,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Step into an alternate reality with retro-futuristic diesel-powered architecture.",
     style: "Dieselpunk",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Dieselpunk.png",
+    image: "/images/filters/Dieselpunk.webp",
     isSelected: false,
   },
   {
@@ -157,7 +150,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Experience the enchanting and whimsical world of doll-inspired architecture.",
     style: "Dollcore",
-    image: "/images/filters/themes/architecture_and_manufactured/Dollcore.png",
+    image: "/images/filters/Dollcore.webp",
     isSelected: false,
   },
   {
@@ -166,7 +159,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore a fusion of doll-like aesthetics and punk-inspired architectural designs.",
     style: "Dollpunk",
-    image: "/images/filters/themes/architecture_and_manufactured/Dollpunk.png",
+    image: "/images/filters/Dollpunk.webp",
     isSelected: false,
   },
   {
@@ -175,8 +168,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover a world where Formica surfaces and punk elements shape architectural styles.",
     style: "Formicapunk",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Formicapunk.png",
+    image: "/images/filters/Formicapunk.webp",
     isSelected: false,
   },
   {
@@ -185,7 +177,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Embark on a playful and surreal architectural journey through funhouse-inspired designs.",
     style: "Funhouse",
-    image: "/images/filters/themes/architecture_and_manufactured/Funhouse.png",
+    image: "/images/filters/Funhouse.webp",
     isSelected: false,
   },
   {
@@ -194,8 +186,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Immerse yourself in a world of futuristic gadgets and high-tech architectural designs.",
     style: "Gadgetpunk",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Gadgetpunk.png",
+    image: "/images/filters/Gadgetpunk.webp",
     isSelected: false,
   },
   {
@@ -204,7 +195,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore the vibrant and space-age aesthetics of Googie architecture.",
     style: "Googie",
-    image: "/images/filters/themes/architecture_and_manufactured/Googie.png",
+    image: "/images/filters/Googie.webp",
     isSelected: false,
   },
   {
@@ -213,7 +204,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover various house styles from traditional to modern and everything in between.",
     style: "House",
-    image: "/images/filters/themes/architecture_and_manufactured/House.png",
+    image: "/images/filters/House.webp",
     isSelected: false,
   },
   {
@@ -222,8 +213,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Appreciate the utilitarian and raw beauty of industrial-inspired architectural designs.",
     style: "Industrial Design",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Industrial_Design.png",
+    image: "/images/filters/Industrial_Design.webp",
     isSelected: false,
   },
   {
@@ -232,7 +222,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Enter the majestic world of castle-like structures and grand architectural kingdoms.",
     style: "Kingdom",
-    image: "/images/filters/themes/architecture_and_manufactured/Kingdom.png",
+    image: "/images/filters/Kingdom.webp",
     isSelected: false,
   },
   {
@@ -241,7 +231,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Step into the realm of scientific laboratories and high-tech research facilities.",
     style: "Labcore",
-    image: "/images/filters/themes/architecture_and_manufactured/Labcore.png",
+    image: "/images/filters/Labcore.webp",
     isSelected: false,
   },
   {
@@ -250,8 +240,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Experience a unique blend of LEGO-inspired aesthetics and steampunk elements.",
     style: "Legogearpunk",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Legogearpunk.png",
+    image: "/images/filters/Legogearpunk.webp",
     isSelected: false,
   },
   {
@@ -260,7 +249,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover a world where LEGO bricks shape architectural designs with a punk twist.",
     style: "Legopunk",
-    image: "/images/filters/themes/architecture_and_manufactured/Legopunk.png",
+    image: "/images/filters/Legopunk.webp",
     isSelected: false,
   },
   {
@@ -269,7 +258,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore the symbiotic relationship between architecture and mechanical systems.",
     style: "Machine",
-    image: "/images/filters/themes/architecture_and_manufactured/Machine.png",
+    image: "/images/filters/Machine.webp",
     isSelected: false,
   },
   {
@@ -278,8 +267,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Witness a landscape dominated by machines and futuristic architectural structures.",
     style: "Machinescape",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Machinescape.png",
+    image: "/images/filters/Machinescape.webp",
     isSelected: false,
   },
   {
@@ -288,7 +276,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore temporary and improvised architectural structures that adapt to different needs.",
     style: "Makeshift",
-    image: "/images/filters/themes/architecture_and_manufactured/Makeshift.png",
+    image: "/images/filters/Makeshift.webp",
     isSelected: false,
   },
   {
@@ -297,7 +285,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Experience the grandeur and opulence of architectural mansions and palatial residences.",
     style: "Mansion",
-    image: "/images/filters/themes/architecture_and_manufactured/Mansion.png",
+    image: "/images/filters/Mansion.webp",
     isSelected: false,
   },
   {
@@ -306,8 +294,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover the world of prefabricated and mass-produced architectural designs.",
     style: "Manufactured",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Manufactured.png",
+    image: "/images/filters/Manufactured.webp",
     isSelected: false,
   },
   {
@@ -316,7 +303,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore the architectural complexity and functionality of multiplex buildings.",
     style: "Multiplex",
-    image: "/images/filters/themes/architecture_and_manufactured/Multiplex.png",
+    image: "/images/filters/Multiplex.webp",
     isSelected: false,
   },
   {
@@ -325,7 +312,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Embrace simplicity and ordinary architectural designs with a focus on functionality.",
     style: "Normcore",
-    image: "/images/filters/themes/architecture_and_manufactured/Normcore.png",
+    image: "/images/filters/Normcore.webp",
     isSelected: false,
   },
   {
@@ -334,7 +321,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover architectural designs inspired by nuclear power and atomic aesthetics.",
     style: "Nuclear",
-    image: "/images/filters/themes/architecture_and_manufactured/Nuclear.png",
+    image: "/images/filters/Nuclear.webp",
     isSelected: false,
   },
   {
@@ -343,7 +330,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Experience a soothing and calming architectural aesthetic with soft and pale colors.",
     style: "Palewave",
-    image: "/images/filters/themes/architecture_and_manufactured/Palewave.png",
+    image: "/images/filters/Palewave.webp",
     isSelected: false,
   },
   {
@@ -352,7 +339,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Focus on the architectural prominence and significance of pillars and columns.",
     style: "Pillar",
-    image: "/images/filters/themes/architecture_and_manufactured/Pillar.png",
+    image: "/images/filters/Pillar.webp",
     isSelected: false,
   },
   {
@@ -361,8 +348,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover playful and imaginative architectural designs for recreational spaces.",
     style: "Playground",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Playground.png",
+    image: "/images/filters/Playground.webp",
     isSelected: false,
   },
   {
@@ -371,7 +357,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Dive into a world of architectural designs centered around pools and aquatic elements.",
     style: "Poolcore",
-    image: "/images/filters/themes/architecture_and_manufactured/Poolcore.png",
+    image: "/images/filters/Poolcore.webp",
     isSelected: false,
   },
   {
@@ -380,7 +366,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore architectural designs that revolve around properties and real estate.",
     style: "Property",
-    image: "/images/filters/themes/architecture_and_manufactured/Property.png",
+    image: "/images/filters/Property.webp",
     isSelected: false,
   },
   {
@@ -389,7 +375,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover futuristic and robotic-inspired architectural designs.",
     style: "Robotic",
-    image: "/images/filters/themes/architecture_and_manufactured/Robotic.png",
+    image: "/images/filters/Robotic.webp",
     isSelected: false,
   },
   {
@@ -398,8 +384,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Experience architectural designs that incorporate salvaged and repurposed materials.",
     style: "Salvagepunk",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Salvagepunk.png",
+    image: "/images/filters/Salvagepunk.webp",
     isSelected: false,
   },
   {
@@ -408,8 +393,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover architectural designs inspired by sandalwood and wooden elements.",
     style: "Sandalpunk",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Sandalpunk.png",
+    image: "/images/filters/Sandalpunk.webp",
     isSelected: false,
   },
   {
@@ -418,8 +402,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Embrace the cute and colorful world of architectural designs influenced by Sanrio characters.",
     style: "Sanriocore",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Sanriocore.png",
+    image: "/images/filters/Sanriocore.webp",
     isSelected: false,
   },
   {
@@ -428,8 +411,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore the aesthetic and functional aspects of architectural scaffolding.",
     style: "Scaffolding",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Scaffolding.png",
+    image: "/images/filters/Scaffolding.webp",
     isSelected: false,
   },
   {
@@ -438,7 +420,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Experience the simplicity and charm of architectural designs inspired by shacks and cabins.",
     style: "Shack",
-    image: "/images/filters/themes/architecture_and_manufactured/Shack.png",
+    image: "/images/filters/Shack.webp",
     isSelected: false,
   },
   {
@@ -447,7 +429,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover architectural designs influenced by silk, luxurious fabrics, and intricate patterns.",
     style: "Silkpunk",
-    image: "/images/filters/themes/architecture_and_manufactured/Silkpunk.png",
+    image: "/images/filters/Silkpunk.webp",
     isSelected: false,
   },
   {
@@ -456,7 +438,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore architectural designs inspired by the mystique and grandeur of ancient Egyptian sphinxes.",
     style: "Sphinx",
-    image: "/images/filters/themes/architecture_and_manufactured/Sphinx.png",
+    image: "/images/filters/Sphinx.webp",
     isSelected: false,
   },
   {
@@ -465,7 +447,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Enter a world of architectural designs with a retro-futuristic steampunk aesthetic.",
     style: "Steampunk",
-    image: "/images/filters/themes/architecture_and_manufactured/Steampunk.png",
+    image: "/images/filters/Steampunk.webp",
     isSelected: false,
   },
   {
@@ -474,7 +456,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Experience architectural designs with an industrial and metallic steelpunk aesthetic.",
     style: "Steelpunk",
-    image: "/images/filters/themes/architecture_and_manufactured/Steelpunk.png",
+    image: "/images/filters/Steelpunk.webp",
     isSelected: false,
   },
   {
@@ -483,7 +465,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover architectural designs inspired by the vibrant and energetic world of stimwave.",
     style: "Stimwave",
-    image: "/images/filters/themes/architecture_and_manufactured/Stimwave.png",
+    image: "/images/filters/Stimwave.webp",
     isSelected: false,
   },
   {
@@ -492,8 +474,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore architectural designs that focus on the structural elements and form.",
     style: "Structural",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Structural.png",
+    image: "/images/filters/Structural.webp",
     isSelected: false,
   },
   {
@@ -502,7 +483,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover architectural designs that celebrate the beauty and complexity of structural elements.",
     style: "Structure",
-    image: "/images/filters/themes/architecture_and_manufactured/Structure.png",
+    image: "/images/filters/Structure.webp",
     isSelected: false,
   },
   {
@@ -511,8 +492,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Experience architectural designs that evoke the futuristic and enigmatic submachine world.",
     style: "Submachine",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Submachine.png",
+    image: "/images/filters/Submachine.webp",
     isSelected: false,
   },
   {
@@ -521,7 +501,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Explore architectural designs inspired by swordplay, samurai culture, and ancient weapons.",
     style: "Swordpunk",
-    image: "/images/filters/themes/architecture_and_manufactured/Swordpunk.png",
+    image: "/images/filters/Swordpunk.webp",
     isSelected: false,
   },
   {
@@ -530,8 +510,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Discover architectural designs that incorporate thrifted and repurposed elements.",
     style: "Thriftcore",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Thriftcore.png",
+    image: "/images/filters/Thriftcore.webp",
     isSelected: false,
   },
   {
@@ -540,8 +519,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Embrace the world of architectural designs with a playful and tinkering spirit.",
     style: "Tinkercore",
-    image:
-      "/images/filters/themes/architecture_and_manufactured/Tinkercore.png",
+    image: "/images/filters/Tinkercore.webp",
     isSelected: false,
   },
   {
@@ -550,7 +528,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Enter a whimsical world of architectural designs inspired by toys and childhood imagination.",
     style: "Toyland",
-    image: "/images/filters/themes/architecture_and_manufactured/Toyland.png",
+    image: "/images/filters/Toyland.webp",
     isSelected: false,
   },
   {
@@ -559,7 +537,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     description:
       "Experience architectural designs inspired by earthworms and organic forms.",
     style: "Wormcore",
-    image: "/images/filters/themes/architecture_and_manufactured/Wormcore.png",
+    image: "/images/filters/Wormcore.webp",
     isSelected: false,
   },
   {
@@ -567,7 +545,7 @@ export const architectureAndManufacturedFilters: Filter[] = [
     name: "Ziggurat",
     description: "Ancient-inspired architectural marvel of grand proportions",
     style: "Ziggurat",
-    image: "/images/filters/themes/architecture_and_manufactured/Ziggurat.png",
+    image: "/images/filters/Ziggurat.webp",
     isSelected: false,
   },
 ];

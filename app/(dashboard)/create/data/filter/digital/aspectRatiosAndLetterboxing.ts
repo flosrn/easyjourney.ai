@@ -6,7 +6,7 @@ export const aspectRatiosAndLetterboxingFilters: Filter[] = [
     name: "Fullscreen",
     description: "Aspect ratio: 4:3",
     style: "Fullscreen",
-    image: "/images/filters/digital/aspectRatiosAndLetterboxing/Fullscreen.png",
+    image: "/images/filters/Fullscreen.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const aspectRatiosAndLetterboxingFilters: Filter[] = [
     name: "Widescreen",
     description: "Aspect ratio: 16:9",
     style: "Widescreen",
-    image: "/images/filters/digital/aspectRatiosAndLetterboxing/Widescreen.png",
+    image: "/images/filters/Widescreen.webp",
     isSelected: false,
   },
   {
@@ -22,8 +22,7 @@ export const aspectRatiosAndLetterboxingFilters: Filter[] = [
     name: "Anamorphic Widescreen",
     description: "Aspect ratio: Anamorphic",
     style: "Anamorphic Widescreen",
-    image:
-      "/images/filters/digital/aspectRatiosAndLetterboxing/Anamorphic_Widescreen.png",
+    image: "/images/filters/Anamorphic_Widescreen.webp",
     isSelected: false,
   },
   {
@@ -31,7 +30,7 @@ export const aspectRatiosAndLetterboxingFilters: Filter[] = [
     name: "Pillarbox",
     description: "Letterboxing with black bars on the sides",
     style: "Pillarbox",
-    image: "/images/filters/digital/aspectRatiosAndLetterboxing/Pillarbox.png",
+    image: "/images/filters/Pillarbox.webp",
     isSelected: false,
   },
   {
@@ -39,8 +38,7 @@ export const aspectRatiosAndLetterboxingFilters: Filter[] = [
     name: "Letterboxing",
     description: "Letterboxing with black bars on the top and bottom",
     style: "Letterboxing",
-    image:
-      "/images/filters/digital/aspectRatiosAndLetterboxing/Letterboxing.png",
+    image: "/images/filters/Letterboxing.webp",
     isSelected: false,
   },
   {
@@ -48,7 +46,7 @@ export const aspectRatiosAndLetterboxingFilters: Filter[] = [
     name: "Windowbox",
     description: "Letterboxing with black bars on all sides",
     style: "Windowbox",
-    image: "/images/filters/digital/aspectRatiosAndLetterboxing/Windowbox.png",
+    image: "/images/filters/Windowbox.webp",
     isSelected: false,
   },
 ];

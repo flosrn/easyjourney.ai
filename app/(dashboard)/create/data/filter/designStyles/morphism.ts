@@ -6,7 +6,7 @@ export const morphismFilters: Filter[] = [
     name: "Morphism",
     description: "Dynamic and fluid design style",
     style: "Morphism",
-    image: "/images/filters/design_Styles/morphism/Morphism.png",
+    image: "/images/filters/Morphism.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const morphismFilters: Filter[] = [
     name: "Skeuomorphism",
     description: "Realistic representation of physical objects",
     style: "Skeuomorphism",
-    image: "/images/filters/design_Styles/morphism/Skeuomorphism.png",
+    image: "/images/filters/Skeuomorphism.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const morphismFilters: Filter[] = [
     name: "Neumorphism",
     description: "Soft and subtle design with light and shadow effects",
     style: "Neumorphism",
-    image: "/images/filters/design_Styles/morphism/Neumorphism.png",
+    image: "/images/filters/Neumorphism.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const morphismFilters: Filter[] = [
     name: "Neomorphism",
     description: "Modern variation of skeuomorphism and neumorphism",
     style: "Neomorphism",
-    image: "/images/filters/design_Styles/morphism/Neomorphism.png",
+    image: "/images/filters/Neomorphism.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const morphismFilters: Filter[] = [
     name: "Glassmorphism",
     description: "Transparent and glass-like design elements",
     style: "Glassmorphism",
-    image: "/images/filters/design_Styles/morphism/Glassmorphism.png",
+    image: "/images/filters/Glassmorphism.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const morphismFilters: Filter[] = [
     name: "Claymorphism",
     description: "Soft and tactile design inspired by clay material",
     style: "Claymorphism",
-    image: "/images/filters/design_Styles/morphism/Claymorphism.png",
+    image: "/images/filters/Claymorphism.webp",
     isSelected: false,
   },
 ];

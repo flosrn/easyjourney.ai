@@ -6,7 +6,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Simple",
     description: "Clean and minimalist design with few elements.",
     style: "Simple",
-    image: "/images/filters/design_Styles/simplicityComplexity/Simple.png",
+    image: "/images/filters/Simple.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Simplicity",
     description: "Emphasizes clarity and straightforwardness.",
     style: "Simplicity",
-    image: "/images/filters/design_Styles/simplicityComplexity/Simplicity.png",
+    image: "/images/filters/Simplicity.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Basic",
     description: "Foundational and fundamental style of drawing.",
     style: "Basic",
-    image: "/images/filters/design_Styles/simplicityComplexity/Basic.png",
+    image: "/images/filters/Basic.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Details",
     description: "Incorporates intricate and precise elements.",
     style: "Details",
-    image: "/images/filters/design_Styles/simplicityComplexity/Details.png",
+    image: "/images/filters/Details.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Detailed",
     description: "Elaborate and comprehensive in design.",
     style: "Detailed",
-    image: "/images/filters/design_Styles/simplicityComplexity/Detailed.png",
+    image: "/images/filters/Detailed.webp",
     isSelected: false,
   },
   {
@@ -46,8 +46,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Hyperdetailed",
     description: "Extremely intricate and highly detailed.",
     style: "Hyperdetailed",
-    image:
-      "/images/filters/design_Styles/simplicityComplexity/Hyperdetailed.png",
+    image: "/images/filters/Hyperdetailed.webp",
     isSelected: false,
   },
   {
@@ -55,7 +54,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Ornate",
     description: "Richly decorated with intricate embellishments.",
     style: "Ornate",
-    image: "/images/filters/design_Styles/simplicityComplexity/Ornate.png",
+    image: "/images/filters/Ornate.webp",
     isSelected: false,
   },
   {
@@ -63,7 +62,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Complex",
     description: "Involves intricate patterns and interwoven elements.",
     style: "Complex",
-    image: "/images/filters/design_Styles/simplicityComplexity/Complex.png",
+    image: "/images/filters/Complex.webp",
     isSelected: false,
   },
   {
@@ -71,7 +70,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Complexity",
     description: "Explores intricate and multifaceted designs.",
     style: "Complexity",
-    image: "/images/filters/design_Styles/simplicityComplexity/Complexity.png",
+    image: "/images/filters/Complexity.webp",
     isSelected: false,
   },
   {
@@ -79,7 +78,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Multiplex",
     description: "Utilizes multiple intricate elements in design.",
     style: "Multiplex",
-    image: "/images/filters/design_Styles/simplicityComplexity/Multiplex.png",
+    image: "/images/filters/Multiplex.webp",
     isSelected: false,
   },
   {
@@ -88,8 +87,7 @@ export const simplicityComplexityFilters: Filter[] = [
     description:
       "Drawings with high algorithmic complexity and information content.",
     style: "Kolmogorov Complexity",
-    image:
-      "/images/filters/design_Styles/simplicityComplexity/Kolmogorov_Complexity.png",
+    image: "/images/filters/Kolmogorov_Complexity.webp",
     isSelected: false,
   },
   {
@@ -97,7 +95,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Cluttered",
     description: "Includes a crowded and visually busy composition.",
     style: "Cluttered",
-    image: "/images/filters/design_Styles/simplicityComplexity/Cluttered.png",
+    image: "/images/filters/Cluttered.webp",
     isSelected: false,
   },
   {
@@ -105,7 +103,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Greeble",
     description: "Features intricate and detailed textural elements.",
     style: "Greeble",
-    image: "/images/filters/design_Styles/simplicityComplexity/Greeble.png",
+    image: "/images/filters/Greeble.webp",
     isSelected: false,
   },
   {
@@ -113,7 +111,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Chaotic",
     description: "Displays a random and disordered drawing style.",
     style: "Chaotic",
-    image: "/images/filters/design_Styles/simplicityComplexity/Chaotic.png",
+    image: "/images/filters/Chaotic.webp",
     isSelected: false,
   },
   {
@@ -121,7 +119,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Confusing",
     description: "Intentionally creates a perplexing and puzzling effect.",
     style: "Confusing",
-    image: "/images/filters/design_Styles/simplicityComplexity/Confusing.png",
+    image: "/images/filters/Confusing.webp",
     isSelected: false,
   },
   {
@@ -129,7 +127,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Incoherent",
     description: "Lacks logical or clear organization in the design.",
     style: "Incoherent",
-    image: "/images/filters/design_Styles/simplicityComplexity/Incoherent.png",
+    image: "/images/filters/Incoherent.webp",
     isSelected: false,
   },
   {
@@ -137,7 +135,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Intricate",
     description: "Characterized by highly detailed and complex patterns.",
     style: "Intricate",
-    image: "/images/filters/design_Styles/simplicityComplexity/Intricate.png",
+    image: "/images/filters/Intricate.webp",
     isSelected: false,
   },
   {
@@ -145,8 +143,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Surface Detail",
     description: "Focuses on intricate and finely rendered surface textures.",
     style: "Surface Detail",
-    image:
-      "/images/filters/design_Styles/simplicityComplexity/Surface_Detail.png",
+    image: "/images/filters/Surface_Detail.webp",
     isSelected: false,
   },
   {
@@ -154,8 +151,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Intricate Surface Detail",
     description: "Emphasizes highly detailed and intricate surface textures.",
     style: "Intricate Surface Detail",
-    image:
-      "/images/filters/design_Styles/simplicityComplexity/Intricate_Surface_Detail.png",
+    image: "/images/filters/Intricate_Surface_Detail.webp",
     isSelected: false,
   },
   {
@@ -163,7 +159,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Minimalist",
     description: "Uses a minimal amount of elements and focuses on simplicity.",
     style: "Minimalist",
-    image: "/images/filters/design_Styles/simplicityComplexity/Minimalist.png",
+    image: "/images/filters/Minimalist.webp",
     isSelected: false,
   },
   {
@@ -171,7 +167,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Maximalist",
     description: "Embraces an abundance of elements and visual richness.",
     style: "Maximalist",
-    image: "/images/filters/design_Styles/simplicityComplexity/Maximalist.png",
+    image: "/images/filters/Maximalist.webp",
     isSelected: false,
   },
   {
@@ -179,8 +175,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Intricate Maximalism",
     description: "Combines intricacy and richness in a maximalist approach.",
     style: "Intricate Maximalism",
-    image:
-      "/images/filters/design_Styles/simplicityComplexity/Intricate_Maximalism.png",
+    image: "/images/filters/Intricate_Maximalism.webp",
     isSelected: false,
   },
   {
@@ -188,7 +183,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Flat",
     description: "Employs a simplified and two-dimensional drawing style.",
     style: "Flat",
-    image: "/images/filters/design_Styles/simplicityComplexity/Flat.png",
+    image: "/images/filters/Flat.webp",
     isSelected: false,
   },
   {
@@ -196,7 +191,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Flat Design",
     description: "Utilizes clean lines and solid colors with minimal shading.",
     style: "Flat Design",
-    image: "/images/filters/design_Styles/simplicityComplexity/Flat_Design.png",
+    image: "/images/filters/Flat_Design.webp",
     isSelected: false,
   },
   {
@@ -205,8 +200,7 @@ export const simplicityComplexityFilters: Filter[] = [
     description:
       "Incorporates elements of traditional Japanese woodblock prints in a flat design.",
     style: "Ukiyo-e Flat Design",
-    image:
-      "/images/filters/design_Styles/simplicityComplexity/Ukiyo-e_Flat_Design.png",
+    image: "/images/filters/Ukiyo-e_Flat_Design.webp",
     isSelected: false,
   },
   {
@@ -214,7 +208,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Isotype",
     description: "Utilizes simplified and standardized pictorial symbols.",
     style: "Isotype",
-    image: "/images/filters/design_Styles/simplicityComplexity/Isotype.png",
+    image: "/images/filters/Isotype.webp",
     isSelected: false,
   },
   {
@@ -222,8 +216,7 @@ export const simplicityComplexityFilters: Filter[] = [
     name: "Flat Shading",
     description: "Employs shading techniques using flat color tones.",
     style: "Flat Shading",
-    image:
-      "/images/filters/design_Styles/simplicityComplexity/Flat_Shading.png",
+    image: "/images/filters/Flat_Shading.webp",
     isSelected: false,
   },
 ];

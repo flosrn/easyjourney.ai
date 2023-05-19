@@ -6,7 +6,7 @@ export const patternsFilters: Filter[] = [
     name: "Patterns",
     description: "Various patterns and textures",
     style: "Patterns",
-    image: "/images/filters/design_Styles/patterns/Patterns.png",
+    image: "/images/filters/Patterns.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const patternsFilters: Filter[] = [
     name: "Polka Dot",
     description: "Design with small, evenly spaced dots",
     style: "Polka Dot",
-    image: "/images/filters/design_Styles/patterns/Polka_Dot.png",
+    image: "/images/filters/Polka_Dot.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const patternsFilters: Filter[] = [
     name: "Pinstripe",
     description: "Vertical stripes that resemble pin stitches",
     style: "Pinstripe",
-    image: "/images/filters/design_Styles/patterns/Pinstripe.png",
+    image: "/images/filters/Pinstripe.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const patternsFilters: Filter[] = [
     name: "Grid",
     description: "Regular pattern of intersecting lines",
     style: "Grid",
-    image: "/images/filters/design_Styles/patterns/Grid.png",
+    image: "/images/filters/Grid.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const patternsFilters: Filter[] = [
     name: "Axis Lines",
     description: "Lines representing axes or coordinates",
     style: "Axis Lines",
-    image: "/images/filters/design_Styles/patterns/Axis_Lines.png",
+    image: "/images/filters/Axis_Lines.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const patternsFilters: Filter[] = [
     name: "Checkerboard",
     description: "Pattern of alternating colored squares",
     style: "Checkerboard",
-    image: "/images/filters/design_Styles/patterns/Checkerboard.png",
+    image: "/images/filters/Checkerboard.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const patternsFilters: Filter[] = [
     name: "Halftone",
     description: "Pattern of small dots or lines for shading",
     style: "Halftone",
-    image: "/images/filters/design_Styles/patterns/Halftone.png",
+    image: "/images/filters/Halftone.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const patternsFilters: Filter[] = [
     name: "Camouflage",
     description: "Pattern inspired by military camouflage",
     style: "Camouflage",
-    image: "/images/filters/design_Styles/patterns/Camouflage.png",
+    image: "/images/filters/Camouflage.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const patternsFilters: Filter[] = [
     name: "Damask Patterns",
     description: "Elaborate floral patterns on a solid background",
     style: "Damask Patterns",
-    image: "/images/filters/design_Styles/patterns/Damask_Patterns.png",
+    image: "/images/filters/Damask_Patterns.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const patternsFilters: Filter[] = [
     name: "Memphis Pattern",
     description: "Bold and colorful geometric patterns",
     style: "Memphis Pattern",
-    image: "/images/filters/design_Styles/patterns/Memphis_Pattern.png",
+    image: "/images/filters/Memphis_Pattern.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const patternsFilters: Filter[] = [
     name: "Parametric Patterns",
     description: "Mathematically generated patterns",
     style: "Parametric Patterns",
-    image: "/images/filters/design_Styles/patterns/Parametric_Patterns.png",
+    image: "/images/filters/Parametric_Patterns.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const patternsFilters: Filter[] = [
     name: "Diffraction Patterns",
     description: "Patterns created by diffraction of light",
     style: "Diffraction Patterns",
-    image: "/images/filters/design_Styles/patterns/Diffraction_Patterns.png",
+    image: "/images/filters/Diffraction_Patterns.webp",
     isSelected: false,
   },
   {
@@ -102,7 +102,7 @@ export const patternsFilters: Filter[] = [
     name: "Voronoi",
     description: "Pattern based on Voronoi diagrams",
     style: "Voronoi",
-    image: "/images/filters/design_Styles/patterns/Voronoi.png",
+    image: "/images/filters/Voronoi.webp",
     isSelected: false,
   },
   {
@@ -110,7 +110,7 @@ export const patternsFilters: Filter[] = [
     name: "Zebra Pattern",
     description: "Pattern resembling the stripes of a zebra",
     style: "Zebra Pattern",
-    image: "/images/filters/design_Styles/patterns/Zebra_Pattern.png",
+    image: "/images/filters/Zebra_Pattern.webp",
     isSelected: false,
   },
   {
@@ -118,7 +118,7 @@ export const patternsFilters: Filter[] = [
     name: "Tiger Pattern",
     description: "Pattern inspired by the stripes of a tiger",
     style: "Tiger Pattern",
-    image: "/images/filters/design_Styles/patterns/Tiger_Pattern.png",
+    image: "/images/filters/Tiger_Pattern.webp",
     isSelected: false,
   },
   {
@@ -126,7 +126,7 @@ export const patternsFilters: Filter[] = [
     name: "Cow Pattern",
     description: "Pattern resembling the spots of a cow",
     style: "Cow Pattern",
-    image: "/images/filters/design_Styles/patterns/Cow_Pattern.png",
+    image: "/images/filters/Cow_Pattern.webp",
     isSelected: false,
   },
   {
@@ -134,7 +134,7 @@ export const patternsFilters: Filter[] = [
     name: "Rorschach",
     description: "Inkblot-like symmetrical patterns",
     style: "Rorschach",
-    image: "/images/filters/design_Styles/patterns/Rorschach.png",
+    image: "/images/filters/Rorschach.webp",
     isSelected: false,
   },
   {
@@ -142,7 +142,7 @@ export const patternsFilters: Filter[] = [
     name: "Girih",
     description: "Geometric patterns from Islamic art",
     style: "Girih",
-    image: "/images/filters/design_Styles/patterns/Girih.png",
+    image: "/images/filters/Girih.webp",
     isSelected: false,
   },
   {
@@ -150,7 +150,7 @@ export const patternsFilters: Filter[] = [
     name: "Girih Patterns",
     description: "Complex geometric patterns from Islamic art",
     style: "Girih Patterns",
-    image: "/images/filters/design_Styles/patterns/Girih_Patterns.png",
+    image: "/images/filters/Girih_Patterns.webp",
     isSelected: false,
   },
   {
@@ -158,7 +158,7 @@ export const patternsFilters: Filter[] = [
     name: "Guilloché Patterns",
     description: "Intricate and repetitive mechanical patterns",
     style: "Guilloché Patterns",
-    image: "/images/filters/design_Styles/patterns/Guilloche_Patterns.png",
+    image: "/images/filters/Guilloche_Patterns.webp",
     isSelected: false,
   },
   {
@@ -166,7 +166,7 @@ export const patternsFilters: Filter[] = [
     name: "Zellij Patterns",
     description: "Tile patterns from Moroccan Zellij art",
     style: "Zellij Patterns",
-    image: "/images/filters/design_Styles/patterns/Zellij_Patterns.png",
+    image: "/images/filters/Zellij_Patterns.webp",
     isSelected: false,
   },
   {
@@ -174,7 +174,7 @@ export const patternsFilters: Filter[] = [
     name: "Celtic Maze",
     description: "Intricate patterns inspired by Celtic art",
     style: "Celtic Maze",
-    image: "/images/filters/design_Styles/patterns/Celtic_Maze.png",
+    image: "/images/filters/Celtic_Maze.webp",
     isSelected: false,
   },
 ];

@@ -6,7 +6,7 @@ export const interpolationFilters: Filter[] = [
     name: "Interpolation",
     description: "Filter for performing image interpolation.",
     style: "Interpolation",
-    image: "/images/filters/digital/interpolation/Interpolation.png",
+    image: "/images/filters/Interpolation.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const interpolationFilters: Filter[] = [
     name: "Bicubic Interpolation",
     description: "Filter for performing bicubic interpolation.",
     style: "Bicubic Interpolation",
-    image: "/images/filters/digital/interpolation/Bicubic_Interpolation.png",
+    image: "/images/filters/Bicubic_Interpolation.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const interpolationFilters: Filter[] = [
     name: "Bilinear Interpolation",
     description: "Filter for performing bilinear interpolation.",
     style: "Bilinear Interpolation",
-    image: "/images/filters/digital/interpolation/Bilinear_Interpolation.png",
+    image: "/images/filters/Bilinear_Interpolation.webp",
     isSelected: false,
   },
 ];
