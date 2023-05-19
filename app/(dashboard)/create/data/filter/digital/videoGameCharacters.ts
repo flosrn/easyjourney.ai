@@ -7,7 +7,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Classic video game character known for jumping and collecting coins.",
     style: "Mario",
-    image: "/images/filters/digital/videoGameCharacters/Mario.png",
+    image: "/images/filters/Mario.webp",
     isSelected: false,
   },
   {
@@ -16,7 +16,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Green-clad character and Mario's younger brother in video games.",
     style: "Luigi",
-    image: "/images/filters/digital/videoGameCharacters/Luigi.png",
+    image: "/images/filters/Luigi.webp",
     isSelected: false,
   },
   {
@@ -24,7 +24,7 @@ export const videoGameCharactersFilters: Filter[] = [
     name: "Yoshi",
     description: "Cute dinosaur companion and steed in various video games.",
     style: "Yoshi",
-    image: "/images/filters/digital/videoGameCharacters/Yoshi.png",
+    image: "/images/filters/Yoshi.webp",
     isSelected: false,
   },
   {
@@ -33,7 +33,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Elegant princess character often in need of rescuing in games.",
     style: "Princess Peach",
-    image: "/images/filters/digital/videoGameCharacters/Princess_Peach.png",
+    image: "/images/filters/Princess_Peach.webp",
     isSelected: false,
   },
   {
@@ -42,7 +42,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Powerful princess and protector of the cosmos in Mario games.",
     style: "Rosalina",
-    image: "/images/filters/digital/videoGameCharacters/Rosalina.png",
+    image: "/images/filters/Rosalina.webp",
     isSelected: false,
   },
   {
@@ -51,7 +51,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Greedy and mischievous character and rival to Mario in games.",
     style: "Wario",
-    image: "/images/filters/digital/videoGameCharacters/Wario.png",
+    image: "/images/filters/Wario.webp",
     isSelected: false,
   },
   {
@@ -60,7 +60,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Tall and lanky character often appearing alongside Wario in games.",
     style: "Waluigi",
-    image: "/images/filters/digital/videoGameCharacters/Waluigi.png",
+    image: "/images/filters/Waluigi.webp",
     isSelected: false,
   },
   {
@@ -69,7 +69,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Small and agile monkey character often seen with Donkey Kong.",
     style: "Diddy Kong",
-    image: "/images/filters/digital/videoGameCharacters/Diddy_Kong.png",
+    image: "/images/filters/Diddy_Kong.webp",
     isSelected: false,
   },
   {
@@ -77,7 +77,7 @@ export const videoGameCharactersFilters: Filter[] = [
     name: "Donkey Kong",
     description: "Powerful gorilla character known for barrel-throwing antics.",
     style: "Donkey Kong",
-    image: "/images/filters/digital/videoGameCharacters/Donkey_Kong.png",
+    image: "/images/filters/Donkey_Kong.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Fierce turtle-like character and primary antagonist in Mario games.",
     style: "Bowser",
-    image: "/images/filters/digital/videoGameCharacters/Bowser.png",
+    image: "/images/filters/Bowser.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const videoGameCharactersFilters: Filter[] = [
     name: "Goomba",
     description: "Common mushroom-like enemy character in the Mario franchise.",
     style: "Goomba",
-    image: "/images/filters/digital/videoGameCharacters/Goomba.png",
+    image: "/images/filters/Goomba.webp",
     isSelected: false,
   },
   {
@@ -103,7 +103,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Turtle-like creatures often found in the Mario series as enemies.",
     style: "Koopa",
-    image: "/images/filters/digital/videoGameCharacters/Koopa.png",
+    image: "/images/filters/Koopa.webp",
     isSelected: false,
   },
   {
@@ -112,7 +112,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Cute and pink creature known for inhaling foes and copying abilities.",
     style: "Kirby",
-    image: "/images/filters/digital/videoGameCharacters/Kirby.png",
+    image: "/images/filters/Kirby.webp",
     isSelected: false,
   },
   {
@@ -121,7 +121,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Large and greedy penguin-like character often appearing in Kirby games.",
     style: "King Dedede",
-    image: "/images/filters/digital/videoGameCharacters/King_Dedede.png",
+    image: "/images/filters/King_Dedede.webp",
     isSelected: false,
   },
   {
@@ -130,7 +130,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Electric-type Pokémon known for its yellow fur and lightning bolt tail.",
     style: "Pikachu",
-    image: "/images/filters/digital/videoGameCharacters/Pikachu.png",
+    image: "/images/filters/Pikachu.webp",
     isSelected: false,
   },
   {
@@ -139,7 +139,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Cat-like Pokémon with a coin-shaped head and a mischievous nature.",
     style: "Meowth",
-    image: "/images/filters/digital/videoGameCharacters/Meowth.png",
+    image: "/images/filters/Meowth.webp",
     isSelected: false,
   },
   {
@@ -148,7 +148,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Balloon-like Pokémon known for its lullaby and putting others to sleep.",
     style: "Jigglypuff",
-    image: "/images/filters/digital/videoGameCharacters/Jigglypuff.png",
+    image: "/images/filters/Jigglypuff.webp",
     isSelected: false,
   },
   {
@@ -157,7 +157,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Fire-type Pokémon resembling a small dinosaur with a flame on its tail.",
     style: "Charmander",
-    image: "/images/filters/digital/videoGameCharacters/Charmander.png",
+    image: "/images/filters/Charmander.webp",
     isSelected: false,
   },
   {
@@ -166,7 +166,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Dragon/Fire-type Pokémon with powerful wings and fiery breath.",
     style: "Charizard",
-    image: "/images/filters/digital/videoGameCharacters/Charizard.png",
+    image: "/images/filters/Charizard.webp",
     isSelected: false,
   },
   {
@@ -175,7 +175,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Water-type Pokémon resembling a small turtle with a shell on its back.",
     style: "Squirtle",
-    image: "/images/filters/digital/videoGameCharacters/Squirtle.png",
+    image: "/images/filters/Squirtle.webp",
     isSelected: false,
   },
   {
@@ -184,7 +184,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Grass/Poison-type Pokémon with a plant bulb growing on its back.",
     style: "Bulbasaur",
-    image: "/images/filters/digital/videoGameCharacters/Bulbasaur.png",
+    image: "/images/filters/Bulbasaur.webp",
     isSelected: false,
   },
   {
@@ -193,7 +193,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Blue hedgehog known for his super speed and defeating Dr. Eggman.",
     style: "Sonic",
-    image: "/images/filters/digital/videoGameCharacters/Sonic.png",
+    image: "/images/filters/Sonic.webp",
     isSelected: false,
   },
   {
@@ -202,8 +202,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Red echidna character known for his strength and gliding abilities.",
     style: "Knuckles the Echidna",
-    image:
-      "/images/filters/digital/videoGameCharacters/Knuckles_the_Echidna.png",
+    image: "/images/filters/Knuckles_the_Echidna.webp",
     isSelected: false,
   },
   {
@@ -212,7 +211,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Sonic's nemesis and evil scientist with a penchant for building robots.",
     style: "Doctor Eggman",
-    image: "/images/filters/digital/videoGameCharacters/Doctor_Eggman.png",
+    image: "/images/filters/Doctor_Eggman.webp",
     isSelected: false,
   },
   {
@@ -221,7 +220,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Blue robotic hero armed with an arm cannon and defeating evil bosses.",
     style: "Mega Man",
-    image: "/images/filters/digital/videoGameCharacters/Mega_Man.png",
+    image: "/images/filters/Mega_Man.webp",
     isSelected: false,
   },
   {
@@ -230,7 +229,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Alien creatures parasitically attached to hosts in the Metroid games.",
     style: "Metroid",
-    image: "/images/filters/digital/videoGameCharacters/Metroid.png",
+    image: "/images/filters/Metroid.webp",
     isSelected: false,
   },
   {
@@ -239,7 +238,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Bounty hunter character who wears a powered exoskeleton suit.",
     style: "Samus",
-    image: "/images/filters/digital/videoGameCharacters/Samus.png",
+    image: "/images/filters/Samus.webp",
     isSelected: false,
   },
   {
@@ -248,7 +247,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Heroic character in the Legend of Zelda series on a quest to save Princess Zelda.",
     style: "Link",
-    image: "/images/filters/digital/videoGameCharacters/Link.png",
+    image: "/images/filters/Link.webp",
     isSelected: false,
   },
   {
@@ -257,7 +256,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Princess and often the damsel in distress in the Legend of Zelda games.",
     style: "Zelda",
-    image: "/images/filters/digital/videoGameCharacters/Zelda.png",
+    image: "/images/filters/Zelda.webp",
     isSelected: false,
   },
   {
@@ -266,7 +265,7 @@ export const videoGameCharactersFilters: Filter[] = [
     description:
       "Tiny robot character known for cleaning and helping others in games.",
     style: "Chibi-Robo",
-    image: "/images/filters/digital/videoGameCharacters/Chibi-Robo.png",
+    image: "/images/filters/Chibi-Robo.webp",
     isSelected: false,
   },
 ];

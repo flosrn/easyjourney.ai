@@ -6,7 +6,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Graphic",
     description: "Filter for enhancing graphic images.",
     style: "Graphic",
-    image: "/images/filters/digital/imageFormatsAndTypes/Graphic.png",
+    image: "/images/filters/Graphic.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Graphics",
     description: "Filter for enhancing graphics and visual elements.",
     style: "Graphics",
-    image: "/images/filters/digital/imageFormatsAndTypes/Graphics.png",
+    image: "/images/filters/Graphics.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Picture",
     description: "Filter for enhancing digital pictures.",
     style: "Picture",
-    image: "/images/filters/digital/imageFormatsAndTypes/Picture.png",
+    image: "/images/filters/Picture.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Image",
     description: "General-purpose filter for enhancing images.",
     style: "Image",
-    image: "/images/filters/digital/imageFormatsAndTypes/Image.png",
+    image: "/images/filters/Image.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Raster",
     description: "Filter for raster images and pixel-based graphics.",
     style: "Raster",
-    image: "/images/filters/digital/imageFormatsAndTypes/Raster.png",
+    image: "/images/filters/Raster.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Raster Art",
     description: "Filter for enhancing raster-based artwork.",
     style: "Raster Art",
-    image: "/images/filters/digital/imageFormatsAndTypes/Raster_Art.png",
+    image: "/images/filters/Raster_Art.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Vector Graphics",
     description: "Filter for enhancing vector-based graphics.",
     style: "Vector Graphics",
-    image: "/images/filters/digital/imageFormatsAndTypes/Vector_Graphics.png",
+    image: "/images/filters/Vector_Graphics.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Vector Art",
     description: "Filter for enhancing vector-based artwork.",
     style: "Vector Art",
-    image: "/images/filters/digital/imageFormatsAndTypes/Vector_Art.png",
+    image: "/images/filters/Vector_Art.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Bitmap",
     description: "Filter for bitmap images and pixel-based graphics.",
     style: "Bitmap",
-    image: "/images/filters/digital/imageFormatsAndTypes/Bitmap.png",
+    image: "/images/filters/Bitmap.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Jpeg",
     description: "Filter for enhancing JPEG images.",
     style: "Jpeg",
-    image: "/images/filters/digital/imageFormatsAndTypes/Jpeg.png",
+    image: "/images/filters/Jpeg.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Icon",
     description: "Filter for enhancing icons and small graphics.",
     style: "Icon",
-    image: "/images/filters/digital/imageFormatsAndTypes/Icon.png",
+    image: "/images/filters/Icon.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Animated GIF",
     description: "Filter for enhancing animated GIF images.",
     style: "Animated GIF",
-    image: "/images/filters/digital/imageFormatsAndTypes/Animated_GIF.png",
+    image: "/images/filters/Animated_GIF.webp",
     isSelected: false,
   },
   {
@@ -102,7 +102,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Video",
     description: "Filter for enhancing video frames and stills.",
     style: "Video",
-    image: "/images/filters/digital/imageFormatsAndTypes/Video.png",
+    image: "/images/filters/Video.webp",
     isSelected: false,
   },
   {
@@ -110,7 +110,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Render",
     description: "Filter for enhancing rendered graphics.",
     style: "Render",
-    image: "/images/filters/digital/imageFormatsAndTypes/Render.png",
+    image: "/images/filters/Render.webp",
     isSelected: false,
   },
   {
@@ -118,7 +118,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Rendered",
     description: "Filter for enhancing rendered images.",
     style: "Rendered",
-    image: "/images/filters/digital/imageFormatsAndTypes/Rendered.png",
+    image: "/images/filters/Rendered.webp",
     isSelected: false,
   },
   {
@@ -126,7 +126,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Rendering",
     description: "Filter for enhancing rendering effects.",
     style: "Rendering",
-    image: "/images/filters/digital/imageFormatsAndTypes/Rendering.png",
+    image: "/images/filters/Rendering.webp",
     isSelected: false,
   },
   {
@@ -134,7 +134,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "3D Model",
     description: "Filter for enhancing 3D models and artwork.",
     style: "3D Model",
-    image: "/images/filters/digital/imageFormatsAndTypes/3D_Model.png",
+    image: "/images/filters/3D_Model.webp",
     isSelected: false,
   },
   {
@@ -142,7 +142,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "3D Render",
     description: "Filter for enhancing 3D rendered images.",
     style: "3D Render",
-    image: "/images/filters/digital/imageFormatsAndTypes/3D_Render.png",
+    image: "/images/filters/3D_Render.webp",
     isSelected: false,
   },
   {
@@ -150,8 +150,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Precision Rendering",
     description: "Filter for enhancing precision rendering.",
     style: "Precision Rendering",
-    image:
-      "/images/filters/digital/imageFormatsAndTypes/Precision_Rendering.png",
+    image: "/images/filters/Precision_Rendering.webp",
     isSelected: false,
   },
   {
@@ -159,7 +158,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Wiremap",
     description: "Filter for enhancing wireframe models and graphics.",
     style: "Wiremap",
-    image: "/images/filters/digital/imageFormatsAndTypes/Wiremap.png",
+    image: "/images/filters/Wiremap.webp",
     isSelected: false,
   },
   {
@@ -167,7 +166,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Lowpoly",
     description: "Filter for enhancing low-polygon models and graphics.",
     style: "Lowpoly",
-    image: "/images/filters/digital/imageFormatsAndTypes/Lowpoly.png",
+    image: "/images/filters/Lowpoly.webp",
     isSelected: false,
   },
   {
@@ -175,7 +174,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Low Poly",
     description: "Filter for enhancing low-polygon models and artwork.",
     style: "Low Poly",
-    image: "/images/filters/digital/imageFormatsAndTypes/Low_Poly.png",
+    image: "/images/filters/Low_Poly.webp",
     isSelected: false,
   },
   {
@@ -183,7 +182,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Low-Poly Art",
     description: "Filter for enhancing low-polygon artwork.",
     style: "Low-Poly Art",
-    image: "/images/filters/digital/imageFormatsAndTypes/Low-Poly_Art.png",
+    image: "/images/filters/Low-Poly_Art.webp",
     isSelected: false,
   },
   {
@@ -191,8 +190,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Pre-Rendered Graphics",
     description: "Filter for enhancing pre-rendered graphics.",
     style: "Pre-Rendered Graphics",
-    image:
-      "/images/filters/digital/imageFormatsAndTypes/Pre-Rendered_Graphics.png",
+    image: "/images/filters/Pre-Rendered_Graphics.webp",
     isSelected: false,
   },
   {
@@ -200,8 +198,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Physically Based Rendering",
     description: "Filter for enhancing physically based rendering.",
     style: "Physically Based Rendering",
-    image:
-      "/images/filters/digital/imageFormatsAndTypes/Physically_Based_Rendering.png",
+    image: "/images/filters/Physically_Based_Rendering.webp",
     isSelected: false,
   },
   {
@@ -209,8 +206,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Computational Geometry",
     description: "Filter for enhancing computational geometry visuals.",
     style: "Computational Geometry",
-    image:
-      "/images/filters/digital/imageFormatsAndTypes/Computational_Geometry.png",
+    image: "/images/filters/Computational_Geometry.webp",
     isSelected: false,
   },
   {
@@ -218,7 +214,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Holographic",
     description: "Filter for creating a holographic effect on images.",
     style: "Holographic",
-    image: "/images/filters/digital/imageFormatsAndTypes/Holographic.png",
+    image: "/images/filters/Holographic.webp",
     isSelected: false,
   },
   {
@@ -226,7 +222,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Holography",
     description: "Filter for creating a holographic effect on visuals.",
     style: "Holography",
-    image: "/images/filters/digital/imageFormatsAndTypes/Holography.png",
+    image: "/images/filters/Holography.webp",
     isSelected: false,
   },
   {
@@ -234,7 +230,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Texture",
     description: "Filter for enhancing textures in images.",
     style: "Texture",
-    image: "/images/filters/digital/imageFormatsAndTypes/Texture.png",
+    image: "/images/filters/Texture.webp",
     isSelected: false,
   },
   {
@@ -242,7 +238,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Seamless Texture",
     description: "Filter for creating seamless textures in images.",
     style: "Seamless Texture",
-    image: "/images/filters/digital/imageFormatsAndTypes/Seamless_Texture.png",
+    image: "/images/filters/Seamless_Texture.webp",
     isSelected: false,
   },
   {
@@ -250,7 +246,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Digital Art",
     description: "Filter for enhancing digital artwork.",
     style: "Digital Art",
-    image: "/images/filters/digital/imageFormatsAndTypes/Digital_Art.png",
+    image: "/images/filters/Digital_Art.webp",
     isSelected: false,
   },
   {
@@ -258,7 +254,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Pixel Art",
     description: "Filter for enhancing pixel art graphics.",
     style: "Pixel Art",
-    image: "/images/filters/digital/imageFormatsAndTypes/Pixel_Art.png",
+    image: "/images/filters/Pixel_Art.webp",
     isSelected: false,
   },
   {
@@ -266,7 +262,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Voxel Art",
     description: "Filter for enhancing voxel-based artwork.",
     style: "Voxel Art",
-    image: "/images/filters/digital/imageFormatsAndTypes/Voxel_Art.png",
+    image: "/images/filters/Voxel_Art.webp",
     isSelected: false,
   },
   {
@@ -274,7 +270,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Pixel-Perfect",
     description: "Filter for creating pixel-perfect images.",
     style: "Pixel-Perfect",
-    image: "/images/filters/digital/imageFormatsAndTypes/Pixel-Perfect.png",
+    image: "/images/filters/Pixel-Perfect.webp",
     isSelected: false,
   },
   {
@@ -282,7 +278,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Tilemap",
     description: "Filter for enhancing tilemap graphics.",
     style: "Tilemap",
-    image: "/images/filters/digital/imageFormatsAndTypes/Tilemap.png",
+    image: "/images/filters/Tilemap.webp",
     isSelected: false,
   },
   {
@@ -292,7 +288,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     description: "Filter for converting images to ASCII art.",
     // eslint-disable-next-line unicorn/text-encoding-identifier-case
     style: "ASCII",
-    image: "/images/filters/digital/imageFormatsAndTypes/ASCII.png",
+    image: "/images/filters/ASCII.webp",
     isSelected: false,
   },
   {
@@ -300,7 +296,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "ASCII Art",
     description: "Filter for enhancing ASCII art visuals.",
     style: "ASCII Art",
-    image: "/images/filters/digital/imageFormatsAndTypes/ASCII_Art.png",
+    image: "/images/filters/ASCII_Art.webp",
     isSelected: false,
   },
   {
@@ -308,7 +304,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Meme",
     description: "Filter for creating meme-style visuals.",
     style: "Meme",
-    image: "/images/filters/digital/imageFormatsAndTypes/Meme.png",
+    image: "/images/filters/Meme.webp",
     isSelected: false,
   },
   {
@@ -316,7 +312,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "NFT",
     description: "Filter for enhancing NFT artwork.",
     style: "NFT",
-    image: "/images/filters/digital/imageFormatsAndTypes/NFT.png",
+    image: "/images/filters/NFT.webp",
     isSelected: false,
   },
   {
@@ -324,7 +320,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Clip Art",
     description: "Filter for enhancing clip art graphics.",
     style: "Clip Art",
-    image: "/images/filters/digital/imageFormatsAndTypes/Clip_Art.png",
+    image: "/images/filters/Clip_Art.webp",
     isSelected: false,
   },
   {
@@ -332,7 +328,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Photomontage",
     description: "Filter for creating photomontage visuals.",
     style: "Photomontage",
-    image: "/images/filters/digital/imageFormatsAndTypes/Photomontage.png",
+    image: "/images/filters/Photomontage.webp",
     isSelected: false,
   },
   {
@@ -340,7 +336,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Stock Photo",
     description: "Filter for enhancing stock photos.",
     style: "Stock Photo",
-    image: "/images/filters/digital/imageFormatsAndTypes/Stock_Photo.png",
+    image: "/images/filters/Stock_Photo.webp",
     isSelected: false,
   },
   {
@@ -348,7 +344,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Wallpaper",
     description: "Filter for creating wallpaper-style visuals.",
     style: "Wallpaper",
-    image: "/images/filters/digital/imageFormatsAndTypes/Wallpaper.png",
+    image: "/images/filters/Wallpaper.webp",
     isSelected: false,
   },
   {
@@ -356,8 +352,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Procedural Texture",
     description: "Filter for enhancing procedural textures.",
     style: "Procedural Texture",
-    image:
-      "/images/filters/digital/imageFormatsAndTypes/Procedural_Texture.png",
+    image: "/images/filters/Procedural_Texture.webp",
     isSelected: false,
   },
   {
@@ -365,7 +360,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Algorithmic Art",
     description: "Filter for enhancing algorithmic artwork.",
     style: "Algorithmic Art",
-    image: "/images/filters/digital/imageFormatsAndTypes/Algorithmic_Art.png",
+    image: "/images/filters/Algorithmic_Art.webp",
     isSelected: false,
   },
   {
@@ -373,7 +368,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Character Design",
     description: "Filter for enhancing character designs.",
     style: "Character Design",
-    image: "/images/filters/digital/imageFormatsAndTypes/Character_Design.png",
+    image: "/images/filters/Character_Design.webp",
     isSelected: false,
   },
   {
@@ -381,8 +376,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Character Portrait",
     description: "Filter for enhancing character portraits.",
     style: "Character Portrait",
-    image:
-      "/images/filters/digital/imageFormatsAndTypes/Character_Portrait.png",
+    image: "/images/filters/Character_Portrait.webp",
     isSelected: false,
   },
   {
@@ -390,8 +384,7 @@ export const imageFormatsAndTypesFilters: Filter[] = [
     name: "Creative Commons Attribution",
     description: "Filter for enhancing Creative Commons attribution visuals.",
     style: "Creative Commons Attribution",
-    image:
-      "/images/filters/digital/imageFormatsAndTypes/Creative_Commons_Attribution.png",
+    image: "/images/filters/Creative_Commons_Attribution.webp",
     isSelected: false,
   },
 ];

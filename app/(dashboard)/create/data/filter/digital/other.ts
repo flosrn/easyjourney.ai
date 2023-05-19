@@ -6,7 +6,7 @@ export const otherFilters: Filter[] = [
     name: "Network",
     description: "Filter for network-related images.",
     style: "Network",
-    image: "/images/filters/digital/other/Network.png",
+    image: "/images/filters/Network.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const otherFilters: Filter[] = [
     name: "Cellular Automata",
     description: "Filter for cellular automata-related images.",
     style: "Cellular Automata",
-    image: "/images/filters/digital/other/Cellular_Automata.png",
+    image: "/images/filters/Cellular_Automata.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const otherFilters: Filter[] = [
     name: "Conway's Game of Life",
     description: "Filter for Conway's Game of Life-related images.",
     style: "Conway's Game of Life",
-    image: "/images/filters/digital/other/Conways_Game_of_Life.png",
+    image: "/images/filters/Conways_Game_of_Life.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const otherFilters: Filter[] = [
     name: "Macroblock",
     description: "Filter for macroblock-related images.",
     style: "Macroblock",
-    image: "/images/filters/digital/other/Macroblock.png",
+    image: "/images/filters/Macroblock.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const otherFilters: Filter[] = [
     name: "Photoillustration",
     description: "Filter for photoillustration-related images.",
     style: "Photoillustration",
-    image: "/images/filters/digital/other/Photoillustration.png",
+    image: "/images/filters/Photoillustration.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const otherFilters: Filter[] = [
     name: "Captcha",
     description: "Filter for Captcha-related images.",
     style: "Captcha",
-    image: "/images/filters/digital/other/Captcha.png",
+    image: "/images/filters/Captcha.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const otherFilters: Filter[] = [
     name: "Recaptcha",
     description: "Filter for Recaptcha-related images.",
     style: "Recaptcha",
-    image: "/images/filters/digital/other/Recaptcha.png",
+    image: "/images/filters/Recaptcha.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const otherFilters: Filter[] = [
     name: "Prototype",
     description: "Filter for prototype-related images.",
     style: "Prototype",
-    image: "/images/filters/digital/other/Prototype.png",
+    image: "/images/filters/Prototype.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const otherFilters: Filter[] = [
     name: "Pre-Release",
     description: "Filter for pre-release-related images.",
     style: "Pre-Release",
-    image: "/images/filters/digital/other/Pre-Release.png",
+    image: "/images/filters/Pre-Release.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const otherFilters: Filter[] = [
     name: "Alpha",
     description: "Filter for alpha-related images.",
     style: "Alpha",
-    image: "/images/filters/digital/other/Alpha.png",
+    image: "/images/filters/Alpha.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const otherFilters: Filter[] = [
     name: "Beta",
     description: "Filter for beta-related images.",
     style: "Beta",
-    image: "/images/filters/digital/other/Beta.png",
+    image: "/images/filters/Beta.webp",
     isSelected: false,
   },
 ];

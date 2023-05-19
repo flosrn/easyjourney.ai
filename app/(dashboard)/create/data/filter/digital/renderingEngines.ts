@@ -6,7 +6,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Rendering Engine",
     description: "Filter for rendering engine-related images.",
     style: "Rendering Engine",
-    image: "/images/filters/digital/renderingEngines/Rendering_Engine.png",
+    image: "/images/filters/Rendering_Engine.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Octane",
     description: "Filter for Octane-related images.",
     style: "Octane",
-    image: "/images/filters/digital/renderingEngines/Octane.png",
+    image: "/images/filters/Octane.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Cinema4D",
     description: "Filter for Cinema4D-related images.",
     style: "Cinema4D",
-    image: "/images/filters/digital/renderingEngines/Cinema4D.png",
+    image: "/images/filters/Cinema4D.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "C4D",
     description: "Filter for C4D-related images.",
     style: "C4D",
-    image: "/images/filters/digital/renderingEngines/C4D.png",
+    image: "/images/filters/C4D.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Unreal Engine",
     description: "Filter for Unreal Engine-related images.",
     style: "Unreal Engine",
-    image: "/images/filters/digital/renderingEngines/Unreal_Engine.png",
+    image: "/images/filters/Unreal_Engine.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Unity Engine",
     description: "Filter for Unity Engine-related images.",
     style: "Unity Engine",
-    image: "/images/filters/digital/renderingEngines/Unity_Engine.png",
+    image: "/images/filters/Unity_Engine.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Rendered in Houdini",
     description: "Filter for images rendered in Houdini.",
     style: "Rendered in Houdini",
-    image: "/images/filters/digital/renderingEngines/Rendered_in_Houdini.png",
+    image: "/images/filters/Rendered_in_Houdini.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Houdini-Render",
     description: "Filter for Houdini-rendered images.",
     style: "Houdini-Render",
-    image: "/images/filters/digital/renderingEngines/Houdini-Render.png",
+    image: "/images/filters/Houdini-Render.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Redshift Render",
     description: "Filter for Redshift Render-related images.",
     style: "Redshift Render",
-    image: "/images/filters/digital/renderingEngines/Redshift_Render.png",
+    image: "/images/filters/Redshift_Render.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Blender Render",
     description: "Filter for Blender Render-related images.",
     style: "Blender Render",
-    image: "/images/filters/digital/renderingEngines/Blender_Render.png",
+    image: "/images/filters/Blender_Render.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Cycles Render",
     description: "Filter for Cycles Render-related images.",
     style: "Cycles Render",
-    image: "/images/filters/digital/renderingEngines/Cycles_Render.png",
+    image: "/images/filters/Cycles_Render.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "OptiX-Render",
     description: "Filter for OptiX-Render-related images.",
     style: "OptiX-Render",
-    image: "/images/filters/digital/renderingEngines/OptiX-Render.png",
+    image: "/images/filters/OptiX-Render.webp",
     isSelected: false,
   },
   {
@@ -102,7 +102,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Povray",
     description: "Filter for Povray-related images.",
     style: "Povray",
-    image: "/images/filters/digital/renderingEngines/Povray.png",
+    image: "/images/filters/Povray.webp",
     isSelected: false,
   },
   {
@@ -110,7 +110,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Vray",
     description: "Filter for Vray-related images.",
     style: "Vray",
-    image: "/images/filters/digital/renderingEngines/Vray.png",
+    image: "/images/filters/Vray.webp",
     isSelected: false,
   },
   {
@@ -118,7 +118,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "CryEngine",
     description: "Filter for CryEngine-related images.",
     style: "CryEngine",
-    image: "/images/filters/digital/renderingEngines/CryEngine.png",
+    image: "/images/filters/CryEngine.webp",
     isSelected: false,
   },
   {
@@ -126,7 +126,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "LuxCoreRender",
     description: "Filter for LuxCoreRender-related images.",
     style: "LuxCoreRender",
-    image: "/images/filters/digital/renderingEngines/LuxCoreRender.png",
+    image: "/images/filters/LuxCoreRender.webp",
     isSelected: false,
   },
   {
@@ -134,7 +134,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Silicon Render",
     description: "Filter for Silicon Render-related images.",
     style: "Silicon Render",
-    image: "/images/filters/digital/renderingEngines/Silicon_Render.png",
+    image: "/images/filters/Silicon_Render.webp",
     isSelected: false,
   },
   {
@@ -142,7 +142,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "MentalRay-Render",
     description: "Filter for MentalRay-Render-related images.",
     style: "MentalRay-Render",
-    image: "/images/filters/digital/renderingEngines/MentalRay-Render.png",
+    image: "/images/filters/MentalRay-Render.webp",
     isSelected: false,
   },
   {
@@ -150,7 +150,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Raylectron",
     description: "Filter for Raylectron-related images.",
     style: "Raylectron",
-    image: "/images/filters/digital/renderingEngines/Raylectron.png",
+    image: "/images/filters/Raylectron.webp",
     isSelected: false,
   },
   {
@@ -158,7 +158,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Infini-D-Render",
     description: "Filter for Infini-D-Render-related images.",
     style: "Infini-D-Render",
-    image: "/images/filters/digital/renderingEngines/Infini-D-Render.png",
+    image: "/images/filters/Infini-D-Render.webp",
     isSelected: false,
   },
   {
@@ -166,7 +166,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Zbrush",
     description: "Filter for Zbrush-related images.",
     style: "Zbrush",
-    image: "/images/filters/digital/renderingEngines/Zbrush.png",
+    image: "/images/filters/Zbrush.webp",
     isSelected: false,
   },
   {
@@ -174,7 +174,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Sketchfab",
     description: "Filter for Sketchfab-related images.",
     style: "Sketchfab",
-    image: "/images/filters/digital/renderingEngines/Sketchfab.png",
+    image: "/images/filters/Sketchfab.webp",
     isSelected: false,
   },
   {
@@ -182,7 +182,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "OpenGL",
     description: "Filter for OpenGL-related images.",
     style: "OpenGL",
-    image: "/images/filters/digital/renderingEngines/OpenGL.png",
+    image: "/images/filters/OpenGL.webp",
     isSelected: false,
   },
   {
@@ -190,7 +190,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "DirectX",
     description: "Filter for DirectX-related images.",
     style: "DirectX",
-    image: "/images/filters/digital/renderingEngines/DirectX.png",
+    image: "/images/filters/DirectX.webp",
     isSelected: false,
   },
   {
@@ -198,7 +198,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Autodesk 3ds Max",
     description: "Filter for Autodesk 3ds Max-related images.",
     style: "Autodesk 3ds Max",
-    image: "/images/filters/digital/renderingEngines/Autodesk_3ds_Max.png",
+    image: "/images/filters/Autodesk_3ds_Max.webp",
     isSelected: false,
   },
   {
@@ -206,7 +206,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "SketchUp",
     description: "Filter for SketchUp-related images.",
     style: "SketchUp",
-    image: "/images/filters/digital/renderingEngines/SketchUp.png",
+    image: "/images/filters/SketchUp.webp",
     isSelected: false,
   },
   {
@@ -214,7 +214,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Terragen",
     description: "Filter for Terragen-related images.",
     style: "Terragen",
-    image: "/images/filters/digital/renderingEngines/Terragen.png",
+    image: "/images/filters/Terragen.webp",
     isSelected: false,
   },
   {
@@ -222,7 +222,7 @@ export const renderingEnginesFilters: Filter[] = [
     name: "Arnold Render",
     description: "Filter for Arnold Render-related images.",
     style: "Arnold Render",
-    image: "/images/filters/digital/renderingEngines/Arnold_Render.png",
+    image: "/images/filters/Arnold_Render.webp",
     isSelected: false,
   },
 ];

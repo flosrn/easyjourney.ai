@@ -7,7 +7,7 @@ export const cubismFilters: Filter[] = [
     description:
       "Fragmented and geometric forms, multiple viewpoints, subjective representation.",
     style: "Cubism",
-    image: "/images/filters/design_Styles/cubism/Cubism.png",
+    image: "/images/filters/Cubism.webp",
     isSelected: false,
   },
   {
@@ -16,7 +16,7 @@ export const cubismFilters: Filter[] = [
     description:
       "Collage elements, incorporation of everyday objects, mixed materials.",
     style: "Synthetic Cubism",
-    image: "/images/filters/design_Styles/cubism/Synthetic_Cubism.png",
+    image: "/images/filters/Synthetic_Cubism.webp",
     isSelected: false,
   },
   {
@@ -24,7 +24,7 @@ export const cubismFilters: Filter[] = [
     name: "Mechanistic Cubism",
     description: "Angular and machinelike forms, focus on mechanical aspects.",
     style: "Mechanistic Cubism",
-    image: "/images/filters/design_Styles/cubism/Mechanistic_Cubism.png",
+    image: "/images/filters/Mechanistic_Cubism.webp",
     isSelected: false,
   },
   {
@@ -33,7 +33,7 @@ export const cubismFilters: Filter[] = [
     description:
       "Geometric shapes, multiple perspectives, early stage of Cubism.",
     style: "Proto-Cubism",
-    image: "/images/filters/design_Styles/cubism/Proto-Cubism.png",
+    image: "/images/filters/Proto-Cubism.webp",
     isSelected: false,
   },
   {
@@ -42,7 +42,7 @@ export const cubismFilters: Filter[] = [
     description:
       "Fusion of Cubism and Futurism, dynamic portrayal of movement.",
     style: "Cubo-Futurism",
-    image: "/images/filters/design_Styles/cubism/Cubo-Futurism.png",
+    image: "/images/filters/Cubo-Futurism.webp",
     isSelected: false,
   },
 ];

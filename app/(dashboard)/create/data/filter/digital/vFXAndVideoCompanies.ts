@@ -6,7 +6,7 @@ export const vFXAndVideoCompaniesFilters: Filter[] = [
     name: "Disney",
     description: "Magical animation and storytelling from the house of Disney.",
     style: "Disney",
-    image: "/images/filters/digital/vFXAndVideoCompanies/Disney.png",
+    image: "/images/filters/Disney.webp",
     isSelected: false,
   },
   {
@@ -15,7 +15,7 @@ export const vFXAndVideoCompaniesFilters: Filter[] = [
     description:
       "Innovative and heartwarming computer-generated animation by Pixar.",
     style: "Pixar",
-    image: "/images/filters/digital/vFXAndVideoCompanies/Pixar.png",
+    image: "/images/filters/Pixar.webp",
     isSelected: false,
   },
   {
@@ -24,7 +24,7 @@ export const vFXAndVideoCompaniesFilters: Filter[] = [
     description:
       "Exciting and visually stunning animation from Dreamworks Studios.",
     style: "Dreamworks",
-    image: "/images/filters/digital/vFXAndVideoCompanies/Dreamworks.png",
+    image: "/images/filters/Dreamworks.webp",
     isSelected: false,
   },
   {
@@ -33,7 +33,7 @@ export const vFXAndVideoCompaniesFilters: Filter[] = [
     description:
       "Immersive and larger-than-life cinematic experiences in IMAX format.",
     style: "IMAX",
-    image: "/images/filters/digital/vFXAndVideoCompanies/IMAX.png",
+    image: "/images/filters/IMAX.webp",
     isSelected: false,
   },
   {
@@ -42,7 +42,7 @@ export const vFXAndVideoCompaniesFilters: Filter[] = [
     description:
       "Cutting-edge visual effects and digital imagery created by Imageworks.",
     style: "Imageworks",
-    image: "/images/filters/digital/vFXAndVideoCompanies/Imageworks.png",
+    image: "/images/filters/Imageworks.webp",
     isSelected: false,
   },
   {
@@ -51,7 +51,7 @@ export const vFXAndVideoCompaniesFilters: Filter[] = [
     description:
       "Award-winning visual effects and creative content from Framestore.",
     style: "Framestore",
-    image: "/images/filters/digital/vFXAndVideoCompanies/Framestore.png",
+    image: "/images/filters/Framestore.webp",
     isSelected: false,
   },
   {
@@ -60,7 +60,7 @@ export const vFXAndVideoCompaniesFilters: Filter[] = [
     description:
       "High-quality visual effects and immersive storytelling by Pixomondo.",
     style: "Pixomondo",
-    image: "/images/filters/digital/vFXAndVideoCompanies/Pixomondo.png",
+    image: "/images/filters/Pixomondo.webp",
     isSelected: false,
   },
   {
@@ -69,7 +69,7 @@ export const vFXAndVideoCompaniesFilters: Filter[] = [
     description:
       "Creative and boundary-pushing visual effects by Luma Pictures.",
     style: "Luma Pictures",
-    image: "/images/filters/digital/vFXAndVideoCompanies/Luma_Pictures.png",
+    image: "/images/filters/Luma_Pictures.webp",
     isSelected: false,
   },
   {
@@ -78,8 +78,7 @@ export const vFXAndVideoCompaniesFilters: Filter[] = [
     description:
       "Curated collection of classic and influential films by Criterion.",
     style: "Criterion Collection",
-    image:
-      "/images/filters/digital/vFXAndVideoCompanies/Criterion_Collection.png",
+    image: "/images/filters/Criterion_Collection.webp",
     isSelected: false,
   },
 ];

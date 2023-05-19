@@ -6,7 +6,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "Warmcore",
     description: "Cozy vibes with warm colors and soft textures.",
     style: "Warmcore",
-    image: "/images/filters/themes/moodBasedThemes/Warmcore.png",
+    image: "/images/filters/Warmcore.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "Lovecore",
     description: "Dreamy aesthetic celebrating love and affection.",
     style: "Lovecore",
-    image: "/images/filters/themes/moodBasedThemes/Lovecore.png",
+    image: "/images/filters/Lovecore.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "Happycore",
     description: "Joyful and positive with vibrant and cheerful elements.",
     style: "Happycore",
-    image: "/images/filters/themes/moodBasedThemes/Happycore.png",
+    image: "/images/filters/Happycore.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "Smilecore",
     description: "Express happiness through colorful and lively visuals.",
     style: "Smilecore",
-    image: "/images/filters/themes/moodBasedThemes/Smilecore.png",
+    image: "/images/filters/Smilecore.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "Gloomcore",
     description: "Eerie beauty with a touch of darkness and melancholy.",
     style: "Gloomcore",
-    image: "/images/filters/themes/moodBasedThemes/Gloomcore.png",
+    image: "/images/filters/Gloomcore.webp",
     isSelected: false,
   },
   {
@@ -47,7 +47,7 @@ export const moodBasedThemesFilters: Filter[] = [
     description:
       "Simplicity and beauty in muted colors and minimalistic design.",
     style: "Dullcore",
-    image: "/images/filters/themes/moodBasedThemes/Dullcore.png",
+    image: "/images/filters/Dullcore.webp",
     isSelected: false,
   },
   {
@@ -55,7 +55,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "Horror Styled",
     description: "Chilling visuals inspired by various horror genres.",
     style: "Horror Styled",
-    image: "/images/filters/themes/moodBasedThemes/Horror_Styled.png",
+    image: "/images/filters/Horror_Styled.webp",
     isSelected: false,
   },
   {
@@ -63,7 +63,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "Horrorism",
     description: "Unsettling world of horror with a unique twist.",
     style: "Horrorism",
-    image: "/images/filters/themes/moodBasedThemes/Horrorism.png",
+    image: "/images/filters/Horrorism.webp",
     isSelected: false,
   },
   {
@@ -72,7 +72,7 @@ export const moodBasedThemesFilters: Filter[] = [
     description:
       "Terrifying mysteries of the cosmic universe captured visually.",
     style: "Cosmic Horror",
-    image: "/images/filters/themes/moodBasedThemes/Cosmic_Horror.png",
+    image: "/images/filters/Cosmic_Horror.webp",
     isSelected: false,
   },
   {
@@ -81,7 +81,7 @@ export const moodBasedThemesFilters: Filter[] = [
     description:
       "Horror elements combined with kawaii aesthetics for a unique experience.",
     style: "HorrorBooru",
-    image: "/images/filters/themes/moodBasedThemes/HorrorBooru.png",
+    image: "/images/filters/HorrorBooru.webp",
     isSelected: false,
   },
   {
@@ -89,7 +89,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "Macabre",
     description: "Dark and eerie aesthetics with a touch of elegance.",
     style: "Macabre",
-    image: "/images/filters/themes/moodBasedThemes/Macabre.png",
+    image: "/images/filters/Macabre.webp",
     isSelected: false,
   },
   {
@@ -97,7 +97,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "20s Horror Style",
     description: "Horror style inspired by the roaring 20s.",
     style: "20s Horror Style",
-    image: "/images/filters/themes/moodBasedThemes/20s_Horror_Style.png",
+    image: "/images/filters/20s_Horror_Style.webp",
     isSelected: false,
   },
   {
@@ -105,7 +105,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "20s Styled Horror Movie",
     description: "Horror movie aesthetics with a 1920s-inspired style.",
     style: "20s Styled Horror Movie",
-    image: "/images/filters/themes/moodBasedThemes/20s_Styled_Horror_Movie.png",
+    image: "/images/filters/20s_Styled_Horror_Movie.webp",
     isSelected: false,
   },
   {
@@ -113,7 +113,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "30s Horror Style",
     description: "Horror style influenced by the golden era of the 1930s.",
     style: "30s Horror Style",
-    image: "/images/filters/themes/moodBasedThemes/30s_Horror_Style.png",
+    image: "/images/filters/30s_Horror_Style.webp",
     isSelected: false,
   },
   {
@@ -121,7 +121,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "30s Styled Horror Movie",
     description: "Horror movie aesthetics with a 1930s-inspired style.",
     style: "30s Styled Horror Movie",
-    image: "/images/filters/themes/moodBasedThemes/30s_Styled_Horror_Movie.png",
+    image: "/images/filters/30s_Styled_Horror_Movie.webp",
     isSelected: false,
   },
   {
@@ -129,7 +129,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "40s Horror Style",
     description: "Horror style influenced by the classic era of the 1940s.",
     style: "40s Horror Style",
-    image: "/images/filters/themes/moodBasedThemes/40s_Horror_Style.png",
+    image: "/images/filters/40s_Horror_Style.webp",
     isSelected: false,
   },
   {
@@ -137,7 +137,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "40s Styled Horror Movie",
     description: "Horror movie aesthetics with a 1940s-inspired style.",
     style: "40s Styled Horror Movie",
-    image: "/images/filters/themes/moodBasedThemes/40s_Styled_Horror_Movie.png",
+    image: "/images/filters/40s_Styled_Horror_Movie.webp",
     isSelected: false,
   },
   {
@@ -145,7 +145,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "50s Horror Style",
     description: "Horror style influenced by the retro era of the 1950s.",
     style: "50s Horror Style",
-    image: "/images/filters/themes/moodBasedThemes/50s_Horror_Style.png",
+    image: "/images/filters/50s_Horror_Style.webp",
     isSelected: false,
   },
   {
@@ -153,7 +153,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "50s Styled Horror Movie",
     description: "Horror movie aesthetics with a 1950s-inspired style.",
     style: "50s Styled Horror Movie",
-    image: "/images/filters/themes/moodBasedThemes/50s_Styled_Horror_Movie.png",
+    image: "/images/filters/50s_Styled_Horror_Movie.webp",
     isSelected: false,
   },
   {
@@ -161,7 +161,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "60s Horror Style",
     description: "Horror style influenced by the psychedelic era of the 1960s.",
     style: "60s Horror Style",
-    image: "/images/filters/themes/moodBasedThemes/60s_Horror_Style.png",
+    image: "/images/filters/60s_Horror_Style.webp",
     isSelected: false,
   },
   {
@@ -169,7 +169,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "60s Styled Horror Movie",
     description: "Horror movie aesthetics with a 1960s-inspired style.",
     style: "60s Styled Horror Movie",
-    image: "/images/filters/themes/moodBasedThemes/60s_Styled_Horror_Movie.png",
+    image: "/images/filters/60s_Styled_Horror_Movie.webp",
     isSelected: false,
   },
   {
@@ -177,7 +177,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "70s Horror Style",
     description: "Horror style influenced by the groovy era of the 1970s.",
     style: "70s Horror Style",
-    image: "/images/filters/themes/moodBasedThemes/70s_Horror_Style.png",
+    image: "/images/filters/70s_Horror_Style.webp",
     isSelected: false,
   },
   {
@@ -185,7 +185,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "70s Styled Horror Movie",
     description: "Horror movie aesthetics with a 1970s-inspired style.",
     style: "70s Styled Horror Movie",
-    image: "/images/filters/themes/moodBasedThemes/70s_Styled_Horror_Movie.png",
+    image: "/images/filters/70s_Styled_Horror_Movie.webp",
     isSelected: false,
   },
   {
@@ -193,7 +193,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "80s Horror Style",
     description: "Horror style influenced by the iconic era of the 1980s.",
     style: "80s Horror Style",
-    image: "/images/filters/themes/moodBasedThemes/80s_Horror_Style.png",
+    image: "/images/filters/80s_Horror_Style.webp",
     isSelected: false,
   },
   {
@@ -201,7 +201,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "80s Styled Horror Movie",
     description: "Horror movie aesthetics with an 1980s-inspired style.",
     style: "80s Styled Horror Movie",
-    image: "/images/filters/themes/moodBasedThemes/80s_Styled_Horror_Movie.png",
+    image: "/images/filters/80s_Styled_Horror_Movie.webp",
     isSelected: false,
   },
   {
@@ -209,7 +209,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "90s Horror Style",
     description: "Horror style influenced by the iconic era of the 1990s.",
     style: "90s Horror Style",
-    image: "/images/filters/themes/moodBasedThemes/90s_Horror_Style.png",
+    image: "/images/filters/90s_Horror_Style.webp",
     isSelected: false,
   },
   {
@@ -217,7 +217,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "90s Styled Horror Movie",
     description: "Horror movie aesthetics with a 1990s-inspired style.",
     style: "90s Styled Horror Movie",
-    image: "/images/filters/themes/moodBasedThemes/90s_Styled_Horror_Movie.png",
+    image: "/images/filters/90s_Styled_Horror_Movie.webp",
     isSelected: false,
   },
   {
@@ -225,7 +225,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "2000s Horror Style",
     description: "Horror style influenced by the new millennium era.",
     style: "2000s Horror Style",
-    image: "/images/filters/themes/moodBasedThemes/2000s_Horror_Style.png",
+    image: "/images/filters/2000s_Horror_Style.webp",
     isSelected: false,
   },
   {
@@ -233,8 +233,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "2000s Styled Horror Movie",
     description: "Horror movie aesthetics with a 2000s-inspired style.",
     style: "2000s Styled Horror Movie",
-    image:
-      "/images/filters/themes/moodBasedThemes/2000s_Styled_Horror_Movie.png",
+    image: "/images/filters/2000s_Styled_Horror_Movie.webp",
     isSelected: false,
   },
   {
@@ -242,7 +241,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "Dazecore",
     description: "Visuals that evoke a dazed and dreamy atmosphere.",
     style: "Dazecore",
-    image: "/images/filters/themes/moodBasedThemes/Dazecore.png",
+    image: "/images/filters/Dazecore.webp",
     isSelected: false,
   },
   {
@@ -250,7 +249,7 @@ export const moodBasedThemesFilters: Filter[] = [
     name: "Sleepycore",
     description: "Relaxing and tranquil aesthetics for a peaceful vibe.",
     style: "Sleepycore",
-    image: "/images/filters/themes/moodBasedThemes/Sleepycore.png",
+    image: "/images/filters/Sleepycore.webp",
     isSelected: false,
   },
 ];

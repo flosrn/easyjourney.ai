@@ -6,7 +6,7 @@ export const expressionismFilters: Filter[] = [
     name: "Expressionism",
     description: "Bold and emotional artistic style",
     style: "Expressionism",
-    image: "/images/filters/design_Styles/expressionism/Expressionism.png",
+    image: "/images/filters/Expressionism.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const expressionismFilters: Filter[] = [
     name: "Cubo-Expressionism",
     description: "Cubist elements combined with expressionism",
     style: "Cubo-Expressionism",
-    image: "/images/filters/design_Styles/expressionism/Cubo-Expressionism.png",
+    image: "/images/filters/Cubo-Expressionism.webp",
     isSelected: false,
   },
   {
@@ -22,8 +22,7 @@ export const expressionismFilters: Filter[] = [
     name: "Figurative Expressionism",
     description: "Representation of figures with expressive techniques",
     style: "Figurative Expressionism",
-    image:
-      "/images/filters/design_Styles/expressionism/Figurative_Expressionism.png",
+    image: "/images/filters/Figurative_Expressionism.webp",
     isSelected: false,
   },
   {
@@ -31,8 +30,7 @@ export const expressionismFilters: Filter[] = [
     name: "Abstract Expressionism",
     description: "Non-representational and spontaneous style",
     style: "Abstract Expressionism",
-    image:
-      "/images/filters/design_Styles/expressionism/Abstract_Expressionism.png",
+    image: "/images/filters/Abstract_Expressionism.webp",
     isSelected: false,
   },
 ];

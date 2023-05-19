@@ -6,7 +6,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "20s",
     description: "Artistic styles and trends from the 1920s.",
     style: "20s",
-    image: "/images/filters/design_Styles/decadeStyles/20s.png",
+    image: "/images/filters/20s.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "20s Pattern",
     description: "Patterns inspired by the 1920s fashion and design.",
     style: "20s Pattern",
-    image: "/images/filters/design_Styles/decadeStyles/20s_Pattern.png",
+    image: "/images/filters/20s_Pattern.webp",
     isSelected: false,
   },
   {
@@ -23,7 +23,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 1920s style.",
     style: "1920s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/1920s_Decor.png",
+    image: "/images/filters/1920s_Decor.webp",
     isSelected: false,
   },
   {
@@ -31,7 +31,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "30s",
     description: "Designs influenced by the aesthetics of the 1930s.",
     style: "30s",
-    image: "/images/filters/design_Styles/decadeStyles/30s.png",
+    image: "/images/filters/30s.webp",
     isSelected: false,
   },
   {
@@ -39,7 +39,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "30s Pattern",
     description: "Patterns inspired by the fashion and design of the 1930s.",
     style: "30s Pattern",
-    image: "/images/filters/design_Styles/decadeStyles/30s_Pattern.png",
+    image: "/images/filters/30s_Pattern.webp",
     isSelected: false,
   },
   {
@@ -48,7 +48,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 1930s style.",
     style: "1930s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/1930s_Decor.png",
+    image: "/images/filters/1930s_Decor.webp",
     isSelected: false,
   },
   {
@@ -56,7 +56,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "40s",
     description: "Artistic styles and trends from the 1940s.",
     style: "40s",
-    image: "/images/filters/design_Styles/decadeStyles/40s.png",
+    image: "/images/filters/40s.webp",
     isSelected: false,
   },
   {
@@ -64,7 +64,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "40s Pattern",
     description: "Patterns inspired by the 1940s fashion and design.",
     style: "40s Pattern",
-    image: "/images/filters/design_Styles/decadeStyles/40s_Pattern.png",
+    image: "/images/filters/40s_Pattern.webp",
     isSelected: false,
   },
   {
@@ -73,7 +73,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 1940s style.",
     style: "1940s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/1940s_Decor.png",
+    image: "/images/filters/1940s_Decor.webp",
     isSelected: false,
   },
   {
@@ -81,7 +81,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "50s",
     description: "Artistic styles and trends from the 1950s.",
     style: "50s",
-    image: "/images/filters/design_Styles/decadeStyles/50s.png",
+    image: "/images/filters/50s.webp",
     isSelected: false,
   },
   {
@@ -89,7 +89,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "50s Pattern",
     description: "Patterns inspired by the 1950s fashion and design.",
     style: "50s Pattern",
-    image: "/images/filters/design_Styles/decadeStyles/50s_Pattern.png",
+    image: "/images/filters/50s_Pattern.webp",
     isSelected: false,
   },
   {
@@ -98,7 +98,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 1950s style.",
     style: "1950s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/1950s_Decor.png",
+    image: "/images/filters/1950s_Decor.webp",
     isSelected: false,
   },
   {
@@ -106,7 +106,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "60s",
     description: "Artistic styles and trends from the 1960s.",
     style: "60s",
-    image: "/images/filters/design_Styles/decadeStyles/60s.png",
+    image: "/images/filters/60s.webp",
     isSelected: false,
   },
   {
@@ -114,7 +114,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "60s Pattern",
     description: "Patterns inspired by the 1960s fashion and design.",
     style: "60s Pattern",
-    image: "/images/filters/design_Styles/decadeStyles/60s_Pattern.png",
+    image: "/images/filters/60s_Pattern.webp",
     isSelected: false,
   },
   {
@@ -123,7 +123,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 1960s style.",
     style: "1960s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/1960s_Decor.png",
+    image: "/images/filters/1960s_Decor.webp",
     isSelected: false,
   },
   {
@@ -131,7 +131,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "70s",
     description: "Artistic styles and trends from the 1970s.",
     style: "70s",
-    image: "/images/filters/design_Styles/decadeStyles/70s.png",
+    image: "/images/filters/70s.webp",
     isSelected: false,
   },
   {
@@ -139,7 +139,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "70s Pattern",
     description: "Patterns inspired by the 1970s fashion and design.",
     style: "70s Pattern",
-    image: "/images/filters/design_Styles/decadeStyles/70s_Pattern.png",
+    image: "/images/filters/70s_Pattern.webp",
     isSelected: false,
   },
   {
@@ -148,7 +148,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 1970s style.",
     style: "1970s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/1970s_Decor.png",
+    image: "/images/filters/1970s_Decor.webp",
     isSelected: false,
   },
   {
@@ -156,7 +156,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "80s",
     description: "Artistic styles and trends from the 1980s.",
     style: "80s",
-    image: "/images/filters/design_Styles/decadeStyles/80s.png",
+    image: "/images/filters/80s.webp",
     isSelected: false,
   },
   {
@@ -164,7 +164,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "80s Pattern",
     description: "Patterns inspired by the 1980s fashion and design.",
     style: "80s Pattern",
-    image: "/images/filters/design_Styles/decadeStyles/80s_Pattern.png",
+    image: "/images/filters/80s_Pattern.webp",
     isSelected: false,
   },
   {
@@ -173,7 +173,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 1980s style.",
     style: "1980s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/1980s_Decor.png",
+    image: "/images/filters/1980s_Decor.webp",
     isSelected: false,
   },
   {
@@ -181,7 +181,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "90s",
     description: "Artistic styles and trends from the 1990s.",
     style: "90s",
-    image: "/images/filters/design_Styles/decadeStyles/90s.png",
+    image: "/images/filters/90s.webp",
     isSelected: false,
   },
   {
@@ -189,7 +189,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "90s Pattern",
     description: "Patterns inspired by the 1990s fashion and design.",
     style: "90s Pattern",
-    image: "/images/filters/design_Styles/decadeStyles/90s_Pattern.png",
+    image: "/images/filters/90s_Pattern.webp",
     isSelected: false,
   },
   {
@@ -198,7 +198,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 1990s style.",
     style: "1990s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/1990s_Decor.png",
+    image: "/images/filters/1990s_Decor.webp",
     isSelected: false,
   },
   {
@@ -206,7 +206,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "Y2K Design",
     description: "Designs inspired by the turn of the millennium.",
     style: "Y2K Design",
-    image: "/images/filters/design_Styles/decadeStyles/Y2K_Design.png",
+    image: "/images/filters/Y2K_Design.webp",
     isSelected: false,
   },
   {
@@ -215,7 +215,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Patterns inspired by the turn of the millennium fashion and design.",
     style: "Y2K Pattern",
-    image: "/images/filters/design_Styles/decadeStyles/Y2K_Pattern.png",
+    image: "/images/filters/Y2K_Pattern.webp",
     isSelected: false,
   },
   {
@@ -223,7 +223,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "2000s Pattern",
     description: "Patterns inspired by the 2000s fashion and design.",
     style: "2000s Pattern",
-    image: "/images/filters/design_Styles/decadeStyles/2000s_Pattern.png",
+    image: "/images/filters/2000s_Pattern.webp",
     isSelected: false,
   },
   {
@@ -232,7 +232,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 2000s style.",
     style: "2000s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/2000s_Decor.png",
+    image: "/images/filters/2000s_Decor.webp",
     isSelected: false,
   },
   {
@@ -241,7 +241,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 2010s style.",
     style: "2010s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/2010s_Decor.png",
+    image: "/images/filters/2010s_Decor.webp",
     isSelected: false,
   },
   {
@@ -250,7 +250,7 @@ export const decadeStylesFilters: Filter[] = [
     description:
       "Decorative elements capturing the essence of the 2020s style.",
     style: "2020s Decor",
-    image: "/images/filters/design_Styles/decadeStyles/2020s_Decor.png",
+    image: "/images/filters/2020s_Decor.webp",
     isSelected: false,
   },
   {
@@ -258,7 +258,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1100s",
     description: "Artistic styles and trends from the 1100s.",
     style: "1100s",
-    image: "/images/filters/design_Styles/decadeStyles/1100s.png",
+    image: "/images/filters/1100s.webp",
     isSelected: false,
   },
   {
@@ -266,7 +266,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1200s",
     description: "Artistic styles and trends from the 1200s.",
     style: "1200s",
-    image: "/images/filters/design_Styles/decadeStyles/1200s.png",
+    image: "/images/filters/1200s.webp",
     isSelected: false,
   },
   {
@@ -274,7 +274,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1300s",
     description: "Artistic styles and trends from the 1300s.",
     style: "1300s",
-    image: "/images/filters/design_Styles/decadeStyles/1300s.png",
+    image: "/images/filters/1300s.webp",
     isSelected: false,
   },
   {
@@ -282,7 +282,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1400s",
     description: "Artistic styles and trends from the 1400s.",
     style: "1400s",
-    image: "/images/filters/design_Styles/decadeStyles/1400s.png",
+    image: "/images/filters/1400s.webp",
     isSelected: false,
   },
   {
@@ -290,7 +290,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1500s",
     description: "Artistic styles and trends from the 1500s.",
     style: "1500s",
-    image: "/images/filters/design_Styles/decadeStyles/1500s.png",
+    image: "/images/filters/1500s.webp",
     isSelected: false,
   },
   {
@@ -298,7 +298,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1600s",
     description: "Artistic styles and trends from the 1600s.",
     style: "1600s",
-    image: "/images/filters/design_Styles/decadeStyles/1600s.png",
+    image: "/images/filters/1600s.webp",
     isSelected: false,
   },
   {
@@ -306,7 +306,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1700s",
     description: "Artistic styles and trends from the 1700s.",
     style: "1700s",
-    image: "/images/filters/design_Styles/decadeStyles/1700s.png",
+    image: "/images/filters/1700s.webp",
     isSelected: false,
   },
   {
@@ -314,7 +314,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1800s",
     description: "Artistic styles and trends from the 1800s.",
     style: "1800s",
-    image: "/images/filters/design_Styles/decadeStyles/1800s.png",
+    image: "/images/filters/1800s.webp",
     isSelected: false,
   },
   {
@@ -322,7 +322,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1900s",
     description: "Artistic styles and trends from the 1900s.",
     style: "1900s",
-    image: "/images/filters/design_Styles/decadeStyles/1900s.png",
+    image: "/images/filters/1900s.webp",
     isSelected: false,
   },
   {
@@ -330,7 +330,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1950s",
     description: "Artistic styles and trends from the 1950s.",
     style: "1950s",
-    image: "/images/filters/design_Styles/decadeStyles/1950s.png",
+    image: "/images/filters/1950s.webp",
     isSelected: false,
   },
   {
@@ -338,7 +338,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1960s",
     description: "Artistic styles and trends from the 1960s.",
     style: "1960s",
-    image: "/images/filters/design_Styles/decadeStyles/1960s.png",
+    image: "/images/filters/1960s.webp",
     isSelected: false,
   },
   {
@@ -346,7 +346,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1970s",
     description: "Artistic styles and trends from the 1970s.",
     style: "1970s",
-    image: "/images/filters/design_Styles/decadeStyles/1970s.png",
+    image: "/images/filters/1970s.webp",
     isSelected: false,
   },
   {
@@ -354,7 +354,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1980s",
     description: "Artistic styles and trends from the 1980s.",
     style: "1980s",
-    image: "/images/filters/design_Styles/decadeStyles/1980s.png",
+    image: "/images/filters/1980s.webp",
     isSelected: false,
   },
   {
@@ -362,7 +362,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "1990s",
     description: "Artistic styles and trends from the 1990s.",
     style: "1990s",
-    image: "/images/filters/design_Styles/decadeStyles/1990s.png",
+    image: "/images/filters/1990s.webp",
     isSelected: false,
   },
   {
@@ -370,7 +370,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "2000s",
     description: "Artistic styles and trends from the 2000s.",
     style: "2000s",
-    image: "/images/filters/design_Styles/decadeStyles/2000s.png",
+    image: "/images/filters/2000s.webp",
     isSelected: false,
   },
   {
@@ -378,7 +378,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "2010s",
     description: "Artistic styles and trends from the 2010s.",
     style: "2010s",
-    image: "/images/filters/design_Styles/decadeStyles/2010s.png",
+    image: "/images/filters/2010s.webp",
     isSelected: false,
   },
   {
@@ -386,7 +386,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "2020s",
     description: "Artistic styles and trends from the 2020s.",
     style: "2020s",
-    image: "/images/filters/design_Styles/decadeStyles/2020s.png",
+    image: "/images/filters/2020s.webp",
     isSelected: false,
   },
   {
@@ -394,7 +394,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "3000s",
     description: "Artistic styles and trends from the 3000s.",
     style: "3000s",
-    image: "/images/filters/design_Styles/decadeStyles/3000s.png",
+    image: "/images/filters/3000s.webp",
     isSelected: false,
   },
   {
@@ -402,7 +402,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "4000s",
     description: "Artistic styles and trends from the 4000s.",
     style: "4000s",
-    image: "/images/filters/design_Styles/decadeStyles/4000s.png",
+    image: "/images/filters/4000s.webp",
     isSelected: false,
   },
   {
@@ -410,7 +410,7 @@ export const decadeStylesFilters: Filter[] = [
     name: "5000s",
     description: "Artistic styles and trends from the 5000s.",
     style: "5000s",
-    image: "/images/filters/design_Styles/decadeStyles/5000s.png",
+    image: "/images/filters/5000s.webp",
     isSelected: false,
   },
 ];

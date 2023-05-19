@@ -6,7 +6,7 @@ export const websitesFilters: Filter[] = [
     name: "Website",
     description: "Clean & professional art showcase with top brand aesthetics.",
     style: "Website",
-    image: "/images/filters/digital/websites/Website.png",
+    image: "/images/filters/Website.webp",
     isSelected: false,
   },
   {
@@ -15,7 +15,7 @@ export const websitesFilters: Filter[] = [
     description:
       "Edgy & unconventional art style inspired by avant-garde brands.",
     style: "Webbrutalism",
-    image: "/images/filters/digital/websites/Webbrutalism.png",
+    image: "/images/filters/Webbrutalism.webp",
     isSelected: false,
   },
   {
@@ -24,7 +24,7 @@ export const websitesFilters: Filter[] = [
     description:
       "Nostalgic & retro art style influenced by iconic brand aesthetics.",
     style: "Geocities",
-    image: "/images/filters/digital/websites/Geocities.png",
+    image: "/images/filters/Geocities.webp",
     isSelected: false,
   },
   {
@@ -33,7 +33,7 @@ export const websitesFilters: Filter[] = [
     description:
       "Professional art platform with inspiration from leading brands.",
     style: "Artstation",
-    image: "/images/filters/digital/websites/Artstation.png",
+    image: "/images/filters/Artstation.webp",
     isSelected: false,
   },
   {
@@ -41,7 +41,7 @@ export const websitesFilters: Filter[] = [
     name: "Trending on Artstation",
     description: "Explore popular art trends inspired by influential brands.",
     style: "Trending on Artstation",
-    image: "/images/filters/digital/websites/Trending_on_Artstation.png",
+    image: "/images/filters/Trending_on_Artstation.webp",
     isSelected: false,
   },
   {
@@ -49,7 +49,7 @@ export const websitesFilters: Filter[] = [
     name: "Polycount",
     description: "Engage with 3D art community and brand-inspired creations.",
     style: "Polycount",
-    image: "/images/filters/digital/websites/Polycount.png",
+    image: "/images/filters/Polycount.webp",
     isSelected: false,
   },
   {
@@ -57,7 +57,7 @@ export const websitesFilters: Filter[] = [
     name: "DeviantArt",
     description: "Connect with art community and showcase brand-inspired work.",
     style: "DeviantArt",
-    image: "/images/filters/digital/websites/DeviantArt.png",
+    image: "/images/filters/DeviantArt.webp",
     isSelected: false,
   },
   {
@@ -65,7 +65,7 @@ export const websitesFilters: Filter[] = [
     name: "Flickr",
     description: "Share & discover inspiring art influenced by Flickr brands.",
     style: "Flickr",
-    image: "/images/filters/digital/websites/Flickr.png",
+    image: "/images/filters/Flickr.webp",
     isSelected: false,
   },
   {
@@ -74,7 +74,7 @@ export const websitesFilters: Filter[] = [
     description:
       "Showcase art portfolio and connect with creative professionals Behance brands.",
     style: "Behance",
-    image: "/images/filters/digital/websites/Behance.png",
+    image: "/images/filters/Behance.webp",
     isSelected: false,
   },
   {
@@ -82,7 +82,7 @@ export const websitesFilters: Filter[] = [
     name: "Social Media",
     description: "Share art on social platforms inspired by this brand styles.",
     style: "Social Media",
-    image: "/images/filters/digital/websites/Social_Media.png",
+    image: "/images/filters/Social_Media.webp",
     isSelected: false,
   },
   {
@@ -91,7 +91,7 @@ export const websitesFilters: Filter[] = [
     description:
       "Discover captivating art on visual platform with this brand influences.",
     style: "Art on Instagram",
-    image: "/images/filters/digital/websites/Art_on_Instagram.png",
+    image: "/images/filters/Art_on_Instagram.webp",
     isSelected: false,
   },
   {
@@ -100,7 +100,7 @@ export const websitesFilters: Filter[] = [
     description:
       "Explore diverse art creations by artists inspired by this brands.",
     style: "Instagram-Art",
-    image: "/images/filters/digital/websites/Instagram-Art.png",
+    image: "/images/filters/Instagram-Art.webp",
     isSelected: false,
   },
   {
@@ -109,7 +109,7 @@ export const websitesFilters: Filter[] = [
     description:
       "Discover inspiring art on Artstation influenced by renowned brands.",
     style: "Artstation-Art",
-    image: "/images/filters/digital/websites/Artstation-Art.png",
+    image: "/images/filters/Artstation-Art.webp",
     isSelected: false,
   },
   {
@@ -118,7 +118,7 @@ export const websitesFilters: Filter[] = [
     description:
       "Inspired by digital artists & designers inspired by this brands.",
     style: "CGSociety",
-    image: "/images/filters/digital/websites/CGSociety.png",
+    image: "/images/filters/CGSociety.webp",
     isSelected: false,
   },
   {
@@ -127,7 +127,7 @@ export const websitesFilters: Filter[] = [
     description:
       "Explore & share brand-inspired artwork from vibrant Pixiv community.",
     style: "Pixiv",
-    image: "/images/filters/digital/websites/Pixiv.png",
+    image: "/images/filters/Pixiv.webp",
     isSelected: false,
   },
   {
@@ -135,7 +135,7 @@ export const websitesFilters: Filter[] = [
     name: "Unsplash",
     description: "Art inspired by photos from Unsplash brands.",
     style: "Unsplash",
-    image: "/images/filters/digital/websites/Unsplash.png",
+    image: "/images/filters/Unsplash.webp",
     isSelected: false,
   },
   {
@@ -143,7 +143,7 @@ export const websitesFilters: Filter[] = [
     name: "Google Maps",
     description: "Inspire by Google Maps aesthetics.",
     style: "Google Maps",
-    image: "/images/filters/digital/websites/Google_Maps.png",
+    image: "/images/filters/Google_Maps.webp",
     isSelected: false,
   },
   {
@@ -151,7 +151,7 @@ export const websitesFilters: Filter[] = [
     name: "Flaticon",
     description: "Graphics aesthetics from Flaticon.",
     style: "Flaticon",
-    image: "/images/filters/digital/websites/Flaticon.png",
+    image: "/images/filters/Flaticon.webp",
     isSelected: false,
   },
 ];

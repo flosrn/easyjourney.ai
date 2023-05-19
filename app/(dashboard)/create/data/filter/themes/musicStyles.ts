@@ -6,7 +6,7 @@ export const musicStylesFilters: Filter[] = [
     name: "Music",
     description: "Explore the essence of music through artistic drawings.",
     style: "Music",
-    image: "/images/filters/themes/musicStyles/Music.png",
+    image: "/images/filters/Music.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const musicStylesFilters: Filter[] = [
     name: "Musical",
     description: "Capture the magic of musical performances in your drawings.",
     style: "Musical",
-    image: "/images/filters/themes/musicStyles/Musical.png",
+    image: "/images/filters/Musical.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const musicStylesFilters: Filter[] = [
     name: "Musical Notation",
     description: "Depict the beauty and complexity of musical notation in art.",
     style: "Musical Notation",
-    image: "/images/filters/themes/musicStyles/Musical_Notation.png",
+    image: "/images/filters/Musical_Notation.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const musicStylesFilters: Filter[] = [
     name: "Musica",
     description: "Infuse your drawings with the rhythmic vibes of Musica.",
     style: "Musica",
-    image: "/images/filters/themes/musicStyles/Musica.png",
+    image: "/images/filters/Musica.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const musicStylesFilters: Filter[] = [
     name: "8-Bit Music Visualization",
     description: "Bring retro gaming and music together in your artwork.",
     style: "8-Bit Music Visualization",
-    image: "/images/filters/themes/musicStyles/8-Bit_Music_Visualization.png",
+    image: "/images/filters/8-Bit_Music_Visualization.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const musicStylesFilters: Filter[] = [
     name: "Funky",
     description: "Infuse your drawings with the groovy vibes of Funky music.",
     style: "Funky",
-    image: "/images/filters/themes/musicStyles/Funky.png",
+    image: "/images/filters/Funky.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const musicStylesFilters: Filter[] = [
     name: "Groovy",
     description: "Express the cool and smooth essence of Groovy music in art.",
     style: "Groovy",
-    image: "/images/filters/themes/musicStyles/Groovy.png",
+    image: "/images/filters/Groovy.webp",
     isSelected: false,
   },
   {
@@ -63,7 +63,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Capture the vibrant energy and dance spirit of Disco in your drawings.",
     style: "Disco",
-    image: "/images/filters/themes/musicStyles/Disco.png",
+    image: "/images/filters/Disco.webp",
     isSelected: false,
   },
   {
@@ -72,7 +72,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Embrace the rebellious and energetic attitude of Punk music in art.",
     style: "Punk",
-    image: "/images/filters/themes/musicStyles/Punk.png",
+    image: "/images/filters/Punk.webp",
     isSelected: false,
   },
   {
@@ -81,7 +81,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Explore the edgy and atmospheric vibes of Post-Punk music in your drawings.",
     style: "Post-Punk",
-    image: "/images/filters/themes/musicStyles/Post-Punk.png",
+    image: "/images/filters/Post-Punk.webp",
     isSelected: false,
   },
   {
@@ -90,7 +90,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Blend the raw emotions of Folk and the rebellious spirit of Punk in your art.",
     style: "Folk Punk",
-    image: "/images/filters/themes/musicStyles/Folk_Punk.png",
+    image: "/images/filters/Folk_Punk.webp",
     isSelected: false,
   },
   {
@@ -99,7 +99,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Express the urban culture, rhythm, and storytelling of Hip-Hop through art.",
     style: "Hip-Hop",
-    image: "/images/filters/themes/musicStyles/Hip-Hop.png",
+    image: "/images/filters/Hip-Hop.webp",
     isSelected: false,
   },
   {
@@ -108,7 +108,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Capture the high-energy and euphoria of Rave music in your drawings.",
     style: "Rave",
-    image: "/images/filters/themes/musicStyles/Rave.png",
+    image: "/images/filters/Rave.webp",
     isSelected: false,
   },
   {
@@ -117,7 +117,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Explore the nostalgic and surreal aesthetics of Vaporwave in art.",
     style: "Vaporwave",
-    image: "/images/filters/themes/musicStyles/Vaporwave.png",
+    image: "/images/filters/Vaporwave.webp",
     isSelected: false,
   },
   {
@@ -126,7 +126,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Capture the retro-futuristic vibes and neon aesthetics of Synthwave in your drawings.",
     style: "Synthwave",
-    image: "/images/filters/themes/musicStyles/Synthwave.png",
+    image: "/images/filters/Synthwave.webp",
     isSelected: false,
   },
   {
@@ -135,7 +135,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Express the dreamy and relaxed atmosphere of Chillwave music through art.",
     style: "Chillwave",
-    image: "/images/filters/themes/musicStyles/Chillwave.png",
+    image: "/images/filters/Chillwave.webp",
     isSelected: false,
   },
   {
@@ -144,7 +144,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Explore the hazy and nostalgic sounds of Hypnagogic Pop in your drawings.",
     style: "Hypnagogic Pop",
-    image: "/images/filters/themes/musicStyles/Hypnagogic_Pop.png",
+    image: "/images/filters/Hypnagogic_Pop.webp",
     isSelected: false,
   },
   {
@@ -153,7 +153,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Capture the futuristic and boundary-pushing spirit of Hyperpop in art.",
     style: "Hyperpop",
-    image: "/images/filters/themes/musicStyles/Hyperpop.png",
+    image: "/images/filters/Hyperpop.webp",
     isSelected: false,
   },
   {
@@ -162,7 +162,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Express the colorful and energetic world of K-Pop through artistic drawings.",
     style: "K-Pop",
-    image: "/images/filters/themes/musicStyles/K-Pop.png",
+    image: "/images/filters/K-Pop.webp",
     isSelected: false,
   },
   {
@@ -171,7 +171,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Explore the unique and experimental sounds of Tenwave in your art.",
     style: "Tenwave",
-    image: "/images/filters/themes/musicStyles/Tenwave.png",
+    image: "/images/filters/Tenwave.webp",
     isSelected: false,
   },
   {
@@ -180,7 +180,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Blend medieval-inspired melodies and modern music in your artistic interpretations of Bardcore.",
     style: "Bardcore",
-    image: "/images/filters/themes/musicStyles/Bardcore.png",
+    image: "/images/filters/Bardcore.webp",
     isSelected: false,
   },
   {
@@ -189,7 +189,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Express the chaotic and frenetic energy of Breakcore music through art.",
     style: "Breakcore",
-    image: "/images/filters/themes/musicStyles/Breakcore.png",
+    image: "/images/filters/Breakcore.webp",
     isSelected: false,
   },
   {
@@ -198,7 +198,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Infuse your drawings with the retro-futuristic aesthetics and industrial vibes of Cargopunk.",
     style: "Cargopunk",
-    image: "/images/filters/themes/musicStyles/Cargopunk.png",
+    image: "/images/filters/Cargopunk.webp",
     isSelected: false,
   },
   {
@@ -207,7 +207,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Explore the psychedelic and ambient sounds of Shpongle through art.",
     style: "Shpongle",
-    image: "/images/filters/themes/musicStyles/Shpongle.png",
+    image: "/images/filters/Shpongle.webp",
     isSelected: false,
   },
   {
@@ -216,7 +216,7 @@ export const musicStylesFilters: Filter[] = [
     description:
       "Create art inspired by the unique style and soundscapes of Shpongle's music.",
     style: "In The Style of Shpongle",
-    image: "/images/filters/themes/musicStyles/In_The_Style_of_Shpongle.png",
+    image: "/images/filters/In_The_Style_of_Shpongle.webp",
     isSelected: false,
   },
 ];

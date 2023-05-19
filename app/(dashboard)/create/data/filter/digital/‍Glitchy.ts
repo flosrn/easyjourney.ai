@@ -6,7 +6,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Glitchcore",
     description: "Glitchy filter with intense visual effects.",
     style: "Glitchcore",
-    image: "/images/filters/digital/Glitchy/Glitchcore.png",
+    image: "/images/filters/Glitchcore.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Glitch Art",
     description: "Artistic glitchy filter for a unique visual style.",
     style: "Glitch Art",
-    image: "/images/filters/digital/Glitchy/Glitch_Art.png",
+    image: "/images/filters/Glitch_Art.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Matrix",
     description: "Inspired by the digital rain from the Matrix.",
     style: "Matrix",
-    image: "/images/filters/digital/Glitchy/Matrix.png",
+    image: "/images/filters/Matrix.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Glitchy",
     description: "General glitchy filter with various artifacts.",
     style: "Glitchy",
-    image: "/images/filters/digital/Glitchy/Glitchy.png",
+    image: "/images/filters/Glitchy.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Glitching",
     description: "Filter that simulates glitching and distortion.",
     style: "Glitching",
-    image: "/images/filters/digital/Glitchy/Glitching.png",
+    image: "/images/filters/Glitching.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Data Moshing",
     description: "Mosaic-like effect achieved by manipulating data.",
     style: "Data Moshing",
-    image: "/images/filters/digital/Glitchy/Data_Moshing.png",
+    image: "/images/filters/Data_Moshing.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Datamoshing",
     description: "Distorted and glitchy effect reminiscent of datamoshing.",
     style: "Datamoshing",
-    image: "/images/filters/digital/Glitchy/Datamoshing.png",
+    image: "/images/filters/Datamoshing.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Databending",
     description: "Filter that emulates the aesthetic of databending.",
     style: "Databending",
-    image: "/images/filters/digital/Glitchy/Databending.png",
+    image: "/images/filters/Databending.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Data Manipulation",
     description: "Filter that manipulates data for glitchy effects.",
     style: "Data Manipulation",
-    image: "/images/filters/digital/Glitchy/Data_Manipulation.png",
+    image: "/images/filters/Data_Manipulation.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Artifacting",
     description: "Filter that introduces digital artifacts and glitches.",
     style: "Artifacting",
-    image: "/images/filters/digital/Glitchy/Artifacting.png",
+    image: "/images/filters/Artifacting.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const GlitchyFilters: Filter[] = [
     name: "Fuzzing",
     description: "Filter that adds a fuzzy and distorted appearance.",
     style: "Fuzzing",
-    image: "/images/filters/digital/Glitchy/Fuzzing.png",
+    image: "/images/filters/Fuzzing.webp",
     isSelected: false,
   },
 ];

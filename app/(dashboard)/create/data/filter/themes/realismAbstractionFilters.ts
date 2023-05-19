@@ -7,7 +7,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Non-representational art emphasizing colors, shapes, and forms.",
     style: "Abstract",
-    image: "/images/filters/themes/realism_abstraction/Abstract.png",
+    image: "/images/filters/Abstract.webp",
     isSelected: false,
   },
   {
@@ -15,7 +15,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Abstraction",
     description: "Simplified representation, focusing on essential elements.",
     style: "Abstraction",
-    image: "/images/filters/themes/realism_abstraction/Abstraction.png",
+    image: "/images/filters/Abstraction.webp",
     isSelected: false,
   },
   {
@@ -23,7 +23,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Anemoiacore",
     description: "Whimsical and ethereal style with dreamlike imagery.",
     style: "Anemoiacore",
-    image: "/images/filters/themes/realism_abstraction/Anemoiacore.png",
+    image: "/images/filters/Anemoiacore.webp",
     isSelected: false,
   },
   {
@@ -32,7 +32,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Traditional style capturing realistic and classical subjects.",
     style: "Classical Realism",
-    image: "/images/filters/themes/realism_abstraction/Classical_Realism.png",
+    image: "/images/filters/Classical_Realism.webp",
     isSelected: false,
   },
   {
@@ -40,8 +40,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Contemporary Realism",
     description: "Realistic art reflecting modern life and subjects.",
     style: "Contemporary Realism",
-    image:
-      "/images/filters/themes/realism_abstraction/Contemporary_Realism.png",
+    image: "/images/filters/Contemporary_Realism.webp",
     isSelected: false,
   },
   {
@@ -49,7 +48,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Dark Fantasy",
     description: "Merging dark elements with fantastical imagery and themes.",
     style: "Dark Fantasy",
-    image: "/images/filters/themes/realism_abstraction/Dark_Fantasy.png",
+    image: "/images/filters/Dark_Fantasy.webp",
     isSelected: false,
   },
   {
@@ -58,7 +57,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Imaginative and dreamy art with futuristic or fantastical elements.",
     style: "Daydreampunk",
-    image: "/images/filters/themes/realism_abstraction/Daydreampunk.png",
+    image: "/images/filters/Daydreampunk.webp",
     isSelected: false,
   },
   {
@@ -66,7 +65,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Deja vu",
     description: "Surreal art evoking a sense of familiarity and nostalgia.",
     style: "Deja vu",
-    image: "/images/filters/themes/realism_abstraction/Deja_vu.png",
+    image: "/images/filters/Deja_vu.webp",
     isSelected: false,
   },
   {
@@ -74,7 +73,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Dreamcore",
     description: "Surreal and dreamlike art with a touch of fantasy.",
     style: "Dreamcore",
-    image: "/images/filters/themes/realism_abstraction/Dreamcore.png",
+    image: "/images/filters/Dreamcore.webp",
     isSelected: false,
   },
   {
@@ -82,7 +81,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Dreamlike",
     description: "Ethereal and evocative art with a dreamy atmosphere.",
     style: "Dreamlike",
-    image: "/images/filters/themes/realism_abstraction/Dreamlike.png",
+    image: "/images/filters/Dreamlike.webp",
     isSelected: false,
   },
   {
@@ -90,7 +89,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Dreampunk",
     description: "Imaginative art with elements of dreams and punk culture.",
     style: "Dreampunk",
-    image: "/images/filters/themes/realism_abstraction/Dreampunk.png",
+    image: "/images/filters/Dreampunk.webp",
     isSelected: false,
   },
   {
@@ -98,7 +97,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Dreamy",
     description: "Artistic style evoking a dream-like and ethereal atmosphere.",
     style: "Dreamy",
-    image: "/images/filters/themes/realism_abstraction/Dreamy.png",
+    image: "/images/filters/Dreamy.webp",
     isSelected: false,
   },
   {
@@ -106,7 +105,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Ethereal Fantasy",
     description: "Fantastical art with an otherworldly and ethereal aesthetic.",
     style: "Ethereal Fantasy",
-    image: "/images/filters/themes/realism_abstraction/Ethereal_Fantasy.png",
+    image: "/images/filters/Ethereal_Fantasy.webp",
     isSelected: false,
   },
   {
@@ -115,7 +114,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic style characterized by delicate and celestial elements.",
     style: "Ethereal",
-    image: "/images/filters/themes/realism_abstraction/Ethereal.png",
+    image: "/images/filters/Ethereal.webp",
     isSelected: false,
   },
   {
@@ -123,7 +122,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Ethereality",
     description: "Artistic portrayal of ethereal and transcendent realities.",
     style: "Ethereality",
-    image: "/images/filters/themes/realism_abstraction/Ethereality.png",
+    image: "/images/filters/Ethereality.webp",
     isSelected: false,
   },
   {
@@ -132,7 +131,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic style emphasizing exaggerated and amplified features.",
     style: "Exaggerated",
-    image: "/images/filters/themes/realism_abstraction/Exaggerated.png",
+    image: "/images/filters/Exaggerated.webp",
     isSelected: false,
   },
   {
@@ -141,7 +140,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic technique involving deliberate exaggeration for effect.",
     style: "Exaggeration",
-    image: "/images/filters/themes/realism_abstraction/Exaggeration.png",
+    image: "/images/filters/Exaggeration.webp",
     isSelected: false,
   },
   {
@@ -149,7 +148,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Fantastic Realism",
     description: "Realistic art with fantastical and imaginative elements.",
     style: "Fantastic Realism",
-    image: "/images/filters/themes/realism_abstraction/Fantastic_Realism.png",
+    image: "/images/filters/Fantastic_Realism.webp",
     isSelected: false,
   },
   {
@@ -158,7 +157,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic representation of imaginary maps and fantasy worlds.",
     style: "Fantasy Map",
-    image: "/images/filters/themes/realism_abstraction/Fantasy_Map.png",
+    image: "/images/filters/Fantasy_Map.webp",
     isSelected: false,
   },
   {
@@ -166,7 +165,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Fantasy",
     description: "Artistic exploration of imaginative and fantastical realms.",
     style: "Fantasy",
-    image: "/images/filters/themes/realism_abstraction/Fantasy.png",
+    image: "/images/filters/Fantasy.webp",
     isSelected: false,
   },
   {
@@ -174,7 +173,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Fever Dream",
     description: "Artistic representation of surreal and feverish dreamscapes.",
     style: "Fever Dream",
-    image: "/images/filters/themes/realism_abstraction/Fever-Dream.png",
+    image: "/images/filters/Fever-Dream.webp",
     isSelected: false,
   },
   {
@@ -182,7 +181,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Fiction",
     description: "Artistic expression of imaginative and fictional narratives.",
     style: "Fiction",
-    image: "/images/filters/themes/realism_abstraction/Fiction.png",
+    image: "/images/filters/Fiction.webp",
     isSelected: false,
   },
   {
@@ -191,7 +190,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic portrayal of otherworldly and extraterrestrial dimensions.",
     style: "From Another Realm",
-    image: "/images/filters/themes/realism_abstraction/From_Another_Realm.png",
+    image: "/images/filters/From_Another_Realm.webp",
     isSelected: false,
   },
   {
@@ -200,7 +199,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic style capturing an ultra-realistic and vivid representation.",
     style: "Hyper Real",
-    image: "/images/filters/themes/realism_abstraction/Hyper_Real.png",
+    image: "/images/filters/Hyper_Real.webp",
     isSelected: false,
   },
   {
@@ -209,7 +208,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic technique aiming for an extremely realistic representation.",
     style: "Hyperrealistic",
-    image: "/images/filters/themes/realism_abstraction/Hyperrealistic.png",
+    image: "/images/filters/Hyperrealistic.webp",
     isSelected: false,
   },
   {
@@ -217,7 +216,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Illusion",
     description: "Artistic representation creating an illusionary perception.",
     style: "Illusion",
-    image: "/images/filters/themes/realism_abstraction/Illusion.png",
+    image: "/images/filters/Illusion.webp",
     isSelected: false,
   },
   {
@@ -225,7 +224,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Imagination",
     description: "Artistic exploration of the creative and imaginative mind.",
     style: "Imagination",
-    image: "/images/filters/themes/realism_abstraction/Imagination.png",
+    image: "/images/filters/Imagination.webp",
     isSelected: false,
   },
   {
@@ -234,7 +233,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic expression emphasizing imaginative and creative elements.",
     style: "Imaginative",
-    image: "/images/filters/themes/realism_abstraction/Imaginative.png",
+    image: "/images/filters/Imaginative.webp",
     isSelected: false,
   },
   {
@@ -243,7 +242,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic representation of intangible and ephemeral concepts.",
     style: "Immaterial",
-    image: "/images/filters/themes/realism_abstraction/Immaterial.png",
+    image: "/images/filters/Immaterial.webp",
     isSelected: false,
   },
   {
@@ -252,7 +251,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic exploration of visually impossible or improbable scenarios.",
     style: "Impossible",
-    image: "/images/filters/themes/realism_abstraction/Impossible.png",
+    image: "/images/filters/Impossible.webp",
     isSelected: false,
   },
   {
@@ -260,7 +259,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Intangible",
     description: "Artistic representation of abstract and intangible concepts.",
     style: "Intangible",
-    image: "/images/filters/themes/realism_abstraction/Intangible.png",
+    image: "/images/filters/Intangible.webp",
     isSelected: false,
   },
   {
@@ -268,7 +267,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Lucid",
     description: "Artistic portrayal of a clear and vivid dream-like state.",
     style: "Lucid",
-    image: "/images/filters/themes/realism_abstraction/Lucid.png",
+    image: "/images/filters/Lucid.webp",
     isSelected: false,
   },
   {
@@ -276,7 +275,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Lyrical Abstraction",
     description: "Artistic expression blending abstract and lyrical elements.",
     style: "Lyrical Abstraction",
-    image: "/images/filters/themes/realism_abstraction/Lyrical_Abstraction.png",
+    image: "/images/filters/Lyrical_Abstraction.webp",
     isSelected: false,
   },
   {
@@ -284,7 +283,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Magic Realism",
     description: "Artistic style merging magical and realistic elements.",
     style: "Magic Realism",
-    image: "/images/filters/themes/realism_abstraction/Magic_Realism.png",
+    image: "/images/filters/Magic_Realism.webp",
     isSelected: false,
   },
   {
@@ -293,7 +292,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic movement emphasizing realism in contemporary contexts.",
     style: "New Realism",
-    image: "/images/filters/themes/realism_abstraction/New_Realism.png",
+    image: "/images/filters/New_Realism.webp",
     isSelected: false,
   },
   {
@@ -301,7 +300,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Non-Fiction",
     description: "Artistic representation of real-world facts and events.",
     style: "Non-Fiction",
-    image: "/images/filters/themes/realism_abstraction/Non-Fiction.png",
+    image: "/images/filters/Non-Fiction.webp",
     isSelected: false,
   },
   {
@@ -309,7 +308,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Nonsense",
     description: "Artistic style characterized by absurdity and irrationality.",
     style: "Nonsense",
-    image: "/images/filters/themes/realism_abstraction/Nonsense.png",
+    image: "/images/filters/Nonsense.webp",
     isSelected: false,
   },
   {
@@ -318,7 +317,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic representation of otherworldly and mystical dimensions.",
     style: "Otherworldly",
-    image: "/images/filters/themes/realism_abstraction/Otherworldly.png",
+    image: "/images/filters/Otherworldly.webp",
     isSelected: false,
   },
   {
@@ -326,7 +325,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Photorealism",
     description: "Artistic style aiming for a hyper-realistic representation.",
     style: "Photorealism",
-    image: "/images/filters/themes/realism_abstraction/Photorealism.png",
+    image: "/images/filters/Photorealism.webp",
     isSelected: false,
   },
   {
@@ -335,7 +334,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic technique aiming for a highly detailed and realistic representation.",
     style: "Photorealistic",
-    image: "/images/filters/themes/realism_abstraction/Photorealistic.png",
+    image: "/images/filters/Photorealistic.webp",
     isSelected: false,
   },
   {
@@ -344,7 +343,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic representation capturing the essence of reality with accuracy.",
     style: "Realism",
-    image: "/images/filters/themes/realism_abstraction/Realism.png",
+    image: "/images/filters/Realism.webp",
     isSelected: false,
   },
   {
@@ -353,7 +352,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic style characterized by accurate and true-to-life representation.",
     style: "Realistic",
-    image: "/images/filters/themes/realism_abstraction/Realistic.png",
+    image: "/images/filters/Realistic.webp",
     isSelected: false,
   },
   {
@@ -361,7 +360,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Science Fiction",
     description: "Artistic exploration of futuristic and scientific themes.",
     style: "Science Fiction",
-    image: "/images/filters/themes/realism_abstraction/Science_Fiction.png",
+    image: "/images/filters/Science_Fiction.webp",
     isSelected: false,
   },
   {
@@ -370,7 +369,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic style blending reality and the subconscious through dreamlike imagery.",
     style: "Surreal",
-    image: "/images/filters/themes/realism_abstraction/Surreal.png",
+    image: "/images/filters/Surreal.webp",
     isSelected: false,
   },
   {
@@ -379,7 +378,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic movement exploring the realm of the unconscious and dreams.",
     style: "Surrealism",
-    image: "/images/filters/themes/realism_abstraction/Surrealism.png",
+    image: "/images/filters/Surrealism.webp",
     isSelected: false,
   },
   {
@@ -388,7 +387,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic representation departing from the constraints of reality.",
     style: "Unrealistic",
-    image: "/images/filters/themes/realism_abstraction/Unrealistic.png",
+    image: "/images/filters/Unrealistic.webp",
     isSelected: false,
   },
   {
@@ -396,7 +395,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Unworldly",
     description: "Artistic portrayal of otherworldly and transcendent realms.",
     style: "Unworldly",
-    image: "/images/filters/themes/realism_abstraction/Unworldly.png",
+    image: "/images/filters/Unworldly.webp",
     isSelected: false,
   },
   {
@@ -405,7 +404,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic style emphasizing exaggerated and amplified visual elements.",
     style: "Visual Exaggeration",
-    image: "/images/filters/themes/realism_abstraction/Visual_Exaggeration.png",
+    image: "/images/filters/Visual_Exaggeration.webp",
     isSelected: false,
   },
   {
@@ -413,7 +412,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Visual Rhetoric",
     description: "Artistic style conveying persuasive visual communication.",
     style: "Visual Rhetoric",
-    image: "/images/filters/themes/realism_abstraction/Visual_Rhetoric.png",
+    image: "/images/filters/Visual_Rhetoric.webp",
     isSelected: false,
   },
   {
@@ -421,7 +420,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Weirdcore",
     description: "Artistic style blending weird and surreal elements.",
     style: "Weirdcore",
-    image: "/images/filters/themes/realism_abstraction/Weirdcore.png",
+    image: "/images/filters/Weirdcore.webp",
     isSelected: false,
   },
   {
@@ -429,7 +428,7 @@ export const realismAbstractionFilters: Filter[] = [
     name: "Wonderland",
     description: "Artistic world of fantasy and whimsical imagination.",
     style: "Wonderland",
-    image: "/images/filters/themes/realism_abstraction/Wonderland.png",
+    image: "/images/filters/Wonderland.webp",
     isSelected: false,
   },
   {
@@ -438,7 +437,7 @@ export const realismAbstractionFilters: Filter[] = [
     description:
       "Artistic representation of worldly subjects and perspectives.",
     style: "Worldly",
-    image: "/images/filters/themes/realism_abstraction/Worldly.png",
+    image: "/images/filters/Worldly.webp",
     isSelected: false,
   },
 ];

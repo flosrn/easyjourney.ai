@@ -6,7 +6,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Program",
     description: "Art created using a digital program",
     style: "Program",
-    image: "/images/filters/digital/artProgramsAndApplications/Program.png",
+    image: "/images/filters/Program.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "App",
     description: "Art created using a mobile application",
     style: "App",
-    image: "/images/filters/digital/artProgramsAndApplications/App.png",
+    image: "/images/filters/App.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Application",
     description: "Art created using a digital application",
     style: "Application",
-    image: "/images/filters/digital/artProgramsAndApplications/Application.png",
+    image: "/images/filters/Application.webp",
     isSelected: false,
   },
   {
@@ -30,8 +30,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Microsoft Paint",
     description: "Art created using Microsoft Paint",
     style: "Microsoft Paint",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Microsoft_Paint.png",
+    image: "/images/filters/Microsoft_Paint.webp",
     isSelected: false,
   },
   {
@@ -39,7 +38,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "MSPaint",
     description: "Art created using MSPaint",
     style: "MSPaint",
-    image: "/images/filters/digital/artProgramsAndApplications/MSPaint.png",
+    image: "/images/filters/MSPaint.webp",
     isSelected: false,
   },
   {
@@ -47,8 +46,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Drawn in Kid Pix",
     description: "Art created using Kid Pix",
     style: "Drawn in Kid Pix",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Drawn_in_Kid_Pix.png",
+    image: "/images/filters/Drawn_in_Kid_Pix.webp",
     isSelected: false,
   },
   {
@@ -56,7 +54,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Photoshop",
     description: "Art created using Photoshop",
     style: "Photoshop",
-    image: "/images/filters/digital/artProgramsAndApplications/Photoshop.png",
+    image: "/images/filters/Photoshop.webp",
     isSelected: false,
   },
   {
@@ -64,8 +62,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Adobe Lightroom",
     description: "Art created using Adobe Lightroom",
     style: "Adobe Lightroom",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Adobe_Lightroom.png",
+    image: "/images/filters/Adobe_Lightroom.webp",
     isSelected: false,
   },
   {
@@ -73,8 +70,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Drawn in Illustrator",
     description: "Art created using Illustrator",
     style: "Drawn in Illustrator",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Drawn_in_Illustrator.png",
+    image: "/images/filters/Drawn_in_Illustrator.webp",
     isSelected: false,
   },
   {
@@ -82,8 +78,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Adobe Premier",
     description: "Art created using Adobe Premier",
     style: "Adobe Premier",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Adobe_Premier.png",
+    image: "/images/filters/Adobe_Premier.webp",
     isSelected: false,
   },
   {
@@ -91,8 +86,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "After Effects",
     description: "Art created using After Effects",
     style: "After Effects",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/After_Effects.png",
+    image: "/images/filters/After_Effects.webp",
     isSelected: false,
   },
   {
@@ -100,7 +94,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Adobe Flash",
     description: "Art created using Adobe Flash",
     style: "Adobe Flash",
-    image: "/images/filters/digital/artProgramsAndApplications/Adobe_Flash.png",
+    image: "/images/filters/Adobe_Flash.webp",
     isSelected: false,
   },
   {
@@ -108,8 +102,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Shockwave Flashplayer",
     description: "Art created using Shockwave Flashplayer",
     style: "Shockwave Flashplayer",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Shockwave_Flashplayer.png",
+    image: "/images/filters/Shockwave_Flashplayer.webp",
     isSelected: false,
   },
   {
@@ -117,8 +110,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Drawn in Paint.NET",
     description: "Art created using Paint.NET",
     style: "Drawn in Paint.NET",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Drawn_in_Paint.NET.png",
+    image: "/images/filters/Drawn_in_Paint.NET.webp",
     isSelected: false,
   },
   {
@@ -126,8 +118,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Drawn in GIMP",
     description: "Art created using GIMP",
     style: "Drawn in GIMP",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Drawn_in_GIMP.png",
+    image: "/images/filters/Drawn_in_GIMP.webp",
     isSelected: false,
   },
   {
@@ -135,8 +126,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Drawn in Photo-Paint-X5",
     description: "Art created using Photo-Paint-X5",
     style: "Drawn in Photo-Paint-X5",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Drawn_in_Photo-Paint-X5.png",
+    image: "/images/filters/Drawn_in_Photo-Paint-X5.webp",
     isSelected: false,
   },
   {
@@ -144,8 +134,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Drawn in Aseprite",
     description: "Art created using Aseprite",
     style: "Drawn in Aseprite",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Drawn_in_Aseprite.png",
+    image: "/images/filters/Drawn_in_Aseprite.webp",
     isSelected: false,
   },
   {
@@ -153,8 +142,7 @@ export const artProgramsAndApplicationsFilters: Filter[] = [
     name: "Drawn in Pyxel Edit",
     description: "Art created using Pyxel Edit",
     style: "Drawn in Pyxel Edit",
-    image:
-      "/images/filters/digital/artProgramsAndApplications/Drawn_in_Pyxel_Edit.png",
+    image: "/images/filters/Drawn_in_Pyxel_Edit.webp",
     isSelected: false,
   },
 ];

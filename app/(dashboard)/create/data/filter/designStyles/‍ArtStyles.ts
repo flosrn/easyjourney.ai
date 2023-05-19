@@ -6,7 +6,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Pop-Art",
     description: "Vibrant and bold art style inspired by popular culture",
     style: "Pop-Art",
-    image: "/images/filters/design_Styles/ArtStyles/Pop-Art.png",
+    image: "/images/filters/Pop-Art.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Warhol",
     description: "Colorful and iconic style reminiscent of Andy Warhol",
     style: "Warhol",
-    image: "/images/filters/design_Styles/ArtStyles/Warhol.png",
+    image: "/images/filters/Warhol.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Fauvism",
     description: "Expressive and vibrant art style with bold colors",
     style: "Fauvism",
-    image: "/images/filters/design_Styles/ArtStyles/Fauvism.png",
+    image: "/images/filters/Fauvism.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Lo-fi",
     description: "Vintage and low-fidelity aesthetic with nostalgic vibes",
     style: "Lo-fi",
-    image: "/images/filters/design_Styles/ArtStyles/Lo-fi.png",
+    image: "/images/filters/Lo-fi.webp",
     isSelected: false,
   },
   {
@@ -38,7 +38,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Hi-fi",
     description: "High-fidelity and modern style with clean lines",
     style: "Hi-fi",
-    image: "/images/filters/design_Styles/ArtStyles/Hi-fi.png",
+    image: "/images/filters/Hi-fi.webp",
     isSelected: false,
   },
   {
@@ -46,7 +46,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "High Fidelity",
     description: "Sleek and contemporary art style with precise details",
     style: "High Fidelity",
-    image: "/images/filters/design_Styles/ArtStyles/High_Fidelity.png",
+    image: "/images/filters/High_Fidelity.webp",
     isSelected: false,
   },
   {
@@ -54,7 +54,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Sound Art",
     description: "Experimental and auditory-inspired art style",
     style: "Sound Art",
-    image: "/images/filters/design_Styles/ArtStyles/Sound_Art.png",
+    image: "/images/filters/Sound_Art.webp",
     isSelected: false,
   },
   {
@@ -62,7 +62,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Performance Art",
     description: "Dynamic and interactive art style with live elements",
     style: "Performance Art",
-    image: "/images/filters/design_Styles/ArtStyles/Performance_Art.png",
+    image: "/images/filters/Performance_Art.webp",
     isSelected: false,
   },
   {
@@ -70,7 +70,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Biomorphic",
     description: "Organic and abstract art style inspired by natural forms",
     style: "Biomorphic",
-    image: "/images/filters/design_Styles/ArtStyles/Biomorphic.png",
+    image: "/images/filters/Biomorphic.webp",
     isSelected: false,
   },
   {
@@ -78,7 +78,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Ornamental",
     description: "Elaborate and decorative art style with intricate patterns",
     style: "Ornamental",
-    image: "/images/filters/design_Styles/ArtStyles/Ornamental.png",
+    image: "/images/filters/Ornamental.webp",
     isSelected: false,
   },
   {
@@ -86,7 +86,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Bauhaus Style",
     description: "Minimalist and functional art style influenced by Bauhaus",
     style: "Bauhaus Style",
-    image: "/images/filters/design_Styles/ArtStyles/Bauhaus_Style.png",
+    image: "/images/filters/Bauhaus_Style.webp",
     isSelected: false,
   },
   {
@@ -94,7 +94,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Modernism",
     description: "Progressive and innovative art style of the modern era",
     style: "Modernism",
-    image: "/images/filters/design_Styles/ArtStyles/Modernism.png",
+    image: "/images/filters/Modernism.webp",
     isSelected: false,
   },
   {
@@ -102,7 +102,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Composition",
     description: "Balanced and harmonious art style with strong arrangements",
     style: "Composition",
-    image: "/images/filters/design_Styles/ArtStyles/Composition.png",
+    image: "/images/filters/Composition.webp",
     isSelected: false,
   },
   {
@@ -111,7 +111,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Automatism-inspired art style with surreal and spontaneous elements",
     style: "Transautomatism",
-    image: "/images/filters/design_Styles/ArtStyles/Transautomatism.png",
+    image: "/images/filters/Transautomatism.webp",
     isSelected: false,
   },
   {
@@ -119,7 +119,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Cloisonnism",
     description: "Distinctive art style with bold outlines and vibrant colors",
     style: "Cloisonnism",
-    image: "/images/filters/design_Styles/ArtStyles/Cloisonnism.png",
+    image: "/images/filters/Cloisonnism.webp",
     isSelected: false,
   },
   {
@@ -128,7 +128,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Abstract art style characterized by vibrant and geometric shapes",
     style: "Orphism",
-    image: "/images/filters/design_Styles/ArtStyles/Orphism.png",
+    image: "/images/filters/Orphism.webp",
     isSelected: false,
   },
   {
@@ -137,7 +137,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Geometric and non-objective art style exploring pure abstraction",
     style: "Suprematism",
-    image: "/images/filters/design_Styles/ArtStyles/Suprematism.png",
+    image: "/images/filters/Suprematism.webp",
     isSelected: false,
   },
   {
@@ -146,7 +146,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Dynamic and abstract art style inspired by machinery and speed",
     style: "Vorticism",
-    image: "/images/filters/design_Styles/ArtStyles/Vorticism.png",
+    image: "/images/filters/Vorticism.webp",
     isSelected: false,
   },
   {
@@ -154,7 +154,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Eccentrism",
     description: "Unconventional and quirky art style with eccentric elements",
     style: "Eccentrism",
-    image: "/images/filters/design_Styles/ArtStyles/Eccentrism.png",
+    image: "/images/filters/Eccentrism.webp",
     isSelected: false,
   },
   {
@@ -163,7 +163,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style that provokes multiple interpretations and ambiguity",
     style: "Ambiguous Art",
-    image: "/images/filters/design_Styles/ArtStyles/Ambiguous_Art.png",
+    image: "/images/filters/Ambiguous_Art.webp",
     isSelected: false,
   },
   {
@@ -172,7 +172,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Raw and unrefined art style created outside of traditional norms",
     style: "Art Brut",
-    image: "/images/filters/design_Styles/ArtStyles/Art_Brut.png",
+    image: "/images/filters/Art_Brut.webp",
     isSelected: false,
   },
   {
@@ -181,7 +181,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style that rejects representation of objects or subjects",
     style: "Non-Objective Art",
-    image: "/images/filters/design_Styles/ArtStyles/Non-Objective_Art.png",
+    image: "/images/filters/Non-Objective_Art.webp",
     isSelected: false,
   },
   {
@@ -189,7 +189,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Rayonism",
     description: "Abstract art style with intersecting rays of color and light",
     style: "Rayonism",
-    image: "/images/filters/design_Styles/ArtStyles/Rayonism.png",
+    image: "/images/filters/Rayonism.webp",
     isSelected: false,
   },
   {
@@ -198,7 +198,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style exploring the interaction of color and perception",
     style: "Spectralism",
-    image: "/images/filters/design_Styles/ArtStyles/Spectralism.png",
+    image: "/images/filters/Spectralism.webp",
     isSelected: false,
   },
   {
@@ -206,7 +206,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Luminism",
     description: "Art style emphasizing the effects of light and luminosity",
     style: "Luminism",
-    image: "/images/filters/design_Styles/ArtStyles/Luminism.png",
+    image: "/images/filters/Luminism.webp",
     isSelected: false,
   },
   {
@@ -215,7 +215,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Large-scale art style often depicting social or political themes",
     style: "Muralism",
-    image: "/images/filters/design_Styles/ArtStyles/Muralism.png",
+    image: "/images/filters/Muralism.webp",
     isSelected: false,
   },
   {
@@ -224,7 +224,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement exploring the relationship between art and space",
     style: "Spatialism",
-    image: "/images/filters/design_Styles/ArtStyles/Spatialism.png",
+    image: "/images/filters/Spatialism.webp",
     isSelected: false,
   },
   {
@@ -233,7 +233,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artwork composed of two panels or sections with related elements",
     style: "Diptych",
-    image: "/images/filters/design_Styles/ArtStyles/Diptych.png",
+    image: "/images/filters/Diptych.webp",
     isSelected: false,
   },
   {
@@ -242,7 +242,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style depicting geometric forms and industrial subjects",
     style: "Precisionism",
-    image: "/images/filters/design_Styles/ArtStyles/Precisionism.png",
+    image: "/images/filters/Precisionism.webp",
     isSelected: false,
   },
   {
@@ -251,7 +251,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Art style reflecting local and regional characteristics and culture",
     style: "Regionalism",
-    image: "/images/filters/design_Styles/ArtStyles/Regionalism.png",
+    image: "/images/filters/Regionalism.webp",
     isSelected: false,
   },
   {
@@ -260,7 +260,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Art style inspired by the classical art of ancient Greece and Rome",
     style: "Classical",
-    image: "/images/filters/design_Styles/ArtStyles/Classical.png",
+    image: "/images/filters/Classical.webp",
     isSelected: false,
   },
   {
@@ -268,7 +268,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Classicism",
     description: "Artistic style emphasizing symmetry, harmony, and order",
     style: "Classicism",
-    image: "/images/filters/design_Styles/ArtStyles/Classicism.png",
+    image: "/images/filters/Classicism.webp",
     isSelected: false,
   },
   {
@@ -277,7 +277,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Art style following traditional academic principles and techniques",
     style: "Academicism",
-    image: "/images/filters/design_Styles/ArtStyles/Academicism.png",
+    image: "/images/filters/Academicism.webp",
     isSelected: false,
   },
   {
@@ -286,7 +286,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style depicting themes of sadness, despair, and misery",
     style: "Miserablism",
-    image: "/images/filters/design_Styles/ArtStyles/Miserablism.png",
+    image: "/images/filters/Miserablism.webp",
     isSelected: false,
   },
   {
@@ -295,7 +295,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style combining color theory and simultaneous contrast",
     style: "Synchronism",
-    image: "/images/filters/design_Styles/ArtStyles/Synchronism.png",
+    image: "/images/filters/Synchronism.webp",
     isSelected: false,
   },
   {
@@ -304,7 +304,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style emphasizing emotion, imagination, and individuality",
     style: "Romanticism",
-    image: "/images/filters/design_Styles/ArtStyles/Romanticism.png",
+    image: "/images/filters/Romanticism.webp",
     isSelected: false,
   },
   {
@@ -313,7 +313,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style focused on geometric shapes and industrial materials",
     style: "Constructivist",
-    image: "/images/filters/design_Styles/ArtStyles/Constructivist.png",
+    image: "/images/filters/Constructivist.webp",
     isSelected: false,
   },
   {
@@ -322,7 +322,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Art movement exploring the relationship between art and society",
     style: "Constructivism",
-    image: "/images/filters/design_Styles/ArtStyles/Constructivism.png",
+    image: "/images/filters/Constructivism.webp",
     isSelected: false,
   },
   {
@@ -331,7 +331,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Ornate and dramatic art style characterized by grandeur and extravagance",
     style: "Baroque",
-    image: "/images/filters/design_Styles/ArtStyles/Baroque.png",
+    image: "/images/filters/Baroque.webp",
     isSelected: false,
   },
   {
@@ -340,7 +340,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style known for its delicate and ornamental decoration",
     style: "Rococo",
-    image: "/images/filters/design_Styles/ArtStyles/Rococo.png",
+    image: "/images/filters/Rococo.webp",
     isSelected: false,
   },
   {
@@ -349,7 +349,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style influenced by scientific and empirical principles",
     style: "Positivism",
-    image: "/images/filters/design_Styles/ArtStyles/Positivism.png",
+    image: "/images/filters/Positivism.webp",
     isSelected: false,
   },
   {
@@ -358,7 +358,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Photographic style emulating painting and emphasizing artistic expression",
     style: "Pictorialism",
-    image: "/images/filters/design_Styles/ArtStyles/Pictorialism.png",
+    image: "/images/filters/Pictorialism.webp",
     isSelected: false,
   },
   {
@@ -366,7 +366,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Goth",
     description: "Dark and macabre art style with gothic influences",
     style: "Goth",
-    image: "/images/filters/design_Styles/ArtStyles/Goth.png",
+    image: "/images/filters/Goth.webp",
     isSelected: false,
   },
   {
@@ -375,7 +375,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Medieval-inspired art style with ornate and architectural elements",
     style: "Gothic",
-    image: "/images/filters/design_Styles/ArtStyles/Gothic.png",
+    image: "/images/filters/Gothic.webp",
     isSelected: false,
   },
   {
@@ -383,7 +383,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Gothic Horror",
     description: "Artistic style characterized by eerie and dark themes",
     style: "Gothic Horror",
-    image: "/images/filters/design_Styles/ArtStyles/Gothic_Horror.png",
+    image: "/images/filters/Gothic_Horror.webp",
     isSelected: false,
   },
   {
@@ -391,7 +391,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Tubism",
     description: "Artistic style featuring geometric and cylindrical forms",
     style: "Tubism",
-    image: "/images/filters/design_Styles/ArtStyles/Tubism.png",
+    image: "/images/filters/Tubism.webp",
     isSelected: false,
   },
   {
@@ -399,7 +399,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Naturalism",
     description: "Artistic style depicting subjects with accuracy and detail",
     style: "Naturalism",
-    image: "/images/filters/design_Styles/ArtStyles/Naturalism.png",
+    image: "/images/filters/Naturalism.webp",
     isSelected: false,
   },
   {
@@ -407,7 +407,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Idyllic",
     description: "Artistic style portraying peaceful and picturesque scenes",
     style: "Idyllic",
-    image: "/images/filters/design_Styles/ArtStyles/Idyllic.png",
+    image: "/images/filters/Idyllic.webp",
     isSelected: false,
   },
   {
@@ -415,7 +415,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Vedute",
     description: "Artistic style focused on detailed and panoramic cityscapes",
     style: "Vedute",
-    image: "/images/filters/design_Styles/ArtStyles/Vedute.png",
+    image: "/images/filters/Vedute.webp",
     isSelected: false,
   },
   {
@@ -423,7 +423,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Verism",
     description: "Artistic style emphasizing realism and truthfulness",
     style: "Verism",
-    image: "/images/filters/design_Styles/ArtStyles/Verism.png",
+    image: "/images/filters/Verism.webp",
     isSelected: false,
   },
   {
@@ -431,7 +431,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Divisionism",
     description: "Artistic technique using small dots or strokes of pure color",
     style: "Divisionism",
-    image: "/images/filters/design_Styles/ArtStyles/Divisionism.png",
+    image: "/images/filters/Divisionism.webp",
     isSelected: false,
   },
   {
@@ -439,7 +439,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Nuagisme",
     description: "Artistic style depicting dreamlike and ethereal scenes",
     style: "Nuagisme",
-    image: "/images/filters/design_Styles/ArtStyles/Nuagisme.png",
+    image: "/images/filters/Nuagisme.webp",
     isSelected: false,
   },
   {
@@ -447,7 +447,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Representationalism",
     description: "Artistic style representing subjects in a realistic manner",
     style: "Representationalism",
-    image: "/images/filters/design_Styles/ArtStyles/Representationalism.png",
+    image: "/images/filters/Representationalism.webp",
     isSelected: false,
   },
   {
@@ -455,7 +455,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Sumatraism",
     description: "Art style inspired by the culture and landscapes of Sumatra.",
     style: "Sumatraism",
-    image: "/images/filters/design_Styles/ArtStyles/Sumatraism.png",
+    image: "/images/filters/Sumatraism.webp",
     isSelected: false,
   },
   {
@@ -464,7 +464,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Temporal juxtaposition of elements from different time periods.",
     style: "Anachronism",
-    image: "/images/filters/design_Styles/ArtStyles/Anachronism.png",
+    image: "/images/filters/Anachronism.webp",
     isSelected: false,
   },
   {
@@ -473,7 +473,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Avant-garde art movement emphasizing the fusion of different art forms.",
     style: "Fluxus Art Movement",
-    image: "/images/filters/design_Styles/ArtStyles/Fluxus_Art_Movement.png",
+    image: "/images/filters/Fluxus_Art_Movement.webp",
     isSelected: false,
   },
   {
@@ -482,7 +482,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style combining elements from different sources to create harmony.",
     style: "Synthetism",
-    image: "/images/filters/design_Styles/ArtStyles/Synthetism.png",
+    image: "/images/filters/Synthetism.webp",
     isSelected: false,
   },
   {
@@ -490,7 +490,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Tonalism",
     description: "Art movement focusing on the effects of light and color.",
     style: "Tonalism",
-    image: "/images/filters/design_Styles/ArtStyles/Tonalism.png",
+    image: "/images/filters/Tonalism.webp",
     isSelected: false,
   },
   {
@@ -498,7 +498,7 @@ export const ArtStylesFilters: Filter[] = [
     name: "Barbouillage",
     description: "Technique of smearing or scribbling to create abstract art.",
     style: "Barbouillage",
-    image: "/images/filters/design_Styles/ArtStyles/Barbouillage.png",
+    image: "/images/filters/Barbouillage.webp",
     isSelected: false,
   },
   {
@@ -507,7 +507,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic fascination and depiction of Eastern cultures and themes.",
     style: "Orientalism",
-    image: "/images/filters/design_Styles/ArtStyles/Orientalism.png",
+    image: "/images/filters/Orientalism.webp",
     isSelected: false,
   },
   {
@@ -516,7 +516,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement using symbols to convey emotional and spiritual ideas.",
     style: "Symbolism",
-    image: "/images/filters/design_Styles/ArtStyles/Symbolism.png",
+    image: "/images/filters/Symbolism.webp",
     isSelected: false,
   },
   {
@@ -525,7 +525,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement emphasizing letters and typography as visual elements.",
     style: "Lettrism",
-    image: "/images/filters/design_Styles/ArtStyles/Lettrism.png",
+    image: "/images/filters/Lettrism.webp",
     isSelected: false,
   },
   {
@@ -534,7 +534,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic and design style associated with middle-class culture in Central Europe.",
     style: "Biedermeier",
-    image: "/images/filters/design_Styles/ArtStyles/Biedermeier.png",
+    image: "/images/filters/Biedermeier.webp",
     isSelected: false,
   },
   {
@@ -543,7 +543,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic era in Dutch history known for its significant cultural achievements.",
     style: "Dutch Golden Age",
-    image: "/images/filters/design_Styles/ArtStyles/Dutch_Golden_Age.png",
+    image: "/images/filters/Dutch_Golden_Age.webp",
     isSelected: false,
   },
   {
@@ -552,7 +552,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Philosophical and artistic concept emphasizing the pursuit of perfection and beauty.",
     style: "Idealism",
-    image: "/images/filters/design_Styles/ArtStyles/Idealism.png",
+    image: "/images/filters/Idealism.webp",
     isSelected: false,
   },
   {
@@ -561,7 +561,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement seeking simplicity, geometric forms, and functional aesthetics.",
     style: "Purism",
-    image: "/images/filters/design_Styles/ArtStyles/Purism.png",
+    image: "/images/filters/Purism.webp",
     isSelected: false,
   },
   {
@@ -570,7 +570,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style capturing intimate, private moments and personal emotions.",
     style: "Intimism",
-    image: "/images/filters/design_Styles/ArtStyles/Intimism.png",
+    image: "/images/filters/Intimism.webp",
     isSelected: false,
   },
   {
@@ -579,7 +579,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Art movement emphasizing the depiction of fleeting moments and atmospheric effects.",
     style: "Impressionism",
-    image: "/images/filters/design_Styles/ArtStyles/Impressionism.png",
+    image: "/images/filters/Impressionism.webp",
     isSelected: false,
   },
   {
@@ -588,7 +588,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement expanding upon Impressionism with more structure and symbolic content.",
     style: "Post-Impressionism",
-    image: "/images/filters/design_Styles/ArtStyles/Post-Impressionism.png",
+    image: "/images/filters/Post-Impressionism.webp",
     isSelected: false,
   },
   {
@@ -597,7 +597,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement in Catalonia associated with Surrealism and Dadaism.",
     style: "Dau al Set",
-    image: "/images/filters/design_Styles/ArtStyles/Dau_al_Set.png",
+    image: "/images/filters/Dau_al_Set.webp",
     isSelected: false,
   },
   {
@@ -606,7 +606,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic practice following established styles, techniques, and cultural norms.",
     style: "Traditional Art",
-    image: "/images/filters/design_Styles/ArtStyles/Traditional_Art.png",
+    image: "/images/filters/Traditional_Art.webp",
     isSelected: false,
   },
   {
@@ -615,7 +615,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic expression with a temporary or ephemeral nature and limited duration.",
     style: "Temporary Art",
-    image: "/images/filters/design_Styles/ArtStyles/Temporary_Art.png",
+    image: "/images/filters/Temporary_Art.webp",
     isSelected: false,
   },
   {
@@ -624,7 +624,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style characterized by geometric shapes, sleek lines, and luxurious materials.",
     style: "Deco",
-    image: "/images/filters/design_Styles/ArtStyles/Deco.png",
+    image: "/images/filters/Deco.webp",
     isSelected: false,
   },
   {
@@ -633,7 +633,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style focused on decorative elements and ornamental aesthetics.",
     style: "Décor",
-    image: "/images/filters/design_Styles/ArtStyles/Decor.png",
+    image: "/images/filters/Decor.webp",
     isSelected: false,
   },
   {
@@ -642,7 +642,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style characterized by geometric shapes, sleek lines, and luxurious materials.",
     style: "Art Deco",
-    image: "/images/filters/design_Styles/ArtStyles/Art_Deco.png",
+    image: "/images/filters/Art_Deco.webp",
     isSelected: false,
   },
   {
@@ -651,7 +651,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement characterized by organic forms, flowing lines, and nature-inspired motifs.",
     style: "Art Nouveau",
-    image: "/images/filters/design_Styles/ArtStyles/Art_Nouveau.png",
+    image: "/images/filters/Art_Nouveau.webp",
     isSelected: false,
   },
   {
@@ -660,7 +660,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement focusing on urban culture, consumerism, and everyday objects.",
     style: "Nouveau Realisme",
-    image: "/images/filters/design_Styles/ArtStyles/Nouveau_Realisme.png",
+    image: "/images/filters/Nouveau_Realisme.webp",
     isSelected: false,
   },
   {
@@ -669,7 +669,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artwork recognized and honored for its exceptional artistic quality and achievement.",
     style: "Award Winning Art",
-    image: "/images/filters/design_Styles/ArtStyles/Award_Winning_Art.png",
+    image: "/images/filters/Award_Winning_Art.webp",
     isSelected: false,
   },
   {
@@ -678,7 +678,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic creation characterized by grand scale, narrative complexity, and dramatic impact.",
     style: "Epic Composition",
-    image: "/images/filters/design_Styles/ArtStyles/Epic_Composition.png",
+    image: "/images/filters/Epic_Composition.webp",
     isSelected: false,
   },
   {
@@ -687,7 +687,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic technique involving the act of dropping or pouring paint onto a surface.",
     style: "Drop Art",
-    image: "/images/filters/design_Styles/ArtStyles/Drop_Art.png",
+    image: "/images/filters/Drop_Art.webp",
     isSelected: false,
   },
   {
@@ -696,7 +696,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic expression reflecting traditional culture, heritage, and community identity.",
     style: "Folk Art",
-    image: "/images/filters/design_Styles/ArtStyles/Folk_Art.png",
+    image: "/images/filters/Folk_Art.webp",
     isSelected: false,
   },
   {
@@ -705,7 +705,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic response to the legacies of colonialism and the exploration of postcolonial themes.",
     style: "Postcolonial Art",
-    image: "/images/filters/design_Styles/ArtStyles/Postcolonial_Art.png",
+    image: "/images/filters/Postcolonial_Art.webp",
     isSelected: false,
   },
   {
@@ -714,7 +714,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Revival of art, culture, and learning from ancient Greek and Roman civilizations.",
     style: "Renaissance",
-    image: "/images/filters/design_Styles/ArtStyles/Renaissance.png",
+    image: "/images/filters/Renaissance.webp",
     isSelected: false,
   },
   {
@@ -723,7 +723,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Cultural, social, and artistic movement celebrating Black identity and heritage during the Harlem Renaissance.",
     style: "Harlem-Renaissance",
-    image: "/images/filters/design_Styles/ArtStyles/Harlem-Renaissance.png",
+    image: "/images/filters/Harlem-Renaissance.webp",
     isSelected: false,
   },
   {
@@ -732,7 +732,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement rooted in underground and pop culture, often characterized by humor and irony.",
     style: "Lowbrow",
-    image: "/images/filters/design_Styles/ArtStyles/Lowbrow.png",
+    image: "/images/filters/Lowbrow.webp",
     isSelected: false,
   },
   {
@@ -741,7 +741,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style focused on representing recognizable objects and figures.",
     style: "Figurativism",
-    image: "/images/filters/design_Styles/ArtStyles/Figurativism.png",
+    image: "/images/filters/Figurativism.webp",
     isSelected: false,
   },
   {
@@ -750,7 +750,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement challenging traditional norms and conventions through absurdity and irrationality.",
     style: "Dada",
-    image: "/images/filters/design_Styles/ArtStyles/Dada.png",
+    image: "/images/filters/Dada.webp",
     isSelected: false,
   },
   {
@@ -759,7 +759,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic and literary movement rejecting logic and reason, often expressing political and social criticism.",
     style: "Dadaism",
-    image: "/images/filters/design_Styles/ArtStyles/Dadaism.png",
+    image: "/images/filters/Dadaism.webp",
     isSelected: false,
   },
   {
@@ -768,7 +768,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Revival of the Dada movement, exploring new forms of artistic expression and social commentary.",
     style: "Neo-Dadaism",
-    image: "/images/filters/design_Styles/ArtStyles/Neo-Dadaism.png",
+    image: "/images/filters/Neo-Dadaism.webp",
     isSelected: false,
   },
   {
@@ -777,7 +777,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic interest in the Middle Ages, drawing inspiration from its art, culture, and history.",
     style: "Medievalism",
-    image: "/images/filters/design_Styles/ArtStyles/Medievalism.png",
+    image: "/images/filters/Medievalism.webp",
     isSelected: false,
   },
   {
@@ -786,7 +786,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Contemporary reinterpretation of medieval themes and aesthetics in art and design.",
     style: "New Medievalism",
-    image: "/images/filters/design_Styles/ArtStyles/New_Medievalism.png",
+    image: "/images/filters/New_Medievalism.webp",
     isSelected: false,
   },
   {
@@ -795,7 +795,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement in Vienna, characterized by a break from academic traditions and the pursuit of artistic freedom.",
     style: "Vienna Secession",
-    image: "/images/filters/design_Styles/ArtStyles/Vienna_Secession.png",
+    image: "/images/filters/Vienna_Secession.webp",
     isSelected: false,
   },
   {
@@ -804,7 +804,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic approach exploring multiple dimensions, perspectives, and spatial relationships.",
     style: "Multidimensional Art",
-    image: "/images/filters/design_Styles/ArtStyles/Multidimensional_Art.png",
+    image: "/images/filters/Multidimensional_Art.webp",
     isSelected: false,
   },
   {
@@ -813,7 +813,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style creating optical illusions and visual effects through precise geometric patterns and abstraction.",
     style: "Op Art",
-    image: "/images/filters/design_Styles/ArtStyles/Op_Art.png",
+    image: "/images/filters/Op_Art.webp",
     isSelected: false,
   },
   {
@@ -822,7 +822,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic technique creating realistic optical illusions, making objects appear three-dimensional.",
     style: "Trompe-L'œil",
-    image: "/images/filters/design_Styles/ArtStyles/Trompe-Loeil.png",
+    image: "/images/filters/Trompe-Loeil.webp",
     isSelected: false,
   },
   {
@@ -831,7 +831,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style inspired by the mathematical concepts and visualizations of Fourier transforms.",
     style: "Fourier Art",
-    image: "/images/filters/design_Styles/ArtStyles/Fourier_Art.png",
+    image: "/images/filters/Fourier_Art.webp",
     isSelected: false,
   },
   {
@@ -840,7 +840,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style characterized by abstract and ethereal forms, evoking a sense of mystery and ambiguity.",
     style: "Nebulous Art",
-    image: "/images/filters/design_Styles/ArtStyles/Nebulous_Art.png",
+    image: "/images/filters/Nebulous_Art.webp",
     isSelected: false,
   },
   {
@@ -849,7 +849,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style influenced by Mozarabic culture, combining Islamic and Christian elements.",
     style: "Mozarabic Art",
-    image: "/images/filters/design_Styles/ArtStyles/Mozarabic_Art.png",
+    image: "/images/filters/Mozarabic_Art.webp",
     isSelected: false,
   },
   {
@@ -858,7 +858,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement rejecting established norms and conventions, often characterized by provocative and subversive expressions.",
     style: "Anti",
-    image: "/images/filters/design_Styles/ArtStyles/Anti.png",
+    image: "/images/filters/Anti.webp",
     isSelected: false,
   },
   {
@@ -867,7 +867,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Approach to design questioning traditional principles, challenging functionality and aesthetics.",
     style: "Anti-Design",
-    image: "/images/filters/design_Styles/ArtStyles/Anti-Design.png",
+    image: "/images/filters/Anti-Design.webp",
     isSelected: false,
   },
   {
@@ -876,7 +876,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Design approach combining various elements and influences to create unique and innovative compositions.",
     style: "Compound Design",
-    image: "/images/filters/design_Styles/ArtStyles/Compound_Design.png",
+    image: "/images/filters/Compound_Design.webp",
     isSelected: false,
   },
   {
@@ -885,7 +885,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Design style inspired by the aesthetics of grunge music and culture, characterized by rough and distressed visuals.",
     style: "Grunge Revival Design",
-    image: "/images/filters/design_Styles/ArtStyles/Grunge_Revival_Design.png",
+    image: "/images/filters/Grunge_Revival_Design.webp",
     isSelected: false,
   },
   {
@@ -894,7 +894,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement celebrating figurative painting and questioning the dominance of conceptual and abstract art.",
     style: "Stuckism",
-    image: "/images/filters/design_Styles/ArtStyles/Stuckism.png",
+    image: "/images/filters/Stuckism.webp",
     isSelected: false,
   },
   {
@@ -903,7 +903,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Design approach emphasizing the sense of touch and tactile qualities, often using textured materials and interactive elements.",
     style: "Tactile Design",
-    image: "/images/filters/design_Styles/ArtStyles/Tactile_Design.png",
+    image: "/images/filters/Tactile_Design.webp",
     isSelected: false,
   },
   {
@@ -912,7 +912,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Design movement known for its bold colors, geometric shapes, and playful patterns, originating in the 1980s.",
     style: "Memphis Style",
-    image: "/images/filters/design_Styles/ArtStyles/Memphis_Style.png",
+    image: "/images/filters/Memphis_Style.webp",
     isSelected: false,
   },
   {
@@ -921,7 +921,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Design style characterized by bright colors, unconventional shapes, and a mix of patterns, emerged in the 1980s.",
     style: "Memphis Design",
-    image: "/images/filters/design_Styles/ArtStyles/Memphis_Design.png",
+    image: "/images/filters/Memphis_Design.webp",
     isSelected: false,
   },
   {
@@ -930,7 +930,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style emphasizing spontaneous brushwork, vibrant colors, and abstract compositions.",
     style: "Tachisme",
-    image: "/images/filters/design_Styles/ArtStyles/Tachisme.png",
+    image: "/images/filters/Tachisme.webp",
     isSelected: false,
   },
   {
@@ -939,7 +939,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Experimental and innovative approach challenging traditional artistic norms and pushing the boundaries of creativity.",
     style: "Avant-Garde",
-    image: "/images/filters/design_Styles/ArtStyles/Avant-Garde.png",
+    image: "/images/filters/Avant-Garde.webp",
     isSelected: false,
   },
   {
@@ -948,7 +948,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement blending traditional and contemporary elements, emphasizing personal expression and figurative imagery.",
     style: "Transavantgarde",
-    image: "/images/filters/design_Styles/ArtStyles/Transavantgarde.png",
+    image: "/images/filters/Transavantgarde.webp",
     isSelected: false,
   },
   {
@@ -957,7 +957,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style fusing elements of fractal art and urban aesthetics, capturing the energy and complexity of urban environments.",
     style: "Frasurbane",
-    image: "/images/filters/design_Styles/ArtStyles/Frasurbane.png",
+    image: "/images/filters/Frasurbane.webp",
     isSelected: false,
   },
   {
@@ -966,7 +966,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Painting technique characterized by subtle and gradual transitions between colors, creating a soft and blurred effect.",
     style: "Sfumato",
-    image: "/images/filters/design_Styles/ArtStyles/Sfumato.png",
+    image: "/images/filters/Sfumato.webp",
     isSelected: false,
   },
   {
@@ -975,7 +975,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement in the 1920s depicting objective and realistic scenes, often with social and political undertones.",
     style: "Neue Sachlichkeit",
-    image: "/images/filters/design_Styles/ArtStyles/Neue_Sachlichkeit.png",
+    image: "/images/filters/Neue_Sachlichkeit.webp",
     isSelected: false,
   },
   {
@@ -984,7 +984,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artwork or design composed of three panels or sections, often interconnected to form a unified whole.",
     style: "Triptych",
-    image: "/images/filters/design_Styles/ArtStyles/Triptych.png",
+    image: "/images/filters/Triptych.webp",
     isSelected: false,
   },
   {
@@ -993,7 +993,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic technique depicting objects or figures at an angle, giving the illusion of depth and perspective.",
     style: "Foreshortening",
-    image: "/images/filters/design_Styles/ArtStyles/Foreshortening.png",
+    image: "/images/filters/Foreshortening.webp",
     isSelected: false,
   },
   {
@@ -1002,7 +1002,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style influenced by Japanese imageboard culture, characterized by a diverse range of subject matter and styles.",
     style: "Booru",
-    image: "/images/filters/design_Styles/ArtStyles/Booru.png",
+    image: "/images/filters/Booru.webp",
     isSelected: false,
   },
   {
@@ -1011,7 +1011,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic technique using the outline or shadow of an object or figure to create a striking and simplified representation.",
     style: "Silhouette",
-    image: "/images/filters/design_Styles/ArtStyles/Silhouette.png",
+    image: "/images/filters/Silhouette.webp",
     isSelected: false,
   },
   {
@@ -1020,7 +1020,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style depicting the detailed representation of the physical features and elevation of a landscape or terrain.",
     style: "Topographic",
-    image: "/images/filters/design_Styles/ArtStyles/Topographic.png",
+    image: "/images/filters/Topographic.webp",
     isSelected: false,
   },
   {
@@ -1029,7 +1029,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic technique using strong contrasts of light and shadow to create depth and dramatic effect in an artwork.",
     style: "Chiaroscuro",
-    image: "/images/filters/design_Styles/ArtStyles/Chiaroscuro.png",
+    image: "/images/filters/Chiaroscuro.webp",
     isSelected: false,
   },
   {
@@ -1038,7 +1038,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic movement characterized by nonsensical and irrational imagery, challenging traditional artistic conventions.",
     style: "Incoherents",
-    image: "/images/filters/design_Styles/ArtStyles/Incoherents.png",
+    image: "/images/filters/Incoherents.webp",
     isSelected: false,
   },
   {
@@ -1047,7 +1047,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic exploration of existential themes, such as the individual's search for meaning and the human condition.",
     style: "Existential",
-    image: "/images/filters/design_Styles/ArtStyles/Existential.png",
+    image: "/images/filters/Existential.webp",
     isSelected: false,
   },
   {
@@ -1056,7 +1056,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style characterized by exaggerated sentimentality, melodrama, and popular culture references.",
     style: "Kitsch",
-    image: "/images/filters/design_Styles/ArtStyles/Kitsch.png",
+    image: "/images/filters/Kitsch.webp",
     isSelected: false,
   },
   {
@@ -1065,7 +1065,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style inspired by generic and mass-produced aesthetics found in everyday consumer products.",
     style: "Store-Brand",
-    image: "/images/filters/design_Styles/ArtStyles/Store-Brand.png",
+    image: "/images/filters/Store-Brand.webp",
     isSelected: false,
   },
   {
@@ -1074,7 +1074,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style reflecting the current trends, ideas, and concerns of the present time.",
     style: "Contemporary",
-    image: "/images/filters/design_Styles/ArtStyles/Contemporary.png",
+    image: "/images/filters/Contemporary.webp",
     isSelected: false,
   },
   {
@@ -1083,7 +1083,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic genre depicting local customs, traditions, and everyday life of a particular culture or region.",
     style: "Costumbrismo",
-    image: "/images/filters/design_Styles/ArtStyles/Costumbrismo.png",
+    image: "/images/filters/Costumbrismo.webp",
     isSelected: false,
   },
   {
@@ -1092,7 +1092,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style rooted in traditional Mexican folk art, featuring vibrant and intricate paintings on bark paper.",
     style: "Amate",
-    image: "/images/filters/design_Styles/ArtStyles/Amate.png",
+    image: "/images/filters/Amate.webp",
     isSelected: false,
   },
   {
@@ -1101,7 +1101,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style characterized by abstract, organic forms inspired by nature and the exploration of color and texture.",
     style: "Wuhtercuhler",
-    image: "/images/filters/design_Styles/ArtStyles/Wuhtercuhler.png",
+    image: "/images/filters/Wuhtercuhler.webp",
     isSelected: false,
   },
   {
@@ -1110,7 +1110,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style incorporating intricate and ornamental patterns, often resembling woven fabrics or tapestries.",
     style: "Brocade",
-    image: "/images/filters/design_Styles/ArtStyles/Brocade.png",
+    image: "/images/filters/Brocade.webp",
     isSelected: false,
   },
   {
@@ -1119,7 +1119,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic expression focused on creating a sense of fantasy, imagination, and the desire to transcend reality.",
     style: "Escapism",
-    image: "/images/filters/design_Styles/ArtStyles/Escapism.png",
+    image: "/images/filters/Escapism.webp",
     isSelected: false,
   },
   {
@@ -1128,7 +1128,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style characterized by clear and precise outlines, minimal shading, and a focus on graphic simplicity.",
     style: "Ligne Claire",
-    image: "/images/filters/design_Styles/ArtStyles/Ligne_Claire.png",
+    image: "/images/filters/Ligne_Claire.webp",
     isSelected: false,
   },
   {
@@ -1137,7 +1137,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic exploration of existential themes, such as the individual's search for meaning and the human condition.",
     style: "Existentialism",
-    image: "/images/filters/design_Styles/ArtStyles/Existentialism.png",
+    image: "/images/filters/Existentialism.webp",
     isSelected: false,
   },
   {
@@ -1146,7 +1146,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic style influenced by the works of H.P. Lovecraft, featuring cosmic horror, the unknown, and the supernatural.",
     style: "Lovecraftian",
-    image: "/images/filters/design_Styles/ArtStyles/Lovecraftian.png",
+    image: "/images/filters/Lovecraftian.webp",
     isSelected: false,
   },
   {
@@ -1155,7 +1155,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic and cultural movement celebrating non-conformity, free-spiritedness, and unconventional lifestyles.",
     style: "Bohemianism",
-    image: "/images/filters/design_Styles/ArtStyles/Bohemianism.png",
+    image: "/images/filters/Bohemianism.webp",
     isSelected: false,
   },
   {
@@ -1164,7 +1164,7 @@ export const ArtStylesFilters: Filter[] = [
     description:
       "Artistic genre of woodblock prints and paintings capturing the fleeting moments of everyday life in Edo-period Japan.",
     style: "Ukiyo-e",
-    image: "/images/filters/design_Styles/ArtStyles/Ukiyo-e.png",
+    image: "/images/filters/Ukiyo-e.webp",
     isSelected: false,
   },
 ];

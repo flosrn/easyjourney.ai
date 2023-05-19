@@ -6,7 +6,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Atari Graphics",
     description: "Artwork inspired by Atari gaming graphics.",
     style: "Atari Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/Atari_Graphics.png",
+    image: "/images/filters/Atari_Graphics.webp",
     isSelected: false,
   },
   {
@@ -14,7 +14,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Atari 2600 Palette",
     description: "Artwork featuring colors from the Atari 2600 palette.",
     style: "Atari 2600 Palette",
-    image: "/images/filters/digital/gameSystemGraphics/Atari_2600_Palette.png",
+    image: "/images/filters/Atari_2600_Palette.webp",
     isSelected: false,
   },
   {
@@ -22,7 +22,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Atari ST Palette",
     description: "Artwork showcasing colors from the Atari ST palette.",
     style: "Atari ST Palette",
-    image: "/images/filters/digital/gameSystemGraphics/Atari_ST_Palette.png",
+    image: "/images/filters/Atari_ST_Palette.webp",
     isSelected: false,
   },
   {
@@ -30,7 +30,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PS1 Graphics",
     description: "Artwork inspired by PlayStation 1 graphics.",
     style: "PS1 Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/PS1_Graphics.png",
+    image: "/images/filters/PS1_Graphics.webp",
     isSelected: false,
   },
   {
@@ -38,8 +38,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PlayStation 1 Graphics",
     description: "Artwork reminiscent of PlayStation 1 game graphics.",
     style: "PlayStation 1 Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/PlayStation_1_Graphics.png",
+    image: "/images/filters/PlayStation_1_Graphics.webp",
     isSelected: false,
   },
   {
@@ -47,7 +46,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PS2 Graphics",
     description: "Artwork inspired by PlayStation 2 graphics.",
     style: "PS2 Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/PS2_Graphics.png",
+    image: "/images/filters/PS2_Graphics.webp",
     isSelected: false,
   },
   {
@@ -55,8 +54,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PlayStation 2 Graphics",
     description: "Artwork reminiscent of PlayStation 2 game graphics.",
     style: "PlayStation 2 Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/PlayStation_2_Graphics.png",
+    image: "/images/filters/PlayStation_2_Graphics.webp",
     isSelected: false,
   },
   {
@@ -64,7 +62,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PS3 Graphics",
     description: "Artwork inspired by PlayStation 3 graphics.",
     style: "PS3 Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/PS3_Graphics.png",
+    image: "/images/filters/PS3_Graphics.webp",
     isSelected: false,
   },
   {
@@ -72,8 +70,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PlayStation 3 Graphics",
     description: "Artwork reminiscent of PlayStation 3 game graphics.",
     style: "PlayStation 3 Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/PlayStation_3_Graphics.png",
+    image: "/images/filters/PlayStation_3_Graphics.webp",
     isSelected: false,
   },
   {
@@ -81,7 +78,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PS4 Graphics",
     description: "Artwork inspired by PlayStation 4 graphics.",
     style: "PS4 Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/PS4_Graphics.png",
+    image: "/images/filters/PS4_Graphics.webp",
     isSelected: false,
   },
   {
@@ -89,8 +86,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PlayStation 4 Graphics",
     description: "Artwork reminiscent of PlayStation 4 game graphics.",
     style: "PlayStation 4 Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/PlayStation_4_Graphics.png",
+    image: "/images/filters/PlayStation_4_Graphics.webp",
     isSelected: false,
   },
   {
@@ -98,7 +94,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PS5 Graphics",
     description: "Artwork inspired by PlayStation 5 graphics.",
     style: "PS5 Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/PS5_Graphics.png",
+    image: "/images/filters/PS5_Graphics.webp",
     isSelected: false,
   },
   {
@@ -106,8 +102,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PlayStation 5 Graphics",
     description: "Artwork reminiscent of PlayStation 5 game graphics.",
     style: "PlayStation 5 Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/PlayStation_5_Graphics.png",
+    image: "/images/filters/PlayStation_5_Graphics.webp",
     isSelected: false,
   },
   {
@@ -115,7 +110,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PSP Graphics",
     description: "Artwork inspired by PlayStation Portable graphics.",
     style: "PSP Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/PSP_Graphics.png",
+    image: "/images/filters/PSP_Graphics.webp",
     isSelected: false,
   },
   {
@@ -123,8 +118,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PlayStation Portable Graphics",
     description: "Artwork reminiscent of PlayStation Portable game graphics.",
     style: "PlayStation Portable Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/PlayStation_Portable_Graphics.png",
+    image: "/images/filters/PlayStation_Portable_Graphics.webp",
     isSelected: false,
   },
   {
@@ -132,7 +126,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PS Vita Graphics",
     description: "Artwork inspired by PlayStation Vita graphics.",
     style: "PS Vita Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/PS_Vita_Graphics.png",
+    image: "/images/filters/PS_Vita_Graphics.webp",
     isSelected: false,
   },
   {
@@ -140,8 +134,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "PlayStation Vita Graphics",
     description: "Artwork reminiscent of PlayStation Vita game graphics.",
     style: "PlayStation Vita Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/PlayStation_Vita_Graphics.png",
+    image: "/images/filters/PlayStation_Vita_Graphics.webp",
     isSelected: false,
   },
   {
@@ -149,7 +142,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Xbox Graphics",
     description: "Artwork inspired by Xbox graphics.",
     style: "Xbox Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/Xbox_Graphics.png",
+    image: "/images/filters/Xbox_Graphics.webp",
     isSelected: false,
   },
   {
@@ -157,7 +150,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Xbox 360 Graphics",
     description: "Artwork reminiscent of Xbox 360 game graphics.",
     style: "Xbox 360 Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/Xbox_360_Graphics.png",
+    image: "/images/filters/Xbox_360_Graphics.webp",
     isSelected: false,
   },
   {
@@ -165,7 +158,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Xbox One Graphics",
     description: "Artwork inspired by Xbox One graphics.",
     style: "Xbox One Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/Xbox_One_Graphics.png",
+    image: "/images/filters/Xbox_One_Graphics.webp",
     isSelected: false,
   },
   {
@@ -173,7 +166,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Xbox One X Graphics",
     description: "Artwork reminiscent of Xbox One X game graphics.",
     style: "Xbox One X Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/Xbox_One_X_Graphics.png",
+    image: "/images/filters/Xbox_One_X_Graphics.webp",
     isSelected: false,
   },
   {
@@ -181,7 +174,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "NES Palette",
     description: "Artwork featuring colors from the NES palette.",
     style: "NES Palette",
-    image: "/images/filters/digital/gameSystemGraphics/NES_Palette.png",
+    image: "/images/filters/NES_Palette.webp",
     isSelected: false,
   },
   {
@@ -189,7 +182,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "SNES Palette",
     description: "Artwork showcasing colors from the SNES palette.",
     style: "SNES Palette",
-    image: "/images/filters/digital/gameSystemGraphics/SNES_Palette.png",
+    image: "/images/filters/SNES_Palette.webp",
     isSelected: false,
   },
   {
@@ -197,8 +190,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Nintendo 64 Graphics",
     description: "Artwork inspired by Nintendo 64 graphics.",
     style: "Nintendo 64 Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/Nintendo_64_Graphics.png",
+    image: "/images/filters/Nintendo_64_Graphics.webp",
     isSelected: false,
   },
   {
@@ -206,7 +198,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "GameCube Graphics",
     description: "Artwork reminiscent of GameCube game graphics.",
     style: "GameCube Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/GameCube_Graphics.png",
+    image: "/images/filters/GameCube_Graphics.webp",
     isSelected: false,
   },
   {
@@ -214,7 +206,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Wii Graphics",
     description: "Artwork inspired by Wii graphics.",
     style: "Wii Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/Wii_Graphics.png",
+    image: "/images/filters/Wii_Graphics.webp",
     isSelected: false,
   },
   {
@@ -222,7 +214,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Wii U Graphics",
     description: "Artwork reminiscent of Wii U game graphics.",
     style: "Wii U Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/Wii_U_Graphics.png",
+    image: "/images/filters/Wii_U_Graphics.webp",
     isSelected: false,
   },
   {
@@ -230,8 +222,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Nintendo Switch Graphics",
     description: "Artwork inspired by Nintendo Switch graphics.",
     style: "Nintendo Switch Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/Nintendo_Switch_Graphics.png",
+    image: "/images/filters/Nintendo_Switch_Graphics.webp",
     isSelected: false,
   },
   {
@@ -239,7 +230,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Game Boy Palette",
     description: "Artwork featuring colors from the Game Boy palette.",
     style: "Game Boy Palette",
-    image: "/images/filters/digital/gameSystemGraphics/Game_Boy_Palette.png",
+    image: "/images/filters/Game_Boy_Palette.webp",
     isSelected: false,
   },
   {
@@ -247,7 +238,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Gameboy Graphics",
     description: "Artwork reminiscent of Gameboy game graphics.",
     style: "Gameboy Graphics",
-    image: "/images/filters/digital/gameSystemGraphics/Gameboy_Graphics.png",
+    image: "/images/filters/Gameboy_Graphics.webp",
     isSelected: false,
   },
   {
@@ -255,8 +246,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Game Boy Color Palette",
     description: "Artwork featuring colors from the Game Boy Color palette.",
     style: "Game Boy Color Palette",
-    image:
-      "/images/filters/digital/gameSystemGraphics/Game_Boy_Color_Palette.png",
+    image: "/images/filters/Game_Boy_Color_Palette.webp",
     isSelected: false,
   },
   {
@@ -264,8 +254,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Game Boy Advance Palette",
     description: "Artwork showcasing colors from the Game Boy Advance palette.",
     style: "Game Boy Advance Palette",
-    image:
-      "/images/filters/digital/gameSystemGraphics/Game_Boy_Advance_Palette.png",
+    image: "/images/filters/Game_Boy_Advance_Palette.webp",
     isSelected: false,
   },
   {
@@ -273,8 +262,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Nintendo DS Graphics",
     description: "Artwork inspired by Nintendo DS graphics.",
     style: "Nintendo DS Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/Nintendo_DS_Graphics.png",
+    image: "/images/filters/Nintendo_DS_Graphics.webp",
     isSelected: false,
   },
   {
@@ -282,8 +270,7 @@ export const gameSystemGraphicsFilters: Filter[] = [
     name: "Nintendo 3DS Graphics",
     description: "Artwork reminiscent of Nintendo 3DS game graphics.",
     style: "Nintendo 3DS Graphics",
-    image:
-      "/images/filters/digital/gameSystemGraphics/Nintendo_3DS_Graphics.png",
+    image: "/images/filters/Nintendo_3DS_Graphics.webp",
     isSelected: false,
   },
 ];

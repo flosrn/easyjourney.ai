@@ -6,8 +6,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     name: "Crystalcore",
     description: "Glittering crystals and mesmerizing light reflections.",
     style: "Crystalcore",
-    image:
-      "/images/filters/themes/colorsCrystalsSparklesAndLight/Crystalcore.png",
+    image: "/images/filters/Crystalcore.webp",
     isSelected: false,
   },
   {
@@ -15,8 +14,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     name: "Sparklecore",
     description: "Shimmering and radiant aesthetics with a touch of magic.",
     style: "Sparklecore",
-    image:
-      "/images/filters/themes/colorsCrystalsSparklesAndLight/Sparklecore.png",
+    image: "/images/filters/Sparklecore.webp",
     isSelected: false,
   },
   {
@@ -24,8 +22,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     name: "Rainbowcore",
     description: "Vibrant and multicolored visuals like a rainbow in motion.",
     style: "Rainbowcore",
-    image:
-      "/images/filters/themes/colorsCrystalsSparklesAndLight/Rainbowcore.png",
+    image: "/images/filters/Rainbowcore.webp",
     isSelected: false,
   },
   {
@@ -33,8 +30,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     name: "Pastelwave",
     description: "Soft pastel hues blending harmoniously like ocean waves.",
     style: "Pastelwave",
-    image:
-      "/images/filters/themes/colorsCrystalsSparklesAndLight/Pastelwave.png",
+    image: "/images/filters/Pastelwave.webp",
     isSelected: false,
   },
   {
@@ -42,8 +38,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     name: "Pastelpunk",
     description: "Contrasting pastel shades infused with punk aesthetics.",
     style: "Pastelpunk",
-    image:
-      "/images/filters/themes/colorsCrystalsSparklesAndLight/Pastelpunk.png",
+    image: "/images/filters/Pastelpunk.webp",
     isSelected: false,
   },
   {
@@ -51,7 +46,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     name: "Glowwave",
     description: "Luminous and radiant visuals reminiscent of glowing waves.",
     style: "Glowwave",
-    image: "/images/filters/themes/colorsCrystalsSparklesAndLight/Glowwave.png",
+    image: "/images/filters/Glowwave.webp",
     isSelected: false,
   },
   {
@@ -60,7 +55,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     description:
       "Glowing and retro-futuristic aesthetics inspired by lo-fi vibes.",
     style: "Glo-Fi",
-    image: "/images/filters/themes/colorsCrystalsSparklesAndLight/Glo-Fi.png",
+    image: "/images/filters/Glo-Fi.webp",
     isSelected: false,
   },
   {
@@ -68,7 +63,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     name: "Neonpunk",
     description: "Intense neon lights combined with gritty punk elements.",
     style: "Neonpunk",
-    image: "/images/filters/themes/colorsCrystalsSparklesAndLight/Neonpunk.png",
+    image: "/images/filters/Neonpunk.webp",
     isSelected: false,
   },
   {
@@ -76,8 +71,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     name: "Lightcore",
     description: "Ethereal and radiant visuals emanating pure light energy.",
     style: "Lightcore",
-    image:
-      "/images/filters/themes/colorsCrystalsSparklesAndLight/Lightcore.png",
+    image: "/images/filters/Lightcore.webp",
     isSelected: false,
   },
   {
@@ -86,8 +80,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     description:
       "Fractal patterns infused with edgy and futuristic punk aesthetics.",
     style: "Fractalpunk",
-    image:
-      "/images/filters/themes/colorsCrystalsSparklesAndLight/Fractalpunk.png",
+    image: "/images/filters/Fractalpunk.webp",
     isSelected: false,
   },
   {
@@ -95,8 +88,7 @@ export const colorsCrystalsSparklesAndLightFilters: Filter[] = [
     name: "Chromiesthesia @Chromie",
     description: "Sensory perception of colors and synesthetic experiences.",
     style: "Chromiesthesia @Chromie",
-    image:
-      "/images/filters/themes/colorsCrystalsSparklesAndLight/Chromiesthesia.png",
+    image: "/images/filters/Chromiesthesia.webp",
     isSelected: false,
   },
 ];
