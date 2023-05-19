@@ -35,7 +35,11 @@ const FiltersBadge = () => {
   ]);
   return (
     <div className="mt-6">
-      <Swiper slidesPerView="auto" spaceBetween={5} className="h-[30px]">
+      <Swiper
+        slidesPerView="auto"
+        spaceBetween={5}
+        className="relative h-[30px] !px-1"
+      >
         <AnimatePresence initial={false}>
           {selectedFilters.map((filter) => {
             const isAlreadySelected = selectedFilters.some(
@@ -72,6 +76,7 @@ const FiltersBadge = () => {
             );
           })}
         </AnimatePresence>
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-background" />
       </Swiper>
     </div>
   );

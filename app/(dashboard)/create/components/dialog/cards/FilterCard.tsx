@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import { Card } from "~/components/ui/Card";
 import { Separator } from "~/components/ui/Separator";
@@ -24,31 +25,33 @@ const FilterCard = ({
 }: FilterCardProps) => {
   const filter = { id, name, image, style, description };
   return (
-    <Card
-      onClick={() => clickHandler(filter)}
-      className={cn("cursor-pointer", {
-        "outline outline-1 outline-offset-2 outline-blue-500": isActive,
-      })}
-    >
-      <div className="md:text-md truncate px-3 py-2 text-center text-sm font-bold">
-        {name}
-      </div>
-      <Separator />
-      <div className="flex flex-row sm:flex-col">
-        <Image
-          src={image}
-          alt={name}
-          width={150}
-          height={150}
-          placeholder="blur"
-          blurDataURL={image}
-          className="h-20 w-20 shrink-0 rounded-bl-lg bg-left sm:h-full sm:w-full md:block md:rounded-none"
-        />
-        <div className="line-clamp-4 h-20 p-2 text-left text-xs sm:h-[105px] sm:text-center md:p-3 md:text-sm">
-          {description}
+    <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.93 }}>
+      <Card
+        onClick={() => clickHandler(filter)}
+        className={cn("cursor-pointer", {
+          "outline outline-1 outline-offset-2 outline-blue-500": isActive,
+        })}
+      >
+        <div className="md:text-md truncate px-3 py-2 text-center text-sm font-bold">
+          {name}
         </div>
-      </div>
-    </Card>
+        <Separator />
+        <div className="flex flex-row sm:flex-col">
+          <Image
+            src={image}
+            alt={name}
+            width={150}
+            height={150}
+            placeholder="blur"
+            blurDataURL={image}
+            className="h-20 w-20 shrink-0 rounded-bl-lg bg-left sm:h-full sm:w-full md:block md:rounded-none"
+          />
+          <div className="line-clamp-4 h-20 p-2 text-left text-xs sm:h-[105px] sm:text-center md:p-3 md:text-sm">
+            {description}
+          </div>
+        </div>
+      </Card>
+    </motion.div>
   );
 };
 

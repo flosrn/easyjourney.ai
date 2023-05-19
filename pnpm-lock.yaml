@@ -106,6 +106,9 @@ dependencies:
   '@uploadcare/upload-client':
     specifier: ^6.6.1
     version: 6.6.1(bufferutil@4.0.7)(utf-8-validate@6.0.3)
+  atropos:
+    specifier: ^1.0.2
+    version: 1.0.2
   bufferutil:
     specifier: ^4.0.7
     version: 4.0.7
@@ -2446,6 +2449,11 @@ packages:
 
   /asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
+    dev: false
+
+  /atropos@1.0.2:
+    resolution: {integrity: sha512-0RqyHfMyIhRXgnHuSQz2LVOE81jtAQ7EZTrF75ngiipklIsxajZ2vD042EXdiIEDs6eEAzfE10k+YhIbNl4/eg==}
+    engines: {node: '>= 12.0.0'}
     dev: false
 
   /autoprefixer@10.4.14(postcss@8.4.23):
