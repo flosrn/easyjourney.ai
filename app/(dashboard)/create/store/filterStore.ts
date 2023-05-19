@@ -21,9 +21,10 @@ export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
   selectedFilters: [],
   addFilter: (filter) => {
     set((state) => ({
+      // add the new filter to the beginning of the array
       selectedFilters: [
-        ...state.selectedFilters,
         { ...filter, isSelected: true },
+        ...state.selectedFilters,
       ],
     }));
   },

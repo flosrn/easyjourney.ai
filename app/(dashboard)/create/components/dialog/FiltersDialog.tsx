@@ -76,7 +76,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             <FiltersBadge />
           </DialogTitle>
         </DialogHeader>
-        <div>
+        <div className="mt-5">
           <ScrollArea className="h-[calc(70vh+82px)] md:h-[calc(56vh+82px)]">
             <div className="h-full pb-14 pl-1 pr-4">
               {hasFilter && !filterCategory && (
@@ -117,7 +117,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             </div>
           </ScrollArea>
         </div>
-        <DialogFooter className="bg-background absolute bottom-0 left-0 h-16 w-full rounded-xl md:h-20">
+        <DialogFooter className="absolute bottom-0 left-0 h-16 w-full rounded-xl bg-background md:h-20">
           <div className="relative flex w-full items-center justify-end px-10">
             <Separator className="absolute left-0 top-0 w-full" />
             <Button
