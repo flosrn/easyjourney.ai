@@ -1,24 +1,24 @@
 import type { SubCategoryFilter } from "../typeFilters";
-import { BitFilters } from "./1-Bit-16-Bit";
-import { aIAndNeuralNetworksFilters } from "./aIAndNeuralNetworks";
-import { artProgramsAndApplicationsFilters } from "./artProgramsAndApplications";
-import { aspectRatiosAndLetterboxingFilters } from "./aspectRatiosAndLetterboxing";
-import { computerSystemGraphicsFilters } from "./computerSystemGraphics";
-import { digitalStylesFilters } from "./digitalStyles";
-import { ditheringFilters } from "./dithering";
-import { gameSystemGraphicsFilters } from "./gameSystemGraphics";
-import { gameSystemsFilters } from "./gameSystems";
-import { imageFormatsAndTypesFilters } from "./imageFormatsAndTypes";
-import { interpolationFilters } from "./interpolation";
-import { operatingSystemsFilters } from "./operatingSystems";
-import { otherFilters } from "./other";
-import { renderingEnginesFilters } from "./renderingEngines";
-import { resolutionFilters } from "./resolution";
-import { vFXAndVideoCompaniesFilters } from "./vFXAndVideoCompanies";
-import { videoGameCharactersFilters } from "./videoGameCharacters";
-import { videoGameStylesFilters } from "./videoGamesStyle";
-import { websitesFilters } from "./websites";
-import { GlitchyFilters } from "./‍Glitchy";
+import { BitFilters } from ".//subCategoryFilters/1-Bit-16-Bit";
+import { aIAndNeuralNetworksFilters } from "./subCategoryFilters/aIAndNeuralNetworks";
+import { artProgramsAndApplicationsFilters } from "./subCategoryFilters/artProgramsAndApplications";
+import { aspectRatiosAndLetterboxingFilters } from "./subCategoryFilters/aspectRatiosAndLetterboxing";
+import { computerSystemGraphicsFilters } from "./subCategoryFilters/computerSystemGraphics";
+import { digitalStylesFilters } from "./subCategoryFilters/digitalStyles";
+import { ditheringFilters } from "./subCategoryFilters/dithering";
+import { gameSystemGraphicsFilters } from "./subCategoryFilters/gameSystemGraphics";
+import { gameSystemsFilters } from "./subCategoryFilters/gameSystems";
+import { GlitchyFilters } from "./subCategoryFilters/glitchy";
+import { imageFormatsAndTypesFilters } from "./subCategoryFilters/imageFormatsAndTypes";
+import { interpolationFilters } from "./subCategoryFilters/interpolation";
+import { operatingSystemsFilters } from "./subCategoryFilters/operatingSystems";
+import { otherFilters } from "./subCategoryFilters/other";
+import { renderingEnginesFilters } from "./subCategoryFilters/renderingEngines";
+import { resolutionFilters } from "./subCategoryFilters/resolution";
+import { vFXAndVideoCompaniesFilters } from "./subCategoryFilters/vFXAndVideoCompanies";
+import { videoGameCharactersFilters } from "./subCategoryFilters/videoGameCharacters";
+import { videoGameStylesFilters } from "./subCategoryFilters/videoGamesStyle";
+import { websitesFilters } from "./subCategoryFilters/websites";
 
 export const digitalSubCategoryFilters: SubCategoryFilter[] = [
   {

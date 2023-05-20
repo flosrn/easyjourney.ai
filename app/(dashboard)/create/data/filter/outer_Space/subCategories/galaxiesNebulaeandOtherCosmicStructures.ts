@@ -1,0 +1,68 @@
+import type { Filter } from "../../typeFilters";
+
+export const galaxiesNebulaeandOtherCosmicStructuresFilters: Filter[] = [
+  {
+    id: "Galaxy_1_3_1",
+    name: "Galaxy",
+    description: "",
+    style: "Galaxy",
+    image: "/images/filters/Galaxy.webp",
+    isSelected: false,
+  },
+  {
+    id: "Nebula_1_9_1",
+    name: "Nebula",
+    description: "",
+    style: "Nebula",
+    image: "/images/filters/Nebula.webp",
+    isSelected: false,
+  },
+  {
+    id: "Supernova_1_9_2",
+    name: "Supernova",
+    description: "",
+    style: "Supernova",
+    image: "/images/filters/Supernova.webp",
+    isSelected: false,
+  },
+  {
+    id: "Hypernova_1_9_3",
+    name: "Hypernova",
+    description: "",
+    style: "Hypernova",
+    image: "/images/filters/Hypernova.webp",
+    isSelected: false,
+  },
+  {
+    id: "Vela Pulsar_1_15_1",
+    name: "Vela Pulsar",
+    description: "",
+    style: "Vela Pulsar",
+    image: "/images/filters/Vela_Pulsar.webp",
+    isSelected: false,
+  },
+  {
+    id: "Quasar_1_15_2",
+    name: "Quasar",
+    description: "",
+    style: "Quasar",
+    image: "/images/filters/Quasar.webp",
+    isSelected: false,
+  },
+  {
+    id: "Microquasar_1_15_3",
+    name: "Microquasar",
+    description: "",
+    style: "Microquasar",
+    image: "/images/filters/Microquasar.webp",
+    isSelected: false,
+  },
+  {
+    id: "Asteroid_1_21_1",
+    name: "Asteroid",
+    description: "",
+    style: "Asteroid",
+    image: "/images/filters/Asteroid.webp",
+    isSelected: false,
+  },
+];

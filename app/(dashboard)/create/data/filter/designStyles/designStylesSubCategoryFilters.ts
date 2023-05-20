@@ -1,18 +1,18 @@
 import type { SubCategoryFilter } from "../typeFilters";
-import { chartsAndDiagramsFilters } from "./chartsAndDiagrams";
-import { cubismFilters } from "./cubism";
-import { decadeStylesFilters } from "./decadeStyles";
-import { eleganceBeautyAndAppealFilters } from "./eleganceBeautyAndAppeal";
-import { expressionismFilters } from "./expressionism";
-import { morphismFilters } from "./morphism";
-import { neoFilters } from "./neo";
-import { otherStylesFilters } from "./otherStyles";
-import { patternsFilters } from "./patterns";
-import { psychedelicDivineFractalAndNoiseFilters } from "./psychedelicDivineFractalAndNoise";
-import { simplicityComplexityFilters } from "./simplicityComplexity";
-import { stylizedFilters } from "./stylized";
-import { synesthesiaFilters } from "./synesthesia";
-import { ArtStylesFilters } from "./‍ArtStyles";
+import { ArtStylesFilters } from "./subCategoryFilters//ArtStyles";
+import { chartsAndDiagramsFilters } from "./subCategoryFilters/chartsAndDiagrams";
+import { cubismFilters } from "./subCategoryFilters/cubism";
+import { decadeStylesFilters } from "./subCategoryFilters/decadeStyles";
+import { eleganceBeautyAndAppealFilters } from "./subCategoryFilters/eleganceBeautyAndAppeal";
+import { expressionismFilters } from "./subCategoryFilters/expressionism";
+import { morphismFilters } from "./subCategoryFilters/morphism";
+import { neoFilters } from "./subCategoryFilters/neo";
+import { otherStylesFilters } from "./subCategoryFilters/otherStyles";
+import { patternsFilters } from "./subCategoryFilters/patterns";
+import { psychedelicDivineFractalAndNoiseFilters } from "./subCategoryFilters/psychedelicDivineFractalAndNoise";
+import { simplicityComplexityFilters } from "./subCategoryFilters/simplicityComplexity";
+import { stylizedFilters } from "./subCategoryFilters/stylized";
+import { synesthesiaFilters } from "./subCategoryFilters/synesthesia";
 
 export const designStylesSubCategoryFilters: SubCategoryFilter[] = [
   {
