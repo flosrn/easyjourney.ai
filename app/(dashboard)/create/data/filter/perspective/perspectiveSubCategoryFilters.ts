@@ -7,26 +7,26 @@ import { viewsFilters } from "./subCategories/views";
 export const perspectiveFilters: SubCategoryFilter[] = [
   {
     id: "views_1",
-    icon: "🛤",
+    icon: "🛤🔭",
     name: "Views",
     options: viewsFilters,
   },
   {
     id: "angles_2",
-    icon: "🛤",
+    icon: "🛤📐",
     name: "Angles",
     options: anglesFilters,
   },
   {
     id: "perspectiveandProjections_3",
-    icon: "🛤",
-    name: "PerspectiveandProjections",
+    icon: "🛤🛣️",
+    name: "Perspective and Projections",
     options: perspectiveandProjectionsFilters,
   },
   {
     id: "cutawayViewandCrossSections_4",
-    icon: "🛤",
-    name: "CutawayViewandCross-Sections",
+    icon: "🛤✂️",
+    name: "Cutaway View and Cross-Sections",
     options: cutawayViewandCrossSectionsFilters,
   },
 ];

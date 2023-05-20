@@ -6,19 +6,19 @@ import { tVShowsFilters } from "./subCategories/tVShows";
 export const tVAndMoviesFilters: SubCategoryFilter[] = [
   {
     id: "anime_1",
-    icon: "🎬",
+    icon: "🎬🈯",
     name: "Anime",
     options: animeFilters,
   },
   {
     id: "tVShows_2",
-    icon: "🎬",
-    name: "TVShows",
+    icon: "🎬📺",
+    name: "TV Shows",
     options: tVShowsFilters,
   },
   {
     id: "movies_3",
-    icon: "🎬",
+    icon: "🎬📽",
     name: "Movies",
     options: moviesFilters,
   },

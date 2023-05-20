@@ -12,7 +12,7 @@ export const dimensionalityFilters: SubCategoryFilter[] = [
   {
     id: "overdimensionalMultiverseetc._2",
     icon: "🌌",
-    name: "Overdimensional,Multiverse,etc.",
+    name: "Overdimensional, Multiverse, etc.",
     options: overdimensionalMultiverseetcFilters,
   },
 ];

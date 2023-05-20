@@ -8,7 +8,6 @@ import { numbersFilters } from "./subCategories/numbers";
 import { otherSymbolsFilters } from "./subCategories/otherSymbols";
 import { sizeFilters } from "./subCategories/size";
 import { strengthandDurabilityFilters } from "./subCategories/strengthandDurability";
-import { symbolsZodiacSignsOtherSymbolsFilters } from "./subCategories/symbolsZodiacSignsOtherSymbols";
 import { timeFilters } from "./subCategories/time";
 import { tuplesFilters } from "./subCategories/tuples";
 import { unicodeSymbolsFilters } from "./subCategories/unicodeSymbols";
@@ -18,98 +17,92 @@ import { zodiacSignsFilters } from "./subCategories/zodiacSigns";
 export const intangiblesFilters: SubCategoryFilter[] = [
   {
     id: "emotionsandQualities_1",
-    icon: "➰",
-    name: "EmotionsandQualities",
+    icon: "➰😁",
+    name: "Emotions and Qualities",
     options: emotionsandQualitiesFilters,
   },
   {
     id: "concepts_2",
-    icon: "➰",
+    icon: "➰🧠",
     name: "Concepts",
     options: conceptsFilters,
   },
   {
     id: "strengthandDurability_3",
-    icon: "➰",
-    name: "StrengthandDurability",
+    icon: "➰🏋️‍♂️",
+    name: "Strength and Durability",
     options: strengthandDurabilityFilters,
   },
   {
     id: "size_4",
-    icon: "➰",
+    icon: "➰🤏",
     name: "Size",
     options: sizeFilters,
   },
   {
     id: "letters_6",
-    icon: "🔠",
+    icon: "➰🔠",
     name: "Letters",
     options: lettersFilters,
   },
   {
     id: "numbers_7",
-    icon: "🔢",
+    icon: "➰🔢",
     name: "Numbers",
     options: numbersFilters,
   },
   {
     id: "unicodeSymbols_8",
-    icon: "🔣",
-    name: "UnicodeSymbols",
+    icon: "➰🔣",
+    name: "Unicode Symbols",
     options: unicodeSymbolsFilters,
   },
   {
-    id: "symbolsZodiacSignsOtherSymbols_9",
-    icon: "➰",
-    name: "SymbolsZodiacSignsOtherSymbols",
-    options: symbolsZodiacSignsOtherSymbolsFilters,
-  },
-  {
     id: "zodiacSigns_10",
-    icon: "☯",
-    name: "ZodiacSigns",
+    icon: "➰♓",
+    name: "Zodiac Signs",
     options: zodiacSignsFilters,
   },
   {
     id: "otherSymbols_11",
-    icon: "☯",
-    name: "OtherSymbols",
+    icon: "➰☯",
+    name: "Other Symbols",
     options: otherSymbolsFilters,
   },
   {
     id: "visualPerceptionandDistortions_12",
-    icon: "➰",
-    name: "VisualPerceptionandDistortions",
+    icon: "➰👁",
+    name: "Visual Perception and Distortions",
     options: visualPerceptionandDistortionsFilters,
   },
   {
     id: "numbers_14",
-    icon: "🔢",
-    name: "Numbers",
+    icon: "➰🔢",
+    name: "Big Numbers",
     options: numbersFilters,
   },
   {
     id: "numberSystems_15",
-    icon: "🔢",
-    name: "NumberSystems",
+    icon: "➰🔢",
+    name: "Number Systems",
     options: numberSystemsFilters,
   },
   {
     id: "tuples_16",
-    icon: "🔢",
+    icon: "➰🔢",
     name: "Tuples",
     options: tuplesFilters,
   },
   {
     id: "time_17",
-    icon: "➰",
+    icon: "➰🕒",
     name: "Time",
     options: timeFilters,
   },
   {
     id: "computerData_18",
-    icon: "➰",
-    name: "ComputerData",
+    icon: "➰🖥",
+    name: "Computer Data",
     options: computerDataFilters,
   },
 ];

@@ -10,44 +10,44 @@ import { stylizedFilters } from "./subCategories/stylized";
 export const sfxAndShadersFilters: SubCategoryFilter[] = [
   {
     id: "reflections_1",
-    icon: "🌈",
+    icon: "🌈🔍",
     name: "Reflections",
     options: reflectionsFilters,
   },
   {
     id: "blurs_2",
-    icon: "🌈",
+    icon: "🌈👓",
     name: "Blurs",
     options: blursFilters,
   },
   {
     id: "parallax_3",
-    icon: "🌈",
+    icon: "🌈🕶",
     name: "Parallax",
     options: parallaxFilters,
   },
   {
     id: "distortion_4",
-    icon: "🌈",
+    icon: "🌈🌫",
     name: "Distortion",
     options: distortionFilters,
   },
   {
     id: "chromaticSFX_5",
-    icon: "🌈",
-    name: "ChromaticSFX",
+    icon: "🌈🎨",
+    name: "Chromatic SFX",
     options: chromaticSFXFilters,
   },
   {
     id: "stylized_6",
-    icon: "🌈",
+    icon: "🌈💫",
     name: "Stylized",
     options: stylizedFilters,
   },
   {
     id: "shadersandPostProcessing_7",
-    icon: "🌈",
-    name: "ShadersandPostProcessing",
+    icon: "🌈🕶",
+    name: "Shaders and Post Processing",
     options: shadersandPostProcessingFilters,
   },
 ];

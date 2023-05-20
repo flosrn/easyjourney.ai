@@ -9,32 +9,32 @@ import { spiralsLoopsandHelixesFilters } from "./subCategories/spiralsLoopsandHe
 export const structuralModificationFilters: SubCategoryFilter[] = [
   {
     id: "spiralsLoopsandHelixes_1",
-    icon: "♻",
-    name: "Spirals,Loops,andHelixes",
+    icon: "♻➰",
+    name: "Spirals, Loops and Helixes",
     options: spiralsLoopsandHelixesFilters,
   },
   {
     id: "〰CurvesandWaves_2",
-    icon: "♻",
-    name: "CurvesandWaves",
+    icon: "♻〰 ",
+    name: "Curves and Waves",
     options: curvesandWavesFilters,
   },
   {
     id: "knots_3",
-    icon: "♻",
+    icon: "♻🕸",
     name: "Knots",
     options: knotsFilters,
   },
   {
     id: "circular_4",
-    icon: "♻",
+    icon: "♻⭕",
     name: "Circular",
     options: circularFilters,
   },
   {
     id: "dullandPointy_5",
-    icon: "♻",
-    name: "DullandPointy",
+    icon: "♻🗡️",
+    name: "Dull and Pointy",
     options: dullandPointyFilters,
   },
   {

@@ -67,7 +67,7 @@ export const categoryFilters: CategoryFilter[] = [
   {
     id: "8",
     icon: "🎷",
-    name: "Objects",
+    name: "Objects and Foods",
     options: objectsFilters,
   },
   {
@@ -115,7 +115,7 @@ export const categoryFilters: CategoryFilter[] = [
   {
     id: "16",
     icon: "📷",
-    name: "Camera, Film, and Lenses",
+    name: "Camera, Film and Lenses",
     options: cameraFilters,
   },
   {
