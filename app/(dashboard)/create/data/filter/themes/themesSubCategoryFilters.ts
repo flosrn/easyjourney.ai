@@ -1,15 +1,15 @@
 import type { SubCategoryFilter } from "../typeFilters";
-import { architectureAndManufacturedFilters } from "./architectureAndManufacturedFilters";
-import { atmosphereFilters } from "./atmosphereFilters";
-import { cartoonsAnimeAndComicsFilters } from "./cartoonsAnimeAndComics";
-import { colorsCrystalsSparklesAndLightFilters } from "./colorsCrystalsSparklesAndLight";
-import { moodBasedThemesFilters } from "./moodBasedThemes";
-import { musicStylesFilters } from "./musicStyles";
-import { otherThemesFilters } from "./otherThemes";
-import { realismAbstractionFilters } from "./realismAbstractionFilters";
-import { retroModernFilters } from "./retroModernFilters";
-import { roomsFilters } from "./roomsFilters";
-import { sciFiFilters } from "./sciFiFilters";
+import { architectureAndManufacturedFilters } from "./subCategoryFilters/architectureAndManufacturedFilters";
+import { atmosphereFilters } from "./subCategoryFilters/atmosphereFilters";
+import { cartoonsAnimeAndComicsFilters } from "./subCategoryFilters/cartoonsAnimeAndComics";
+import { colorsCrystalsSparklesAndLightFilters } from "./subCategoryFilters/colorsCrystalsSparklesAndLight";
+import { moodBasedThemesFilters } from "./subCategoryFilters/moodBasedThemes";
+import { musicStylesFilters } from "./subCategoryFilters/musicStyles";
+import { otherThemesFilters } from "./subCategoryFilters/otherThemes";
+import { realismAbstractionFilters } from "./subCategoryFilters/realismAbstractionFilters";
+import { retroModernFilters } from "./subCategoryFilters/retroModernFilters";
+import { roomsFilters } from "./subCategoryFilters/roomsFilters";
+import { sciFiFilters } from "./subCategoryFilters/sciFiFilters";
 
 export const themesSubCategoryFilters: SubCategoryFilter[] = [
   {
