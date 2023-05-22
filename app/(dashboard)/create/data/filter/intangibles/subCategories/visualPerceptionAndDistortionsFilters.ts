@@ -1,6 +1,6 @@
 import type { Filter } from "../../typeFilters";
 
-export const visualPerceptionandDistortionsFilters: Filter[] = [
+export const visualPerceptionAndDistortionsFilters: Filter[] = [
   {
     id: "Visual Perception_12_3_1",
     name: "Visual Perception",

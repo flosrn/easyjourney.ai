@@ -11,7 +11,7 @@ import { strengthAndDurabilityFilters } from "./subCategories/strengthAndDurabil
 import { timeFilters } from "./subCategories/time";
 import { tuplesFilters } from "./subCategories/tuples";
 import { unicodeSymbolsFilters } from "./subCategories/unicodeSymbols";
-import { visualPerceptionandDistortionsFilters } from "./subCategories/visualPerceptionandDistortions";
+import { visualPerceptionAndDistortionsFilters } from "./subCategories/visualPerceptionAndDistortionsFilters";
 import { zodiacSignsFilters } from "./subCategories/zodiacSigns";
 
 export const intangiblesFilters: SubCategoryFilter[] = [
@@ -73,7 +73,7 @@ export const intangiblesFilters: SubCategoryFilter[] = [
     id: "visualPerceptionandDistortions_12",
     icon: "➰👁",
     name: "Visual Perception and Distortions",
-    options: visualPerceptionandDistortionsFilters,
+    options: visualPerceptionAndDistortionsFilters,
   },
   {
     id: "numbers_14",
