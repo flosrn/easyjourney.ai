@@ -1,10 +1,10 @@
 import type { Filter } from "../../typeFilters";
 
-export const strengthandDurabilityFilters: Filter[] = [
+export const strengthAndDurabilityFilters: Filter[] = [
   {
     id: "Weak_3_3_1",
     name: "Weak",
-    description: "",
+    description: "Provides a subtle, softer touch",
     style: "Weak",
     image: "/images/filters/Weak.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const strengthandDurabilityFilters: Filter[] = [
   {
     id: "Strong_3_3_2",
     name: "Strong",
-    description: "",
+    description: "Imparts bold and vivid impacts",
     style: "Strong",
     image: "/images/filters/Strong.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const strengthandDurabilityFilters: Filter[] = [
   {
     id: "Durable_3_3_3",
     name: "Durable",
-    description: "",
+    description: "Offers a steady, long-lasting effect",
     style: "Durable",
     image: "/images/filters/Durable.webp",
     isSelected: false,
@@ -28,7 +28,7 @@ export const strengthandDurabilityFilters: Filter[] = [
   {
     id: "Powerful_3_9_1",
     name: "Powerful",
-    description: "",
+    description: "Gives a dynamic and intense alteration",
     style: "Powerful",
     image: "/images/filters/Powerful.webp",
     isSelected: false,
