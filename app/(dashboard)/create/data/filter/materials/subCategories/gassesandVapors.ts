@@ -4,7 +4,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Air_21_3_1",
     name: "Air",
-    description: "",
+    description: "Filter representing the element of air or atmospheric gases.",
     style: "Air",
     image: "/images/filters/Air.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Gas_21_9_1",
     name: "Gas",
-    description: "",
+    description: "Filter featuring gaseous elements or substances.",
     style: "Gas",
     image: "/images/filters/Gas.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Gaseous_21_9_2",
     name: "Gaseous",
-    description: "",
+    description: "Filter representing substances in a gaseous state.",
     style: "Gaseous",
     image: "/images/filters/Gaseous.webp",
     isSelected: false,
@@ -28,7 +28,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Vapor_21_15_1",
     name: "Vapor",
-    description: "",
+    description: "Filter featuring the vapor form of substances.",
     style: "Vapor",
     image: "/images/filters/Vapor.webp",
     isSelected: false,
@@ -36,7 +36,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Vaporized_21_15_2",
     name: "Vaporized",
-    description: "",
+    description: "Filter representing substances in a vaporized state.",
     style: "Vaporized",
     image: "/images/filters/Vaporized.webp",
     isSelected: false,
@@ -44,7 +44,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Vapor Plume_21_21_1",
     name: "Vapor Plume",
-    description: "",
+    description: "Filter depicting a plume or cloud of vapor.",
     style: "Vapor Plume",
     image: "/images/filters/Vapor_Plume.webp",
     isSelected: false,
@@ -52,7 +52,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Wafting Vapor_21_21_2",
     name: "Wafting Vapor",
-    description: "",
+    description: "Filter featuring vapor in a wafting or floating motion.",
     style: "Wafting Vapor",
     image: "/images/filters/Wafting_Vapor.webp",
     isSelected: false,
@@ -60,7 +60,8 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Accumulated Vapor_21_21_3",
     name: "Accumulated Vapor",
-    description: "",
+    description:
+      "Filter representing an accumulation or concentration of vapor.",
     style: "Accumulated Vapor",
     image: "/images/filters/Accumulated_Vapor.webp",
     isSelected: false,
@@ -68,7 +69,8 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Aerosol_21_27_1",
     name: "Aerosol",
-    description: "",
+    description:
+      "Filter featuring tiny particles or droplets suspended in air.",
     style: "Aerosol",
     image: "/images/filters/Aerosol.webp",
     isSelected: false,
@@ -76,7 +78,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Aerosol Plume_21_33_1",
     name: "Aerosol Plume",
-    description: "",
+    description: "Filter depicting a plume or cloud of aerosol particles.",
     style: "Aerosol Plume",
     image: "/images/filters/Aerosol_Plume.webp",
     isSelected: false,
@@ -84,7 +86,8 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Wafting Aerosol_21_33_2",
     name: "Wafting Aerosol",
-    description: "",
+    description:
+      "Filter featuring aerosol particles in a wafting or floating motion.",
     style: "Wafting Aerosol",
     image: "/images/filters/Wafting_Aerosol.webp",
     isSelected: false,
@@ -92,7 +95,8 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Accumulated Aerosol_21_33_3",
     name: "Accumulated Aerosol",
-    description: "",
+    description:
+      "Filter representing an accumulation or concentration of aerosol particles.",
     style: "Accumulated Aerosol",
     image: "/images/filters/Accumulated_Aerosol.webp",
     isSelected: false,
@@ -100,7 +104,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Clouds_21_39_1",
     name: "Clouds",
-    description: "",
+    description: "Filter representing fluffy or dense clouds in the sky.",
     style: "Clouds",
     image: "/images/filters/Clouds.webp",
     isSelected: false,
@@ -108,7 +112,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Fog_21_39_2",
     name: "Fog",
-    description: "",
+    description: "Filter featuring a misty or hazy foggy effect.",
     style: "Fog",
     image: "/images/filters/Fog.webp",
     isSelected: false,
@@ -116,7 +120,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Mist_21_39_3",
     name: "Mist",
-    description: "",
+    description: "Filter representing a fine mist or vapor in the air.",
     style: "Mist",
     image: "/images/filters/Mist.webp",
     isSelected: false,
@@ -124,7 +128,7 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Mist Plume_21_45_1",
     name: "Mist Plume",
-    description: "",
+    description: "Filter depicting a plume or cloud of mist or fine droplets.",
     style: "Mist Plume",
     image: "/images/filters/Mist_Plume.webp",
     isSelected: false,
@@ -132,7 +136,8 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Wafting Mist_21_45_2",
     name: "Wafting Mist",
-    description: "",
+    description:
+      "Filter featuring mist or fine droplets in a wafting or floating motion.",
     style: "Wafting Mist",
     image: "/images/filters/Wafting_Mist.webp",
     isSelected: false,
@@ -140,7 +145,8 @@ export const gassesandVaporsFilters: Filter[] = [
   {
     id: "Accumulated Mist_21_45_3",
     name: "Accumulated Mist",
-    description: "",
+    description:
+      "Filter representing an accumulation or concentration of mist or fine droplets.",
     style: "Accumulated Mist",
     image: "/images/filters/Accumulated_Mist.webp",
     isSelected: false,

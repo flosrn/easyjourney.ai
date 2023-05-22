@@ -4,7 +4,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Color-Gel_6_3_1",
     name: "Color-Gel",
-    description: "",
+    description: "Vibrant color enhancement for creative photography.",
     style: "Color-Gel",
     image: "/images/filters/Color-Gel.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Filter_6_3_2",
     name: "Filter",
-    description: "",
+    description: "Versatile filter for various visual effects and adjustments.",
     style: "Filter",
     image: "/images/filters/Filter.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Photographic-Filter_6_9_1",
     name: "Photographic-Filter",
-    description: "",
+    description: "Optimize image quality and enhance specific features.",
     style: "Photographic-Filter",
     image: "/images/filters/Photographic-Filter.webp",
     isSelected: false,
@@ -28,7 +28,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Diffusion-Filter_6_9_2",
     name: "Diffusion-Filter",
-    description: "",
+    description: "Softens details and creates a dreamy, ethereal look.",
     style: "Diffusion-Filter",
     image: "/images/filters/Diffusion-Filter.webp",
     isSelected: false,
@@ -36,7 +36,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Dichroic-Filter_6_15_1",
     name: "Dichroic-Filter",
-    description: "",
+    description: "Produces a range of colorful and reflective effects.",
     style: "Dichroic-Filter",
     image: "/images/filters/Dichroic-Filter.webp",
     isSelected: false,
@@ -44,7 +44,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "UV-Filter_6_15_2",
     name: "UV-Filter",
-    description: "",
+    description: "Blocks ultraviolet light and reduces haze in photos.",
     style: "UV-Filter",
     image: "/images/filters/UV-Filter.webp",
     isSelected: false,
@@ -52,7 +52,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Polarization-Filter_6_21_1",
     name: "Polarization-Filter",
-    description: "",
+    description: "Reduces glare and enhances color saturation in images.",
     style: "Polarization-Filter",
     image: "/images/filters/Polarization-Filter.webp",
     isSelected: false,
@@ -60,7 +60,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Polarizer_6_21_2",
     name: "Polarizer",
-    description: "",
+    description: "Achieves similar effects to a polarization filter.",
     style: "Polarizer",
     image: "/images/filters/Polarizer.webp",
     isSelected: false,
@@ -68,7 +68,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Infrared Filter_6_27_1",
     name: "Infrared Filter",
-    description: "",
+    description: "Allows infrared light to pass while blocking visible light.",
     style: "Infrared Filter",
     image: "/images/filters/Infrared_Filter.webp",
     isSelected: false,
@@ -76,7 +76,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Infrared-Filter_6_27_2",
     name: "Infrared-Filter",
-    description: "",
+    description: "Enables infrared photography by blocking visible light.",
     style: "Infrared-Filter",
     image: "/images/filters/Infrared-Filter.webp",
     isSelected: false,
@@ -84,7 +84,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Infrared-Cut-Off-Filter_6_27_3",
     name: "Infrared-Cut-Off-Filter",
-    description: "",
+    description: "Blocks infrared light to avoid color shifts in images.",
     style: "Infrared-Cut-Off-Filter",
     image: "/images/filters/Infrared-Cut-Off-Filter.webp",
     isSelected: false,
@@ -92,7 +92,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Neutral-Density-Filter_6_33_1",
     name: "Neutral-Density-Filter",
-    description: "",
+    description: "Reduces light intensity without affecting color balance.",
     style: "Neutral-Density-Filter",
     image: "/images/filters/Neutral-Density-Filter.webp",
     isSelected: false,
@@ -100,7 +100,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "ND-Filter_6_33_2",
     name: "ND-Filter",
-    description: "",
+    description: "Reduces light entering the lens for longer exposures.",
     style: "ND-Filter",
     image: "/images/filters/ND-Filter.webp",
     isSelected: false,
@@ -108,7 +108,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Graduated-Neutral-Density-Filter_6_39_1",
     name: "Graduated-Neutral-Density-Filter",
-    description: "",
+    description: "Controls exposure in landscapes with bright skies.",
     style: "Graduated-Neutral-Density-Filter",
     image: "/images/filters/Graduated-Neutral-Density-Filter.webp",
     isSelected: false,
@@ -116,7 +116,7 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "GND-Filter_6_39_2",
     name: "GND-Filter",
-    description: "",
+    description: "Offers a gradient for balancing exposure in landscapes.",
     style: "GND-Filter",
     image: "/images/filters/GND-Filter.webp",
     isSelected: false,
@@ -124,7 +124,8 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Astronomical-Filter_6_45_1",
     name: "Astronomical-Filter",
-    description: "",
+    description:
+      "Enhances visibility of celestial objects in astrophotography.",
     style: "Astronomical-Filter",
     image: "/images/filters/Astronomical-Filter.webp",
     isSelected: false,
@@ -132,7 +133,8 @@ export const lensFiltersFilters: Filter[] = [
   {
     id: "Cokin-Filter_6_45_2",
     name: "Cokin-Filter",
-    description: "",
+    description:
+      "Compatible with the Cokin filter system for creative effects.",
     style: "Cokin-Filter",
     image: "/images/filters/Cokin-Filter.webp",
     isSelected: false,

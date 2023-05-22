@@ -127,7 +127,7 @@ export const materialsFilters: SubCategoryFilter[] = [
   {
     id: "otherNonNewtonianFluidsandPolymers_20",
     icon: "🧱🧪",
-    name: "Other Non-Newtonian Fluids an dPolymers",
+    name: "Other Non-Newtonian Fluids and Polymers",
     options: otherNonNewtonianFluidsandPolymersFilters,
   },
   {
