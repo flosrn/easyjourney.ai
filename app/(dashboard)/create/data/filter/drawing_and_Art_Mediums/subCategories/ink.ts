@@ -4,7 +4,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Ink_4_3_1",
     name: "Ink",
-    description: "",
+    description: "Versatile ink for various writing and artistic purposes.",
     style: "Ink",
     image: "/images/filters/Ink.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Calligraphy_4_3_2",
     name: "Calligraphy",
-    description: "",
+    description: "Ink specially designed for beautiful calligraphy writing.",
     style: "Calligraphy",
     image: "/images/filters/Calligraphy.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Ballpoint Pen_4_3_3",
     name: "Ballpoint Pen",
-    description: "",
+    description: "Smooth and reliable ink for ballpoint pen writing.",
     style: "Ballpoint Pen",
     image: "/images/filters/Ballpoint_Pen.webp",
     isSelected: false,
@@ -28,7 +28,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Fountain Pen_4_9_1",
     name: "Fountain Pen",
-    description: "",
+    description: "Classic ink for fountain pens, providing a smooth flow.",
     style: "Fountain Pen",
     image: "/images/filters/Fountain_Pen.webp",
     isSelected: false,
@@ -36,7 +36,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Fountain Pen Art_4_9_2",
     name: "Fountain Pen Art",
-    description: "",
+    description: "Ink suitable for artistic expression using fountain pens.",
     style: "Fountain Pen Art",
     image: "/images/filters/Fountain_Pen_Art.webp",
     isSelected: false,
@@ -44,7 +44,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Gel Pen_4_9_3",
     name: "Gel Pen",
-    description: "",
+    description: "Smooth gel-based ink for effortless writing and drawing.",
     style: "Gel Pen",
     image: "/images/filters/Gel_Pen.webp",
     isSelected: false,
@@ -52,7 +52,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Conductive Ink_4_15_1",
     name: "Conductive Ink",
-    description: "",
+    description: "Special ink with conductivity for electronic applications.",
     style: "Conductive Ink",
     image: "/images/filters/Conductive_Ink.webp",
     isSelected: false,
@@ -60,7 +60,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Flexographic Ink_4_15_2",
     name: "Flexographic Ink",
-    description: "",
+    description: "Ink used for flexographic printing on various materials.",
     style: "Flexographic Ink",
     image: "/images/filters/Flexographic_Ink.webp",
     isSelected: false,
@@ -68,7 +68,7 @@ export const inkFilters: Filter[] = [
   {
     id: "India Ink_4_21_1",
     name: "India Ink",
-    description: "",
+    description: "Deep black ink traditionally used for pen and brushwork.",
     style: "India Ink",
     image: "/images/filters/India_Ink.webp",
     isSelected: false,
@@ -76,7 +76,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Iron Gall Ink_4_21_2",
     name: "Iron Gall Ink",
-    description: "",
+    description: "Historical ink with iron salts, known for archival quality.",
     style: "Iron Gall Ink",
     image: "/images/filters/Iron_Gall_Ink.webp",
     isSelected: false,
@@ -84,7 +84,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Grease Pen_4_27_1",
     name: "Grease Pen",
-    description: "",
+    description: "Ink in a grease-based form for smooth and bold lines.",
     style: "Grease Pen",
     image: "/images/filters/Grease_Pen.webp",
     isSelected: false,
@@ -92,7 +92,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Marker Art_4_27_2",
     name: "Marker Art",
-    description: "",
+    description: "Ink suitable for artistic creations using markers.",
     style: "Marker Art",
     image: "/images/filters/Marker_Art.webp",
     isSelected: false,
@@ -100,7 +100,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Dry-Erase Marker_4_33_1",
     name: "Dry-Erase Marker",
-    description: "",
+    description: "Ink for whiteboard markers that can be easily erased.",
     style: "Dry-Erase Marker",
     image: "/images/filters/Dry-Erase_Marker.webp",
     isSelected: false,
@@ -108,7 +108,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Wet-Erase Marker_4_33_2",
     name: "Wet-Erase Marker",
-    description: "",
+    description: "Ink for markers that require water for removal.",
     style: "Wet-Erase Marker",
     image: "/images/filters/Wet-Erase_Marker.webp",
     isSelected: false,
@@ -116,7 +116,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Whiteboard_4_33_3",
     name: "Whiteboard",
-    description: "",
+    description: "Ink designed specifically for use on whiteboards.",
     style: "Whiteboard",
     image: "/images/filters/Whiteboard.webp",
     isSelected: false,
@@ -124,7 +124,7 @@ export const inkFilters: Filter[] = [
   {
     id: "Viscosity Print_4_39_1",
     name: "Viscosity Print",
-    description: "",
+    description: "Ink used in the process of viscosity-based printmaking.",
     style: "Viscosity Print",
     image: "/images/filters/Viscosity_Print.webp",
     isSelected: false,

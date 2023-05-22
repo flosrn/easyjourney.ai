@@ -4,7 +4,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Wave_2_3_1",
     name: "Wave",
-    description: "",
+    description: "Discover shapes that resemble the motion of waves.",
     style: "Wave",
     image: "/images/filters/Wave.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Wavy_2_3_2",
     name: "Wavy",
-    description: "",
+    description: "Explore shapes with a series of continuous curves.",
     style: "Wavy",
     image: "/images/filters/Wavy.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Curve_2_9_1",
     name: "Curve",
-    description: "",
+    description: "Discover shapes characterized by smoothly bending lines.",
     style: "Curve",
     image: "/images/filters/Curve.webp",
     isSelected: false,
@@ -28,7 +28,8 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Bezier Curve_2_9_2",
     name: "Bezier Curve",
-    description: "",
+    description:
+      "Explore shapes defined by Bezier curves, allowing for smooth and precise curves.",
     style: "Bezier Curve",
     image: "/images/filters/Bezier_Curve.webp",
     isSelected: false,
@@ -36,7 +37,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Curvaceous_2_15_1",
     name: "Curvaceous",
-    description: "",
+    description: "Discover shapes with voluptuous and curvy contours.",
     style: "Curvaceous",
     image: "/images/filters/Curvaceous.webp",
     isSelected: false,
@@ -44,7 +45,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Curvilinear_2_15_2",
     name: "Curvilinear",
-    description: "",
+    description: "Explore shapes composed of flowing and curving lines.",
     style: "Curvilinear",
     image: "/images/filters/Curvilinear.webp",
     isSelected: false,
@@ -52,7 +53,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Sinuous_2_15_3",
     name: "Sinuous",
-    description: "",
+    description: "Discover shapes with smooth, winding, and undulating curves.",
     style: "Sinuous",
     image: "/images/filters/Sinuous.webp",
     isSelected: false,
@@ -60,7 +61,8 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Curlicue_2_21_1",
     name: "Curlicue",
-    description: "",
+    description:
+      "Explore shapes with intricate and decorative spiral or curled forms.",
     style: "Curlicue",
     image: "/images/filters/Curlicue.webp",
     isSelected: false,
@@ -68,7 +70,8 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Ripple_2_27_1",
     name: "Ripple",
-    description: "",
+    description:
+      "Discover shapes with concentric or expanding circular ripples.",
     style: "Ripple",
     image: "/images/filters/Ripple.webp",
     isSelected: false,
@@ -76,7 +79,8 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Squiggly_2_27_2",
     name: "Squiggly",
-    description: "",
+    description:
+      "Explore shapes with irregular and zigzagging lines or curves.",
     style: "Squiggly",
     image: "/images/filters/Squiggly.webp",
     isSelected: false,
@@ -84,7 +88,8 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Dimpled_2_33_1",
     name: "Dimpled",
-    description: "",
+    description:
+      "Discover shapes with small, shallow depressions or indentations.",
     style: "Dimpled",
     image: "/images/filters/Dimpled.webp",
     isSelected: false,
@@ -92,7 +97,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Incurved_2_33_2",
     name: "Incurved",
-    description: "",
+    description: "Explore shapes with inward-curving or concave forms.",
     style: "Incurved",
     image: "/images/filters/Incurved.webp",
     isSelected: false,
@@ -100,7 +105,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Incurvate_2_33_3",
     name: "Incurvate",
-    description: "",
+    description: "Discover shapes that are bent or curved inwards.",
     style: "Incurvate",
     image: "/images/filters/Incurvate.webp",
     isSelected: false,
@@ -108,7 +113,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Arched_2_39_1",
     name: "Arched",
-    description: "",
+    description: "Explore shapes with curved or gracefully curved structures.",
     style: "Arched",
     image: "/images/filters/Arched.webp",
     isSelected: false,
@@ -116,7 +121,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Arciform_2_39_2",
     name: "Arciform",
-    description: "",
+    description: "Discover shapes that resemble or have the form of an arc.",
     style: "Arciform",
     image: "/images/filters/Arciform.webp",
     isSelected: false,
@@ -124,7 +129,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Arrondi_2_45_1",
     name: "Arrondi",
-    description: "",
+    description: "Explore shapes with rounded or curved outlines.",
     style: "Arrondi",
     image: "/images/filters/Arrondi.webp",
     isSelected: false,
@@ -132,7 +137,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Sigmoid_2_45_2",
     name: "Sigmoid",
-    description: "",
+    description: "Discover shapes with an S-shaped curve or a sigmoid curve.",
     style: "Sigmoid",
     image: "/images/filters/Sigmoid.webp",
     isSelected: false,
@@ -140,7 +145,7 @@ export const curvesandWavesFilters: Filter[] = [
   {
     id: "Serpentine_2_51_1",
     name: "Serpentine",
-    description: "",
+    description: "Explore shapes that have winding and snakelike curves.",
     style: "Serpentine",
     image: "/images/filters/Serpentine.webp",
     isSelected: false,
