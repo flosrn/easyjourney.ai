@@ -4,7 +4,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Cloth_8_3_1",
     name: "Cloth",
-    description: "",
+    description: "Classic filter inspired by the texture of cloth material.",
     style: "Cloth",
     image: "/images/filters/Cloth.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Cotton_8_3_2",
     name: "Cotton",
-    description: "",
+    description: "Soft and cozy filter with a cotton-like texture.",
     style: "Cotton",
     image: "/images/filters/Cotton.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Polyester_8_3_3",
     name: "Polyester",
-    description: "",
+    description: "Sleek and smooth filter inspired by polyester fabric.",
     style: "Polyester",
     image: "/images/filters/Polyester.webp",
     isSelected: false,
@@ -28,7 +28,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Twine_8_9_1",
     name: "Twine",
-    description: "",
+    description:
+      "Filter featuring the rustic and textured appearance of twine.",
     style: "Twine",
     image: "/images/filters/Twine.webp",
     isSelected: false,
@@ -36,7 +37,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Cashmere_8_9_2",
     name: "Cashmere",
-    description: "",
+    description: "Luxurious and soft filter inspired by cashmere fabric.",
     style: "Cashmere",
     image: "/images/filters/Cashmere.webp",
     isSelected: false,
@@ -44,7 +45,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Silk_8_15_1",
     name: "Silk",
-    description: "",
+    description: "Elegant and lustrous filter inspired by silk fabric.",
     style: "Silk",
     image: "/images/filters/Silk.webp",
     isSelected: false,
@@ -52,7 +53,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Satin_8_15_2",
     name: "Satin",
-    description: "",
+    description: "Smooth and glossy filter resembling satin fabric.",
     style: "Satin",
     image: "/images/filters/Satin.webp",
     isSelected: false,
@@ -60,7 +61,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Denim_8_21_1",
     name: "Denim",
-    description: "",
+    description: "Casual and rugged filter inspired by denim fabric.",
     style: "Denim",
     image: "/images/filters/Denim.webp",
     isSelected: false,
@@ -68,7 +69,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Khaki_8_21_2",
     name: "Khaki",
-    description: "",
+    description: "Versatile and durable filter inspired by khaki fabric.",
     style: "Khaki",
     image: "/images/filters/Khaki.webp",
     isSelected: false,
@@ -76,7 +77,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Leather_8_27_1",
     name: "Leather",
-    description: "",
+    description: "Sophisticated filter inspired by the texture of leather.",
     style: "Leather",
     image: "/images/filters/Leather.webp",
     isSelected: false,
@@ -84,7 +85,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Felt_8_27_2",
     name: "Felt",
-    description: "",
+    description:
+      "Warm and fuzzy filter resembling the texture of felt material.",
     style: "Felt",
     image: "/images/filters/Felt.webp",
     isSelected: false,
@@ -92,7 +94,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Felt Cloth_8_27_3",
     name: "Felt Cloth",
-    description: "",
+    description: "Cozy and soft filter inspired by felt cloth.",
     style: "Felt Cloth",
     image: "/images/filters/Felt_Cloth.webp",
     isSelected: false,
@@ -100,7 +102,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Linen_8_33_1",
     name: "Linen",
-    description: "",
+    description: "Light and breathable filter inspired by linen fabric.",
     style: "Linen",
     image: "/images/filters/Linen.webp",
     isSelected: false,
@@ -108,7 +110,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Velvet_8_33_2",
     name: "Velvet",
-    description: "",
+    description: "Luxurious and plush filter inspired by velvet fabric.",
     style: "Velvet",
     image: "/images/filters/Velvet.webp",
     isSelected: false,
@@ -116,7 +118,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Corduroy_8_33_3",
     name: "Corduroy",
-    description: "",
+    description: "Textured and durable filter resembling corduroy fabric.",
     style: "Corduroy",
     image: "/images/filters/Corduroy.webp",
     isSelected: false,
@@ -124,7 +126,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Microfiber_8_39_1",
     name: "Microfiber",
-    description: "",
+    description: "Smooth and soft filter inspired by microfiber material.",
     style: "Microfiber",
     image: "/images/filters/Microfiber.webp",
     isSelected: false,
@@ -132,7 +134,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Fibers_8_39_2",
     name: "Fibers",
-    description: "",
+    description: "Filter featuring the intricate and fine texture of fibers.",
     style: "Fibers",
     image: "/images/filters/Fibers.webp",
     isSelected: false,
@@ -140,7 +142,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Memory Foam_8_39_3",
     name: "Memory Foam",
-    description: "",
+    description: "Soft and supportive filter inspired by memory foam material.",
     style: "Memory Foam",
     image: "/images/filters/Memory_Foam.webp",
     isSelected: false,
@@ -148,7 +150,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Nylon_8_45_1",
     name: "Nylon",
-    description: "",
+    description: "Durable and lightweight filter inspired by nylon fabric.",
     style: "Nylon",
     image: "/images/filters/Nylon.webp",
     isSelected: false,
@@ -156,7 +158,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Polyamide_8_45_2",
     name: "Polyamide",
-    description: "",
+    description: "Versatile and strong filter resembling polyamide fabric.",
     style: "Polyamide",
     image: "/images/filters/Polyamide.webp",
     isSelected: false,
@@ -164,7 +166,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Spandex_8_45_3",
     name: "Spandex",
-    description: "",
+    description: "Stretchy and flexible filter inspired by spandex fabric.",
     style: "Spandex",
     image: "/images/filters/Spandex.webp",
     isSelected: false,
@@ -172,7 +174,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Kevlar_8_51_1",
     name: "Kevlar",
-    description: "",
+    description: "Tough and protective filter inspired by Kevlar material.",
     style: "Kevlar",
     image: "/images/filters/Kevlar.webp",
     isSelected: false,
@@ -180,7 +182,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Rayon_8_51_2",
     name: "Rayon",
-    description: "",
+    description: "Smooth and lightweight filter resembling rayon fabric.",
     style: "Rayon",
     image: "/images/filters/Rayon.webp",
     isSelected: false,
@@ -188,7 +190,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Lyocell_8_51_3",
     name: "Lyocell",
-    description: "",
+    description:
+      "Eco-friendly and breathable filter inspired by Lyocell fabric.",
     style: "Lyocell",
     image: "/images/filters/Lyocell.webp",
     isSelected: false,
@@ -196,7 +199,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Cordura_8_57_1",
     name: "Cordura",
-    description: "",
+    description: "Durable and rugged filter inspired by Cordura fabric.",
     style: "Cordura",
     image: "/images/filters/Cordura.webp",
     isSelected: false,
@@ -204,7 +207,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Lurex_8_57_2",
     name: "Lurex",
-    description: "",
+    description:
+      "Shimmering and metallic filter featuring the look of Lurex fabric.",
     style: "Lurex",
     image: "/images/filters/Lurex.webp",
     isSelected: false,
@@ -212,7 +216,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Nomex_8_57_3",
     name: "Nomex",
-    description: "",
+    description:
+      "Flame-resistant and protective filter inspired by Nomex material.",
     style: "Nomex",
     image: "/images/filters/Nomex.webp",
     isSelected: false,
@@ -220,7 +225,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Rolag_8_63_1",
     name: "Rolag",
-    description: "",
+    description: "Filter featuring the rolled and compact texture of rolag.",
     style: "Rolag",
     image: "/images/filters/Rolag.webp",
     isSelected: false,
@@ -228,7 +233,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Roving_8_63_2",
     name: "Roving",
-    description: "",
+    description:
+      "Filter featuring the soft and loose texture of roving material.",
     style: "Roving",
     image: "/images/filters/Roving.webp",
     isSelected: false,
@@ -236,7 +242,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Lurex_8_63_3",
     name: "Lurex",
-    description: "",
+    description:
+      "Shimmering and metallic filter featuring the look of Lurex material.",
     style: "Lurex",
     image: "/images/filters/Lurex.webp",
     isSelected: false,
@@ -244,7 +251,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Swanskin Cloth_8_69_1",
     name: "Swanskin Cloth",
-    description: "",
+    description: "Soft and smooth filter inspired by swanskin cloth.",
     style: "Swanskin Cloth",
     image: "/images/filters/Swanskin_Cloth.webp",
     isSelected: false,
@@ -252,7 +259,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Tansukh Cloth_8_69_2",
     name: "Tansukh Cloth",
-    description: "",
+    description: "Delicate and lightweight filter inspired by tansukh cloth.",
     style: "Tansukh Cloth",
     image: "/images/filters/Tansukh_Cloth.webp",
     isSelected: false,
@@ -260,7 +267,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Jute Cloth_8_75_1",
     name: "Jute Cloth",
-    description: "",
+    description: "Natural and eco-friendly filter inspired by jute cloth.",
     style: "Jute Cloth",
     image: "/images/filters/Jute_Cloth.webp",
     isSelected: false,
@@ -268,7 +275,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Barkcloth_8_75_2",
     name: "Barkcloth",
-    description: "",
+    description: "Textured and rustic filter resembling barkcloth fabric.",
     style: "Barkcloth",
     image: "/images/filters/Barkcloth.webp",
     isSelected: false,
@@ -276,7 +283,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Quilt_8_81_1",
     name: "Quilt",
-    description: "",
+    description: "Cozy and comforting filter inspired by quilted fabric.",
     style: "Quilt",
     image: "/images/filters/Quilt.webp",
     isSelected: false,
@@ -284,7 +291,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Blanket_8_81_2",
     name: "Blanket",
-    description: "",
+    description: "Soft and warm filter resembling the texture of a blanket.",
     style: "Blanket",
     image: "/images/filters/Blanket.webp",
     isSelected: false,
@@ -292,7 +299,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Pillow_8_81_3",
     name: "Pillow",
-    description: "",
+    description: "Soft and fluffy filter inspired by the texture of a pillow.",
     style: "Pillow",
     image: "/images/filters/Pillow.webp",
     isSelected: false,
@@ -300,7 +307,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Lint_8_87_1",
     name: "Lint",
-    description: "",
+    description: "Filter featuring the soft and fuzzy appearance of lint.",
     style: "Lint",
     image: "/images/filters/Lint.webp",
     isSelected: false,
@@ -308,7 +315,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Cushion_8_87_2",
     name: "Cushion",
-    description: "",
+    description: "Plush and comfortable filter inspired by a cushion.",
     style: "Cushion",
     image: "/images/filters/Cushion.webp",
     isSelected: false,
@@ -316,7 +323,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Pin Cushion_8_87_3",
     name: "Pin Cushion",
-    description: "",
+    description:
+      "Filter inspired by a pin cushion, featuring small patterns and texture.",
     style: "Pin Cushion",
     image: "/images/filters/Pin_Cushion.webp",
     isSelected: false,
@@ -324,7 +332,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Rug_8_93_1",
     name: "Rug",
-    description: "",
+    description: "Textured and patterned filter inspired by a rug.",
     style: "Rug",
     image: "/images/filters/Rug.webp",
     isSelected: false,
@@ -332,7 +340,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Carpet_8_93_2",
     name: "Carpet",
-    description: "",
+    description: "Rich and ornate filter inspired by a carpet.",
     style: "Carpet",
     image: "/images/filters/Carpet.webp",
     isSelected: false,
@@ -340,7 +348,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Persian Rug_8_99_1",
     name: "Persian Rug",
-    description: "",
+    description: "Elegant and intricate filter inspired by a Persian rug.",
     style: "Persian Rug",
     image: "/images/filters/Persian_Rug.webp",
     isSelected: false,
@@ -348,7 +356,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Qom Rug_8_99_2",
     name: "Qom Rug",
-    description: "",
+    description: "Luxurious and fine filter inspired by a Qom rug.",
     style: "Qom Rug",
     image: "/images/filters/Qom_Rug.webp",
     isSelected: false,
@@ -356,7 +364,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Yarn_8_105_1",
     name: "Yarn",
-    description: "",
+    description: "Filter featuring the twisted and colorful texture of yarn.",
     style: "Yarn",
     image: "/images/filters/Yarn.webp",
     isSelected: false,
@@ -364,7 +372,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Knitted_8_105_2",
     name: "Knitted",
-    description: "",
+    description: "Cozy and warm filter inspired by knitted fabric.",
     style: "Knitted",
     image: "/images/filters/Knitted.webp",
     isSelected: false,
@@ -372,7 +380,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Crochet_8_105_3",
     name: "Crochet",
-    description: "",
+    description: "Intricate and delicate filter inspired by crochet work.",
     style: "Crochet",
     image: "/images/filters/Crochet.webp",
     isSelected: false,
@@ -380,7 +388,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Cross Stich_8_111_1",
     name: "Cross Stich",
-    description: "",
+    description:
+      "Filter featuring the detailed and precise art of cross stitch.",
     style: "Cross Stich",
     image: "/images/filters/Cross_Stich.webp",
     isSelected: false,
@@ -388,7 +397,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Needle Point_8_111_2",
     name: "Needle Point",
-    description: "",
+    description: "Elaborate and artistic filter inspired by needlepoint work.",
     style: "Needle Point",
     image: "/images/filters/Needle_Point.webp",
     isSelected: false,
@@ -396,7 +405,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Embroidery_8_111_3",
     name: "Embroidery",
-    description: "",
+    description:
+      "Decorative and intricate filter inspired by embroidered fabric.",
     style: "Embroidery",
     image: "/images/filters/Embroidery.webp",
     isSelected: false,
@@ -404,7 +414,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Applique_8_117_1",
     name: "Applique",
-    description: "",
+    description:
+      "Artistic and decorative filter featuring the technique of applique.",
     style: "Applique",
     image: "/images/filters/Applique.webp",
     isSelected: false,
@@ -412,7 +423,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Lace_8_117_2",
     name: "Lace",
-    description: "",
+    description: "Elegant and delicate filter inspired by lace fabric.",
     style: "Lace",
     image: "/images/filters/Lace.webp",
     isSelected: false,
@@ -420,7 +431,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Macrame_8_117_3",
     name: "Macrame",
-    description: "",
+    description:
+      "Intricate and decorative filter featuring the art of macrame.",
     style: "Macrame",
     image: "/images/filters/Macrame.webp",
     isSelected: false,
@@ -428,7 +440,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Patch_8_123_1",
     name: "Patch",
-    description: "",
+    description: "Colorful and eclectic filter inspired by patchwork.",
     style: "Patch",
     image: "/images/filters/Patch.webp",
     isSelected: false,
@@ -436,7 +448,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Sewing_8_123_2",
     name: "Sewing",
-    description: "",
+    description:
+      "Creative and crafty filter featuring sewing-related elements.",
     style: "Sewing",
     image: "/images/filters/Sewing.webp",
     isSelected: false,
@@ -444,7 +457,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Sewen_8_123_3",
     name: "Sewen",
-    description: "",
+    description: "Abstract and artistic filter featuring sewn elements.",
     style: "Sewen",
     image: "/images/filters/Sewen.webp",
     isSelected: false,
@@ -452,7 +465,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Weave_8_129_1",
     name: "Weave",
-    description: "",
+    description:
+      "Filter featuring the intricate patterns and texture of woven fabric.",
     style: "Weave",
     image: "/images/filters/Weave.webp",
     isSelected: false,
@@ -460,7 +474,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Weaving_8_129_2",
     name: "Weaving",
-    description: "",
+    description: "Artistic and creative filter inspired by the art of weaving.",
     style: "Weaving",
     image: "/images/filters/Weaving.webp",
     isSelected: false,
@@ -468,7 +482,8 @@ export const clothFilters: Filter[] = [
   {
     id: "Quilling_8_129_3",
     name: "Quilling",
-    description: "",
+    description:
+      "Artistic and decorative filter featuring the art of quilling.",
     style: "Quilling",
     image: "/images/filters/Quilling.webp",
     isSelected: false,
@@ -476,7 +491,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Net_8_135_1",
     name: "Net",
-    description: "",
+    description: "Delicate and intricate filter inspired by netted fabric.",
     style: "Net",
     image: "/images/filters/Net.webp",
     isSelected: false,
@@ -484,7 +499,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Netting_8_135_2",
     name: "Netting",
-    description: "",
+    description: "Filter featuring the mesh-like texture of netting material.",
     style: "Netting",
     image: "/images/filters/Netting.webp",
     isSelected: false,
@@ -492,7 +507,7 @@ export const clothFilters: Filter[] = [
   {
     id: "Spider Web_8_141_1",
     name: "Spider Web",
-    description: "",
+    description: "Intricate and spooky filter inspired by a spider web.",
     style: "Spider Web",
     image: "/images/filters/Spider_Web.webp",
     isSelected: false,

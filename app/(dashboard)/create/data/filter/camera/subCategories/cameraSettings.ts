@@ -4,7 +4,7 @@ export const cameraSettingsFilters: Filter[] = [
   {
     id: "Exposure_7_3_1",
     name: "Exposure",
-    description: "",
+    description: "Adjust the amount of light captured in your photos.",
     style: "Exposure",
     image: "/images/filters/Exposure.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const cameraSettingsFilters: Filter[] = [
   {
     id: "Short Exposure_7_3_2",
     name: "Short Exposure",
-    description: "",
+    description: "Capture fast-moving subjects with a quick exposure time.",
     style: "Short Exposure",
     image: "/images/filters/Short_Exposure.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const cameraSettingsFilters: Filter[] = [
   {
     id: "Long Exposure_7_3_3",
     name: "Long Exposure",
-    description: "",
+    description: "Create stunning effects by prolonging the exposure time.",
     style: "Long Exposure",
     image: "/images/filters/Long_Exposure.webp",
     isSelected: false,
@@ -28,7 +28,8 @@ export const cameraSettingsFilters: Filter[] = [
   {
     id: "Double-Exposure_7_9_1",
     name: "Double-Exposure",
-    description: "",
+    description:
+      "Blend two images together for a creative double-exposure effect.",
     style: "Double-Exposure",
     image: "/images/filters/Double-Exposure.webp",
     isSelected: false,
@@ -36,23 +37,23 @@ export const cameraSettingsFilters: Filter[] = [
   {
     id: "Shutter Speed 1/1000_7_9_2",
     name: "Shutter Speed 1/1000",
-    description: "",
+    description: "Freeze fast-paced action with a high shutter speed.",
     style: "Shutter Speed 1/1000",
-    image: "/images/filters/Shutter_Speed_1/1000.webp",
+    image: "/images/filters/Shutter_Speed_11000.webp",
     isSelected: false,
   },
   {
     id: "Shutter Speed 1/2_7_9_3",
     name: "Shutter Speed 1/2",
-    description: "",
+    description: "Capture long exposure effects with a slow shutter speed.",
     style: "Shutter Speed 1/2",
-    image: "/images/filters/Shutter_Speed_1/2.webp",
+    image: "/images/filters/Shutter_Speed_12.webp",
     isSelected: false,
   },
   {
     id: "Aperture_7_15_1",
     name: "Aperture",
-    description: "",
+    description: "Control the depth of field and adjust the amount of light.",
     style: "Aperture",
     image: "/images/filters/Aperture.webp",
     isSelected: false,
@@ -60,23 +61,23 @@ export const cameraSettingsFilters: Filter[] = [
   {
     id: "F/2.8_7_15_2",
     name: "F/2.8",
-    description: "",
+    description: "Create a shallow depth of field with a wide aperture.",
     style: "F/2.8",
-    image: "/images/filters/F/2.8.webp",
+    image: "/images/filters/F28.webp",
     isSelected: false,
   },
   {
     id: "F/22_7_15_3",
     name: "F/22",
-    description: "",
+    description: "Increase depth of field with a narrow aperture.",
     style: "F/22",
-    image: "/images/filters/F/22.webp",
+    image: "/images/filters/F22.webp",
     isSelected: false,
   },
   {
     id: "Gamma_7_21_1",
     name: "Gamma",
-    description: "",
+    description: "Adjust the brightness and contrast of your photos.",
     style: "Gamma",
     image: "/images/filters/Gamma.webp",
     isSelected: false,
@@ -84,7 +85,8 @@ export const cameraSettingsFilters: Filter[] = [
   {
     id: "White Balance_7_21_2",
     name: "White Balance",
-    description: "",
+    description:
+      "Set the color temperature to achieve accurate color representation.",
     style: "White Balance",
     image: "/images/filters/White_Balance.webp",
     isSelected: false,
@@ -92,7 +94,8 @@ export const cameraSettingsFilters: Filter[] = [
   {
     id: "Rule of Thirds_7_27_1",
     name: "Rule of Thirds",
-    description: "",
+    description:
+      "Compose your photos using the rule of thirds for balanced visuals.",
     style: "Rule of Thirds",
     image: "/images/filters/Rule_of_Thirds.webp",
     isSelected: false,

@@ -4,7 +4,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "4D Shape_3_3_1",
     name: "4D Shape",
-    description: "",
+    description: "Explore shapes in four-dimensional space.",
     style: "4D Shape",
     image: "/images/filters/4D_Shape.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hyper Shape_3_3_2",
     name: "Hyper Shape",
-    description: "",
+    description: "Discover shapes in hyper-dimensional spaces.",
     style: "Hyper Shape",
     image: "/images/filters/Hyper_Shape.webp",
     isSelected: false,
@@ -20,7 +20,8 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "4D Hyper Shape_3_3_3",
     name: "4D Hyper Shape",
-    description: "",
+    description:
+      "Experience shapes combining 4D and hyper-dimensional concepts.",
     style: "4D Hyper Shape",
     image: "/images/filters/4D_Hyper_Shape.webp",
     isSelected: false,
@@ -28,7 +29,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hyperplane_3_9_1",
     name: "Hyperplane",
-    description: "",
+    description: "Discover flat hyper-surfaces in higher dimensions.",
     style: "Hyperplane",
     image: "/images/filters/Hyperplane.webp",
     isSelected: false,
@@ -36,7 +37,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hypersurface_3_9_2",
     name: "Hypersurface",
-    description: "",
+    description: "Explore curved hyper-surfaces in higher dimensions.",
     style: "Hypersurface",
     image: "/images/filters/Hypersurface.webp",
     isSelected: false,
@@ -44,7 +45,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hypercube_3_15_1",
     name: "Hypercube",
-    description: "",
+    description: "Discover the hyper-dimensional analog of a cube.",
     style: "Hypercube",
     image: "/images/filters/Hypercube.webp",
     isSelected: false,
@@ -52,7 +53,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Tesseract_3_15_2",
     name: "Tesseract",
-    description: "",
+    description: "Explore the 4D analog of a cube known as a tesseract.",
     style: "Tesseract",
     image: "/images/filters/Tesseract.webp",
     isSelected: false,
@@ -60,7 +61,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hyperprism_3_15_3",
     name: "Hyperprism",
-    description: "",
+    description: "Discover prism-like shapes in hyper-dimensional spaces.",
     style: "Hyperprism",
     image: "/images/filters/Hyperprism.webp",
     isSelected: false,
@@ -68,7 +69,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hypersphere_3_21_1",
     name: "Hypersphere",
-    description: "",
+    description: "Explore spheres in hyper-dimensional spaces.",
     style: "Hypersphere",
     image: "/images/filters/Hypersphere.webp",
     isSelected: false,
@@ -76,7 +77,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hypercylinder_3_21_2",
     name: "Hypercylinder",
-    description: "",
+    description: "Discover cylindrical shapes in hyper-dimensional spaces.",
     style: "Hypercylinder",
     image: "/images/filters/Hypercylinder.webp",
     isSelected: false,
@@ -84,7 +85,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hypertorus_3_21_3",
     name: "Hypertorus",
-    description: "",
+    description: "Explore torus-shaped objects in hyper-dimensional spaces.",
     style: "Hypertorus",
     image: "/images/filters/Hypertorus.webp",
     isSelected: false,
@@ -92,7 +93,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hyperpyramid_3_27_1",
     name: "Hyperpyramid",
-    description: "",
+    description: "Discover pyramid-like shapes in hyper-dimensional spaces.",
     style: "Hyperpyramid",
     image: "/images/filters/Hyperpyramid.webp",
     isSelected: false,
@@ -100,7 +101,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hypercone_3_27_2",
     name: "Hypercone",
-    description: "",
+    description: "Explore cone-like shapes in hyper-dimensional spaces.",
     style: "Hypercone",
     image: "/images/filters/Hypercone.webp",
     isSelected: false,
@@ -108,7 +109,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Klein Bottle_3_27_3",
     name: "Klein Bottle",
-    description: "",
+    description: "Discover the non-orientable Klein bottle shape.",
     style: "Klein Bottle",
     image: "/images/filters/Klein_Bottle.webp",
     isSelected: false,
@@ -116,7 +117,8 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hyperzonohedron_3_33_1",
     name: "Hyperzonohedron",
-    description: "",
+    description:
+      "Explore intricate polyhedral shapes in hyper-dimensional spaces.",
     style: "Hyperzonohedron",
     image: "/images/filters/Hyperzonohedron.webp",
     isSelected: false,
@@ -124,7 +126,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hypertetrahedron_3_33_2",
     name: "Hypertetrahedron",
-    description: "",
+    description: "Discover tetrahedral shapes in hyper-dimensional spaces.",
     style: "Hypertetrahedron",
     image: "/images/filters/Hypertetrahedron.webp",
     isSelected: false,
@@ -132,7 +134,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hyperoctahedron_3_33_3",
     name: "Hyperoctahedron",
-    description: "",
+    description: "Explore octahedral shapes in hyper-dimensional spaces.",
     style: "Hyperoctahedron",
     image: "/images/filters/Hyperoctahedron.webp",
     isSelected: false,
@@ -140,7 +142,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hyperdodecahedron_3_39_1",
     name: "Hyperdodecahedron",
-    description: "",
+    description: "Discover dodecahedral shapes in hyper-dimensional spaces.",
     style: "Hyperdodecahedron",
     image: "/images/filters/Hyperdodecahedron.webp",
     isSelected: false,
@@ -148,7 +150,7 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Hypericosahedron_3_39_2",
     name: "Hypericosahedron",
-    description: "",
+    description: "Explore icosahedral shapes in hyper-dimensional spaces.",
     style: "Hypericosahedron",
     image: "/images/filters/Hypericosahedron.webp",
     isSelected: false,
@@ -156,7 +158,8 @@ export const o4DHyperShapesFilters: Filter[] = [
   {
     id: "Flexible Polyhedron_3_39_3",
     name: "Flexible Polyhedron",
-    description: "",
+    description:
+      "Discover deformable polyhedral shapes in hyper-dimensional spaces.",
     style: "Flexible Polyhedron",
     image: "/images/filters/Flexible_Polyhedron.webp",
     isSelected: false,
