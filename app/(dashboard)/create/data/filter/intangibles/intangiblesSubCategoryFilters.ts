@@ -76,12 +76,6 @@ export const intangiblesFilters: SubCategoryFilter[] = [
     options: visualPerceptionAndDistortionsFilters,
   },
   {
-    id: "numbers_14",
-    icon: "➰🔢",
-    name: "Big Numbers",
-    options: numbersFilters,
-  },
-  {
     id: "numberSystems_15",
     icon: "➰🔢",
     name: "Number Systems",
