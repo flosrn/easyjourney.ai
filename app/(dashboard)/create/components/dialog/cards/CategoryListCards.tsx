@@ -43,7 +43,7 @@ const CategoryListCards = ({
   return (
     <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
       {categories.map((category) => (
-        <Card key={category.id} className="p-3">
+        <Card key={category.id} className="px-6 py-3">
           <Link
             key={category.id}
             href={getHref({ selectedCategory, category, type })}

@@ -66,16 +66,35 @@ const ImageContainer = ({}: ImageContainerProps) => {
         )}
       >
         {hasImage ? (
-          <div className="flex-center group relative overflow-hidden">
+          <div
+            className={cn("flex-center group relative", {
+              "overflow-hidden": hasImageGrid,
+            })}
+          >
             {currentImageUrl && (
-              <Atropos activeOffset={40} shadowScale={1.05}>
-                <ControlledZoom
-                  isZoomed={isZoomed}
-                  onZoomChange={handleZoomChange}
-                >
-                  <img src={currentImageUrl} alt="" className="rounded-md" />
-                </ControlledZoom>
-              </Atropos>
+              <>
+                {hasImageGrid ? (
+                  <ControlledZoom
+                    isZoomed={isZoomed}
+                    onZoomChange={handleZoomChange}
+                  >
+                    <img src={currentImageUrl} alt="" className="rounded-md" />
+                  </ControlledZoom>
+                ) : (
+                  <Atropos activeOffset={40} shadowScale={1.05}>
+                    <ControlledZoom
+                      isZoomed={isZoomed}
+                      onZoomChange={handleZoomChange}
+                    >
+                      <img
+                        src={currentImageUrl}
+                        alt=""
+                        className="rounded-md"
+                      />
+                    </ControlledZoom>
+                  </Atropos>
+                )}
+              </>
             )}
             <div
               onClick={() => setIsZoomed(true)}

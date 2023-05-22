@@ -1,5 +1,7 @@
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+
+import { cn } from "~/lib/classNames";
 
 import type {
   CategoryFilter,
@@ -14,11 +16,20 @@ type BreadcrumbsProps = {
 
 const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const filterCategory = searchParams?.get("filterCategory");
+  const isHomeDialog = searchParams?.toString() === "filterCategory=";
+  const categoryName = category?.name.toLowerCase();
+  const subCategoryName = subCategory?.name.toLowerCase();
   return (
-    <div className="flex items-center space-x-2 text-xs md:text-lg">
+    <div className="flex items-center space-x-2 text-xs text-muted-foreground md:text-lg">
       <button
+        disabled={isHomeDialog}
         onClick={() => router.push("/create?filterCategory")}
-        className="focus-visible:outline-none"
+        className={cn("focus-visible:outline-none", {
+          "text-foreground": isHomeDialog,
+          "hover:text-foreground hover:underline": !isHomeDialog,
+        })}
       >
         All categories
       </button>
@@ -26,12 +37,15 @@ const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
         <>
           <span>/</span>
           <button
+            disabled={!!filterCategory && !subCategory}
             onClick={() =>
-              router.push(
-                `/create?filterCategory=${category.name.toLowerCase()}`
-              )
+              router.push(`/create?filterCategory=${categoryName}`)
             }
-            className="flex items-center"
+            className={cn("flex items-center", {
+              "text-foreground": filterCategory && !subCategory,
+              "hover:text-foreground hover:underline":
+                filterCategory && subCategory,
+            })}
           >
             <EmojiIcon icon={category.icon} />
             {category.name}
@@ -42,12 +56,15 @@ const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
         <>
           <span>/</span>
           <button
+            disabled={!!subCategory}
             onClick={() =>
               router.push(
-                `/create?filterCategory=${category.name.toLowerCase()}&filterSubCategory=${subCategory.name.toLowerCase()}`
+                `/create?filterCategory=${categoryName}&filterSubCategory=${subCategoryName}`
               )
             }
-            className=" flex items-center "
+            className={cn("flex items-center", {
+              "text-foreground": subCategory,
+            })}
           >
             <EmojiIcon icon={subCategory.icon} />
             {subCategory.name}

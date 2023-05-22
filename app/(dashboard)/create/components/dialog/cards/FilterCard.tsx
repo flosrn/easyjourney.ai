@@ -46,8 +46,8 @@ const FilterCard = ({
             blurDataURL={image}
             className="h-20 w-20 shrink-0 rounded-bl-lg bg-left sm:h-full sm:w-full md:block md:rounded-none"
           />
-          <div className="line-clamp-4 h-20 p-2 text-left text-xs sm:h-[105px] sm:text-center md:p-3 md:text-sm">
-            {description}
+          <div className="h-20 p-2 text-left text-xs sm:h-[125px] sm:text-center md:p-3 md:text-sm">
+            <span className="line-clamp-5">{description}</span>
           </div>
         </div>
       </Card>

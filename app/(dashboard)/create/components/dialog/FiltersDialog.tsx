@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowBigLeftIcon } from "lucide-react";
 
 import { Button } from "~/components/ui/Button";
 import {
@@ -34,6 +35,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
   const hasFilter = searchParams?.has("filterCategory");
   const filterCategory = searchParams?.get("filterCategory");
   const filterSubCategory = searchParams?.get("filterSubCategory");
+  const isHomeDialog = searchParams?.toString() === "filterCategory=";
 
   useEffect(() => {
     hasFilter && setIsDialogOpen(hasFilter);
@@ -118,8 +120,15 @@ const FiltersDialog = ({}: FilterDialogProps) => {
           </ScrollArea>
         </div>
         <DialogFooter className="absolute bottom-0 left-0 h-16 w-full rounded-xl bg-background md:h-20">
-          <div className="relative flex w-full items-center justify-end px-10">
+          <div className="relative flex w-full items-center justify-between px-10">
             <Separator className="absolute left-0 top-0 w-full" />
+            <Button
+              disabled={isHomeDialog}
+              onClick={() => router.back()}
+              variant="outline"
+            >
+              <ArrowBigLeftIcon className="inline-block" size={20} />
+            </Button>
             <Button
               variant="success"
               onClick={() => handleDialogChange(false)}
