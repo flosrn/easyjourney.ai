@@ -4,7 +4,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Capricornus_10_3_1",
     name: "Capricornus",
-    description: "",
+    description: "Brings discipline and practicality in style.",
     style: "Capricornus",
     image: "/images/filters/Capricornus.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Aquarius_10_3_2",
     name: "Aquarius",
-    description: "",
+    description: "Unleashes creativity with a futuristic touch.",
     style: "Aquarius",
     image: "/images/filters/Aquarius.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Pisces_10_3_3",
     name: "Pisces",
-    description: "",
+    description: "Adds a mystic allure to your imagery.",
     style: "Pisces",
     image: "/images/filters/Pisces.webp",
     isSelected: false,
@@ -28,7 +28,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Aries_10_9_1",
     name: "Aries",
-    description: "",
+    description: "Injects boldness and fiery charisma.",
     style: "Aries",
     image: "/images/filters/Aries.webp",
     isSelected: false,
@@ -36,7 +36,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Taurus_10_9_2",
     name: "Taurus",
-    description: "",
+    description: "Imbues stability and a touch of earthiness.",
     style: "Taurus",
     image: "/images/filters/Taurus.webp",
     isSelected: false,
@@ -44,7 +44,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Gemini_10_9_3",
     name: "Gemini",
-    description: "",
+    description: "Invokes duality and refreshing spontaneity.",
     style: "Gemini",
     image: "/images/filters/Gemini.webp",
     isSelected: false,
@@ -52,7 +52,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Cancer_10_15_1",
     name: "Cancer",
-    description: "",
+    description: "Exudes sensitivity and deep emotional resonance.",
     style: "Cancer",
     image: "/images/filters/Cancer.webp",
     isSelected: false,
@@ -60,7 +60,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Leo_10_15_2",
     name: "Leo",
-    description: "",
+    description: "Radiates confidence and royal elegance.",
     style: "Leo",
     image: "/images/filters/Leo.webp",
     isSelected: false,
@@ -68,7 +68,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Virgo_10_15_3",
     name: "Virgo",
-    description: "",
+    description: "Promotes purity and a detail-oriented approach.",
     style: "Virgo",
     image: "/images/filters/Virgo.webp",
     isSelected: false,
@@ -76,7 +76,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Libra_10_21_1",
     name: "Libra",
-    description: "",
+    description: "Balances aesthetics with a harmonious vibe.",
     style: "Libra",
     image: "/images/filters/Libra.webp",
     isSelected: false,
@@ -84,7 +84,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Scorpio_10_21_2",
     name: "Scorpio",
-    description: "",
+    description: "Enhances intensity and a mysterious appeal.",
     style: "Scorpio",
     image: "/images/filters/Scorpio.webp",
     isSelected: false,
@@ -92,7 +92,7 @@ export const zodiacSignsFilters: Filter[] = [
   {
     id: "Sagittarius_10_21_3",
     name: "Sagittarius",
-    description: "",
+    description: "Inspires adventure and a free-spirited sensation.",
     style: "Sagittarius",
     image: "/images/filters/Sagittarius.webp",
     isSelected: false,
