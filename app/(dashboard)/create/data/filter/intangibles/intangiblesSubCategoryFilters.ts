@@ -1,7 +1,7 @@
 import type { SubCategoryFilter } from "../typeFilters";
 import { computerDataFilters } from "./subCategories/computerData";
 import { conceptsFilters } from "./subCategories/concepts";
-import { emotionsandQualitiesFilters } from "./subCategories/emotionsandQualities";
+import { emotionsAndQualitiesFilters } from "./subCategories/emotionsandQualities";
 import { lettersFilters } from "./subCategories/letters";
 import { numberSystemsFilters } from "./subCategories/numberSystems";
 import { numbersFilters } from "./subCategories/numbers";
@@ -19,7 +19,7 @@ export const intangiblesFilters: SubCategoryFilter[] = [
     id: "emotionsandQualities_1",
     icon: "➰😁",
     name: "Emotions and Qualities",
-    options: emotionsandQualitiesFilters,
+    options: emotionsAndQualitiesFilters,
   },
   {
     id: "concepts_2",

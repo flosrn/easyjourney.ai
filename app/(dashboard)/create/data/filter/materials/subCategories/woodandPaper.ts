@@ -478,7 +478,7 @@ export const woodandPaperFilters: Filter[] = [
     id: "Security Paper_2_130_1",
     name: "Security Paper",
     description:
-      "Specialized filter with anti-counterfeit features for sensitive documents.",
+      "Specialized filter with anti-counterfeit features for sensitive docume
     style: "Security Paper",
     image: "/images/filters/Security_Paper.webp",
     isSelected: false,
@@ -487,7 +487,7 @@ export const woodandPaperFilters: Filter[] = [
     id: "Rolling Paper_2_130_2",
     name: "Rolling Paper",
     description:
-      "Thin and combustible filter used for rolling cigarettes and joints.",
+      "Thin and combustible filter used f
     style: "Rolling Paper",
     image: "/images/filters/Rolling_Paper.webp",
     isSelected: false,
