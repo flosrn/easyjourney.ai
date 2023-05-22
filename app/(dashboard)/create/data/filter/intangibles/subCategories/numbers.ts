@@ -4,7 +4,7 @@ export const numbersFilters: Filter[] = [
   {
     id: "Hundred_14_3_1",
     name: "Hundred",
-    description: "",
+    description: "A unique visual effect related to style 'Hundred'",
     style: "Hundred",
     image: "/images/filters/Hundred.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const numbersFilters: Filter[] = [
   {
     id: "Thousand_14_3_2",
     name: "Thousand",
-    description: "",
+    description: "A unique visual effect related to style 'Thousand'",
     style: "Thousand",
     image: "/images/filters/Thousand.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const numbersFilters: Filter[] = [
   {
     id: "Million_14_9_1",
     name: "Million",
-    description: "",
+    description: "A unique visual effect related to style 'Million'",
     style: "Million",
     image: "/images/filters/Million.webp",
     isSelected: false,
@@ -28,7 +28,7 @@ export const numbersFilters: Filter[] = [
   {
     id: "Billion_14_9_2",
     name: "Billion",
-    description: "",
+    description: "A unique visual effect related to style 'Billion'",
     style: "Billion",
     image: "/images/filters/Billion.webp",
     isSelected: false,
@@ -36,7 +36,7 @@ export const numbersFilters: Filter[] = [
   {
     id: "Trillion_14_9_3",
     name: "Trillion",
-    description: "",
+    description: "A unique visual effect related to style 'Trillion'",
     style: "Trillion",
     image: "/images/filters/Trillion.webp",
     isSelected: false,
@@ -44,7 +44,7 @@ export const numbersFilters: Filter[] = [
   {
     id: "Quadrillion_14_15_1",
     name: "Quadrillion",
-    description: "",
+    description: "A unique visual effect related to style 'Quadrillion'",
     style: "Quadrillion",
     image: "/images/filters/Quadrillion.webp",
     isSelected: false,
