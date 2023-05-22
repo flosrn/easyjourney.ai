@@ -18,6 +18,8 @@ import { Button } from "~/components/ui/Button";
 import { Separator } from "~/components/ui/Separator";
 
 import SideColumn from "./SideColumn";
+import FiltersBadge from "./components/badge/FiltersBadge";
+import FiltersDialog from "./components/dialog/FiltersDialog";
 import ImageContainer from "./components/image/ImageContainer";
 import TextareaPrompt from "./components/input/TextareaPrompt";
 import { aspectRatios } from "./data/aspectRatios";
@@ -186,6 +188,7 @@ const MainColumn = () => {
             </div>
           </div>
           <Separator className="my-4" />
+          <FiltersBadge />
           <TextareaPrompt />
           <SideColumn className="lg:hidden" />
           <ImageContainer />
@@ -249,6 +252,7 @@ const MainColumn = () => {
       <div className="bg-background flex-center sticky bottom-0 h-6 border-t">
         <p className="px-4 text-xs">{message}</p>
       </div>
+      <FiltersDialog />
       <Toaster position="bottom-right" />
     </main>
   );

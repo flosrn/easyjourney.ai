@@ -12,6 +12,7 @@ module.exports = {
     "promise",
     "import",
     "unicorn",
+    "prettier",
   ],
   extends: [
     "eslint:recommended",
@@ -23,6 +24,7 @@ module.exports = {
     "plugin:import/recommended",
     "plugin:unicorn/recommended",
     "plugin:tailwindcss/recommended",
+    "prettier",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -110,7 +112,7 @@ module.exports = {
     "eslint-comments/no-use": 0,
     "import/default": "error",
     "import/no-namespace": 0,
-    "prettier/prettier": 0,
+    "prettier/prettier": 2,
     "i18n-text/no-en": 0,
     "no-empty-pattern": 0,
     "no-return-await": 0,
