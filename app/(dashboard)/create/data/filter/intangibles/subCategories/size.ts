@@ -4,7 +4,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Size_4_3_1",
     name: "Size",
-    description: "",
+    description: "Adjusts the overall scale of the visual",
     style: "Size",
     image: "/images/filters/Size.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Bite-Sized_4_3_2",
     name: "Bite-Sized",
-    description: "",
+    description: "Makes the content compact and small",
     style: "Bite-Sized",
     image: "/images/filters/Bite-Sized.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Scale_4_3_3",
     name: "Scale",
-    description: "",
+    description: "Alters the proportions of the design elements",
     style: "Scale",
     image: "/images/filters/Scale.webp",
     isSelected: false,
@@ -28,7 +28,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Nano_4_9_1",
     name: "Nano",
-    description: "",
+    description: "Reduces to extremely small, almost invisible size",
     style: "Nano",
     image: "/images/filters/Nano.webp",
     isSelected: false,
@@ -36,7 +36,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Micro_4_9_2",
     name: "Micro",
-    description: "",
+    description: "Shrinks down to a very minute, detailed size",
     style: "Micro",
     image: "/images/filters/Micro.webp",
     isSelected: false,
@@ -44,7 +44,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Tiny_4_9_3",
     name: "Tiny",
-    description: "",
+    description: "Decreases the size to be small, yet noticeable",
     style: "Tiny",
     image: "/images/filters/Tiny.webp",
     isSelected: false,
@@ -52,7 +52,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Mini_4_15_1",
     name: "Mini",
-    description: "",
+    description: "Preserves the structure while reducing the size moderately",
     style: "Mini",
     image: "/images/filters/Mini.webp",
     isSelected: false,
@@ -60,7 +60,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Big_4_15_2",
     name: "Big",
-    description: "",
+    description: "Magnifies the content to take up more space",
     style: "Big",
     image: "/images/filters/Big.webp",
     isSelected: false,
@@ -68,7 +68,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Large_4_15_3",
     name: "Large",
-    description: "",
+    description: "Expands the elements to a more visible, substantial size",
     style: "Large",
     image: "/images/filters/Large.webp",
     isSelected: false,
@@ -76,7 +76,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Huge_4_21_1",
     name: "Huge",
-    description: "",
+    description: "Significantly enlarges the size, dominating the scene",
     style: "Huge",
     image: "/images/filters/Huge.webp",
     isSelected: false,
@@ -84,7 +84,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Massive_4_21_2",
     name: "Massive",
-    description: "",
+    description: "Amplifies to an overwhelming, impressive scale",
     style: "Massive",
     image: "/images/filters/Massive.webp",
     isSelected: false,
@@ -92,7 +92,7 @@ export const sizeFilters: Filter[] = [
   {
     id: "Massive Scale_4_21_3",
     name: "Massive Scale",
-    description: "",
+    description: "Maximizes the proportions, for an enormous, grand effect",
     style: "Massive Scale",
     image: "/images/filters/Massive_Scale.webp",
     isSelected: false,
