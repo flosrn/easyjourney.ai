@@ -4,7 +4,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "A_6_3_1",
     name: "A",
-    description: "",
+    description: "A unique visual effect related to style 'A'",
     style: "A",
     image: "/images/filters/A.webp",
     isSelected: false,
@@ -12,7 +12,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "B_6_3_2",
     name: "B",
-    description: "",
+    description: "A unique visual effect related to style 'B'",
     style: "B",
     image: "/images/filters/B.webp",
     isSelected: false,
@@ -20,7 +20,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "C_6_3_3",
     name: "C",
-    description: "",
+    description: "A unique visual effect related to style 'C'",
     style: "C",
     image: "/images/filters/C.webp",
     isSelected: false,
@@ -28,7 +28,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "D_6_9_1",
     name: "D",
-    description: "",
+    description: "A unique visual effect related to style 'D'",
     style: "D",
     image: "/images/filters/D.webp",
     isSelected: false,
@@ -36,7 +36,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "E_6_9_2",
     name: "E",
-    description: "",
+    description: "A unique visual effect related to style 'E'",
     style: "E",
     image: "/images/filters/E.webp",
     isSelected: false,
@@ -44,7 +44,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "F_6_9_3",
     name: "F",
-    description: "",
+    description: "A unique visual effect related to style 'F'",
     style: "F",
     image: "/images/filters/F.webp",
     isSelected: false,
@@ -52,7 +52,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "G_6_15_1",
     name: "G",
-    description: "",
+    description: "A unique visual effect related to style 'G'",
     style: "G",
     image: "/images/filters/G.webp",
     isSelected: false,
@@ -60,7 +60,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "H_6_15_2",
     name: "H",
-    description: "",
+    description: "A unique visual effect related to style 'H'",
     style: "H",
     image: "/images/filters/H.webp",
     isSelected: false,
@@ -68,7 +68,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "I_6_15_3",
     name: "I",
-    description: "",
+    description: "A unique visual effect related to style 'I'",
     style: "I",
     image: "/images/filters/I.webp",
     isSelected: false,
@@ -76,7 +76,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "J_6_21_1",
     name: "J",
-    description: "",
+    description: "A unique visual effect related to style 'J'",
     style: "J",
     image: "/images/filters/J.webp",
     isSelected: false,
@@ -84,7 +84,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "K_6_21_2",
     name: "K",
-    description: "",
+    description: "A unique visual effect related to style 'K'",
     style: "K",
     image: "/images/filters/K.webp",
     isSelected: false,
@@ -92,7 +92,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "L_6_21_3",
     name: "L",
-    description: "",
+    description: "A unique visual effect related to style 'L'",
     style: "L",
     image: "/images/filters/L.webp",
     isSelected: false,
@@ -100,7 +100,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "M_6_27_1",
     name: "M",
-    description: "",
+    description: "A unique visual effect related to style 'M'",
     style: "M",
     image: "/images/filters/M.webp",
     isSelected: false,
@@ -108,7 +108,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "N_6_27_2",
     name: "N",
-    description: "",
+    description: "A unique visual effect related to style 'N'",
     style: "N",
     image: "/images/filters/N.webp",
     isSelected: false,
@@ -116,7 +116,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "O_6_27_3",
     name: "O",
-    description: "",
+    description: "A unique visual effect related to style 'O'",
     style: "O",
     image: "/images/filters/O.webp",
     isSelected: false,
@@ -124,7 +124,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "P_6_33_1",
     name: "P",
-    description: "",
+    description: "A unique visual effect related to style 'P'",
     style: "P",
     image: "/images/filters/P.webp",
     isSelected: false,
@@ -132,7 +132,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "Q_6_33_2",
     name: "Q",
-    description: "",
+    description: "A unique visual effect related to style 'Q'",
     style: "Q",
     image: "/images/filters/Q.webp",
     isSelected: false,
@@ -140,7 +140,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "R_6_33_3",
     name: "R",
-    description: "",
+    description: "A unique visual effect related to style 'R'",
     style: "R",
     image: "/images/filters/R.webp",
     isSelected: false,
@@ -148,7 +148,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "S_6_39_1",
     name: "S",
-    description: "",
+    description: "A unique visual effect related to style 'S'",
     style: "S",
     image: "/images/filters/S.webp",
     isSelected: false,
@@ -156,7 +156,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "T_6_39_2",
     name: "T",
-    description: "",
+    description: "A unique visual effect related to style 'T'",
     style: "T",
     image: "/images/filters/T.webp",
     isSelected: false,
@@ -164,7 +164,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "U_6_39_3",
     name: "U",
-    description: "",
+    description: "A unique visual effect related to style 'U'",
     style: "U",
     image: "/images/filters/U.webp",
     isSelected: false,
@@ -172,7 +172,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "V_6_45_1",
     name: "V",
-    description: "",
+    description: "A unique visual effect related to style 'V'",
     style: "V",
     image: "/images/filters/V.webp",
     isSelected: false,
@@ -180,7 +180,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "W_6_45_2",
     name: "W",
-    description: "",
+    description: "A unique visual effect related to style 'W'",
     style: "W",
     image: "/images/filters/W.webp",
     isSelected: false,
@@ -188,7 +188,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "X_6_45_3",
     name: "X",
-    description: "",
+    description: "A unique visual effect related to style 'X'",
     style: "X",
     image: "/images/filters/X.webp",
     isSelected: false,
@@ -196,7 +196,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "Y_6_51_1",
     name: "Y",
-    description: "",
+    description: "A unique visual effect related to style 'Y'",
     style: "Y",
     image: "/images/filters/Y.webp",
     isSelected: false,
@@ -204,7 +204,7 @@ export const lettersFilters: Filter[] = [
   {
     id: "Z_6_51_2",
     name: "Z",
-    description: "",
+    description: "A unique visual effect related to style 'Z'",
     style: "Z",
     image: "/images/filters/Z.webp",
     isSelected: false,
