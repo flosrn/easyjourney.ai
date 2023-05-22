@@ -4,7 +4,8 @@ export const computerDataFilters: Filter[] = [
   {
     id: "Bit_18_3_1",
     name: "Bit",
-    description: "",
+    description:
+      "Adds a digital and binary touch to your images with the Bit filter.",
     style: "Bit",
     image: "/images/filters/Bit.webp",
     isSelected: false,
@@ -12,7 +13,8 @@ export const computerDataFilters: Filter[] = [
   {
     id: "Byte_18_3_2",
     name: "Byte",
-    description: "",
+    description:
+      "Represents a unit of digital information with the Byte filter, adding a tech-inspired effect to your visuals.",
     style: "Byte",
     image: "/images/filters/Byte.webp",
     isSelected: false,
@@ -20,7 +22,8 @@ export const computerDataFilters: Filter[] = [
   {
     id: "Kilobyte_18_9_1",
     name: "Kilobyte",
-    description: "",
+    description:
+      "Represents a kilobyte of digital data and adds a tech-themed effect to your images with the Kilobyte filter.",
     style: "Kilobyte",
     image: "/images/filters/Kilobyte.webp",
     isSelected: false,
@@ -28,7 +31,8 @@ export const computerDataFilters: Filter[] = [
   {
     id: "Megabyte_18_9_2",
     name: "Megabyte",
-    description: "",
+    description:
+      "Applies a megabyte-sized effect to your visuals with the Megabyte filter, adding a digital touch to your images.",
     style: "Megabyte",
     image: "/images/filters/Megabyte.webp",
     isSelected: false,
@@ -36,7 +40,8 @@ export const computerDataFilters: Filter[] = [
   {
     id: "Gigabyte_18_15_1",
     name: "Gigabyte",
-    description: "",
+    description:
+      "Represents a gigabyte of digital data and adds a tech-inspired effect to your images with the Gigabyte filter.",
     style: "Gigabyte",
     image: "/images/filters/Gigabyte.webp",
     isSelected: false,
@@ -44,7 +49,8 @@ export const computerDataFilters: Filter[] = [
   {
     id: "Terabyte_18_15_2",
     name: "Terabyte",
-    description: "",
+    description:
+      "Applies a terabyte-sized effect to your visuals with the Terabyte filter, adding a digital touch to your images.",
     style: "Terabyte",
     image: "/images/filters/Terabyte.webp",
     isSelected: false,
@@ -52,7 +58,8 @@ export const computerDataFilters: Filter[] = [
   {
     id: "Petabyte_18_21_1",
     name: "Petabyte",
-    description: "",
+    description:
+      "Represents a petabyte of digital data and adds a tech-themed effect to your images with the Petabyte filter.",
     style: "Petabyte",
     image: "/images/filters/Petabyte.webp",
     isSelected: false,
@@ -60,7 +67,8 @@ export const computerDataFilters: Filter[] = [
   {
     id: "Exabyte_18_21_2",
     name: "Exabyte",
-    description: "",
+    description:
+      "Applies an exabyte-sized effect to your visuals with the Exabyte filter, adding a digital touch to your images.",
     style: "Exabyte",
     image: "/images/filters/Exabyte.webp",
     isSelected: false,
@@ -68,7 +76,8 @@ export const computerDataFilters: Filter[] = [
   {
     id: "Zettabyte_18_27_1",
     name: "Zettabyte",
-    description: "",
+    description:
+      "Represents a zettabyte of digital data and adds a tech-inspired effect to your images with the Zettabyte filter.",
     style: "Zettabyte",
     image: "/images/filters/Zettabyte.webp",
     isSelected: false,
@@ -76,7 +85,8 @@ export const computerDataFilters: Filter[] = [
   {
     id: "Yottabyte_18_27_2",
     name: "Yottabyte",
-    description: "",
+    description:
+      "Applies a yottabyte-sized effect to your visuals with the Yottabyte filter, adding a digital touch to your images.",
     style: "Yottabyte",
     image: "/images/filters/Yottabyte.webp",
     isSelected: false,
