@@ -1,17 +1,17 @@
 import type { SubCategoryFilter } from "../typeFilters";
 import { computerDataFilters } from "./subCategories/computerData";
 import { conceptsFilters } from "./subCategories/concepts";
-import { emotionsAndQualitiesFilters } from "./subCategories/emotionsandQualities";
+import { emotionsAndQualitiesFilters } from "./subCategories/emotionsAndQualities";
 import { lettersFilters } from "./subCategories/letters";
 import { numberSystemsFilters } from "./subCategories/numberSystems";
 import { numbersFilters } from "./subCategories/numbers";
 import { otherSymbolsFilters } from "./subCategories/otherSymbols";
 import { sizeFilters } from "./subCategories/size";
-import { strengthandDurabilityFilters } from "./subCategories/strengthandDurability";
+import { strengthAndDurabilityFilters } from "./subCategories/strengthAndDurability";
 import { timeFilters } from "./subCategories/time";
 import { tuplesFilters } from "./subCategories/tuples";
 import { unicodeSymbolsFilters } from "./subCategories/unicodeSymbols";
-import { visualPerceptionandDistortionsFilters } from "./subCategories/visualPerceptionandDistortions";
+import { visualPerceptionAndDistortionsFilters } from "./subCategories/visualPerceptionAndDistortionsFilters";
 import { zodiacSignsFilters } from "./subCategories/zodiacSigns";
 
 export const intangiblesFilters: SubCategoryFilter[] = [
@@ -31,7 +31,7 @@ export const intangiblesFilters: SubCategoryFilter[] = [
     id: "strengthandDurability_3",
     icon: "➰🏋️‍♂️",
     name: "Strength and Durability",
-    options: strengthandDurabilityFilters,
+    options: strengthAndDurabilityFilters,
   },
   {
     id: "size_4",
@@ -73,13 +73,7 @@ export const intangiblesFilters: SubCategoryFilter[] = [
     id: "visualPerceptionandDistortions_12",
     icon: "➰👁",
     name: "Visual Perception and Distortions",
-    options: visualPerceptionandDistortionsFilters,
-  },
-  {
-    id: "numbers_14",
-    icon: "➰🔢",
-    name: "Big Numbers",
-    options: numbersFilters,
+    options: visualPerceptionAndDistortionsFilters,
   },
   {
     id: "numberSystems_15",
