@@ -9,37 +9,38 @@ type UserProfileProps = {
   params: { username: User["username"] };
 };
 
-const getPostersLikedByUser = async (username: string) =>
+const getLikesByUser = async (username: string) =>
   prisma.user.findUnique({
     where: { username },
     include: {
-      likes: {
-        include: {
-          poster: true,
-        },
-      },
+      likes: true,
     },
   });
 
-const getPostersLikedByUser2 = async (username: string) => {
-  return await prisma.like.findMany({
-    where: { userId: username },
-    include: { poster: true },
+const getLikedPosters = async (likesId) =>
+  prisma.like.findMany({
+    where: {
+      id: likesId,
+    },
+    include: {
+      poster: true,
+    },
   });
-};
 
 export default async function Likes({
   params: { username },
 }: UserProfileProps) {
-  const likes = await getPostersLikedByUser2(username);
-  const postersLiked = likes.map((like) => like.poster);
-  console.log("likes", likes);
-  console.log("posters", postersLiked);
+  const user = await getLikesByUser(username);
+  const likesId = user.likes.map((like) => like.posterId);
+  const likedPosters = await getLikedPosters(likesId);
+
+  console.log("likes", user);
+  console.log("likesId", likesId);
 
   return (
     <div>
       <Suspense fallback={<div>Loading posters...</div>}>
-        <Posters posters={postersLiked} />
+        <Posters posters={likedPosters} />
       </Suspense>
     </div>
   );
