@@ -1,8 +1,5 @@
 import React, { Suspense } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import type { User } from "@prisma/client";
-import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
 import Posters from "../../posters/Posters";
@@ -24,13 +21,14 @@ const getUserCreatedPosters = async (username: User["username"]) =>
     },
   });
 
-export default async function CreatedByUser({ params: { username } }) {
+export default async function CreatedByUser({
+  params: { username },
+}: UserProfileProps) {
   const user = await getUserCreatedPosters(username);
-
   return (
     <>
       <Suspense fallback={<div>Loading posters...</div>}>
-        <Posters posters={user.posters} />
+        {user?.posters && <Posters posters={user.posters} />}
       </Suspense>
     </>
   );
