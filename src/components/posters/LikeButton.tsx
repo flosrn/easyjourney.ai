@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
-import useDebounce from "~/hooks/useDebounce";
+import useDebounce from "~/hooks/use-debounce";
 
 import { cn } from "~/lib/classNames";
 
@@ -32,6 +32,7 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
   const [userHasLiked, setUserHasLiked] = useState<boolean>(false);
   const { data: session } = useSession();
   const router = useRouter();
+  const debouncedId = useDebounce(id, 2000);
 
   useEffect(() => {
     setUserHasLiked(!!likes?.some((like) => like.userId === session?.user.id));
@@ -47,15 +48,6 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
     },
   });
 
-  // eslint-disable-next-line no-shadow
-  const debouncedMutation = useDebounce(async (id: string) => {
-    try {
-      await likeMutation.mutateAsync(id);
-    } catch {
-      toast.error("Something went wrong liking this poster, please try again");
-    }
-  }, 500);
-
   const handleLike = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!session) {
@@ -70,8 +62,14 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
       setUserHasLiked(true);
     }
 
-    debouncedMutation(id);
+    try {
+      await likeMutation.mutateAsync(debouncedId);
+      console.log(debouncedId);
+    } catch {
+      toast.error("Something went wrong liking this poster, please try again");
+    }
   };
+
   return (
     <motion.button
       onClick={handleLike}

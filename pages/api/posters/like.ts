@@ -31,13 +31,13 @@ export default async function handler(
       });
 
       if (existingLike) {
+        // Delete a like
         const deleteLike = await prisma.like.delete({
           where: {
             id: existingLike.id,
           },
         });
         res.status(204).json(deleteLike);
-        return;
       }
 
       // Create a new like
@@ -47,10 +47,8 @@ export default async function handler(
           posterId,
         },
       });
-
       res.status(201).json(newLike);
-    } catch (error: unknown) {
-      console.error("Failed to like the poster", error);
+    } catch {
       res.status(500).json({ message: "Failed to like the poster" });
     }
   } else {
