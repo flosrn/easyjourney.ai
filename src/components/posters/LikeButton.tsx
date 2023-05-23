@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
+import useDebounce from "~/hooks/useDebounce";
 
 import { cn } from "~/lib/classNames";
 
@@ -45,14 +46,15 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
       }
     },
   });
-  // eslint-disable-next-line no-undef
-  let timerId: NodeJS.Timeout | null = null;
-  const debouncedHandleLike = (func: () => Promise<void>, delay: number) => {
-    if (timerId) {
-      clearTimeout(timerId);
+
+  // eslint-disable-next-line no-shadow
+  const debouncedMutation = useDebounce(async (id: string) => {
+    try {
+      await likeMutation.mutateAsync(id);
+    } catch {
+      toast.error("Something went wrong liking this poster, please try again");
     }
-    timerId = setTimeout(func, delay);
-  };
+  }, 500);
 
   const handleLike = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -67,17 +69,8 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
       setLikesCount((prevState) => prevState + 1);
       setUserHasLiked(true);
     }
-    debouncedHandleLike(async () => {
-      try {
-        await likeMutation.mutateAsync(id);
-      } catch (error: unknown) {
-        // eslint-disable-next-line no-console
-        console.error("Error liking poster", error);
-        toast.error(
-          "Something went wrong liking this poster, please try again"
-        );
-      }
-    }, 2000);
+
+    debouncedMutation(id);
   };
   return (
     <motion.button
