@@ -31,7 +31,12 @@ export default async function handler(
       });
 
       if (existingLike) {
-        res.status(409).json({ message: "Already liked" });
+        const deleteLike = await prisma.like.delete({
+          where: {
+            id: existingLike.id,
+          },
+        });
+        res.status(204).json(deleteLike);
         return;
       }
 
@@ -43,7 +48,7 @@ export default async function handler(
         },
       });
 
-      res.status(200).json(newLike);
+      res.status(201).json(newLike);
     } catch (error: unknown) {
       console.error("Failed to like the poster", error);
       res.status(500).json({ message: "Failed to like the poster" });

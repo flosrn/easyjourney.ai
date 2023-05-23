@@ -45,21 +45,39 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
       }
     },
   });
+  // eslint-disable-next-line no-undef
+  let timerId: NodeJS.Timeout | null = null;
+  const debouncedHandleLike = (func: () => Promise<void>, delay: number) => {
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    timerId = setTimeout(func, delay);
+  };
 
   const handleLike = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!session) {
       return router.push("/api/auth/signin");
     }
-    setLikesCount((prevState) => prevState + 1);
-    setUserHasLiked(true);
-    try {
-      await likeMutation.mutateAsync(id);
-    } catch (error: unknown) {
-      // eslint-disable-next-line no-console
-      console.error("Error liking poster", error);
-      toast.error("Something went wrong liking this poster, please try again");
+
+    if (userHasLiked) {
+      setLikesCount((prevState) => prevState - 1);
+      setUserHasLiked(false);
+    } else {
+      setLikesCount((prevState) => prevState + 1);
+      setUserHasLiked(true);
     }
+    debouncedHandleLike(async () => {
+      try {
+        await likeMutation.mutateAsync(id);
+      } catch (error: unknown) {
+        // eslint-disable-next-line no-console
+        console.error("Error liking poster", error);
+        toast.error(
+          "Something went wrong liking this poster, please try again"
+        );
+      }
+    }, 2000);
   };
   return (
     <motion.button
