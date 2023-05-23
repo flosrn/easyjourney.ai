@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
+import useDebounce from "~/hooks/useDebounce";
 
 import { cn } from "~/lib/classNames";
 
@@ -46,20 +47,30 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
     },
   });
 
+  // eslint-disable-next-line no-shadow
+  const debouncedMutation = useDebounce(async (id: string) => {
+    try {
+      await likeMutation.mutateAsync(id);
+    } catch {
+      toast.error("Something went wrong liking this poster, please try again");
+    }
+  }, 500);
+
   const handleLike = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!session) {
       return router.push("/api/auth/signin");
     }
-    setLikesCount((prevState) => prevState + 1);
-    setUserHasLiked(true);
-    try {
-      await likeMutation.mutateAsync(id);
-    } catch (error: unknown) {
-      // eslint-disable-next-line no-console
-      console.error("Error liking poster", error);
-      toast.error("Something went wrong liking this poster, please try again");
+
+    if (userHasLiked) {
+      setLikesCount((prevState) => prevState - 1);
+      setUserHasLiked(false);
+    } else {
+      setLikesCount((prevState) => prevState + 1);
+      setUserHasLiked(true);
     }
+
+    debouncedMutation(id);
   };
   return (
     <motion.button
