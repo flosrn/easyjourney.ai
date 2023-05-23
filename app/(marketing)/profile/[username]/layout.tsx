@@ -1,13 +1,16 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import type { User } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/Tabs";
-
 import FollowButton from "../FollowButton";
+import TabsHeader from "./components/TabsHeader";
+
+type LayoutProfileHeaderProps = {
+  params: { username: User["username"] };
+  children: React.ReactNode;
+};
 
 const getUserInfos = async (username: User["username"]) =>
   prisma.user.findUnique({
@@ -25,7 +28,7 @@ const getUserInfos = async (username: User["username"]) =>
 export default async function LayoutProfileHeader({
   params: { username },
   children,
-}) {
+}: LayoutProfileHeaderProps) {
   const session = await getServerAuthSession();
   const user = await getUserInfos(username);
 
@@ -82,20 +85,7 @@ export default async function LayoutProfileHeader({
         </div>
       </div>
       <div className="container max-w-6xl">
-        <Tabs defaultValue="created" className="mt-4 w-full">
-          <TabsList className="w-full">
-            <Link href={`/profile/${username}`} className="w-1/2">
-              <TabsTrigger value="created" className="w-full">
-                Created by {username}
-              </TabsTrigger>
-            </Link>
-            <Link href={`/profile/${username}/likes`} className="w-1/2">
-              <TabsTrigger value="liked" className="w-full">
-                Liked by {username}
-              </TabsTrigger>
-            </Link>
-          </TabsList>
-        </Tabs>
+        <TabsHeader username={username} />
         {children}
       </div>
     </>
