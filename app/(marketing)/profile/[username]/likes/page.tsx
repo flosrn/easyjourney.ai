@@ -37,7 +37,7 @@ export default async function Likes({
   return (
     <div>
       <Suspense fallback={<div>Loading posters...</div>}>
-        {posters && <Posters posters={posters} />}
+        {posters && <Posters posters={posters} noMargin className="mt-4" />}
       </Suspense>
     </div>
   );
