@@ -23,7 +23,7 @@ export async function POST(request: Request) {
       },
     });
     console.log(data);
-    return NextResponse.json({ status: 200, data });
+    return NextResponse.json({ status: 201, data });
   } catch {
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }
