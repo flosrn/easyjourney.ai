@@ -22,7 +22,6 @@ export async function POST(request: Request) {
         userId: session.user.id,
       },
     });
-    console.log(data);
     return NextResponse.json({ status: 201, data });
   } catch {
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
