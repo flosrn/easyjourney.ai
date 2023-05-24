@@ -31,12 +31,13 @@ export default async function handler(
       });
 
       if (existingLike) {
+        // Delete a like
         const deleteLike = await prisma.like.delete({
           where: {
             id: existingLike.id,
           },
         });
-        res.status(204).json(deleteLike);
+        res.status(200).json(deleteLike);
         return;
       }
 
@@ -47,11 +48,11 @@ export default async function handler(
           posterId,
         },
       });
-
       res.status(201).json(newLike);
-    } catch (error: unknown) {
-      console.error("Failed to like the poster", error);
+      return;
+    } catch {
       res.status(500).json({ message: "Failed to like the poster" });
+      return;
     }
   } else {
     res.status(405).json({ message: "Method not allowed" });
