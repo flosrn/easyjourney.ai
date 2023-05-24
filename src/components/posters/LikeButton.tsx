@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
-import useDebounce from "~/hooks/use-debounce";
+import useThrottle from "~/hooks/use-throtle";
 
 import { cn } from "~/lib/classNames";
 
@@ -32,7 +32,6 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
   const [userHasLiked, setUserHasLiked] = useState<boolean>(false);
   const { data: session } = useSession();
   const router = useRouter();
-  const debouncedId = useDebounce(id, 2000);
 
   useEffect(() => {
     setUserHasLiked(!!likes?.some((like) => like.userId === session?.user.id));
@@ -47,6 +46,14 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
       }
     },
   });
+
+  const throttledMutation = useThrottle(async () => {
+    try {
+      await likeMutation.mutateAsync(id);
+    } catch {
+      toast.error("Something went wrong liking this poster, please try again");
+    }
+  }, 2000);
 
   const handleLike = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -63,8 +70,7 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
     }
 
     try {
-      await likeMutation.mutateAsync(debouncedId);
-      console.log(debouncedId);
+      throttledMutation(id);
     } catch {
       toast.error("Something went wrong liking this poster, please try again");
     }

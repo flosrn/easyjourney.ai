@@ -37,7 +37,8 @@ export default async function handler(
             id: existingLike.id,
           },
         });
-        res.status(204).json(deleteLike);
+        res.status(200).json(deleteLike);
+        return;
       }
 
       // Create a new like
@@ -48,8 +49,10 @@ export default async function handler(
         },
       });
       res.status(201).json(newLike);
+      return;
     } catch {
       res.status(500).json({ message: "Failed to like the poster" });
+      return;
     }
   } else {
     res.status(405).json({ message: "Method not allowed" });
