@@ -143,7 +143,7 @@ const MainColumn = () => {
               <h2 className="text-2xl font-semibold tracking-tight">
                 Poster generation
               </h2>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-sm text-muted-foreground">
                 Create your own poster
               </p>
             </div>
@@ -249,7 +249,7 @@ const MainColumn = () => {
           </motion.div>
         </div>
       </div>
-      <div className="bg-background flex-center sticky bottom-0 h-6 border-t">
+      <div className="flex-center sticky bottom-0 h-6 border-t bg-background">
         <p className="px-4 text-xs">{message}</p>
       </div>
       <FiltersDialog />

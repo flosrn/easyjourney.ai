@@ -184,7 +184,7 @@ export const useImageGenerationStore = create<
       });
 
       try {
-        const response  = await fetch("/api/imagine", {
+        const response = await fetch("/api/imagine", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt }),
@@ -350,7 +350,7 @@ export const useImageGenerationStore = create<
           }),
         });
         const data = await saveResponse.json();
-        if (data.image) {
+        if (data.data.image) {
           toast.success("Image saved successfully");
           setIsLoading(false);
           setLoadingType(null);
