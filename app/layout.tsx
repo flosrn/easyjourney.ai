@@ -17,7 +17,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="fr" className={inter.className} suppressHydrationWarning>
-      <body className="bg-background text-foreground min-h-screen font-sans antialiased">
+      <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>
