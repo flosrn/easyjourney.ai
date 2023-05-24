@@ -28,7 +28,9 @@ export default async function CreatedByUser({
   return (
     <>
       <Suspense fallback={<div>Loading posters...</div>}>
-        {user?.posters && <Posters posters={user.posters} />}
+        {user?.posters && (
+          <Posters posters={user.posters} noMargin className="mt-4" />
+        )}
       </Suspense>
     </>
   );
