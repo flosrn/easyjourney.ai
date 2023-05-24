@@ -7,6 +7,15 @@ CREATE TABLE "posters" (
     "title" TEXT,
     "prompt" TEXT NOT NULL,
     "image" TEXT NOT NULL,
+    "filename" TEXT,
+    "width" INTEGER,
+    "height" INTEGER,
+    "ratio" TEXT,
+    "style" TEXT,
+    "model" TEXT,
+    "chaos" INTEGER,
+    "quality" DOUBLE PRECISION,
+    "stylize" INTEGER,
     "user_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
@@ -125,7 +134,7 @@ ALTER TABLE "posters" ADD CONSTRAINT "posters_user_id_fkey" FOREIGN KEY ("user_i
 ALTER TABLE "likes" ADD CONSTRAINT "likes_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "likes" ADD CONSTRAINT "likes_poster_id_fkey" FOREIGN KEY ("poster_id") REFERENCES "posters"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "likes" ADD CONSTRAINT "likes_poster_id_fkey" FOREIGN KEY ("poster_id") REFERENCES "posters"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "follows" ADD CONSTRAINT "follows_follower_id_fkey" FOREIGN KEY ("follower_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
