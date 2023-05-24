@@ -10,19 +10,14 @@ export async function POST(request: Request) {
   }
 
   try {
-    const body = await request.json();
-    const { prompt } = body;
+    const { posterId } = await request.json();
 
-    const title = prompt.split(" ").slice(0, 3).join(" ").replaceAll(",", "");
-
-    const data = await prisma.poster.create({
-      data: {
-        title,
-        ...body,
-        userId: session.user.id,
+    const data = await prisma.poster.delete({
+      where: {
+        id: posterId,
       },
     });
-    return NextResponse.json({ status: 201, data });
+    return NextResponse.json({ status: 200, data });
   } catch {
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }
