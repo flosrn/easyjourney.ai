@@ -1,7 +1,3 @@
-import { error } from "node:console";
-import { IncomingMessage, ServerResponse } from "node:http";
-import { NextApiRequest, NextApiResponse } from "next";
-import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 import { getServerAuthSession } from "~/server/auth";
 import { channelId, headers, serverId } from "~/utils/midjourneyUtils";

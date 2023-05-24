@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 import { getServerAuthSession } from "~/server/auth";
 import { channelId, headers, serverId } from "~/utils/midjourneyUtils";
@@ -12,12 +11,10 @@ const variation = async ({
   messageId: string;
   messageHash: string;
 }): Promise<number> => {
-
   const session = await getServerAuthSession();
   if (!session) {
-    throw Error('user not logged in');
+    throw new Error("user not logged in");
   }
-
   const response = await fetch("https://discord.com/api/v9/interactions", {
     method: "POST",
     headers: { ...headers, "Content-Type": "application/json" },
