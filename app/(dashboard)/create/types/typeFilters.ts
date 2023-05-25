@@ -1,3 +1,11 @@
+export type StyleFilter = {
+  id: string;
+  name: string;
+  description: string;
+  style: string;
+  image: string;
+};
+
 export type CategoryFilter = {
   id: string;
   icon: string;

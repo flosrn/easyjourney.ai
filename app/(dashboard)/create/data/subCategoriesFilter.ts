@@ -1,6 +1,6 @@
 import type { SubCategoryFilter } from "../types/typeFilters";
 
-export const subCategories: SubCategoryFilter[] = [
+export const subCategoriesFilter: SubCategoryFilter[] = [
   {
     id: "1",
     icon: "🎭⛱",

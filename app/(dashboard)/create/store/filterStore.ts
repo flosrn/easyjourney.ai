@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { subCategories } from "../data/subCategories";
+import { subCategoriesFilter } from "../data/subCategoriesFilter";
 import { type Filter, type SubCategoryFilter } from "../types/typeFilters";
 
 type FilterState = {
@@ -19,7 +19,7 @@ type FilterAction = {
 };
 
 export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
-  subCategories,
+  subCategories: subCategoriesFilter,
   selectedFilters: [],
   addFilter: (filter) => {
     set((state) => ({
