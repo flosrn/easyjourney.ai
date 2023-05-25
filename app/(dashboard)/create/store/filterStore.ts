@@ -1,27 +1,28 @@
 import { create } from "zustand";
 
-import { mostPopularFilters } from "../data/filter/mostPopularFilters";
-import type { Filter } from "../data/filter/typeFilters";
+import { subCategories } from "../data/subCategories";
+import { type Filter, type SubCategoryFilter } from "../types/typeFilters";
 
 type FilterState = {
-  filters: Filter[];
+  subCategories: SubCategoryFilter[];
   selectedFilters: Filter[];
+  peekedSubCategory: SubCategoryFilter | null;
   peekedFilter: Filter | null;
 };
 
 type FilterAction = {
   addFilter: (filter: Filter) => void;
   removeFilter: (filter: Filter) => void;
+  setPeekedSubCategory: (subCategory: SubCategoryFilter | null) => void;
   setPeekedFilter: (filter: Filter | null) => void;
   clearFilters: () => void;
 };
 
 export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
-  filters: mostPopularFilters,
+  subCategories,
   selectedFilters: [],
   addFilter: (filter) => {
     set((state) => ({
-      // add the new filter to the beginning of the array
       selectedFilters: [
         { ...filter, isSelected: true },
         ...state.selectedFilters,
@@ -35,7 +36,10 @@ export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
       ),
     }));
   },
+  peekedSubCategory: null,
   peekedFilter: null,
+  setPeekedSubCategory: (subCategory) =>
+    set(() => ({ peekedSubCategory: subCategory })),
   setPeekedFilter: (filter) => set(() => ({ peekedFilter: filter })),
   clearFilters: () => set(() => ({ selectedFilters: [] })),
 }));

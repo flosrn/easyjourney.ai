@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { blursFilters } from "./subCategories/blurs";
 import { chromaticSFXFilters } from "./subCategories/chromaticSFX";
 import { distortionFilters } from "./subCategories/distortion";

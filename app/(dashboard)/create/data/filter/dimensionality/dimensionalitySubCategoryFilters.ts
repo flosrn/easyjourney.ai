@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { D5DFilters } from "./subCategories/0D5D";
 import { overdimensionalMultiverseetcFilters } from "./subCategories/overdimensionalMultiverseetc.";
 

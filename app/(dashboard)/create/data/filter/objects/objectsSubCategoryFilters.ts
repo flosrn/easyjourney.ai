@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { ambiguousObjectsFilters } from "./subCategories/ambiguousObjects";
 import { badgesPatchesandTrophiesFilters } from "./subCategories/badgesPatchesandTrophies";
 import { beveragesFilters } from "./subCategories/beverages";

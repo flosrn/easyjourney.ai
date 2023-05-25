@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { curvesandWavesFilters } from "./subCategories/CurvesandWaves";
 import { circularFilters } from "./subCategories/circular";
 import { dullandPointyFilters } from "./subCategories/dullandPointy";

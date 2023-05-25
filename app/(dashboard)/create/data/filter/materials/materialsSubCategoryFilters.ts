@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { clothFilters } from "./subCategories/cloth";
 import { gassesandVaporsFilters } from "./subCategories/gassesandVapors";
 import { gelatinousandSpongyFilters } from "./subCategories/gelatinousandSpongy";

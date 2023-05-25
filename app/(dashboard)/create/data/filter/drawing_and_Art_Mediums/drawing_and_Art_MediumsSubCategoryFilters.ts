@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { blockPrintingFilters } from "./subCategories/blockPrinting";
 import { booksandPostersFilters } from "./subCategories/booksandPosters";
 import { cardsandStampsFilters } from "./subCategories/cardsandStamps";

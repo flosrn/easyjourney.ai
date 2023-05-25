@@ -6,7 +6,7 @@ import { Card } from "~/components/ui/Card";
 import {
   type CategoryFilter,
   type SubCategoryFilter,
-} from "../../../data/filter/typeFilters";
+} from "../../../types/typeFilters";
 import EmojiIcon from "../EmojiIcon";
 
 export enum CategoryFilterType {
@@ -47,7 +47,7 @@ const CategoryListCards = ({
           <Link
             key={category.id}
             href={getHref({ selectedCategory, category, type })}
-            className="flex-center text-sm md:text-lg"
+            className="flex items-center space-x-5 text-sm md:text-lg"
           >
             <EmojiIcon icon={category.icon} />
             <span className="truncate">{category.name}</span>

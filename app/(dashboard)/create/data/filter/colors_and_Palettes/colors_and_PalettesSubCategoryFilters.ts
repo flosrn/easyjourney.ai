@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { basicColorsFilters } from "./subCategories/basicColors";
 import { chromaticPalettesFilters } from "./subCategories/chromaticPalettes";
 import { colorBasedDesignsFilters } from "./subCategories/colorBasedDesigns";

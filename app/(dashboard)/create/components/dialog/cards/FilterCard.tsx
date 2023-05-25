@@ -7,7 +7,7 @@ import { Separator } from "~/components/ui/Separator";
 
 import { cn } from "~/lib/classNames";
 
-import type { Filter } from "../../../data/filter/typeFilters";
+import type { Filter } from "../../../types/typeFilters";
 
 type FilterCardProps = Filter & {
   isActive: boolean;
@@ -25,17 +25,16 @@ const FilterCard = ({
 }: FilterCardProps) => {
   const filter = { id, name, image, style, description };
   return (
-    <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.93 }}>
+    <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.96 }}>
       <Card
         onClick={() => clickHandler(filter)}
         className={cn("cursor-pointer", {
           "outline outline-1 outline-offset-2 outline-blue-500": isActive,
         })}
       >
-        <div className="md:text-md truncate px-3 py-2 text-center text-sm font-bold">
+        <div className="text-md hidden truncate px-3 py-2 font-bold sm:block">
           {name}
         </div>
-        <Separator />
         <div className="flex flex-row sm:flex-col">
           <Image
             src={image}
@@ -44,10 +43,18 @@ const FilterCard = ({
             height={150}
             placeholder="blur"
             blurDataURL={image}
-            className="h-20 w-20 shrink-0 rounded-bl-lg bg-left sm:h-full sm:w-full md:block md:rounded-none"
+            className="h-24 w-24 shrink-0 rounded-l-md bg-left sm:h-full sm:w-full sm:rounded-none md:block"
           />
-          <div className="h-20 p-2 text-left text-xs sm:h-[125px] sm:text-center md:p-3 md:text-sm">
-            <span className="line-clamp-5">{description}</span>
+          <div className="w-full">
+            <div className="truncate px-3 py-2 text-sm font-bold sm:hidden">
+              {name}
+            </div>
+            <Separator className="sm:hidden" />
+            <div className="h-10 px-3 py-2 text-left text-xs sm:h-[125px] md:text-sm">
+              <span className="line-clamp-2 sm:line-clamp-5">
+                {description}
+              </span>
+            </div>
           </div>
         </div>
       </Card>

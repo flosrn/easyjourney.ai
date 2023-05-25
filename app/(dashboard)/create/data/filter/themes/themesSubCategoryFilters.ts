@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { architectureAndManufacturedFilters } from "./subCategoryFilters/architectureAndManufacturedFilters";
 import { atmosphereFilters } from "./subCategoryFilters/atmosphereFilters";
 import { cartoonsAnimeAndComicsFilters } from "./subCategoryFilters/cartoonsAnimeAndComics";

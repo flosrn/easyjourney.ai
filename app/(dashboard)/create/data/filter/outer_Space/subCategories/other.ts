@@ -1,4 +1,4 @@
-import type { Filter } from "../../typeFilters";
+import type { Filter } from "../../../../types/typeFilters";
 
 export const otherFilters: Filter[] = [
   {

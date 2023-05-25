@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { computerDataFilters } from "./subCategories/computerData";
 import { conceptsFilters } from "./subCategories/concepts";
 import { emotionsAndQualitiesFilters } from "./subCategories/emotionsAndQualities";

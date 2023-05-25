@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { animeFilters } from "./subCategories/anime";
 import { moviesFilters } from "./subCategories/movies";
 import { tVShowsFilters } from "./subCategories/tVShows";

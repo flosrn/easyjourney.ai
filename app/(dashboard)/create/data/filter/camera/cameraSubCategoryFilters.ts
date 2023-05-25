@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { cameraSettingsFilters } from "./subCategories/cameraSettings";
 import { cameraandFilmTypesFilters } from "./subCategories/cameraandFilmTypes";
 import { cameraandScenesFilters } from "./subCategories/cameraandScenes";

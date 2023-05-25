@@ -19,7 +19,7 @@ import { sfxAndShadersFilters } from "./sFX_and_Shaders/sFX_and_ShadersSubCatego
 import { structuralModificationFilters } from "./structural_Modification/structural_ModificationSubCategoryFilters";
 import { tVAndMoviesFilters } from "./tV_and_Movies/tV_and_MoviesSubCategoryFilters";
 import { themesSubCategoryFilters } from "./themes/themesSubCategoryFilters";
-import type { CategoryFilter } from "./typeFilters";
+import type { CategoryFilter } from "../../types/typeFilters";
 
 export const categoryFilters: CategoryFilter[] = [
   {
