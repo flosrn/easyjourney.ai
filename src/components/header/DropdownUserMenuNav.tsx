@@ -8,6 +8,7 @@ import getFirstLetters from "~/utils/getFirstLetter";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 import { Button } from "~/components/ui/Button";
+import { Dialog, DialogTrigger } from "~/components/ui/Dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -61,7 +62,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
       case "/logout": {
         return signOut({ callbackUrl: "/" });
       }
-      case "/settings-dialog": {
+      case "/settings": {
         event.preventDefault();
         return setIsSettingsDialogOpen(!isSettingsDialogOpen);
       }
@@ -111,7 +112,13 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
                     <div className="flex justify-between">
                       <div className="flex items-center">
                         <Icon className="mr-2 h-4 w-4" />
-                        <span className="truncate">{title}</span>
+                        <span className="truncate">
+                          {href === "/settings" ? (
+                            <SettingsDialog title={title} />
+                          ) : (
+                            title
+                          )}
+                        </span>
                       </div>
                       {href === "/theme" && <Switch checked={isDarkTheme} />}
                     </div>
@@ -125,9 +132,6 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
-      {isSettingsDialogOpen && (
-        <SettingsDialog isSettingsDialogOpen={isSettingsDialogOpen} />
-      )}
     </>
   );
 };
