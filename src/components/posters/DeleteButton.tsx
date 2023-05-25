@@ -47,7 +47,9 @@ const DeleteButton = () => {
 
       clearDeletePosters;
     } catch {
-      toast.error("Something went wrong liking this poster, please try again");
+      toast.error(
+        "Something went wrong deleting this poster, please try again"
+      );
     }
   };
   return (
