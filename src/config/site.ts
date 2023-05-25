@@ -164,6 +164,11 @@ const userMenu: NavItem[][] = [
       icon: Palette,
     },
     {
+      title: "Modifier mon profil",
+      href: "/settings-dialog",
+      icon: User,
+    },
+    {
       title: "Réglages",
       href: "/dashboard/settings",
       icon: Settings,

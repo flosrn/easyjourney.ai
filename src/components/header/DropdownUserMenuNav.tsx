@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
@@ -21,6 +21,8 @@ import { Switch } from "~/components/ui/Switch";
 
 import { siteConfig } from "~/config/site";
 
+import SettingsDialog from "./settings-dialog/SettingsDialog";
+
 type DropdownUserMenuNavProps = {};
 
 const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
@@ -28,6 +30,8 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
   const { data: session } = useSession();
   const router = useRouter();
   const { setTheme } = useTheme();
+  const [isSettingsDialogOpen, setIsSettingsDialogOpen] = useState(false);
+  console.log("isSettingsDialopOpen", isSettingsDialogOpen);
 
   useEffect(() => {
     setTheme(isDarkTheme ? "dark" : "light");
@@ -56,6 +60,10 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
       }
       case "/logout": {
         return signOut({ callbackUrl: "/" });
+      }
+      case "/settings-dialog": {
+        event.preventDefault();
+        return setIsSettingsDialogOpen(!isSettingsDialogOpen);
       }
       default: {
         return href && router.push(href);
@@ -117,6 +125,9 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
+      {isSettingsDialogOpen && (
+        <SettingsDialog isSettingsDialogOpen={isSettingsDialogOpen} />
+      )}
     </>
   );
 };
