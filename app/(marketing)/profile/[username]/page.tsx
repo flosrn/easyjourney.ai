@@ -2,6 +2,8 @@ import React, { Suspense } from "react";
 import type { User } from "@prisma/client";
 import { prisma } from "~/server/db/prisma";
 
+import DeleteButton from "~/components/posters/DeleteButton";
+
 import Posters from "../../posters/Posters";
 
 type UserProfileProps = {
@@ -29,7 +31,10 @@ export default async function CreatedByUser({
     <>
       <Suspense fallback={<div>Loading posters...</div>}>
         {user?.posters && (
-          <Posters posters={user.posters} noMargin className="mt-4" />
+          <>
+            <Posters posters={user.posters} noMargin className="mt-4" />
+            <DeleteButton />
+          </>
         )}
       </Suspense>
     </>
