@@ -31,8 +31,8 @@ import { ScrollArea } from "~/components/ui/ScrollArea";
 
 import { cn } from "~/lib/classNames";
 
-import type { Filter } from "../../data/filter/typeFilters";
 import { useFilterStore } from "../../store/filterStore";
+import { type Filter, type SubCategoryFilter } from "../../types/typeFilters";
 
 type ModelSelectorProps = PopoverProps & {};
 
@@ -46,14 +46,18 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     selectedFilters,
     addFilter,
     removeFilter,
+    peekedSubCategory,
     peekedFilter,
+    setPeekedSubCategory,
     setPeekedFilter,
   ] = useFilterStore((state) => [
-    state.filters,
+    state.subCategories,
     state.selectedFilters,
     state.addFilter,
     state.removeFilter,
+    state.peekedSubCategory,
     state.peekedFilter,
+    state.setPeekedSubCategory,
     state.setPeekedFilter,
   ]);
 
@@ -73,8 +77,8 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            aria-label="Select a model"
-            className="w-full justify-between"
+            aria-label="Select a filter"
+            className="hidden w-full justify-between sm:flex"
           >
             {selectedFilters.length === 0 && <div>Select a filter...</div>}
             {selectedFilters.length > 1 && (
@@ -103,55 +107,110 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
         </PopoverTrigger>
         <PopoverContent align="start" className="w-[250px] p-0">
           <HoverCard>
-            {peekedFilter && (
+            {peekedSubCategory && (
               <HoverCardContent
                 side="right"
                 align="start"
                 sideOffset={260}
                 forceMount
-                className="hidden min-h-[280px] md:block"
+                className="hidden min-h-[280px] p-0 md:block"
               >
-                <div className="grid gap-2">
-                  <h4 className="font-medium leading-none">
-                    {peekedFilter.name}
-                  </h4>
-                  <div className="text-muted-foreground text-sm">
-                    {peekedFilter.description}
-                  </div>
-                </div>
-                {peekedFilter.image && (
-                  <Image
-                    src={peekedFilter.image}
-                    alt={peekedFilter.name}
-                    width={200}
-                    height={200}
-                    className="mt-4 w-full"
-                  />
-                )}
+                <HoverCard>
+                  {peekedFilter && (
+                    <HoverCardContent
+                      side="right"
+                      align="start"
+                      onClick={() => {
+                        const isAlreadySelected = selectedFilters.some(
+                          (selectedFilter) =>
+                            selectedFilter.id === peekedFilter.id
+                        );
+                        isAlreadySelected
+                          ? removeFilter(peekedFilter)
+                          : addFilter(peekedFilter);
+                      }}
+                      alignOffset={-42}
+                      sideOffset={12}
+                      forceMount
+                      className="hidden min-h-[300px] cursor-pointer p-0 md:block"
+                    >
+                      <div className="space-y-4 px-4 pt-3">
+                        <h4 className="font-medium leading-none">
+                          {peekedFilter.name}
+                        </h4>
+                      </div>
+                      <div>
+                        <div className="p-4">
+                          {peekedFilter.image && (
+                            <Image
+                              src={peekedFilter.image}
+                              alt={peekedFilter.name}
+                              width={200}
+                              height={200}
+                              className="w-full rounded-sm"
+                            />
+                          )}
+                        </div>
+                        <div className="px-4 pb-4 text-sm text-muted-foreground">
+                          {peekedFilter.description}
+                        </div>
+                      </div>
+                    </HoverCardContent>
+                  )}
+                  <Command loop>
+                    <div className="px-4 py-3">
+                      <h4 className="flex items-center font-medium leading-none">
+                        <span className="truncate">
+                          {peekedSubCategory.name}
+                        </span>
+                      </h4>
+                    </div>
+                    <CommandSeparator alwaysRender />
+                    <HoverCardTrigger />
+                    <CommandGroup className="px-2">
+                      <ScrollArea className="h-56">
+                        {peekedSubCategory.options.map((filter, index) => (
+                          <FilterItem
+                            key={index}
+                            filter={filter}
+                            onPeek={() => setPeekedFilter(filter)}
+                            isSelected={selectedFilters.some(
+                              (selectedFilter) =>
+                                selectedFilter.id === filter.id
+                            )}
+                            onSelect={() => {
+                              const isAlreadySelected = selectedFilters.some(
+                                (selectedFilter) =>
+                                  selectedFilter.id === filter.id
+                              );
+                              isAlreadySelected
+                                ? removeFilter(filter)
+                                : addFilter(filter);
+                            }}
+                            className="cursor-pointer"
+                          />
+                        ))}
+                      </ScrollArea>
+                    </CommandGroup>
+                  </Command>
+                </HoverCard>
               </HoverCardContent>
             )}
             <Command loop>
               <CommandList className="h-[var(--cmdk-list-height)] max-h-[400px]">
-                <CommandInput placeholder="Search Filters..." />
+                <CommandInput placeholder="Search Filter Categories..." />
                 <CommandEmpty>No Filters found.</CommandEmpty>
                 <HoverCardTrigger />
                 <CommandGroup>
                   <ScrollArea className="h-56">
-                    {filters.map((filter) => (
+                    {filters.map((subCategory, index) => (
                       <FilterItem
-                        key={filter.id}
-                        filter={filter}
-                        isSelected={selectedFilters.some(
-                          (selectedFilter) => selectedFilter.id === filter.id
-                        )}
+                        key={index}
+                        filter={subCategory}
                         onSelect={() => {
-                          const isAlreadySelected = selectedFilters.some(
-                            (selectedFilter) => selectedFilter.id === filter.id
-                          );
-                          isAlreadySelected
-                            ? removeFilter(filter)
-                            : addFilter(filter);
+                          router.push(`/create?filterCategory`);
                         }}
+                        onPeek={() => setPeekedSubCategory(subCategory)}
                       />
                     ))}
                   </ScrollArea>
@@ -161,10 +220,10 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                       onSelect={() => {
                         router.push("/create?filterCategory");
                       }}
-                      className="text-muted-foreground flex-center text-sm"
+                      className="flex-center cursor-pointer text-sm text-muted-foreground"
                     >
                       <LayoutListIcon className="mr-2 h-4 w-4" />
-                      View all filters
+                      Discover all filters
                     </CommandItem>
                   </CommandGroup>
                 </CommandGroup>
@@ -173,37 +232,58 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
           </HoverCard>
         </PopoverContent>
       </Popover>
+      <Button
+        variant="outline"
+        onClick={() => router.push("/create?filterCategory")}
+        aria-label="Select a filter"
+        className="flex justify-between sm:hidden"
+      >
+        Select a filter...
+        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+      </Button>
     </div>
   );
 }
 
 type ModelItemProps = {
-  filter: Filter;
-  isSelected: boolean;
-  onSelect: () => void;
+  filter: Filter | SubCategoryFilter;
+  onPeek: (filter: Filter | SubCategoryFilter) => void;
+  isSelected?: boolean;
+  onSelect?: () => void;
+  className?: string;
 };
 
-const FilterItem = ({ filter, isSelected, onSelect }: ModelItemProps) => {
+const FilterItem = ({
+  filter,
+  onPeek,
+  isSelected,
+  onSelect,
+  className,
+}: ModelItemProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
-  const onPeek = useFilterStore((state) => state.setPeekedFilter);
   return (
-    <CommandItem
-      key={filter.id}
-      ref={ref}
-      onSelect={onSelect}
-      onMouseEnter={(event) => {
-        event.preventDefault();
-        onPeek(filter);
-      }}
-      className="aria-selected:bg-primary aria-selected:text-primary-foreground"
-    >
-      {filter.name}
-      <Check
+    <>
+      <CommandItem
+        key={filter.id}
+        ref={ref}
+        onSelect={onSelect}
+        onMouseEnter={(event) => {
+          event.preventDefault();
+          onPeek(filter);
+        }}
         className={cn(
-          "ml-auto h-4 w-4",
-          isSelected ? "opacity-100" : "opacity-0"
+          "aria-selected:bg-primary aria-selected:text-primary-foreground",
+          className
         )}
-      />
-    </CommandItem>
+      >
+        {filter.name}
+        <Check
+          className={cn(
+            "ml-auto h-4 w-4",
+            isSelected ? "opacity-100" : "opacity-0"
+          )}
+        />
+      </CommandItem>
+    </>
   );
 };

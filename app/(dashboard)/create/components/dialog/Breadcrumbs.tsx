@@ -6,7 +6,7 @@ import { cn } from "~/lib/classNames";
 import type {
   CategoryFilter,
   SubCategoryFilter,
-} from "../../data/filter/typeFilters";
+} from "../../types/typeFilters";
 import EmojiIcon from "./EmojiIcon";
 
 type BreadcrumbsProps = {
@@ -47,7 +47,7 @@ const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
                 filterCategory && subCategory,
             })}
           >
-            <EmojiIcon icon={category.icon} />
+            <EmojiIcon icon={category.icon} className="mr-2" />
             {category.name}
           </button>
         </>
@@ -66,7 +66,7 @@ const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
               "text-foreground": subCategory,
             })}
           >
-            <EmojiIcon icon={subCategory.icon} />
+            <EmojiIcon icon={subCategory.icon} className="mr-2" />
             {subCategory.name}
           </button>
         </>

@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { blackHolesandSingularitiesFilters } from "./subCategories/blackHolesandSingularities";
 import { galaxiesNebulaeandOtherCosmicStructuresFilters } from "./subCategories/galaxiesNebulaeandOtherCosmicStructures";
 import { otherFilters } from "./subCategories/other";

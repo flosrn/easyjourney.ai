@@ -9,7 +9,7 @@ import "swiper/css";
 
 const badgeVariants = {
   hidden: { opacity: 0, scale: 0.5 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.35 } },
   exit: { opacity: 0, scale: 0.5 },
 };
 
@@ -34,7 +34,7 @@ const FiltersBadge = () => {
     state.removeFilter,
   ]);
   return (
-    <div className="mt-6">
+    <div className="mt-4">
       <Swiper
         slidesPerView="auto"
         spaceBetween={5}

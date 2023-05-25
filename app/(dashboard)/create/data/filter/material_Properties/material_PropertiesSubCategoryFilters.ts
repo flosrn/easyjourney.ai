@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { chromismFilters } from "./subCategories/chromism";
 import { luminescenceFilters } from "./subCategories/luminescence";
 import { opacityFilters } from "./subCategories/opacity";

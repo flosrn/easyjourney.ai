@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { anglesFilters } from "./subCategories/angles";
 import { cutawayViewandCrossSectionsFilters } from "./subCategories/cutawayViewandCrossSections";
 import { perspectiveandProjectionsFilters } from "./subCategories/perspectiveandProjections";

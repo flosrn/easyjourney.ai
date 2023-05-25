@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { abstractFilters } from "./subCategories/abstract";
 import { artNouveauFilters } from "./subCategories/artNouveau";
 import { artstationArtistFilters } from "./subCategories/artstationArtist";

@@ -1,10 +1,4 @@
-export type StyleFilter = {
-  id: string;
-  name: string;
-  description: string;
-  style: string;
-  image: string;
-};
+import type { StyleFilter } from "../types/typeFilters";
 
 export const styleFilters: StyleFilter[] = [
   {

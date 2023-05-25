@@ -14,11 +14,11 @@ import { ScrollArea } from "~/components/ui/ScrollArea";
 import { Separator } from "~/components/ui/Separator";
 
 import { categoryFilters } from "../../data/filter/categoryFilters";
+import { useFilterStore } from "../../store/filterStore";
 import type {
   CategoryFilter,
   SubCategoryFilter,
-} from "../../data/filter/typeFilters";
-import { useFilterStore } from "../../store/filterStore";
+} from "../../types/typeFilters";
 import FiltersBadge from "../badge/FiltersBadge";
 import Breadcrumbs from "./Breadcrumbs";
 import CategoryListCards, {
@@ -78,7 +78,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             <FiltersBadge />
           </DialogTitle>
         </DialogHeader>
-        <div className="mt-5">
+        <div>
           <ScrollArea className="h-[calc(70vh+82px)] md:h-[calc(56vh+82px)]">
             <div className="h-full pb-14 pl-1 pr-4">
               {hasFilter && !filterCategory && (
@@ -98,7 +98,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
                     />
                   )}
                   {selectedSubCategory && (
-                    <div className="grid gap-3 pt-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+                    <div className="grid gap-3 pt-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                       {selectedSubCategory.options.map((filter) => {
                         const isActive = selectedFilters.some(
                           (selectedFilter) => selectedFilter.id === filter.id

@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { BitFilters } from ".//subCategoryFilters/1-Bit-16-Bit";
 import { aIAndNeuralNetworksFilters } from "./subCategoryFilters/aIAndNeuralNetworks";
 import { artProgramsAndApplicationsFilters } from "./subCategoryFilters/artProgramsAndApplications";

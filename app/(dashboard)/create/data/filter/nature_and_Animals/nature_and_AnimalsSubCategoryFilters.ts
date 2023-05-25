@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { animalsFilters } from "./subCategories/animals";
 import { biomesandLandscapesFilters } from "./subCategories/biomesandLandscapes";
 import { coralsFilters } from "./subCategories/corals";

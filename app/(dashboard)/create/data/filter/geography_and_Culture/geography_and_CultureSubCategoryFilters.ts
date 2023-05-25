@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { countriesandNationsFilters } from "./subCategories/countriesandNations";
 import { fictionalNonHumanCreaturesFilters } from "./subCategories/fictionalNonHumanCreatures";
 import { holidaysFilters } from "./subCategories/holidays";

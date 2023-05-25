@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { ArtStylesFilters } from "./subCategoryFilters//ArtStyles";
 import { chartsAndDiagramsFilters } from "./subCategoryFilters/chartsAndDiagrams";
 import { cubismFilters } from "./subCategoryFilters/cubism";

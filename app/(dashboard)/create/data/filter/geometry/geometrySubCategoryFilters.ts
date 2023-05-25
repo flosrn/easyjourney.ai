@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { o2DShapesFilters } from "./subCategories/2DShapes";
 import { o3DShapesFilters } from "./subCategories/3DShapes";
 import { o4DHyperShapesFilters } from "./subCategories/4DHyperShapes";

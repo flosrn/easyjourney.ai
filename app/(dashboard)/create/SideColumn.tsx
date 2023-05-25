@@ -23,7 +23,7 @@ const SideColumn = ({ className }: SidebarProps) => (
           <HoverCardTrigger asChild>
             <Label htmlFor="model">
               <h2 className="mb-2 text-lg font-semibold tracking-tight">
-                Filter
+                Style Filter
               </h2>
             </Label>
           </HoverCardTrigger>

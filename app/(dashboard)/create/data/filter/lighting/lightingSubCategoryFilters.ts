@@ -1,4 +1,4 @@
-import type { SubCategoryFilter } from "../typeFilters";
+import type { SubCategoryFilter } from "../../../types/typeFilters";
 import { globalIlluminationFilters } from "./subCategories/globalIllumination";
 import { lampsandTubesFilters } from "./subCategories/lampsandTubes";
 import { lightingStylesandTechniquesFilters } from "./subCategories/lightingStylesandTechniques";
