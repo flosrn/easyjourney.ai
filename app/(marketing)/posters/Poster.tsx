@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import getFirstLetters from "~/utils/getFirstLetter";
 
-import { CheckboxDelete } from "~/components/posters/CheckboxDelete";
+import CheckboxSelect from "~/components/posters/CheckboxSelect";
 import LikeButton from "~/components/posters/LikeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 
@@ -19,6 +19,7 @@ const Poster = ({
   height,
   likes,
   user,
+  isSelected,
 }: PostersProps) => {
   const author = user?.username;
   return (
@@ -57,7 +58,7 @@ const Poster = ({
         <LikeButton id={id} likes={likes} hasHoverAnim />
       </div>
       <div className="absolute left-[2px] top-[2px] z-10">
-        <CheckboxDelete id={id} />
+        <CheckboxSelect id={id} />
       </div>
     </div>
   );

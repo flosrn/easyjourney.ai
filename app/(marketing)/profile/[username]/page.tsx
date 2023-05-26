@@ -2,9 +2,8 @@ import React, { Suspense } from "react";
 import type { User } from "@prisma/client";
 import { prisma } from "~/server/db/prisma";
 
-import DeleteButton from "~/components/posters/DeleteButton";
-
 import Posters from "../../posters/Posters";
+import { SelectPosters } from "./components/SelectPosters";
 
 type UserProfileProps = {
   params: { username: User["username"] };
@@ -28,15 +27,13 @@ export default async function CreatedByUser({
 }: UserProfileProps) {
   const user = await getUserCreatedPosters(username);
   return (
-    <>
-      <Suspense fallback={<div>Loading posters...</div>}>
-        {user?.posters && (
-          <>
-            <Posters posters={user.posters} noMargin className="mt-4" />
-            <DeleteButton />
-          </>
-        )}
-      </Suspense>
-    </>
+    <Suspense fallback={<div>Loading posters...</div>}>
+      {user?.posters && (
+        <>
+          <Posters posters={user.posters} noMargin className="mt-4" />
+          <SelectPosters />
+        </>
+      )}
+    </Suspense>
   );
 }

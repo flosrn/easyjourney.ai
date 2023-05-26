@@ -3,10 +3,11 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
-import { useDeletePosterStore } from "~/store/deletePosterStore";
+import { useSelectPosterStore } from "~/store/selectPosterStore";
+
+import { Button } from "~/components/ui/Button";
 
 const deletePoster = async (posterId: string) => {
   const response = await fetch("/api/posters/delete", {
@@ -21,8 +22,8 @@ const DeleteButton = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const [selectedDeletePosters, clearDeletePosters] = useDeletePosterStore(
-    (state) => [state.selectedDeletePosters, state.clearDeletePosters]
+  const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
+    (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
 
   const deleteMutation = useMutation(deletePoster, {
@@ -40,12 +41,12 @@ const DeleteButton = () => {
     }
 
     try {
-      selectedDeletePosters.map(async (posterId) => {
-        await deleteMutation.mutateAsync(posterId);
-        console.log("id :", posterId);
+      selectedPosters.map(async (id) => {
+        await deleteMutation.mutateAsync(id);
+        console.log("id :", id);
       });
 
-      clearDeletePosters;
+      clearSelectedPosters;
     } catch {
       toast.error(
         "Something went wrong deleting this poster, please try again"
@@ -54,7 +55,9 @@ const DeleteButton = () => {
   };
   return (
     <div>
-      <button onClick={handleLike}>Delete</button>
+      <Button variant="secondary" onClick={handleLike}>
+        Delete
+      </Button>
     </div>
   );
 };
