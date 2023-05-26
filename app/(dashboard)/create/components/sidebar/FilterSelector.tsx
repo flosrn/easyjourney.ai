@@ -148,7 +148,6 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                               width={200}
                               height={200}
                               placeholder="blur"
-                              blurDataURL={peekedFilter.image}
                               className="w-full rounded-sm"
                             />
                           )}
