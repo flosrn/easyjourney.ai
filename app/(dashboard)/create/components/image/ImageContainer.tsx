@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
-import Atropos from "atropos/react";
+import { ZoomInIcon } from "@radix-ui/react-icons";
 import { ImageIcon } from "lucide-react";
 import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 
@@ -12,8 +12,6 @@ import { useRatioStore } from "../../store/ratioStore";
 import { ImageGrid } from "./ImageGrid";
 import LoadingDots from "./LoadingDots";
 import "react-medium-image-zoom/dist/styles.css";
-import { ZoomInIcon } from "@radix-ui/react-icons";
-
 import "atropos/css";
 
 type ImageContainerProps = {};
@@ -47,7 +45,9 @@ const ImageContainer = ({}: ImageContainerProps) => {
   const hasImage = images.length > 0;
   const currentImageUrl = images[imageIndex]?.url;
   const hasImageGrid =
-    hasImage && (imageType === "generation" || imageType === "variation");
+    hasImage &&
+    !isLoading &&
+    (imageType === "generation" || imageType === "variation");
 
   return (
     <div className="flex-center min-h-[calc(100vh-400px)] rounded-md border p-4">
@@ -72,37 +72,22 @@ const ImageContainer = ({}: ImageContainerProps) => {
             })}
           >
             {currentImageUrl && (
-              <>
-                {hasImageGrid ? (
-                  <ControlledZoom
-                    isZoomed={isZoomed}
-                    onZoomChange={handleZoomChange}
-                  >
-                    <img src={currentImageUrl} alt="" className="rounded-md" />
-                  </ControlledZoom>
-                ) : (
-                  <Atropos activeOffset={40} shadowScale={1.05}>
-                    <ControlledZoom
-                      isZoomed={isZoomed}
-                      onZoomChange={handleZoomChange}
-                    >
-                      <img
-                        src={currentImageUrl}
-                        alt=""
-                        className="rounded-md"
-                      />
-                    </ControlledZoom>
-                  </Atropos>
-                )}
-              </>
+              <ControlledZoom
+                isZoomed={isZoomed}
+                onZoomChange={handleZoomChange}
+              >
+                <img src={currentImageUrl} alt="" className="rounded-md" />
+              </ControlledZoom>
             )}
-            <div
-              onClick={() => setIsZoomed(true)}
-              className="absolute inset-0 left-1/2 top-1/2 z-10 hidden h-min w-min -translate-x-1/2 -translate-y-1/2 cursor-zoom-in p-3 group-hover:flex"
-            >
-              <ZoomInIcon className="h-10 w-10 text-white opacity-30" />
-            </div>
-            {hasImageGrid && !isLoading && (
+            {!isLoading && (
+              <div
+                onClick={() => setIsZoomed(true)}
+                className="absolute inset-0 left-1/2 top-1/2 z-10 hidden h-min w-min -translate-x-1/2 -translate-y-1/2 cursor-zoom-in p-3 group-hover:flex"
+              >
+                <ZoomInIcon className="h-10 w-10 text-white opacity-30" />
+              </div>
+            )}
+            {hasImageGrid && (
               <ImageGrid
                 selectedImage={selectedImage}
                 clickHandler={setSelectedImage}
