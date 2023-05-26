@@ -164,7 +164,7 @@ const userMenu: NavItem[][] = [
       icon: Palette,
     },
     {
-      title: "Réglages",
+      title: "Réglages du compte",
       href: "/settings",
       icon: Settings,
     },

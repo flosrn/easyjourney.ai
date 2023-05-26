@@ -31,8 +31,6 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
   const { data: session } = useSession();
   const router = useRouter();
   const { setTheme } = useTheme();
-  const [isSettingsDialogOpen, setIsSettingsDialogOpen] = useState(false);
-  console.log("isSettingsDialopOpen", isSettingsDialogOpen);
 
   useEffect(() => {
     setTheme(isDarkTheme ? "dark" : "light");
@@ -64,7 +62,6 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
       }
       case "/settings": {
         event.preventDefault();
-        return setIsSettingsDialogOpen(!isSettingsDialogOpen);
       }
       default: {
         return href && router.push(href);
