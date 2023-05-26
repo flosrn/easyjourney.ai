@@ -7,7 +7,7 @@ import { Separator } from "~/components/ui/Separator";
 
 import { cn } from "~/lib/classNames";
 
-import type { Filter } from "../../../types/typeFilters";
+import type { Filter } from "../../types/typeFilters";
 
 type FilterCardProps = Filter & {
   isActive: boolean;

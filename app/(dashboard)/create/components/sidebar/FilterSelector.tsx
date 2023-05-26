@@ -207,9 +207,6 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                       <FilterItem
                         key={index}
                         filter={subCategory}
-                        onSelect={() => {
-                          router.push(`/create?filterCategory`);
-                        }}
                         onPeek={() => setPeekedSubCategory(subCategory)}
                       />
                     ))}
@@ -217,9 +214,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                   <CommandSeparator alwaysRender />
                   <CommandGroup className="-mx-1 -mb-1">
                     <CommandItem
-                      onSelect={() => {
-                        router.push("/create?filterCategory");
-                      }}
+                      onSelect={() => router.push("/create?filterCategory")}
                       className="flex-center cursor-pointer text-sm text-muted-foreground"
                     >
                       <LayoutListIcon className="mr-2 h-4 w-4" />

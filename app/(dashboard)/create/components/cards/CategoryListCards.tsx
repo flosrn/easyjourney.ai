@@ -6,8 +6,8 @@ import { Card } from "~/components/ui/Card";
 import {
   type CategoryFilter,
   type SubCategoryFilter,
-} from "../../../types/typeFilters";
-import EmojiIcon from "../EmojiIcon";
+} from "../../types/typeFilters";
+import EmojiIcon from "../dialog/EmojiIcon";
 
 export enum CategoryFilterType {
   "CATEGORY" = "CATEGORY",
