@@ -1,15 +1,20 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 import { Textarea } from "~/components/ui/Textarea";
+
+import { cn } from "~/lib/classNames";
 
 import { useImageGenerationStore } from "../../store/imageGenerationStore";
 import { usePromptStore } from "../../store/promptStore";
 
-type TextareaPromptProps = {};
+type TextareaPromptProps = {
+  collapse?: boolean;
+};
 
-const TextareaPrompt = ({}: TextareaPromptProps) => {
+const TextareaPrompt = ({ collapse }: TextareaPromptProps) => {
   const [promptValue, setPromptValue] = usePromptStore((state) => [
     state.promptValue,
     state.setPromptValue,
@@ -28,13 +33,15 @@ const TextareaPrompt = ({}: TextareaPromptProps) => {
   };
 
   return (
-    <Textarea
-      value={promptValue}
-      onChange={(event) => setPromptValue(event.target.value)}
-      onKeyDown={handleKeyDown}
-      placeholder="Tropical rainforest, gloomy, wet after rain, peaceful place 8k, hyper realistic"
-      className="my-5"
-    />
+    <motion.div layout>
+      <Textarea
+        value={promptValue}
+        onChange={(event) => setPromptValue(event.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder="Tropical rainforest, gloomy, wet after rain, peaceful place 8k, hyper realistic"
+        className={cn("my-5", collapse ? "h-16" : "h-[110px]")}
+      />
+    </motion.div>
   );
 };
 

@@ -86,6 +86,7 @@ const MainColumn = () => {
   ]);
 
   const hasImages = images.length > 0;
+  const hasFilters = selectedFilters.length > 0;
   const currentImage = images[imageIndex];
   const isFirst = imageIndex === 0;
   const isLast = imageIndex === images.length - 1;
@@ -188,8 +189,8 @@ const MainColumn = () => {
             </div>
           </div>
           <Separator className="my-4" />
-          <FiltersBadge />
-          <TextareaPrompt />
+          {hasFilters && <FiltersBadge />}
+          <TextareaPrompt collapse={hasFilters} />
           <SideColumn className="lg:hidden" />
           <ImageContainer />
           <motion.div layout className="flex justify-center space-x-2">
