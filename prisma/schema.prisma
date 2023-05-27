@@ -9,12 +9,20 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// -----------------------------------------------------------------------------
+// Poster
+// Represents an individual poster with associated metadata
+// -----------------------------------------------------------------------------
 model Poster {
-  id       String  @id @default(uuid())
-  title    String?
-  prompt   String
-  image    String
-  filename String?
+  id              String   @id @default(uuid())
+  title           String?
+  prompt          String
+  image           String
+  isPublic        Boolean? @default(true) @map(name: "is_public")
+  filename        String?
+  jobId           String?  @map(name: "job_id")
+  discordImageUrl String?  @map(name: "discord_image_url")
+  mjImageUrl      String?  @map(name: "mj_image_url")
 
   width   Int?
   height  Int?
@@ -25,7 +33,9 @@ model Poster {
   quality Float?
   stylize Int?
 
-  likes Like[] @relation("posterLikes")
+  likes        Like[]        @relation("posterLikes")
+  categories   Category[]
+  boardPosters BoardPoster[]
 
   user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
   userId String? @map(name: "user_id")
@@ -36,6 +46,69 @@ model Poster {
   @@map("posters")
 }
 
+// -----------------------------------------------------------------------------
+// Category
+// Represents a category that can be associated with many posters
+// -----------------------------------------------------------------------------
+model Category {
+  id          String  @id @default(uuid())
+  name        String
+  slug        String
+  icon        String?
+  description String?
+  image       String?
+
+  posters Poster[]
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@map("categories")
+}
+
+// -----------------------------------------------------------------------------
+// BoardPoster
+// Join table for many-to-many relationship between boards and posters
+// -----------------------------------------------------------------------------
+model BoardPoster {
+  boardId  String @map(name: "board_id")
+  posterId String @map(name: "poster_id")
+  position Int
+
+  board  Board  @relation(fields: [boardId], references: [id])
+  poster Poster @relation(fields: [posterId], references: [id])
+
+  @@id([boardId, posterId])
+  @@map("board_posters")
+}
+
+// -----------------------------------------------------------------------------
+// Board
+// Represents a user-created collection of posters
+// -----------------------------------------------------------------------------
+model Board {
+  id          String  @id @default(uuid())
+  name        String
+  slug        String
+  icon        String?
+  description String?
+  isPublic    Boolean @default(true) @map(name: "is_public")
+
+  boardPosters BoardPoster[]
+
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String? @map(name: "user_id")
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@map("boards")
+}
+
+// -----------------------------------------------------------------------------
+// Like
+// Represents a like given by a user to a specific poster
+// -----------------------------------------------------------------------------
 model Like {
   id String @id @default(uuid())
 
@@ -51,6 +124,10 @@ model Like {
   @@map("likes")
 }
 
+// -----------------------------------------------------------------------------
+// Follow
+// Represents a follow relationship between two users
+// -----------------------------------------------------------------------------
 model Follow {
   id String @id @default(uuid())
 
@@ -75,6 +152,10 @@ enum UserRole {
   USER
 }
 
+// -----------------------------------------------------------------------------
+// User
+// Represents an individual user with associated account and profile information
+// -----------------------------------------------------------------------------
 model User {
   id            String    @id @default(cuid())
   name          String
@@ -89,6 +170,7 @@ model User {
   accounts Account[]
   sessions Session[]
   posters  Poster[]
+  boards   Board[]
 
   likes     Like[]   @relation("userLikes")
   followers Follow[] @relation("following")
@@ -100,6 +182,10 @@ model User {
   @@map("users")
 }
 
+// -----------------------------------------------------------------------------
+// Account
+// Represents an account linked to a user for authentication
+// -----------------------------------------------------------------------------
 model Account {
   id                String  @id @default(cuid())
   userId            String  @map("user_id")
@@ -122,6 +208,10 @@ model Account {
   @@map("accounts")
 }
 
+// -----------------------------------------------------------------------------
+// Session
+// Represents a session of a logged-in user
+// -----------------------------------------------------------------------------
 model Session {
   id           String   @id @default(cuid())
   userId       String?  @map("user_id")
@@ -137,6 +227,10 @@ model Session {
   @@map("sessions")
 }
 
+// -----------------------------------------------------------------------------
+// VerificationToken
+// Represents a token for user verification
+// -----------------------------------------------------------------------------
 model VerificationToken {
   id         String   @id @default(cuid())
   identifier String
