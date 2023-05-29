@@ -34,17 +34,14 @@ const DeleteButton = () => {
     },
   });
 
-  const handleLike = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!session) {
       return router.push("/api/auth/signin");
     }
 
     try {
-      selectedPosters.map(async (id) => {
-        await deleteMutation.mutateAsync(id);
-      });
-
+      selectedPosters.map(async (id) => await deleteMutation.mutateAsync(id));
       clearSelectedPosters;
     } catch {
       toast.error(
@@ -52,11 +49,7 @@ const DeleteButton = () => {
       );
     }
   };
-  return (
-    <div>
-      <Button onClick={handleLike}>Delete</Button>
-    </div>
-  );
+  return <Button onClick={handleLDelete}>Delete</Button>;
 };
 
 export default DeleteButton;

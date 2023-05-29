@@ -57,7 +57,7 @@ const Poster = ({
       <div className="absolute right-[2px] top-[2px] z-10">
         <LikeButton id={id} likes={likes} hasHoverAnim />
       </div>
-      <div className="absolute left-[2px] top-[2px] z-10">
+      <div className="absolute left-[2px] top-[2px] z-10 ">
         <CheckboxSelect id={id} />
       </div>
     </div>
