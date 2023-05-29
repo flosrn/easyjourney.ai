@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import getFirstLetters from "~/utils/getFirstLetter";
 
+import CheckboxSelect from "~/components/posters/CheckboxSelect";
 import LikeButton from "~/components/posters/LikeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 
@@ -20,6 +21,7 @@ const Poster = ({
   user,
 }: PostersProps) => {
   const author = user?.username;
+
   return (
     <div className="group relative h-auto max-w-full overflow-hidden rounded-lg">
       <Link href={`/poster/${id}`}>
@@ -54,6 +56,9 @@ const Poster = ({
       )}
       <div className="absolute right-[2px] top-[2px] z-10">
         <LikeButton id={id} likes={likes} hasHoverAnim />
+      </div>
+      <div className="absolute left-[0px] top-[0px] z-10 p-1">
+        <CheckboxSelect id={id} />
       </div>
     </div>
   );
