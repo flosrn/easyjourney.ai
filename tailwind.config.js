@@ -85,30 +85,12 @@ export default {
             transform: "translateY(-60.21%)",
           },
         },
-        chevron: {
-          "0%": {
-            transform: "rotate(0deg)",
-          },
-          "100%": {
-            transform: "rotate(-45deg)",
-          },
-        },
-        arrow: {
-          "0%": {
-            transform: "rotate(-45deg)",
-          },
-          "100%": {
-            transform: "rotate(0deg)",
-          },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         slidetop: "slidetop 60s linear infinite",
         "slidetop-slower": "slidetop 80s linear infinite",
-        chevron: "chevron 0.5s forwards",
-        arrow: "arrow 0.5s forwards",
       },
     },
   },
