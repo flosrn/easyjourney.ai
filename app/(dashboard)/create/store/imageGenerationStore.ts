@@ -1,7 +1,7 @@
+import { blacklistedWords } from "~/data/blacklistedWords";
 import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
 import { create } from "zustand";
-import { blacklistedWords } from "~/data/blacklistedWords";
 
 import readStreamData from "../lib/readStreamData";
 
@@ -56,7 +56,8 @@ type ImageGenerationAction = ImageGenerationSetAction & {
     prompt: string,
     ratio: string,
     style: string,
-    imageSelected: number | null
+    imageSelected: number | null,
+    username?: string
   ) => Promise<void>;
 };
 
@@ -92,7 +93,7 @@ export const useImageGenerationStore = create<
       isLoading: false,
       error: null,
       message: "",
-      selectedImage: null,
+      selectedImage: 0,
       imageType: null,
       isImageUploaded: false,
     }));
@@ -331,14 +332,14 @@ export const useImageGenerationStore = create<
       prompt: string,
       ratio: string,
       style: string,
-      imageSelected: number | null
+      imageSelected: number | null,
+      username?: string
     ) => {
       setIsLoading(true);
       setLoadingType("upload");
       setError(null);
       setMessage("");
       const { url, filename, width, height, size, referencedImage } = image;
-      console.log("referencedImage :", referencedImage);
       const response = await fetch("/api/posters/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -365,6 +366,9 @@ export const useImageGenerationStore = create<
         setIsLoading(false);
         setLoadingType(null);
         setIsImageUploaded(true);
+        setSelectedImage(0);
+        await fetch("/api/revalidate?path=/posters/new");
+        username && (await fetch(`/api/revalidate?path=/profile/${username}`));
       } else {
         toast.error("Something went wrong while saving the image");
         setIsLoading(false);

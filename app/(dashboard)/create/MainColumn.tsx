@@ -12,18 +12,19 @@ import {
   Trash2Icon,
   UndoIcon,
 } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 
 import { Button } from "~/components/ui/Button";
 import { Separator } from "~/components/ui/Separator";
 
-import SideColumn from "./SideColumn";
 import FiltersBadge from "./components/badge/FiltersBadge";
 import FiltersDialog from "./components/dialog/FiltersDialog";
 import ImageContainer from "./components/image/ImageContainer";
 import TextareaPrompt from "./components/input/TextareaPrompt";
 import { aspectRatios } from "./data/aspectRatios";
 import { handleMessageData } from "./lib/imageGenerationUtils";
+import SideColumn from "./SideColumn";
 import { useFilterStore } from "./store/filterStore";
 import { useImageGenerationStore } from "./store/imageGenerationStore";
 import { usePromptStore } from "./store/promptStore";
@@ -84,6 +85,8 @@ const MainColumn = () => {
     state.promptValue,
     state.setPromptValue,
   ]);
+  const { data: session } = useSession();
+  const username = session?.user.username;
 
   const hasImages = images.length > 0;
   const hasFilters = selectedFilters.length > 0;
@@ -199,7 +202,7 @@ const MainColumn = () => {
                 onClick={async () =>
                   variationImage(imageSelected, currentImage)
                 }
-                disabled={isLoading || imageSelected === 0}
+                disabled={isLoading || imageSelected === 0 || isImageUpscaled}
                 variant="outline"
               >
                 {isVariationLoading ? (
@@ -213,7 +216,7 @@ const MainColumn = () => {
             <motion.div layout className="flex-center mt-4">
               <Button
                 onClick={async () => upscaleImage(imageSelected, currentImage)}
-                disabled={isLoading || imageSelected === 0}
+                disabled={isLoading || imageSelected === 0 || isImageUpscaled}
                 variant="secondary"
               >
                 {isUpscaleLoading ? (
@@ -233,7 +236,8 @@ const MainColumn = () => {
                       promptValue,
                       ratioValue,
                       styles[0],
-                      imageSelected
+                      imageSelected,
+                      username
                     )
                   }
                   disabled={isUploadLoading || isImageUploaded}
