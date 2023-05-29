@@ -9,6 +9,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 
 import type { PosterType } from "~/types/poster";
 
+import BottomPosterPrompt from "./BottomPosterPrompt";
+
 type PostersProps = PosterType;
 
 const Poster = ({
@@ -31,12 +33,7 @@ const Poster = ({
           width={width ?? 500}
           height={height ?? 500}
         />
-        <div className="absolute inset-0 hidden bg-black/50 md:group-hover:block" />
-        <div className="absolute bottom-0 mt-1 hidden w-full truncate p-2 md:group-hover:block">
-          <p className="w-full truncate text-sm font-medium text-white">
-            {prompt}
-          </p>
-        </div>
+        <BottomPosterPrompt prompt={prompt} />
       </Link>
       {author && (
         <p className="absolute left-2 top-1 z-10 hidden w-full text-[10px] md:group-hover:block">

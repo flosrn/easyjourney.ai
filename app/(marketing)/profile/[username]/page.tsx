@@ -1,10 +1,9 @@
 import React, { Suspense } from "react";
 import type { User } from "@prisma/client";
-import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
-import Posters from "../../posters/Posters";
-import { ButtonSelectPosters, SelectPosters } from "./components/SelectPosters";
+import Posters from "../../posters/components/Posters";
+import { SelectBar } from "./components/SelectBar";
 
 type UserProfileProps = {
   params: { username: User["username"]; isMe: boolean };
@@ -27,15 +26,12 @@ export default async function CreatedByUser({
   params: { username },
 }: UserProfileProps) {
   const user = await getUserCreatedPosters(username);
-  const session = await getServerAuthSession();
-  const isMe = session?.user.id === user?.id;
   return (
     <Suspense fallback={<div>Loading posters...</div>}>
       {user?.posters && (
         <>
-          {isMe && <ButtonSelectPosters />}
-          <Posters posters={user.posters} noMargin className="mt-4" />
-          <SelectPosters />
+          <Posters posters={user.posters} noMargin />
+          <SelectBar />
         </>
       )}
     </Suspense>

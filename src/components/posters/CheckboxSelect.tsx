@@ -1,6 +1,6 @@
 "use client";
 
-import { useModalSelectStore } from "~/../app/(marketing)/profile/store/modalSelectPostersStore";
+import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
 
 import { Checkbox } from "~/components/ui/Checkbox";
@@ -10,25 +10,22 @@ type CheckboxDeleteProps = {
 };
 
 const CheckboxSelect = ({ id }: CheckboxDeleteProps) => {
-  const isModalSelectOpen = useModalSelectStore(
-    (state) => state.isModalSelectOpen
-  );
-
+  const isSelectBarOpen = useSelectBarStore((state) => state.isSelectBarOpen);
   const [selectedPosters, addPoster, removePoster] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.addPoster, state.removePoster]
   );
 
-  const isSelected = selectedPosters.find((posterId) => posterId === id);
+  const isSelected = selectedPosters.includes(id);
 
   const handleToggleSelect = () =>
     isSelected ? removePoster(id) : addPoster(id);
 
-  return isModalSelectOpen ? (
-    <div className="flex items-center space-x-2 p-1 pb-3 pr-3">
+  return isSelectBarOpen ? (
+    <div className="ml-2 mt-1">
       <Checkbox
-        className="h-6 w-6 rounded-full"
-        checked={!!isSelected}
+        checked={isSelected}
         onCheckedChange={handleToggleSelect}
+        className="h-5 w-5"
       />
     </div>
   ) : null;
