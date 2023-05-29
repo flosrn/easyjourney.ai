@@ -28,7 +28,7 @@ const PosterInfoContainer = ({
   const author = user?.username;
   const date = formatDate({ dateObject: createdAt });
   return (
-    <>
+    <div className="pt-4 md:w-5/12">
       <div>
         {author && (
           <p className="left-2 top-1 z-10 w-full text-sm font-extrabold md:group-hover:block">
@@ -163,7 +163,7 @@ const PosterInfoContainer = ({
           <span>{stylize ?? "None"}</span>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
