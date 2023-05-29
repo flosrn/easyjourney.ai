@@ -27,7 +27,7 @@ const CheckboxSelect = ({ id }: CheckboxDeleteProps) => {
   return isModalSelectOpen ? (
     <div className="flex items-center space-x-2 p-1">
       <Checkbox
-        className=" data-[state=checked]:white rounded-full data-[state=checked]:border-white"
+        className="rounded-full data-[state=checked]:border-white"
         checked={!!isSelected}
         onCheckedChange={handleToggleSelect}
       />

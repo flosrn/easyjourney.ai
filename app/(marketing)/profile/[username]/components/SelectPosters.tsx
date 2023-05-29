@@ -2,11 +2,13 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { LucideX, LucideXCircle, MousePointerClick } from "lucide-react";
+import { LucideX, MousePointerClick } from "lucide-react";
 import DeleteButton from "~/../app/(marketing)/profile/[username]/components/DeleteButton";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
 
 import { Button } from "~/components/ui/Button";
+
+import { cn } from "~/lib/classNames";
 
 import { useModalSelectStore } from "../../store/modalSelectPostersStore";
 
@@ -27,12 +29,15 @@ export const ButtonSelectPosters = () => {
   return (
     <button
       onClick={toggleModal}
-      className={`m-auto mt-4 flex rounded-md px-4 py-2 ${
-        isModalSelectOpen ? " bg-blue-500" : " bg-gray-300 text-black"
-      }`}
+      className={cn("m-auto mt-4 flex rounded-md px-4 py-2", {
+        "bg-blue-500": isModalSelectOpen,
+        "bg-gray-300 text-black": !isModalSelectOpen,
+      })}
     >
       <MousePointerClick
-        className={` m-auto mr-2 h-4 w-4 ${isModalSelectOpen && "text-black"}`}
+        className={cn("m-auto mr-2 h-4 w-4", {
+          "text-black": isModalSelectOpen,
+        })}
       />
       Select Images
     </button>
