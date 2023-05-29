@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
-import type { APIAttachment, APIMessage } from "discord-api-types/v10";
 import { retrieveMessages, wait } from "~/utils/midjourneyUtils";
+import type { APIAttachment, APIMessage } from "discord-api-types/v10";
 
 import type { ImageData } from "../../../app/(dashboard)/create/store/imageGenerationStore";
 
@@ -243,7 +243,11 @@ export default async function handler(request: Request) {
             type: "referenced_image",
             ...data.referencedImage,
           });
-          streamController.enqueue(encoder.encode(messageWithReferencedImage));
+          setTimeout(() => {
+            streamController.enqueue(
+              encoder.encode(messageWithReferencedImage)
+            );
+          }, 1000);
         }
       }
       // Ferme le flux une fois que la fonction imagine est terminée
