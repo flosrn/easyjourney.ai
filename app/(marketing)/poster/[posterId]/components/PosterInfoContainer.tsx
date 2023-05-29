@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Info } from "lucide-react";
 import { formatDate } from "~/utils/formatDate";
 import getFirstLetters from "~/utils/getFirstLetter";
+import { Info } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 import {
