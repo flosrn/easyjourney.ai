@@ -12,12 +12,19 @@ export async function POST(request: Request) {
   try {
     const { posterId } = await request.json();
 
+    await prisma.like.deleteMany({
+      where: {
+        posterId,
+      },
+    });
+
     const data = await prisma.poster.delete({
       where: {
         id: posterId,
       },
     });
-    return NextResponse.json({ status: 200, data });
+
+    return NextResponse.json({ status: 204 });
   } catch {
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }
