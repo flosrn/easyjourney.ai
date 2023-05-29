@@ -1,4 +1,4 @@
-const extractJobId = (url: string) => {
+const extractJobId = (url: string): string | undefined => {
   const splitedUrl = url.split("_");
   const lastPart = splitedUrl.at(-1);
   const jobId = lastPart?.split(".")[0];

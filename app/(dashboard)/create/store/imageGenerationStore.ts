@@ -133,7 +133,10 @@ export const useImageGenerationStore = create<
       } else if (isReferencedImage) {
         const lastImage = state.images.at(-1);
         return {
-          images: lastImage && [...state.images.slice(0, -1), { ...lastImage }],
+          images: lastImage && [
+            ...state.images.slice(0, -1),
+            { ...lastImage, referencedImage: image },
+          ],
         };
       } else if (isLoading) {
         return { images: [...state.images] };
@@ -335,6 +338,7 @@ export const useImageGenerationStore = create<
       setError(null);
       setMessage("");
       const { url, filename, width, height, size, referencedImage } = image;
+      console.log("referencedImage :", referencedImage);
       const response = await fetch("/api/posters/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

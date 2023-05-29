@@ -4,6 +4,8 @@ import { prisma } from "~/server/db/prisma";
 import extractJobId from "~/utils/extractJobId";
 import getPosterTitle from "~/utils/getPosterTitle";
 
+const BASE_MIDJOURNEY_URL = "https://cdn.midjourney.com/";
+
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
 
@@ -17,8 +19,9 @@ export async function POST(request: Request) {
     const { imageSelected, ...rest } = body;
 
     const title = getPosterTitle(prompt);
-    const jobId = extractJobId(referencedImage.filename);
-    const mjImageUrl = `https://cdn.midjourney.com/${jobId}/0_${imageSelected}.png`;
+    const jobId = referencedImage && extractJobId(referencedImage.filename);
+    const mjImageUrl =
+      jobId && `${BASE_MIDJOURNEY_URL}${jobId}/0_${imageSelected}.png`;
 
     const data = await prisma.poster.create({
       data: {
