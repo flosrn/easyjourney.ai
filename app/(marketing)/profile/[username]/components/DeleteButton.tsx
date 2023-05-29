@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
+import { Loader2Icon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
@@ -21,6 +22,7 @@ const deletePoster = async (posterId: string) => {
 const DeleteButton = () => {
   const { data: session } = useSession();
   const router = useRouter();
+  const pathname = usePathname();
 
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
@@ -34,7 +36,7 @@ const DeleteButton = () => {
     },
   });
 
-  const handleLDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!session) {
       return router.push("/api/auth/signin");
@@ -45,14 +47,21 @@ const DeleteButton = () => {
         selectedPosters.map(async (id) => deleteMutation.mutateAsync(id))
       );
       await clearSelectedPosters();
-      window.location.reload();
+      await fetch(`/api/revalidate?path=${pathname}`);
     } catch {
       toast.error(
         "Something went wrong deleting this poster, please try again"
       );
     }
   };
-  return <Button onClick={handleLDelete}>Delete</Button>;
+  return (
+    <Button onClick={handleDelete}>
+      {deleteMutation.isLoading && (
+        <Loader2Icon className="mr-2 h-5 animate-spin" />
+      )}
+      Delete
+    </Button>
+  );
 };
 
 export default DeleteButton;
