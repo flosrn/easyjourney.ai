@@ -21,11 +21,14 @@ const CheckboxSelect = ({ id }: CheckboxDeleteProps) => {
     isSelected ? removePoster(id) : addPoster(id);
 
   return isSelectBarOpen ? (
-    <div className="ml-2 mt-1">
+    <div
+      onClick={handleToggleSelect}
+      className="absolute inset-0 z-10 cursor-pointer hover:bg-background/20"
+    >
       <Checkbox
         checked={isSelected}
         onCheckedChange={handleToggleSelect}
-        className="h-5 w-5"
+        className="m-2 h-5 w-5"
       />
     </div>
   ) : null;

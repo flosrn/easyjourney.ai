@@ -9,7 +9,7 @@ type UserProfileProps = {
   params: { username: User["username"]; isMe: boolean };
 };
 
-const getUserCreatedPosters = async (username: User["username"]) =>
+const getPostersCreatedByUser = async (username: User["username"]) =>
   prisma.user.findUnique({
     where: { username },
     include: {
@@ -25,7 +25,7 @@ const getUserCreatedPosters = async (username: User["username"]) =>
 export default async function CreatedByUser({
   params: { username },
 }: UserProfileProps) {
-  const user = await getUserCreatedPosters(username);
+  const user = await getPostersCreatedByUser(username);
   return (
     <Suspense fallback={<div>Loading posters...</div>}>
       {user?.posters && (
