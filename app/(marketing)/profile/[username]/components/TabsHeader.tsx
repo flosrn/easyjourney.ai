@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BadgePlusIcon, HeartIcon } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 import { Tabs, TabsList, TabsTrigger } from "~/components/ui/Tabs";
 
@@ -15,9 +16,12 @@ type TabsHeaderProps = {
 };
 
 const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
+  const { data: session } = useSession();
   const pathname = usePathname();
   const isLikePage = pathname?.includes("likes");
   const value = isLikePage ? "liked" : "created";
+  const isAdmin = session?.user.role === "ADMIN";
+  const showSelectButton = (isCurrentUser && !isLikePage) || isAdmin;
   return (
     <div className="my-4 flex items-center justify-between space-x-3">
       <Tabs value={value} className="w-[263px]">
@@ -36,7 +40,7 @@ const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
           </Link>
         </TabsList>
       </Tabs>
-      {isCurrentUser && !isLikePage && <SelectButton />}
+      {showSelectButton && <SelectButton />}
     </div>
   );
 };

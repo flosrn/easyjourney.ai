@@ -9,6 +9,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ status: 401, message: "User not logged in" });
   }
 
+  // TODO: Check if user who is deleting the poster is the owner of the poster
+
   try {
     const { posterId } = await request.json();
 
