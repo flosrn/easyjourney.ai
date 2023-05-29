@@ -14,24 +14,27 @@ generator client {
 // Represents an individual poster with associated metadata
 // -----------------------------------------------------------------------------
 model Poster {
-  id              String   @id @default(uuid())
+  id              String  @id @default(uuid())
   title           String?
   prompt          String
   image           String
-  isPublic        Boolean? @default(true) @map(name: "is_public")
+  isPublic        Boolean @default(true) @map(name: "is_public")
   filename        String?
-  jobId           String?  @map(name: "job_id")
-  discordImageUrl String?  @map(name: "discord_image_url")
-  mjImageUrl      String?  @map(name: "mj_image_url")
+  jobId           String? @map(name: "job_id")
+  discordImageUrl String? @map(name: "discord_image_url")
+  mjImageUrl      String? @map(name: "mj_image_url")
 
   width   Int?
   height  Int?
+  size    Int?
   ratio   String?
   style   String?
   model   String?
   chaos   Int?
   quality Float?
   stylize Int?
+
+  referencedImage Json? @map(name: "referenced_image")
 
   likes        Like[]        @relation("posterLikes")
   categories   Category[]
@@ -144,7 +147,9 @@ model Follow {
 }
 
 // -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 //                              NextAuth.js Models
+// -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
 enum UserRole {

@@ -1,9 +1,7 @@
-import { uploadFile } from "@uploadcare/upload-client";
 import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
 import { create } from "zustand";
 import { blacklistedWords } from "~/data/blacklistedWords";
-import { env } from "~/env.mjs";
 
 import { readStreamData } from "../lib/imageGenerationUtils";
 
@@ -12,6 +10,7 @@ export type ImageData = APIAttachment & {
   prompt: string;
   messageId: string;
   messageHash: string;
+  referencedImage?: APIAttachment;
   error?: string;
 };
 
@@ -45,6 +44,7 @@ export type ImageGenerationSetAction = {
   ) => void;
   setShowActionsButtons: (showActionsButtons: boolean) => void;
   setIsImageUploaded: (isImageUploaded: boolean) => void;
+  retry: () => void;
 };
 
 type ImageGenerationAction = ImageGenerationSetAction & {
@@ -55,7 +55,8 @@ type ImageGenerationAction = ImageGenerationSetAction & {
     image: ImageData,
     prompt: string,
     ratio: string,
-    style: string
+    style: string,
+    imageSelected: number | null
   ) => Promise<void>;
 };
 
@@ -107,6 +108,9 @@ export const useImageGenerationStore = create<
   const setIsImageUploaded = (isImageUploaded: boolean) => {
     set(() => ({ isImageUploaded }));
   };
+  const retry = () => {
+    set(() => ({ isLoading: false, error: null }));
+  };
 
   const addImage = (image: ImageData) => {
     set((state) => {
@@ -114,6 +118,7 @@ export const useImageGenerationStore = create<
       const isUpscaled = image.type === "image_upscaled";
       const isVariation = image.type === "variation_complete";
       const isIteration = image.type === "image_iteration";
+      const isReferencedImage = image.type === "referenced_image";
       const isLoading = image.type === "loading";
       setTimeout(() => {
         isGenerated && toast.success("Poster successfully generated!");
@@ -124,6 +129,11 @@ export const useImageGenerationStore = create<
         return {
           images: [...state.images, image],
           imageIndex: [...state.images, image].length - 1,
+        };
+      } else if (isReferencedImage) {
+        const lastImage = state.images.at(-1);
+        return {
+          images: lastImage && [...state.images.slice(0, -1), { ...lastImage }],
         };
       } else if (isLoading) {
         return { images: [...state.images] };
@@ -148,6 +158,7 @@ export const useImageGenerationStore = create<
     setLoadingType,
     setShowActionsButtons,
     setIsImageUploaded,
+    retry,
   };
 
   return {
@@ -222,7 +233,6 @@ export const useImageGenerationStore = create<
       setLoadingType("upscale");
       setError(null);
       setMessage("");
-      setSelectedImage(0);
       setImageType(null);
       setIsImageUploaded(false);
 
@@ -317,45 +327,45 @@ export const useImageGenerationStore = create<
       image: ImageData,
       prompt: string,
       ratio: string,
-      style: string
+      style: string,
+      imageSelected: number | null
     ) => {
       setIsLoading(true);
       setLoadingType("upload");
       setError(null);
       setMessage("");
-      setSelectedImage(0);
-
-      const uploadResponse = await uploadFile(image.proxy_url, {
-        publicKey: env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY,
-        fileName: image.filename,
-        store: true,
+      const { url, filename, width, height, size, referencedImage } = image;
+      const response = await fetch("/api/posters/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          image: url,
+          filename,
+          width,
+          height,
+          size,
+          prompt,
+          ratio,
+          style,
+          imageSelected,
+          referencedImage,
+          model: "MJ Version 5.1",
+          chaos: 0,
+          quality: 1,
+          stylize: 100,
+        }),
       });
-      const imageUrl = uploadResponse.cdnUrl;
-      if (imageUrl && uploadResponse.imageInfo) {
-        const saveResponse = await fetch("/api/posters/save", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            image: imageUrl,
-            prompt,
-            width: uploadResponse.imageInfo.width,
-            height: uploadResponse.imageInfo.height,
-            filename: image.filename,
-            ratio,
-            style,
-            model: "MJ Version 5.1",
-            chaos: 0,
-            quality: 1,
-            stylize: 100,
-          }),
-        });
-        const data = await saveResponse.json();
-        if (data.data.image) {
-          toast.success("Image saved successfully");
-          setIsLoading(false);
-          setLoadingType(null);
-          setIsImageUploaded(true);
-        }
+      const data = await response.json();
+      if (data?.data?.image) {
+        toast.success("Image saved successfully");
+        setIsLoading(false);
+        setLoadingType(null);
+        setIsImageUploaded(true);
+      } else {
+        toast.error("Something went wrong while saving the image");
+        setIsLoading(false);
+        setLoadingType(null);
+        setIsImageUploaded(false);
       }
     },
   };

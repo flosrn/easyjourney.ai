@@ -232,7 +232,8 @@ const MainColumn = () => {
                       currentImage,
                       promptValue,
                       ratioValue,
-                      styles[0]
+                      styles[0],
+                      imageSelected
                     )
                   }
                   disabled={isUploadLoading || isImageUploaded}

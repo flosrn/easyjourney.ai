@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useEffect, useState } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { PopoverProps } from "@radix-ui/react-popover";
 import { Check, ChevronsUpDown, LayoutListIcon } from "lucide-react";
@@ -147,7 +147,6 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                               alt={peekedFilter.name}
                               width={200}
                               height={200}
-                              placeholder="blur"
                               className="w-full rounded-sm"
                             />
                           )}

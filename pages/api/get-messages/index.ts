@@ -97,6 +97,7 @@ const findAttachmentInMessages = async (
   });
   console.log("initial message found");
   let attachment: APIAttachment | undefined;
+  let referencedImage: APIAttachment | undefined;
 
   if (
     isUpscaleOrVariation &&
@@ -104,9 +105,11 @@ const findAttachmentInMessages = async (
     initialMessage.attachments[0].url.endsWith(".png")
   ) {
     attachment = initialMessage.attachments[0];
+    referencedImage = initialMessage.referenced_message?.attachments[0];
     console.log("variation or upscale found");
     return {
       ...attachment,
+      referencedImage,
       prompt: initialMessage.content.split("**")[1],
       messageId: initialMessage.id,
       messageHash: uriToHash(attachment.url),
@@ -129,6 +132,7 @@ const findAttachmentInMessages = async (
       loading(null);
     } else if (targetMessage) {
       attachment = targetMessage.attachments[0];
+      referencedImage = targetMessage.referenced_message?.attachments[0];
       if (
         attachment.url.endsWith("grid_0.webp") &&
         attachment.filename === "grid_0.webp" &&
@@ -142,6 +146,7 @@ const findAttachmentInMessages = async (
         if (isIntervalOk) {
           return {
             ...attachment,
+            referencedImage,
             prompt: initialMessage.content.split("**")[1],
             messageId: targetMessage.id,
             messageHash: uriToHash(attachment.url),
@@ -224,13 +229,22 @@ export default async function handler(request: Request) {
       });
 
       if (data) {
-        console.log("data :", data);
         // Envoie un message final pour indiquer la fin de la génération avec la dernière image
         const message = JSON.stringify({
           type: getMessageType(option),
           ...data,
+          referencedImage: undefined,
         });
         streamController.enqueue(encoder.encode(message));
+
+        const hasReferencedImage = !!data.referencedImage;
+        if (hasReferencedImage) {
+          const messageWithReferencedImage = JSON.stringify({
+            type: "referenced_image",
+            ...data.referencedImage,
+          });
+          streamController.enqueue(encoder.encode(messageWithReferencedImage));
+        }
       }
       // Ferme le flux une fois que la fonction imagine est terminée
       streamController.close();
