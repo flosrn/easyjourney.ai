@@ -82,7 +82,7 @@ export const SelectPosters = () => {
               </button>
               <div>{numberOfPosters}</div>
             </div>
-            <div className=" mr-2 flex">
+            <div className="mr-2 flex">
               <DeleteButton />
               <Button
                 variant="secondary"
