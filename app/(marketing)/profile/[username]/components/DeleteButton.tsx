@@ -29,7 +29,6 @@ const DeleteButton = () => {
 
   const deleteMutation = useMutation(deletePoster, {
     onSuccess: async (data) => {
-      await fetch(`/api/revalidate?path=/profile/${username}`);
       if (data.status === 409) {
         toast.error("You already deleted this poster!");
       }
@@ -44,6 +43,7 @@ const DeleteButton = () => {
       );
       const data = await response[0].json();
       if (data) {
+        await fetch(`/api/revalidate?path=/profile/${username}`);
         setTimeout(() => {
           clearSelectedPosters();
           toggleSelectBar();
