@@ -25,11 +25,7 @@ const CheckboxSelect = ({ id }: CheckboxDeleteProps) => {
       onClick={handleToggleSelect}
       className="absolute inset-0 z-10 cursor-pointer hover:bg-background/20"
     >
-      <Checkbox
-        checked={isSelected}
-        onCheckedChange={handleToggleSelect}
-        className="m-2 h-5 w-5"
-      />
+      <Checkbox checked={isSelected} className="m-2 h-5 w-5" />
     </div>
   ) : null;
 };
