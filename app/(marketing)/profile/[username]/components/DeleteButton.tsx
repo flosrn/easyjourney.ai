@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
+import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
 import { Loader2Icon } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -22,11 +23,12 @@ const deletePoster = async (posterId: string) => {
 const DeleteButton = () => {
   const { data: session } = useSession();
   const router = useRouter();
-  const pathname = usePathname();
+  const { username } = useParams() ?? {};
 
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
+  const toggleSelectBar = useSelectBarStore((state) => state.toggleSelectBar);
 
   const deleteMutation = useMutation(deletePoster, {
     onSuccess: (data) => {
@@ -43,11 +45,16 @@ const DeleteButton = () => {
     }
 
     try {
-      await Promise.all(
+      const response = await Promise.all(
         selectedPosters.map(async (id) => deleteMutation.mutateAsync(id))
       );
-      await clearSelectedPosters();
-      await fetch(`/api/revalidate?path=${pathname}`);
+      const data = await response[0].json();
+      if (data) {
+        await fetch(`/api/revalidate?path=/profile/${username}`);
+        console.log("revalidate");
+        clearSelectedPosters();
+        toggleSelectBar();
+      }
     } catch {
       toast.error(
         "Something went wrong deleting this poster, please try again"
