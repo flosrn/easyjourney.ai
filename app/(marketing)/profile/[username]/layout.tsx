@@ -5,7 +5,6 @@ import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
 import FollowButton from "../FollowButton";
-import { ButtonSelectPosters } from "./components/SelectPosters";
 import TabsHeader from "./components/TabsHeader";
 
 type LayoutProfileHeaderProps = {
@@ -64,11 +63,7 @@ export default async function LayoutProfileHeader({
         <h1 className="mt-4 text-2xl font-semibold">{user.name}</h1>
         <p className="mt-2 text-lg">@{user.username}</p>
 
-        {isMe ? (
-          <ButtonSelectPosters />
-        ) : (
-          <FollowButton userId={user.id} isFollowing={isFollowing} />
-        )}
+        {!isMe && <FollowButton userId={user.id} isFollowing={isFollowing} />}
 
         <div className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
           <div className="text-center">

@@ -43,7 +43,6 @@ const DeleteButton = () => {
     try {
       selectedPosters.map(async (id) => {
         await deleteMutation.mutateAsync(id);
-        console.log("id :", id);
       });
 
       clearSelectedPosters;
@@ -55,9 +54,7 @@ const DeleteButton = () => {
   };
   return (
     <div>
-      <Button variant="secondary" onClick={handleLike}>
-        Delete
-      </Button>
+      <Button onClick={handleLike}>Delete</Button>
     </div>
   );
 };

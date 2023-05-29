@@ -2,30 +2,37 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { MousePointerClick } from "lucide-react";
+import { LucideX, LucideXCircle, MousePointerClick } from "lucide-react";
 import DeleteButton from "~/../app/(marketing)/profile/[username]/components/DeleteButton";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
 
 import { Button } from "~/components/ui/Button";
 
+import { useModalSelectStore } from "../../store/modalSelectPostersStore";
+
 export const ButtonSelectPosters = () => {
-  const [toggleSelectPostersOpen, isSelectPostersOpen] = useSelectPosterStore(
-    (state) => [state.toggleSelectPostersOpen, state.isSelectModalOpen]
+  const [isModalSelectOpen, toggleModalSelectOpen] = useModalSelectStore(
+    (state) => [state.isModalSelectOpen, state.toggleModalSelectOpen]
   );
 
-  const openSelect = () => toggleSelectPostersOpen();
+  const clearSelectedPosters = useSelectPosterStore(
+    (state) => state.clearSelectedPosters
+  );
+
+  const toggleModal = () =>
+    isModalSelectOpen
+      ? (clearSelectedPosters(), toggleModalSelectOpen())
+      : toggleModalSelectOpen();
 
   return (
     <button
-      onClick={openSelect}
-      className={`mt-4 flex content-center rounded-full px-4 py-2${
-        isSelectPostersOpen ? " bg-blue-500" : " bg-gray-300 text-black"
+      onClick={toggleModal}
+      className={`m-auto mt-4 flex rounded-md px-4 py-2 ${
+        isModalSelectOpen ? " bg-blue-500" : " bg-gray-300 text-black"
       }`}
     >
       <MousePointerClick
-        className={` m-auto mr-2 h-4 w-4 self-center${
-          isSelectPostersOpen && "text-black"
-        }`}
+        className={` m-auto mr-2 h-4 w-4 ${isModalSelectOpen && "text-black"}`}
       />
       Select Images
     </button>
@@ -33,44 +40,58 @@ export const ButtonSelectPosters = () => {
 };
 
 export const SelectPosters = () => {
-  const [
-    isSelectPostersOpen,
-    selectedPosters,
-    clearSelectedPosters,
-    toggleSelectPostersOpen,
-  ] = useSelectPosterStore((state) => [
-    state.isSelectModalOpen,
-    state.selectedPosters,
-    state.clearSelectedPosters,
-    state.toggleSelectPostersOpen,
-  ]);
+  const [isModalSelectOpen, toggleModalSelectOpen] = useModalSelectStore(
+    (state) => [state.isModalSelectOpen, state.toggleModalSelectOpen]
+  );
+
+  const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
+    (state) => [state.selectedPosters, state.clearSelectedPosters]
+  );
+
+  let numberOfPosters;
+  if (selectedPosters.length === 0) {
+    numberOfPosters = "No posters selected";
+  } else if (selectedPosters.length === 1) {
+    numberOfPosters = "1 Poster selected";
+  } else {
+    numberOfPosters = `${selectedPosters.length} Posters selected`;
+  }
 
   const handleClose = () => {
     clearSelectedPosters();
-    toggleSelectPostersOpen();
+    toggleModalSelectOpen();
   };
   return (
     <>
-      {isSelectPostersOpen && (
+      {isModalSelectOpen && (
         <motion.div
           initial={{ y: 80 }}
           animate={{ y: 0 }}
           transition={{ ease: "easeOut", duration: 0.5 }}
-          style={{ position: "fixed", bottom: "20px", left: "50%" }}
+          className="fixed bottom-[-5px] left-1/2 z-20 w-screen md:bottom-5"
         >
-          <div className="flex h-14 w-[40vw] -translate-x-1/2 items-center justify-between rounded-lg bg-muted">
-            <div>
-              <Button
-                variant="ghost"
-                className=" mr-2 h-5 w-5 rounded-full text-gray-400"
+          <div className="flex h-14 -translate-x-1/2 items-center justify-between rounded-lg bg-muted md:w-3/5 xl:w-2/5 ">
+            <div className="ml-5 flex md:ml-2">
+              <button
+                className="hidden text-gray-400 md:inline-block"
                 onClick={handleClose}
               >
-                x
-              </Button>
-              {selectedPosters.length} Posters selected
+                <LucideX
+                  className="h-4/6 w-auto
+                "
+                />
+              </button>
+              <div>{numberOfPosters}</div>
             </div>
-            <div className=" mr-2">
+            <div className=" mr-2 flex">
               <DeleteButton />
+              <Button
+                variant="secondary"
+                className="ml-2"
+                onClick={handleClose}
+              >
+                Cancel
+              </Button>
             </div>
           </div>
         </motion.div>

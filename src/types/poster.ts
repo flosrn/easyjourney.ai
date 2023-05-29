@@ -4,7 +4,6 @@ export type PosterType = Omit<Poster, "createdAt" | "updatedAt"> & {
   createdAt?: Date | string;
   likes?: Like[];
   user?: User | null;
-  isSelected?: boolean;
 };
 
 export type Posters = PosterType[];

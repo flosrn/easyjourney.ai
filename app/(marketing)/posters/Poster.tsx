@@ -19,9 +19,9 @@ const Poster = ({
   height,
   likes,
   user,
-  isSelected,
 }: PostersProps) => {
   const author = user?.username;
+
   return (
     <div className="group relative h-auto max-w-full overflow-hidden rounded-lg">
       <Link href={`/poster/${id}`}>
