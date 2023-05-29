@@ -81,9 +81,7 @@ export const SelectPosters = () => {
                 className="hidden text-gray-400 md:inline-block"
                 onClick={handleClose}
               >
-                <LucideX
-                  className="h-4/6 w-auto"
-                />
+                <LucideX className="h-4/6 w-auto" />
               </button>
               <div>{numberOfPosters}</div>
             </div>

@@ -20,7 +20,8 @@ const CheckboxSelect = ({ id }: CheckboxDeleteProps) => {
 
   const isSelected = selectedPosters.find((posterId) => posterId === id);
 
-  const handleToggleSelect = () => isSelected ? removePoster(id) : addPoster(id)
+  const handleToggleSelect = () =>
+    isSelected ? removePoster(id) : addPoster(id);
 
   return isModalSelectOpen ? (
     <div className="flex items-center space-x-2 p-1">
