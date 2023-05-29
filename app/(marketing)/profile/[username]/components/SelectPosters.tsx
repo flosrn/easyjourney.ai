@@ -52,9 +52,9 @@ export const SelectPosters = () => {
   if (selectedPosters.length === 0) {
     numberOfPosters = "No posters selected";
   } else if (selectedPosters.length === 1) {
-    numberOfPosters = "1 Poster selected";
+    numberOfPosters = "1 poster selected";
   } else {
-    numberOfPosters = `${selectedPosters.length} Posters selected`;
+    numberOfPosters = `${selectedPosters.length} posters selected`;
   }
 
   const handleClose = () => {
