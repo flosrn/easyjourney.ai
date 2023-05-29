@@ -24,7 +24,7 @@ const CheckboxSelect = ({ id }: CheckboxDeleteProps) => {
     isSelected ? removePoster(id) : addPoster(id);
 
   return isModalSelectOpen ? (
-    <div className="flex items-center space-x-2 p-1">
+    <div className="flex items-center space-x-2 p-1 pb-3 pr-3">
       <Checkbox
         className="h-6 w-6 rounded-full"
         checked={!!isSelected}
