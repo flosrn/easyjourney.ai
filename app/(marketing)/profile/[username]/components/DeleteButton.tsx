@@ -41,8 +41,11 @@ const DeleteButton = () => {
     }
 
     try {
-      selectedPosters.map(async (id) => await deleteMutation.mutateAsync(id));
-      clearSelectedPosters;
+      await Promise.all(
+        selectedPosters.map(async (id) => deleteMutation.mutateAsync(id))
+      );
+      await clearSelectedPosters();
+      window.location.reload();
     } catch {
       toast.error(
         "Something went wrong deleting this poster, please try again"
