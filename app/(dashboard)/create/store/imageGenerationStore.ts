@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { create } from "zustand";
 import { blacklistedWords } from "~/data/blacklistedWords";
 
-import { readStreamData } from "../lib/imageGenerationUtils";
+import readStreamData from "../lib/readStreamData";
 
 export type ImageData = APIAttachment & {
   type?: string;
