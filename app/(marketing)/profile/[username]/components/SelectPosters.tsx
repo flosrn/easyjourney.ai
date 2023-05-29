@@ -57,9 +57,9 @@ export const SelectPosters = () => {
   if (selectedPosters.length === 0) {
     numberOfPosters = "No posters selected";
   } else if (selectedPosters.length === 1) {
-    numberOfPosters = "1 Poster selected";
+    numberOfPosters = "1 poster selected";
   } else {
-    numberOfPosters = `${selectedPosters.length} Posters selected`;
+    numberOfPosters = `${selectedPosters.length} posters selected`;
   }
 
   const handleClose = () => {
@@ -82,13 +82,12 @@ export const SelectPosters = () => {
                 onClick={handleClose}
               >
                 <LucideX
-                  className="h-4/6 w-auto
-                "
+                  className="h-4/6 w-auto"
                 />
               </button>
               <div>{numberOfPosters}</div>
             </div>
-            <div className=" mr-2 flex">
+            <div className="mr-2 flex">
               <DeleteButton />
               <Button
                 variant="secondary"

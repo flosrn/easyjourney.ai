@@ -33,7 +33,7 @@ export default async function CreatedByUser({
     <Suspense fallback={<div>Loading posters...</div>}>
       {user?.posters && (
         <>
-          {!!isMe && <ButtonSelectPosters />}
+          {isMe && <ButtonSelectPosters />}
           <Posters posters={user.posters} noMargin className="mt-4" />
           <SelectPosters />
         </>
