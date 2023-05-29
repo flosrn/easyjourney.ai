@@ -88,6 +88,8 @@ const MainColumn = () => {
   const { data: session } = useSession();
   const username = session?.user.username;
 
+  console.log("images :", images);
+
   const hasImages = images.length > 0;
   const hasFilters = selectedFilters.length > 0;
   const currentImage = images[imageIndex];

@@ -6,7 +6,7 @@ import Posters from "../../posters/components/Posters";
 import { SelectBar } from "./components/SelectBar";
 
 type UserProfileProps = {
-  params: { username: User["username"]; isMe: boolean };
+  params: { username: User["username"] };
 };
 
 const getPostersCreatedByUser = async (username: User["username"]) =>

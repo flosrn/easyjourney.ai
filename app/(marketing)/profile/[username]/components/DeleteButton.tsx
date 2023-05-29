@@ -52,8 +52,8 @@ const DeleteButton = () => {
       if (data) {
         await fetch(`/api/revalidate?path=/profile/${username}`);
         console.log("revalidate");
-        clearSelectedPosters();
-        toggleSelectBar();
+        // clearSelectedPosters();
+        // toggleSelectBar();
       }
     } catch {
       toast.error(
