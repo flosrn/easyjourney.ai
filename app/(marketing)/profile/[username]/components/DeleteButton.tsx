@@ -1,12 +1,11 @@
 "use client";
 
 import React from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
 import { Loader2Icon } from "lucide-react";
-import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import { Button } from "~/components/ui/Button";
@@ -21,8 +20,6 @@ const deletePoster = async (posterId: string) => {
 };
 
 const DeleteButton = () => {
-  const { data: session } = useSession();
-  const router = useRouter();
   const { username } = useParams() ?? {};
 
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
@@ -31,7 +28,8 @@ const DeleteButton = () => {
   const toggleSelectBar = useSelectBarStore((state) => state.toggleSelectBar);
 
   const deleteMutation = useMutation(deletePoster, {
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
+      await fetch(`/api/revalidate?path=/profile/${username}`);
       if (data.status === 409) {
         toast.error("You already deleted this poster!");
       }
@@ -40,20 +38,16 @@ const DeleteButton = () => {
 
   const handleDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    if (!session) {
-      return router.push("/api/auth/signin");
-    }
-
     try {
       const response = await Promise.all(
         selectedPosters.map(async (id) => deleteMutation.mutateAsync(id))
       );
       const data = await response[0].json();
       if (data) {
-        await fetch(`/api/revalidate?path=/profile/${username}`);
-        console.log("revalidate");
-        // clearSelectedPosters();
-        // toggleSelectBar();
+        setTimeout(() => {
+          clearSelectedPosters();
+          toggleSelectBar();
+        }, 1000);
       }
     } catch {
       toast.error(
