@@ -77,8 +77,7 @@ export const SelectPosters = () => {
                 onClick={handleClose}
               >
                 <LucideX
-                  className="h-4/6 w-auto
-                "
+                  className="h-4/6 w-auto"
                 />
               </button>
               <div>{numberOfPosters}</div>
