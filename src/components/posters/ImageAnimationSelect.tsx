@@ -32,7 +32,7 @@ const ImageAnimationSelect = ({
   return (
     <div
       className={cn("bg-muted rounded-lg select-none", {
-        "border-2 border-highlight": isSelected,
+        "ring-1 ring-highlight ring-inset": isSelected,
       })}
     >
       <motion.div

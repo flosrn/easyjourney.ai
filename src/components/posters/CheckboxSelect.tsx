@@ -25,7 +25,9 @@ const CheckboxSelect = ({ id }: CheckboxDeleteProps) => {
   return isSelectBarOpen ? (
     <div
       onClick={handleToggleSelect}
-      className="absolute inset-0 z-10 cursor-pointer hover:bg-background/20"
+      className={cn("absolute inset-0 z-10 cursor-pointer", {
+        "hover:bg-background/20": !isSelected,
+      })}
     >
       <Checkbox checked={isSelected} className="m-2 h-5 w-5" />
     </div>
