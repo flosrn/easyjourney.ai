@@ -3,13 +3,13 @@ import type {
   NextApiRequest,
   NextApiResponse,
 } from "next/types";
+import { env } from "~/env.mjs";
+import { MyCustomAdapter } from "~/server/my-custom-adapter";
 import {
   getServerSession as getNextAuthServerSession,
   type NextAuthOptions,
 } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { env } from "~/env.mjs";
-import { MyCustomAdapter } from "~/server/my-custom-adapter";
 
 import { prisma } from "./db/prisma";
 
