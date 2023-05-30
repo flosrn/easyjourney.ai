@@ -9,18 +9,30 @@ export async function POST(request: Request) {
     return NextResponse.json({ status: 401, message: "User not logged in" });
   }
 
-  // TODO: Check if user who is deleting the poster is the owner of the poster
-
   try {
     const { posterId } = await request.json();
 
-    await prisma.like.deleteMany({
+    const poster = await prisma.poster.findUnique({
       where: {
-        posterId,
+        id: posterId,
       },
     });
 
-    const data = await prisma.poster.delete({
+    if (!poster) {
+      return NextResponse.json({
+        status: 404,
+        message: "Poster not found",
+      });
+    }
+
+    if (session.user.role !== "ADMIN" || session.user.id !== poster.userId) {
+      return NextResponse.json({
+        status: 401,
+        message: "Not enough permission to do this",
+      });
+    }
+
+    await prisma.poster.delete({
       where: {
         id: posterId,
       },
