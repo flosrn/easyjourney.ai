@@ -21,7 +21,7 @@ const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
   const isLikePage = pathname?.includes("likes");
   const value = isLikePage ? "liked" : "created";
   const isAdmin = session?.user.role === "ADMIN";
-  const showSelectButton = (isCurrentUser && !isLikePage) || isAdmin;
+  const showSelectButton = (isCurrentUser || isAdmin) && !isLikePage;
   return (
     <div className="my-4 flex items-center justify-between space-x-3">
       <Tabs value={value} className="w-[263px]">

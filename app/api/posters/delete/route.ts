@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { UserRole } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
@@ -25,7 +26,10 @@ export async function POST(request: Request) {
       });
     }
 
-    if (session.user.role !== "ADMIN" || session.user.id !== poster.userId) {
+    if (
+      session.user.role !== UserRole.ADMIN &&
+      session.user.id !== poster.userId
+    ) {
       return NextResponse.json({
         status: 401,
         message: "Not enough permission to do this",

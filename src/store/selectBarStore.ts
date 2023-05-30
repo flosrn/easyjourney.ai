@@ -6,6 +6,7 @@ type SelectBarState = {
 
 type SelectBarAction = {
   toggleSelectBar: () => void;
+  closeSelectBar: () => void;
 };
 
 export const useSelectBarStore = create<SelectBarAction & SelectBarState>()(
@@ -13,5 +14,6 @@ export const useSelectBarStore = create<SelectBarAction & SelectBarState>()(
     isSelectBarOpen: false,
     toggleSelectBar: () =>
       set((state) => ({ isSelectBarOpen: !state.isSelectBarOpen })),
+    closeSelectBar: () => set({ isSelectBarOpen: false }),
   })
 );
