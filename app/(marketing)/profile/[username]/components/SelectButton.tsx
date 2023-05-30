@@ -30,7 +30,8 @@ const SelectButton = ({}: SelectButtonProps) => {
       onClick={toggleModal}
       variant="outline"
       className={cn("shrink-0", {
-        "outline outline-primary outline-offset-2 outline-2": isModalSelectOpen,
+        "outline outline-highlight outline-offset-2 outline-2":
+          isModalSelectOpen,
       })}
     >
       <MousePointerClick className="h-4 w-4" />

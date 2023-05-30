@@ -45,7 +45,7 @@ const ImageAnimationSelect = ({
           src={image}
           width={width ?? 500}
           height={height ?? 500}
-          className={cn("rounded-lg")}
+          className="rounded-lg"
         />
       </motion.div>
     </div>
