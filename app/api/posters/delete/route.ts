@@ -25,26 +25,20 @@ export async function POST(request: Request) {
       });
     }
 
-    if (session.user.role === "ADMIN" || session.user.id === poster.userId) {
-      await prisma.like.deleteMany({
-        where: {
-          posterId,
-        },
-      });
-
-      await prisma.poster.delete({
-        where: {
-          id: posterId,
-        },
-      });
-
-      return NextResponse.json({ status: 204 });
-    } else {
+    if (session.user.role !== "ADMIN" || session.user.id !== poster.userId) {
       return NextResponse.json({
         status: 401,
         message: "Not enough permission to do this",
       });
     }
+
+    await prisma.poster.delete({
+      where: {
+        id: posterId,
+      },
+    });
+
+    return NextResponse.json({ status: 204 });
   } catch {
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }
