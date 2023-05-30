@@ -81,7 +81,7 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
       onClick={handleLike}
       whileHover={hasHoverAnim ? { scale: 1.1 } : {}}
       whileTap={{ scale: 0.9 }}
-      className="flex items-center space-x-2 p-1"
+      className="flex select-none items-center space-x-2 p-1"
     >
       <HeartIcon
         className={cn(
