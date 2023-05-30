@@ -2,7 +2,7 @@
 import { retrieveMessages, wait } from "~/utils/midjourneyUtils";
 import type { APIAttachment, APIMessage } from "discord-api-types/v10";
 
-import type { ImageData } from "../../../app/(dashboard)/create/store/imageGenerationStore";
+import type { ImageData } from "../../../app/(playground)/create/store/imageGenerationStore";
 
 // https://vercel.com/docs/concepts/functions/edge-functions
 export const config = {

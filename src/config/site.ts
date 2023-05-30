@@ -4,6 +4,7 @@ import {
   DollarSign,
   Heart,
   History,
+  LayoutDashboard,
   LogOut,
   Palette,
   Settings,
@@ -114,21 +115,24 @@ const userMenu: NavItem[][] = [
   [
     {
       title: "Mon profil",
-      href: "/profile/me",
+      href: "/profile",
       icon: User,
       onClick: () => null,
     },
     {
-      title: "Mes posters",
-      href: "/dashboard/my-posters",
-      icon: ShoppingCart,
-      disabled: true,
-    },
-    {
       title: "Mes favoris",
-      href: "/dashboard/favorites",
+      href: "/profile/likes",
       icon: Heart,
-      disabled: true,
+      onClick: () => null,
+    },
+  ],
+  [
+    {
+      title: "Dashboard",
+      href: "/dashboard",
+      icon: LayoutDashboard,
+      onClick: () => null,
+      adminOnly: true,
     },
   ],
   [

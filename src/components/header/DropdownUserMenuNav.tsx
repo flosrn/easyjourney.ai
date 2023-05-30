@@ -2,9 +2,9 @@
 
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import getFirstLetters from "~/utils/getFirstLetter";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
-import getFirstLetters from "~/utils/getFirstLetter";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 import { Button } from "~/components/ui/Button";
@@ -28,6 +28,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
   const { data: session } = useSession();
   const router = useRouter();
   const { setTheme } = useTheme();
+  const isAdmin = session?.user.role === "ADMIN";
 
   useEffect(() => {
     setTheme(isDarkTheme ? "dark" : "light");
@@ -46,9 +47,13 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
     href?: string
   ) => {
     switch (href) {
-      case "/profile/me": {
+      case "/profile": {
         const username = session.user.username;
         return router.push(`/profile/${username}`);
+      }
+      case "/profile/likes": {
+        const username = session.user.username;
+        return router.push(`/profile/${username}/likes`);
       }
       case "/theme": {
         event.preventDefault();
@@ -90,31 +95,36 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
         <DropdownMenuContent side="bottom" align="end" className="w-56">
           <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          {siteConfig.userMenu.map((group, index) => (
-            <React.Fragment key={index}>
-              <DropdownMenuGroup>
-                {group.map(({ title, href, icon: Icon, disabled }) => (
-                  <DropdownMenuItem
-                    key={title}
-                    onClick={async (event) => handleItemClick(event, href)}
-                    disabled={disabled}
-                    asChild
-                  >
-                    <div className="flex justify-between">
-                      <div className="flex items-center">
-                        <Icon className="mr-2 h-4 w-4" />
-                        <span className="truncate">{title}</span>
+          {siteConfig.userMenu.map((group, index) => {
+            if (group[0].adminOnly && !isAdmin) {
+              return null;
+            }
+            return (
+              <React.Fragment key={index}>
+                <DropdownMenuGroup>
+                  {group.map(({ title, href, icon: Icon, disabled }) => (
+                    <DropdownMenuItem
+                      key={title}
+                      onClick={async (event) => handleItemClick(event, href)}
+                      disabled={disabled}
+                      asChild
+                    >
+                      <div className="flex justify-between">
+                        <div className="flex items-center">
+                          <Icon className="mr-2 h-4 w-4" />
+                          <span className="truncate">{title}</span>
+                        </div>
+                        {href === "/theme" && <Switch checked={isDarkTheme} />}
                       </div>
-                      {href === "/theme" && <Switch checked={isDarkTheme} />}
-                    </div>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuGroup>
-              {group !== siteConfig.userMenu.at(-1) && (
-                <DropdownMenuSeparator />
-              )}
-            </React.Fragment>
-          ))}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuGroup>
+                {group !== siteConfig.userMenu.at(-1) && (
+                  <DropdownMenuSeparator />
+                )}
+              </React.Fragment>
+            );
+          })}
         </DropdownMenuContent>
       </DropdownMenu>
     </>
