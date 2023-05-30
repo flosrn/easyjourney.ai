@@ -37,8 +37,8 @@ const ImageAnimationSelect = ({
     >
       <motion.div
         layout
-        animate={{ padding: isSelected ? "11%" : "0" }}
-        transition={{ duration: 0.4 }}
+        animate={{ scale: isSelected ? 0.8 : 1 }}
+        transition={{ duration: 0.15 }}
       >
         <Image
           alt={prompt}
