@@ -1,13 +1,12 @@
+import React, { Suspense } from "react";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
+
+import NavigationEvents from "~/components/events/NavigationEvents";
 
 import Providers from "./providers";
 
 import "~/styles/globals.css";
-
-import React, { Suspense } from "react";
-
-import NavigationEvents from "~/components/events/NavigationEvents";
 
 const inter = Inter({
   subsets: ["latin"],
