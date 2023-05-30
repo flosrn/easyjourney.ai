@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Like } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
+import useThrottle from "~/hooks/use-throtle";
 import { motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
-import useThrottle from "~/hooks/use-throtle";
 
 import { cn } from "~/lib/classNames";
 

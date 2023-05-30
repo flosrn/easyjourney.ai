@@ -37,6 +37,8 @@
     --error: 0 100% 50%;
     --error-foreground: 0 0% 100%;
 
+    --highlight: 219.2 100% 58.6%;
+
     --ring: 215 20.2% 65.1%;
 
     --radius: 0.5rem;
@@ -75,6 +77,8 @@
 
     --error: 0 100% 50%;
     --error-foreground: 0 0% 100%;
+
+    --highlight: 219.2 100% 58.6%;
 
     --ring: 216 34% 17%;
 

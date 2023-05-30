@@ -29,7 +29,7 @@ const FilterCard = ({
       <Card
         onClick={() => clickHandler(filter)}
         className={cn("cursor-pointer", {
-          "outline outline-1 outline-offset-2 outline-blue-500": isActive,
+          "outline outline-1 outline-offset-2 outline-highlight": isActive,
         })}
       >
         <div className="text-md hidden truncate px-3 py-2 font-bold sm:block">

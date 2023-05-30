@@ -4,6 +4,7 @@ import Link from "next/link";
 import getFirstLetters from "~/utils/getFirstLetter";
 
 import CheckboxSelect from "~/components/posters/CheckboxSelect";
+import ImageAnimationSelect from "~/components/posters/ImageAnimationSelect";
 import LikeButton from "~/components/posters/LikeButton";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 
@@ -27,9 +28,10 @@ const Poster = ({
   return (
     <div className="group relative h-auto max-w-full overflow-hidden rounded-lg">
       <Link href={`/poster/${id}`}>
-        <Image
-          alt={prompt}
-          src={image}
+        <ImageAnimationSelect
+          id={id}
+          prompt={prompt}
+          image={image}
           width={width ?? 500}
           height={height ?? 500}
         />
@@ -51,7 +53,7 @@ const Poster = ({
           </Link>
         </p>
       )}
-      <div className="absolute right-[2px] top-[2px] z-10">
+      <div className="absolute right-[2px] top-[2px] z-20">
         <LikeButton id={id} likes={likes} hasHoverAnim />
       </div>
       <CheckboxSelect id={id} />
