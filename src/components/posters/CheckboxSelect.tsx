@@ -5,6 +5,8 @@ import { useSelectPosterStore } from "~/store/selectPosterStore";
 
 import { Checkbox } from "~/components/ui/Checkbox";
 
+import { cn } from "~/lib/classNames";
+
 type CheckboxDeleteProps = {
   id: string;
 };
