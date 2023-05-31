@@ -199,7 +199,7 @@ export const useImageGenerationStore = create<
       });
 
       try {
-        const response = await fetch("/api/imagine", {
+        const response = await fetch("/api/midjourney/imagine", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt }),
@@ -243,7 +243,7 @@ export const useImageGenerationStore = create<
       const { prompt, messageId, messageHash } = image;
 
       try {
-        const { status } = await fetch("/api/upscale", {
+        const { status } = await fetch("/api/midjourney/upscale", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -291,7 +291,7 @@ export const useImageGenerationStore = create<
       const { prompt, messageId, messageHash } = image;
 
       try {
-        const { status } = await fetch("/api/variation", {
+        const { status } = await fetch("/api/midjourney/variation", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
