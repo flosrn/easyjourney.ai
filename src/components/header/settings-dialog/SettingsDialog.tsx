@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { prisma } from "~/server/db/prisma";
 
 import {
   Dialog,
@@ -10,32 +11,27 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/Dialog";
+import { Button } from "~/components/ui/Button";
 import { Input } from "~/components/ui/Input";
 import { Label } from "~/components/ui/Label";
 
-// const getUserInfo = async () => {
-//   await prisma.user.findUnique({
-//     where: { username: session.user.username },
-//   });
-// };
+const updateUserProfile = async ({ username }: string) => {
+  const response = await fetch("/api/profile/update", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username }),
+  });
 
-export default async function SettingsDialog({ title }) {
-  const { data: session } = await useSession();
+  return response.json();
+};
+
+export default function SettingsDialog({ title }) {
+  const { data: session } = useSession();
   console.log("session", session);
-  const [userInfo, setUserInfo] = useState(null);
-  console.log("userInfo", userInfo);
-
-  useEffect(() => {
-    const getUserInfo = async () => {
-      if (session) {
-        const user = await prisma.user.findUnique({
-          where: { username: session.user.username },
-        });
-        setUserInfo(user);
-      }
-    };
-    getUserInfo();
-  }, [session]);
+  // const user = await getCurrentUser();
+  // console.log("user", user);
 
   return (
     <Dialog>
@@ -45,17 +41,16 @@ export default async function SettingsDialog({ title }) {
           <DialogTitle>Modify your profile</DialogTitle>
           <DialogDescription>Personalize your profile</DialogDescription>
         </DialogHeader>
-        <div>
-          <Label htmlFor="picture">Profile Pic</Label>
-          <Input id="picture" type="file" />
-        </div>
+
         <div>
           <Label htmlFor="pseudo">Username</Label>
-          <Input id="pseudo" placeholder="Pseudo" />
-
-          <Label htmlFor="description">Description</Label>
-          <Input id="description" placeholder="maximum 300char" />
+          <Input
+            id="pseudo"
+            placeholder="Pseudo"
+            value={session?.user.username ?? ""}
+          />
         </div>
+        <Button variant={}>Confirmer</Button>
       </DialogContent>
     </Dialog>
   );

@@ -8,7 +8,7 @@ import getFirstLetters from "~/utils/getFirstLetter";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 import { Button } from "~/components/ui/Button";
-import { Dialog, DialogTrigger } from "~/components/ui/Dialog";
+import { DialogTrigger } from "~/components/ui/Dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
