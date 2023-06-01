@@ -4,19 +4,44 @@ import { prisma } from "~/server/db/prisma";
 
 export default async function PATCH(request: Request) {
   const session = await getServerAuthSession();
+  const username = await request.json();
+
   if (!session) {
     return NextResponse.json({ status: 401, message: "User not logged in" });
   }
-  try {
-    const body = await request.json();
-    console.log("body", body);
-    const data = await prisma.user.findUnique({
-      where: {
-        id: userId,
-      },
+
+  const usernameTaken = await isUsernameTaken(username);
+
+  if (usernameTaken) {
+    return NextResponse.json({
+      status: 400,
+      message: "Username is already taken",
     });
-    return NextResponse.json({ status: 20, data });
-  } catch {
-    return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }
+
+  try {
+    const profileId = session.user.id;
+
+    const updateUser = await prisma.user.update({
+      where: { id: profileId },
+      data: { username },
+    });
+    return NextResponse.json({
+      status: 200,
+      data: updateUser,
+      message: "profile updated",
+    });
+  } catch {
+    return NextResponse.json({ status: 500, message: "Internal server error" });
+  }
+}
+
+async function isUsernameTaken(username: string): Promise<boolean> {
+  const user = await prisma.user.findUnique({
+    where: {
+      username,
+    },
+  });
+
+  return Boolean(user);
 }
