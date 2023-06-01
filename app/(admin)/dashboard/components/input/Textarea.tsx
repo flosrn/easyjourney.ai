@@ -21,6 +21,12 @@ type Image = {
   jobId: string;
 };
 
+const getAllPosters = async () => {
+  const response = await fetch("/api/admin/posters");
+  const data = await response.json();
+  return data;
+};
+
 const fetchMidjourneyResults = async (value: string) => {
   const response = await fetch("/api/admin/midjourney/search", {
     method: "POST",
@@ -38,7 +44,13 @@ const TextareaPrompt = ({}: TextareaProps) => {
     state.setInputValue,
   ]);
 
-  const { data: images, isFetching } = useQuery<Image[]>({
+  const { data: posters, isFetching } = useQuery<Image[]>({
+    queryKey: ["posters"],
+    queryFn: async () => getAllPosters(),
+  });
+  console.log("posters :", posters);
+
+  const { data: images, isFetching: isSearchFetching } = useQuery<Image[]>({
     queryKey: ["images", inputValue],
     queryFn: async () => fetchMidjourneyResults(inputValue),
     enabled: startSearch,
@@ -76,12 +88,18 @@ const TextareaPrompt = ({}: TextareaProps) => {
             className={cn("h-[110px]")}
           />
         </div>
-        <div className="flex">
+        <div className="space-y-2">
           <Button onClick={() => setStartSearch(true)}>
             {isFetching && (
               <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
             )}
-            <span className="hidden md:block">Search</span>
+            <span className="hidden md:block">Get all posters</span>
+          </Button>
+          <Button onClick={() => setStartSearch(true)}>
+            {isSearchFetching && (
+              <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+            )}
+            <span className="hidden md:block">Search on MJ</span>
           </Button>
         </div>
       </div>
