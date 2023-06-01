@@ -98,8 +98,8 @@ dependencies:
     specifier: ^1.53.0
     version: 1.53.0
   '@tanstack/react-query':
-    specifier: ^4.29.12
-    version: 4.29.12(react-dom@18.2.0)(react@18.2.0)
+    specifier: 5.0.0-alpha.47
+    version: 5.0.0-alpha.47(react-dom@18.2.0)(react@18.2.0)
   atropos:
     specifier: ^1.0.2
     version: 1.0.2
@@ -198,6 +198,9 @@ devDependencies:
   '@ianvs/prettier-plugin-sort-imports':
     specifier: ^4.0.0
     version: 4.0.0(prettier@2.8.8)
+  '@tanstack/eslint-plugin-query':
+    specifier: 5.0.0-alpha.47
+    version: 5.0.0-alpha.47(eslint@8.41.0)
   '@types/micro':
     specifier: ^10.0.0
     version: 10.0.0
@@ -2435,15 +2438,23 @@ packages:
       tslib: 2.5.2
     dev: false
 
-  /@tanstack/query-core@4.29.11:
-    resolution: {integrity: sha512-8C+hF6SFAb/TlFZyS9FItgNwrw4PMa7YeX+KQYe2ZAiEz6uzg6yIr+QBzPkUwZ/L0bXvGd1sufTm3wotoz+GwQ==}
+  /@tanstack/eslint-plugin-query@5.0.0-alpha.47(eslint@8.41.0):
+    resolution: {integrity: sha512-GqJgRHqdxhCIKebI/v2ul8KrZ6rRC4OiBJ5hFqNd+wx0/ycNCCd1ff5P8CBX6SpEiQP0N6Xttu2hH1Z511EspQ==}
+    peerDependencies:
+      eslint: ^8.0.0
+    dependencies:
+      eslint: 8.41.0
+    dev: true
+
+  /@tanstack/query-core@5.0.0-alpha.47:
+    resolution: {integrity: sha512-ZWPnDmG3EKZTbGFNjOSW2ypyMworq63v1n4jlIUMlnwO4JXENKl32V1KKh1I2EXgm7k85gpjld9Dhct3gb8rJg==}
     dev: false
 
-  /@tanstack/react-query@4.29.12(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-zhcN6+zF6cxprxhTHQajHGlvxgK8npnp9uLe9yaWhGc6sYcPWXzyO4raL4HomUzQOPzu3jLvkriJQ7BOrDM8vA==}
+  /@tanstack/react-query@5.0.0-alpha.47(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-jzvgQMySE76nqxch7CZnZcwBjbHEL7VeVhmVw1Tolebr1Wl2G6hS+1smzjse1i3QpITXv/XOEuguC7spKSIbeg==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^18.0.0
+      react-dom: ^18.0.0
       react-native: '*'
     peerDependenciesMeta:
       react-dom:
@@ -2451,10 +2462,9 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@tanstack/query-core': 4.29.11
+      '@tanstack/query-core': 5.0.0-alpha.47
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
   /@tsconfig/node10@1.0.9:

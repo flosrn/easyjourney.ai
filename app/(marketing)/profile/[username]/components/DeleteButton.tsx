@@ -27,7 +27,8 @@ const DeleteButton = () => {
   );
   const toggleSelectBar = useSelectBarStore((state) => state.toggleSelectBar);
 
-  const deleteMutation = useMutation(deletePoster, {
+  const deleteMutation = useMutation({
+    mutationFn: deletePoster,
     onSuccess: async (data) => {
       if (data.status === 409) {
         toast.error("You already deleted this poster!");
@@ -57,7 +58,7 @@ const DeleteButton = () => {
   };
   return (
     <Button onClick={handleDelete}>
-      {deleteMutation.isLoading && (
+      {deleteMutation.isPending && (
         <Loader2Icon className="mr-2 h-5 animate-spin" />
       )}
       Delete

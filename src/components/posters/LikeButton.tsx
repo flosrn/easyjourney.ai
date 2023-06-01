@@ -37,15 +37,7 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
     setUserHasLiked(!!likes?.some((like) => like.userId === session?.user.id));
   }, [session, likes]);
 
-  const likeMutation = useMutation(likePoster, {
-    onSuccess: (data) => {
-      if (data.status === 409) {
-        setLikesCount(likesCount && likesCount - 1);
-        setUserHasLiked(false);
-        toast.error("You already liked this poster!");
-      }
-    },
-  });
+  const likeMutation = useMutation({ mutationFn: likePoster });
 
   const throttledMutation = useThrottle(async () => {
     try {

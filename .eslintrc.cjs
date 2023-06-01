@@ -13,12 +13,14 @@ module.exports = {
     "import",
     "unicorn",
     "prettier",
+    "@tanstack/query"
   ],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/strict",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "next/core-web-vitals",
     "plugin:github/recommended",
     "plugin:import/recommended",

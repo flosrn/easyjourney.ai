@@ -14,7 +14,7 @@ const MainColumn = ({ children }: MainColumnProps) => {
   const { data: session } = useSession();
   const username = session?.user.username;
 
-  const message = "This is a message";
+  const message = "";
 
   return (
     <main className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">
@@ -26,7 +26,7 @@ const MainColumn = ({ children }: MainColumnProps) => {
                 Dashboard
               </h2>
               <p className="text-sm text-muted-foreground">
-                Welcome back, {username}!
+                Welcome back, <span className="text-primary">{username}</span>!
               </p>
             </div>
           </div>

@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { Loader2Icon } from "lucide-react";
 
 import { Button } from "~/components/ui/Button";
 import { Textarea as TextareaInput } from "~/components/ui/Textarea";
@@ -19,25 +21,30 @@ type Image = {
   jobId: string;
 };
 
+const fetchMidjourneyResults = async (value: string) => {
+  const response = await fetch("/api/admin/midjourney/search", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ value }),
+  });
+  const data = await response.json();
+  return data;
+};
+
 const TextareaPrompt = ({}: TextareaProps) => {
+  const [startSearch, setStartSearch] = useState<boolean>(false);
   const [inputValue, setInputValue] = useInputStore((state) => [
     state.inputValue,
     state.setInputValue,
   ]);
-  const [images, setImages] = useState<Image[]>([]);
 
-  const searchMidjourneyResults = async () => {
-    const response = await fetch("/api/admin/midjourney/search", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ inputValue }),
-    });
-    const data = await response.json();
-    console.log("data :", data);
-    if (data) {
-      setImages(data);
-    }
-  };
+  const { data: images, isFetching } = useQuery<Image[]>({
+    queryKey: ["images", inputValue],
+    queryFn: async () => fetchMidjourneyResults(inputValue),
+    enabled: startSearch,
+  });
+
+  console.log("images :", images);
 
   const handleKeyDown = async (
     event: React.KeyboardEvent<HTMLTextAreaElement>
@@ -45,10 +52,16 @@ const TextareaPrompt = ({}: TextareaProps) => {
     if (event.key === "Enter") {
       event.preventDefault();
       if (inputValue.length > 0) {
-        await searchMidjourneyResults();
+        setStartSearch(true);
       }
     }
   };
+
+  const columns: Image[][] = [[], [], [], []];
+
+  images?.map((poster, index) => {
+    columns[index % 4].push(poster);
+  });
 
   return (
     <div className="">
@@ -59,21 +72,29 @@ const TextareaPrompt = ({}: TextareaProps) => {
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Tropical rainforest, gloomy, wet after rain, peaceful place 8k, hyper realistic"
+            placeholder="leave blank to search for all midjourney results or enter a specific midjourney prompt"
             className={cn("h-[110px]")}
           />
         </div>
         <div className="flex">
-          <Button onClick={searchMidjourneyResults}>
+          <Button onClick={() => setStartSearch(true)}>
+            {isFetching && (
+              <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+            )}
             <span className="hidden md:block">Search</span>
           </Button>
         </div>
       </div>
-      <div className="mt-5 space-y-2">
-        {images.length > 0 &&
-          images.map((image) => (
-            <div key={image.id} className="">
-              <img src={image.imageUrl} alt="" width={150} height={150} />
+      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+        {images &&
+          images.length > 0 &&
+          columns.map((column, index) => (
+            <div className="grid h-fit gap-3" key={index}>
+              {column.map((image) => (
+                <React.Fragment key={image.id}>
+                  <img src={image.imageUrl} alt="" width={500} height={500} />
+                </React.Fragment>
+              ))}
             </div>
           ))}
       </div>
