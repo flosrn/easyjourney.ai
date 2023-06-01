@@ -12,11 +12,13 @@ const USER_ID = "f28265b7-1625-4084-bfff-ad5de3a4c1cb";
 
 const getMidjourneySearchResults = async ({
   value,
+  page = 1,
 }: {
-  value: string;
+  value?: string;
+  page?: number;
 }): Promise<Response> => {
   const response = await fetch(
-    `https://www.midjourney.com/api/app/recent-jobs/?amount=${AMOUNT}&dedupe=true&jobStatus=${JOB_STATUS}&jobType=${JOB_TYPE}&orderBy=${ORDER_BY}&prompt=${value}&refreshApi=0&searchType=${SEARCH_TYPE}&service=null&type=all&userId=${USER_ID}&user_id_ranked_score=null&_ql=todo&_qurl=https://www.midjourney.com/app/`,
+    `https://www.midjourney.com/api/app/recent-jobs/?amount=${AMOUNT}&dedupe=true&jobStatus=${JOB_STATUS}&jobType=${JOB_TYPE}&orderBy=${ORDER_BY}&page=${page}&prompt=${value}&refreshApi=0&searchType=${SEARCH_TYPE}&service=null&type=all&userId=${USER_ID}&user_id_ranked_score=null&_ql=todo&_qurl=https://www.midjourney.com/app/`,
     {
       method: "GET",
       headers: {
@@ -36,14 +38,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ status: 403, message: "Forbidden" });
   }
 
-  const { value } = await request.json();
+  const { value, page } = await request.json();
 
-  const response = await getMidjourneySearchResults({ value });
+  const response = await getMidjourneySearchResults({ value, page });
   const data = await response.json();
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  const formattedData = data.map((item) => ({
+  const formattedData = data?.map((item) => ({
     id: item.id,
     imageUrl: item.image_paths[0],
     command: item.full_command,
