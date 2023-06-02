@@ -6,6 +6,7 @@ import { cn } from "~/lib/classNames";
 
 import ChaosSelector from "./chaos-selector";
 import QualitySelector from "./quality-selector";
+import SeedSelector from "./seed-selector";
 import StopSelector from "./stop-selector";
 import StylizeSelector from "./stylize-selector";
 import TileSelector from "./tile-selector";
