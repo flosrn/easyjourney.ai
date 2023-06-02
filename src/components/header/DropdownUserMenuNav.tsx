@@ -66,6 +66,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
       }
       case "/settings": {
         event.preventDefault();
+        break;
       }
       default: {
         return href && router.push(href);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
 
@@ -16,7 +16,7 @@ import {
 import { Input } from "~/components/ui/Input";
 import { Label } from "~/components/ui/Label";
 
-const updateUserProfile = async ({ username }: string) => {
+const updateUserProfile = async (username: string) => {
   const response = await fetch("/api/profile/update", {
     method: "PATCH",
     headers: {
@@ -24,49 +24,57 @@ const updateUserProfile = async ({ username }: string) => {
     },
     body: JSON.stringify({ username }),
   });
-  console.log("response", response);
-  return response.json();
+  const data = await response.json();
+  return data;
 };
 
 export default function SettingsDialog({ title }) {
   const { data: session } = useSession();
   const [username, setUsername] = useState(session?.user.username);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     setUsername(event.target.value);
   };
+
   const handleSubmit = async () => {
     try {
-      const response = await updateUserProfile(username);
-
-      if (response.status === 400) {
-        toast(response.message);
+      const data = username && (await updateUserProfile(username));
+      if (data.status === 400) {
+        toast.error(data.message);
       }
-      if (response.status === 405) {
+      if (data.status === 405) {
         toast("suce mon zboub");
       }
-    } catch {
-      toast.error("failed to update profile");
+      if (data.status === 200) {
+        toast.success("Profile successfully updated!");
+      }
+    } catch (error: unknown) {
+      toast.error(`failed to update profile: ${error}`);
     }
   };
 
   return (
     <Dialog>
-      <DialogTrigger className="">{title}</DialogTrigger>
+      <DialogTrigger>{title}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Modify your profile</DialogTitle>
           <DialogDescription>Personalize your profile</DialogDescription>
         </DialogHeader>
 
-        <div>
-          <Label htmlFor="pseudo">Username</Label>
-          <Input
-            id="pseudo"
-            placeholder="Pseudo"
-            value={username}
-            onChange={handleInputChange}
-          />
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="username" className="text-right">
+              Username
+            </Label>
+            <Input
+              id="username"
+              value={username}
+              onChange={handleInputChange}
+              className="col-span-3"
+            />
+          </div>
         </div>
         <Button variant="secondary" onClick={handleSubmit}>
           Confirmer
