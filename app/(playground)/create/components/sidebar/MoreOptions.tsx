@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Separator } from "~/components/ui/Separator";
+import { Separator } from "~/components/ui/separator";
 
 import { cn } from "~/lib/classNames";
 

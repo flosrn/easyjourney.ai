@@ -6,8 +6,8 @@ import getFirstLetters from "~/utils/getFirstLetter";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
-import { Button } from "~/components/ui/Button";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,12 +16,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "~/components/ui/DropdownMenu";
-import { Switch } from "~/components/ui/Switch";
+} from "~/components/ui/dropdown-menu";
+import { Switch } from "~/components/ui/switch";
 
 import { siteConfig } from "~/config/site";
 
-import SettingsDialog from "./settings-dialog/SettingsDialog";
+import SettingsDialog from "./settings-dialog/settings-dialog";
 
 type DropdownUserMenuNavProps = {};
 

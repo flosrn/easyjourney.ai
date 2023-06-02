@@ -8,7 +8,7 @@ import { useSelectPosterStore } from "~/store/selectPosterStore";
 import { Loader2Icon } from "lucide-react";
 import toast from "react-hot-toast";
 
-import { Button } from "~/components/ui/Button";
+import { Button } from "~/components/ui/button";
 
 const deletePoster = async (posterId: string) => {
   const response = await fetch("/api/posters/delete", {

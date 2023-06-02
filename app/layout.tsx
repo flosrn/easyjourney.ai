@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
 
-import NavigationEvents from "~/components/events/NavigationEvents";
+import NavigationEvents from "~/components/events/navigation-events";
 
 import Providers from "./providers";
 

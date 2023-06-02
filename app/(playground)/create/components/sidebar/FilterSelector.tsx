@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import type { PopoverProps } from "@radix-ui/react-popover";
 import { Check, ChevronsUpDown, LayoutListIcon } from "lucide-react";
 
-import { Button } from "~/components/ui/Button";
+import { Button } from "~/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -16,18 +16,18 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "~/components/ui/Command";
+} from "~/components/ui/command";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "~/components/ui/HoverCard";
+} from "~/components/ui/hover-card";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "~/components/ui/Popover";
-import { ScrollArea } from "~/components/ui/ScrollArea";
+} from "~/components/ui/popover";
+import { ScrollArea } from "~/components/ui/scroll-area";
 
 import { cn } from "~/lib/classNames";
 

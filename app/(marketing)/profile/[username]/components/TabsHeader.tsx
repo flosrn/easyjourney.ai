@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { BadgePlusIcon, HeartIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 
-import { Tabs, TabsList, TabsTrigger } from "~/components/ui/Tabs";
+import { Tabs, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 import SelectButton from "./SelectButton";
 

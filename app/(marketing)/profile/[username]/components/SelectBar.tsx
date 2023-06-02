@@ -6,7 +6,7 @@ import { useSelectPosterStore } from "~/store/selectPosterStore";
 import { motion } from "framer-motion";
 import { LucideX } from "lucide-react";
 
-import { Button } from "~/components/ui/Button";
+import { Button } from "~/components/ui/button";
 
 import DeleteButton from "./DeleteButton";
 

@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import { Textarea } from "~/components/ui/Textarea";
+import { Textarea } from "~/components/ui/textarea";
 
 import { cn } from "~/lib/classNames";
 

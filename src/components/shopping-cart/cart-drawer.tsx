@@ -4,8 +4,8 @@ import { AnimatePresence, motion, useCycle } from "framer-motion";
 import { ShoppingCart, X } from "lucide-react";
 import { useShoppingCart } from "use-shopping-cart";
 
-import CartItem from "~/components/shopping-cart/CartItem";
-import { Button } from "~/components/ui/Button";
+import CartItem from "~/components/shopping-cart/cart-item";
+import { Button } from "~/components/ui/button";
 
 type CartDrawerProps = {};
 

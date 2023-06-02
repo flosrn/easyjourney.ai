@@ -4,7 +4,7 @@ import React from "react";
 import { useSession } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 
-import { Separator } from "~/components/ui/Separator";
+import { Separator } from "~/components/ui/separator";
 
 type MainColumnProps = {
   children: React.ReactNode;

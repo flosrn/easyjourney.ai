@@ -10,7 +10,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "~/components/ui/Select";
+} from "~/components/ui/select";
 
 import { useVersionStore } from "../../store/versionStore";
 

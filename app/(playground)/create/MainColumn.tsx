@@ -15,8 +15,8 @@ import {
 import { useSession } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 
-import { Button } from "~/components/ui/Button";
-import { Separator } from "~/components/ui/Separator";
+import { Button } from "~/components/ui/button";
+import { Separator } from "~/components/ui/separator";
 
 import FiltersBadge from "./components/badge/FiltersBadge";
 import FiltersDialog from "./components/dialog/FiltersDialog";

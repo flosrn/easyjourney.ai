@@ -4,16 +4,16 @@ import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import { toast, Toaster } from "react-hot-toast";
 
-import { Button } from "~/components/ui/Button";
+import { Button } from "~/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "~/components/ui/Dialog";
-import { Input } from "~/components/ui/Input";
-import { Label } from "~/components/ui/Label";
+} from "~/components/ui/dialog";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 
 type SettingsDialogProps = {
   open: boolean;

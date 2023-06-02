@@ -8,12 +8,12 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "~/components/ui/NavigationMenu";
+} from "~/components/ui/navigation-menu";
 
 import { cn } from "~/lib/classNames";
 import { siteConfig } from "~/config/site";
 
-import { Icons } from "../Icons";
+import { Icons } from "../icons";
 
 export const Navbar = () => {
   return (

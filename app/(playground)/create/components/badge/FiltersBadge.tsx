@@ -2,7 +2,7 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Badge } from "~/components/ui/Badge";
+import { Badge } from "~/components/ui/badge";
 
 import { useFilterStore } from "../../store/filterStore";
 

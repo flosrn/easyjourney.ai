@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import { Card } from "~/components/ui/Card";
-import { Separator } from "~/components/ui/Separator";
+import { Card } from "~/components/ui/card";
+import { Separator } from "~/components/ui/separator";
 
 import { cn } from "~/lib/classNames";
 

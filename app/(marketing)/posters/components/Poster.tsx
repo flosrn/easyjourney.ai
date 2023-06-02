@@ -2,10 +2,10 @@ import React from "react";
 import Link from "next/link";
 import getFirstLetters from "~/utils/getFirstLetter";
 
-import CheckboxSelect from "~/components/posters/CheckboxSelect";
-import ImageAnimationSelect from "~/components/posters/ImageAnimationSelect";
-import LikeButton from "~/components/posters/LikeButton";
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
+import CheckboxSelect from "~/components/posters/checkbox-select";
+import ImageAnimationSelect from "~/components/posters/image-animation-select";
+import LikeButton from "~/components/posters/like-button";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 import type { PosterType } from "~/types/poster";
 

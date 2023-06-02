@@ -5,8 +5,8 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "~/components/ui/HoverCard";
-import { Label } from "~/components/ui/Label";
+} from "~/components/ui/hover-card";
+import { Label } from "~/components/ui/label";
 
 type TitleComponentProps = {
   title: string;

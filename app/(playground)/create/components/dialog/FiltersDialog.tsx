@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowBigLeftIcon } from "lucide-react";
 
-import { Button } from "~/components/ui/Button";
+import { Button } from "~/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "~/components/ui/Dialog";
-import { ScrollArea } from "~/components/ui/ScrollArea";
-import { Separator } from "~/components/ui/Separator";
+} from "~/components/ui/dialog";
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { Separator } from "~/components/ui/separator";
 
 import { categoryFilters } from "../../data/filter/categoryFilters";
 import { useFilterStore } from "../../store/filterStore";

@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Loader2Icon } from "lucide-react";
 
-import { Button } from "~/components/ui/Button";
-import { Textarea as TextareaInput } from "~/components/ui/Textarea";
+import { Button } from "~/components/ui/button";
+import { Textarea as TextareaInput } from "~/components/ui/textarea";
 
 import { cn } from "~/lib/classNames";
 

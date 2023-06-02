@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import LikeButton from "~/components/posters/LikeButton";
+import LikeButton from "~/components/posters/like-button";
 
 import { cn } from "~/lib/classNames";
 import type { PosterType } from "~/types/poster";

@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 
-import { Input } from "~/components/ui/Input";
+import { Input } from "~/components/ui/input";
 
 import { useSeedStore } from "../../store/seedStore";
 

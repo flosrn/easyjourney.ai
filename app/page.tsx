@@ -1,9 +1,9 @@
 import React from "react";
 import { prisma } from "~/server/db/prisma";
 
-import Header from "~/components/header/Header";
-import AnimatedPosters from "~/components/hero/AnimatedPosters";
-import Title from "~/components/hero/Title";
+import Header from "~/components/header/header";
+import AnimatedPosters from "~/components/hero/animated-posters";
+import Title from "~/components/hero/title";
 
 import { siteConfig } from "~/config/site";
 import type { Posters as PosterType } from "~/types/poster";

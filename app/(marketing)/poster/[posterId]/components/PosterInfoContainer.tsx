@@ -3,12 +3,12 @@ import { formatDate } from "~/utils/formatDate";
 import getFirstLetters from "~/utils/getFirstLetter";
 import { Info } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "~/components/ui/HoverCard";
+} from "~/components/ui/hover-card";
 
 import type { PosterType } from "~/types/poster";
 
