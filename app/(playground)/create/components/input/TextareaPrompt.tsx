@@ -39,7 +39,7 @@ const TextareaPrompt = ({ collapse }: TextareaPromptProps) => {
         onChange={(event) => setPromptValue(event.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="Tropical rainforest, gloomy, wet after rain, peaceful place 8k, hyper realistic"
-        className={cn("my-5", collapse ? "h-16" : "h-[110px]")}
+        className={cn("my-5", collapse ? "h-16" : "h-24")}
       />
     </motion.div>
   );

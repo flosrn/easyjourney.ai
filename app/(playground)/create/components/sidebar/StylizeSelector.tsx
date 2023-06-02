@@ -40,7 +40,7 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
         value={[Number.parseInt(stylizeValue)]}
         max={1000}
         step={1}
-        className={cn("w-[70%]", className)}
+        className={cn("w-[65%]", className)}
         {...props}
       />
       <Input
@@ -50,7 +50,7 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
         placeholder={stylizeValue}
         value={stylizeValue}
         onChange={handleInputChange}
-        className={cn("w-[25%]", className)}
+        className={cn("w-[30%]", className)}
       />
       {/* <div className="rounded-xl border p-2">{stylizeValue}</div> */}
     </div>

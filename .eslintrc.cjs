@@ -13,7 +13,7 @@ module.exports = {
     "import",
     "unicorn",
     "prettier",
-    "@tanstack/query"
+    "@tanstack/query",
   ],
   extends: [
     "eslint:recommended",
@@ -26,6 +26,7 @@ module.exports = {
     "plugin:import/recommended",
     "plugin:unicorn/recommended",
     "plugin:tailwindcss/recommended",
+    "plugin:prettier/recommended",
     "prettier",
   ],
   parser: "@typescript-eslint/parser",
@@ -118,6 +119,7 @@ module.exports = {
     "i18n-text/no-en": 0,
     "no-empty-pattern": 0,
     "no-return-await": 0,
+    "prettier/prettier": "error",
     "@typescript-eslint/ban-types": [
       "error",
       {

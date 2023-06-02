@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Badge } from "~/components/ui/Badge";
 
 import { useFilterStore } from "../../store/filterStore";
+
 import "swiper/css";
 
 const badgeVariants = {
@@ -38,7 +39,7 @@ const FiltersBadge = () => {
       <Swiper
         slidesPerView="auto"
         spaceBetween={5}
-        className="relative h-[30px] !px-1"
+        className="relative h-5 !px-1"
       >
         <AnimatePresence initial={false}>
           {selectedFilters.map((filter) => {
