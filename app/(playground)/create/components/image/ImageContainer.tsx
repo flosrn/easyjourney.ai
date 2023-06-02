@@ -11,6 +11,7 @@ import { useImageGenerationStore } from "../../store/imageGenerationStore";
 import { useRatioStore } from "../../store/ratioStore";
 import { ImageGrid } from "./ImageGrid";
 import LoadingDots from "./LoadingDots";
+
 import "react-medium-image-zoom/dist/styles.css";
 import "atropos/css";
 
@@ -56,6 +57,11 @@ const ImageContainer = ({}: ImageContainerProps) => {
           "flex-center h-full rounded-md border border-dashed p-4",
           {
             "aspect-[1/1] lg:w-[500px]": ratio === "1/1",
+            "aspect-[16/10] lg:w-[700px]": ratio === "16/10",
+            "aspect-[16/9] lg:w-[700px]": ratio === "16/9",
+            "aspect-[17/9] lg:w-[700px]": ratio === "17/9",
+            "aspect-[21/9] lg:w-[700px]": ratio === "21/9",
+            "aspect-[32/9] lg:w-[700px]": ratio === "32/9",
             "aspect-[4/5] lg:w-[400px]": ratio === "4/5",
             "aspect-[2/3] lg:w-[334px]": ratio === "2/3",
             "aspect-[4/7] lg:w-[270px]": ratio === "4/7",

@@ -1,8 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { env } from "~/env.mjs";
 import Stripe from "stripe";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 import { validateCartItems } from "use-shopping-cart/utilities";
 
 type CartItem = {
@@ -82,6 +80,8 @@ export default async function handler(
         .filter(Boolean);
 
       // Vérifie que les entrées du panier correspondent à des produits existants
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       const line_items = validateCartItems(formattedInventory, formattedBody);
 
       const params: Stripe.Checkout.SessionCreateParams = {

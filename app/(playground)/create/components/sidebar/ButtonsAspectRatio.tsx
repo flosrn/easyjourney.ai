@@ -23,10 +23,13 @@ const ButtonsAspectRatio = ({}: ButtonsAspectRatioProps) => {
           onClick={() => setSelectedAspectRatio({ ratio, name, value })}
           variant="outline"
           size="xs"
-          className={cn("mr-2", {
-            "outline outline-offset-2 outline-blue-500":
-              ratio === selectedAspectRatio.ratio,
-          })}
+          className={cn(
+            "mx-1 w-[calc(25%-8px)] md:w-[calc(100%/6-8px)] lg:w-[calc(25%-8px)]",
+            {
+              "outline outline-offset-2 outline-blue-500":
+                ratio === selectedAspectRatio.ratio,
+            }
+          )}
         >
           {name}
         </Button>
