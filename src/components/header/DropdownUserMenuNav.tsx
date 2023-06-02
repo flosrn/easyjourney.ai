@@ -21,6 +21,8 @@ import { Switch } from "~/components/ui/Switch";
 
 import { siteConfig } from "~/config/site";
 
+import SettingsDialog from "./settings-dialog/SettingsDialog";
+
 type DropdownUserMenuNavProps = {};
 
 const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
@@ -61,6 +63,10 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
       }
       case "/logout": {
         return signOut({ callbackUrl: "/" });
+      }
+      case "/settings": {
+        event.preventDefault();
+        break;
       }
       default: {
         return href && router.push(href);
@@ -112,7 +118,13 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
                       <div className="flex justify-between">
                         <div className="flex items-center">
                           <Icon className="mr-2 h-4 w-4" />
-                          <span className="truncate">{title}</span>
+                          <span className="truncate">
+                            {href === "/settings" ? (
+                              <SettingsDialog title={title} />
+                            ) : (
+                              title
+                            )}
+                          </span>
                         </div>
                         {href === "/theme" && <Switch checked={isDarkTheme} />}
                       </div>
