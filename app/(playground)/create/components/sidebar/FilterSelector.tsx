@@ -80,7 +80,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
             aria-label="Select a filter"
             className="hidden w-full justify-between sm:flex"
           >
-            {selectedFilters.length === 0 && <div>Select a filter...</div>}
+            {selectedFilters.length === 0 && <div>Select a filter</div>}
             {selectedFilters.length > 1 && (
               <div>{selectedFilters.length} filters selected</div>
             )}
