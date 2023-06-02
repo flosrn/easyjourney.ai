@@ -6,9 +6,6 @@ import type { User } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 
-import SettingsDialog from "~/components/header/settings-dialog/SettingsDialog";
-import { Input } from "~/components/ui/Input";
-
 type FollowButtonProps = {
   userId: User["id"];
   isFollowing: boolean;
@@ -47,7 +44,6 @@ const FollowButton = ({
 
   return (
     <>
-      <SettingsDialog title="settings" />
       <button
         onClick={handleFollowClick}
         className={`mt-4 rounded-full px-4 py-2 ${
