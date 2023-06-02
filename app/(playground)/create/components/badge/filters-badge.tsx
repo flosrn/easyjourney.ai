@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Badge } from "~/components/ui/Badge";
 
 import { useFilterStore } from "../../store/filterStore";
-import "swiper/css";
 
 const badgeVariants = {
   hidden: { opacity: 0, scale: 0.5 },
