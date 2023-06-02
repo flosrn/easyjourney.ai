@@ -56,18 +56,18 @@ const ImageContainer = ({}: ImageContainerProps) => {
         className={cn(
           "flex-center h-full rounded-md border border-dashed p-4",
           {
-            "aspect-[1/1] lg:w-[500px]": ratio === "1/1",
-            "aspect-[16/10] lg:w-[700px]": ratio === "16/10",
-            "aspect-[16/9] lg:w-[700px]": ratio === "16/9",
-            "aspect-[17/9] lg:w-[700px]": ratio === "17/9",
-            "aspect-[21/9] lg:w-[700px]": ratio === "21/9",
-            "aspect-[32/9] lg:w-[700px]": ratio === "32/9",
-            "aspect-[4/5] lg:w-[400px]": ratio === "4/5",
-            "aspect-[2/3] lg:w-[334px]": ratio === "2/3",
-            "aspect-[4/7] lg:w-[270px]": ratio === "4/7",
-            "aspect-[5/4] lg:w-[600px]": ratio === "5/4",
-            "aspect-[3/2] lg:w-[650px]": ratio === "3/2",
-            "aspect-[7/4] lg:w-[700px]": ratio === "7/4",
+            "aspect-[1/1] lg:h-[375px]": ratio === "1/1",
+            "aspect-[16/10] lg:h-[375px]": ratio === "16/10",
+            "aspect-[16/9] lg:h-[375px]": ratio === "16/9",
+            "aspect-[17/9] lg:h-[375px]": ratio === "17/9",
+            "aspect-[21/9] lg:h-[375px]": ratio === "21/9",
+            "aspect-[32/9] lg:h-[350px]": ratio === "32/9",
+            "aspect-[4/5] lg:h-[375px]": ratio === "4/5",
+            "aspect-[2/3] lg:h-[375px]": ratio === "2/3",
+            "aspect-[4/7] lg:h-[375px]": ratio === "4/7",
+            "aspect-[5/4] lg:h-[375px]": ratio === "5/4",
+            "aspect-[3/2] lg:h-[375px]": ratio === "3/2",
+            "aspect-[7/4] lg:h-[375px]": ratio === "7/4",
           }
         )}
       >

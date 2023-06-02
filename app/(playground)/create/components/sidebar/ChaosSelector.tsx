@@ -40,7 +40,7 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
         value={[Number.parseInt(chaosValue)]}
         max={100}
         step={1}
-        className={cn("w-[70%]", className)}
+        className={cn("w-[65%]", className)}
         {...props}
       />
       <Input
@@ -50,7 +50,7 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
         placeholder={chaosValue}
         value={chaosValue}
         onChange={handleInputChange}
-        className={cn("w-[25%]", className)}
+        className={cn("w-[30%]", className)}
       />
       {/* <div className="rounded-xl border p-2">{chaosValue}</div> */}
     </div>

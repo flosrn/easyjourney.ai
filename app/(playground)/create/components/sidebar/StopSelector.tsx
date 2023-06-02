@@ -40,7 +40,7 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
         min={10}
         max={100}
         step={10}
-        className={cn("w-[70%]", className)}
+        className={cn("w-[65%]", className)}
         {...props}
       />
       <Input
@@ -50,9 +50,8 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
         placeholder={stopValue}
         value={stopValue}
         onChange={handleInputChange}
-        className={cn("w-[25%]", className)}
+        className={cn("w-[30%]", className)}
       />
-      {/* <div className="rounded-xl border p-2">{stopValue}</div> */}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { cn } from "~/lib/classNames";
 
 import ChaosSelector from "./ChaosSelector";
 import QualitySelector from "./QualitySelector";
+import SeedSelector from "./SeedSelector";
 import StopSelector from "./StopSelector";
 import StylizeSelector from "./StylizeSelector";
 import TileSelector from "./TileSelector";
@@ -19,15 +20,14 @@ const MoreOptions = ({ className }: MoreOptionsProps) => {
       <TitleComponent
         title="Version"
         description="Version 5 is the default version, the style raw remove some of the default Midjourney aesthetic style. 
-          Niji5 produce anime and illustrative styles with vastly more knowledge of anime, anime styles, and anime aesthetics."
+          Niji5 produce anime and illustrative styles with vastly more knowledge of anime, anime styles, and anime aesthetics. Default is Version 5.1"
       />
       <VersionSelector />
       <Separator />
 
       <TitleComponent
         title="Quality"
-        description="How much rendering quality time you want to spend. The default value
-            is 1. Higher values use more GPU minutes, lower values use less."
+        description="How much rendering quality time you want to spend. Higher values use more GPU minutes, lower values use less. Default at '1'."
       />
       <QualitySelector />
       <Separator />
@@ -57,11 +57,21 @@ const MoreOptions = ({ className }: MoreOptionsProps) => {
 
       <div className="flex justify-between">
         <TitleComponent
+          title="Seed"
+          description="Using a seed number as a complement to the same or nearly the same prompt will ensure a final result that is very similar. Number can be beetween 0 and 999999999"
+        />
+        <SeedSelector />
+      </div>
+      <Separator />
+
+      <div className="flex justify-between">
+        <TitleComponent
           title="Tile"
           description="Generates images that can be used as repeating tiles to create seamless patterns."
         />
         <TileSelector />
       </div>
+      <Separator />
     </div>
   );
 };
