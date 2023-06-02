@@ -3,7 +3,7 @@ import { UserRole } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
-export async function GET(request: Request) {
+export async function GET() {
   const session = await getServerAuthSession();
   if (!session) {
     return NextResponse.json({ status: 401, message: "Unauthorized" });
@@ -16,6 +16,11 @@ export async function GET(request: Request) {
     where: {
       createdAt: {
         lt: new Date("2023-05-26T08:17:35.755Z"),
+      },
+      image: {
+        not: {
+          startsWith: "https://cdn.midjourney.com/",
+        },
       },
     },
   });
