@@ -13,7 +13,7 @@ import {
 import { cn } from "~/lib/classNames";
 import { siteConfig } from "~/config/site";
 
-import { Icons } from "../icons";
+import { Icons } from "../ui/icons";
 
 export const Navbar = () => {
   return (
