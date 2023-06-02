@@ -29,7 +29,6 @@ const SideColumn = ({ className }: SidebarProps) => (
           description="Changes the aspect ratio of the generated image."
         />
         <ButtonsAspectRatio />
-        <Separator />
 
         <AccordionSide className="lg:hidden" />
         <MoreOptions className="hidden lg:block" />

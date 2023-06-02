@@ -15,9 +15,9 @@ type TitleComponentProps = {
 
 const TitleComponent = ({ title, description }: TitleComponentProps) => {
   return (
-    <div className="flex items-center ">
+    <div className="flex items-center">
       <h2 className="relative text-lg font-semibold tracking-tight">{title}</h2>
-      <HoverCard openDelay={0}>
+      <HoverCard>
         <HoverCardTrigger asChild>
           <Label htmlFor="model">
             <LucideHelpCircle className=" ml-1 h-4" color="gray" />
@@ -27,7 +27,7 @@ const TitleComponent = ({ title, description }: TitleComponentProps) => {
           align="start"
           className="w-[260px] text-sm"
           side="right"
-          sideOffset={30}
+          sideOffset={10}
         >
           {description}
         </HoverCardContent>

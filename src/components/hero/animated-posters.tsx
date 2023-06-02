@@ -31,7 +31,7 @@ const AnimatedPosters = ({ columns }: AnimatedPostersProps) => (
             quality={1}
             // seems not working on nextjs 13.x yet, see https://github.com/vercel/next.js/issues/42140
             placeholder="blur"
-            blurDataURL={`${poster.image}/-/blur/500/`}
+            blurDataURL={poster.image}
           />
         ))}
       </div>
