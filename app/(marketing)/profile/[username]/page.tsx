@@ -2,13 +2,14 @@ import React, { Suspense } from "react";
 import type { User } from "@prisma/client";
 import { prisma } from "~/server/db/prisma";
 
-import Posters from "../../posters/Posters";
+import Posters from "../../posters/components/Posters";
+import { SelectBar } from "./components/SelectBar";
 
 type UserProfileProps = {
   params: { username: User["username"] };
 };
 
-const getUserCreatedPosters = async (username: User["username"]) =>
+const getPostersCreatedByUser = async (username: User["username"]) =>
   prisma.user.findUnique({
     where: { username },
     include: {
@@ -24,14 +25,15 @@ const getUserCreatedPosters = async (username: User["username"]) =>
 export default async function CreatedByUser({
   params: { username },
 }: UserProfileProps) {
-  const user = await getUserCreatedPosters(username);
+  const user = await getPostersCreatedByUser(username);
   return (
-    <>
-      <Suspense fallback={<div>Loading posters...</div>}>
-        {user?.posters && (
-          <Posters posters={user.posters} noMargin className="mt-4" />
-        )}
-      </Suspense>
-    </>
+    <Suspense fallback={<div>Loading posters...</div>}>
+      {user?.posters && (
+        <>
+          <Posters posters={user.posters} noMargin />
+          <SelectBar />
+        </>
+      )}
+    </Suspense>
   );
 }

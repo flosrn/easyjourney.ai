@@ -24,6 +24,8 @@ const serverSchema = z.object({
   STRIPE_SECRET_KEY: z.string().min(1),
   STRIPE_WEBHOOK_SECRET: z.string().min(1),
   UPLOADCARE_PRIVATE_KEY: z.string().min(1),
+  MIDJOURNEY_CSRF_TOKEN: z.string().min(1),
+  MIDJOURNEY_CSRF_SESSION_TOKEN: z.string().min(1),
 });
 
 /**
@@ -57,6 +59,8 @@ const processEnv = {
     process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY,
   UPLOADCARE_PRIVATE_KEY: process.env.UPLOADCARE_PRIVATE_KEY,
   NEXT_PUBLIC_DISCORD_SALAI_TOKEN: process.env.NEXT_PUBLIC_DISCORD_SALAI_TOKEN,
+  MIDJOURNEY_CSRF_TOKEN: process.env.MIDJOURNEY_CSRF_TOKEN,
+  MIDJOURNEY_CSRF_SESSION_TOKEN: process.env.MIDJOURNEY_CSRF_SESSION_TOKEN,
 };
 
 // Don't touch the part below

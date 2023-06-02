@@ -1,0 +1,60 @@
+import type { Filter } from "../../../../types/typeFilters";
+
+export const dishesandMealsFilters: Filter[] = [
+  {
+    id: "Pizza_6_3_1",
+    name: "Pizza",
+    description: "Italian dish with a savory crust and various toppings.",
+    style: "Pizza",
+    image: "/images/filters/Pizza.webp",
+    isSelected: false,
+  },
+  {
+    id: "Hotdog_6_3_2",
+    name: "Hotdog",
+    description: "Grilled or steamed sausage served in a sliced bun.",
+    style: "Hotdog",
+    image: "/images/filters/Hotdog.webp",
+    isSelected: false,
+  },
+  {
+    id: "Pasta_6_9_1",
+    name: "Pasta",
+    description: "Italian staple made from durum wheat and water.",
+    style: "Pasta",
+    image: "/images/filters/Pasta.webp",
+    isSelected: false,
+  },
+  {
+    id: "Spaghetti_6_9_2",
+    name: "Spaghetti",
+    description: "Long, thin pasta strands often served with sauce.",
+    style: "Spaghetti",
+    image: "/images/filters/Spaghetti.webp",
+    isSelected: false,
+  },
+  {
+    id: "Fettuccine_6_9_3",
+    name: "Fettuccine",
+    description: "Flat, wide pasta noodles often served with cream sauce.",
+    style: "Fettuccine",
+    image: "/images/filters/Fettuccine.webp",
+    isSelected: false,
+  },
+  {
+    id: "Gnocchi_6_15_1",
+    name: "Gnocchi",
+    description: "Italian dumplings made from potatoes, flour, and eggs.",
+    style: "Gnocchi",
+    image: "/images/filters/Gnocchi.webp",
+    isSelected: false,
+  },
+  {
+    id: "Macaroni and Cheese_6_21_1",
+    name: "Macaroni and Cheese",
+    description: "Classic comfort dish with macaroni and melted cheese.",
+    style: "Macaroni and Cheese",
+    image: "/images/filters/Macaroni_and_Cheese.webp",
+    isSelected: false,
+  },
+];

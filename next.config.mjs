@@ -5,7 +5,7 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    domains: ["cdn.discordapp.com"],
+    domains: ["cdn.discordapp.com", "cdn.midjourney.com"],
     remotePatterns: [
       {
         hostname: "*.googleusercontent.com",

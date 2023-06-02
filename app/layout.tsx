@@ -1,7 +1,11 @@
+import React, { Suspense } from "react";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
 
+import NavigationEvents from "~/components/events/NavigationEvents";
+
 import Providers from "./providers";
+
 import "~/styles/globals.css";
 
 const inter = Inter({
@@ -19,6 +23,9 @@ export default async function RootLayout({
     <html lang="fr" className={inter.className} suppressHydrationWarning>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <Providers>{children}</Providers>
+        <Suspense fallback={null}>
+          <NavigationEvents />
+        </Suspense>
       </body>
     </html>
   );

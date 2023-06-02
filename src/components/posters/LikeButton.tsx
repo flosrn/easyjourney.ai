@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Like } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
+import useThrottle from "~/hooks/use-throtle";
 import { motion } from "framer-motion";
 import { HeartIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
-import useThrottle from "~/hooks/use-throtle";
 
 import { cn } from "~/lib/classNames";
 
@@ -37,15 +37,7 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
     setUserHasLiked(!!likes?.some((like) => like.userId === session?.user.id));
   }, [session, likes]);
 
-  const likeMutation = useMutation(likePoster, {
-    onSuccess: (data) => {
-      if (data.status === 409) {
-        setLikesCount(likesCount && likesCount - 1);
-        setUserHasLiked(false);
-        toast.error("You already liked this poster!");
-      }
-    },
-  });
+  const likeMutation = useMutation({ mutationFn: likePoster });
 
   const throttledMutation = useThrottle(async () => {
     try {
@@ -81,7 +73,7 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
       onClick={handleLike}
       whileHover={hasHoverAnim ? { scale: 1.1 } : {}}
       whileTap={{ scale: 0.9 }}
-      className="flex items-center space-x-2 p-1"
+      className="flex select-none items-center space-x-2 p-1"
     >
       <HeartIcon
         className={cn(

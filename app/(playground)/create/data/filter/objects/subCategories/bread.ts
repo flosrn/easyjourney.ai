@@ -1,0 +1,68 @@
+import type { Filter } from "../../../../types/typeFilters";
+
+export const breadFilters: Filter[] = [
+  {
+    id: "Bread_4_3_1",
+    name: "Bread",
+    description: "Basic staple food made from dough and baked.",
+    style: "Bread",
+    image: "/images/filters/Bread.webp",
+    isSelected: false,
+  },
+  {
+    id: "Made of Bread_4_3_2",
+    name: "Made of Bread",
+    description: "Food item or dish primarily consisting of bread.",
+    style: "Made of Bread",
+    image: "/images/filters/Made_of_Bread.webp",
+    isSelected: false,
+  },
+  {
+    id: "Pretzel_4_3_3",
+    name: "Pretzel",
+    description: "Baked bread product usually twisted into a knot shape.",
+    style: "Pretzel",
+    image: "/images/filters/Pretzel.webp",
+    isSelected: false,
+  },
+  {
+    id: "Shortcrust-Pastry_4_9_1",
+    name: "Shortcrust-Pastry",
+    description: "Type of pastry with a crumbly and buttery texture.",
+    style: "Shortcrust-Pastry",
+    image: "/images/filters/Shortcrust-Pastry.webp",
+    isSelected: false,
+  },
+  {
+    id: "Flaky-Pastry_4_9_2",
+    name: "Flaky-Pastry",
+    description: "Pastry with thin and crisp layers that separate when baked.",
+    style: "Flaky-Pastry",
+    image: "/images/filters/Flaky-Pastry.webp",
+    isSelected: false,
+  },
+  {
+    id: "Puff-Pastry_4_9_3",
+    name: "Puff-Pastry",
+    description: "Light and flaky pastry made with many layers of butter.",
+    style: "Puff-Pastry",
+    image: "/images/filters/Puff-Pastry.webp",
+    isSelected: false,
+  },
+  {
+    id: "Choux-Pastry_4_15_1",
+    name: "Choux-Pastry",
+    description: "Light pastry dough used to make profiteroles and éclairs.",
+    style: "Choux-Pastry",
+    image: "/images/filters/Choux-Pastry.webp",
+    isSelected: false,
+  },
+  {
+    id: "Phyllo_4_15_2",
+    name: "Phyllo",
+    description: "Paper-thin pastry used in Greek and Middle Eastern cuisine.",
+    style: "Phyllo",
+    image: "/images/filters/Phyllo.webp",
+    isSelected: false,
+  },
+];

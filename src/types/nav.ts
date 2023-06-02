@@ -13,6 +13,7 @@ export type NavItem = {
   disabled?: boolean;
   external?: boolean;
   onClick?: () => void;
+  adminOnly?: boolean;
 };
 
 export type MenuItem = {

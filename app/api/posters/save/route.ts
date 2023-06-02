@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
+import extractJobId from "~/utils/extractJobId";
+import getPosterTitle from "~/utils/getPosterTitle";
+
+const BASE_MIDJOURNEY_URL = "https://cdn.midjourney.com/";
 
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
@@ -11,19 +15,29 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { prompt } = body;
+    const { prompt, filename, referencedImage } = body;
+    const { imageSelected, ...rest } = body;
 
-    const title = prompt.split(" ").slice(0, 3).join(" ").replaceAll(",", "");
+    const title = getPosterTitle(prompt);
+    const jobId = referencedImage && extractJobId(referencedImage.filename);
+    const mjImageUrl =
+      jobId && `${BASE_MIDJOURNEY_URL}${jobId}/0_${imageSelected}.png`;
 
     const data = await prisma.poster.create({
       data: {
+        ...rest,
         title,
-        ...body,
+        prompt,
+        filename,
+        jobId,
+        discordImageUrl: body.image,
+        mjImageUrl,
         userId: session.user.id,
       },
     });
     return NextResponse.json({ status: 201, data });
-  } catch {
+  } catch (error: unknown) {
+    console.error(error);
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }
 }

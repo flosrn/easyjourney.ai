@@ -1,0 +1,112 @@
+import type { Filter } from "../../../../types/typeFilters";
+
+export const circularFilters: Filter[] = [
+  {
+    id: "Circle_4_3_1",
+    name: "Circle",
+    description: "Explore the simplest and most symmetric circular shape.",
+    style: "Circle",
+    image: "/images/filters/Circle.webp",
+    isSelected: false,
+  },
+  {
+    id: "Circular_4_3_2",
+    name: "Circular",
+    description: "Discover shapes with a round or curved outline.",
+    style: "Circular",
+    image: "/images/filters/Circular.webp",
+    isSelected: false,
+  },
+  {
+    id: "Rounded_4_9_1",
+    name: "Rounded",
+    description: "Explore shapes with smooth and curved edges or corners.",
+    style: "Rounded",
+    image: "/images/filters/Rounded.webp",
+    isSelected: false,
+  },
+  {
+    id: "Spherize_4_9_2",
+    name: "Spherize",
+    description:
+      "Discover shapes transformed into spherical or ball-like forms.",
+    style: "Spherize",
+    image: "/images/filters/Spherize.webp",
+    isSelected: false,
+  },
+  {
+    id: "Spherical_4_9_3",
+    name: "Spherical",
+    description: "Explore shapes that resemble or approximate a sphere.",
+    style: "Spherical",
+    image: "/images/filters/Spherical.webp",
+    isSelected: false,
+  },
+  {
+    id: "Concentric_4_15_1",
+    name: "Concentric",
+    description: "Discover shapes with nested circles or circular patterns.",
+    style: "Concentric",
+    image: "/images/filters/Concentric.webp",
+    isSelected: false,
+  },
+  {
+    id: "Concentric Circles_4_15_2",
+    name: "Concentric Circles",
+    description: "Explore shapes with circles centered on a common point.",
+    style: "Concentric Circles",
+    image: "/images/filters/Concentric_Circles.webp",
+    isSelected: false,
+  },
+  {
+    id: "Concentric Rings_4_15_3",
+    name: "Concentric Rings",
+    description: "Discover shapes with circular bands or ring-like structures.",
+    style: "Concentric Rings",
+    image: "/images/filters/Concentric_Rings.webp",
+    isSelected: false,
+  },
+  {
+    id: "Concentric Spheres_4_21_1",
+    name: "Concentric Spheres",
+    description: "Explore shapes with nested spheres or spherical patterns.",
+    style: "Concentric Spheres",
+    image: "/images/filters/Concentric_Spheres.webp",
+    isSelected: false,
+  },
+  {
+    id: "Contour_4_21_2",
+    name: "Contour",
+    description:
+      "Discover shapes defined by their outermost boundary or silhouette.",
+    style: "Contour",
+    image: "/images/filters/Contour.webp",
+    isSelected: false,
+  },
+  {
+    id: "Circinate_4_27_1",
+    name: "Circinate",
+    description:
+      "Explore shapes with curved or circular forms that are coiled or twisted.",
+    style: "Circinate",
+    image: "/images/filters/Circinate.webp",
+    isSelected: false,
+  },
+  {
+    id: "Orbicular_4_27_2",
+    name: "Orbicular",
+    description:
+      "Discover shapes that resemble or have the form of a disk or orb.",
+    style: "Orbicular",
+    image: "/images/filters/Orbicular.webp",
+    isSelected: false,
+  },
+  {
+    id: "Oblique_4_27_3",
+    name: "Oblique",
+    description: "Explore shapes with slanted or inclined orientations.",
+    style: "Oblique",
+    image: "/images/filters/Oblique.webp",
+    isSelected: false,
+  },
+];

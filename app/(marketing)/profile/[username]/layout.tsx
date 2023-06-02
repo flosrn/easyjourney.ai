@@ -4,7 +4,7 @@ import type { User } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
-import FollowButton from "../FollowButton";
+import FollowButton from "./components/FollowButton";
 import TabsHeader from "./components/TabsHeader";
 
 type LayoutProfileHeaderProps = {
@@ -36,7 +36,7 @@ export default async function LayoutProfileHeader({
     return <div>User not found</div>;
   }
 
-  const isMe = session?.user.id === user.id;
+  const isCurrentUser = session?.user.id === user.id;
   const totalPosters = user.posters.length;
   const totalLikes = user.posters.reduce(
     (total, poster) => total + poster.likes.length,
@@ -49,43 +49,47 @@ export default async function LayoutProfileHeader({
   );
   return (
     <>
-      <div className="mt-8 flex flex-col items-center justify-center">
-        {user.image && (
-          <Image
-            src={user.image}
-            alt={user.name}
-            width={128}
-            height={128}
-            unoptimized
-            className="h-32 w-32 rounded-full object-cover"
-          />
-        )}
-        <h1 className="mt-4 text-2xl font-semibold">{user.name}</h1>
-        <p className="mt-2 text-lg">@{user.username}</p>
+      <div className="container mt-4 max-w-6xl">
+        <div className="flex w-full flex-col items-center justify-center rounded-xl bg-muted py-8">
+          {user.image && (
+            <Image
+              src={user.image}
+              alt={user.name}
+              width={128}
+              height={128}
+              unoptimized
+              className="h-32 w-32 rounded-full object-cover"
+            />
+          )}
+          <h1 className="mt-4 text-2xl font-semibold">{user.name}</h1>
+          <p className="mt-2 text-lg">@{user.username}</p>
 
-        {!isMe && <FollowButton userId={user.id} isFollowing={isFollowing} />}
+          {!isCurrentUser && (
+            <FollowButton userId={user.id} isFollowing={isFollowing} />
+          )}
 
-        <div className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold">{totalPosters}</h2>
-            <p className="text-gray-500">Posters</p>
-          </div>
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold">{totalLikes}</h2>
-            <p className="text-gray-500">Likes</p>
-          </div>
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold">{totalFollowers}</h2>
-            <p className="text-gray-500">Followers</p>
-          </div>
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold">{totalFollowing}</h2>
-            <p className="text-gray-500">Following</p>
+          <div className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold">{totalPosters}</h2>
+              <p className="text-gray-500">Posters</p>
+            </div>
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold">{totalLikes}</h2>
+              <p className="text-gray-500">Likes</p>
+            </div>
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold">{totalFollowers}</h2>
+              <p className="text-gray-500">Followers</p>
+            </div>
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold">{totalFollowing}</h2>
+              <p className="text-gray-500">Following</p>
+            </div>
           </div>
         </div>
       </div>
       <div className="container max-w-6xl">
-        <TabsHeader username={username} />
+        <TabsHeader username={username} isCurrentUser={isCurrentUser} />
         {children}
       </div>
     </>

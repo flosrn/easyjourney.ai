@@ -32,7 +32,7 @@ export async function POST(request: Request) {
           id: existingLike.id,
         },
       });
-      return NextResponse.json({ status: 200 });
+      return NextResponse.json({ status: 204, message: "Like removed" });
     } else {
       // Create a new like
       await prisma.like.create({
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
           posterId,
         },
       });
-      return NextResponse.json({ status: 201 });
+      return NextResponse.json({ status: 201, message: "Poster liked" });
     }
   } catch {
     return NextResponse.json({

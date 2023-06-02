@@ -1,0 +1,147 @@
+import type { Filter } from "../../../../types/typeFilters";
+
+export const tapeandAdhesivesFilters: Filter[] = [
+  {
+    id: "Tape_19_3_1",
+    name: "Tape",
+    description:
+      "Adhesive strip used for sticking objects together or securing items.",
+    style: "Tape",
+    image: "/images/filters/Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Scotch Tape_19_3_2",
+    name: "Scotch Tape",
+    description: "Brand of transparent adhesive tape.",
+    style: "Scotch Tape",
+    image: "/images/filters/Scotch_Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Clear Tape_19_3_3",
+    name: "Clear Tape",
+    description: "Transparent adhesive tape.",
+    style: "Clear Tape",
+    image: "/images/filters/Clear_Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Duct Tape_19_9_1",
+    name: "Duct Tape",
+    description: "Strong, flexible adhesive tape with a cloth backing.",
+    style: "Duct Tape",
+    image: "/images/filters/Duct_Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Packing Tape_19_9_2",
+    name: "Packing Tape",
+    description: "Adhesive tape used for sealing packages or boxes.",
+    style: "Packing Tape",
+    image: "/images/filters/Packing_Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Masking Tape_19_9_3",
+    name: "Masking Tape",
+    description:
+      "Paper tape with a mildly adhesive backing, used mainly in painting.",
+    style: "Masking Tape",
+    image: "/images/filters/Masking_Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Kapton_19_15_1",
+    name: "Kapton",
+    description:
+      "Polyimide film with excellent thermal and electrical properties.",
+    style: "Kapton",
+    image: "/images/filters/Kapton.webp",
+    isSelected: false,
+  },
+  {
+    id: "Kapton Tape_19_15_2",
+    name: "Kapton Tape",
+    description: "Adhesive tape made of Kapton film.",
+    style: "Kapton Tape",
+    image: "/images/filters/Kapton_Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Double-Sided Tape_19_15_3",
+    name: "Double-Sided Tape",
+    description:
+      "Adhesive tape with adhesive on both sides, used for bonding two surfaces together.",
+    style: "Double-Sided Tape",
+    image: "/images/filters/Double-Sided_Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Gaffer Tape_19_21_1",
+    name: "Gaffer Tape",
+    description:
+      "Strong, cloth-backed adhesive tape used primarily in the entertainment industry.",
+    style: "Gaffer Tape",
+    image: "/images/filters/Gaffer_Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Twill Tape_19_21_2",
+    name: "Twill Tape",
+    description:
+      "Flat-woven fabric tape made of cotton, used for various applications.",
+    style: "Twill Tape",
+    image: "/images/filters/Twill_Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Caution Tape_19_21_3",
+    name: "Caution Tape",
+    description: "Brightly colored tape used to indicate caution or danger.",
+    style: "Caution Tape",
+    image: "/images/filters/Caution_Tape.webp",
+    isSelected: false,
+  },
+  {
+    id: "Adhesive_19_27_1",
+    name: "Adhesive",
+    description: "Substance used for sticking objects together.",
+    style: "Adhesive",
+    image: "/images/filters/Adhesive.webp",
+    isSelected: false,
+  },
+  {
+    id: "Glue_19_27_2",
+    name: "Glue",
+    description: "Substance used for bonding materials together.",
+    style: "Glue",
+    image: "/images/filters/Glue.webp",
+    isSelected: false,
+  },
+  {
+    id: "Double-Sided Glue_19_27_3",
+    name: "Double-Sided Glue",
+    description:
+      "Glue with adhesive on both sides, used for joining two surfaces together.",
+    style: "Double-Sided Glue",
+    image: "/images/filters/Double-Sided_Glue.webp",
+    isSelected: false,
+  },
+  {
+    id: "Epoxy_19_33_1",
+    name: "Epoxy",
+    description: "Two-part adhesive that hardens through a chemical reaction.",
+    style: "Epoxy",
+    image: "/images/filters/Epoxy.webp",
+    isSelected: false,
+  },
+  {
+    id: "Paste_19_33_2",
+    name: "Paste",
+    description: "Semi-solid adhesive substance used for various purposes.",
+    style: "Paste",
+    image: "/images/filters/Paste.webp",
+    isSelected: false,
+  },
+];
