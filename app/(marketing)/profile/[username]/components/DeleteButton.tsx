@@ -45,10 +45,12 @@ const DeleteButton = () => {
       const data = await response[0].json();
       if (data) {
         await fetch(`/api/revalidate?path=/profile/${username}`);
+        await fetch("/api/revalidate?path=/posters/new");
+        await fetch("/api/revalidate?path=/posters/popular");
         setTimeout(() => {
           clearSelectedPosters();
           toggleSelectBar();
-        }, 1000);
+        }, 400);
       }
     } catch {
       toast.error(
