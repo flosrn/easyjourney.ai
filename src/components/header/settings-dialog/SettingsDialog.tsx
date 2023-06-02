@@ -11,10 +11,14 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "~/components/ui/Dialog";
 import { Input } from "~/components/ui/Input";
 import { Label } from "~/components/ui/Label";
+
+type SettingsDialogProps = {
+  open: boolean;
+  openChangeHandler: (isOpen: boolean) => void;
+};
 
 const updateUserProfile = async (username: string) => {
   const response = await fetch("/api/profile/update", {
@@ -28,7 +32,7 @@ const updateUserProfile = async (username: string) => {
   return data;
 };
 
-export default function SettingsDialog({ title }: { title: string }) {
+const SettingsDialog = ({ open, openChangeHandler }: SettingsDialogProps) => {
   const { data: session } = useSession();
   const [username, setUsername] = useState(session?.user.username);
 
@@ -40,8 +44,6 @@ export default function SettingsDialog({ title }: { title: string }) {
   const handleSubmit = async () => {
     try {
       const data = username && (await updateUserProfile(username));
-      console.log("data", data);
-      ("");
       if (data.status === 405) {
         toast.error("This username is already taken");
       }
@@ -57,8 +59,7 @@ export default function SettingsDialog({ title }: { title: string }) {
   };
 
   return (
-    <Dialog>
-      <DialogTrigger>{title}</DialogTrigger>
+    <Dialog open={open} onOpenChange={openChangeHandler}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Modify your profile</DialogTitle>
@@ -85,4 +86,6 @@ export default function SettingsDialog({ title }: { title: string }) {
       </DialogContent>
     </Dialog>
   );
-}
+};
+
+export default SettingsDialog;

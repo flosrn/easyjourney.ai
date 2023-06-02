@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import getFirstLetters from "~/utils/getFirstLetter";
 import { signOut, useSession } from "next-auth/react";
@@ -26,6 +26,7 @@ import SettingsDialog from "./settings-dialog/SettingsDialog";
 type DropdownUserMenuNavProps = {};
 
 const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean>(true);
   const { data: session } = useSession();
   const router = useRouter();
@@ -65,8 +66,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
         return signOut({ callbackUrl: "/" });
       }
       case "/settings": {
-        event.preventDefault();
-        break;
+        return setIsDialogOpen(true);
       }
       default: {
         return href && router.push(href);
@@ -111,20 +111,14 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
                   {group.map(({ title, href, icon: Icon, disabled }) => (
                     <DropdownMenuItem
                       key={title}
-                      onClick={async (event) => handleItemClick(event, href)}
-                      disabled={disabled}
                       asChild
+                      disabled={disabled}
+                      onClick={async (event) => handleItemClick(event, href)}
                     >
                       <div className="flex justify-between">
                         <div className="flex items-center">
                           <Icon className="mr-2 h-4 w-4" />
-                          <span className="truncate">
-                            {href === "/settings" ? (
-                              <SettingsDialog title={title} />
-                            ) : (
-                              title
-                            )}
-                          </span>
+                          <span className="truncate">{title}</span>
                         </div>
                         {href === "/theme" && <Switch checked={isDarkTheme} />}
                       </div>
@@ -139,6 +133,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
           })}
         </DropdownMenuContent>
       </DropdownMenu>
+      <SettingsDialog open={isDialogOpen} openChangeHandler={setIsDialogOpen} />
     </>
   );
 };
