@@ -18,7 +18,7 @@ const TitleComponent = ({ title, description }: TitleComponentProps) => {
     <HoverCard openDelay={200}>
       <HoverCardTrigger asChild>
         <Label htmlFor="model" className="flex items-center ">
-          <h2 className="relative hidden text-lg font-semibold tracking-tight lg:block ">
+          <h2 className="relative text-lg font-semibold tracking-tight">
             {title}
           </h2>
           <LucideHelpCircle className=" ml-1 h-4" color="gray" />
