@@ -21,11 +21,11 @@ const SideColumn = ({ className }: SidebarProps) => (
                 Home
               </Button>
               <Button
-                href="/dashboard/option-2"
+                href="/dashboard/search-posters"
                 variant="link"
                 className="px-2 py-1"
               >
-                Option 2
+                Search Posters
               </Button>
             </div>
           </div>
