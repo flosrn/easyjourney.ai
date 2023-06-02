@@ -5,8 +5,8 @@ import { Toaster } from "react-hot-toast";
 
 import BackToPreviousPageButton from "~/components/posters/BackToPreviousPageButton";
 
-import PosterImageContainer from "./components/PosterImageContainer";
-import PosterInfoContainer from "./components/PosterInfoContainer";
+import PosterImageContainer from "./components/poster-image-container";
+import PosterInfoContainer from "./components/poster-info-container";
 
 const getCurrentPoster = async (posterId: Poster["id"]) =>
   prisma.poster.findUnique({

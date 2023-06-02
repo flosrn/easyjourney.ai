@@ -4,8 +4,8 @@ import type { User } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
-import FollowButton from "./components/FollowButton";
-import TabsHeader from "./components/TabsHeader";
+import FollowButton from "./components/follow-button";
+import TabsHeader from "./components/tabs-header";
 
 type LayoutProfileHeaderProps = {
   params: { username: User["username"] };

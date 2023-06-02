@@ -4,13 +4,13 @@ import { Separator } from "~/components/ui/Separator";
 
 import { cn } from "~/lib/classNames";
 
-import ChaosSelector from "./ChaosSelector";
-import QualitySelector from "./QualitySelector";
-import StopSelector from "./StopSelector";
-import StylizeSelector from "./StylizeSelector";
-import TileSelector from "./TileSelector";
-import TitleComponent from "./TitleComponent";
-import VersionSelector from "./VersionSelector";
+import ChaosSelector from "./chaos-selector";
+import QualitySelector from "./quality-selector";
+import StopSelector from "./stop-selector";
+import StylizeSelector from "./stylize-selector";
+import TileSelector from "./tile-selector";
+import TitleComponent from "./title-component";
+import VersionSelector from "./version-selector";
 
 type MoreOptionsProps = React.HTMLAttributes<HTMLDivElement> & {};
 const MoreOptions = ({ className }: MoreOptionsProps) => {

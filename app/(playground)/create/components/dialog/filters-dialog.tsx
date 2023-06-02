@@ -19,12 +19,12 @@ import type {
   CategoryFilter,
   SubCategoryFilter,
 } from "../../types/typeFilters";
-import FiltersBadge from "../badge/FiltersBadge";
+import FiltersBadge from "../badge/filters-badge";
 import CategoryListCards, {
   CategoryFilterType,
-} from "../cards/CategoryListCards";
-import FilterCard from "../cards/FilterCard";
-import Breadcrumbs from "./Breadcrumbs";
+} from "../cards/category-list-cards";
+import FilterCard from "../cards/filter-card";
+import Breadcrumbs from "./breadcrumbs";
 
 type FilterDialogProps = {};
 

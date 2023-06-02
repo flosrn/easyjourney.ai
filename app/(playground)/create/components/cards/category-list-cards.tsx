@@ -7,7 +7,7 @@ import {
   type CategoryFilter,
   type SubCategoryFilter,
 } from "../../types/typeFilters";
-import EmojiIcon from "../dialog/EmojiIcon";
+import EmojiIcon from "../dialog/emoji-icon";
 
 export enum CategoryFilterType {
   "CATEGORY" = "CATEGORY",

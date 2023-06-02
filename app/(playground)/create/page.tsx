@@ -2,8 +2,8 @@ import React from "react";
 import { redirect } from "next/navigation";
 import { getServerAuthSession } from "~/server/auth";
 
-import MainColumn from "./MainColumn";
-import SideColumn from "./SideColumn";
+import MainColumn from "./main-column";
+import SideColumn from "./side-column";
 
 export default async function CreatePage() {
   const session = await getServerAuthSession();

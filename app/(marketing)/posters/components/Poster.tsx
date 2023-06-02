@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
 
 import type { PosterType } from "~/types/poster";
 
-import BottomPosterPrompt from "./BottomPosterPrompt";
+import BottomPosterPrompt from "./bottom-poster-prompt";
 
 type PostersProps = PosterType;
 

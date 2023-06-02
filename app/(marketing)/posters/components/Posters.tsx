@@ -3,7 +3,7 @@ import React from "react";
 import { cn } from "~/lib/classNames";
 import type { Posters as PosterType } from "~/types/poster";
 
-import Poster from "./Poster";
+import Poster from "./poster";
 
 type PostersProps = {
   posters: PosterType;

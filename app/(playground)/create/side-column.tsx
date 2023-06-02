@@ -5,11 +5,11 @@ import { Separator } from "~/components/ui/Separator";
 
 import { cn } from "~/lib/classNames";
 
-import AccordionSide from "./components/sidebar/AccordionSide";
-import ButtonsAspectRatio from "./components/sidebar/ButtonsAspectRatio";
-import { FilterSelector } from "./components/sidebar/FilterSelector";
-import MoreOptions from "./components/sidebar/MoreOptions";
-import TitleComponent from "./components/sidebar/TitleComponent";
+import AccordionSide from "./components/sidebar/accordion-side";
+import ButtonsAspectRatio from "./components/sidebar/buttons-aspect-ratio";
+import { FilterSelector } from "./components/sidebar/filter-selector";
+import MoreOptions from "./components/sidebar/more-options";
+import TitleComponent from "./components/sidebar/title-component";
 
 type SidebarProps = React.HTMLAttributes<HTMLDivElement> & {};
 

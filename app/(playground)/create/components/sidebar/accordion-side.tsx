@@ -10,8 +10,8 @@ import { Separator } from "~/components/ui/Separator";
 
 import { cn } from "~/lib/classNames";
 
-import MoreOptions from "./MoreOptions";
-import TitleComponent from "./TitleComponent";
+import MoreOptions from "./more-options";
+import TitleComponent from "./title-component";
 
 type AccordionProps = React.HTMLAttributes<HTMLDivElement> & {};
 

@@ -2,8 +2,8 @@ import React, { Suspense } from "react";
 import type { User } from "@prisma/client";
 import { prisma } from "~/server/db/prisma";
 
-import Posters from "../../posters/components/Posters";
-import { SelectBar } from "./components/SelectBar";
+import Posters from "../../posters/components/posters";
+import { SelectBar } from "./components/select-bar";
 
 type UserProfileProps = {
   params: { username: User["username"] };

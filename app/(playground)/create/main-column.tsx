@@ -18,13 +18,13 @@ import { Toaster } from "react-hot-toast";
 import { Button } from "~/components/ui/Button";
 import { Separator } from "~/components/ui/Separator";
 
-import FiltersBadge from "./components/badge/FiltersBadge";
-import FiltersDialog from "./components/dialog/FiltersDialog";
-import ImageContainer from "./components/image/ImageContainer";
-import TextareaPrompt from "./components/input/TextareaPrompt";
+import FiltersBadge from "./components/badge/filters-badge";
+import FiltersDialog from "./components/dialog/filters-dialog";
+import ImageContainer from "./components/image/image-container";
+import TextareaPrompt from "./components/input/textarea-prompt";
 import { aspectRatios } from "./data/aspectRatios";
 import { handleMessageData } from "./lib/imageGenerationUtils";
-import SideColumn from "./SideColumn";
+import SideColumn from "./side-column";
 import { useChaosStore } from "./store/chaosStore";
 import { useFilterStore } from "./store/filterStore";
 import { useImageGenerationStore } from "./store/imageGenerationStore";

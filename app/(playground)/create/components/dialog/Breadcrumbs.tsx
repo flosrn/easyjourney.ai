@@ -7,7 +7,7 @@ import type {
   CategoryFilter,
   SubCategoryFilter,
 } from "../../types/typeFilters";
-import EmojiIcon from "./EmojiIcon";
+import EmojiIcon from "./emoji-icon";
 
 type BreadcrumbsProps = {
   category?: CategoryFilter;

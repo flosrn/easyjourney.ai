@@ -9,8 +9,8 @@ import { cn } from "~/lib/classNames";
 
 import { useImageGenerationStore } from "../../store/imageGenerationStore";
 import { useRatioStore } from "../../store/ratioStore";
-import { ImageGrid } from "./ImageGrid";
-import LoadingDots from "./LoadingDots";
+import { ImageGrid } from "./image-grid";
+import LoadingDots from "./loading-dots";
 
 import "react-medium-image-zoom/dist/styles.css";
 import "atropos/css";

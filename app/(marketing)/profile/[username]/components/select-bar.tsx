@@ -8,7 +8,7 @@ import { LucideX } from "lucide-react";
 
 import { Button } from "~/components/ui/Button";
 
-import DeleteButton from "./DeleteButton";
+import DeleteButton from "./delete-button";
 
 export const SelectBar = () => {
   const [isModalSelectOpen, toggleModalSelectOpen] = useSelectBarStore(

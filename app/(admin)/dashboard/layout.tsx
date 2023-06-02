@@ -4,8 +4,8 @@ import { getServerAuthSession } from "~/server/auth";
 
 import Header from "~/components/header/Header";
 
-import MainColumn from "./MainColumn";
-import SideColumn from "./SideColumn";
+import MainColumn from "./main-column";
+import SideColumn from "./side-column";
 
 type LayoutPageProps = {
   children: React.ReactNode;

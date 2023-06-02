@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 
 import { Tabs, TabsList, TabsTrigger } from "~/components/ui/Tabs";
 
-import SelectButton from "./SelectButton";
+import SelectButton from "./select-button";
 
 type TabsHeaderProps = {
   username: string;

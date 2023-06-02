@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { prisma } from "~/server/db/prisma";
 
-import Posters from "../../components/Posters";
+import Posters from "../../components/posters";
 
 const getPostersByCategory = async () =>
   prisma.poster.findMany({
