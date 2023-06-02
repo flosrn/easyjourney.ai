@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-// @ts-expect-error
+// eslint-disable-next-line import/named
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { env } from "~/env.mjs";
 import { SessionProvider } from "next-auth/react";
