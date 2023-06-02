@@ -18,7 +18,6 @@ type AccordionProps = React.HTMLAttributes<HTMLDivElement> & {};
 const AccordionSide = ({ className }: AccordionProps) => {
   return (
     <>
-      {" "}
       <Accordion
         type="single"
         collapsible
