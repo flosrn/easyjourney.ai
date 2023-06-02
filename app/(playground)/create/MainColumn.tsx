@@ -25,10 +25,16 @@ import TextareaPrompt from "./components/input/TextareaPrompt";
 import { aspectRatios } from "./data/aspectRatios";
 import { handleMessageData } from "./lib/imageGenerationUtils";
 import SideColumn from "./SideColumn";
+import { useChaosStore } from "./store/chaosStore";
 import { useFilterStore } from "./store/filterStore";
 import { useImageGenerationStore } from "./store/imageGenerationStore";
 import { usePromptStore } from "./store/promptStore";
+import { useQualityStore } from "./store/qualityStore";
 import { useRatioStore } from "./store/ratioStore";
+import { useStopStore } from "./store/stopStore";
+import { useStylizeStore } from "./store/stylizeStore";
+import { useTileStore } from "./store/tileStore";
+import { useVersionStore } from "./store/versionStore";
 
 const MainColumn = () => {
   const [
@@ -74,6 +80,32 @@ const MainColumn = () => {
     state.setMessage,
     state.isImageUploaded,
   ]);
+
+  const [chaosValue, setChaosValue] = useChaosStore((state) => [
+    state.chaosValue,
+    state.setChaosValue,
+  ]);
+  const [qualityValue, setQualityValue] = useQualityStore((state) => [
+    state.qualityValue,
+    state.setQualityValue,
+  ]);
+  const [stopValue, setStopValue] = useStopStore((state) => [
+    state.stopValue,
+    state.setStopValue,
+  ]);
+  const [stylizeValue, setStylizeValue] = useStylizeStore((state) => [
+    state.stylizeValue,
+    state.setStylizeValue,
+  ]);
+  const [tileValue, resetTileValue] = useTileStore((state) => [
+    state.tileValue,
+    state.resetTileValue,
+  ]);
+  const [versionValue, setVersionValue] = useVersionStore((state) => [
+    state.versionValue,
+    state.setVersionValue,
+  ]);
+
   const [selectedAspectRatio, setSelectedAspectRatio] = useRatioStore(
     (state) => [state.selectedAspectRatio, state.setSelectedAspectRatio]
   );
@@ -87,8 +119,6 @@ const MainColumn = () => {
   ]);
   const { data: session } = useSession();
   const username = session?.user.username;
-
-  console.log("images :", images);
 
   const hasImages = images.length > 0;
   const hasFilters = selectedFilters.length > 0;
@@ -104,15 +134,39 @@ const MainColumn = () => {
   const styles: string[] = selectedFilters.map(
     (selectedFilter) => selectedFilter.style
   );
+
+  // OPTIONS
+  const chaos = chaosValue === "0" ? "" : ` --c ${chaosValue}`;
+  const stylize = stylizeValue === "100" ? "" : ` --stylize ${stylizeValue}`;
+  const stop = stopValue === "100" ? "" : ` --stop ${stopValue}`;
+  const quality = qualityValue === "1" ? "" : ` --quality ${qualityValue}`;
+  const version = versionValue === "default" ? "" : ` ${versionValue}`;
+  const tile = tileValue ? ` --tile` : "";
+  const ratioTrim = ratio ? ` ${ratio}` : "";
+
+  const hasOption =
+    chaos || stylize || stop || quality || version || tile || ratio;
+
+  // FINAL PROMPT
   const prompt = `${promptValue.trim()}${
     styles.length > 0 ? `, ${styles.join(", ").toLowerCase()}` : ""
-  } ${ratio}`;
+  }${
+    hasOption ? "," : ""
+  }${ratioTrim}${chaos}${quality}${stop}${stylize}${tile}${version}`;
+
+  console.log(prompt);
   const isEmpty = !prompt || prompt.length <= 1;
 
   const handleClear = () => {
     setClear();
     setPromptValue("");
     setSelectedAspectRatio(aspectRatios[0]);
+    setChaosValue("");
+    setQualityValue("");
+    setStopValue("");
+    setStylizeValue("");
+    setVersionValue("");
+    resetTileValue();
     clearFilters();
   };
 
