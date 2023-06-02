@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { env } from "~/env.mjs";
 import Stripe from "stripe";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import { validateCartItems } from "use-shopping-cart/utilities";
-import { env } from "~/env.mjs";
 
 type CartItem = {
   id: string;

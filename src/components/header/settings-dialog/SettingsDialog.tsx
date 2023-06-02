@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 
 import { Button } from "~/components/ui/Button";
 import {
@@ -40,14 +40,16 @@ export default function SettingsDialog({ title }) {
   const handleSubmit = async () => {
     try {
       const data = username && (await updateUserProfile(username));
+      console.log("data", data);
+      ("");
+      if (data.status === 405) {
+        toast.error("This username is already taken");
+      }
       if (data.status === 400) {
         toast.error(data.message);
       }
-      if (data.status === 405) {
-        toast("suce mon zboub");
-      }
       if (data.status === 200) {
-        toast.success("Profile successfully updated!");
+        toast.success("Your profile has been successfully updated");
       }
     } catch (error: unknown) {
       toast.error(`failed to update profile: ${error}`);
@@ -79,6 +81,7 @@ export default function SettingsDialog({ title }) {
         <Button variant="secondary" onClick={handleSubmit}>
           Confirmer
         </Button>
+        <Toaster />
       </DialogContent>
     </Dialog>
   );
