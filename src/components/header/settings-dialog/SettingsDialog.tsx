@@ -62,8 +62,8 @@ const SettingsDialog = ({ open, openChangeHandler }: SettingsDialogProps) => {
     <Dialog open={open} onOpenChange={openChangeHandler}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Modify your profile</DialogTitle>
-          <DialogDescription>Personalize your profile</DialogDescription>
+          <DialogTitle>Settings</DialogTitle>
+          <DialogDescription>Manage your account settings</DialogDescription>
         </DialogHeader>
 
         <div className="grid gap-4 py-4">
