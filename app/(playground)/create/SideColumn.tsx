@@ -33,7 +33,6 @@ const SideColumn = ({ className }: SidebarProps) => (
 
         <AccordionSide className="lg:hidden" />
         <MoreOptions className="hidden lg:block" />
-        <Separator className="lg:hidden" />
       </div>
     </aside>
   </ScrollArea>
