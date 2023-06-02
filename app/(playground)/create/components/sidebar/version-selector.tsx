@@ -10,7 +10,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "~/components/ui/Select";
+} from "~/components/ui/select";
 
 import { useVersionStore } from "../../store/versionStore";
 
@@ -28,20 +28,13 @@ const VersionSelector = () => {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Version</SelectLabel>
-          <SelectItem value="default">Version 5 (default)</SelectItem>
-          <SelectItem value="--v 5.1 --style raw">
-            Verions 5 : style raw
-          </SelectItem>
-          <SelectItem value="--niji 5">niji 5</SelectItem>
-          <SelectItem value="--niji 5 --style cute ">
-            niji 5 : style cute
-          </SelectItem>
-          <SelectItem value="--niji 5 --style scenic">
-            niji 5 : style scenic
-          </SelectItem>
-          <SelectItem value="--niji 5 --style expressive  ">
-            niji 5 : style expressive
+          <SelectItem value="default">Version 5.1</SelectItem>
+          <SelectItem value="--v 5.1 --style raw">Verions 5.1 raw</SelectItem>
+          <SelectItem value="--niji 5">Niji 5</SelectItem>
+          <SelectItem value="--niji 5 --style cute">Niji 5 cute</SelectItem>
+          <SelectItem value="--niji 5 --style scenic">Niji 5 scenic</SelectItem>
+          <SelectItem value="--niji 5 --style expressive">
+            Niji 5 expressive
           </SelectItem>
         </SelectGroup>
       </SelectContent>

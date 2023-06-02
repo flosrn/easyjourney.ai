@@ -3,7 +3,7 @@
 import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
 
-import { Checkbox } from "~/components/ui/Checkbox";
+import { Checkbox } from "~/components/ui/checkbox";
 
 import { cn } from "~/lib/classNames";
 

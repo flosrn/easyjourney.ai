@@ -1,7 +1,7 @@
 import React from "react";
 
-import { ScrollArea } from "~/components/ui/ScrollArea";
-import { Separator } from "~/components/ui/Separator";
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { Separator } from "~/components/ui/separator";
 
 import { cn } from "~/lib/classNames";
 

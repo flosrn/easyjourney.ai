@@ -125,6 +125,11 @@ const userMenu: NavItem[][] = [
       icon: Heart,
       onClick: () => null,
     },
+    {
+      title: "Paramètres",
+      href: "/settings",
+      icon: Settings,
+    },
   ],
   [
     {
@@ -166,12 +171,6 @@ const userMenu: NavItem[][] = [
       title: "Dark mode",
       href: "/theme",
       icon: Palette,
-    },
-    {
-      title: "Réglages",
-      href: "/dashboard/settings",
-      icon: Settings,
-      disabled: true,
     },
   ],
   [

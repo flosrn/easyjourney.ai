@@ -1,4 +1,4 @@
-import { Button, buttonVariants } from "~/components/ui/Button";
+import { Button, buttonVariants } from "~/components/ui/button";
 
 export default function PricingCard({
   title,

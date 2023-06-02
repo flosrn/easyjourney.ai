@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import getFirstLetters from "~/utils/getFirstLetter";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/Avatar";
-import { Button } from "~/components/ui/Button";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,14 +16,17 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "~/components/ui/DropdownMenu";
-import { Switch } from "~/components/ui/Switch";
+} from "~/components/ui/dropdown-menu";
+import { Switch } from "~/components/ui/switch";
 
 import { siteConfig } from "~/config/site";
+
+import SettingsDialog from "./settings-dialog/settings-dialog";
 
 type DropdownUserMenuNavProps = {};
 
 const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [isDarkTheme, setIsDarkTheme] = React.useState<boolean>(true);
   const { data: session } = useSession();
   const router = useRouter();
@@ -61,6 +64,9 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
       }
       case "/logout": {
         return signOut({ callbackUrl: "/" });
+      }
+      case "/settings": {
+        return setIsDialogOpen(true);
       }
       default: {
         return href && router.push(href);
@@ -105,9 +111,9 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
                   {group.map(({ title, href, icon: Icon, disabled }) => (
                     <DropdownMenuItem
                       key={title}
-                      onClick={async (event) => handleItemClick(event, href)}
-                      disabled={disabled}
                       asChild
+                      disabled={disabled}
+                      onClick={async (event) => handleItemClick(event, href)}
                     >
                       <div className="flex justify-between">
                         <div className="flex items-center">
@@ -127,6 +133,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
           })}
         </DropdownMenuContent>
       </DropdownMenu>
+      <SettingsDialog open={isDialogOpen} openChangeHandler={setIsDialogOpen} />
     </>
   );
 };

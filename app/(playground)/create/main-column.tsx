@@ -15,8 +15,8 @@ import {
 import { useSession } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 
-import { Button } from "~/components/ui/Button";
-import { Separator } from "~/components/ui/Separator";
+import { Button } from "~/components/ui/button";
+import { Separator } from "~/components/ui/separator";
 
 import FiltersBadge from "./components/badge/filters-badge";
 import FiltersDialog from "./components/dialog/filters-dialog";
@@ -31,6 +31,7 @@ import { useImageGenerationStore } from "./store/imageGenerationStore";
 import { usePromptStore } from "./store/promptStore";
 import { useQualityStore } from "./store/qualityStore";
 import { useRatioStore } from "./store/ratioStore";
+import { useSeedStore } from "./store/seedStore";
 import { useStopStore } from "./store/stopStore";
 import { useStylizeStore } from "./store/stylizeStore";
 import { useTileStore } from "./store/tileStore";
@@ -105,7 +106,10 @@ const MainColumn = () => {
     state.versionValue,
     state.setVersionValue,
   ]);
-
+  const [seedValue, setSeedValue] = useSeedStore((state) => [
+    state.seedValue,
+    state.setSeedValue,
+  ]);
   const [selectedAspectRatio, setSelectedAspectRatio] = useRatioStore(
     (state) => [state.selectedAspectRatio, state.setSelectedAspectRatio]
   );
@@ -143,7 +147,7 @@ const MainColumn = () => {
   const version = versionValue === "default" ? "" : ` ${versionValue}`;
   const tile = tileValue ? ` --tile` : "";
   const ratioTrim = ratio ? ` ${ratio}` : "";
-
+  const seed = ` --seed ${seedValue}`;
   const hasOption =
     chaos || stylize || stop || quality || version || tile || ratio;
 
@@ -152,8 +156,8 @@ const MainColumn = () => {
     styles.length > 0 ? `, ${styles.join(", ").toLowerCase()}` : ""
   }${
     hasOption ? "," : ""
-  }${ratioTrim}${chaos}${quality}${stop}${stylize}${tile}${version}`;
-
+  }${ratioTrim}${chaos}${quality}${stop}${stylize}${tile}${version}${seed}`;
+  console.log(prompt);
   const isEmpty = !prompt || prompt.length <= 1;
 
   const handleClear = () => {
@@ -165,6 +169,7 @@ const MainColumn = () => {
     setStopValue("");
     setStylizeValue("");
     setVersionValue("");
+    setSeedValue("");
     resetTileValue();
     clearFilters();
   };

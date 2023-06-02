@@ -5,8 +5,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "~/components/ui/Accordion";
-import { Separator } from "~/components/ui/Separator";
+} from "~/components/ui/accordion";
+import { Separator } from "~/components/ui/separator";
 
 import { cn } from "~/lib/classNames";
 

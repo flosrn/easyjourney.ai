@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import { useSession} from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Menu } from "lucide-react";
+import { useSession } from "next-auth/react";
 
-import DropdownUserMenuNav from "~/components/header/DropdownUserMenuNav";
-import { Navbar } from "~/components/header/Navbar";
-import { CartDrawer } from "~/components/shopping-cart/CartDrawer";
-import { Button } from "~/components/ui/Button";
+import DropdownUserMenuNav from "~/components/header/dropdown-user-menu-nav";
+import { Navbar } from "~/components/header/navbar";
+import { CartDrawer } from "~/components/shopping-cart/cart-drawer";
+import { Button } from "~/components/ui/button";
 
 import { cn } from "~/lib/classNames";
 
@@ -22,9 +22,9 @@ const Header = ({ expanded }: HeaderProps) => {
   const pathname = usePathname();
   const isCreatePage = pathname === "/create";
   const router = useRouter();
-  const { data: session } = useSession()
+  const { data: session } = useSession();
   return (
-    <header className="bg-background/95 sticky top-0 z-40 w-full border-b shadow-sm">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 shadow-sm">
       <div
         className={cn(
           "flex h-14 items-center",
@@ -57,8 +57,11 @@ const Header = ({ expanded }: HeaderProps) => {
             </nav>
           </div>
           <div className="flex items-center space-x-2">
-            {!isCreatePage && (              
-              <Button href={session ? "/create" : "/api/auth/signin"} className="mr-2">
+            {!isCreatePage && (
+              <Button
+                href={session ? "/create" : "/api/auth/signin"}
+                className="mr-2"
+              >
                 Create
               </Button>
             )}

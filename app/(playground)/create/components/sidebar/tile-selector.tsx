@@ -1,6 +1,6 @@
 "use client";
 
-import { Switch } from "~/components/ui/Switch";
+import { Switch } from "~/components/ui/switch";
 
 import { useTileStore } from "../../store/tileStore";
 

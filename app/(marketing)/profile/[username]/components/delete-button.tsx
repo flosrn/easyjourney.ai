@@ -8,7 +8,7 @@ import { useSelectPosterStore } from "~/store/selectPosterStore";
 import { Loader2Icon } from "lucide-react";
 import toast from "react-hot-toast";
 
-import { Button } from "~/components/ui/Button";
+import { Button } from "~/components/ui/button";
 
 const deletePoster = async (posterId: string) => {
   const response = await fetch("/api/posters/delete", {
@@ -45,10 +45,12 @@ const DeleteButton = () => {
       const data = await response[0].json();
       if (data) {
         await fetch(`/api/revalidate?path=/profile/${username}`);
+        await fetch("/api/revalidate?path=/posters/new");
+        await fetch("/api/revalidate?path=/posters/popular");
         setTimeout(() => {
           clearSelectedPosters();
           toggleSelectBar();
-        }, 1000);
+        }, 400);
       }
     } catch {
       toast.error(

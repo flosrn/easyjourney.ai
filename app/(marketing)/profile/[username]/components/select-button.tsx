@@ -5,7 +5,7 @@ import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
 import { MousePointerClick } from "lucide-react";
 
-import { Button } from "~/components/ui/Button";
+import { Button } from "~/components/ui/button";
 
 import { cn } from "~/lib/classNames";
 
