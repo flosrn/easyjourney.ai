@@ -168,10 +168,9 @@ const userMenu: NavItem[][] = [
       icon: Palette,
     },
     {
-      title: "Réglages",
-      href: "/dashboard/settings",
+      title: "Réglages du compte",
+      href: "/settings",
       icon: Settings,
-      disabled: true,
     },
   ],
   [
