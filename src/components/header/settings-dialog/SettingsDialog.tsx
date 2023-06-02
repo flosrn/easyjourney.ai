@@ -28,7 +28,7 @@ const updateUserProfile = async (username: string) => {
   return data;
 };
 
-export default function SettingsDialog({ title }) {
+export default function SettingsDialog({ title }: { title: string }) {
   const { data: session } = useSession();
   const [username, setUsername] = useState(session?.user.username);
 
