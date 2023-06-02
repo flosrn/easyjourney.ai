@@ -1,8 +1,8 @@
 import React from "react";
 
-import { columns } from "./components/tables/columns";
-import type { Payment } from "./components/tables/columns";
-import { DataTable } from "./components/tables/data-table";
+import { columns } from "./components/table/columns";
+import type { Payment } from "./components/table/columns";
+import { DataTable } from "./components/table/data-table/data-table";
 
 async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
