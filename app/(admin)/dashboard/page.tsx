@@ -3,7 +3,7 @@ import type { Poster } from "@prisma/client";
 import { prisma } from "~/server/db/prisma";
 
 import { columns } from "./components/table/columns";
-import { DataTable } from "./components/table/data-table/data-table";
+import { DataTable } from "./components/table/data-table";
 
 const getPosters = async (): Promise<Poster[]> =>
   await prisma.poster.findMany({

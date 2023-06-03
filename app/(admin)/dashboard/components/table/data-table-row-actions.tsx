@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 
-import { labels } from "../../../data/data";
+import { labels } from "../../data/data";
 
 type DataTableRowActionsProps<TData> = {
   row: Row<TData>;
