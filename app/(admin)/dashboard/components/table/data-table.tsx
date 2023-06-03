@@ -111,6 +111,7 @@ export function DataTable<TData, TValue>({
                     setSelectedRow(poster);
                     setIsDialogOpen(true);
                   }}
+                  className="cursor-pointer"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
