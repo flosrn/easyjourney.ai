@@ -1,47 +1,20 @@
 import React from "react";
+import type { Poster } from "@prisma/client";
+import { prisma } from "~/server/db/prisma";
 
 import { columns } from "./components/table/columns";
-import type { Payment } from "./components/table/columns";
 import { DataTable } from "./components/table/data-table/data-table";
 
-async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
+const getPosters = async (): Promise<Poster[]> =>
+  await prisma.poster.findMany({
+    orderBy: {
+      createdAt: "desc",
     },
-    {
-      id: "3u1reuv4",
-      amount: 242,
-      status: "success",
-      email: "Abe45@gmail.com",
-    },
-    {
-      id: "derv1ws0",
-      amount: 837,
-      status: "processing",
-      email: "Monserrat44@gmail.com",
-    },
-    {
-      id: "5kma53ae",
-      amount: 874,
-      status: "success",
-      email: "Silas22@gmail.com",
-    },
-    {
-      id: "bhqecj4p",
-      amount: 721,
-      status: "failed",
-      email: "carmella@hotmail.com",
-    },
-  ];
-}
+    include: { user: true, likes: true },
+  });
 
 export default async function DashboardOption2Page() {
-  const data = await getData();
+  const data = await getPosters();
 
   return (
     <div className="container mx-auto py-10">

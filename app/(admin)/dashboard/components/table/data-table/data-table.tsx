@@ -16,14 +16,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { Button } from "~/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu";
-import { Input } from "~/components/ui/input";
 import {
   Table,
   TableBody,
@@ -50,8 +42,18 @@ export function DataTable<TData, TValue>({
     []
   );
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+    React.useState<VisibilityState>({
+      title: false,
+      model: false,
+      quality: false,
+      ratio: false,
+      style: false,
+      stylize: false,
+      chaos: false,
+    });
   const [rowSelection, setRowSelection] = React.useState({});
+
+  console.log("data :", data);
 
   const table = useReactTable({
     data,
