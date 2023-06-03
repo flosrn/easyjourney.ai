@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import type { Poster } from "@prisma/client";
 import type {
   ColumnDef,
   ColumnFiltersState,
@@ -25,6 +26,7 @@ import {
   TableRow,
 } from "~/components/ui/table";
 
+import PosterInfoDialog from "../dialog/PosterInfoDialog";
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
 
@@ -37,6 +39,8 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [selectedRow, setSelectedRow] = React.useState<Poster | null>(null);
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -102,6 +106,11 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  onClick={() => {
+                    const poster = row.original as Poster;
+                    setSelectedRow(poster);
+                    setIsDialogOpen(true);
+                  }}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -127,6 +136,11 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <DataTablePagination table={table} className="mt-3" />
+      <PosterInfoDialog
+        poster={selectedRow}
+        open={isDialogOpen}
+        dialogOpenChangeHandler={setIsDialogOpen}
+      />
     </div>
   );
 }
