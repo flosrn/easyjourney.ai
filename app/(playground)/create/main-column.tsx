@@ -147,7 +147,8 @@ const MainColumn = () => {
   const version = versionValue === "default" ? "" : ` ${versionValue}`;
   const tile = tileValue ? ` --tile` : "";
   const ratioTrim = ratio ? ` ${ratio}` : "";
-  const seed = ` --seed ${seedValue}`;
+  const seed = seedValue ? ` --seed ${seedValue}` : "";
+
   const hasOption =
     chaos || stylize || stop || quality || version || tile || ratio;
 
@@ -158,6 +159,7 @@ const MainColumn = () => {
     hasOption ? "," : ""
   }${ratioTrim}${chaos}${quality}${stop}${stylize}${tile}${version}${seed}`;
 
+  console.log(prompt);
   const isEmpty = !prompt || prompt.length <= 1;
 
   const handleClear = () => {

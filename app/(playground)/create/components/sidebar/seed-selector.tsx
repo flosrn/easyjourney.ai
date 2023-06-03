@@ -12,17 +12,6 @@ const SeedSelector = () => {
     state.setSeedValue,
   ]);
 
-  const generateRandomSeed = () => {
-    const randomNumber: number = Math.floor(Math.random() * 999999999) + 1;
-    setSeedValue(`${randomNumber}`);
-  };
-
-  useEffect(() => {
-    if (seedValue === "") {
-      generateRandomSeed();
-    }
-  }, [seedValue]);
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     if (Number.parseInt(inputValue) < 0) {
@@ -38,7 +27,7 @@ const SeedSelector = () => {
     <div className="">
       <Input
         type="number"
-        placeholder="Select a seed number"
+        placeholder="Type a number"
         value={seedValue}
         onChange={handleInputChange}
         min={1}
