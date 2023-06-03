@@ -50,10 +50,9 @@ export function DataTable<TData, TValue>({
       style: false,
       stylize: false,
       chaos: false,
+      isPublic: false,
     });
   const [rowSelection, setRowSelection] = React.useState({});
-
-  console.log("data :", data);
 
   const table = useReactTable({
     data,

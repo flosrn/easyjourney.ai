@@ -1,10 +1,12 @@
 "use client";
 
-import type { Poster } from "@prisma/client";
+import Image from "next/image";
+import type { Like, Poster, User } from "@prisma/client";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "~/components/ui/checkbox";
 
+import { dateOptions } from "../../data/data";
 import { DataTableColumnHeader } from "./data-table/data-table-column-header";
 import { DataTableRowActions } from "./data-table/data-table-row-actions";
 
@@ -31,6 +33,28 @@ export const columns: ColumnDef<Poster>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: "image",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Image" />
+    ),
+    cell: ({ row }) => {
+      const image = row.getValue("image") as string;
+      const prompt = row.getValue("prompt") as string;
+      return (
+        <div className="flex-center">
+          <Image
+            src={image}
+            alt={prompt}
+            width={80}
+            height={80}
+            quality={50}
+            className="h-20 w-20 rounded-md object-cover"
+          />
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: "title",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Title" />
@@ -41,6 +65,26 @@ export const columns: ColumnDef<Poster>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Prompt" />
     ),
+  },
+  {
+    accessorKey: "user",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Author" />
+    ),
+    cell: ({ row }) => {
+      const user = row.getValue("user") as User;
+      return <div>{user.username}</div>;
+    },
+  },
+  {
+    accessorKey: "likes",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Likes" />
+    ),
+    cell: ({ row }) => {
+      const likes = row.getValue("likes") as Like[];
+      return <div className="flex-center mr-6">{likes.length}</div>;
+    },
   },
   {
     accessorKey: "model",
@@ -83,22 +127,15 @@ export const columns: ColumnDef<Poster>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Creation date" />
     ),
+    cell: ({ row }) => {
+      const createdAt = row.getValue("createdAt") as string;
+      return (
+        <div>
+          {new Date(createdAt).toLocaleDateString("fr-FR", dateOptions)}
+        </div>
+      );
+    },
   },
-  // {
-  //   accessorKey: "amount",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="Amount" />
-  //   ),
-  //   cell: ({ row }) => {
-  //     const amount = Number.parseFloat(row.getValue("amount"));
-  //     const formatted = new Intl.NumberFormat("en-US", {
-  //       style: "currency",
-  //       currency: "USD",
-  //     }).format(amount);
-  //
-  //     return <div className="flex items-center font-medium">{formatted}</div>;
-  //   },
-  // },
   {
     accessorKey: "isPublic",
     header: ({ column }) => (

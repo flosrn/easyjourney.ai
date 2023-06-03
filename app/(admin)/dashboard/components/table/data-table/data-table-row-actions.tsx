@@ -47,7 +47,7 @@ export function DataTableRowActions<TData>({
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Copy className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-          Make a copy
+          Copy JobId
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Star className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />

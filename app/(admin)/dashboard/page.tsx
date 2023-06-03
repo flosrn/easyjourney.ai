@@ -16,9 +16,5 @@ const getPosters = async (): Promise<Poster[]> =>
 export default async function DashboardOption2Page() {
   const data = await getPosters();
 
-  return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
-    </div>
-  );
+  return <DataTable columns={columns} data={data} />;
 }
