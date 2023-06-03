@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -7,25 +9,68 @@ import {
 } from "~/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
-const CounterBarDialog = ({ open, setOpen, defaultValue }) => {
+import SearchableList from "./searchable-list";
+
+type counterBarDialogProps = {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  defaultValue: string;
+  username: string;
+};
+
+const getFollowersUserList = async (username: string) => {
+  const response = await fetch(`/api/profile/followers?username=${username}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const userData = await response.json();
+  return userData;
+};
+
+const CounterBarDialog = ({
+  open,
+  setOpen,
+  defaultValue,
+  username,
+}: counterBarDialogProps) => {
+  const [followersUserList, setFollowersUserList] = useState([]);
+
+  useEffect(() => {
+    const fetchFollowers = async () => {
+      const followers = await getFollowersUserList(username);
+      setFollowersUserList(followers);
+    };
+    fetchFollowers();
+  }, [username]);
+
+  console.log("followersUserList :", followersUserList);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>
         <DialogHeader></DialogHeader>
-        <Tabs defaultValue={defaultValue} className="w-[400px]">
-          <TabsList>
-            <TabsTrigger value="likes">Likes</TabsTrigger>
-            <TabsTrigger value="followers">Followers</TabsTrigger>
-            <TabsTrigger value="following">Following</TabsTrigger>
+        <Tabs defaultValue={defaultValue} className="w-full">
+          <TabsList className="flex w-full">
+            <TabsTrigger value="likes" className="flex-1">
+              Likes
+            </TabsTrigger>
+            <TabsTrigger value="followers" className="flex-1">
+              Followers
+            </TabsTrigger>
+            <TabsTrigger value="following" className="flex-1">
+              Following
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="likes">
-            Make changes to your account here.
+            <SearchableList list={followersUserList} />
           </TabsContent>
           <TabsContent value="followers">
-            Change your password here.
+            <SearchableList list={followersUserList} />
           </TabsContent>
           <TabsContent value="following">
-            Change your password here.
+            <SearchableList list={followersUserList} />
           </TabsContent>
         </Tabs>
       </DialogContent>

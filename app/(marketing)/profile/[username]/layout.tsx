@@ -74,6 +74,7 @@ export default async function LayoutProfileHeader({
             totalLikes={totalLikes}
             totalFollowers={totalFollowers}
             totalFollowing={totalFollowing}
+            username={user.username}
           />
         </div>
       </div>

@@ -9,6 +9,7 @@ type counterBarProps = {
   totalLikes: number;
   totalFollowers: number;
   totalFollowing: number;
+  username: string;
 };
 
 export const CounterBar = ({
@@ -16,6 +17,7 @@ export const CounterBar = ({
   totalLikes,
   totalFollowers,
   totalFollowing,
+  username,
 }: counterBarProps) => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [defaultValue, setDefaultValue] = useState<string>("likes");
@@ -62,6 +64,7 @@ export const CounterBar = ({
         open={openDialog}
         setOpen={setOpenDialog}
         defaultValue={defaultValue}
+        username={username}
       />
     </div>
   );
