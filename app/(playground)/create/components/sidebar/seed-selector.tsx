@@ -17,7 +17,11 @@ const SeedSelector = () => {
     setSeedValue(`${randomNumber}`);
   };
 
-  useEffect(generateRandomSeed, []);
+  useEffect(() => {
+    if (seedValue === "") {
+      generateRandomSeed();
+    }
+  }, [seedValue]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;

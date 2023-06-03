@@ -158,8 +158,6 @@ const MainColumn = () => {
     hasOption ? "," : ""
   }${ratioTrim}${chaos}${quality}${stop}${stylize}${tile}${version}${seed}`;
 
-  console.log("prompt :", prompt);
-
   const isEmpty = !prompt || prompt.length <= 1;
 
   const handleClear = () => {
