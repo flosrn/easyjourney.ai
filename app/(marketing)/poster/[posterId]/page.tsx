@@ -4,9 +4,8 @@ import { prisma } from "~/server/db/prisma";
 import { Toaster } from "react-hot-toast";
 
 import BackToPreviousPageButton from "~/components/posters/back-to-previous-page-button";
-
-import PosterImageContainer from "./components/poster-image-container";
-import PosterInfoContainer from "./components/poster-info-container";
+import PosterImageContainer from "~/components/posters/poster-image-container";
+import PosterInfoContainer from "~/components/posters/poster-info-container";
 
 const getCurrentPoster = async (posterId: Poster["id"]) =>
   prisma.poster.findUnique({
@@ -15,11 +14,10 @@ const getCurrentPoster = async (posterId: Poster["id"]) =>
   });
 
 export default async function PosterPage({
-  params,
+  params: { posterId },
 }: {
   params: { posterId: Poster["id"] };
 }) {
-  const { posterId } = params;
   const poster = await getCurrentPoster(posterId);
   return (
     <>

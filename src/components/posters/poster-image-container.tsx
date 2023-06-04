@@ -16,7 +16,7 @@ const PosterImageContainer = ({
   ratio,
 }: PosterType) => (
   <div
-    className={cn("flex justify-start md:w-8/12 flex-col", {
+    className={cn("flex justify-start flex-col", {
       "sm:max-w-[90%]": ratio === "2/3",
       "sm:max-w-[80%]": ratio === "4/7",
     })}

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useState } from "react";
 import type { Poster } from "@prisma/client";
 import type {
   ColumnDef,
@@ -26,6 +27,7 @@ import {
   TableRow,
 } from "~/components/ui/table";
 
+import { useDialogStore } from "../../store/dialogStore";
 import PosterInfoDialog from "../dialog/PosterInfoDialog";
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
@@ -39,24 +41,24 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-  const [selectedRow, setSelectedRow] = React.useState<Poster | null>(null);
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({
-      title: false,
-      model: false,
-      quality: false,
-      ratio: false,
-      style: false,
-      stylize: false,
-      chaos: false,
-      isPublic: false,
-    });
-  const [rowSelection, setRowSelection] = React.useState({});
+  const [selectedRow, setSelectedRow] = useState<Poster | null>(null);
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
+    title: false,
+    model: false,
+    quality: false,
+    ratio: false,
+    style: false,
+    stylize: false,
+    chaos: false,
+    isPublic: false,
+  });
+  const [rowSelection, setRowSelection] = useState({});
+  const [isDialogOpen, setIsDialogOpen] = useDialogStore((state) => [
+    state.isDialogOpen,
+    state.setIsDialogOpen,
+  ]);
 
   const table = useReactTable({
     data,
@@ -106,12 +108,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  onClick={() => {
-                    const poster = row.original as Poster;
-                    setSelectedRow(poster);
-                    setIsDialogOpen(true);
-                  }}
-                  className="cursor-pointer"
+                  onClick={() => setSelectedRow(row.original as Poster)}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

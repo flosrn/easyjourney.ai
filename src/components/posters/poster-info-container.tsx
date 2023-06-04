@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { formatDate } from "~/utils/formatDate";
 import getFirstLetters from "~/utils/getFirstLetter";
@@ -12,7 +13,12 @@ import {
 
 import type { PosterType } from "~/types/poster";
 
+type PosterInfoContainerProps = PosterType & {
+  children?: React.ReactNode;
+};
+
 const PosterInfoContainer = ({
+  title,
   prompt,
   user,
   createdAt,
@@ -24,11 +30,12 @@ const PosterInfoContainer = ({
   chaos,
   quality,
   stylize,
-}: PosterType) => {
+  children,
+}: PosterInfoContainerProps) => {
   const author = user?.username;
   const date = formatDate({ dateObject: createdAt });
   return (
-    <div className="pt-4 md:w-5/12">
+    <div className="w-full pt-4">
       <div>
         {author && (
           <p className="left-2 top-1 z-10 w-full text-sm font-extrabold md:group-hover:block">
@@ -47,7 +54,9 @@ const PosterInfoContainer = ({
           </p>
         )}
       </div>
-      <div className="mt-8 line-clamp-2 text-3xl font-bold">{prompt}</div>
+      <div className="mt-8 line-clamp-2 break-words text-3xl font-bold">
+        {title ?? prompt}
+      </div>
       <div className="my-2 mt-8 flex flex-col">
         <span className="text-gray-500">Prompt</span>
         <span className="tracking-wider">{prompt}</span>
@@ -163,6 +172,7 @@ const PosterInfoContainer = ({
           <span>{stylize ?? "None"}</span>
         </div>
       </div>
+      {children}
     </div>
   );
 };

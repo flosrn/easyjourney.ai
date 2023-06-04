@@ -1,7 +1,16 @@
 "use client";
 
+import React from "react";
+import type { Poster } from "@prisma/client";
 import type { Row } from "@tanstack/react-table";
-import { Copy, MoreHorizontal, Pen, Star, Tags, Trash } from "lucide-react";
+import {
+  CopyIcon,
+  EyeIcon,
+  MoreHorizontal,
+  PencilIcon,
+  StarIcon,
+  TrashIcon,
+} from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -18,7 +27,7 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 
-import { labels } from "../../data/data";
+import { useDialogStore } from "../../store/dialogStore";
 
 type DataTableRowActionsProps<TData> = {
   row: Row<TData>;
@@ -27,7 +36,17 @@ type DataTableRowActionsProps<TData> = {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const task = row.original;
+  const poster = row.original as Poster;
+  const setIsDialogOpen = useDialogStore((state) => state.setIsDialogOpen);
+
+  const handleViewPoster = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleCopyJobId = async (event: React.MouseEvent) => {
+    event.preventDefault();
+    await navigator.clipboard.writeText(poster.id);
+  };
 
   return (
     <DropdownMenu>
@@ -41,16 +60,20 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>
-          <Pen className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-          Edit
+        <DropdownMenuItem onClick={handleViewPoster}>
+          <EyeIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+          View
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Copy className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+          <PencilIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+          Edit
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleCopyJobId}>
+          <CopyIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
           Copy JobId
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Star className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+          <StarIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
           Favorite
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -71,7 +94,7 @@ export function DataTableRowActions<TData>({
         {/*</DropdownMenuSub>*/}
         {/*<DropdownMenuSeparator />*/}
         <DropdownMenuItem>
-          <Trash className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
+          <TrashIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>
