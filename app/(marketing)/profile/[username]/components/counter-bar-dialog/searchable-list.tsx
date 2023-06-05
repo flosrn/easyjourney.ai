@@ -11,10 +11,12 @@ const SearchableList = ({ list }) => {
 
   return (
     <>
-      <Input />
-      {list.map((user) => (
-        <SelectedUser key={user.id} user={user} />
-      ))}
+      <Input className="mb-2" />
+      <div className="grid grid-cols-1 gap-2">
+        {list.map((user) => (
+          <SelectedUser key={user.id} user={user} />
+        ))}
+      </div>
     </>
   );
 };
