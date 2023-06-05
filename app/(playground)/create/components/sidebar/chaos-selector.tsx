@@ -38,6 +38,7 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
         onValueChange={handleChaosValueChange}
         defaultValue={[Number.parseInt(chaosValue)]}
         value={[Number.parseInt(chaosValue)]}
+        min={0}
         max={100}
         step={1}
         className={cn("w-[65%]", className)}
