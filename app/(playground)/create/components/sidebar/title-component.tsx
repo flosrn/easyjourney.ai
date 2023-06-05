@@ -21,7 +21,9 @@ const TitleComponent = ({
 }: TitleComponentProps) => {
   return (
     <div className="flex items-center">
-      <h2 className="relative text-lg font-semibold tracking-tight">{title}</h2>
+      <h2 className="relative truncate text-lg font-semibold tracking-tight">
+        {title}
+      </h2>
       <HoverCard>
         <HoverCardTrigger asChild>
           <Label htmlFor="model">
