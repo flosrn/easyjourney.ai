@@ -27,7 +27,7 @@ const TitleComponent = ({
     <div className="flex items-center">
       <h2
         className={cn(
-          "relative text-lg font-semibold tracking-tight",
+          "relative text-lg font-semibold truncate tracking-tight",
           size === "small" ? "text-[16px]" : "text-lg"
         )}
       >
@@ -37,8 +37,8 @@ const TitleComponent = ({
         <HoverCardTrigger asChild>
           <Label htmlFor="model">
             <LucideHelpCircle
-              className="ml-1 hidden h-4 lg:block"
               color="gray"
+              className="ml-1 hidden h-4 lg:block"
             />
           </Label>
         </HoverCardTrigger>

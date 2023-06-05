@@ -166,10 +166,10 @@ const MainColumn = () => {
     setPromptValue("");
     setSelectedAspectRatio(aspectRatios[0]);
     setChaosValue("0");
-    setQualityValue("");
+    setQualityValue("1");
     setStopValue("100");
     setStylizeValue("100");
-    setVersionValue("");
+    setVersionValue("--v 5.1");
     setSeedValue("");
     resetTileValue();
     clearFilters();
