@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Input } from "~/components/ui/input";
 
@@ -14,8 +14,8 @@ const SeedSelector = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
-    if (Number.parseInt(inputValue) < 0) {
-      setSeedValue("0");
+    if (Number.parseInt(inputValue) < 1) {
+      setSeedValue("");
     }
     if (Number.parseInt(inputValue) > 999999999) {
       setSeedValue("999999999");
@@ -24,7 +24,7 @@ const SeedSelector = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <Input
         type="number"
         placeholder="Type a number"

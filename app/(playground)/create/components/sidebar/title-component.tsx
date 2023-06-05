@@ -11,9 +11,14 @@ import { Label } from "~/components/ui/label";
 type TitleComponentProps = {
   title: string;
   description: string;
+  defaultValue?: string;
 };
 
-const TitleComponent = ({ title, description }: TitleComponentProps) => {
+const TitleComponent = ({
+  title,
+  description,
+  defaultValue,
+}: TitleComponentProps) => {
   return (
     <div className="flex items-center">
       <h2 className="relative text-lg font-semibold tracking-tight">{title}</h2>
@@ -30,6 +35,12 @@ const TitleComponent = ({ title, description }: TitleComponentProps) => {
           sideOffset={10}
         >
           {description}
+          {defaultValue && (
+            <div>
+              <br />
+              <div className="text-xs italic">{defaultValue}</div>
+            </div>
+          )}
         </HoverCardContent>
       </HoverCard>
     </div>
