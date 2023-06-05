@@ -27,7 +27,9 @@ export async function GET(request: Request) {
     });
     console.log("followers", followers);
 
-    const followerIds = followers?.followers.map((follower) => follower.id);
+    const followerIds = followers?.followers.map(
+      (follower) => follower.followerId
+    );
     console.log("followerIds", followerIds);
 
     const followerUsers = await prisma.user.findMany({
