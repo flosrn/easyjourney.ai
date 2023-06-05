@@ -35,7 +35,7 @@ const TitleComponent = ({
         </HoverCardTrigger>
         <HoverCardContent
           align="start"
-          className="w-[260px] text-sm"
+          className="w-[260px] text-left text-sm"
           side="right"
           sideOffset={10}
         >
