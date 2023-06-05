@@ -30,6 +30,18 @@ const getFollowersUserList = async (username: string) => {
   return data.data;
 };
 
+const getFollowedUserList = async (username: string) => {
+  const response = await fetch(`/api/profile/following?username=${username}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+
+  return data.data;
+};
+
 const CounterBarDialog = ({
   open,
   setOpen,
@@ -37,11 +49,15 @@ const CounterBarDialog = ({
   username,
 }: counterBarDialogProps) => {
   const [followersUserList, setFollowersUserList] = useState([]);
+  const [followedUsersList, setFollowedUsersList] = useState([]);
 
   useEffect(() => {
     const fetchFollowers = async () => {
       const followers = await getFollowersUserList(username);
       setFollowersUserList(followers);
+      const followed = await getFollowersUserList(username);
+      setFollowedUsersList(followed);
+      console.log("followed", followed);
     };
     fetchFollowers();
   }, [username]);
@@ -69,7 +85,7 @@ const CounterBarDialog = ({
             <SearchableList list={followersUserList} />
           </TabsContent>
           <TabsContent value="following">
-            <SearchableList list={followersUserList} />
+            <SearchableList list={followedUsersList} />
           </TabsContent>
         </Tabs>
       </DialogContent>

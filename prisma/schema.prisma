@@ -179,7 +179,8 @@ model User {
 
   likes     Like[]   @relation("userLikes")
   followers Follow[] @relation("following")
-  following Follow[] @relation("follower")
+  following
+   Follow[] @relation("follower")
 
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")

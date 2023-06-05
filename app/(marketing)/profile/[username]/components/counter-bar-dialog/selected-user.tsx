@@ -5,7 +5,7 @@ const SelectedUser = ({ user }) => {
   return (
     <>
       <div className="flex h-20 w-full rounded-md border-2">
-        <div className="flex h-full w-1/3 items-center justify-center">
+        <div className="flex h-full w-3/12 items-center justify-center">
           <Image
             src={user.image}
             alt={user.name}
