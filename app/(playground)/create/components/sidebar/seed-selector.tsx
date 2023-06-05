@@ -24,15 +24,15 @@ const SeedSelector = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <Input
         type="number"
-        placeholder="Type a number"
+        placeholder="Select a number"
         value={seedValue}
         onChange={handleInputChange}
         min={1}
         max={999999999}
-        className="w-full"
+        className="float-right w-2/5 truncate lg:w-4/5"
       />
     </div>
   );

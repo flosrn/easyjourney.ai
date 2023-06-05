@@ -47,6 +47,7 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
         type="number"
         min={0}
         max={1000}
+        step={1}
         placeholder={stylizeValue}
         value={stylizeValue}
         onChange={handleInputChange}

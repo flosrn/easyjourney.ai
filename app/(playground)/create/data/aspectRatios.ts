@@ -18,3 +18,8 @@ export const aspectRatios: AspectRatio[] = [
   { name: "21:9", ratio: "--ar 21:9", value: "21/9" },
   { name: "32:9", ratio: "--ar 32:9", value: "32/9" },
 ];
+
+export const aspectRatiosV4: AspectRatio[] = [
+  { name: "2:1", ratio: "--ar 2:1", value: "2/1" },
+  { name: "1:2", ratio: "--ar 1:2", value: "1/2" },
+];

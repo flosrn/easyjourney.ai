@@ -22,19 +22,15 @@ const VersionSelector = () => {
 
   return (
     <Select onValueChange={handleStyleValueChange}>
-      <SelectTrigger className="w-full">
-        <SelectValue placeholder="Select a version" />
+      <SelectTrigger className="m-1 w-[calc(100%-8px)]">
+        <SelectValue placeholder="Version 5.1" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="default">Version 5.1</SelectItem>
-          <SelectItem value="--v 5.1 --style raw">Verions 5.1 raw</SelectItem>
-          <SelectItem value="--niji 5">Niji 5</SelectItem>
-          <SelectItem value="--niji 5 --style cute">Niji 5 cute</SelectItem>
-          <SelectItem value="--niji 5 --style scenic">Niji 5 scenic</SelectItem>
-          <SelectItem value="--niji 5 --style expressive">
-            Niji 5 expressive
-          </SelectItem>
+          <SelectItem value="--v 5.1">Version 5.1</SelectItem>
+          <SelectItem value="--v 5">Version 5</SelectItem>
+          <SelectItem value="--v 4">Version 4</SelectItem>
+          <SelectItem value="--niji 5">Version niji 5</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

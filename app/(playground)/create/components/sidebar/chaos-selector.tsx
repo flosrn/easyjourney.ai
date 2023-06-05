@@ -47,7 +47,8 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
       <Input
         type="number"
         min={0}
-        max={1000}
+        max={100}
+        step={1}
         placeholder={chaosValue}
         value={chaosValue}
         onChange={handleInputChange}

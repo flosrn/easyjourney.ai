@@ -45,8 +45,9 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
       />
       <Input
         type="number"
-        min={0}
-        max={1000}
+        min={10}
+        max={100}
+        step={10}
         placeholder={stopValue}
         value={stopValue}
         onChange={handleInputChange}

@@ -8,34 +8,79 @@ import {
 } from "~/components/ui/accordion";
 import { Separator } from "~/components/ui/separator";
 
-import { cn } from "~/lib/classNames";
-
-import MoreOptions from "./more-options";
+import ChaosSelector from "./chaos-selector";
+import QualitySelector from "./quality-selector";
+import SeedSelector from "./seed-selector";
+import StopSelector from "./stop-selector";
+import StylizeSelector from "./stylize-selector";
+import TileSelector from "./tile-selector";
 import TitleComponent from "./title-component";
 
-type AccordionProps = React.HTMLAttributes<HTMLDivElement> & {};
-
-const AccordionSide = ({ className }: AccordionProps) => {
+const AccordionSide = ({}) => {
   return (
-    <>
-      <Accordion
-        type="single"
-        collapsible
-        className={(cn("w-full"), className)}
-      >
-        <AccordionItem value="item-1">
-          <AccordionTrigger>
+    <Accordion type="single" collapsible className="w-full">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>
+          <TitleComponent
+            title="Advanced options"
+            description="Select advanced options like quality, chaos, stylize and more."
+          />
+        </AccordionTrigger>
+        <AccordionContent>
+          <div className="space-y-4">
             <TitleComponent
-              title="More Options"
-              description="Select advanced Options"
+              title="Quality"
+              description="How much rendering quality time you want to spend. Higher values use more GPU minutes, lower values use less."
+              defaultValue="Default value is '1'"
             />
-          </AccordionTrigger>
-          <AccordionContent>
-            <MoreOptions />
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </>
+            <QualitySelector />
+            <Separator />
+
+            <TitleComponent
+              title="Chaos"
+              description="Change how varied the results will be. Higher values produce more unusual and unexpected generations."
+              defaultValue="Default value is '0'"
+            />
+            <ChaosSelector />
+            <Separator />
+
+            <TitleComponent
+              title="Stylize"
+              description="Influences how strongly Midjourney's default aesthetic style is applied to Jobs."
+              defaultValue="Default value is '100'"
+            />
+            <StylizeSelector />
+            <Separator />
+
+            <TitleComponent
+              title="Stop"
+              description="Finish a Job partway through the process. Stopping a Job at an earlier percentage can create blurrier, less detailed results."
+              defaultValue="Default value is '100'"
+            />
+            <StopSelector />
+            <Separator />
+
+            <div className="flex justify-between">
+              <TitleComponent
+                title="Seed"
+                description="Using a seed number as a complement to the same or nearly the same prompt will ensure a final result that is very similar."
+                defaultValue="Number can be beetween 1 and 999999999"
+              />
+              <SeedSelector />
+            </div>
+            <Separator />
+
+            <div className="flex justify-between">
+              <TitleComponent
+                title="Tile"
+                description="Generates images that can be used as repeating tiles to create seamless patterns."
+              />
+              <TileSelector />
+            </div>
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 };
 

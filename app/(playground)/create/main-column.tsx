@@ -144,7 +144,7 @@ const MainColumn = () => {
   const stylize = stylizeValue === "100" ? "" : ` --stylize ${stylizeValue}`;
   const stop = stopValue === "100" ? "" : ` --stop ${stopValue}`;
   const quality = qualityValue === "1" ? "" : ` --quality ${qualityValue}`;
-  const version = versionValue === "default" ? "" : ` ${versionValue}`;
+  const version = versionValue === "--v 5.1" ? "" : ` ${versionValue}`;
   const tile = tileValue ? ` --tile` : "";
   const ratioTrim = ratio ? ` ${ratio}` : "";
   const seed = seedValue ? ` --seed ${seedValue}` : "";
@@ -158,8 +158,6 @@ const MainColumn = () => {
   }${
     hasOption ? "," : ""
   }${ratioTrim}${chaos}${quality}${stop}${stylize}${tile}${version}${seed}`;
-
-  // console.log(prompt);
 
   const isEmpty = !prompt || prompt.length <= 1;
 
