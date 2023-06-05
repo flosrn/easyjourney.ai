@@ -3,7 +3,7 @@ import { prisma } from "~/server/db/prisma";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const username = searchParams.get("username");
+  const username = searchParams.get("username") ?? "";
 
   try {
     const user = await prisma.user.findUnique({
@@ -12,7 +12,7 @@ export async function GET(request: Request) {
       },
     });
 
-    const userId: string = user?.id;
+    const userId = user?.id;
 
     const followers = await prisma.user.findUnique({
       where: {
@@ -32,6 +32,9 @@ export async function GET(request: Request) {
         id: {
           in: followerIds,
         },
+      },
+      include: {
+        followers: true,
       },
     });
 

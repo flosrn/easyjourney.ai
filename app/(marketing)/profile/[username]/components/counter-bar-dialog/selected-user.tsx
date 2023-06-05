@@ -1,10 +1,18 @@
 import Image from "next/image";
 import { Link } from "lucide-react";
 
-const SelectedUser = ({ user }) => {
+import FollowButton from "../follow-button";
+
+const SelectedUser = ({ user, actualUser }) => {
+  console.log("user", user);
+  console.log("actualUser", actualUser);
+  const isFollowing = user.followers.some(
+    (follower) => follower.followerId === actualUser
+  );
+
   return (
     <>
-      <div className="flex h-20 w-full rounded-md border-2">
+      <div className="flex h-20 w-full ">
         <div className="flex h-full w-3/12 items-center justify-center">
           <Image
             src={user.image}
@@ -19,6 +27,7 @@ const SelectedUser = ({ user }) => {
           <div className="font-bold">{user.name}</div>
           <div className="truncate text-sm">@{user.username}</div>
         </div>
+        <FollowButton userId={user.id} isFollowing={isFollowing} />
       </div>
     </>
   );

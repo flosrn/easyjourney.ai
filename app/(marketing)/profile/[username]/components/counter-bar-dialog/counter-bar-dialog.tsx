@@ -16,6 +16,7 @@ type counterBarDialogProps = {
   setOpen: (open: boolean) => void;
   defaultValue: string;
   username: string;
+  actualUser: string;
 };
 
 const getFollowersUserList = async (username: string) => {
@@ -59,6 +60,7 @@ const CounterBarDialog = ({
   setOpen,
   defaultValue,
   username,
+  actualUser,
 }: counterBarDialogProps) => {
   const [followersUserList, setFollowersUserList] = useState([]);
   const [followedUsersList, setFollowedUsersList] = useState([]);
@@ -94,13 +96,13 @@ const CounterBarDialog = ({
             </TabsTrigger>
           </TabsList>
           <TabsContent value="likes">
-            <SearchableList list={likesUsersList} />
+            <SearchableList list={likesUsersList} actualUser={actualUser} />
           </TabsContent>
           <TabsContent value="followers">
-            <SearchableList list={followersUserList} />
+            <SearchableList list={followersUserList} actualUser={actualUser} />
           </TabsContent>
           <TabsContent value="following">
-            <SearchableList list={followedUsersList} />
+            <SearchableList list={followedUsersList} actualUser={actualUser} />
           </TabsContent>
         </Tabs>
       </DialogContent>

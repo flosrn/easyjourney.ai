@@ -75,6 +75,7 @@ export default async function LayoutProfileHeader({
             totalFollowers={totalFollowers}
             totalFollowing={totalFollowing}
             username={user.username}
+            actualUser={session?.user.id}
           />
         </div>
       </div>

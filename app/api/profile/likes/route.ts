@@ -3,7 +3,7 @@ import { prisma } from "~/server/db/prisma";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const username = searchParams.get("username");
+  const username: string = searchParams.get("username") ?? "";
   console.log("username", username);
 
   try {
@@ -12,9 +12,8 @@ export async function GET(request: Request) {
         username,
       },
     });
-    console.log("user", user);
 
-    const userId: string = user?.id;
+    const userId = user?.id ?? "";
 
     const posters = await prisma.user.findUnique({
       where: {
@@ -28,7 +27,6 @@ export async function GET(request: Request) {
         },
       },
     });
-    console.log("posters", posters);
 
     const likesId = posters?.posters
       .map((poster) => poster.likes.map((like) => like.userId))
@@ -36,13 +34,15 @@ export async function GET(request: Request) {
       .flat()
       .filter((value, index, array) => array.indexOf(value) === index)
       .filter((id) => id !== userId);
-    console.log("likes", likesId);
 
     const userLike = await prisma.user.findMany({
       where: {
         id: {
           in: likesId,
         },
+      },
+      include: {
+        likes: true,
       },
     });
 
