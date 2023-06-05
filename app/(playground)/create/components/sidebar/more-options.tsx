@@ -74,7 +74,6 @@ const MoreOptions = ({ className }: MoreOptionsProps) => {
         />
         <TileSelector />
       </div>
-      <Separator />
     </div>
   );
 };
