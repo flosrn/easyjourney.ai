@@ -25,7 +25,10 @@ const TitleComponent = ({
       <HoverCard>
         <HoverCardTrigger asChild>
           <Label htmlFor="model">
-            <LucideHelpCircle className=" ml-1 h-4" color="gray" />
+            <LucideHelpCircle
+              className="ml-1 hidden h-4 lg:block"
+              color="gray"
+            />
           </Label>
         </HoverCardTrigger>
         <HoverCardContent
