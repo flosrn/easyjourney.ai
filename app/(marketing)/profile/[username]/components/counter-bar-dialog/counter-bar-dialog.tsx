@@ -25,8 +25,9 @@ const getFollowersUserList = async (username: string) => {
       "Content-Type": "application/json",
     },
   });
-  const userData = await response.json();
-  return userData;
+  const data = await response.json();
+
+  return data.data;
 };
 
 const CounterBarDialog = ({
@@ -44,8 +45,6 @@ const CounterBarDialog = ({
     };
     fetchFollowers();
   }, [username]);
-
-  console.log("followersUserList :", followersUserList);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

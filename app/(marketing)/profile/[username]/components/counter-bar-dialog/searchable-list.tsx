@@ -7,10 +7,14 @@ type SearchableListProps = {
 };
 
 const SearchableList = ({ list }) => {
+  console.log("list", list);
+
   return (
     <>
       <Input />
-      <div></div>
+      {list.map((user) => (
+        <SelectedUser key={user.id} user={user} />
+      ))}
     </>
   );
 };

@@ -42,7 +42,7 @@ export async function GET(request: Request) {
 
     console.log("followerUsers", followerUsers);
 
-    return NextResponse.json({ status: 200, data: followers });
+    return NextResponse.json({ status: 200, data: followerUsers });
   } catch (error: unknown) {
     return NextResponse.json({
       status: 500,
