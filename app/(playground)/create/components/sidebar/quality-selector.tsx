@@ -23,7 +23,7 @@ const QualitySelector = () => {
 
   return (
     <Select onValueChange={handleQualityValueChange}>
-      <SelectTrigger className="w-full">
+      <SelectTrigger className="mx-1 w-[calc(100%-8px)]">
         <SelectValue placeholder="Quality 1" />
       </SelectTrigger>
       <SelectContent>

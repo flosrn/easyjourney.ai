@@ -39,7 +39,7 @@ const FiltersBadge = () => {
       <Swiper
         slidesPerView="auto"
         spaceBetween={5}
-        className="relative h-5 !px-1"
+        className="relative h-7 !px-1"
       >
         <AnimatePresence initial={false}>
           {selectedFilters.map((filter) => {

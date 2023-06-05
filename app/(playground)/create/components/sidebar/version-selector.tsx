@@ -23,7 +23,7 @@ const VersionSelector = () => {
 
   return (
     <Select onValueChange={handleStyleValueChange}>
-      <SelectTrigger className="w-full">
+      <SelectTrigger className="m-1 w-[calc(100%-8px)]">
         <SelectValue placeholder="Version 5.1" />
       </SelectTrigger>
       <SelectContent>

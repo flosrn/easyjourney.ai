@@ -51,7 +51,7 @@ const ImageContainer = ({}: ImageContainerProps) => {
     (imageType === "generation" || imageType === "variation");
 
   return (
-    <div className="flex-center h-[70vh] rounded-md border p-4 lg:h-[calc(100vh-400px)] lg:min-h-[calc(100vh-400px)]">
+    <div className="flex-center min-h-[70vh] rounded-md border p-4 lg:min-h-[calc(100vh-410px)]">
       <div
         className={cn(
           "flex-center max-h-full max-w-full w-full lg:w-auto lg:h-[350px] rounded-md border border-dashed p-4",
@@ -68,6 +68,8 @@ const ImageContainer = ({}: ImageContainerProps) => {
             "aspect-[17/9]": ratio === "17/9",
             "aspect-[21/9]": ratio === "21/9",
             "aspect-[32/9]": ratio === "32/9",
+            "aspect-[1/2] w-auto h-full": ratio === "1/2",
+            "aspect-[2/1]": ratio === "2/1",
           }
         )}
       >
