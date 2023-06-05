@@ -4,7 +4,6 @@ import { prisma } from "~/server/db/prisma";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const username = searchParams.get("username");
-  console.log("username", username);
 
   try {
     const user = await prisma.user.findUnique({
@@ -12,7 +11,6 @@ export async function GET(request: Request) {
         username,
       },
     });
-    console.log("user", user);
 
     const userId: string = user?.id;
 
@@ -24,12 +22,10 @@ export async function GET(request: Request) {
         following: true,
       },
     });
-    console.log("followed", followed);
 
     const followerIds = followed?.following.map(
       (follower) => follower.followingId
     );
-    console.log("followerIds", followerIds);
 
     const followerUsers = await prisma.user.findMany({
       where: {
@@ -38,8 +34,6 @@ export async function GET(request: Request) {
         },
       },
     });
-
-    console.log("followerUsers", followerUsers);
 
     return NextResponse.json({ status: 200, data: followerUsers });
   } catch (error: unknown) {

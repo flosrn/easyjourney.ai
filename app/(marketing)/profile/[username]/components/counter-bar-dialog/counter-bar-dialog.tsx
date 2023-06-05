@@ -42,6 +42,18 @@ const getFollowedUserList = async (username: string) => {
   return data.data;
 };
 
+const getLikesUserList = async (username: string) => {
+  const response = await fetch(`/api/profile/likes?username=${username}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+
+  return data.data;
+};
+
 const CounterBarDialog = ({
   open,
   setOpen,
@@ -50,6 +62,7 @@ const CounterBarDialog = ({
 }: counterBarDialogProps) => {
   const [followersUserList, setFollowersUserList] = useState([]);
   const [followedUsersList, setFollowedUsersList] = useState([]);
+  const [likesUsersList, setLikesUsersList] = useState([]);
 
   useEffect(() => {
     const fetchFollowers = async () => {
@@ -57,7 +70,9 @@ const CounterBarDialog = ({
       setFollowersUserList(followers);
       const followed = await getFollowedUserList(username);
       setFollowedUsersList(followed);
-      console.log("followed", followed);
+      const likesUsers = await getLikesUserList(username);
+      setLikesUsersList(likesUsers);
+      console.log("likesUsers", likesUsers);
     };
     fetchFollowers();
   }, [username]);
@@ -79,7 +94,7 @@ const CounterBarDialog = ({
             </TabsTrigger>
           </TabsList>
           <TabsContent value="likes">
-            <SearchableList list={followersUserList} />
+            <SearchableList list={likesUsersList} />
           </TabsContent>
           <TabsContent value="followers">
             <SearchableList list={followersUserList} />
