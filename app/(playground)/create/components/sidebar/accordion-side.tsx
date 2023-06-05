@@ -37,15 +37,13 @@ const AccordionSide = ({}) => {
             <QualitySelector />
             <Separator />
 
-            <div className="flex justify-between">
-              <TitleComponent
-                title="Seed"
-                description="Using a seed number as a complement to the same or nearly the same prompt will ensure a final result that is very similar."
-                defaultValue="Number can be beetween 1 and 999999999"
-                size="small"
-              />
-              <SeedSelector />
-            </div>
+            <TitleComponent
+              title="Seed"
+              description="Using a seed number as a complement to the same or nearly the same prompt will ensure a final result that is very similar."
+              defaultValue="Number can be beetween 1 and 999999999"
+              size="small"
+            />
+            <SeedSelector />
             <Separator />
 
             <TitleComponent

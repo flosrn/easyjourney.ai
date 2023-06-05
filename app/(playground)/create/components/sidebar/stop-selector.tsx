@@ -51,7 +51,7 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
         placeholder={stopValue}
         value={stopValue}
         onChange={handleInputChange}
-        className={cn("w-[30%]", className)}
+        className={cn("w-[30%] mr-1", className)}
       />
     </div>
   );
