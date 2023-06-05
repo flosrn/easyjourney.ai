@@ -24,13 +24,13 @@ const QualitySelector = () => {
   return (
     <Select onValueChange={handleQualityValueChange}>
       <SelectTrigger className="w-full">
-        <SelectValue placeholder="Select a quality" />
+        <SelectValue placeholder="Quality 1" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="1">1</SelectItem>
-          <SelectItem value=".5">0.5</SelectItem>
-          <SelectItem value=".25">0.25</SelectItem>
+          <SelectItem value="1">Quality 1</SelectItem>
+          <SelectItem value=".5">Quality 0.5</SelectItem>
+          <SelectItem value=".25">Quality 0.25</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

@@ -10,7 +10,7 @@ type VersionAction = {
 
 export const useVersionStore = create<VersionAction & VersionState>()(
   (set) => ({
-    versionValue: "default",
+    versionValue: "--v 5.1",
     setVersionValue: (value) => set(() => ({ versionValue: value })),
   })
 );
