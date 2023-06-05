@@ -27,7 +27,7 @@ export async function GET(request: Request) {
     console.log("followed", followed);
 
     const followerIds = followed?.following.map(
-      (follower) => follower.followerId
+      (follower) => follower.followingId
     );
     console.log("followerIds", followerIds);
 

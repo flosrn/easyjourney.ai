@@ -55,7 +55,7 @@ const CounterBarDialog = ({
     const fetchFollowers = async () => {
       const followers = await getFollowersUserList(username);
       setFollowersUserList(followers);
-      const followed = await getFollowersUserList(username);
+      const followed = await getFollowedUserList(username);
       setFollowedUsersList(followed);
       console.log("followed", followed);
     };
