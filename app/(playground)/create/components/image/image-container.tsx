@@ -51,23 +51,23 @@ const ImageContainer = ({}: ImageContainerProps) => {
     (imageType === "generation" || imageType === "variation");
 
   return (
-    <div className="flex-center min-h-[calc(100vh-400px)] rounded-md border p-4">
+    <div className="flex-center h-[70vh] rounded-md border p-4 lg:h-[calc(100vh-400px)]">
       <div
         className={cn(
-          "flex-center h-full rounded-md border border-dashed p-4",
+          "flex-center max-h-full max-w-full w-full lg:w-auto lg:h-[375px] rounded-md border border-dashed p-4",
           {
-            "aspect-[1/1] lg:h-[375px]": ratio === "1/1",
-            "aspect-[16/10] lg:h-[375px]": ratio === "16/10",
-            "aspect-[16/9] lg:h-[375px]": ratio === "16/9",
-            "aspect-[17/9] lg:h-[375px]": ratio === "17/9",
-            "aspect-[21/9] lg:h-[375px]": ratio === "21/9",
+            "aspect-[1/1]": ratio === "1/1",
+            "aspect-[4/7] w-auto h-full": ratio === "4/7",
+            "aspect-[2/3] w-auto h-full": ratio === "2/3",
+            "aspect-[4/5] w-auto h-full": ratio === "4/5",
+            "aspect-[5/4]": ratio === "5/4",
+            "aspect-[3/2]": ratio === "3/2",
+            "aspect-[16/10]": ratio === "16/10",
+            "aspect-[7/4]": ratio === "7/4",
+            "aspect-[16/9]": ratio === "16/9",
+            "aspect-[17/9]": ratio === "17/9",
+            "aspect-[21/9]": ratio === "21/9",
             "aspect-[32/9] lg:h-[350px]": ratio === "32/9",
-            "aspect-[4/5] lg:h-[375px]": ratio === "4/5",
-            "aspect-[2/3] lg:h-[375px]": ratio === "2/3",
-            "aspect-[4/7] lg:h-[375px]": ratio === "4/7",
-            "aspect-[5/4] lg:h-[375px]": ratio === "5/4",
-            "aspect-[3/2] lg:h-[375px]": ratio === "3/2",
-            "aspect-[7/4] lg:h-[375px]": ratio === "7/4",
           }
         )}
       >

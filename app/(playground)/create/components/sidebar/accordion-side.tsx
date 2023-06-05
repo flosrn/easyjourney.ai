@@ -35,7 +35,6 @@ const AccordionSide = ({ className }: AccordionProps) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <Separator />
     </>
   );
 };

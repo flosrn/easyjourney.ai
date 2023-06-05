@@ -6,7 +6,7 @@ import { Separator } from "~/components/ui/separator";
 import { cn } from "~/lib/classNames";
 
 import AccordionSide from "./components/sidebar/accordion-side";
-import ButtonsAspectRatio from "./components/sidebar/buttons-aspect-ratio";
+import AspectRatioSelector from "./components/sidebar/aspect-ratio-selector";
 import { FilterSelector } from "./components/sidebar/filter-selector";
 import MoreOptions from "./components/sidebar/more-options";
 import TitleComponent from "./components/sidebar/title-component";
@@ -28,10 +28,12 @@ const SideColumn = ({ className }: SidebarProps) => (
           title="Aspect Ratio"
           description="Changes the aspect ratio of the generated image."
         />
-        <ButtonsAspectRatio />
+        <AspectRatioSelector />
+        <Separator />
 
         <AccordionSide className="lg:hidden" />
         <MoreOptions className="hidden lg:block" />
+        <Separator />
       </div>
     </aside>
   </ScrollArea>

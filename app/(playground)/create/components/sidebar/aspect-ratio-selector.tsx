@@ -9,9 +9,9 @@ import { cn } from "~/lib/classNames";
 import { aspectRatios } from "../../data/aspectRatios";
 import { useRatioStore } from "../../store/ratioStore";
 
-type ButtonsAspectRatioProps = {};
+type AspectRatioSelectorProps = {};
 
-const ButtonsAspectRatio = ({}: ButtonsAspectRatioProps) => {
+const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
   const [selectedAspectRatio, setSelectedAspectRatio] = useRatioStore(
     (state) => [state.selectedAspectRatio, state.setSelectedAspectRatio]
   );
@@ -38,4 +38,4 @@ const ButtonsAspectRatio = ({}: ButtonsAspectRatioProps) => {
   );
 };
 
-export default ButtonsAspectRatio;
+export default AspectRatioSelector;
