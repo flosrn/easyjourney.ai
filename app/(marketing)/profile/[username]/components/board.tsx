@@ -1,6 +1,7 @@
 import React from "react";
 
 import { type BoardType } from "../../../types/typeBoard";
+import DeleteBoardButton from "./delete-board-button";
 
 type boardProps = {
   props: BoardType;
@@ -20,6 +21,7 @@ const Board = ({ props }: boardProps) => {
           <div>Position: {poster.position}</div>
         </div>
       ))}
+      <DeleteBoardButton boardId={props.id} />
     </div>
   );
 };
