@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { ExpandIcon } from "lucide-react";
+import { getPlaiceholder } from "plaiceholder";
 
 import { Dialog, DialogContent, DialogTrigger } from "~/components/ui/dialog";
 
@@ -12,13 +13,30 @@ type ExpandedPosterDialogProps = {
   children: React.ReactNode;
 };
 
-const ExpandedPosterDialog = ({
+const getImage = async (src: string) => {
+  const buffer = await fetch(src).then(async (res) =>
+    Buffer.from(await res.arrayBuffer())
+  );
+
+  const {
+    metadata: { height, width },
+    ...plaiceholder
+  } = await getPlaiceholder(buffer, { size: 10 });
+
+  return {
+    ...plaiceholder,
+    img: { src, height, width },
+  };
+};
+
+const ExpandedPosterDialog = async ({
   posterImage,
   width,
   height,
   prompt,
   children,
 }: ExpandedPosterDialogProps) => {
+  const { base64, img } = await getImage(posterImage);
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -31,11 +49,13 @@ const ExpandedPosterDialog = ({
       </DialogTrigger>
       <DialogContent className="h-fit max-h-[90vh] w-fit max-w-[90vw] scale-110">
         <Image
-          src={posterImage}
+          {...img}
           alt={prompt}
-          width={width ?? 500}
-          height={height ?? 500}
+          // width={width ?? 500}
+          // height={height ?? 500}
           quality={100}
+          blurDataURL={base64}
+          placeholder="blur"
           className="h-full w-full rounded-lg object-contain"
         />
       </DialogContent>
