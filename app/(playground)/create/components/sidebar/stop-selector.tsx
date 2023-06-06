@@ -12,10 +12,9 @@ import { useStopStore } from "../../store/stopStore";
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const StopSelector = ({ className, ...props }: SliderProps) => {
-  const [stopValue, setStopValue] = useStopStore((state) => [
-    state.stopValue,
-    state.setStopValue,
-  ]);
+  const [stopValue, disabledStopSelector, setStopValue] = useStopStore(
+    (state) => [state.stopValue, state.disabledStopSelector, state.setStopValue]
+  );
   const handleChaosValueChange = (value: number[] | number) => {
     setStopValue(value.toString());
   };
@@ -37,6 +36,7 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
         onValueChange={handleChaosValueChange}
         defaultValue={[Number.parseInt(stopValue)]}
         value={[Number.parseInt(stopValue)]}
+        disabled={disabledStopSelector}
         min={10}
         max={100}
         step={10}
@@ -50,6 +50,7 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
         step={10}
         placeholder={stopValue}
         value={stopValue}
+        disabled={disabledStopSelector}
         onChange={handleInputChange}
         className={cn("w-[30%] mr-1", className)}
       />

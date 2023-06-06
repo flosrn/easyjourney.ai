@@ -7,8 +7,16 @@ import { Textarea } from "~/components/ui/textarea";
 
 import { cn } from "~/lib/classNames";
 
+import { useChaosStore } from "../../store/chaosStore";
 import { useImageGenerationStore } from "../../store/imageGenerationStore";
 import { usePromptStore } from "../../store/promptStore";
+import { useQualityStore } from "../../store/qualityStore";
+import { useRatioStore } from "../../store/ratioStore";
+import { useSeedStore } from "../../store/seedStore";
+import { useStopStore } from "../../store/stopStore";
+import { useStylizeStore } from "../../store/stylizeStore";
+import { useTileStore } from "../../store/tileStore";
+import { useVersionStore } from "../../store/versionStore";
 
 type TextareaPromptProps = {
   collapse?: boolean;
@@ -19,76 +27,120 @@ const TextareaPrompt = ({ collapse }: TextareaPromptProps) => {
     state.promptValue,
     state.setPromptValue,
   ]);
+
+  const [setSelectedRatio, setDisabledAspectRatioSelector] = useRatioStore(
+    (state) => [state.setSelectedRatio, state.setDisabledAspectRatioSelector]
+  );
+
+  const [versionValue, setVersionValue, setDisabledVersionSelector] =
+    useVersionStore((state) => [
+      state.versionValue,
+      state.setVersionValue,
+      state.setDisabledVersionSelector,
+    ]);
+
+  const [setQualityValue, setDisabledQualitySelector] = useQualityStore(
+    (state) => [state.setQualityValue, state.setDisabledQualitySelector]
+  );
+
+  const [setSeedValue, setDisabledSeedSelector] = useSeedStore((state) => [
+    state.setSeedValue,
+    state.setDisabledSeedSelector,
+  ]);
+
+  const [setChaosValue, setDisabledChaosSelector] = useChaosStore((state) => [
+    state.setChaosValue,
+    state.setDisabledChaosSelector,
+  ]);
+
+  const [setStylizeValue, setDisabledStylizeSelector] = useStylizeStore(
+    (state) => [state.setStylizeValue, state.setDisabledStylizeSelector]
+  );
+
+  const [setStopValue, setDisabledStopSelector] = useStopStore((state) => [
+    state.setStopValue,
+    state.setDisabledStopSelector,
+  ]);
+
+  const [setTileValue, setDisabledTileSelector] = useTileStore((state) => [
+    state.setTileValue,
+    state.setDisabledTileSelector,
+  ]);
+
   const generateImage = useImageGenerationStore((state) => state.generateImage);
 
   const handlePromptValue = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const inputValue = event.target.value;
-
-    const aspectRatioPattern = /--ar\s+(\d{1,2}:\d{1,2})\b/;
-    const aspectRatioMatch = inputValue.match(aspectRatioPattern);
-
-    const versionPattern = /--v\s+(4|5(\.1)?)\b/;
-    const versionMatch = inputValue.match(versionPattern);
-
-    const nijiPattern = /--niji\b/;
-    const nijiMatch = inputValue.match(nijiPattern);
-
-    const qualityPattern = /--quality\s+(1|\.5|\.25)\b/;
-    const qualityMatch = inputValue.match(qualityPattern);
-
-    const chaosPattern = /--c\s+(100|[1-9]\d?|0)\b/;
-    const chaosMatch = inputValue.match(chaosPattern);
-
-    const stylizePattern = /--stylize\s+([1-9]\d{0,2}|1000|0)\b/;
-    const stylizeMatch = inputValue.match(stylizePattern);
-
-    const stopPattern = /--stop\s+(100|[1-9]0)\b/;
-    const stopMatch = inputValue.match(stopPattern);
-
-    const seedPattern = /-{2}se{2}d\s+([1-9]\d{0,8}|10{9})\b/;
-    const seedMatch = inputValue.match(seedPattern);
-
-    const tilePattern = /--tile\b/;
+    // ACCEPT --ar xx:xx
+    const aspectRatioPattern = /--ar\s+(\d{1,2}:\d{1,2})\b/g;
+    const aspectRatioMatches = [...inputValue.matchAll(aspectRatioPattern)];
+    const aspectRatioMatch = aspectRatioMatches.at(-1);
+    // ACCEPT --v 4 5 5.1 --niji 5
+    const versionPattern = /(--v\s+(4|5(\.1)?)|--niji\s(5)?)\b/g;
+    const versionMatches = [...inputValue.matchAll(versionPattern)];
+    const versionMatch = versionMatches.at(-1);
+    // ACCEPT --seed 1-999999999
+    const seedPattern = /--seed\s+([1-9]\d{0,8}|0)\b/g;
+    const seedMatches = [...inputValue.matchAll(seedPattern)];
+    const seedMatch = seedMatches.at(-1);
+    // ACCEPT --quality 1 .5 .25
+    const qualityPattern = /--quality\s+(1|\.5|\.25)\b/g;
+    const qualityMatches = [...inputValue.matchAll(qualityPattern)];
+    const qualityMatch = qualityMatches.at(-1);
+    // ACCEPT --c 0-100
+    const chaosPattern = /--c\s+(100|[1-9]\d?|0)\b/g;
+    const chaosMatches = [...inputValue.matchAll(chaosPattern)];
+    const chaosMatch = chaosMatches.at(-1);
+    // ACCEPT --stylize 0-1000
+    const stylizePattern = /--stylize\s+([1-9]\d{0,2}|1000|0)\b/g;
+    const stylizeMatches = [...inputValue.matchAll(stylizePattern)];
+    const stylizeMatch = stylizeMatches.at(-1);
+    // ACCEPT --stop 10 20 30 40 50 60 70 80 90 100
+    const stopPattern = /--stop\s+(100|[1-9]0)\b/g;
+    const stopeMatches = [...inputValue.matchAll(stopPattern)];
+    const stopMatch = stopeMatches.at(-1);
+    // ACCEPT --tile
+    const tilePattern = /--tile\b/g;
     const tileMatch = inputValue.match(tilePattern);
 
     if (aspectRatioMatch?.[1]) {
-      const aspectRatioValue = aspectRatioMatch[1];
-      console.log(aspectRatioValue);
+      setSelectedRatio(aspectRatioMatch?.[1]);
     }
+    setDisabledAspectRatioSelector(!!aspectRatioMatch?.[1]);
 
-    if (versionMatch?.[1] || nijiMatch) {
-      const versionValue = nijiMatch ? "niji" : versionMatch?.[1];
-      console.log(versionValue);
+    if (versionMatch?.[1]) {
+      setVersionValue(versionMatch[1]);
     }
-
-    if (qualityMatch?.[1]) {
-      const qualityValue = qualityMatch[1];
-      console.log(qualityValue);
-    }
-
-    if (chaosMatch?.[1]) {
-      const chaosValue = chaosMatch[1];
-      console.log(chaosValue);
-    }
-
-    if (stylizeMatch?.[1]) {
-      const stylizenValue = stylizeMatch[1];
-      console.log(stylizenValue);
-    }
-
-    if (stopMatch?.[1]) {
-      const stopValue = stopMatch[1];
-      console.log(stopValue);
-    }
+    setDisabledVersionSelector(!!versionMatch?.[1]);
 
     if (seedMatch?.[1]) {
-      const seedValue = seedMatch[1];
-      console.log(seedValue);
+      setSeedValue(seedMatch[1]);
     }
+    setDisabledSeedSelector(!!seedMatch?.[1]);
 
-    if (tileMatch) {
-      const tileValue = true;
-      console.log(tileValue);
+    if (qualityMatch?.[1]) {
+      setQualityValue(qualityMatch[1]);
+    }
+    setDisabledQualitySelector(!!qualityMatch?.[1]);
+
+    if (chaosMatch?.[1]) {
+      setChaosValue(chaosMatch[1]);
+    }
+    setDisabledChaosSelector(!!chaosMatch?.[1]);
+
+    if (stylizeMatch?.[1]) {
+      setStylizeValue(stylizeMatch?.[1]);
+    }
+    setDisabledStylizeSelector(!!stylizeMatch?.[1]);
+
+    if (stopMatch?.[1]) {
+      setStopValue(stopMatch[1]);
+    }
+    setDisabledStopSelector(!!stopMatch?.[1]);
+
+    if (versionValue !== "--v 4") {
+      setTileValue(!!tileMatch?.[0]);
+      setDisabledTileSelector(!!tileMatch?.[0]);
     }
 
     setPromptValue(inputValue);

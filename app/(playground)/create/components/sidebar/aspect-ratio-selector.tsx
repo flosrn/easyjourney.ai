@@ -6,18 +6,50 @@ import { Button } from "~/components/ui/button";
 
 import { cn } from "~/lib/classNames";
 
-import { aspectRatios, aspectRatiosV4 } from "../../data/aspectRatios";
+import {
+  aspectRatios,
+  aspectRatiosV4,
+  type AspectRatio,
+} from "../../data/aspectRatios";
 import { useRatioStore } from "../../store/ratioStore";
 import { useVersionStore } from "../../store/versionStore";
 
 type AspectRatioSelectorProps = {};
 
 const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
-  const [selectedAspectRatio, setSelectedAspectRatio] = useRatioStore(
-    (state) => [state.selectedAspectRatio, state.setSelectedAspectRatio]
-  );
+  const [
+    selectedAspectRatio,
+    selectedRatio,
+    disabledAspectRatioSelector,
+    setSelectedAspectRatio,
+  ] = useRatioStore((state) => [
+    state.selectedAspectRatio,
+    state.selectedRatio,
+    state.disabledAspectRatioSelector,
+    state.setSelectedAspectRatio,
+  ]);
 
   const versionValue = useVersionStore((state) => state.versionValue);
+
+  useEffect(() => {
+    if (selectedRatio) {
+      let specialAspectRatio: AspectRatio = {
+        name: "",
+        ratio: "",
+        value: "",
+      };
+
+      const valueRatio = selectedRatio.replace(":", "/");
+
+      specialAspectRatio = {
+        name: selectedRatio,
+        ratio: `--ar ${selectedRatio}`,
+        value: valueRatio,
+      };
+
+      setSelectedAspectRatio(specialAspectRatio);
+    }
+  }, [selectedRatio, setSelectedAspectRatio]);
 
   useEffect(() => {
     if (versionValue === "--v 4") {
@@ -36,7 +68,7 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
         <Button
           key={ratio}
           onClick={() => setSelectedAspectRatio({ ratio, name, value })}
-          disabled={isRatioV4}
+          disabled={isRatioV4 || disabledAspectRatioSelector}
           variant="outline"
           size="xs"
           className={cn(
@@ -54,6 +86,7 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
         <Button
           key={ratio}
           onClick={() => setSelectedAspectRatio({ ratio, name, value })}
+          disabled={disabledAspectRatioSelector}
           variant="outline"
           size="xs"
           className={cn(
