@@ -1,5 +1,6 @@
-import Image from "next/image";
-import { Link } from "lucide-react";
+import getFirstLetters from "~/utils/getFirstLetter";
+
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 import FollowButton from "../follow-button";
 
@@ -15,14 +16,12 @@ const SelectedUser = ({ user, actualUser }) => {
       <div className="flex h-20 w-full ">
         <div className="flex h-full w-5/6">
           <div className="flex h-full w-1/3 items-center justify-center">
-            <Image
-              src={user.image}
-              alt={user.name}
-              width={70}
-              height={70}
-              unoptimized
-              className=" rounded-full object-cover"
-            />
+            {user.image && (
+              <Avatar className="mr-2 h-7 w-7 cursor-pointer">
+                <AvatarImage src={user.image} referrerPolicy="no-referrer" />
+                <AvatarFallback>{getFirstLetters(author)}</AvatarFallback>
+              </Avatar>
+            )}
           </div>
         </div>
 
