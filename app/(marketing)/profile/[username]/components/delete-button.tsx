@@ -59,7 +59,7 @@ const DeleteButton = () => {
     }
   };
   return (
-    <Button onClick={handleDelete}>
+    <Button onClick={handleDelete} className="ml-2">
       {deleteMutation.isPending && (
         <Loader2Icon className="mr-2 h-5 animate-spin" />
       )}

@@ -8,6 +8,7 @@ import { LucideX } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 
+import AddToBoardButton from "./add-to-board-button";
 import DeleteButton from "./delete-button";
 
 export const SelectBar = () => {
@@ -53,6 +54,7 @@ export const SelectBar = () => {
               <div>{numberOfPosters}</div>
             </div>
             <div className="mr-2 flex">
+              <AddToBoardButton />
               <DeleteButton />
               <Button
                 variant="secondary"
