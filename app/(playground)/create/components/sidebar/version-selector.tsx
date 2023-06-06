@@ -14,14 +14,23 @@ import {
 import { useVersionStore } from "../../store/versionStore";
 
 const VersionSelector = () => {
-  const setVersionValue = useVersionStore((state) => state.setVersionValue);
+  const [versionValue, disabledVersionSelector, setVersionValue] =
+    useVersionStore((state) => [
+      state.versionValue,
+      state.disabledVersionSelector,
+      state.setVersionValue,
+    ]);
 
   const handleStyleValueChange = (value: string) => {
     setVersionValue(value);
   };
 
   return (
-    <Select onValueChange={handleStyleValueChange}>
+    <Select
+      onValueChange={handleStyleValueChange}
+      value={versionValue}
+      disabled={disabledVersionSelector}
+    >
       <SelectTrigger className="m-1 w-[calc(100%-8px)]">
         <SelectValue placeholder="Version 5.1" />
       </SelectTrigger>

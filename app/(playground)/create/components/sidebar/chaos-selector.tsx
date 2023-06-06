@@ -12,10 +12,13 @@ import { useChaosStore } from "../../store/chaosStore";
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const ChaosSelector = ({ className, ...props }: SliderProps) => {
-  const [chaosValue, setChaosValue] = useChaosStore((state) => [
-    state.chaosValue,
-    state.setChaosValue,
-  ]);
+  const [chaosValue, disabledChaosSelector, setChaosValue] = useChaosStore(
+    (state) => [
+      state.chaosValue,
+      state.disabledChaosSelector,
+      state.setChaosValue,
+    ]
+  );
 
   const handleChaosValueChange = (value: number[] | number) => {
     setChaosValue(value.toString());
@@ -38,6 +41,7 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
         onValueChange={handleChaosValueChange}
         defaultValue={[Number.parseInt(chaosValue)]}
         value={[Number.parseInt(chaosValue)]}
+        disabled={disabledChaosSelector}
         min={0}
         max={100}
         step={1}
@@ -51,10 +55,10 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
         step={1}
         placeholder={chaosValue}
         value={chaosValue}
+        disabled={disabledChaosSelector}
         onChange={handleInputChange}
         className={cn("w-[30%] mr-1", className)}
       />
-      {/* <div className="rounded-xl border p-2">{chaosValue}</div> */}
     </div>
   );
 };
