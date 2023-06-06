@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import type { User } from "@prisma/client";
 import { prisma } from "~/server/db/prisma";
 
+import Board from "../components/board";
 import CreateNewBoardForm from "../components/create-new-board-form";
 
 type UserProfileProps = {
@@ -33,12 +34,13 @@ export default async function Boards({
 }: UserProfileProps) {
   const user = await getUser(username);
   const boards = user && (await getUserBoards(user.id));
-  const myboard = boards?.map((board) => board.name);
   return (
     <div>
       <CreateNewBoardForm />
       <Suspense fallback={<div>Loading Board...</div>}>
-        {myboard && <div>{myboard}</div>}
+        {boards?.map((board) => (
+          <Board key={board.id} props={board} />
+        ))}
       </Suspense>
     </div>
   );

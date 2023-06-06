@@ -10,14 +10,14 @@ import { Checkbox } from "~/components/ui/checkbox";
 import { Input } from "~/components/ui/input";
 
 import { useBoardStore } from "../../../store/boardStore";
-import type { Board } from "../../../types/typeBoard";
+import type { BoardType } from "../../../types/typeBoard";
 
 const createNewBoard = async ({
   userName,
   board,
 }: {
   userName: string[] | string;
-  board: Board;
+  board: BoardType;
 }) => {
   const response = await fetch("/api/board/create", {
     method: "POST",
@@ -74,7 +74,7 @@ const CreateNewBoardForm = () => {
 
   const handleBoardForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const board: Board = {
+    const board: BoardType = {
       name: boardName,
       slug: boardSlug,
       icon: boardIcon,
