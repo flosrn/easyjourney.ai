@@ -32,6 +32,7 @@ const SeedSelector = () => {
     <div className="flex w-full items-center justify-between">
       <button
         onClick={handleRandomSeedNumber}
+        disabled={disabledSeedSelector}
         className="ml-1 h-full w-1/5 pr-2"
       >
         <LucideShuffle />
