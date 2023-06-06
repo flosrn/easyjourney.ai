@@ -43,6 +43,7 @@ export async function GET(request: Request) {
       },
       include: {
         likes: true,
+        followers: true,
       },
     });
 
