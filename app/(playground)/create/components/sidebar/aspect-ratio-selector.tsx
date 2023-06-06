@@ -48,7 +48,6 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
       };
 
       setSelectedAspectRatio(specialAspectRatio);
-      console.log(selectedAspectRatio);
     }
   }, [selectedRatio, setSelectedAspectRatio]);
 
