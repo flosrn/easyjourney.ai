@@ -4,6 +4,9 @@ dependencies:
   '@next-auth/prisma-adapter':
     specifier: ^1.0.7
     version: 1.0.7(@prisma/client@4.15.0)(next-auth@4.22.1)
+  '@plaiceholder/next':
+    specifier: ^3.0.0
+    version: 3.0.0(next@13.4.4)(plaiceholder@3.0.0)(sharp@0.32.1)
   '@prisma/client':
     specifier: ^4.15.0
     version: 4.15.0(prisma@4.15.0)
@@ -980,6 +983,18 @@ packages:
       picocolors: 1.0.0
       tslib: 2.5.2
     dev: true
+
+  /@plaiceholder/next@3.0.0(next@13.4.4)(plaiceholder@3.0.0)(sharp@0.32.1):
+    resolution: {integrity: sha512-7UK/H1X64hwo2VaxOPKMXE+OY9IgmKLPsq/xKHZ+gU07oqQSfIWWIgpVVucMB3ZgVYah+68agR15BRuSxAuMHw==}
+    peerDependencies:
+      next: '>= 10.0.0'
+      plaiceholder: '>=3.0.0'
+      sharp: '>= 0.30.6'
+    dependencies:
+      next: 13.4.4(react-dom@18.2.0)(react@18.2.0)
+      plaiceholder: 3.0.0(sharp@0.32.1)
+      sharp: 0.32.1
+    dev: false
 
   /@prisma/client@4.15.0(prisma@4.15.0):
     resolution: {integrity: sha512-xnROvyABcGiwqRNdrObHVZkD9EjkJYHOmVdlKy1yGgI+XOzvMzJ4tRg3dz1pUlsyhKxXGCnjIQjWW+2ur+YXuw==}

@@ -37,6 +37,7 @@ const ExpandedPosterDialog = async ({
   children,
 }: ExpandedPosterDialogProps) => {
   const { base64, img } = await getImage(posterImage);
+  console.log("img :", img);
   return (
     <Dialog>
       <DialogTrigger asChild>
