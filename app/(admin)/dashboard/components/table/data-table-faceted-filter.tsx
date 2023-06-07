@@ -99,7 +99,6 @@ export function DataTableFacetedFilter<TData, TValue>({
                       } else {
                         selectedValues.add(option.value);
                       }
-                      // @ts-expect-error: TODO fix types
                       const filterValues = [...selectedValues];
                       column?.setFilterValue(
                         filterValues.length > 0 ? filterValues : undefined
