@@ -50,6 +50,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     peekedFilter,
     setPeekedSubCategory,
     setPeekedFilter,
+    isFilterSelectorDisabled,
   ] = useFilterStore((state) => [
     state.subCategories,
     state.selectedFilters,
@@ -59,6 +60,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     state.peekedFilter,
     state.setPeekedSubCategory,
     state.setPeekedFilter,
+    state.isFilterSelectorDisabled,
   ]);
 
   useEffect(() => {
@@ -78,6 +80,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
             role="combobox"
             aria-expanded={open}
             aria-label="Select a filter"
+            disabled={isFilterSelectorDisabled}
             className="hidden w-full justify-between sm:flex"
           >
             {selectedFilters.length === 0 && <div>Select a filter</div>}

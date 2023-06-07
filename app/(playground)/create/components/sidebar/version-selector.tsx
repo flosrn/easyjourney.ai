@@ -17,7 +17,7 @@ const VersionSelector = () => {
   const [versionValue, disabledVersionSelector, setVersionValue] =
     useVersionStore((state) => [
       state.versionValue,
-      state.disabledVersionSelector,
+      state.isVersionSelectorDisabled,
       state.setVersionValue,
     ]);
 

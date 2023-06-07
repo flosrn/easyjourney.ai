@@ -2,20 +2,20 @@ import { create } from "zustand";
 
 type StylizeState = {
   stylizeValue: number;
-  disabledStylizeSelector: boolean;
+  isStylizeSelectorDisabled: boolean;
 };
 
 type StylizeAction = {
   setStylizeValue: (value: number) => void;
-  setDisabledStylizeSelector: (value: boolean) => void;
+  setIsStylizeSelectorDisabled: (value: boolean) => void;
 };
 
 export const useStylizeStore = create<StylizeAction & StylizeState>()(
   (set) => ({
     stylizeValue: 100,
-    disabledStylizeSelector: false,
+    isStylizeSelectorDisabled: false,
     setStylizeValue: (value) => set(() => ({ stylizeValue: value })),
-    setDisabledStylizeSelector: (value) =>
-      set(() => ({ disabledStylizeSelector: value })),
+    setIsStylizeSelectorDisabled: (value) =>
+      set(() => ({ isStylizeSelectorDisabled: value })),
   })
 );

@@ -2,20 +2,20 @@ import { create } from "zustand";
 
 type VersionState = {
   versionValue: string;
-  disabledVersionSelector: boolean;
+  isVersionSelectorDisabled: boolean;
 };
 
 type VersionAction = {
   setVersionValue: (value: string) => void;
-  setDisabledVersionSelector: (value: boolean) => void;
+  setIsVersionSelectorDisabled: (value: boolean) => void;
 };
 
 export const useVersionStore = create<VersionAction & VersionState>()(
   (set) => ({
     versionValue: "--v 5.1",
-    disabledVersionSelector: false,
+    isVersionSelectorDisabled: false,
     setVersionValue: (value) => set(() => ({ versionValue: value })),
-    setDisabledVersionSelector: (value) =>
-      set(() => ({ disabledVersionSelector: value })),
+    setIsVersionSelectorDisabled: (value) =>
+      set(() => ({ isVersionSelectorDisabled: value })),
   })
 );

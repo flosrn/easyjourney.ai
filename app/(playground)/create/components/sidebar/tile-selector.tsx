@@ -16,9 +16,9 @@ const TileSelector = () => {
     toggleTileValue,
   ] = useTileStore((state) => [
     state.tileValue,
-    state.disabledTileSelector,
+    state.isTileSelectorDisabled,
     state.setTileValue,
-    state.setDisabledTileSelector,
+    state.setIsTileSelectorDisabled,
     state.toggleTileValue,
   ]);
 

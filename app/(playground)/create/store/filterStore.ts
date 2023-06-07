@@ -8,6 +8,7 @@ type FilterState = {
   selectedFilters: Filter[];
   peekedSubCategory: SubCategoryFilter | null;
   peekedFilter: Filter | null;
+  isFilterSelectorDisabled: boolean;
 };
 
 type FilterAction = {
@@ -16,11 +17,13 @@ type FilterAction = {
   setPeekedSubCategory: (subCategory: SubCategoryFilter | null) => void;
   setPeekedFilter: (filter: Filter | null) => void;
   clearFilters: () => void;
+  setIsFilterSelectorDisabled: (value: boolean) => void;
 };
 
 export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
   subCategories: subCategoriesFilter,
   selectedFilters: [],
+  isFilterSelectorDisabled: false,
   addFilter: (filter) => {
     set((state) => ({
       selectedFilters: [
@@ -42,4 +45,6 @@ export const useFilterStore = create<FilterAction & FilterState>()((set) => ({
     set(() => ({ peekedSubCategory: subCategory })),
   setPeekedFilter: (filter) => set(() => ({ peekedFilter: filter })),
   clearFilters: () => set(() => ({ selectedFilters: [] })),
+  setIsFilterSelectorDisabled: (value) =>
+    set(() => ({ isFilterSelectorDisabled: value })),
 }));

@@ -15,7 +15,7 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
   const [stylizeValue, disabledStylizeSelector, setStylizeValue] =
     useStylizeStore((state) => [
       state.stylizeValue,
-      state.disabledStylizeSelector,
+      state.isStylizeSelectorDisabled,
       state.setStylizeValue,
     ]);
 

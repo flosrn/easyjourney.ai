@@ -8,7 +8,6 @@ import { Textarea } from "~/components/ui/textarea";
 import { cn } from "~/lib/classNames";
 
 import { useChaosStore } from "../../store/chaosStore";
-import { useImageGenerationStore } from "../../store/imageGenerationStore";
 import { usePromptStore } from "../../store/promptStore";
 import { useQualityStore } from "../../store/qualityStore";
 import { useRatioStore } from "../../store/ratioStore";
@@ -19,55 +18,54 @@ import { useTileStore } from "../../store/tileStore";
 import { useVersionStore } from "../../store/versionStore";
 
 type TextareaPromptProps = {
+  generateHandler: () => void;
   collapse?: boolean;
 };
 
-const TextareaPrompt = ({ collapse }: TextareaPromptProps) => {
+const TextareaPrompt = ({ generateHandler, collapse }: TextareaPromptProps) => {
   const [promptValue, setPromptValue] = usePromptStore((state) => [
     state.promptValue,
     state.setPromptValue,
   ]);
 
-  const [setSelectedRatio, setDisabledAspectRatioSelector] = useRatioStore(
-    (state) => [state.setSelectedRatio, state.setDisabledAspectRatioSelector]
+  const [setSelectedRatio, setIsAspectRatioSelectorDisabled] = useRatioStore(
+    (state) => [state.setSelectedRatio, state.setIsAspectRatioSelectorDisabled]
   );
 
-  const [versionValue, setVersionValue, setDisabledVersionSelector] =
+  const [versionValue, setVersionValue, setIsVersionSelectorDisabled] =
     useVersionStore((state) => [
       state.versionValue,
       state.setVersionValue,
-      state.setDisabledVersionSelector,
+      state.setIsVersionSelectorDisabled,
     ]);
 
-  const [setQualityValue, setDisabledQualitySelector] = useQualityStore(
-    (state) => [state.setQualityValue, state.setDisabledQualitySelector]
+  const [setQualityValue, setIsQualitySelectorDisabled] = useQualityStore(
+    (state) => [state.setQualityValue, state.setIsQualitySelectorDisabled]
   );
 
-  const [setSeedValue, setDisabledSeedSelector] = useSeedStore((state) => [
+  const [setSeedValue, setIsSeedSelectorDisabled] = useSeedStore((state) => [
     state.setSeedValue,
-    state.setDisabledSeedSelector,
+    state.setIsSeedSelectorDisabled,
   ]);
 
-  const [setChaosValue, setDisabledChaosSelector] = useChaosStore((state) => [
+  const [setChaosValue, setIsChaosSelectorDisabled] = useChaosStore((state) => [
     state.setChaosValue,
-    state.setDisabledChaosSelector,
+    state.setIsChaosSelectorDisabled,
   ]);
 
-  const [setStylizeValue, setDisabledStylizeSelector] = useStylizeStore(
-    (state) => [state.setStylizeValue, state.setDisabledStylizeSelector]
+  const [setStylizeValue, setIsStylizeSelectorDisabled] = useStylizeStore(
+    (state) => [state.setStylizeValue, state.setIsStylizeSelectorDisabled]
   );
 
-  const [setStopValue, setDisabledStopSelector] = useStopStore((state) => [
+  const [setStopValue, setIsStopSelectorDisabled] = useStopStore((state) => [
     state.setStopValue,
-    state.setDisabledStopSelector,
+    state.setIsStopSelectorDisabled,
   ]);
 
-  const [setTileValue, setDisabledTileSelector] = useTileStore((state) => [
+  const [setTileValue, setIsTileSelectorDisabled] = useTileStore((state) => [
     state.setTileValue,
-    state.setDisabledTileSelector,
+    state.setIsTileSelectorDisabled,
   ]);
-
-  const generateImage = useImageGenerationStore((state) => state.generateImage);
 
   const handlePromptValue = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const inputValue = event.target.value;
@@ -97,50 +95,50 @@ const TextareaPrompt = ({ collapse }: TextareaPromptProps) => {
     const stylizeMatch = stylizeMatches.at(-1);
     // ACCEPT --stop 10 20 30 40 50 60 70 80 90 100
     const stopPattern = /--stop\s+(100|[1-9]0)\b/g;
-    const stopeMatches = [...inputValue.matchAll(stopPattern)];
-    const stopMatch = stopeMatches.at(-1);
+    const stopMatches = [...inputValue.matchAll(stopPattern)];
+    const stopMatch = stopMatches.at(-1);
     // ACCEPT --tile
     const tilePattern = /--tile\b/g;
     const tileMatch = inputValue.match(tilePattern);
 
     if (aspectRatioMatch?.[1]) {
-      setSelectedRatio(aspectRatioMatch?.[1]);
+      setSelectedRatio(aspectRatioMatch[1]);
     }
-    setDisabledAspectRatioSelector(!!aspectRatioMatch?.[1]);
+    setIsAspectRatioSelectorDisabled(!!aspectRatioMatch?.[1]);
 
     if (versionMatch?.[1]) {
       setVersionValue(versionMatch[1]);
     }
-    setDisabledVersionSelector(!!versionMatch?.[1]);
+    setIsVersionSelectorDisabled(!!versionMatch?.[1]);
 
     if (seedMatch?.[1]) {
-      setSeedValue(seedMatch[1]);
+      setSeedValue(Number(seedMatch[1]));
     }
-    setDisabledSeedSelector(!!seedMatch?.[1]);
+    setIsSeedSelectorDisabled(!!seedMatch?.[1]);
 
     if (qualityMatch?.[1]) {
-      setQualityValue(qualityMatch[1]);
+      setQualityValue(Number(qualityMatch[1]));
     }
-    setDisabledQualitySelector(!!qualityMatch?.[1]);
+    setIsQualitySelectorDisabled(!!qualityMatch?.[1]);
 
     if (chaosMatch?.[1]) {
-      setChaosValue(chaosMatch[1]);
+      setChaosValue(Number(chaosMatch[1]));
     }
-    setDisabledChaosSelector(!!chaosMatch?.[1]);
+    setIsChaosSelectorDisabled(!!chaosMatch?.[1]);
 
     if (stylizeMatch?.[1]) {
-      setStylizeValue(stylizeMatch?.[1]);
+      setStylizeValue(Number(stylizeMatch[1]));
     }
-    setDisabledStylizeSelector(!!stylizeMatch?.[1]);
+    setIsStylizeSelectorDisabled(!!stylizeMatch?.[1]);
 
     if (stopMatch?.[1]) {
-      setStopValue(stopMatch[1]);
+      setStopValue(Number(stopMatch[1]));
     }
-    setDisabledStopSelector(!!stopMatch?.[1]);
+    setIsStopSelectorDisabled(!!stopMatch?.[1]);
 
     if (versionValue !== "--v 4") {
       setTileValue(!!tileMatch?.[0]);
-      setDisabledTileSelector(!!tileMatch?.[0]);
+      setIsTileSelectorDisabled(!!tileMatch?.[0]);
     }
 
     setPromptValue(inputValue);
@@ -152,7 +150,7 @@ const TextareaPrompt = ({ collapse }: TextareaPromptProps) => {
     if (event.key === "Enter") {
       event.preventDefault();
       if (promptValue.length > 0) {
-        await generateImage(promptValue);
+        generateHandler();
       }
     }
   };

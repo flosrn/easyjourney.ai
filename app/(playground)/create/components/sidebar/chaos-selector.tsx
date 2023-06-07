@@ -15,7 +15,7 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
   const [chaosValue, disabledChaosSelector, setChaosValue] = useChaosStore(
     (state) => [
       state.chaosValue,
-      state.disabledChaosSelector,
+      state.isChaosSelectorDisabled,
       state.setChaosValue,
     ]
   );

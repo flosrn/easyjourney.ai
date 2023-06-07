@@ -1,15 +1,22 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { LucideShuffle } from "lucide-react";
 
 import { Input } from "~/components/ui/input";
+
+import { cn } from "~/lib/classNames";
 
 import { useSeedStore } from "../../store/seedStore";
 
 const SeedSelector = () => {
   const [seedValue, disabledSeedSelector, setSeedValue] = useSeedStore(
-    (state) => [state.seedValue, state.disabledSeedSelector, state.setSeedValue]
+    (state) => [
+      state.seedValue,
+      state.isSeedSelectorDisabled,
+      state.setSeedValue,
+    ]
   );
 
   const handleRandomSeedNumber = () => {
@@ -22,7 +29,7 @@ const SeedSelector = () => {
     if (inputValue < 0) {
       setSeedValue(0);
     }
-    if (inputValue > 4294967295) {
+    if (inputValue > 999999999) {
       setSeedValue(999999999);
     }
     setSeedValue(inputValue);
@@ -30,13 +37,17 @@ const SeedSelector = () => {
 
   return (
     <div className="flex w-full items-center justify-between">
-      <button
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
         onClick={handleRandomSeedNumber}
         disabled={disabledSeedSelector}
-        className="ml-1 h-full w-1/5 pr-2"
+        className={cn({
+          "opacity-50 pointer-events-none": disabledSeedSelector,
+        })}
       >
-        <LucideShuffle />
-      </button>
+        <LucideShuffle className="h-5 w-5" />
+      </motion.button>
       <Input
         type="number"
         placeholder="Select a number"
