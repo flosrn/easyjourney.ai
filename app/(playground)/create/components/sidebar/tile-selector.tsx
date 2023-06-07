@@ -10,9 +10,9 @@ import { useVersionStore } from "../../store/versionStore";
 const TileSelector = () => {
   const [
     tileValue,
-    disabledTileSelector,
+    isTileSelectorDisabled,
     setTileValue,
-    setDisabledTileSelector,
+    setIsTileSelectorDisabled,
     toggleTileValue,
   ] = useTileStore((state) => [
     state.tileValue,
@@ -27,11 +27,11 @@ const TileSelector = () => {
   useEffect(() => {
     if (versionValue === "--v 4") {
       setTileValue(false);
-      setDisabledTileSelector(true);
+      setIsTileSelectorDisabled(true);
     } else {
-      setDisabledTileSelector(false);
+      setIsTileSelectorDisabled(false);
     }
-  }, [setDisabledTileSelector, setTileValue, versionValue]);
+  }, [setIsTileSelectorDisabled, setTileValue, versionValue]);
 
   return (
     <div className="flex items-center space-x-2">
@@ -39,7 +39,7 @@ const TileSelector = () => {
         id="tile-mode"
         onCheckedChange={toggleTileValue}
         checked={tileValue}
-        disabled={disabledTileSelector}
+        disabled={isTileSelectorDisabled}
       />
     </div>
   );

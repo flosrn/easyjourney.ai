@@ -12,7 +12,7 @@ import { useChaosStore } from "../../store/chaosStore";
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const ChaosSelector = ({ className, ...props }: SliderProps) => {
-  const [chaosValue, disabledChaosSelector, setChaosValue] = useChaosStore(
+  const [chaosValue, isChaosSelectorDisabled, setChaosValue] = useChaosStore(
     (state) => [
       state.chaosValue,
       state.isChaosSelectorDisabled,
@@ -42,7 +42,7 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
         onValueChange={handleChaosValueChange}
         defaultValue={[chaosValue]}
         value={[chaosValue]}
-        disabled={disabledChaosSelector}
+        disabled={isChaosSelectorDisabled}
         min={0}
         max={100}
         step={1}
@@ -55,7 +55,7 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
         max={100}
         step={1}
         value={chaosValue}
-        disabled={disabledChaosSelector}
+        disabled={isChaosSelectorDisabled}
         onChange={handleInputChange}
         className={cn("w-[30%] truncate mr-1", className)}
       />
