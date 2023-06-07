@@ -8,7 +8,6 @@ import { Textarea } from "~/components/ui/textarea";
 import { cn } from "~/lib/classNames";
 
 import { useChaosStore } from "../../store/chaosStore";
-import { useImageGenerationStore } from "../../store/imageGenerationStore";
 import { usePromptStore } from "../../store/promptStore";
 import { useQualityStore } from "../../store/qualityStore";
 import { useRatioStore } from "../../store/ratioStore";
@@ -19,10 +18,11 @@ import { useTileStore } from "../../store/tileStore";
 import { useVersionStore } from "../../store/versionStore";
 
 type TextareaPromptProps = {
+  generateHandler: () => void;
   collapse?: boolean;
 };
 
-const TextareaPrompt = ({ collapse }: TextareaPromptProps) => {
+const TextareaPrompt = ({ generateHandler, collapse }: TextareaPromptProps) => {
   const [promptValue, setPromptValue] = usePromptStore((state) => [
     state.promptValue,
     state.setPromptValue,
@@ -66,8 +66,6 @@ const TextareaPrompt = ({ collapse }: TextareaPromptProps) => {
     state.setTileValue,
     state.setIsTileSelectorDisabled,
   ]);
-
-  const generateImage = useImageGenerationStore((state) => state.generateImage);
 
   const handlePromptValue = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const inputValue = event.target.value;
@@ -152,7 +150,7 @@ const TextareaPrompt = ({ collapse }: TextareaPromptProps) => {
     if (event.key === "Enter") {
       event.preventDefault();
       if (promptValue.length > 0) {
-        await generateImage(promptValue);
+        generateHandler();
       }
     }
   };

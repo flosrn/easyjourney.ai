@@ -225,6 +225,11 @@ const MainColumn = () => {
     handleDisableSelectors(false);
   };
 
+  const handleGenerate = async () => {
+    handleDisableSelectors(true);
+    await generateImage(prompt);
+  };
+
   const handlePreviousImage = () => {
     prevImage();
     setSelectedImage(0);
@@ -289,13 +294,7 @@ const MainColumn = () => {
                   <span className="hidden md:block">Clear</span>
                 </Button>
               </>
-              <Button
-                onClick={async () => {
-                  handleDisableSelectors(true);
-                  await generateImage(prompt);
-                }}
-                disabled={isLoading}
-              >
+              <Button onClick={handleGenerate} disabled={isLoading}>
                 {isGenerationLoading ? (
                   <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
@@ -307,7 +306,10 @@ const MainColumn = () => {
           </div>
           <Separator className="my-4" />
           {hasFilters && <FiltersBadge />}
-          <TextareaPrompt collapse={hasFilters} />
+          <TextareaPrompt
+            generateHandler={handleGenerate}
+            collapse={hasFilters}
+          />
           <SideColumn className="lg:hidden" />
           <ImageContainer />
           <motion.div layout className="flex justify-center space-x-2">
