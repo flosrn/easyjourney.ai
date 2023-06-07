@@ -22,14 +22,14 @@ const QualitySelector = () => {
     ]);
 
   const handleQualityValueChange = (value: string) => {
-    setQualityValue(value);
+    setQualityValue(Number(value));
   };
 
   return (
     <Select
       onValueChange={handleQualityValueChange}
       disabled={disabledQualitySelector}
-      value={qualityValue}
+      value={qualityValue.toString()}
     >
       <SelectTrigger className="mx-1 w-[calc(100%-8px)]">
         <SelectValue placeholder="Quality 1" />
@@ -37,8 +37,8 @@ const QualitySelector = () => {
       <SelectContent>
         <SelectGroup>
           <SelectItem value="1">Quality 1 </SelectItem>
-          <SelectItem value=".5">Quality 0.5</SelectItem>
-          <SelectItem value=".25">Quality 0.25</SelectItem>
+          <SelectItem value="0.5">Quality 0.5</SelectItem>
+          <SelectItem value="0.25">Quality 0.25</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

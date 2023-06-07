@@ -16,25 +16,26 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { prompt, filename, referencedImage } = body;
-    const { imageSelected, ...rest } = body;
+    const { image, imageSelected, version, ...rest } = body;
 
-    console.log("rest :", rest);
     const title = getPosterTitle(prompt);
     const jobId = referencedImage && extractJobId(referencedImage.filename);
     const mjImageUrl =
-      jobId && `${BASE_MIDJOURNEY_URL}${jobId}/0_${imageSelected}.png`;
+      jobId && `${BASE_MIDJOURNEY_URL}${jobId}/0_${imageSelected - 1}.png`;
 
     console.log("mjImageUrl :", mjImageUrl);
 
     const data = await prisma.poster.create({
       data: {
         ...rest,
+        image: mjImageUrl || image,
         title,
         prompt,
         filename,
         jobId,
-        discordImageUrl: body.image,
+        discordImageUrl: image,
         mjImageUrl,
+        model: version,
         userId: session.user.id,
       },
     });

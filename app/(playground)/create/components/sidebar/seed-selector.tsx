@@ -14,16 +14,16 @@ const SeedSelector = () => {
 
   const handleRandomSeedNumber = () => {
     const randomSeed = Math.floor(Math.random() * 999999999) + 1;
-    setSeedValue(randomSeed.toString());
+    setSeedValue(randomSeed);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
-    if (Number.parseInt(inputValue) < 0) {
-      setSeedValue("");
+    const inputValue = Number(event.target.value);
+    if (inputValue < 0) {
+      setSeedValue(0);
     }
-    if (Number.parseInt(inputValue) > 4294967295) {
-      setSeedValue("999999999");
+    if (inputValue > 4294967295) {
+      setSeedValue(999999999);
     }
     setSeedValue(inputValue);
   };
@@ -40,7 +40,7 @@ const SeedSelector = () => {
       <Input
         type="number"
         placeholder="Select a number"
-        value={seedValue}
+        value={seedValue ?? 0}
         disabled={disabledSeedSelector}
         onChange={handleInputChange}
         min={0}

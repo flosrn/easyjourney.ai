@@ -33,6 +33,9 @@ model Poster {
   chaos   Int?
   quality Float?
   stylize Int?
+  seed    Int?
+  tile    Boolean?
+  stop    Int?
 
   referencedImage Json? @map(name: "referenced_image")
 

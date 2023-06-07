@@ -51,7 +51,7 @@ type UploadImage = (
   image: ImageData,
   prompt: string,
   ratio: string,
-  style: string[],
+  style: string,
   imageSelected: number | null,
   options: {
     chaos: number;
@@ -60,7 +60,7 @@ type UploadImage = (
     stop: number;
     version: string;
     tile: boolean;
-    seed: number | null;
+    seed?: number;
   },
   username?: string
 ) => Promise<void>;
@@ -367,10 +367,6 @@ export const useImageGenerationStore = create<
           imageSelected,
           referencedImage,
           ...options,
-          // model: "MJ Version 5.1",
-          // chaos: "0",
-          // quality: 1,
-          // stylize: 100,
         }),
       });
       const data = await response.json();

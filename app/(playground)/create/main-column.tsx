@@ -135,7 +135,10 @@ const MainColumn = () => {
   const isUploadLoading = isLoading && loadingType === "upload";
   const isImageUpscaled = imageType === "upscale";
   const { ratio, value: ratioValue } = selectedAspectRatio;
-  const styles = selectedFilters.map((selectedFilter) => selectedFilter.style);
+  const styles = selectedFilters
+    .map((selectedFilter) => selectedFilter.style)
+    .join(", ")
+    .toLowerCase();
 
   // OPTIONS
   const chaos = chaosValue === 0 ? "" : ` --c ${chaosValue}`;
@@ -161,7 +164,7 @@ const MainColumn = () => {
 
   // FINAL PROMPT
   const prompt = `${promptValue.trim()}${
-    styles.length > 0 ? `, ${styles.join(", ").toLowerCase()}` : ""
+    styles.length > 0 ? `, ${styles}` : ""
   }${
     hasOption ? "," : ""
   }${ratioTrim}${chaos}${quality}${stop}${stylize}${tile}${version}${seed}`;
