@@ -12,21 +12,22 @@ import { useStopStore } from "../../store/stopStore";
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const StopSelector = ({ className, ...props }: SliderProps) => {
-  const [stopValue, setStopValue] = useStopStore((state) => [
-    state.stopValue,
-    state.setStopValue,
-  ]);
-  const handleChaosValueChange = (value: number[] | number) => {
-    setStopValue(value.toString());
+  const [stopValue, disabledStopSelector, setStopValue] = useStopStore(
+    (state) => [state.stopValue, state.disabledStopSelector, state.setStopValue]
+  );
+
+  const handleChaosValueChange = (value: number[]) => {
+    const [value1] = value;
+    setStopValue(value1);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
-    if (Number.parseInt(inputValue) < 10) {
-      setStopValue("10");
+    const inputValue = Number(event.target.value);
+    if (inputValue < 10) {
+      setStopValue(10);
     }
-    if (Number.parseInt(inputValue) > 100) {
-      setStopValue("100");
+    if (inputValue > 100) {
+      setStopValue(100);
     }
     setStopValue(inputValue);
   };
@@ -35,8 +36,9 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
     <div className="flex justify-between">
       <Slider
         onValueChange={handleChaosValueChange}
-        defaultValue={[Number.parseInt(stopValue)]}
-        value={[Number.parseInt(stopValue)]}
+        defaultValue={[stopValue]}
+        value={[stopValue]}
+        disabled={disabledStopSelector}
         min={10}
         max={100}
         step={10}
@@ -48,8 +50,8 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
         min={10}
         max={100}
         step={10}
-        placeholder={stopValue}
         value={stopValue}
+        disabled={disabledStopSelector}
         onChange={handleInputChange}
         className={cn("w-[30%] mr-1", className)}
       />

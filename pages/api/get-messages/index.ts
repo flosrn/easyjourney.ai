@@ -106,6 +106,7 @@ const findAttachmentInMessages = async (
   ) {
     attachment = initialMessage.attachments[0];
     referencedImage = initialMessage.referenced_message?.attachments[0];
+    console.log("referencedImage :", referencedImage);
     console.log("variation or upscale found");
     return {
       ...attachment,
@@ -247,11 +248,16 @@ export default async function handler(request: Request) {
             streamController.enqueue(
               encoder.encode(messageWithReferencedImage)
             );
+            streamController.close();
           }, 1000);
+        } else {
+          // Ferme le flux une fois que toutes les données ont été insérées
+          streamController.close();
         }
+      } else {
+        // Ferme le flux si aucune donnée n'a été récupérée
+        streamController.close();
       }
-      // Ferme le flux une fois que la fonction imagine est terminée
-      streamController.close();
     } catch (error: unknown) {
       const message = JSON.stringify({
         type: "generation_failed",

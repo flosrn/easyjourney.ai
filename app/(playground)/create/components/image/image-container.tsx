@@ -13,7 +13,6 @@ import { ImageGrid } from "./image-grid";
 import LoadingDots from "./loading-dots";
 
 import "react-medium-image-zoom/dist/styles.css";
-import "atropos/css";
 
 type ImageContainerProps = {};
 

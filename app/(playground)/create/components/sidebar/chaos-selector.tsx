@@ -12,22 +12,26 @@ import { useChaosStore } from "../../store/chaosStore";
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const ChaosSelector = ({ className, ...props }: SliderProps) => {
-  const [chaosValue, setChaosValue] = useChaosStore((state) => [
-    state.chaosValue,
-    state.setChaosValue,
-  ]);
+  const [chaosValue, disabledChaosSelector, setChaosValue] = useChaosStore(
+    (state) => [
+      state.chaosValue,
+      state.disabledChaosSelector,
+      state.setChaosValue,
+    ]
+  );
 
-  const handleChaosValueChange = (value: number[] | number) => {
-    setChaosValue(value.toString());
+  const handleChaosValueChange = (value: number[]) => {
+    const [value1] = value;
+    setChaosValue(value1);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
-    if (Number.parseInt(inputValue) < 0) {
-      setChaosValue("0");
+    const inputValue = Number(event.target.value);
+    if (inputValue < 0) {
+      setChaosValue(0);
     }
-    if (Number.parseInt(inputValue) > 100) {
-      setChaosValue("100");
+    if (inputValue > 100) {
+      setChaosValue(100);
     }
     setChaosValue(inputValue);
   };
@@ -36,8 +40,9 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
     <div className="flex justify-between">
       <Slider
         onValueChange={handleChaosValueChange}
-        defaultValue={[Number.parseInt(chaosValue)]}
-        value={[Number.parseInt(chaosValue)]}
+        defaultValue={[chaosValue]}
+        value={[chaosValue]}
+        disabled={disabledChaosSelector}
         min={0}
         max={100}
         step={1}
@@ -49,12 +54,11 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
         min={0}
         max={100}
         step={1}
-        placeholder={chaosValue}
         value={chaosValue}
+        disabled={disabledChaosSelector}
         onChange={handleInputChange}
         className={cn("w-[30%] mr-1", className)}
       />
-      {/* <div className="rounded-xl border p-2">{chaosValue}</div> */}
     </div>
   );
 };

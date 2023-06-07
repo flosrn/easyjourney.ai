@@ -13,6 +13,7 @@ import {
   DialogTitle,
 } from "~/components/ui/dialog";
 import { ScrollArea } from "~/components/ui/scroll-area";
+import { Separator } from "~/components/ui/separator";
 
 type PosterInfoDialogProps = {
   poster: Poster | null;
@@ -33,16 +34,41 @@ const PosterInfoDialog = ({
           <div className="grid grid-cols-2 gap-5">
             {poster && (
               <>
-                <PosterImageContainer {...poster} />
+                <PosterImageContainer {...poster}>
+                  <Button className="ml-2">View midjourney info</Button>
+                </PosterImageContainer>
                 <PosterInfoContainer {...poster}>
-                  <div className="mt-8 border-t border-gray-500 pt-4">
-                    <a
-                      href={poster.image}
-                      className="break-words hover:underline"
-                    >
-                      {poster.image}
-                    </a>
-                  </div>
+                  <>
+                    <div className="mt-8 border-t border-gray-500 pt-4">
+                      <div className="">JobID: {poster.jobId}</div>
+                    </div>
+                    <div className="mt-8 border-t border-gray-500 pt-4">
+                      <div className="flex">
+                        <span className="mr-2 shrink-0 font-bold">
+                          main url:{" "}
+                        </span>
+                        <a
+                          href={poster.image}
+                          className="break-words hover:underline"
+                        >
+                          {poster.image}
+                        </a>
+                      </div>
+                      <div className="flex">
+                        <span className="mr-2 shrink-0 font-bold">
+                          midjourney url:{" "}
+                        </span>
+                        {poster.mjImageUrl && (
+                          <a
+                            href={poster.mjImageUrl}
+                            className="break-words hover:underline"
+                          >
+                            {poster.mjImageUrl}
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </>
                 </PosterInfoContainer>
               </>
             )}

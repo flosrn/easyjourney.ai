@@ -47,18 +47,29 @@ export type ImageGenerationSetAction = {
   retry: () => void;
 };
 
+type UploadImage = (
+  image: ImageData,
+  prompt: string,
+  ratio: string,
+  style: string,
+  imageSelected: number | null,
+  options: {
+    chaos: number;
+    quality: number;
+    stylize: number;
+    stop: number;
+    version: string;
+    tile: boolean;
+    seed?: number;
+  },
+  username?: string
+) => Promise<void>;
+
 type ImageGenerationAction = ImageGenerationSetAction & {
   generateImage: (prompt: string) => Promise<void>;
   upscaleImage: (index: number | null, image: ImageData) => Promise<void>;
   variationImage: (index: number | null, image: ImageData) => Promise<void>;
-  uploadImage: (
-    image: ImageData,
-    prompt: string,
-    ratio: string,
-    style: string,
-    imageSelected: number | null,
-    username?: string
-  ) => Promise<void>;
+  uploadImage: UploadImage;
 };
 
 export const useImageGenerationStore = create<
@@ -328,12 +339,13 @@ export const useImageGenerationStore = create<
       }
     },
     uploadImage: async (
-      image: ImageData,
-      prompt: string,
-      ratio: string,
-      style: string,
-      imageSelected: number | null,
-      username?: string
+      image,
+      prompt,
+      ratio,
+      style,
+      imageSelected,
+      options,
+      username
     ) => {
       setIsLoading(true);
       setLoadingType("upload");
@@ -354,10 +366,7 @@ export const useImageGenerationStore = create<
           style,
           imageSelected,
           referencedImage,
-          model: "MJ Version 5.1",
-          chaos: 0,
-          quality: 1,
-          stylize: 100,
+          ...options,
         }),
       });
       const data = await response.json();

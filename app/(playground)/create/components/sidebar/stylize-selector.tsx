@@ -12,22 +12,25 @@ import { useStylizeStore } from "../../store/stylizeStore";
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const StylizeSelector = ({ className, ...props }: SliderProps) => {
-  const [stylizeValue, setStylizeValue] = useStylizeStore((state) => [
-    state.stylizeValue,
-    state.setStylizeValue,
-  ]);
+  const [stylizeValue, disabledStylizeSelector, setStylizeValue] =
+    useStylizeStore((state) => [
+      state.stylizeValue,
+      state.disabledStylizeSelector,
+      state.setStylizeValue,
+    ]);
 
-  const handleStylizeValueChange = (value: number[] | number) => {
-    setStylizeValue(value.toString());
+  const handleStylizeValueChange = (value: number[]) => {
+    const [value1] = value;
+    setStylizeValue(value1);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
-    if (Number.parseInt(inputValue) < 0) {
-      setStylizeValue("0");
+    const inputValue = Number(event.target.value);
+    if (inputValue < 0) {
+      setStylizeValue(0);
     }
-    if (Number.parseInt(inputValue) > 1000) {
-      setStylizeValue("1000");
+    if (inputValue > 1000) {
+      setStylizeValue(1000);
     }
     setStylizeValue(inputValue);
   };
@@ -36,8 +39,9 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
     <div className="flex justify-between">
       <Slider
         onValueChange={handleStylizeValueChange}
-        defaultValue={[Number.parseInt(stylizeValue)]}
-        value={[Number.parseInt(stylizeValue)]}
+        defaultValue={[stylizeValue]}
+        value={[stylizeValue]}
+        disabled={disabledStylizeSelector}
         max={1000}
         step={1}
         className={cn("w-[65%]", className)}
@@ -48,12 +52,11 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
         min={0}
         max={1000}
         step={1}
-        placeholder={stylizeValue}
         value={stylizeValue}
+        disabled={disabledStylizeSelector}
         onChange={handleInputChange}
         className={cn("w-[30%] mr-1", className)}
       />
-      {/* <div className="rounded-xl border p-2">{stylizeValue}</div> */}
     </div>
   );
 };
