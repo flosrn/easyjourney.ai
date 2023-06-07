@@ -62,7 +62,7 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
   const isRatioV4 = versionValue === "--v 4";
 
   return (
-    <div className="space-y-2">
+    <div className="grid grid-cols-4 gap-2 md:grid-cols-6 lg:grid-cols-3 xl:grid-cols-4">
       {aspectRatios.map(({ ratio, name, value }) => (
         <Button
           key={ratio}
@@ -70,13 +70,10 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
           disabled={isRatioV4 || disabledAspectRatioSelector}
           variant="outline"
           size="xs"
-          className={cn(
-            "mx-1 w-[calc(25%-8px)] md:w-[calc(100%/8-8px)] lg:w-[calc(25%-8px)]",
-            {
-              "outline outline-offset-2 outline-blue-500":
-                ratio === selectedAspectRatio.ratio,
-            }
-          )}
+          className={cn({
+            "outline outline-offset-2 outline-blue-500":
+              ratio === selectedAspectRatio.ratio,
+          })}
         >
           {name}
         </Button>
@@ -88,13 +85,10 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
           disabled={disabledAspectRatioSelector}
           variant="outline"
           size="xs"
-          className={cn(
-            "mx-1 w-[calc(25%-8px)] md:w-[calc(100%/8-8px)] lg:w-[calc(25%-8px)]",
-            {
-              "outline outline-offset-2 outline-blue-500":
-                ratio === selectedAspectRatio.ratio,
-            }
-          )}
+          className={cn({
+            "outline outline-offset-2 outline-blue-500":
+              ratio === selectedAspectRatio.ratio,
+          })}
         >
           {name}
         </Button>

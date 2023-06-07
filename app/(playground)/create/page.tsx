@@ -16,7 +16,7 @@ export default async function CreatePage() {
     <div className="h-[calc(100vh-57px)]">
       <div className="h-full bg-background">
         <div className="grid h-full lg:grid-cols-5">
-          <SideColumn className="hidden p-4 lg:block xl:px-8" />
+          <SideColumn className="hidden lg:block" />
           <MainColumn />
         </div>
       </div>

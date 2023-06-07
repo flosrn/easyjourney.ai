@@ -31,7 +31,7 @@ const QualitySelector = () => {
       disabled={disabledQualitySelector}
       value={qualityValue.toString()}
     >
-      <SelectTrigger className="mx-1 w-[calc(100%-8px)]">
+      <SelectTrigger>
         <SelectValue placeholder="Quality 1" />
       </SelectTrigger>
       <SelectContent>

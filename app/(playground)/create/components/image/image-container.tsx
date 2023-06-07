@@ -14,9 +14,11 @@ import LoadingDots from "./loading-dots";
 
 import "react-medium-image-zoom/dist/styles.css";
 
-type ImageContainerProps = {};
+type ImageContainerProps = {
+  className?: string;
+};
 
-const ImageContainer = ({}: ImageContainerProps) => {
+const ImageContainer = ({ className }: ImageContainerProps) => {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
 
   const handleZoomChange = useCallback((shouldZoom: boolean) => {
@@ -50,7 +52,12 @@ const ImageContainer = ({}: ImageContainerProps) => {
     (imageType === "generation" || imageType === "variation");
 
   return (
-    <div className="flex-center min-h-[70vh] rounded-md border p-4 lg:min-h-[calc(100vh-410px)]">
+    <div
+      className={cn(
+        "flex-center min-h-[70vh] rounded-md border p-4 lg:min-h-[calc(100vh-410px)]",
+        className
+      )}
+    >
       <div
         className={cn(
           "flex-center max-h-full max-w-full w-full lg:w-auto lg:h-[350px] rounded-md border border-dashed p-4",

@@ -31,7 +31,7 @@ const VersionSelector = () => {
       value={versionValue}
       disabled={disabledVersionSelector}
     >
-      <SelectTrigger className="m-1 w-[calc(100%-8px)]">
+      <SelectTrigger>
         <SelectValue placeholder="Version 5.1" />
       </SelectTrigger>
       <SelectContent>

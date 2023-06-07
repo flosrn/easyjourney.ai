@@ -56,7 +56,7 @@ const SeedSelector = () => {
         onChange={handleInputChange}
         min={0}
         max={999999999}
-        className="mr-1 w-3/5 truncate text-right"
+        className="mr-1 w-2/5 truncate text-right"
       />
     </div>
   );
