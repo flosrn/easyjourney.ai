@@ -16,7 +16,7 @@ import { useQualityStore } from "../../store/qualityStore";
 const QualitySelector = () => {
   const [disabledQualitySelector, qualityValue, setQualityValue] =
     useQualityStore((state) => [
-      state.disabledQualitySelector,
+      state.isQualitySelectorDisabled,
       state.qualityValue,
       state.setQualityValue,
     ]);

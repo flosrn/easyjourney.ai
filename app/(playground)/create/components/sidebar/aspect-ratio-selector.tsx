@@ -25,7 +25,7 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
   ] = useRatioStore((state) => [
     state.selectedAspectRatio,
     state.selectedRatio,
-    state.disabledAspectRatioSelector,
+    state.isAspectRatioSelectorDisabled,
     state.setSelectedAspectRatio,
   ]);
 
@@ -57,10 +57,9 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
     } else {
       setSelectedAspectRatio(selectedAspectRatio);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [versionValue]);
+  }, [versionValue, selectedAspectRatio, setSelectedAspectRatio]);
 
-  const isRatioV4 = versionValue === "--v 4" ? true : false;
+  const isRatioV4 = versionValue === "--v 4";
 
   return (
     <div className="space-y-2">

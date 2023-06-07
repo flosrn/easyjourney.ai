@@ -2,18 +2,18 @@ import { create } from "zustand";
 
 type ChaosState = {
   chaosValue: number;
-  disabledChaosSelector: boolean;
+  isChaosSelectorDisabled: boolean;
 };
 
 type ChaosAction = {
   setChaosValue: (value: number) => void;
-  setDisabledChaosSelector: (value: boolean) => void;
+  setIsChaosSelectorDisabled: (value: boolean) => void;
 };
 
 export const useChaosStore = create<ChaosAction & ChaosState>()((set) => ({
   chaosValue: 0,
-  disabledChaosSelector: false,
+  isChaosSelectorDisabled: false,
   setChaosValue: (value) => set(() => ({ chaosValue: value })),
-  setDisabledChaosSelector: (value) =>
-    set(() => ({ disabledChaosSelector: value })),
+  setIsChaosSelectorDisabled: (value) =>
+    set(() => ({ isChaosSelectorDisabled: value })),
 }));

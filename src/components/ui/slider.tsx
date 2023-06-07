@@ -13,6 +13,7 @@ const Slider = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex w-full touch-none select-none items-center",
+      { "opacity-50 cursor-not-allowed": props.disabled },
       className
     )}
     {...props}

@@ -13,7 +13,11 @@ type SliderProps = React.ComponentProps<typeof Slider>;
 
 const StopSelector = ({ className, ...props }: SliderProps) => {
   const [stopValue, disabledStopSelector, setStopValue] = useStopStore(
-    (state) => [state.stopValue, state.disabledStopSelector, state.setStopValue]
+    (state) => [
+      state.stopValue,
+      state.isStopSelectorDisabled,
+      state.setStopValue,
+    ]
   );
 
   const handleChaosValueChange = (value: number[]) => {

@@ -82,41 +82,68 @@ const MainColumn = () => {
     state.isImageUploaded,
   ]);
 
-  const [chaosValue, setChaosValue] = useChaosStore((state) => [
-    state.chaosValue,
-    state.setChaosValue,
-  ]);
-  const [qualityValue, setQualityValue] = useQualityStore((state) => [
-    state.qualityValue,
-    state.setQualityValue,
-  ]);
-  const [stopValue, setStopValue] = useStopStore((state) => [
-    state.stopValue,
-    state.setStopValue,
-  ]);
-  const [stylizeValue, setStylizeValue] = useStylizeStore((state) => [
-    state.stylizeValue,
-    state.setStylizeValue,
-  ]);
-  const [tileValue, resetTileValue] = useTileStore((state) => [
-    state.tileValue,
-    state.resetTileValue,
-  ]);
-  const [versionValue, setVersionValue] = useVersionStore((state) => [
-    state.versionValue,
-    state.setVersionValue,
-  ]);
-  const [seedValue, setSeedValue] = useSeedStore((state) => [
-    state.seedValue,
-    state.setSeedValue,
-  ]);
-  const [selectedAspectRatio, setSelectedAspectRatio] = useRatioStore(
-    (state) => [state.selectedAspectRatio, state.setSelectedAspectRatio]
+  const [chaosValue, setChaosValue, setIsChaosSelectorDisabled] = useChaosStore(
+    (state) => [
+      state.chaosValue,
+      state.setChaosValue,
+      state.setIsChaosSelectorDisabled,
+      state.isChaosSelectorDisabled,
+    ]
   );
-  const [selectedFilters, clearFilters] = useFilterStore((state) => [
-    state.selectedFilters,
-    state.clearFilters,
+  const [qualityValue, setQualityValue, setIsQualitySelectorDisabled] =
+    useQualityStore((state) => [
+      state.qualityValue,
+      state.setQualityValue,
+      state.setIsQualitySelectorDisabled,
+    ]);
+  const [stopValue, setStopValue, setIsStopSelectorDisabled] = useStopStore(
+    (state) => [
+      state.stopValue,
+      state.setStopValue,
+      state.setIsStopSelectorDisabled,
+    ]
+  );
+  const [stylizeValue, setStylizeValue, setIsStylizeSelectorDisabled] =
+    useStylizeStore((state) => [
+      state.stylizeValue,
+      state.setStylizeValue,
+      state.setIsStylizeSelectorDisabled,
+    ]);
+  const [tileValue, resetTileValue, setIsTileSelectorDisabled] = useTileStore(
+    (state) => [
+      state.tileValue,
+      state.resetTileValue,
+      state.setIsTileSelectorDisabled,
+    ]
+  );
+  const [versionValue, setVersionValue, setIsVersionSelectorDisabled] =
+    useVersionStore((state) => [
+      state.versionValue,
+      state.setVersionValue,
+      state.setIsVersionSelectorDisabled,
+    ]);
+  const [seedValue, setSeedValue, setIsSeedSelectorDisabled] = useSeedStore(
+    (state) => [
+      state.seedValue,
+      state.setSeedValue,
+      state.setIsSeedSelectorDisabled,
+    ]
+  );
+  const [
+    selectedAspectRatio,
+    setSelectedAspectRatio,
+    setIsAspectRatioSelectorDisabled,
+  ] = useRatioStore((state) => [
+    state.selectedAspectRatio,
+    state.setSelectedAspectRatio,
+    state.setIsAspectRatioSelectorDisabled,
   ]);
+  const [selectedFilters, clearFilters, setIsFilterSelectorDisabled] =
+    useFilterStore((state) => [
+      state.selectedFilters,
+      state.clearFilters,
+      state.setIsFilterSelectorDisabled,
+    ]);
   const [promptValue, setPromptValue] = usePromptStore((state) => [
     state.promptValue,
     state.setPromptValue,
@@ -171,6 +198,18 @@ const MainColumn = () => {
 
   const isEmpty = !prompt || prompt.length <= 1;
 
+  const handleDisableSelectors = (value: boolean) => {
+    setIsChaosSelectorDisabled(value);
+    setIsQualitySelectorDisabled(value);
+    setIsStopSelectorDisabled(value);
+    setIsStylizeSelectorDisabled(value);
+    setIsTileSelectorDisabled(value);
+    setIsVersionSelectorDisabled(value);
+    setIsSeedSelectorDisabled(value);
+    setIsAspectRatioSelectorDisabled(value);
+    setIsFilterSelectorDisabled(value);
+  };
+
   const handleClear = () => {
     setClear();
     setPromptValue("");
@@ -180,9 +219,10 @@ const MainColumn = () => {
     setStopValue(100);
     setStylizeValue(100);
     setVersionValue("--v 5.1");
-    setSeedValue(null);
+    setSeedValue(undefined);
     resetTileValue();
     clearFilters();
+    handleDisableSelectors(false);
   };
 
   const handlePreviousImage = () => {
@@ -250,7 +290,10 @@ const MainColumn = () => {
                 </Button>
               </>
               <Button
-                onClick={async () => generateImage(prompt)}
+                onClick={async () => {
+                  handleDisableSelectors(true);
+                  await generateImage(prompt);
+                }}
                 disabled={isLoading}
               >
                 {isGenerationLoading ? (
