@@ -12,7 +12,7 @@ import { useStylizeStore } from "../../store/stylizeStore";
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const StylizeSelector = ({ className, ...props }: SliderProps) => {
-  const [stylizeValue, disabledStylizeSelector, setStylizeValue] =
+  const [stylizeValue, isStylizeSelectorDisabled, setStylizeValue] =
     useStylizeStore((state) => [
       state.stylizeValue,
       state.isStylizeSelectorDisabled,
@@ -41,7 +41,7 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
         onValueChange={handleStylizeValueChange}
         defaultValue={[stylizeValue]}
         value={[stylizeValue]}
-        disabled={disabledStylizeSelector}
+        disabled={isStylizeSelectorDisabled}
         max={1000}
         step={1}
         className={cn("w-[65%]", className)}
@@ -53,7 +53,7 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
         max={1000}
         step={1}
         value={stylizeValue}
-        disabled={disabledStylizeSelector}
+        disabled={isStylizeSelectorDisabled}
         onChange={handleInputChange}
         className={cn("w-[30%] mr-1", className)}
       />

@@ -20,7 +20,7 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
   const [
     selectedAspectRatio,
     selectedRatio,
-    disabledAspectRatioSelector,
+    isAspectRatioSelectorDisabled,
     setSelectedAspectRatio,
   ] = useRatioStore((state) => [
     state.selectedAspectRatio,
@@ -67,7 +67,7 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
         <Button
           key={ratio}
           onClick={() => setSelectedAspectRatio({ ratio, name, value })}
-          disabled={isRatioV4 || disabledAspectRatioSelector}
+          disabled={isRatioV4 || isAspectRatioSelectorDisabled}
           variant="outline"
           size="xs"
           className={cn(
@@ -85,7 +85,7 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
         <Button
           key={ratio}
           onClick={() => setSelectedAspectRatio({ ratio, name, value })}
-          disabled={disabledAspectRatioSelector}
+          disabled={isAspectRatioSelectorDisabled}
           variant="outline"
           size="xs"
           className={cn(
