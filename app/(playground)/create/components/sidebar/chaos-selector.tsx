@@ -37,7 +37,7 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between space-x-2">
       <Slider
         onValueChange={handleChaosValueChange}
         defaultValue={[chaosValue]}

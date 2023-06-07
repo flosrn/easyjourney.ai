@@ -27,7 +27,7 @@ const AccordionSide = ({}) => {
           />
         </AccordionTrigger>
         <AccordionContent>
-          <div className="space-y-4 px-2 lg:px-0">
+          <div className="space-y-4 px-1">
             <TitleComponent
               title="Quality"
               description="How much rendering quality time you want to spend. Higher values use more GPU minutes, lower values use less."
