@@ -135,19 +135,26 @@ const MainColumn = () => {
   const isUploadLoading = isLoading && loadingType === "upload";
   const isImageUpscaled = imageType === "upscale";
   const { ratio, value: ratioValue } = selectedAspectRatio;
-  const styles: string[] = selectedFilters.map(
-    (selectedFilter) => selectedFilter.style
-  );
+  const styles = selectedFilters.map((selectedFilter) => selectedFilter.style);
 
   // OPTIONS
-  const chaos = chaosValue === "0" ? "" : ` --c ${chaosValue}`;
-  const stylize = stylizeValue === "100" ? "" : ` --stylize ${stylizeValue}`;
-  const stop = stopValue === "100" ? "" : ` --stop ${stopValue}`;
-  const quality = qualityValue === "1" ? "" : ` --quality ${qualityValue}`;
+  const chaos = chaosValue === 0 ? "" : ` --c ${chaosValue}`;
+  const stylize = stylizeValue === 100 ? "" : ` --stylize ${stylizeValue}`;
+  const stop = stopValue === 100 ? "" : ` --stop ${stopValue}`;
+  const quality = qualityValue === 1 ? "" : ` --quality ${qualityValue}`;
   const version = versionValue === "--v 5.1" ? "" : ` ${versionValue}`;
   const tile = tileValue ? ` --tile` : "";
   const ratioTrim = ratio ? ` ${ratio}` : "";
   const seed = seedValue ? ` --seed ${seedValue}` : "";
+  const options = {
+    chaos: chaosValue,
+    stylize: stylizeValue,
+    stop: stopValue,
+    quality: qualityValue,
+    version: versionValue,
+    tile: tileValue,
+    seed: seedValue,
+  };
 
   const hasOption =
     chaos || stylize || stop || quality || version || tile || ratio;
@@ -165,12 +172,12 @@ const MainColumn = () => {
     setClear();
     setPromptValue("");
     setSelectedAspectRatio(aspectRatios[0]);
-    setChaosValue("0");
-    setQualityValue("1");
-    setStopValue("100");
-    setStylizeValue("100");
+    setChaosValue(0);
+    setQualityValue(1);
+    setStopValue(100);
+    setStylizeValue(100);
     setVersionValue("--v 5.1");
-    setSeedValue("");
+    setSeedValue(null);
     resetTileValue();
     clearFilters();
   };
@@ -296,8 +303,9 @@ const MainColumn = () => {
                       currentImage,
                       promptValue,
                       ratioValue,
-                      styles[0],
+                      styles,
                       imageSelected,
+                      options,
                       username
                     )
                   }

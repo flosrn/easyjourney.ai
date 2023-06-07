@@ -7,6 +7,10 @@ import ZoomImage from "~/components/posters/zoom-image";
 import { cn } from "~/lib/classNames";
 import type { PosterType } from "~/types/poster";
 
+type PosterImageContainerProps = PosterType & {
+  children?: React.ReactNode;
+};
+
 const PosterImageContainer = ({
   image,
   prompt,
@@ -15,7 +19,8 @@ const PosterImageContainer = ({
   width,
   height,
   ratio,
-}: PosterType) => (
+  children,
+}: PosterImageContainerProps) => (
   <div
     className={cn("flex relative justify-start flex-col", {
       "sm:max-w-[90%]": ratio === "2/3",
@@ -30,8 +35,11 @@ const PosterImageContainer = ({
       className="h-auto max-h-[85vh] w-full rounded-md object-cover"
     />
     <ZoomImage imageUrl={image} alt={prompt} />
-    <div className="mt-2 inline-block max-w-max rounded-3xl border bg-gray-700/20 px-2 py-1 hover:bg-gray-700/80">
-      <LikeButton id={id} likes={likes} />
+    <div>
+      <div className="mt-2 inline-block max-w-max rounded-3xl border bg-gray-700/20 px-2 py-1 hover:bg-gray-700/80">
+        <LikeButton id={id} likes={likes} />
+      </div>
+      {children}
     </div>
   </div>
 );
