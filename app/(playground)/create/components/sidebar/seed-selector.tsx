@@ -29,7 +29,7 @@ const SeedSelector = () => {
     if (inputValue < 0) {
       setSeedValue(0);
     }
-    if (inputValue > 4294967295) {
+    if (inputValue > 999999999) {
       setSeedValue(999999999);
     }
     setSeedValue(inputValue);
