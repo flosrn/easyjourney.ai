@@ -1,10 +1,13 @@
 import React from "react";
-
-import { type BoardType } from "../../../types/typeBoard";
+import { Board, BoardPoster } from "@prisma/client";
 import DeleteBoardButton from "./delete-board-button";
 
+type BoardWithPosters = Board & {
+  boardPosters: BoardPoster[];
+};
+
 type boardProps = {
-  props: BoardType;
+  props: BoardWithPosters;
 };
 
 const Board = ({ props }: boardProps) => {
@@ -15,7 +18,7 @@ const Board = ({ props }: boardProps) => {
       <div>Description: {props.description}</div>
       <div>Icon: {props.icon}</div>
       <div>Is Public: {props.isPublic ? "Yes" : "No"}</div>
-      {props.boardPosters?.map((poster, index) => (
+      {props.boardPosters.map((poster, index) => (
         <div key={index}>
           <div>Poster ID: {poster.posterId}</div>
           <div>Position: {poster.position}</div>
