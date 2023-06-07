@@ -36,7 +36,7 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between space-x-2">
       <Slider
         onValueChange={handleStylizeValueChange}
         defaultValue={[stylizeValue]}
@@ -55,7 +55,7 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
         value={stylizeValue}
         disabled={isStylizeSelectorDisabled}
         onChange={handleInputChange}
-        className={cn("w-[30%] truncate mr-1", className)}
+        className={cn("w-[70px] truncate", className)}
       />
     </div>
   );

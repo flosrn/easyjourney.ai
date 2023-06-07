@@ -26,7 +26,7 @@ const AccordionSide = ({}) => {
             description="Select advanced options like quality, chaos, stylize and more."
           />
         </AccordionTrigger>
-        <AccordionContent>
+        <AccordionContent className="overflow-visible">
           <div className="space-y-4 px-2 lg:px-0">
             <TitleComponent
               title="Quality"

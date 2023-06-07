@@ -57,7 +57,7 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
         value={chaosValue}
         disabled={isChaosSelectorDisabled}
         onChange={handleInputChange}
-        className={cn("w-[30%] truncate mr-1", className)}
+        className={cn("w-[70px] truncate", className)}
       />
     </div>
   );

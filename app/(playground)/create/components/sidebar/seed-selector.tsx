@@ -36,7 +36,7 @@ const SeedSelector = () => {
   };
 
   return (
-    <div className="flex w-full items-center justify-between">
+    <div className="flex w-full items-center justify-between space-x-2">
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -56,7 +56,7 @@ const SeedSelector = () => {
         onChange={handleInputChange}
         min={0}
         max={999999999}
-        className="mr-1 w-2/5 truncate text-right"
+        className="truncate text-right lg:w-3/5"
       />
     </div>
   );

@@ -37,7 +37,7 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between space-x-2">
       <Slider
         onValueChange={handleChaosValueChange}
         defaultValue={[stopValue]}
@@ -57,7 +57,7 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
         value={stopValue}
         disabled={isStopSelectorDisabled}
         onChange={handleInputChange}
-        className={cn("w-[30%] truncate mr-1", className)}
+        className={cn("w-[70px] truncate", className)}
       />
     </div>
   );
