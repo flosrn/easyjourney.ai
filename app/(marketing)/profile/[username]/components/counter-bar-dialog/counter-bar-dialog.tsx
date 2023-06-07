@@ -81,10 +81,9 @@ const CounterBarDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent>
-        <DialogHeader></DialogHeader>
-        <Tabs defaultValue={defaultValue} className="w-full">
-          <TabsList className="flex w-full">
+      <DialogContent className="h-[80vh] md:h-[70vh] ">
+        <Tabs defaultValue={defaultValue} className="h-full w-full ">
+          <TabsList className="mt-2 flex w-full">
             <TabsTrigger value="likes" className="flex-1">
               Likes
             </TabsTrigger>
