@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { useParams } from "next/navigation";
+import React, { useState } from "react";
+import type { Board } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -21,17 +21,21 @@ import { Label } from "~/components/ui/label";
 import { useBoardStore } from "../../../store/boardStore";
 import type { BoardType } from "../../../types/typeBoard";
 
-const createNewBoard = async ({
-  userName,
+type UpdateBoardFormProps = {
+  props: Board;
+};
+
+const updateBoard = async ({
   board,
+  boardId,
 }: {
-  userName: string[] | string;
   board: BoardType;
+  boardId: string;
 }) => {
-  const response = await fetch("/api/board/create", {
+  const response = await fetch("/api/board/update", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userName, board }),
+    body: JSON.stringify({ board, boardId }),
   });
   if (!response.ok) {
     throw new Error("Network response was not ok");
@@ -39,8 +43,8 @@ const createNewBoard = async ({
   return response.json();
 };
 
-const CreateNewBoardForm = () => {
-  const { username } = useParams() ?? {};
+const UpdateBoardForm = ({ props }: UpdateBoardFormProps) => {
+  const [boardId] = useState(props.id);
   const [
     boardName,
     boardSlug,
@@ -49,6 +53,9 @@ const CreateNewBoardForm = () => {
     boardIsPublic,
     setBoardForm,
     setBoardIsPublic,
+    setBoardName,
+    setBoardIcon,
+    setBoardDescription,
   ] = useBoardStore((state) => [
     state.boardName,
     state.boardSlug,
@@ -57,13 +64,23 @@ const CreateNewBoardForm = () => {
     state.boardIsPublic,
     state.setBoardForm,
     state.setBoardIsPublic,
+    state.setBoardName,
+    state.setBoardIcon,
+    state.setBoardDescription,
   ]);
 
-  const createNewMutation = useMutation({
-    mutationFn: createNewBoard,
+  const updateValue = () => {
+    setBoardName(props.name);
+    setBoardIcon(props.icon ?? "");
+    setBoardDescription(props.description ?? "");
+    setBoardIsPublic(props.isPublic);
+  };
+
+  const updateMutation = useMutation({
+    mutationFn: updateBoard,
     onSuccess: async (data) => {
       if (data.status === 400) {
-        toast.error("You already created this board");
+        toast.error("You already updated this board");
       }
     },
   });
@@ -90,19 +107,19 @@ const CreateNewBoardForm = () => {
       description: boardDescription,
       isPublic: boardIsPublic,
     };
-    void createNewMutation.mutateAsync({ userName: username, board });
+    void updateMutation.mutateAsync({ board, boardId });
   };
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline" className=" mr-1">
-          Create new board
+      <DialogTrigger onClick={updateValue} asChild>
+        <Button variant="secondary" className=" mr-1">
+          Update
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create new board</DialogTitle>
+          <DialogTitle>Update board</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
@@ -113,6 +130,7 @@ const CreateNewBoardForm = () => {
               id="boardName"
               name="boardName"
               placeholder="name"
+              value={boardName}
               required
               onChange={handleInputChange}
               className="col-span-3"
@@ -126,6 +144,7 @@ const CreateNewBoardForm = () => {
               id="boardDescription"
               name="boardDescription"
               placeholder="description"
+              value={boardDescription}
               onChange={handleInputChange}
               className="col-span-3"
             />
@@ -138,6 +157,7 @@ const CreateNewBoardForm = () => {
               id="boardIcon"
               name="boardIcon"
               placeholder="icon"
+              value={boardIcon}
               onChange={handleInputChange}
               className="col-span-3"
             />
@@ -149,16 +169,17 @@ const CreateNewBoardForm = () => {
             <Checkbox
               name="boardIsPublic"
               id="IsPublic"
+              checked={boardIsPublic}
               onCheckedChange={handleCheckboxChange}
             />
           </div>
         </div>
         <DialogFooter className=" flex-row-reverse">
-          <Button onClick={handleBoardForm}>Créer</Button>
+          <Button onClick={handleBoardForm}>Update</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
 };
 
-export default CreateNewBoardForm;
+export default UpdateBoardForm;

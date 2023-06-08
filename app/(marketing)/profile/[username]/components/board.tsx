@@ -3,6 +3,7 @@ import type { BoardPoster, Board as BoardType } from "@prisma/client";
 
 import DeleteBoardButton from "./delete-board-button";
 import RemoveFromBoardButton from "./remove-from-board-button";
+import UpdateBoardForm from "./update-board-button";
 
 type BoardWithPosters = BoardType & {
   boardPosters: BoardPoster[];
@@ -33,7 +34,12 @@ const Board = ({ props, isUserBoard }: boardProps) => {
           )}
         </div>
       ))}
-      {isUserBoard && <DeleteBoardButton boardId={props.id} />}
+      {isUserBoard && (
+        <div>
+          <UpdateBoardForm props={props} />
+          <DeleteBoardButton boardId={props.id} />
+        </div>
+      )}
     </div>
   );
 };
