@@ -14,7 +14,7 @@ import {
 import { useVersionStore } from "../../store/versionStore";
 
 const VersionSelector = () => {
-  const [versionValue, disabledVersionSelector, setVersionValue] =
+  const [versionValue, isVersionSelectorDisabled, setVersionValue] =
     useVersionStore((state) => [
       state.versionValue,
       state.isVersionSelectorDisabled,
@@ -29,9 +29,9 @@ const VersionSelector = () => {
     <Select
       onValueChange={handleStyleValueChange}
       value={versionValue}
-      disabled={disabledVersionSelector}
+      disabled={isVersionSelectorDisabled}
     >
-      <SelectTrigger className="m-1 w-[calc(100%-8px)]">
+      <SelectTrigger>
         <SelectValue placeholder="Version 5.1" />
       </SelectTrigger>
       <SelectContent>

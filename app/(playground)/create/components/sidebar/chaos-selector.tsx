@@ -12,7 +12,7 @@ import { useChaosStore } from "../../store/chaosStore";
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const ChaosSelector = ({ className, ...props }: SliderProps) => {
-  const [chaosValue, disabledChaosSelector, setChaosValue] = useChaosStore(
+  const [chaosValue, isChaosSelectorDisabled, setChaosValue] = useChaosStore(
     (state) => [
       state.chaosValue,
       state.isChaosSelectorDisabled,
@@ -37,12 +37,12 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between space-x-2">
       <Slider
         onValueChange={handleChaosValueChange}
         defaultValue={[chaosValue]}
         value={[chaosValue]}
-        disabled={disabledChaosSelector}
+        disabled={isChaosSelectorDisabled}
         min={0}
         max={100}
         step={1}
@@ -55,9 +55,9 @@ const ChaosSelector = ({ className, ...props }: SliderProps) => {
         max={100}
         step={1}
         value={chaosValue}
-        disabled={disabledChaosSelector}
+        disabled={isChaosSelectorDisabled}
         onChange={handleInputChange}
-        className={cn("w-[30%] mr-1", className)}
+        className={cn("w-[70px] truncate", className)}
       />
     </div>
   );

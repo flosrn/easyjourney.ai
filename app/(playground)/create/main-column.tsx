@@ -311,7 +311,7 @@ const MainColumn = () => {
             collapse={hasFilters}
           />
           <SideColumn className="lg:hidden" />
-          <ImageContainer />
+          <ImageContainer className="" />
           <motion.div layout className="flex justify-center space-x-2">
             <motion.div layout className="flex-center mt-4">
               <Button

@@ -22,12 +22,12 @@ const AccordionSide = ({}) => {
       <AccordionItem value="item-1" className="border-b-0 lg:border-b">
         <AccordionTrigger className="pt-0">
           <TitleComponent
-            title="Advanced options"
+            title="Advanced"
             description="Select advanced options like quality, chaos, stylize and more."
           />
         </AccordionTrigger>
         <AccordionContent>
-          <div className="space-y-4">
+          <div className="space-y-4 px-1">
             <TitleComponent
               title="Quality"
               description="How much rendering quality time you want to spend. Higher values use more GPU minutes, lower values use less."

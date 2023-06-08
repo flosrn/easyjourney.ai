@@ -12,7 +12,7 @@ import { useStopStore } from "../../store/stopStore";
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const StopSelector = ({ className, ...props }: SliderProps) => {
-  const [stopValue, disabledStopSelector, setStopValue] = useStopStore(
+  const [stopValue, isStopSelectorDisabled, setStopValue] = useStopStore(
     (state) => [
       state.stopValue,
       state.isStopSelectorDisabled,
@@ -37,12 +37,12 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between space-x-2">
       <Slider
         onValueChange={handleChaosValueChange}
         defaultValue={[stopValue]}
         value={[stopValue]}
-        disabled={disabledStopSelector}
+        disabled={isStopSelectorDisabled}
         min={10}
         max={100}
         step={10}
@@ -55,9 +55,9 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
         max={100}
         step={10}
         value={stopValue}
-        disabled={disabledStopSelector}
+        disabled={isStopSelectorDisabled}
         onChange={handleInputChange}
-        className={cn("w-[30%] mr-1", className)}
+        className={cn("w-[70px] truncate", className)}
       />
     </div>
   );

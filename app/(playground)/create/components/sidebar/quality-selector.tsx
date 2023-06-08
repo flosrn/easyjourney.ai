@@ -14,7 +14,7 @@ import {
 import { useQualityStore } from "../../store/qualityStore";
 
 const QualitySelector = () => {
-  const [disabledQualitySelector, qualityValue, setQualityValue] =
+  const [isQualitySelectorDisabled, qualityValue, setQualityValue] =
     useQualityStore((state) => [
       state.isQualitySelectorDisabled,
       state.qualityValue,
@@ -28,10 +28,10 @@ const QualitySelector = () => {
   return (
     <Select
       onValueChange={handleQualityValueChange}
-      disabled={disabledQualitySelector}
+      disabled={isQualitySelectorDisabled}
       value={qualityValue.toString()}
     >
-      <SelectTrigger className="mx-1 w-[calc(100%-8px)]">
+      <SelectTrigger>
         <SelectValue placeholder="Quality 1" />
       </SelectTrigger>
       <SelectContent>
