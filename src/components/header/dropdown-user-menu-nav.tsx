@@ -31,6 +31,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
   const { data: session } = useSession();
   const router = useRouter();
   const { setTheme } = useTheme();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
   const isAdmin = session?.user.role === "ADMIN";
 
   useEffect(() => {

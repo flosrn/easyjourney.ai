@@ -3,7 +3,6 @@ import type { User } from "@prisma/client";
 import { prisma } from "~/server/db/prisma";
 
 import Board from "../components/board";
-import CreateNewBoardForm from "../components/create-new-board-form";
 
 type UserProfileProps = {
   params: { username: User["username"] };
@@ -36,11 +35,16 @@ export default async function Boards({
   const boards = user && (await getUserBoards(user.id));
   return (
     <div>
-      <CreateNewBoardForm />
       <Suspense fallback={<div>Loading Board...</div>}>
-        {boards?.map((board) => (
-          <Board key={board.id} props={board} />
-        ))}
+        {boards?.map((board) =>
+          user?.id === board.userId || board.isPublic ? (
+            <Board
+              key={board.id}
+              props={board}
+              isUserBoard={user?.id === board.userId}
+            />
+          ) : null
+        )}
       </Suspense>
     </div>
   );

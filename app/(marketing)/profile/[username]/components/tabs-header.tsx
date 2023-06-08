@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 
 import { Tabs, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
+import CreateNewBoardForm from "./create-new-board-form";
 import SelectButton from "./select-button";
 
 type TabsHeaderProps = {
@@ -46,7 +47,12 @@ const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
           </Link>
         </TabsList>
       </Tabs>
-      {showSelectButton && <SelectButton />}
+      {showSelectButton && (
+        <div className="flex text-center">
+          <CreateNewBoardForm />
+          <SelectButton />
+        </div>
+      )}
     </div>
   );
 };

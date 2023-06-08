@@ -1,17 +1,19 @@
 import React from "react";
-import { Board, BoardPoster } from "@prisma/client";
+import type { BoardPoster, Board as BoardType } from "@prisma/client";
+
 import DeleteBoardButton from "./delete-board-button";
 import RemoveFromBoardButton from "./remove-from-board-button";
 
-type BoardWithPosters = Board & {
+type BoardWithPosters = BoardType & {
   boardPosters: BoardPoster[];
 };
 
 type boardProps = {
   props: BoardWithPosters;
+  isUserBoard: boolean;
 };
 
-const Board = ({ props }: boardProps) => {
+const Board = ({ props, isUserBoard }: boardProps) => {
   return (
     <div>
       <div>Name: {props.name}</div>
@@ -23,10 +25,15 @@ const Board = ({ props }: boardProps) => {
         <div key={poster.posterId}>
           <div>Position: {poster.position}</div>
           <div>Poster ID: {poster.posterId}</div>
-          <RemoveFromBoardButton posterId={poster.posterId} boardId={props.id}/>
+          {isUserBoard && (
+            <RemoveFromBoardButton
+              posterId={poster.posterId}
+              boardId={props.id}
+            />
+          )}
         </div>
       ))}
-      <DeleteBoardButton boardId={props.id} />
+      {isUserBoard && <DeleteBoardButton boardId={props.id} />}
     </div>
   );
 };
