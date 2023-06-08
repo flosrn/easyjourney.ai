@@ -1,12 +1,13 @@
 import React from "react";
 
+import TextAnimatedGradient from "~/components/hero/text-animated-gradient";
 import { Button } from "~/components/ui/button";
 
 import type { Hero } from "~/types/nav";
 
 type TitleProps = Hero;
 
-const Title = ({ title, subtitle, description }: TitleProps) => (
+const Title = ({ title, subtitle }: TitleProps) => (
   <div className="flex-center absolute inset-0 z-10 bg-gradient-radial from-background/95 via-background/60 to-background/5 backdrop-blur-[1.5px]">
     <section className="flex max-w-2xl flex-col items-center gap-2 space-y-2 px-5">
       <h1 className="text-center text-4xl font-extrabold leading-tight tracking-tighter md:text-5xl lg:text-6xl">
@@ -16,7 +17,10 @@ const Title = ({ title, subtitle, description }: TitleProps) => (
         {subtitle}
       </h2>
       <p className="text-center text-lg text-slate-700 dark:text-slate-400">
-        {description}
+        Unlock the power of{" "}
+        <TextAnimatedGradient>Midjourney</TextAnimatedGradient> with a beautiful
+        and user-friendly interface. Create stunning visuals with ease, no AI or
+        prompt engineering expertise required
       </p>
       <Button href="/posters/new" variant="secondary" className="mt-5">
         Explore
