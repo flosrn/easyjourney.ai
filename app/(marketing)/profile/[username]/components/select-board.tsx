@@ -58,7 +58,7 @@ const SelectBoard = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add to board</Button>
+        <Button variant="secondary">Add to board</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
