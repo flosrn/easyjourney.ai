@@ -1,16 +1,27 @@
 import { NextResponse } from "next/server";
 import { prisma } from "~/server/db/prisma";
 
-export async function GET(request: Request) {
-  const { userID } = await request.json();
+export async function POST(request: Request) {
+  const { username } = await request.json();
 
   try {
-    const userBoards = await prisma.board.findMany({
+    const user = await prisma.user.findUnique({
       where: {
-        userId: userID,
+        username,
       },
+    });
+
+    const userBoards = await prisma.board.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      where: { userId: user?.id },
       include: {
-        boardPosters: true,
+        boardPosters: {
+          include: {
+            poster: true,
+          },
+        },
       },
     });
 

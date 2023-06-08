@@ -3,6 +3,11 @@ import { UserRole } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
+type Objet = {
+  posterId: string;
+  boardId: string;
+};
+
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
 
@@ -11,7 +16,13 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { boardId } = await request.json();
+    const { posterId, boardId } = (await request.json()) as Objet;
+
+    const poster = await prisma.poster.findUnique({
+      where: {
+        id: posterId,
+      },
+    });
 
     const board = await prisma.board.findUnique({
       where: {
@@ -19,10 +30,24 @@ export async function POST(request: Request) {
       },
     });
 
+    if (!poster) {
+      return NextResponse.json({
+        status: 404,
+        message: "Poster not found",
+      });
+    }
+
+    if (!board) {
+      return NextResponse.json({
+        status: 404,
+        message: "Board not found",
+      });
+    }
+
     if (
       // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
       session.user.role !== UserRole.ADMIN &&
-      session.user.id !== board?.userId
+      session.user.id !== poster.userId
     ) {
       return NextResponse.json({
         status: 401,
@@ -30,18 +55,28 @@ export async function POST(request: Request) {
       });
     }
 
-    await prisma.boardPoster.deleteMany({
+    const highestPositionBoardPoster = await prisma.boardPoster.findFirst({
       where: {
         boardId,
       },
-    });
-
-    const deleteBoards = await prisma.board.delete({
-      where: {
-        id: boardId,
+      orderBy: {
+        position: "desc",
       },
     });
-    return NextResponse.json({ status: 204, deleteBoards });
+
+    const newPosition = highestPositionBoardPoster
+      ? highestPositionBoardPoster.position + 1
+      : 1;
+
+    await prisma.boardPoster.create({
+      data: {
+        posterId,
+        boardId,
+        position: newPosition,
+      },
+    });
+
+    return NextResponse.json({ status: 204 });
   } catch {
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }

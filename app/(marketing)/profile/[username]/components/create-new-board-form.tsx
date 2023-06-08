@@ -58,6 +58,7 @@ const CreateNewBoardForm = () => {
       }
     },
   });
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setBoardForm(name, value);

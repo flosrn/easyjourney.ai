@@ -8,8 +8,8 @@ import { LucideX } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 
-import AddToBoardButton from "./add-to-board-button";
 import DeleteButton from "./delete-button";
+import SelectBoard from "./select-board";
 
 export const SelectBar = () => {
   const [isModalSelectOpen, toggleModalSelectOpen] = useSelectBarStore(
@@ -54,7 +54,7 @@ export const SelectBar = () => {
               <div>{numberOfPosters}</div>
             </div>
             <div className="mr-2 flex">
-              <AddToBoardButton />
+              <SelectBoard />
               <DeleteButton />
               <Button
                 variant="secondary"
