@@ -36,24 +36,24 @@ export const CounterBar = ({
         <p className="text-gray-500">Posters</p>
       </div>
       <div
-        className="select-none text-center transition duration-300 hover:scale-110"
+        className="cursor-pointer select-none text-center underline-offset-4 transition duration-300 hover:scale-110 hover:underline"
         onClick={() => handleClick("likes")}
       >
         <h2 className="text-2xl font-semibold">{totalLikes}</h2>
         <p className="text-gray-500">Likes</p>
       </div>
       <div
-        className="select-none text-center transition duration-300 hover:scale-110"
+        className="cursor-pointer select-none text-center underline-offset-4 transition duration-300 hover:scale-110 hover:underline"
         onClick={() => handleClick("followers")}
       >
         <h2 className="text-2xl font-semibold">{totalFollowers}</h2>
         <p className="text-gray-500">Followers</p>
       </div>
       <div
-        className="select-none text-center transition duration-300 hover:scale-110"
+        className="cursor-pointer select-none text-center underline-offset-4 transition duration-300 hover:scale-110 hover:underline"
         onClick={() => handleClick("following")}
       >
-        <h2 className="text-2xl font-semibold">{totalFollowing}</h2>
+        <h2 className="text-2xl font-semibold ">{totalFollowing}</h2>
         <p className="text-gray-500">Following</p>
       </div>
       <CounterBarDialog

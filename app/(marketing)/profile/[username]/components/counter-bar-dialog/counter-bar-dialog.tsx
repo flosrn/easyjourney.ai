@@ -72,7 +72,7 @@ const CounterBarDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="h-[80vh] md:h-[70vh] ">
+      <DialogContent className="max-h-[80vh] px-2 sm:px-6">
         <Tabs defaultValue={defaultValue} className="h-full w-full ">
           <TabsList className="mt-2 flex w-full">
             <TabsTrigger value="likes" className="flex-1">
@@ -85,7 +85,7 @@ const CounterBarDialog = ({
               Following
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="likes">
+          <TabsContent value="likes" className="">
             <SearchableList
               list={likesQuery.data}
               actualUser={actualUser}
