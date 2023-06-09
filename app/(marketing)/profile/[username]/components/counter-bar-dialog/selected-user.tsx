@@ -12,29 +12,27 @@ const SelectedUser = ({ user, actualUser }) => {
 
   return (
     <>
-      <div className="flex h-20 w-full ">
-        <div className="flex h-full w-5/6">
-          <div className="flex h-full w-1/3 items-center justify-center">
-            {image && (
-              <Avatar className="mr-2 h-7 w-7 cursor-pointer">
-                <AvatarImage
-                  className="h-full"
-                  src={image}
-                  referrerPolicy="no-referrer"
-                />
-                <AvatarFallback>{getFirstLetters(username)}</AvatarFallback>
-              </Avatar>
-            )}
-          </div>
+      <div className="flex h-20 w-full">
+        <div className="mx-2 flex h-full items-center justify-center">
+          {image && (
+            <Avatar className="h-16 w-16">
+              <AvatarImage
+                className=""
+                src={image}
+                referrerPolicy="no-referrer"
+              />
+              <AvatarFallback>{getFirstLetters(username)}</AvatarFallback>
+            </Avatar>
+          )}
         </div>
 
-        <div className="flex flex-col justify-center">
+        <div className="ml-2 flex flex-col justify-center">
           <div className="font-bold">{name}</div>
           <div className="truncate text-sm">@{username}</div>
         </div>
 
-        <div className="flex w-full justify-end border-2">
-          <div className="">
+        <div className="flex w-full justify-end">
+          <div className="mt-2">
             <FollowButton userId={id} isFollowing={isFollowing} />
           </div>
         </div>
