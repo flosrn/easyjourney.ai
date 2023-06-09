@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "~/components/ui/dialog";
+import { Dialog, DialogContent } from "~/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 import SearchableList from "./searchable-list";
@@ -62,22 +57,18 @@ const CounterBarDialog = ({
   username,
   actualUser,
 }: counterBarDialogProps) => {
-  const [followersUserList, setFollowersUserList] = useState([]);
-  const [followedUsersList, setFollowedUsersList] = useState([]);
-  const [likesUsersList, setLikesUsersList] = useState([]);
-
-  useEffect(() => {
-    const fetchFollowers = async () => {
-      const followers = await getFollowersUserList(username);
-      setFollowersUserList(followers);
-      const followed = await getFollowedUserList(username);
-      setFollowedUsersList(followed);
-      const likesUsers = await getLikesUserList(username);
-      setLikesUsersList(likesUsers);
-      console.log("likesUsers", likesUsers);
-    };
-    fetchFollowers();
-  }, [username]);
+  const followersQuery = useQuery({
+    queryKey: ["followers", username],
+    queryFn: async ({ queryKey }) => getFollowersUserList(queryKey[1]),
+  });
+  const followingQuery = useQuery({
+    queryKey: ["following", username],
+    queryFn: async ({ queryKey }) => getFollowedUserList(queryKey[1]),
+  });
+  const likesQuery = useQuery({
+    queryKey: ["likes", username],
+    queryFn: async ({ queryKey }) => getLikesUserList(queryKey[1]),
+  });
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -95,13 +86,25 @@ const CounterBarDialog = ({
             </TabsTrigger>
           </TabsList>
           <TabsContent value="likes">
-            <SearchableList list={likesUsersList} actualUser={actualUser} />
+            <SearchableList
+              list={likesQuery.data}
+              actualUser={actualUser}
+              isLoading={likesQuery.isLoading}
+            />
           </TabsContent>
           <TabsContent value="followers">
-            <SearchableList list={followersUserList} actualUser={actualUser} />
+            <SearchableList
+              list={followersQuery.data}
+              actualUser={actualUser}
+              isLoading={followersQuery.isLoading}
+            />
           </TabsContent>
           <TabsContent value="following">
-            <SearchableList list={followedUsersList} actualUser={actualUser} />
+            <SearchableList
+              list={followingQuery.data}
+              actualUser={actualUser}
+              isLoading={followingQuery.isLoading}
+            />
           </TabsContent>
         </Tabs>
       </DialogContent>
