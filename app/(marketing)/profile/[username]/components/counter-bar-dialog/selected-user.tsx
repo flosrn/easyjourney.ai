@@ -4,10 +4,29 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 import FollowButton from "../follow-button";
 
-const SelectedUser = ({ user, actualUser }) => {
+type Follower = {
+  createdAt: string;
+  followerId: string;
+  followingId: string;
+  id: string;
+};
+
+type SelectedUserProps = {
+  user: {
+    image: string;
+    username: string;
+    name: string;
+    id: string;
+    followers: Follower[];
+  };
+  actualUser: string;
+};
+
+const SelectedUser = ({ user, actualUser }: SelectedUserProps) => {
   const isFollowing = user.followers.some(
     (follower) => follower.followerId === actualUser
   );
+  console.log("followers :", user.followers);
   const { image, username, name, id } = user;
 
   return (
