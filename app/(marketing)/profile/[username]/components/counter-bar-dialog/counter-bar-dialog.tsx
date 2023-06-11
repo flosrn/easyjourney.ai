@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+"use client";
+
 import { useQuery } from "@tanstack/react-query";
 
 import { Dialog, DialogContent } from "~/components/ui/dialog";
@@ -59,15 +60,18 @@ const CounterBarDialog = ({
 }: counterBarDialogProps) => {
   const followersQuery = useQuery({
     queryKey: ["followers", username],
-    queryFn: async ({ queryKey }) => getFollowersUserList(queryKey[1]),
+    queryFn: async () => getFollowersUserList(username),
+    enabled: open,
   });
   const followingQuery = useQuery({
     queryKey: ["following", username],
-    queryFn: async ({ queryKey }) => getFollowedUserList(queryKey[1]),
+    queryFn: async () => getFollowedUserList(username),
+    enabled: open,
   });
   const likesQuery = useQuery({
     queryKey: ["likes", username],
-    queryFn: async ({ queryKey }) => getLikesUserList(queryKey[1]),
+    queryFn: async () => getLikesUserList(username),
+    enabled: open,
   });
 
   return (
