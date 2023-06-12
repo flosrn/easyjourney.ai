@@ -34,7 +34,8 @@ const readStreamData = async (
       try {
         const data = JSON.parse(jsonString);
 
-        console.log("data :", data);
+        const debug = process.env.NODE_ENV === "development";
+        debug && console.log("data :", data);
         data && actions.addImage(data);
       } catch (error: unknown) {
         // eslint-disable-next-line no-console

@@ -127,7 +127,7 @@ const findAttachmentInMessages = async ({
     const isIntervalOk =
       targetMessageTimestamp && targetMessageTimestamp >= targetTimestamp;
 
-    await wait(targetMessage?.attachments[0] ? 2000 : 8000);
+    await wait(targetMessage?.attachments[0] ? 2600 : 8000);
 
     if (targetMessage && targetMessage.attachments.length === 0) {
       console.log("no attachment found");
