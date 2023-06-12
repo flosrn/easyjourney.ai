@@ -97,7 +97,6 @@ const findAttachmentInMessages = async ({
   });
   console.log("initial message found");
   let attachment: APIAttachment | undefined;
-  let referencedImage: APIAttachment | undefined;
 
   if (
     isUpscaleOrVariation &&
@@ -193,6 +192,7 @@ export async function POST(request: Request) {
             failCount = failCount + 1;
           }
           const isError = failCount > 5;
+          console.log("attachment :", attachment);
           // Enfile les données dans le contrôleur de flux
           const message = {
             type: attachment ? "image_iteration" : "loading",
