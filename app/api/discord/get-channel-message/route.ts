@@ -129,11 +129,11 @@ const findAttachmentInMessages = async ({
     const isIntervalOk =
       targetMessageTimestamp && targetMessageTimestamp >= targetTimestamp;
 
-    console.log("targetMessageTimestamp :", targetMessageTimestamp);
-    console.log("targetTimestamp :", targetTimestamp);
-    console.log("isIntervalOk :", isIntervalOk);
+    // console.log("targetMessageTimestamp :", targetMessageTimestamp);
+    // console.log("targetTimestamp :", targetTimestamp);
+    // console.log("isIntervalOk :", isIntervalOk);
 
-    await wait(3000);
+    // await wait(3000);
     // await wait(targetMessage?.attachments[0] ? 2000 : 8000);
 
     // console.log("targetMessage :", targetMessage);
