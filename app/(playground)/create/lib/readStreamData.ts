@@ -19,7 +19,7 @@ const readStreamData = async (
     if (decodedValue === "") {
       console.log("decodedValue is empty");
       // close the stream
-      reader.releaseLock();
+      // reader.releaseLock();
     }
     jsonStringBuffer += decodedValue;
 
@@ -34,7 +34,7 @@ const readStreamData = async (
       try {
         const data = JSON.parse(jsonString);
 
-        process.env.NODE_ENV === "development" && console.log("data :", data);
+        console.log("data :", data);
         data && actions.addImage(data);
       } catch (error: unknown) {
         // eslint-disable-next-line no-console
