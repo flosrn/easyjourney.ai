@@ -1,15 +1,10 @@
 /* eslint-disable no-await-in-loop */
+import { NextResponse } from "next/server";
+import extractJobId from "~/utils/extractJobId";
 import { retrieveMessages, wait } from "~/utils/midjourneyUtils";
 import type { APIAttachment, APIMessage } from "discord-api-types/v10";
 
-import type { ImageData } from "../../../app/(playground)/create/store/imageGenerationStore";
-
-// https://vercel.com/docs/concepts/functions/edge-functions
-export const config = {
-  runtime: "edge",
-};
-
-const uriToHash = (uri: string) => uri.split("_").pop()?.split(".")[0] ?? "";
+import type { ImageData } from "../../../(playground)/create/store/imageGenerationStore";
 
 const findMessage = ({
   messages,
@@ -79,12 +74,17 @@ const waitForMessage = async ({
   return message;
 };
 
-const findAttachmentInMessages = async (
-  prompt: string,
-  loading: (attachment: APIAttachment | null) => void,
-  index?: number,
-  option?: "upscale" | "variation"
-): Promise<ImageData | undefined> => {
+const findAttachmentInMessages = async ({
+  prompt,
+  loading,
+  index,
+  option,
+}: {
+  prompt: string;
+  loading: (attachment: APIAttachment | null) => void;
+  index?: number;
+  option?: "upscale" | "variation";
+}): Promise<ImageData | undefined> => {
   const isUpscaleOrVariation = index && option;
   const minutesAgo = isUpscaleOrVariation ? 5000 : 600000;
   const currentTimestamp = isUpscaleOrVariation && Date.now() - minutesAgo;
@@ -105,20 +105,16 @@ const findAttachmentInMessages = async (
     initialMessage.attachments[0].url.endsWith(".png")
   ) {
     attachment = initialMessage.attachments[0];
-    referencedImage = initialMessage.referenced_message?.attachments[0];
-    console.log("referencedImage :", referencedImage);
     console.log("variation or upscale found");
     return {
       ...attachment,
-      referencedImage,
       prompt: initialMessage.content.split("**")[1],
       messageId: initialMessage.id,
-      messageHash: uriToHash(attachment.url),
+      jobId: extractJobId(attachment.url),
     };
   }
 
   while (!attachment?.url.endsWith(".png")) {
-    await wait(attachment ? 3000 : 10000);
     const messages = await retrieveMessages(50);
     const targetMessage = findMessage({ messages, prompt, index, option });
 
@@ -128,12 +124,13 @@ const findAttachmentInMessages = async (
     const isIntervalOk =
       targetMessageTimestamp && targetMessageTimestamp >= targetTimestamp;
 
+    await wait(targetMessage?.attachments[0] ? 2000 : 8000);
+
     if (targetMessage && targetMessage.attachments.length === 0) {
       console.log("no attachment found");
-      loading(null);
+      loading(targetMessage as any);
     } else if (targetMessage) {
       attachment = targetMessage.attachments[0];
-      referencedImage = targetMessage.referenced_message?.attachments[0];
       if (
         attachment.url.endsWith("grid_0.webp") &&
         attachment.filename === "grid_0.webp" &&
@@ -145,39 +142,18 @@ const findAttachmentInMessages = async (
       } else if (!targetMessage.interaction) {
         console.log("final image found");
         if (isIntervalOk) {
+          const jobId = extractJobId(attachment.url);
           return {
             ...attachment,
-            referencedImage,
+            url: `https://cdn.midjourney.com/${jobId}/grid_0.webp`,
             prompt: initialMessage.content.split("**")[1],
             messageId: targetMessage.id,
-            messageHash: uriToHash(attachment.url),
+            jobId,
           };
         }
       }
     }
   }
-};
-
-const retrieveMessagesUntilFinal = async ({
-  prompt,
-  loading,
-  index,
-  option,
-  limit,
-}: {
-  prompt: string;
-  loading: (attachment: APIAttachment | null) => void;
-  index?: number;
-  option?: "upscale" | "variation";
-  limit?: number;
-}): Promise<ImageData | undefined> => {
-  const attachment = await findAttachmentInMessages(
-    prompt,
-    loading,
-    index,
-    option
-  );
-  return attachment;
 };
 
 const getMessageType = (option?: "upscale" | "variation") => {
@@ -191,85 +167,73 @@ const getMessageType = (option?: "upscale" | "variation") => {
   }
 };
 
-export default async function handler(request: Request) {
+export async function POST(request: Request) {
   const { prompt, index, option } = await request.json();
+
+  let failCount = 0;
 
   const encoder = new TextEncoder();
 
-  // contrôleur de flux pour gérer les événements de streaming
-  let streamController!: ReadableStreamDefaultController<Uint8Array>;
+  let stream!: ReadableStreamDefaultController<Uint8Array>;
 
-  const customReadable = new ReadableStream({
+  const readableStream = new ReadableStream({
     start(controller) {
-      streamController = controller;
-    },
-  });
-
-  const response = new Response(customReadable, {
-    headers: {
-      "Content-Type": "text/html; charset=utf-8",
+      stream = controller;
     },
   });
 
   // Exécute la fonction imagine dans une fonction async pour ne pas bloquer le flux
   void (async () => {
     try {
-      const data = await retrieveMessagesUntilFinal({
+      const data = await findAttachmentInMessages({
         prompt,
         loading: (attachment) => {
+          const isVariation = option === "variation";
+          if (!isVariation && !attachment) {
+            failCount = failCount + 1;
+          }
+          const isError = failCount > 5;
           // Enfile les données dans le contrôleur de flux
-          const message = JSON.stringify({
+          const message = {
             type: attachment ? "image_iteration" : "loading",
             ...attachment,
-          });
-          streamController.enqueue(encoder.encode(message));
+            isError,
+          };
+          if (isError) {
+            throw new Error("Aborted, initial image not found");
+          }
+          stream.enqueue(encoder.encode(JSON.stringify(message)));
         },
         index,
         option,
-        limit: 50,
       });
 
       if (data) {
-        // Envoie un message final pour indiquer la fin de la génération avec la dernière image
-        const message = JSON.stringify({
-          type: getMessageType(option),
-          ...data,
-          referencedImage: undefined,
-        });
-        streamController.enqueue(encoder.encode(message));
-
-        const hasReferencedImage = !!data.referencedImage;
-        if (hasReferencedImage) {
-          const messageWithReferencedImage = JSON.stringify({
-            type: "referenced_image",
-            ...data.referencedImage,
-          });
-          setTimeout(() => {
-            streamController.enqueue(
-              encoder.encode(messageWithReferencedImage)
-            );
-            streamController.close();
-          }, 1000);
-        } else {
-          // Ferme le flux une fois que toutes les données ont été insérées
-          streamController.close();
-        }
-      } else {
-        // Ferme le flux si aucune donnée n'a été récupérée
-        streamController.close();
+        const message = { type: getMessageType(option), ...data };
+        stream.enqueue(encoder.encode(JSON.stringify(message)));
+        stream.close();
       }
     } catch (error: unknown) {
-      const message = JSON.stringify({
+      const message = {
         type: "generation_failed",
+        isError: true,
         error: error instanceof Error ? error.message : "Unknown error",
-      });
-      streamController.enqueue(encoder.encode(message));
-
-      // Ferme le flux en cas d'erreur
-      streamController.error(error);
+      };
+      stream.enqueue(encoder.encode(JSON.stringify(message)));
+      stream.error(error);
+      return NextResponse.json(error);
     }
     // eslint-disable-next-line @typescript-eslint/no-empty-function
   })().then(() => {});
 
-  return response;
+  return new Response(readableStream, {
+    headers: new Headers({
+      // since we don't use browser's EventSource interface, specifying content-type is optional.
+      // the eventsource-parser library can handle the stream response as SSE, as long as the data format complies with SSE:
+      // https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#sending_events_from_the_server
+
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+    }),
+  });
 }
