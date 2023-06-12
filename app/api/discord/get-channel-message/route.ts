@@ -240,7 +240,7 @@ export async function POST(request: Request) {
       // the eventsource-parser library can handle the stream response as SSE, as long as the data format complies with SSE:
       // https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#sending_events_from_the_server
       // "Content-Type": "text/event-stream",
-      // "Cache-Control": "no-cache",
+      "Cache-Control": "no-cache",
     }),
   });
 }
