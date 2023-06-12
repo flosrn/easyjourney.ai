@@ -6,6 +6,8 @@ import type { APIAttachment, APIMessage } from "discord-api-types/v10";
 
 import type { ImageData } from "../../../(playground)/create/store/imageGenerationStore";
 
+export const runtime = "edge";
+
 const findMessage = ({
   messages,
   prompt,
@@ -133,7 +135,7 @@ const findAttachmentInMessages = async ({
     // console.log("targetTimestamp :", targetTimestamp);
     // console.log("isIntervalOk :", isIntervalOk);
 
-    // await wait(3000);
+    await wait(3000);
     // await wait(targetMessage?.attachments[0] ? 2000 : 8000);
 
     // console.log("targetMessage :", targetMessage);
