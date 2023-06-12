@@ -1,7 +1,6 @@
 "use client;";
 
 import React from "react";
-import { useParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
@@ -11,6 +10,7 @@ import { Button } from "~/components/ui/button";
 
 type AddToBoardButtonProps = {
   boardId: string;
+  name: string;
 };
 
 const addToBoard = async ({
@@ -20,7 +20,7 @@ const addToBoard = async ({
   posterId: string;
   boardId: string;
 }) => {
-  const response = await fetch("/api/board/add", {
+  const response = await fetch("/api/boards/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ posterId, boardId }),
@@ -31,9 +31,7 @@ const addToBoard = async ({
   return response.json();
 };
 
-const AddToBoardButton = ({ boardId }: AddToBoardButtonProps) => {
-  const { username } = useParams() ?? {};
-
+const AddToBoardButton = ({ boardId, name }: AddToBoardButtonProps) => {
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
@@ -43,7 +41,7 @@ const AddToBoardButton = ({ boardId }: AddToBoardButtonProps) => {
     mutationFn: addToBoard,
     onSuccess: async (data) => {
       if (data.status === 400) {
-        toast.error("You already created this board");
+        toast.error("You already added this poster");
       }
     },
   });
@@ -53,28 +51,29 @@ const AddToBoardButton = ({ boardId }: AddToBoardButtonProps) => {
   ) => {
     event.preventDefault();
     try {
-      const response = await Promise.all(
+      clearSelectedPosters();
+      toggleSelectBar();
+      await Promise.all(
         selectedPosters.map(async (posterId) =>
           addToMutation.mutateAsync({ posterId, boardId })
         )
       );
-      const data = await response[0].json();
-      if (data) {
-        await fetch(`/api/revalidate?path=/profile/${username}`);
-        await fetch("/api/revalidate?path=/posters/new");
-        await fetch("/api/revalidate?path=/posters/popular");
-        setTimeout(() => {
-          clearSelectedPosters();
-          toggleSelectBar();
-        }, 400);
-      }
+      toast.success(
+        selectedPosters.length > 1
+          ? "Posters have been added"
+          : "Poster has been added"
+      );
     } catch {
-      toast.error("Something went wrong adding this poster, please try again");
+      toast.error(
+        selectedPosters.length > 1
+          ? "Something went wrong adding thoose posters, please try again"
+          : "Something went wrong adding this poster, please try again"
+      );
     }
   };
   return (
-    <Button onClick={handleAddToBoard} variant="secondary">
-      Add to board
+    <Button onClick={handleAddToBoard} variant="ghost" className="truncate">
+      {name}
     </Button>
   );
 };

@@ -11,7 +11,7 @@ type deleteBoardProps = {
 };
 
 const deleteBoard = async (boardId: string) => {
-  const response = await fetch("/api/board/delete", {
+  const response = await fetch("/api/boards/delete", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ boardId }),

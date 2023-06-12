@@ -18,8 +18,8 @@ import {
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 
-import { useBoardStore } from "../../../store/boardStore";
-import type { BoardType } from "../../../types/typeBoard";
+import { useBoardStore } from "../../../../store/boardStore";
+import type { BoardType } from "../../../../types/typeBoard";
 
 type UpdateBoardFormProps = {
   props: Board;
@@ -32,7 +32,7 @@ const updateBoard = async ({
   board: BoardType;
   boardId: string;
 }) => {
-  const response = await fetch("/api/board/update", {
+  const response = await fetch("/api/boards/update", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ board, boardId }),

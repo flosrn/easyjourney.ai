@@ -68,7 +68,7 @@ export async function POST(request: Request) {
       ? highestPositionBoardPoster.position + 1
       : 1;
 
-    await prisma.boardPoster.create({
+    const boardPoster = await prisma.boardPoster.create({
       data: {
         posterId,
         boardId,
@@ -76,7 +76,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({ status: 204 });
+    return NextResponse.json({ status: 204, boardPoster });
   } catch {
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }

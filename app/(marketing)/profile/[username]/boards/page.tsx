@@ -1,51 +1,50 @@
-import React, { Suspense } from "react";
-import type { User } from "@prisma/client";
-import { prisma } from "~/server/db/prisma";
+"use client";
 
-import Board from "../components/board";
+import React from "react";
+import type { Board, BoardPoster, User } from "@prisma/client";
+import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
+import BoardView from "../components/board/board-view";
+
+type BoardWithPosters = Board & {
+  boardPosters: BoardPoster[];
+};
 type UserProfileProps = {
   params: { username: User["username"] };
 };
 
-const getUserBoards = async (userId: string) =>
-  prisma.board.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-    where: { userId },
-    include: {
-      boardPosters: {
-        include: {
-          poster: true,
-        },
-      },
+function Boards({ params: { username } }: UserProfileProps) {
+  const { status, data } = useQuery({
+    queryKey: ["board", username],
+    queryFn: async () => {
+      const response = await fetch(`/api/boards/?username=${username}`);
+      return response.json();
     },
   });
 
-const getUser = async (username: string) =>
-  prisma.user.findUnique({
-    where: { username },
-  });
+  if (status === "pending") {
+    return <span>Loading...</span>;
+  }
 
-export default async function Boards({
-  params: { username },
-}: UserProfileProps) {
-  const user = await getUser(username);
-  const boards = user && (await getUserBoards(user.id));
+  if (status === "error") {
+    toast.error("Something went wrong getting thoose board, please try again");
+  }
+
+  const sessionId = data.sessionId;
+  const boards: BoardWithPosters[] = data.userBoards;
+
   return (
     <div>
-      <Suspense fallback={<div>Loading Board...</div>}>
-        {boards?.map((board) =>
-          user?.id === board.userId || board.isPublic ? (
-            <Board
-              key={board.id}
-              props={board}
-              isUserBoard={user?.id === board.userId}
-            />
-          ) : null
-        )}
-      </Suspense>
+      {boards.map((board) => (
+        <BoardView
+          key={board.id}
+          props={board}
+          isUserBoard={sessionId === board.userId}
+        />
+      ))}
     </div>
   );
 }
+
+export default Boards;

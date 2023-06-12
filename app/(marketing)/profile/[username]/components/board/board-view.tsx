@@ -14,7 +14,7 @@ type boardProps = {
   isUserBoard: boolean;
 };
 
-const Board = ({ props, isUserBoard }: boardProps) => {
+const BoardView = ({ props, isUserBoard }: boardProps) => {
   return (
     <div>
       <div>Name: {props.name}</div>
@@ -44,4 +44,4 @@ const Board = ({ props, isUserBoard }: boardProps) => {
   );
 };
 
-export default Board;
+export default BoardView;

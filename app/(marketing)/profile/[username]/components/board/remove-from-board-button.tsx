@@ -19,7 +19,7 @@ const removeFromBoard = async ({
   posterId: string;
   boardId: string;
 }) => {
-  const response = await fetch("/api/board/remove", {
+  const response = await fetch("/api/boards/remove", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ posterId, boardId }),
@@ -34,8 +34,6 @@ const RemoveFromBoardButton = ({
   posterId,
   boardId,
 }: RemoveFomBoardButtonProps) => {
-  const { username } = useParams() ?? {};
-
   const removeFromMutation = useMutation({
     mutationFn: removeFromBoard,
     onSuccess: async (data) => {
@@ -50,16 +48,10 @@ const RemoveFromBoardButton = ({
   ) => {
     event.preventDefault();
     try {
-      const response = await removeFromMutation.mutateAsync({
+      await removeFromMutation.mutateAsync({
         posterId,
         boardId,
       });
-      const data = await response[0].json();
-      if (data) {
-        await fetch(`/api/revalidate?path=/profile/${username}`);
-        await fetch("/api/revalidate?path=/posters/new");
-        await fetch("/api/revalidate?path=/posters/popular");
-      }
     } catch {
       toast.error("Something went removing this poster, please try again");
     }
