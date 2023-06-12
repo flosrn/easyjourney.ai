@@ -113,12 +113,15 @@ const findAttachmentInMessages = async ({
     };
   }
 
-  console.log("initial message :", initialMessage);
+  // console.log("initial message :", initialMessage);
 
   while (!attachment?.url.endsWith(".png")) {
     console.log("waiting for attachment");
     const messages = await retrieveMessages(50);
     const targetMessage = findMessage({ messages, prompt, index, option });
+
+    const targetMessageFound = !!targetMessage;
+    console.log("targetMessageFound :", targetMessageFound);
 
     const targetMessageTimestamp =
       targetMessage && Date.parse(targetMessage.timestamp);
@@ -133,7 +136,7 @@ const findAttachmentInMessages = async ({
     await wait(3000);
     // await wait(targetMessage?.attachments[0] ? 2000 : 8000);
 
-    console.log("targetMessage :", targetMessage);
+    // console.log("targetMessage :", targetMessage);
 
     if (targetMessage && targetMessage.attachments.length === 0) {
       console.log("no attachment found");
