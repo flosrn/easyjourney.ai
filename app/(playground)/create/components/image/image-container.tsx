@@ -60,7 +60,7 @@ const ImageContainer = ({ className }: ImageContainerProps) => {
     >
       <div
         className={cn(
-          "flex-center max-h-full max-w-full w-full lg:w-auto lg:h-[350px] rounded-md border border-dashed p-4",
+          "flex-center max-w-full lg:h-[500px] rounded-md border border-dashed p-4",
           {
             "aspect-[1/1]": ratio === "1/1",
             "aspect-[4/7] w-auto h-full": ratio === "4/7",

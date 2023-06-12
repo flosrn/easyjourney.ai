@@ -8,7 +8,6 @@ export const handleMessageData = ({
   setImageType,
   setMessage,
   setIsLoading,
-  setLoadingType,
 }: {
   image: ImageData | undefined;
   setImageType: ImageGenerationSetAction["setImageType"];
@@ -16,7 +15,6 @@ export const handleMessageData = ({
   setIsLoading: ImageGenerationSetAction["setIsLoading"];
   setLoadingType: ImageGenerationSetAction["setLoadingType"];
 }) => {
-  setLoadingType(null);
   switch (image?.type) {
     case "loading": {
       break;

@@ -16,6 +16,11 @@ const readStreamData = async (
 
     // Decode the value and add it to the jsonStringBuffer
     const decodedValue = decoder.decode(value);
+    if (decodedValue === "") {
+      console.log("decodedValue is empty");
+      // close the stream
+      reader.releaseLock();
+    }
     jsonStringBuffer += decodedValue;
 
     // Regular expression to find JSON objects in the jsonStringBuffer
@@ -29,6 +34,7 @@ const readStreamData = async (
       try {
         const data = JSON.parse(jsonString);
 
+        process.env.NODE_ENV === "development" && console.log("data :", data);
         data && actions.addImage(data);
       } catch (error: unknown) {
         // eslint-disable-next-line no-console
