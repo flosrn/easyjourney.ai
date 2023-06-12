@@ -118,12 +118,8 @@ const findAttachmentInMessages = async ({
   // console.log("initial message :", initialMessage);
 
   while (!attachment?.url.endsWith(".png")) {
-    console.log("waiting for attachment");
     const messages = await retrieveMessages(50);
     const targetMessage = findMessage({ messages, prompt, index, option });
-
-    const targetMessageFound = !!targetMessage;
-    console.log("targetMessageFound :", targetMessageFound);
 
     const targetMessageTimestamp =
       targetMessage && Date.parse(targetMessage.timestamp);
@@ -131,18 +127,11 @@ const findAttachmentInMessages = async ({
     const isIntervalOk =
       targetMessageTimestamp && targetMessageTimestamp >= targetTimestamp;
 
-    // console.log("targetMessageTimestamp :", targetMessageTimestamp);
-    // console.log("targetTimestamp :", targetTimestamp);
-    // console.log("isIntervalOk :", isIntervalOk);
-
-    await wait(3000);
-    // await wait(targetMessage?.attachments[0] ? 2000 : 8000);
-
-    // console.log("targetMessage :", targetMessage);
+    await wait(targetMessage?.attachments[0] ? 2000 : 8000);
 
     if (targetMessage && targetMessage.attachments.length === 0) {
       console.log("no attachment found");
-      loading(null);
+      loading(targetMessage as any);
     } else if (targetMessage) {
       attachment = targetMessage.attachments[0];
       if (
@@ -184,7 +173,7 @@ const getMessageType = (option?: "upscale" | "variation") => {
 export async function POST(request: Request) {
   const { prompt, index, option } = await request.json();
 
-  const failCount = 0;
+  let failCount = 0;
 
   const encoder = new TextEncoder();
 
@@ -202,26 +191,25 @@ export async function POST(request: Request) {
       const data = await findAttachmentInMessages({
         prompt,
         loading: (attachment) => {
-          // const isVariation = option === "variation";
-          // if (!isVariation && !attachment) {
-          //   failCount = failCount + 1;
-          // }
-          // const isError = failCount > 5;
+          const isVariation = option === "variation";
+          if (!isVariation && !attachment) {
+            failCount = failCount + 1;
+          }
+          const isError = failCount > 5;
           // Enfile les données dans le contrôleur de flux
           const message = {
             type: attachment ? "image_iteration" : "loading",
             ...attachment,
-            // isError,
+            isError,
           };
-          // if (isError) {
-          //   throw new Error("Aborted, initial image not found");
-          // }
+          if (isError) {
+            throw new Error("Aborted, initial image not found");
+          }
           stream.enqueue(encoder.encode(JSON.stringify(message)));
         },
         index,
         option,
       });
-      console.log("data :", data);
       if (data) {
         const message = { type: getMessageType(option), ...data };
         stream.enqueue(encoder.encode(JSON.stringify(message)));
@@ -245,9 +233,9 @@ export async function POST(request: Request) {
       // since we don't use browser's EventSource interface, specifying content-type is optional.
       // the eventsource-parser library can handle the stream response as SSE, as long as the data format complies with SSE:
       // https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#sending_events_from_the_server
-      // "Content-Type": "text/event-stream",
-      "Content-Type": "text/html; charset=utf-8",
-      // "Cache-Control": "no-cache",
+      // "Content-Type": "text/html; charset=utf-8",
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
     }),
   });
 }

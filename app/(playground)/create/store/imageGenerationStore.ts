@@ -256,7 +256,7 @@ export const useImageGenerationStore = create<
           });
 
           if (response.body) {
-            // setStream(response.body);
+            setStream(response.body);
             const reader = response.body.getReader();
             await readStreamData(reader, actions);
           }
