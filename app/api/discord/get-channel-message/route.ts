@@ -116,6 +116,7 @@ const findAttachmentInMessages = async ({
   console.log("initial message :", initialMessage);
 
   while (!attachment?.url.endsWith(".png")) {
+    console.log("waiting for attachment");
     const messages = await retrieveMessages(50);
     const targetMessage = findMessage({ messages, prompt, index, option });
 
@@ -241,7 +242,7 @@ export async function POST(request: Request) {
       // https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#sending_events_from_the_server
       // "Content-Type": "text/event-stream",
       "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": "no-cache",
+      // "Cache-Control": "no-cache",
     }),
   });
 }
