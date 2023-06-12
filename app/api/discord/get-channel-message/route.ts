@@ -113,6 +113,8 @@ const findAttachmentInMessages = async ({
     };
   }
 
+  console.log("initial message :", initialMessage);
+
   while (!attachment?.url.endsWith(".png")) {
     const messages = await retrieveMessages(50);
     const targetMessage = findMessage({ messages, prompt, index, option });
@@ -123,7 +125,12 @@ const findAttachmentInMessages = async ({
     const isIntervalOk =
       targetMessageTimestamp && targetMessageTimestamp >= targetTimestamp;
 
-    await wait(targetMessage?.attachments[0] ? 2000 : 8000);
+    console.log("targetMessageTimestamp :", targetMessageTimestamp);
+    console.log("targetTimestamp :", targetTimestamp);
+    console.log("isIntervalOk :", isIntervalOk);
+
+    await wait(3000);
+    // await wait(targetMessage?.attachments[0] ? 2000 : 8000);
 
     console.log("targetMessage :", targetMessage);
 
@@ -232,7 +239,6 @@ export async function POST(request: Request) {
       // since we don't use browser's EventSource interface, specifying content-type is optional.
       // the eventsource-parser library can handle the stream response as SSE, as long as the data format complies with SSE:
       // https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#sending_events_from_the_server
-
       // "Content-Type": "text/event-stream",
       // "Cache-Control": "no-cache",
     }),
