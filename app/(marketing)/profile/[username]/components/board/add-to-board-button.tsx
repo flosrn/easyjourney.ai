@@ -11,6 +11,7 @@ import { Button } from "~/components/ui/button";
 type AddToBoardButtonProps = {
   boardId: string;
   name: string;
+  icon?: string | null;
 };
 
 const addToBoard = async ({
@@ -31,7 +32,7 @@ const addToBoard = async ({
   return response.json();
 };
 
-const AddToBoardButton = ({ boardId, name }: AddToBoardButtonProps) => {
+const AddToBoardButton = ({ boardId, name, icon }: AddToBoardButtonProps) => {
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
@@ -73,7 +74,7 @@ const AddToBoardButton = ({ boardId, name }: AddToBoardButtonProps) => {
   };
   return (
     <Button onClick={handleAddToBoard} variant="ghost" className="truncate">
-      {name}
+      {icon} {name}
     </Button>
   );
 };

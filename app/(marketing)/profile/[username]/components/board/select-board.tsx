@@ -52,7 +52,11 @@ const SelectBoard = ({ onCloseHandler }: SelectBoardProps) => {
                   onCloseHandler();
                 }}
               >
-                <AddToBoardButton boardId={board.id} name={board.name} />
+                <AddToBoardButton
+                  boardId={board.id}
+                  name={board.name}
+                  icon={board.icon}
+                />
               </CommandItem>
             ))
           ) : (

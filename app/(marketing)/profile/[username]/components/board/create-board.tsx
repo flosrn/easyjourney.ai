@@ -165,7 +165,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
 
   return (
     <CommandGroup>
-      <CommandItem>
+      <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
         <div className="flex flex-col">
           <Label htmlFor="boardName" className="mb-2 ml-1 truncate">
             Name
@@ -180,7 +180,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
           />
         </div>
       </CommandItem>
-      <CommandItem>
+      <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
         <div className="flex flex-col">
           <Label htmlFor="boardIcon" className="mb-2 ml-1 truncate">
             Icon
@@ -194,7 +194,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
           />
         </div>
       </CommandItem>
-      <CommandItem>
+      <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
         <div className="flex flex-col">
           <Label htmlFor="boardDescription" className="mb-2 ml-1 truncate">
             Description
@@ -208,7 +208,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
           />
         </div>
       </CommandItem>
-      <CommandItem>
+      <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
         <div className="flex items-center">
           <Label htmlFor="IsPublic" className=" ml-1 mr-2 truncate">
             Public
@@ -220,7 +220,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
           />
         </div>
       </CommandItem>
-      <CommandItem>
+      <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
         <Button
           onClick={handleBoardForm}
           variant="secondary"
