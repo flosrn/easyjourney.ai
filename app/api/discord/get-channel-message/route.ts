@@ -123,6 +123,8 @@ const findAttachmentInMessages = async ({
     const isIntervalOk =
       targetMessageTimestamp && targetMessageTimestamp >= targetTimestamp;
 
+    console.log("targetMessage :", targetMessage);
+
     await wait(targetMessage?.attachments[0] ? 2000 : 8000);
 
     if (targetMessage && targetMessage.attachments.length === 0) {
@@ -192,7 +194,6 @@ export async function POST(request: Request) {
             failCount = failCount + 1;
           }
           const isError = failCount > 5;
-          console.log("attachment :", attachment);
           // Enfile les données dans le contrôleur de flux
           const message = {
             type: attachment ? "image_iteration" : "loading",
