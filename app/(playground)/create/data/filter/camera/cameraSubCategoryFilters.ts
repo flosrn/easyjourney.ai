@@ -1,12 +1,12 @@
 import type { SubCategoryFilter } from "../../../types/typeFilters";
-import { cameraSettingsFilters } from "./subCategories/cameraSettings";
 import { cameraandFilmTypesFilters } from "./subCategories/cameraandFilmTypes";
 import { cameraandScenesFilters } from "./subCategories/cameraandScenes";
+import { cameraSettingsFilters } from "./subCategories/cameraSettings";
 import { filmSizesFilters } from "./subCategories/filmSizes";
 import { focusandDepthofFieldFilters } from "./subCategories/focusandDepthofField";
+import { lensesFilters } from "./subCategories/lenses";
 import { lensFiltersFilters } from "./subCategories/lensFilters";
 import { lensSizesFilters } from "./subCategories/lensSizes";
-import { lensesFilters } from "./subCategories/lenses";
 import { megapixelResolutionsFilters } from "./subCategories/megapixelResolutions";
 import { otherFilters } from "./subCategories/other";
 import { zoomPanandTiltFilters } from "./subCategories/zoomPanandTilt";

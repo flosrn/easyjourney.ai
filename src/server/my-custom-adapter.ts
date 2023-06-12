@@ -1,7 +1,7 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import type { PrismaClient } from "@prisma/client";
-import type { Adapter, AdapterUser } from "next-auth/adapters";
 import { getUniqueUsername } from "~/utils/getUniqueUsername";
+import type { Adapter, AdapterUser } from "next-auth/adapters";
 
 export const MyCustomAdapter = (prisma: PrismaClient): Adapter => ({
   ...PrismaAdapter(prisma),

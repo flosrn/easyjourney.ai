@@ -1,6 +1,6 @@
 import type { SubCategoryFilter } from "../../../types/typeFilters";
-import { curvesandWavesFilters } from "./subCategories/CurvesandWaves";
 import { circularFilters } from "./subCategories/circular";
+import { curvesandWavesFilters } from "./subCategories/CurvesandWaves";
 import { dullandPointyFilters } from "./subCategories/dullandPointy";
 import { knotsFilters } from "./subCategories/knots";
 import { otherFilters } from "./subCategories/other";

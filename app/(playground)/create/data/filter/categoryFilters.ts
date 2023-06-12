@@ -1,3 +1,4 @@
+import type { CategoryFilter } from "../../types/typeFilters";
 import { artistsFilters } from "./artists/artistsSubCategoryFilters";
 import { cameraFilters } from "./camera/cameraSubCategoryFilters";
 import { colorsAndPalettesFilters } from "./colors_and_Palettes/colors_and_PalettesSubCategoryFilters";
@@ -17,9 +18,8 @@ import { outerSpaceFilters } from "./outer_Space/outer_SpaceSubCategoryFilters";
 import { perspectiveFilters } from "./perspective/perspectiveSubCategoryFilters";
 import { sfxAndShadersFilters } from "./sFX_and_Shaders/sFX_and_ShadersSubCategoryFilters";
 import { structuralModificationFilters } from "./structural_Modification/structural_ModificationSubCategoryFilters";
-import { tVAndMoviesFilters } from "./tV_and_Movies/tV_and_MoviesSubCategoryFilters";
 import { themesSubCategoryFilters } from "./themes/themesSubCategoryFilters";
-import type { CategoryFilter } from "../../types/typeFilters";
+import { tVAndMoviesFilters } from "./tV_and_Movies/tV_and_MoviesSubCategoryFilters";
 
 export const categoryFilters: CategoryFilter[] = [
   {
