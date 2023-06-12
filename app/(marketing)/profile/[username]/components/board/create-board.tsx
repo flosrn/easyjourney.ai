@@ -166,7 +166,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
   return (
     <CommandGroup>
       <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
-        <div className="flex flex-col">
+        <div className="flex w-full flex-col md:w-auto">
           <Label htmlFor="boardName" className="mb-2 ml-1 truncate">
             Name
           </Label>
@@ -176,12 +176,12 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
             placeholder="name"
             required
             onChange={handleInputChange}
-            className="col-span-3"
+            className=""
           />
         </div>
       </CommandItem>
       <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
-        <div className="flex flex-col">
+        <div className="flex w-full flex-col md:w-auto">
           <Label htmlFor="boardIcon" className="mb-2 ml-1 truncate">
             Icon
           </Label>
@@ -195,7 +195,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
         </div>
       </CommandItem>
       <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
-        <div className="flex flex-col">
+        <div className="flex w-full flex-col md:w-auto">
           <Label htmlFor="boardDescription" className="mb-2 ml-1 truncate">
             Description
           </Label>
@@ -226,7 +226,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
           variant="secondary"
           className="w-full"
         >
-          Create and add
+          {selectedPosters.length > 0 ? "Create and add" : "Create"}
         </Button>
       </CommandItem>
     </CommandGroup>

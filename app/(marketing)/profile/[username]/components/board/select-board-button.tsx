@@ -30,11 +30,16 @@ const SelectBoardButton = () => {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="secondary" role="combobox" aria-expanded={open}>
+        <Button
+          variant="secondary"
+          role="combobox"
+          aria-expanded={open}
+          className="truncate"
+        >
           Select a board
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-52 p-0">
+      <PopoverContent className="w-screen p-0 md:w-52">
         <Command>
           {!openForm && <CommandInput placeholder="Search a board" />}
           <ScrollArea className="h-80">
