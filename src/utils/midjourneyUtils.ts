@@ -1,12 +1,11 @@
-import type { APIMessage } from "discord-api-types/v10";
 import { env } from "~/env.mjs";
+import type { APIMessage } from "discord-api-types/v10";
 
 export const serverId = "1100971215138594907";
 export const channelId = "1100971252304330814";
-export const salaiToken = env.NEXT_PUBLIC_DISCORD_SALAI_TOKEN;
 
 export const headers = {
-  Authorization: salaiToken,
+  Authorization: env.NEXT_PUBLIC_DISCORD_SALAI_TOKEN,
 };
 
 export const retrieveMessages = async (limit = 50): Promise<APIMessage[]> => {

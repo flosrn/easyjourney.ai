@@ -32,7 +32,7 @@ const PosterImageContainer = ({
       alt={prompt}
       width={width ?? 500}
       height={height ?? 500}
-      className="h-auto max-h-[85vh] w-full rounded-md object-cover"
+      className="h-auto max-h-[85vh] w-full object-cover"
     />
     <ZoomImage imageUrl={image} alt={prompt} />
     <div>

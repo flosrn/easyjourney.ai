@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo } from "react";
+import removeSpacesFromString from "~/utils/removeSpacesFromString";
 import { motion } from "framer-motion";
 import {
   ArrowBigUpIcon,
@@ -13,7 +14,7 @@ import {
   UndoIcon,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
@@ -54,6 +55,7 @@ const MainColumn = () => {
     loadingType,
     setIsLoading,
     setLoadingType,
+    setLoadingCount,
     imageType,
     setImageType,
     message,
@@ -75,6 +77,7 @@ const MainColumn = () => {
     state.loadingType,
     state.setIsLoading,
     state.setLoadingType,
+    state.setLoadingCount,
     state.imageType,
     state.setImageType,
     state.message,
@@ -189,8 +192,10 @@ const MainColumn = () => {
   const hasOption =
     chaos || stylize || stop || quality || version || tile || ratio;
 
+  const trimmedPromptValue = removeSpacesFromString(promptValue);
+
   // FINAL PROMPT
-  const prompt = `${promptValue.trim()}${
+  const prompt = `${trimmedPromptValue}${
     styles.length > 0 ? `, ${styles}` : ""
   }${
     hasOption ? "," : ""
@@ -246,8 +251,9 @@ const MainColumn = () => {
       setMessage,
       setIsLoading,
       setLoadingType,
+      setLoadingCount,
     }),
-    [setImageType, setMessage, setIsLoading, setLoadingType]
+    [setImageType, setMessage, setIsLoading, setLoadingType, setLoadingCount]
   );
 
   useEffect(() => {

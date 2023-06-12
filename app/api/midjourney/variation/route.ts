@@ -5,11 +5,11 @@ import { channelId, headers, serverId } from "~/utils/midjourneyUtils";
 const variation = async ({
   index,
   messageId,
-  messageHash,
+  jobId,
 }: {
   index: number;
   messageId: string;
-  messageHash: string;
+  jobId: string;
 }): Promise<number> => {
   const session = await getServerAuthSession();
   if (!session) {
@@ -28,7 +28,7 @@ const variation = async ({
       session_id: "1f3dbdf09efdf93d81a3a6420882c92c",
       data: {
         component_type: 2,
-        custom_id: `MJ::JOB::variation::${index}::${messageHash}`,
+        custom_id: `MJ::JOB::variation::${index}::${jobId}`,
       },
     }),
   });
