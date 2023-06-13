@@ -2,49 +2,71 @@
 
 import React from "react";
 import Link from "next/link";
-import type { Board, BoardPoster, User } from "@prisma/client";
+import type { Board, User } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
-import BoardView from "../components/board/board-view";
+import { cn } from "~/lib/classNames";
 
-type BoardWithPosters = Board & {
-  boardPosters: BoardPoster[];
-};
+import BoardPreview from "../components/board/board-preview";
+
 type UserProfileProps = {
   params: { username: User["username"] };
 };
+const fetchUserBoards = async (username: string) => {
+  const response = await fetch(`/api/boards/?username=${username}`);
+  return response.json();
+};
 
 function Boards({ params: { username } }: UserProfileProps) {
-  const { status, data } = useQuery({
-    queryKey: ["board", username],
-    queryFn: async () => {
-      const response = await fetch(`/api/boards/?username=${username}`);
-      return response.json();
-    },
+  const user = useSession();
+  const userId = user.data?.user.id;
+  const {
+    isPending,
+    isError,
+    data: boards,
+  } = useQuery({
+    queryKey: ["boards", username],
+    queryFn: async () => fetchUserBoards(username),
   });
 
-  if (status === "pending") {
+  if (isPending) {
     return <span>Loading...</span>;
   }
 
-  if (status === "error") {
+  if (isError) {
     toast.error("Something went wrong getting thoose board, please try again");
   }
 
-  const sessionId = data.sessionId;
-  const boards: BoardWithPosters[] = data.userBoards;
+  const columns = [[], [], [], []];
+  boards.map((board, index) => {
+    columns[index % 4].push(board);
+  });
+
   return (
-    <div>
-      {boards.map((board) => (
-        <Link key={board.id} href={`/profile/${username}/boards/${board.id}`}>
-          <BoardView
-            key={board.id}
-            board={board}
-            isUserBoard={sessionId === board.userId}
-          />
-        </Link>
-      ))}
+    <div className={cn("grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4")}>
+      {boards.length > 0 &&
+        columns.map((column, index) => (
+          <div className="grid h-fit gap-3" key={index}>
+            {column.map((board: Board) => (
+              <Link
+                key={board.id}
+                href={`/profile/${username}/boards/${board.id}`}
+              >
+                <BoardPreview
+                  key={board.id}
+                  boardId={board.id}
+                  name={board.name}
+                  icon={board.icon}
+                  isPublic={board.isPublic}
+                  collection={board.boardPosters.length}
+                  isUserBoard={userId === board.userId}
+                />
+              </Link>
+            ))}
+          </div>
+        ))}
     </div>
   );
 }

@@ -20,7 +20,7 @@ export async function GET(request: Request) {
         return NextResponse.json({ status: 404, message: "User not found" });
       }
 
-      const userBoards = await (user.id === sessionId
+      const boards = await (user.id === sessionId
         ? prisma.board.findMany({
             orderBy: {
               createdAt: "desc",
@@ -48,7 +48,7 @@ export async function GET(request: Request) {
             },
           }));
 
-      return NextResponse.json({ status: 200, userBoards, sessionId });
+      return NextResponse.json(boards);
     } catch {
       return NextResponse.json({
         status: 500,

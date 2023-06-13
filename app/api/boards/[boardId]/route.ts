@@ -2,21 +2,23 @@ import { NextResponse } from "next/server";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
-export async function GET(request: Request) {
+export async function GET(
+  request: Request,
+  { params }: { params: { boardId: string } }
+) {
   const session = await getServerAuthSession();
   const sessionId = session?.user.id;
-  const { searchParams } = new URL(request.url);
-  const boardId = searchParams.get("boardId");
+  const boardId = params.boardId;
 
   if (boardId) {
     try {
-      const board = await prisma.board.findUnique({
+      const userBoard = await prisma.board.findUnique({
         where: {
           id: boardId,
         },
       });
 
-      const userBoard = await (board?.userId === sessionId
+      const board = await (userBoard?.userId === sessionId
         ? prisma.board.findFirst({
             where: { id: boardId },
             include: {
@@ -41,7 +43,7 @@ export async function GET(request: Request) {
             },
           }));
 
-      return NextResponse.json({ status: 200, userBoard, sessionId });
+      return NextResponse.json(board);
     } catch {
       return NextResponse.json({
         status: 500,

@@ -24,7 +24,7 @@ const SelectBoardButton = () => {
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenForm(!openForm);
   };
 
   return (
