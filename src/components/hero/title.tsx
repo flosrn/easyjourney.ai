@@ -15,7 +15,7 @@ const Title = ({ title, subtitle }: TitleProps) => (
         <h1 className="text-center text-4xl font-extrabold leading-tight tracking-tighter md:text-5xl lg:text-6xl">
           {title}
         </h1>
-        <div className="absolute -right-16 top-2">
+        <div className="absolute -right-16 top-0 sm:top-2">
           <BadgeAnimatedBorderGradient label="beta" />
         </div>
       </div>
