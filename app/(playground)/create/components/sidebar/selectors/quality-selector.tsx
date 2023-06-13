@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 
-import { useQualityStore } from "../../store/qualityStore";
+import { useQualityStore } from "../../../store/qualityStore";
 
 const QualitySelector = () => {
   const [isQualitySelectorDisabled, qualityValue, setQualityValue] =

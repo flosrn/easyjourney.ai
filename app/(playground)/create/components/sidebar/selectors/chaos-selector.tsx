@@ -7,7 +7,7 @@ import { Slider } from "~/components/ui/slider";
 
 import { cn } from "~/lib/classNames";
 
-import { useChaosStore } from "../../store/chaosStore";
+import { useChaosStore } from "../../../store/chaosStore";
 
 type SliderProps = React.ComponentProps<typeof Slider>;
 

@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 
-import { useVersionStore } from "../../store/versionStore";
+import { useVersionStore } from "../../../store/versionStore";
 
 const VersionSelector = () => {
   const [versionValue, isVersionSelectorDisabled, setVersionValue] =

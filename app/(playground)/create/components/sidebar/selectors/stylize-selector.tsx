@@ -7,7 +7,7 @@ import { Slider } from "~/components/ui/slider";
 
 import { cn } from "~/lib/classNames";
 
-import { useStylizeStore } from "../../store/stylizeStore";
+import { useStylizeStore } from "../../../store/stylizeStore";
 
 type SliderProps = React.ComponentProps<typeof Slider>;
 

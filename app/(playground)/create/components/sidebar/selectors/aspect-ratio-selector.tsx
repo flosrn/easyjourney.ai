@@ -10,9 +10,9 @@ import {
   aspectRatios,
   aspectRatiosV4,
   type AspectRatio,
-} from "../../data/aspectRatios";
-import { useRatioStore } from "../../store/ratioStore";
-import { useVersionStore } from "../../store/versionStore";
+} from "../../../data/aspectRatios";
+import { useRatioStore } from "../../../store/ratioStore";
+import { useVersionStore } from "../../../store/versionStore";
 
 type AspectRatioSelectorProps = {};
 

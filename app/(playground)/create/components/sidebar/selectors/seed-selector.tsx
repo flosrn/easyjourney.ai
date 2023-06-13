@@ -8,7 +8,7 @@ import { Input } from "~/components/ui/input";
 
 import { cn } from "~/lib/classNames";
 
-import { useSeedStore } from "../../store/seedStore";
+import { useSeedStore } from "../../../store/seedStore";
 
 const SeedSelector = () => {
   const [seedValue, isSeedSelectorDisabled, setSeedValue] = useSeedStore(

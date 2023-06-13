@@ -4,8 +4,8 @@ import { useEffect } from "react";
 
 import { Switch } from "~/components/ui/switch";
 
-import { useTileStore } from "../../store/tileStore";
-import { useVersionStore } from "../../store/versionStore";
+import { useTileStore } from "../../../store/tileStore";
+import { useVersionStore } from "../../../store/versionStore";
 
 const TileSelector = () => {
   const [

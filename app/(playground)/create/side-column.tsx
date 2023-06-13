@@ -6,10 +6,10 @@ import { Separator } from "~/components/ui/separator";
 import { cn } from "~/lib/classNames";
 
 import AccordionSide from "./components/sidebar/accordion-side";
-import AspectRatioSelector from "./components/sidebar/aspect-ratio-selector";
-import { FilterSelector } from "./components/sidebar/filter-selector";
+import AspectRatioSelector from "./components/sidebar/selectors/aspect-ratio-selector";
+import { FilterSelector } from "./components/sidebar/selectors/filter-selector";
+import VersionSelector from "./components/sidebar/selectors/version-selector";
 import TitleComponent from "./components/sidebar/title-component";
-import VersionSelector from "./components/sidebar/version-selector";
 
 type SidebarProps = React.HTMLAttributes<HTMLDivElement> & {};
 

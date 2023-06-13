@@ -31,8 +31,11 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 
 import { cn } from "~/lib/classNames";
 
-import { useFilterStore } from "../../store/filterStore";
-import { type Filter, type SubCategoryFilter } from "../../types/typeFilters";
+import { useFilterStore } from "../../../store/filterStore";
+import {
+  type Filter,
+  type SubCategoryFilter,
+} from "../../../types/typeFilters";
 
 type ModelSelectorProps = PopoverProps & {};
 
