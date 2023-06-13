@@ -39,7 +39,7 @@ const TextTitleAnimated = ({}: TextTitleAnimatedProps) => {
         </motion.h1>
         <motion.div
           variants={FADE_DOWN_ANIMATION_VARIANTS}
-          className="mt-3 text-center md:absolute md:right-12 md:top-2 md:mt-0"
+          className="mt-3 text-center md:absolute md:right-14 md:top-5 md:mt-0"
         >
           <BadgeAnimatedBorderGradient label="beta" />
         </motion.div>
