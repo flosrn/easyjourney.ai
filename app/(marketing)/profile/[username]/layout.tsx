@@ -66,7 +66,9 @@ export default async function LayoutProfileHeader({
           <p className="mt-2 text-lg">@{user.username}</p>
 
           {!isCurrentUser && (
-            <FollowButton userId={user.id} isFollowing={isFollowing} />
+            <div className="pt-4">
+              <FollowButton userId={user.id} isFollowing={isFollowing} />
+            </div>
           )}
 
           <CounterBar
