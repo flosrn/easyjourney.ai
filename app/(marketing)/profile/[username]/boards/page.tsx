@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import type { Board, BoardPoster, User } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -33,15 +34,16 @@ function Boards({ params: { username } }: UserProfileProps) {
 
   const sessionId = data.sessionId;
   const boards: BoardWithPosters[] = data.userBoards;
-
   return (
     <div>
       {boards.map((board) => (
-        <BoardView
-          key={board.id}
-          props={board}
-          isUserBoard={sessionId === board.userId}
-        />
+        <Link key={board.id} href={`/profile/${username}/boards/${board.id}`}>
+          <BoardView
+            key={board.id}
+            board={board}
+            isUserBoard={sessionId === board.userId}
+          />
+        </Link>
       ))}
     </div>
   );

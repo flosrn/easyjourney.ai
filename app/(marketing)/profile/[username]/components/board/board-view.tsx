@@ -1,46 +1,22 @@
+"use Client";
+
 import React from "react";
-import type { BoardPoster, Board as BoardType } from "@prisma/client";
-
-import DeleteBoardButton from "./delete-board-button";
-import RemoveFromBoardButton from "./remove-from-board-button";
-import UpdateBoardForm from "./update-board-button";
-
-type BoardWithPosters = BoardType & {
-  boardPosters: BoardPoster[];
-};
+import type { Board } from "@prisma/client";
 
 type boardProps = {
-  props: BoardWithPosters;
+  board: Board;
   isUserBoard: boolean;
 };
 
-const BoardView = ({ props, isUserBoard }: boardProps) => {
+const BoardView = ({ board }: boardProps) => {
   return (
-    <div>
-      <div>Name: {props.name}</div>
-      <div>Slug: {props.slug}</div>
-      <div>Description: {props.description}</div>
-      <div>Icon: {props.icon}</div>
-      <div>Is Public: {props.isPublic ? "Yes" : "No"}</div>
-      {props.boardPosters.map((poster) => (
-        <div key={poster.posterId}>
-          <div>Position: {poster.position}</div>
-          <div>Poster ID: {poster.posterId}</div>
-          {isUserBoard && (
-            <RemoveFromBoardButton
-              posterId={poster.posterId}
-              boardId={props.id}
-            />
-          )}
-        </div>
-      ))}
-      {isUserBoard && (
-        <div>
-          <UpdateBoardForm props={props} />
-          <DeleteBoardButton boardId={props.id} />
-        </div>
-      )}
-    </div>
+    <>
+      <div>Name: {board.name}</div>
+      <div>Slug: {board.slug}</div>
+      <div>Description: {board.description}</div>
+      <div>Icon: {board.icon}</div>
+      <div>Is Public: {board.isPublic ? "Yes" : "No"}</div>
+    </>
   );
 };
 

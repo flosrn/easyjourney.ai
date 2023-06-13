@@ -8,7 +8,6 @@ import { useSession } from "next-auth/react";
 
 import { Tabs, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
-import CreateNewBoardForm from "./board/create-board";
 import SelectButton from "./select-button";
 
 type TabsHeaderProps = {
