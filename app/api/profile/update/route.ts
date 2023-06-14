@@ -19,14 +19,14 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ status: 401, message: "User not logged in" });
   }
 
-  if (username.lenght < 3 || username.lenght > 30) {
+  if (username.length <= 3 || username.length > 30) {
     return NextResponse.json({
       status: 400,
       message:
         "Username is too short(3 characters min) or too long(25 characters max))",
     });
   }
-  if (name.lenght < 3 || name.lenght > 30) {
+  if (name.length <= 3 || name.length > 30) {
     return NextResponse.json({
       status: 400,
       message:
@@ -34,11 +34,33 @@ export async function PATCH(request: Request) {
     });
   }
 
+  if (username === session.user.username) {
+    try {
+      const profileId = session.user.id;
+
+      const updateUser = await prisma.user.update({
+        where: { id: profileId },
+        data: { name },
+      });
+
+      return NextResponse.json({
+        status: 200,
+        data: updateUser,
+        message: "profile updated",
+      });
+    } catch (error: unknown) {
+      return NextResponse.json({
+        status: 500,
+        message: `Internal server error: ${error}`,
+      });
+    }
+  }
+
   const usernameTaken = await isUsernameTaken(username);
 
   if (usernameTaken) {
     return NextResponse.json({
-      status: 400,
+      status: 405,
       message: "Username is already taken",
     });
   }

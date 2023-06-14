@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { toast, Toaster } from "react-hot-toast";
 
@@ -40,7 +40,14 @@ const updateUserProfile = async ({ username, name }: DataProfileProps) => {
 const SettingsDialog = ({ open, openChangeHandler }: SettingsDialogProps) => {
   const { data: session } = useSession();
   const [username, setUsername] = useState(session?.user.username);
-  const [name, setName] = useState(session?.user.name);
+  const [name, setName] = useState(session?.user.name ?? "name");
+
+  useEffect(() => {
+    if (session) {
+      setUsername(session.user.username);
+      setName(session.user.name ?? "name");
+    }
+  }, [session]);
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -63,6 +70,9 @@ const SettingsDialog = ({ open, openChangeHandler }: SettingsDialogProps) => {
       }
       if (data.status === 200) {
         toast.success("Your profile has been successfully updated");
+        setTimeout(() => {
+          window.location.reload();
+        }, 4000);
       }
     } catch (error: unknown) {
       toast.error(`failed to update profile: ${error}`);
