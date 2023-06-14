@@ -18,16 +18,23 @@ const followUser = async (followerId: string, followingId: string) => {
   });
 
   if (existingFollow) {
-    throw new Error("You are already following this user");
+    // Delete the existing follow
+    await prisma.follow.delete({
+      where: {
+        id: existingFollow.id,
+      },
+    });
+    return { id: existingFollow.id };
+  } else {
+    // Create a new follow
+    const newFollow = await prisma.follow.create({
+      data: {
+        follower: { connect: { id: followerId } },
+        following: { connect: { id: followingId } },
+      },
+    });
+    return newFollow;
   }
-
-  const newFollow = await prisma.follow.create({
-    data: {
-      follower: { connect: { id: followerId } },
-      following: { connect: { id: followingId } },
-    },
-  });
-  return newFollow;
 };
 
 export async function POST(
