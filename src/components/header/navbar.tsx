@@ -48,16 +48,18 @@ export const Navbar = () => {
                     </NavigationMenuLink>
                   </li>
                 )}
-                {megaMenuItem.menu.map((menuItem) => (
-                  <ListItem
-                    key={menuItem.title}
-                    title={menuItem.title}
-                    href={menuItem.href}
-                    disabled={menuItem.disabled}
-                  >
-                    {menuItem.description}
-                  </ListItem>
-                ))}
+                <div>
+                  {megaMenuItem.menu.map((menuItem) => (
+                    <ListItem
+                      key={menuItem.title}
+                      title={menuItem.title}
+                      href={menuItem.href}
+                      disabled={menuItem.disabled}
+                    >
+                      {menuItem.description}
+                    </ListItem>
+                  ))}
+                </div>
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
