@@ -156,8 +156,16 @@ model Follow {
 // -----------------------------------------------------------------------------
 
 enum UserRole {
+  SUPERADMIN
   ADMIN
+  BETATESTER
   USER
+}
+
+enum SubscriptionPlan {
+  FREE
+  PRO
+  ELITE
 }
 
 // -----------------------------------------------------------------------------
@@ -168,12 +176,19 @@ model User {
   id            String    @id @default(cuid())
   name          String
   username      String    @unique
-  email         String?   @unique
+  email         String    @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
-  role          UserRole?
 
-  stripeCustomerId String? @map("stripe_customer_id")
+  role        UserRole?        @default(USER)
+  plan        SubscriptionPlan @default(FREE)
+  credits     Int              @default(5)
+  freeCredits Int              @default(10)
+
+  stripeCustomerId       String?   @map("stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 
   accounts Account[]
   sessions Session[]
