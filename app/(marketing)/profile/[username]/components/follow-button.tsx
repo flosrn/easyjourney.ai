@@ -55,9 +55,10 @@ const FollowButton = ({
         )}
       >
         <span
-          className={`text-sm font-semibold ${
+          className={cn(
+            "text-sm font-semibold",
             isFollowing ? "text-white" : "text-gray-700"
-          }`}
+          )}
         >
           {isFollowing ? "Following" : "Follow"}
         </span>
