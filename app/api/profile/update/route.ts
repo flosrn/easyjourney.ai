@@ -13,10 +13,25 @@ const isUsernameTaken = async (username: string): Promise<boolean> => {
 
 export async function PATCH(request: Request) {
   const session = await getServerAuthSession();
-  const { username } = await request.json();
+  const { username, name } = await request.json();
 
   if (!session) {
     return NextResponse.json({ status: 401, message: "User not logged in" });
+  }
+
+  if (username.lenght < 3 || username.lenght > 30) {
+    return NextResponse.json({
+      status: 400,
+      message:
+        "Username is too short(3 characters min) or too long(25 characters max))",
+    });
+  }
+  if (name.lenght < 3 || name.lenght > 30) {
+    return NextResponse.json({
+      status: 400,
+      message:
+        "Name is too short(3 characters min) or too long(25 characters max))",
+    });
   }
 
   const usernameTaken = await isUsernameTaken(username);
@@ -33,7 +48,7 @@ export async function PATCH(request: Request) {
 
     const updateUser = await prisma.user.update({
       where: { id: profileId },
-      data: { username },
+      data: { username, name },
     });
 
     return NextResponse.json({
