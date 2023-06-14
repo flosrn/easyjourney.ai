@@ -1,15 +1,20 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
-import type { Board, Poster, User } from "@prisma/client";
+import React, { useEffect, useState } from "react";
+import type { Board, User } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
+import { Button } from "~/components/ui/button";
+
+import Posters from "../../../../posters/components/posters";
+import { useBoardStore } from "../../../../store/boardStore";
 import DeleteBoardButton from "../../components/board/delete-board-button";
 import RemoveFromBoardButton from "../../components/board/remove-from-board-button";
-import UpdateBoardForm from "../../components/board/update-board-button";
+import TitleBoard from "../../components/board/title-board";
+import UpdateBoardButton from "../../components/board/update-board-button";
+import UpdateBoardForm from "../../components/board/update-board-form";
 
 type UserBoardPosterProps = {
   params: { username: User["username"]; boardId: Board["id"] };
@@ -26,8 +31,16 @@ const fetchBoardPosters = async (boardId: string) => {
 };
 
 const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
+  const [setBoardIsPublic, setBoardName, setBoardIcon, setBoardDescription] =
+    useBoardStore((state) => [
+      state.setBoardIsPublic,
+      state.setBoardName,
+      state.setBoardIcon,
+      state.setBoardDescription,
+    ]);
   const user = useSession();
   const userId = user.data?.user.id;
+  const [isUpdateForm, setIsUpdateForm] = useState(false);
 
   const {
     isPending: isBoardPending,
@@ -47,6 +60,19 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
     queryFn: async () => fetchBoardPosters(boardId),
   });
 
+  useEffect(() => {
+    if (board) {
+      setBoardName(board.name);
+      setBoardIsPublic(board.isPublic);
+      if (board.icon) {
+        setBoardIcon(board.icon);
+      }
+      if (board.description) {
+        setBoardDescription(board.description);
+      }
+    }
+  }, [board]);
+
   if (isBoardPending || isPostersPending) {
     return <span>Loading...</span>;
   }
@@ -58,33 +84,36 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
     toast.error("Something went wrong getting the posters, please try again");
   }
 
+  const toggleUpdateFormHandler = () => {
+    setIsUpdateForm(!isUpdateForm);
+  };
+
   const isUserBoard = userId === board.userId;
   return (
     <div>
-      <div>Icon: {board.icon}</div>
-      <div>Name: {board.name}</div>
-      <div>Description: {board.description}</div>
-      <div>Is Public: {board.isPublic ? "Yes" : "No"}</div>
-      {posters.map((poster: Poster) => (
-        <div key={poster.id}>
-          <Image
-            src={poster.image}
-            alt={poster.prompt}
-            width={poster.width ?? 500}
-            height={poster.height ?? 500}
-            className="w-full rounded-b-xl"
-          />
-          {isUserBoard && (
-            <RemoveFromBoardButton posterId={poster.id} boardId={board.id} />
-          )}
-        </div>
-      ))}
-      {isUserBoard && (
-        <div>
-          <UpdateBoardForm props={board} />
-          <DeleteBoardButton boardId={board.id} />
-        </div>
-      )}
+      <div className="mb-2 flex h-48 w-full flex-col rounded-xl p-2 ring-2 ring-offset-highlight">
+        {isUpdateForm ? <UpdateBoardForm /> : <TitleBoard />}
+      </div>
+      <div className="mb-2 flex flex-row-reverse">
+        {isUserBoard && isUpdateForm ? (
+          <>
+            <UpdateBoardButton
+              boardId={board.id}
+              toggleUpdateFormHandler={toggleUpdateFormHandler}
+            />
+            <DeleteBoardButton boardId={board.id} />
+          </>
+        ) : (
+          <Button
+            onClick={toggleUpdateFormHandler}
+            variant="secondary"
+            className=" float-left"
+          >
+            Update
+          </Button>
+        )}
+      </div>
+      <Posters posters={posters} noMargin />
     </div>
   );
 };

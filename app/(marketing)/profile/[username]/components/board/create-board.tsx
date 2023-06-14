@@ -8,7 +8,6 @@ import { useSelectPosterStore } from "~/store/selectPosterStore";
 import toast from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
-import { Checkbox } from "~/components/ui/checkbox";
 import { CommandGroup, CommandItem } from "~/components/ui/command";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
@@ -62,23 +61,14 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
   const toggleSelectBar = useSelectBarStore((state) => state.toggleSelectBar);
-  const [
-    boardName,
-    boardSlug,
-    boardIcon,
-    boardDescription,
-    boardIsPublic,
-    setBoardForm,
-    setBoardIsPublic,
-  ] = useBoardStore((state) => [
-    state.boardName,
-    state.boardSlug,
-    state.boardIcon,
-    state.boardDescription,
-    state.boardIsPublic,
-    state.setBoardForm,
-    state.setBoardIsPublic,
-  ]);
+  const [boardName, boardSlug, setBoardName, setBoardSlug] = useBoardStore(
+    (state) => [
+      state.boardName,
+      state.boardSlug,
+      state.setBoardName,
+      state.setBoardSlug,
+    ]
+  );
 
   const createNewMutation = useMutation({
     mutationFn: createNewBoard,
@@ -102,18 +92,11 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
     },
   });
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setBoardForm(name, value);
-
-    if (name === "boardName") {
-      const slugValue = value.replaceAll(/\s+/g, "-").toLowerCase();
-      setBoardForm("boardSlug", slugValue);
-    }
-  };
-
-  const handleCheckboxChange = () => {
-    setBoardIsPublic(!boardIsPublic);
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const name = event.target.value;
+    const slug = name.replaceAll(/\s+/g, "-").toLowerCase();
+    setBoardName(name);
+    setBoardSlug(slug);
   };
 
   const handleBoardForm = async () => {
@@ -121,9 +104,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
       const board: BoardType = {
         name: boardName,
         slug: boardSlug,
-        icon: boardIcon,
-        description: boardDescription,
-        isPublic: boardIsPublic,
+        isPublic: true,
       };
       clearSelectedPosters();
       toggleSelectBar();
@@ -175,48 +156,8 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
             name="boardName"
             placeholder="name"
             required
-            onChange={handleInputChange}
+            onChange={handleNameChange}
             className=""
-          />
-        </div>
-      </CommandItem>
-      <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
-        <div className="flex w-full flex-col md:w-auto">
-          <Label htmlFor="boardIcon" className="mb-2 ml-1 truncate">
-            Icon
-          </Label>
-          <Input
-            id="boardIcon"
-            name="boardIcon"
-            placeholder="icon"
-            onChange={handleInputChange}
-            className="col-span-3"
-          />
-        </div>
-      </CommandItem>
-      <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
-        <div className="flex w-full flex-col md:w-auto">
-          <Label htmlFor="boardDescription" className="mb-2 ml-1 truncate">
-            Description
-          </Label>
-          <Input
-            id="boardDescription"
-            name="boardDescription"
-            placeholder="description"
-            onChange={handleInputChange}
-            className="col-span-3"
-          />
-        </div>
-      </CommandItem>
-      <CommandItem className="aria-selected:text-accent-transparent aria-selected:bg-transparent">
-        <div className="flex items-center">
-          <Label htmlFor="IsPublic" className=" ml-1 mr-2 truncate">
-            Public
-          </Label>
-          <Checkbox
-            name="boardIsPublic"
-            id="IsPublic"
-            onCheckedChange={handleCheckboxChange}
           />
         </div>
       </CommandItem>

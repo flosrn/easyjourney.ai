@@ -42,7 +42,11 @@ const DeleteBoardButton = ({ boardId }: deleteBoardProps) => {
     }
   };
 
-  return <Button onClick={handleDeleteBoard}>Delete</Button>;
+  return (
+    <Button onClick={handleDeleteBoard} className="mr-2">
+      Delete
+    </Button>
+  );
 };
 
 export default DeleteBoardButton;
