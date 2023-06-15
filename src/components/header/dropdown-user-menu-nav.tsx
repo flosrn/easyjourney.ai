@@ -65,7 +65,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
       case "/logout": {
         return signOut({ callbackUrl: "/" });
       }
-      case "/settings": {
+      case "/account": {
         return setIsDialogOpen(true);
       }
       default: {

@@ -152,4 +152,13 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      // disable rules for next.js Route Handlers files
+      files: ["**/route.ts"],
+      rules: {
+        "no-console": "off",
+      },
+    },
+  ],
 };

@@ -141,22 +141,9 @@ const userMenu: NavItem[][] = [
   ],
   [
     {
-      title: "Gains",
-      href: "/dashboard/rewards",
-      icon: DollarSign,
-      disabled: true,
-    },
-    {
       title: "Abonnement",
-      href: "/dashboard/subscription",
+      href: "/settings/subscription",
       icon: CalendarCheck2,
-      disabled: true,
-    },
-    {
-      title: "Méthodes de paiement",
-      href: "/dashboard/payments",
-      icon: CreditCard,
-      disabled: true,
     },
     {
       title: "Historique des transactions",
