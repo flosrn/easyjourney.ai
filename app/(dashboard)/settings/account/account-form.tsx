@@ -114,7 +114,7 @@ export const AccountForm = () => {
                       variant={"outline"}
                       className={cn("w-[240px] pl-3 text-left font-normal")}
                     >
-                      {field.value ? (
+                      {(field.value as Date | undefined) ? (
                         format(field.value, "MMMM d, yyyy")
                       ) : (
                         <span className="opacity-50">Select a date</span>
