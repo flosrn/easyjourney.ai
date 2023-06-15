@@ -2,13 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import DropdownUserMenuNav from "~/components/header/dropdown-user-menu-nav";
 import { Navbar } from "~/components/header/navbar";
-import { CartDrawer } from "~/components/shopping-cart/cart-drawer";
 import { Button } from "~/components/ui/button";
 
 import { cn } from "~/lib/classNames";
@@ -21,7 +20,6 @@ const Header = ({ expanded }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const pathname = usePathname();
   const isCreatePage = pathname === "/create";
-  const router = useRouter();
   const { data: session } = useSession();
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 shadow-sm">
@@ -66,7 +64,6 @@ const Header = ({ expanded }: HeaderProps) => {
               </Button>
             )}
             <DropdownUserMenuNav />
-            <CartDrawer />
           </div>
         </div>
       </div>

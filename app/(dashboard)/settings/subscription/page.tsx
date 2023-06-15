@@ -1,11 +1,12 @@
 import { redirect } from "next/navigation";
 import { authOptions, getCurrentUser } from "~/server/auth";
 
-import { BillingForm } from "~/components/billing/billing-form";
 import { Separator } from "~/components/ui/separator";
 
 import { stripe } from "~/lib/stripe";
 import { getUserSubscriptionPlan } from "~/lib/subscriptions";
+
+import { BillingForm } from "./billing-form";
 
 export default async function SettingsAccountPage() {
   const user = await getCurrentUser();
