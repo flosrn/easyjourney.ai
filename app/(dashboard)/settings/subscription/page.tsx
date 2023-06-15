@@ -11,7 +11,7 @@ export default async function SettingsAccountPage() {
   const user = await getCurrentUser();
 
   if (!user) {
-    redirect(authOptions.pages?.signIn || "/login");
+    redirect(authOptions.pages?.signIn ?? "/login");
   }
 
   const subscriptionPlan = await getUserSubscriptionPlan(user.id);

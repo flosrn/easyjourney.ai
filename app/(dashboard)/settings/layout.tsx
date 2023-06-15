@@ -2,7 +2,7 @@ import React from "react";
 
 import { Separator } from "~/components/ui/separator";
 
-import { SidebarNav } from "./components/sidebar-nav";
+import SidebarNav from "./components/sidebar-nav";
 
 const sidebarNavItems = [
   {

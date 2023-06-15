@@ -137,6 +137,7 @@ const ProfileForm = () => {
               control={form.control}
               key={field.id}
               name={`urls.${index}.value`}
+              // eslint-disable-next-line no-shadow
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className={cn(index !== 0 && "sr-only")}>

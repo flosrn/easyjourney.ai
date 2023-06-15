@@ -55,7 +55,6 @@ export async function POST(
     const data = await followUser(followerId, followingId);
     return NextResponse.json(data);
   } catch (error: unknown) {
-    // eslint-disable-next-line no-console
     console.error(error);
     return NextResponse.json(
       {
