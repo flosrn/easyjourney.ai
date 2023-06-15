@@ -40,11 +40,6 @@ const megaMenu: MegaMenu[] = [
         description: "Explorez les posters par catégories, thèmes et styles",
         disabled: true,
       },
-      {
-        title: "My feed",
-        href: "/posters/my-feed",
-        description: "Découvrez les posters des personnes que vous suivez",
-      },
     ],
     hasLeftImage: true,
   },

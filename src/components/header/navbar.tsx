@@ -1,6 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 
+import MyFeedMenuItem from "~/components/header/MyFeedMenuItem";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -59,6 +60,7 @@ export const Navbar = () => {
                       {menuItem.description}
                     </ListItem>
                   ))}
+                  <MyFeedMenuItem ListItem={ListItem} />
                 </div>
               </ul>
             </NavigationMenuContent>
