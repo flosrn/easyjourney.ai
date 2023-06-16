@@ -1,4 +1,6 @@
-import { Button, buttonVariants } from "~/components/ui/button";
+import * as React from "react";
+
+import PricingCardButton from "~/components/cards/pricing-card-button";
 
 import { cn } from "~/lib/classNames";
 
@@ -52,15 +54,7 @@ export default function PricingCard({
           ))}
         </ul>
       </div>
-      {plan !== "FREE" && (
-        <Button
-          className={cn(buttonVariants({ variant: "default", size: "lg" }), {
-            "pointer-events-none": disabled,
-          })}
-        >
-          Choose this plan
-        </Button>
-      )}
+      {plan !== "FREE" && <PricingCardButton disabled={disabled} />}
     </div>
   );
 }
