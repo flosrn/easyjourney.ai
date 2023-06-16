@@ -10,7 +10,13 @@ export async function GET(
     try {
       const boardPosters = await prisma.boardPoster.findMany({
         where: { boardId },
-        include: { poster: true },
+        include: {
+          poster: {
+            include: {
+              likes: true,
+            },
+          },
+        },
       });
 
       const posters = boardPosters.map((bp) => bp.poster);
