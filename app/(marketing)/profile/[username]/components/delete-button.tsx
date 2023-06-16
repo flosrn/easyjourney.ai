@@ -10,6 +10,10 @@ import toast from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
 
+type DeleteButtonProps = {
+  isSelectedPostersEmpty: boolean;
+};
+
 const deletePoster = async (posterId: string) => {
   const response = await fetch("/api/posters/delete", {
     method: "POST",
@@ -19,13 +23,12 @@ const deletePoster = async (posterId: string) => {
   return response;
 };
 
-const DeleteButton = () => {
-  const { username } = useParams() ?? {};
-
+const DeleteButton = ({ isSelectedPostersEmpty }: DeleteButtonProps) => {
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
   const toggleSelectBar = useSelectBarStore((state) => state.toggleSelectBar);
+  const { username } = useParams() ?? {};
 
   const deleteMutation = useMutation({
     mutationFn: deletePoster,
@@ -59,7 +62,11 @@ const DeleteButton = () => {
     }
   };
   return (
-    <Button onClick={handleDelete} className="mx-2">
+    <Button
+      onClick={handleDelete}
+      disabled={isSelectedPostersEmpty}
+      className="mx-2"
+    >
       {deleteMutation.isPending && (
         <Loader2Icon className="mr-2 h-5 animate-spin" />
       )}

@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { BadgePlusIcon, HeartIcon, LucideBookOpen } from "lucide-react";
-import { useSession } from "next-auth/react";
 
 import { Tabs, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
@@ -12,7 +11,7 @@ import SelectButton from "./select-button";
 
 type TabsHeaderProps = {
   username: string;
-  isCurrentUser?: boolean;
+  isValidUser?: boolean;
 };
 
 const getTabsValue = (pathname: string | null) => {
@@ -26,15 +25,12 @@ const getTabsValue = (pathname: string | null) => {
   }
 };
 
-const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
-  const { data: session } = useSession();
-  const { boardId } = useParams();
+const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
+  const { boardId } = useParams() ?? {};
   const pathname = usePathname();
   const value = getTabsValue(pathname);
 
   const boardWithoutId = !!pathname?.includes("boards") && !boardId;
-  const isAdmin = session?.user.role === "ADMIN";
-  const showSelectButton = isCurrentUser ?? isAdmin;
   return (
     <div className="my-4 flex items-center justify-between space-x-3">
       <Tabs value={value} className="w-[300px]">
@@ -59,7 +55,7 @@ const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
           </Link>
         </TabsList>
       </Tabs>
-      {showSelectButton && !boardWithoutId && (
+      {isValidUser && !boardWithoutId && (
         <div className="flex text-center">
           <SelectButton />
         </div>

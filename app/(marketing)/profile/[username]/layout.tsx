@@ -38,7 +38,10 @@ export default async function LayoutProfileHeader({
     return <div>User not found</div>;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+  const isAdmin = session?.user.role === "ADMIN";
   const isCurrentUser = session?.user.id === user.id;
+  const isValidUser = isAdmin || isCurrentUser;
   const totalPosters = user.posters.length;
   const totalLikes = user.posters.reduce(
     (total, poster) => total + poster.likes.length,
@@ -91,9 +94,9 @@ export default async function LayoutProfileHeader({
         </div>
       </div>
       <div className="container max-w-6xl">
-        <TabsHeader username={username} isCurrentUser={isCurrentUser} />
+        <TabsHeader username={username} isValidUser={isValidUser} />
         {children}
-        <SelectBar />
+        <SelectBar isValidUser={isValidUser} />
         <Toaster position="bottom-right" />
       </div>
     </>

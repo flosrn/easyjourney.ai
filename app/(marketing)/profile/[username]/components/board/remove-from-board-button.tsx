@@ -8,6 +8,10 @@ import toast from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
 
+type RemoveFromBoardButtonProps = {
+  isSelectedPostersEmpty: boolean;
+};
+
 const removeFromBoard = async ({
   posterId,
   boardId,
@@ -26,7 +30,9 @@ const removeFromBoard = async ({
   return response.json();
 };
 
-const RemoveFromBoardButton = () => {
+const RemoveFromBoardButton = ({
+  isSelectedPostersEmpty,
+}: RemoveFromBoardButtonProps) => {
   const { boardId } = useParams() ?? {};
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
@@ -57,7 +63,14 @@ const RemoveFromBoardButton = () => {
       toast.error("Something went removing this poster, please try again");
     }
   };
-  return <Button onClick={handleRemoveFromBoardButton}>Remove Poster</Button>;
+  return (
+    <Button
+      onClick={handleRemoveFromBoardButton}
+      disabled={isSelectedPostersEmpty}
+    >
+      Remove Poster
+    </Button>
+  );
 };
 
 export default RemoveFromBoardButton;

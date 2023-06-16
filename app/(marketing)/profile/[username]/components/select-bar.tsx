@@ -13,21 +13,24 @@ import RemoveFromBoardButton from "./board/remove-from-board-button";
 import SelectBoardButton from "./board/select-board-button";
 import DeleteButton from "./delete-button";
 
-export const SelectBar = () => {
+type SelectBarProps = {
+  isValidUser?: boolean;
+};
+
+export const SelectBar = ({ isValidUser }: SelectBarProps) => {
   const pathname = usePathname();
   const boards = pathname?.includes("boards");
   const likes = pathname?.includes("likes");
-
   const [isModalSelectOpen, toggleModalSelectOpen, closeSelectBar] =
     useSelectBarStore((state) => [
       state.isSelectBarOpen,
       state.toggleSelectBar,
       state.closeSelectBar,
     ]);
-
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
+  const isSelectedPostersEmpty = selectedPosters.length === 0;
 
   let numberOfPosters;
   if (selectedPosters.length === 0) {
@@ -68,8 +71,19 @@ export const SelectBar = () => {
               <div>{numberOfPosters}</div>
             </div>
             <div className="mr-2 flex">
-              {!boards && !likes && <DeleteButton />}
-              {boards ? <RemoveFromBoardButton /> : <SelectBoardButton />}
+              {!boards && !likes && isValidUser && (
+                <DeleteButton isSelectedPostersEmpty={isSelectedPostersEmpty} />
+              )}
+              {!boards && (
+                <SelectBoardButton
+                  isSelectedPostersEmpty={isSelectedPostersEmpty}
+                />
+              )}
+              {boards && isValidUser && (
+                <RemoveFromBoardButton
+                  isSelectedPostersEmpty={isSelectedPostersEmpty}
+                />
+              )}
               <Button
                 variant="secondary"
                 className="ml-2"

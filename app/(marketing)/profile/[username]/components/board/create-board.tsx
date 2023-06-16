@@ -167,7 +167,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
           variant="secondary"
           className="w-full"
         >
-          {selectedPosters.length > 0 ? "Create and add" : "Create"}
+          Create and add
         </Button>
       </CommandItem>
     </CommandGroup>

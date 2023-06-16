@@ -15,7 +15,13 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 import CreateBoard from "./create-board";
 import SelectBoard from "./select-board";
 
-const SelectBoardButton = () => {
+type SelectBoardButtonProps = {
+  isSelectedPostersEmpty: boolean;
+};
+
+const SelectBoardButton = ({
+  isSelectedPostersEmpty,
+}: SelectBoardButtonProps) => {
   const [open, setOpen] = useState(false);
   const [openForm, setOpenForm] = useState(false);
 
@@ -34,6 +40,7 @@ const SelectBoardButton = () => {
           variant="secondary"
           role="combobox"
           aria-expanded={open}
+          disabled={isSelectedPostersEmpty}
           className="truncate"
         >
           Add to board
