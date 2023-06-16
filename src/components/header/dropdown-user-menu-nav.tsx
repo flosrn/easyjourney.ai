@@ -98,7 +98,12 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
             </Button>
           )}
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="bottom" align="end" className="w-56">
+        <DropdownMenuContent
+          side="bottom"
+          sideOffset={10}
+          align="end"
+          className="w-56"
+        >
           <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {siteConfig.userMenu.map((group, index) => {
