@@ -60,7 +60,9 @@ export const Navbar = () => {
                       {menuItem.description}
                     </ListItem>
                   ))}
-                  <MyFeedMenuItem ListItem={ListItem} />
+                  {megaMenuItem.title === "Explorer" && (
+                    <MyFeedMenuItem ListItem={ListItem} />
+                  )}
                 </div>
               </ul>
             </NavigationMenuContent>

@@ -1,4 +1,4 @@
-"useClient";
+"use client";
 
 import React from "react";
 import { useSession } from "next-auth/react";
@@ -20,6 +20,7 @@ export default function MyFeedMenuItem({ ListItem }: MyFeedMenuItemProps) {
   const { data: session, status } = useSession();
 
   const isUserConnected = status === "authenticated";
+
   return (
     <ListItem
       title="My feed"
