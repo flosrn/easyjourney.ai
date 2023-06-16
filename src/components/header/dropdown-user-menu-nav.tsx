@@ -40,7 +40,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
   if (session === null) {
     return (
       <Button variant="outline" href="/api/auth/signin">
-        Se connecter
+        Login
       </Button>
     );
   }

@@ -62,7 +62,7 @@ const Header = ({ expanded }: HeaderProps) => {
               </Button>
             )}
             <div className="flex w-[94px] items-center space-x-2 md:w-[102px] md:space-x-4">
-              <UserCreditsPopover />
+              {session?.user && <UserCreditsPopover />}
               <DropdownUserMenuNav />
             </div>
           </div>
