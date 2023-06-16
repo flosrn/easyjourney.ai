@@ -16,6 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
+import { Separator } from "~/components/ui/separator";
 
 const UserCreditsPopover = () => {
   const { data: session, update } = useSession();
@@ -48,10 +49,8 @@ const UserCreditsPopover = () => {
             <p className="text-sm text-muted-foreground">
               Your total credits. You can use them to generate posters.
             </p>
-            <span className="text-xs italic text-muted-foreground/50">
-              1 credit = 1 generation.
-            </span>
           </div>
+          <Separator />
           <div className="grid gap-2">
             <div className="flex items-center justify-between gap-4">
               <HoverCard>
@@ -83,6 +82,15 @@ const UserCreditsPopover = () => {
               </HoverCard>
               <span className="font-bold text-primary">{freeCredits}</span>
             </div>
+          </div>
+          <span className="text-right text-xs italic text-muted-foreground/50">
+            1 credit = 1 generation.
+          </span>
+          <Separator />
+          <div className="mt-2">
+            <Button href="/pricing" variant="outline" className="w-full">
+              Buy more credits
+            </Button>
           </div>
         </div>
       </PopoverContent>
