@@ -36,7 +36,7 @@ const SelectBoardButton = () => {
           aria-expanded={open}
           className="truncate"
         >
-          Select a board
+          Add to board
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-screen p-0 md:w-52">

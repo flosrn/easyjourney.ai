@@ -36,14 +36,23 @@ const UpdateBoardButton = ({
   boardId,
   toggleUpdateFormHandler,
 }: UpdateBoardButtonProps) => {
-  const [boardIcon, boardName, boardSlug, boardDescription, boardIsPublic] =
-    useBoardStore((state) => [
-      state.boardIcon,
-      state.boardName,
-      state.boardSlug,
-      state.boardDescription,
-      state.boardIsPublic,
-    ]);
+  const [
+    boardIcon,
+    boardName,
+    boardSlug,
+    boardDescription,
+    boardIsPublic,
+    saveOriginalState,
+    restoreOriginalState,
+  ] = useBoardStore((state) => [
+    state.boardIcon,
+    state.boardName,
+    state.boardSlug,
+    state.boardDescription,
+    state.boardIsPublic,
+    state.saveOriginalState,
+    state.restoreOriginalState,
+  ]);
 
   const updateMutation = useMutation({
     mutationFn: updateBoard,
@@ -55,9 +64,14 @@ const UpdateBoardButton = ({
         toast.success("Your changes have been save");
       }
     },
+    onError: () => {
+      restoreOriginalState();
+    },
   });
 
   const handleBoardUpdateForm = () => {
+    saveOriginalState();
+
     const board: BoardType = {
       icon: boardIcon,
       name: boardName,
@@ -65,6 +79,7 @@ const UpdateBoardButton = ({
       description: boardDescription,
       isPublic: boardIsPublic,
     };
+
     void updateMutation.mutateAsync({ board, boardId });
     toggleUpdateFormHandler();
   };

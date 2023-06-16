@@ -6,27 +6,37 @@ export async function GET(
   { params }: { params: { boardId: string } }
 ) {
   const boardId = params.boardId;
-  if (boardId) {
-    try {
-      const boardPosters = await prisma.boardPoster.findMany({
-        where: { boardId },
-        include: {
-          poster: {
-            include: {
-              likes: true,
-            },
-          },
-        },
-      });
 
-      const posters = boardPosters.map((bp) => bp.poster);
+  try {
+    const board = await prisma.board.findFirst({
+      where: { id: boardId },
+    });
 
-      return NextResponse.json(posters);
-    } catch {
+    if (!board) {
       return NextResponse.json({
-        status: 500,
-        message: "Internal Server Error",
+        status: 404,
+        message: "Board not found",
       });
     }
+
+    const boardPosters = await prisma.boardPoster.findMany({
+      where: { boardId: board.id },
+      include: {
+        poster: {
+          include: {
+            likes: true,
+          },
+        },
+      },
+    });
+
+    const posters = boardPosters.map((bp) => bp.poster);
+
+    return NextResponse.json(posters);
+  } catch {
+    return NextResponse.json({
+      status: 500,
+      message: "Internal Server Error",
+    });
   }
 }

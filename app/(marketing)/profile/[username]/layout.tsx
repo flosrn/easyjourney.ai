@@ -3,8 +3,10 @@ import Image from "next/image";
 import type { User } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
+import { Toaster } from "react-hot-toast";
 
 import FollowButton from "./components/follow-button";
+import { SelectBar } from "./components/select-bar";
 import TabsHeader from "./components/tabs-header";
 
 type LayoutProfileHeaderProps = {
@@ -91,6 +93,8 @@ export default async function LayoutProfileHeader({
       <div className="container max-w-6xl">
         <TabsHeader username={username} isCurrentUser={isCurrentUser} />
         {children}
+        <SelectBar />
+        <Toaster position="bottom-right" />
       </div>
     </>
   );

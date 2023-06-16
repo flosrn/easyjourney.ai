@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
 import { motion } from "framer-motion";
@@ -8,13 +9,21 @@ import { LucideX } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 
+import RemoveFromBoardButton from "./board/remove-from-board-button";
 import SelectBoardButton from "./board/select-board-button";
 import DeleteButton from "./delete-button";
 
 export const SelectBar = () => {
-  const [isModalSelectOpen, toggleModalSelectOpen] = useSelectBarStore(
-    (state) => [state.isSelectBarOpen, state.toggleSelectBar]
-  );
+  const pathname = usePathname();
+  const boards = pathname?.includes("boards");
+  const likes = pathname?.includes("likes");
+
+  const [isModalSelectOpen, toggleModalSelectOpen, closeSelectBar] =
+    useSelectBarStore((state) => [
+      state.isSelectBarOpen,
+      state.toggleSelectBar,
+      state.closeSelectBar,
+    ]);
 
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
@@ -33,6 +42,11 @@ export const SelectBar = () => {
     clearSelectedPosters();
     toggleModalSelectOpen();
   };
+
+  useEffect(() => {
+    clearSelectedPosters();
+    closeSelectBar();
+  }, [pathname]);
 
   return (
     <>
@@ -54,8 +68,8 @@ export const SelectBar = () => {
               <div>{numberOfPosters}</div>
             </div>
             <div className="mr-2 flex">
-              <SelectBoardButton />
-              <DeleteButton />
+              {!boards && !likes && <DeleteButton />}
+              {boards ? <RemoveFromBoardButton /> : <SelectBoardButton />}
               <Button
                 variant="secondary"
                 className="ml-2"

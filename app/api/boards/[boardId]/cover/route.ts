@@ -6,22 +6,32 @@ export async function GET(
   { params }: { params: { boardId: string } }
 ) {
   const boardId = params.boardId;
-  if (boardId) {
-    try {
-      const boardPoster = await prisma.boardPoster.findFirst({
-        where: { position: 1, boardId },
-      });
 
-      const poster = await prisma.poster.findFirst({
-        where: { id: boardPoster?.posterId },
-      });
+  try {
+    const board = await prisma.board.findFirst({
+      where: { id: boardId },
+    });
 
-      return NextResponse.json(poster);
-    } catch {
+    if (!board) {
       return NextResponse.json({
-        status: 500,
-        message: "Internal Server Error",
+        status: 404,
+        message: "Board not found",
       });
     }
+
+    const boardPoster = await prisma.boardPoster.findFirst({
+      where: { position: 1, boardId: board.id },
+    });
+
+    const poster = await prisma.poster.findFirst({
+      where: { id: boardPoster?.posterId },
+    });
+
+    return NextResponse.json(poster);
+  } catch {
+    return NextResponse.json({
+      status: 500,
+      message: "Internal Server Error",
+    });
   }
 }

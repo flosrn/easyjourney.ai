@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { BadgePlusIcon, HeartIcon, LucideBookOpen } from "lucide-react";
 import { useSession } from "next-auth/react";
 
@@ -28,9 +28,11 @@ const getTabsValue = (pathname: string | null) => {
 
 const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
   const { data: session } = useSession();
+  const { boardId } = useParams();
   const pathname = usePathname();
   const value = getTabsValue(pathname);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+
+  const boardWithoutId = !!pathname?.includes("boards") && !boardId;
   const isAdmin = session?.user.role === "ADMIN";
   const showSelectButton = isCurrentUser ?? isAdmin;
   return (
@@ -57,7 +59,7 @@ const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
           </Link>
         </TabsList>
       </Tabs>
-      {showSelectButton && (
+      {showSelectButton && !boardWithoutId && (
         <div className="flex text-center">
           <SelectButton />
         </div>

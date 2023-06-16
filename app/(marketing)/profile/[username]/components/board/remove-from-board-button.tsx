@@ -3,21 +3,17 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
+import { useSelectPosterStore } from "~/store/selectPosterStore";
 import toast from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
-
-type RemoveFomBoardButtonProps = {
-  posterId: string;
-  boardId: string;
-};
 
 const removeFromBoard = async ({
   posterId,
   boardId,
 }: {
   posterId: string;
-  boardId: string;
+  boardId: string[] | string;
 }) => {
   const response = await fetch("/api/boards/remove", {
     method: "POST",
@@ -30,10 +26,12 @@ const removeFromBoard = async ({
   return response.json();
 };
 
-const RemoveFromBoardButton = ({
-  posterId,
-  boardId,
-}: RemoveFomBoardButtonProps) => {
+const RemoveFromBoardButton = () => {
+  const { boardId } = useParams() ?? {};
+  const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
+    (state) => [state.selectedPosters, state.clearSelectedPosters]
+  );
+
   const removeFromMutation = useMutation({
     mutationFn: removeFromBoard,
     onSuccess: async (data) => {
@@ -48,10 +46,13 @@ const RemoveFromBoardButton = ({
   ) => {
     event.preventDefault();
     try {
-      await removeFromMutation.mutateAsync({
-        posterId,
-        boardId,
+      selectedPosters.map(async (posterId) => {
+        await removeFromMutation.mutateAsync({
+          posterId,
+          boardId,
+        });
       });
+      clearSelectedPosters();
     } catch {
       toast.error("Something went removing this poster, please try again");
     }

@@ -11,7 +11,6 @@ import { Button } from "~/components/ui/button";
 import Posters from "../../../../posters/components/posters";
 import { useBoardStore } from "../../../../store/boardStore";
 import DeleteBoardButton from "../../components/board/delete-board-button";
-import RemoveFromBoardButton from "../../components/board/remove-from-board-button";
 import TitleBoard from "../../components/board/title-board";
 import UpdateBoardButton from "../../components/board/update-board-button";
 import UpdateBoardForm from "../../components/board/update-board-form";
@@ -31,13 +30,19 @@ const fetchBoardPosters = async (boardId: string) => {
 };
 
 const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
-  const [setBoardIsPublic, setBoardName, setBoardIcon, setBoardDescription] =
-    useBoardStore((state) => [
-      state.setBoardIsPublic,
-      state.setBoardName,
-      state.setBoardIcon,
-      state.setBoardDescription,
-    ]);
+  const [
+    setBoardIsPublic,
+    setBoardName,
+    setBoardIcon,
+    setBoardDescription,
+    restoreOriginalState,
+  ] = useBoardStore((state) => [
+    state.setBoardIsPublic,
+    state.setBoardName,
+    state.setBoardIcon,
+    state.setBoardDescription,
+    state.restoreOriginalState,
+  ]);
   const user = useSession();
   const userId = user.data?.user.id;
   const [isUpdateForm, setIsUpdateForm] = useState(false);
@@ -84,8 +89,13 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
     toast.error("Something went wrong getting the posters, please try again");
   }
 
-  const toggleUpdateFormHandler = () => {
+  const toggleUpdateForm = () => {
     setIsUpdateForm(!isUpdateForm);
+  };
+
+  const handleCancel = () => {
+    restoreOriginalState();
+    toggleUpdateForm();
   };
 
   const isUserBoard = userId === board.userId;
@@ -99,13 +109,16 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
           <>
             <UpdateBoardButton
               boardId={board.id}
-              toggleUpdateFormHandler={toggleUpdateFormHandler}
+              toggleUpdateFormHandler={toggleUpdateForm}
             />
+            <Button onClick={handleCancel} variant="secondary" className="mr-2">
+              Cancel
+            </Button>
             <DeleteBoardButton boardId={board.id} />
           </>
         ) : (
           <Button
-            onClick={toggleUpdateFormHandler}
+            onClick={toggleUpdateForm}
             variant="secondary"
             className=" float-left"
           >
