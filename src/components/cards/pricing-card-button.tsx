@@ -35,7 +35,7 @@ const PricingCardButton = ({ disabled }: PricingCardButtonProps) => {
     const session = await response.json();
     console.log("session :", session);
     if (session) {
-      window.location.href = session.url;
+      // window.location.href = session.url;
     }
   }
 
