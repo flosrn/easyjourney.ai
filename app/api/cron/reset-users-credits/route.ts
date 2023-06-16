@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { prisma } from "~/server/db/prisma";
 
 export async function GET() {
@@ -12,4 +13,6 @@ export async function GET() {
     where: { plan: "PRO" },
     data: { credits: 50 },
   });
+
+  return NextResponse.json({ status: 200 });
 }
