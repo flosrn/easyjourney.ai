@@ -12,8 +12,8 @@ const getPostersOfFollowedUsers = async ({
   await prisma.poster.findMany({
     where: {
       user: {
-        following: {
-          some: {
+        followers: {
+          every: {
             followerId: userId,
           },
         },
@@ -22,6 +22,9 @@ const getPostersOfFollowedUsers = async ({
     include: {
       user: true,
       likes: true,
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
 
