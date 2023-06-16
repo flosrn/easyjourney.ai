@@ -14,7 +14,7 @@ export async function GET(request: Request) {
     const session = await getServerAuthSession();
 
     if (!session?.user || !session.user.email) {
-      return new Response(null, { status: 403 });
+      return NextResponse.json(null, { status: 403 });
     }
 
     const subscriptionPlan = await getUserSubscriptionPlan(session.user.id);
@@ -26,8 +26,6 @@ export async function GET(request: Request) {
         customer: subscriptionPlan.stripeCustomerId,
         return_url: subscriptionUrl,
       });
-
-      console.log("stripeSession :", stripeSession);
 
       return NextResponse.json({ url: stripeSession.url });
     }

@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { GemIcon, Menu } from "lucide-react";
+import { getSession, useSession } from "next-auth/react";
 
 import DropdownUserMenuNav from "~/components/header/dropdown-user-menu-nav";
 import { Navbar } from "~/components/header/navbar";
@@ -20,7 +20,15 @@ const Header = ({ expanded }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const pathname = usePathname();
   const isCreatePage = pathname === "/create";
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
+  const credits = session?.user.credits ?? 0;
+  const freeCredits = session?.user.freeCredits ?? 0;
+  const totalCredits = credits + freeCredits;
+
+  const refreshSession = async () => {
+    await update();
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 shadow-sm">
       <div
@@ -54,15 +62,19 @@ const Header = ({ expanded }: HeaderProps) => {
               <div className="absolute left-0 top-full flex justify-center" />
             </nav>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-4">
             {!isCreatePage && (
-              <Button
-                href={session ? "/create" : "/api/auth/signin"}
-                className="mr-2"
-              >
+              <Button href={session ? "/create" : "/api/auth/signin"}>
                 Create
               </Button>
             )}
+            <button
+              onClick={refreshSession}
+              className="flex items-center space-x-1"
+            >
+              <span className="">{totalCredits}</span>
+              <GemIcon className="h-5 w-5 text-violet-400" />
+            </button>
             <DropdownUserMenuNav />
           </div>
         </div>

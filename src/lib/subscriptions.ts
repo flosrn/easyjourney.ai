@@ -6,7 +6,7 @@ import type { UserSubscriptionPlan } from "~/types/subscription";
 export const getUserSubscriptionPlan = async (
   userId: string
 ): Promise<UserSubscriptionPlan> => {
-  const user = await prisma.user.findFirst({
+  const user = await prisma.user.findUnique({
     where: {
       id: userId,
     },
