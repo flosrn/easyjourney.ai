@@ -16,10 +16,12 @@ const PricingCardButton = ({ disabled }: PricingCardButtonProps) => {
 
   async function onSubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
+    console.log("onSubmit");
     setIsLoading(!isLoading);
 
     // Get a Stripe session URL.
     const response = await fetch("/api/users/stripe");
+    console.log("response :", response);
 
     if (!response.ok) {
       return toast.error(
@@ -31,6 +33,7 @@ const PricingCardButton = ({ disabled }: PricingCardButtonProps) => {
     // This could be a checkout page for initial upgrade.
     // Or portal to manage existing subscription.
     const session = await response.json();
+    console.log("session :", session);
     if (session) {
       window.location.href = session.url;
     }
