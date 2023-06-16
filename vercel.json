@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/cron/reset-credits",
+      "path": "/api/cron/reset-users-credits",
       "schedule": "0 8 * * *"
     }
   ]
