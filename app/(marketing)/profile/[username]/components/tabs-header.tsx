@@ -15,13 +15,24 @@ type TabsHeaderProps = {
   isCurrentUser?: boolean;
 };
 
+const getTabsValue = (pathname: string | null) => {
+  switch (true) {
+    case pathname?.includes("likes"):
+      return "liked";
+    case pathname?.includes("boards"):
+      return "boards";
+    default:
+      return "created";
+  }
+};
+
 const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
   const { data: session } = useSession();
   const pathname = usePathname();
-  const isLikePage = pathname?.includes("likes");
-  const value = isLikePage ? "liked" : "created";
+  const value = getTabsValue(pathname);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
   const isAdmin = session?.user.role === "ADMIN";
-  const showSelectButton = (isCurrentUser || isAdmin) && !isLikePage;
+  const showSelectButton = isCurrentUser ?? isAdmin;
   return (
     <div className="my-4 flex items-center justify-between space-x-3">
       <Tabs value={value} className="w-[300px]">
@@ -39,7 +50,7 @@ const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
             </TabsTrigger>
           </Link>
           <Link href={`/profile/${username}/boards`} className="w-1/3">
-            <TabsTrigger value="board" className="w-full">
+            <TabsTrigger value="boards" className="w-full">
               <LucideBookOpen className="mr-2 h-5 w-5 shrink-0" />
               Boards
             </TabsTrigger>
