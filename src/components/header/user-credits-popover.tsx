@@ -42,7 +42,7 @@ const UserCreditsPopover = () => {
           <span className="sr-only">Open credits popover</span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent sideOffset={10} className="w-80">
+      <PopoverContent sideOffset={10} align="end" className="w-80">
         <div className="grid gap-2">
           <div className="space-y-2">
             <h4 className="font-medium leading-none">Credits</h4>
@@ -80,7 +80,7 @@ const UserCreditsPopover = () => {
                   or inviting friends.
                 </HoverCardContent>
               </HoverCard>
-              <span className="font-bold text-primary">{freeCredits}</span>
+              <span className="font-bold text-green-400">{freeCredits}</span>
             </div>
           </div>
           <span className="text-right text-xs italic text-muted-foreground/50">

@@ -16,6 +16,7 @@ export default async function SettingsAccountPage() {
   }
 
   const subscriptionPlan = await getUserSubscriptionPlan(user.id);
+  console.log("subscriptionPlan :", subscriptionPlan);
 
   // If user has a pro plan, check cancel status on Stripe.
   let isCanceled = false;
