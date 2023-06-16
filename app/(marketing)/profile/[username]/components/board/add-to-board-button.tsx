@@ -1,9 +1,11 @@
 "use client;";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
+import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
@@ -33,6 +35,9 @@ const addToBoard = async ({
 };
 
 const AddToBoardButton = ({ boardId, name, icon }: AddToBoardButtonProps) => {
+  const session = useSession();
+  const username = session.data?.user.username;
+  const router = useRouter();
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
@@ -44,6 +49,7 @@ const AddToBoardButton = ({ boardId, name, icon }: AddToBoardButtonProps) => {
       if (data.status === 400) {
         toast.error("You already added this poster");
       }
+      router.push(`/profile/${username}/boards/${boardId}`);
     },
   });
 

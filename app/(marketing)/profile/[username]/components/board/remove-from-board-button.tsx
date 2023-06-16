@@ -27,16 +27,25 @@ const removeFromBoard = async ({
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
-  return response.json();
+  const data = await response.json();
+  return data;
 };
 
 const RemoveFromBoardButton = ({
   isSelectedPostersEmpty,
 }: RemoveFromBoardButtonProps) => {
   const { boardId } = useParams() ?? {};
-  const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
-    (state) => [state.selectedPosters, state.clearSelectedPosters]
-  );
+  const [
+    selectedPosters,
+    clearSelectedPosters,
+    addToRemoveFromBoard,
+    clearToRemoveFromBoard,
+  ] = useSelectPosterStore((state) => [
+    state.selectedPosters,
+    state.clearSelectedPosters,
+    state.addToRemoveFromBoard,
+    state.clearToRemoveFromBoard,
+  ]);
 
   const removeFromMutation = useMutation({
     mutationFn: removeFromBoard,
@@ -44,6 +53,9 @@ const RemoveFromBoardButton = ({
       if (data.status === 400) {
         toast.error("You already added this poster");
       }
+      selectedPosters.length > 1
+        ? toast.success("Posters have been removed")
+        : toast.success("Poster have been removed");
     },
   });
 
@@ -53,12 +65,14 @@ const RemoveFromBoardButton = ({
     event.preventDefault();
     try {
       selectedPosters.map(async (posterId) => {
+        addToRemoveFromBoard(posterId);
         await removeFromMutation.mutateAsync({
           posterId,
           boardId,
         });
       });
       clearSelectedPosters();
+      clearToRemoveFromBoard();
     } catch {
       toast.error("Something went removing this poster, please try again");
     }

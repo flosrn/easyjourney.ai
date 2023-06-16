@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
@@ -28,7 +27,6 @@ const DeleteButton = ({ isSelectedPostersEmpty }: DeleteButtonProps) => {
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
   const toggleSelectBar = useSelectBarStore((state) => state.toggleSelectBar);
-  const { username } = useParams() ?? {};
 
   const deleteMutation = useMutation({
     mutationFn: deletePoster,
@@ -36,25 +34,18 @@ const DeleteButton = ({ isSelectedPostersEmpty }: DeleteButtonProps) => {
       if (data.status === 409) {
         toast.error("You already deleted this poster!");
       }
+      selectedPosters.length > 1
+        ? toast.success("Posters have been deleted")
+        : toast.success("Poster have been deleted");
     },
   });
 
   const handleDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
-      const response = await Promise.all(
-        selectedPosters.map(async (id) => deleteMutation.mutateAsync(id))
-      );
-      const data = await response[0].json();
-      if (data) {
-        await fetch(`/api/revalidate?path=/profile/${username}`);
-        await fetch("/api/revalidate?path=/posters/new");
-        await fetch("/api/revalidate?path=/posters/popular");
-        setTimeout(() => {
-          clearSelectedPosters();
-          toggleSelectBar();
-        }, 400);
-      }
+      selectedPosters.map(async (id) => deleteMutation.mutateAsync(id));
+      clearSelectedPosters();
+      toggleSelectBar();
     } catch {
       toast.error(
         "Something went wrong deleting this poster, please try again"

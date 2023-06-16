@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import type { Board, User } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
+import { useSelectPosterStore } from "~/store/selectPosterStore";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
@@ -46,6 +47,19 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
   const user = useSession();
   const userId = user.data?.user.id;
   const [isUpdateForm, setIsUpdateForm] = useState(false);
+  const [
+    selectedPosters,
+    toRemove,
+    addToRemove,
+    clearSelectedPosters,
+    clearToRemove,
+  ] = useSelectPosterStore((state) => [
+    state.selectedPosters,
+    state.toRemove,
+    state.addToRemoveFromBoard,
+    state.clearSelectedPosters,
+    state.clearToRemoveFromBoard,
+  ]);
 
   const {
     isPending: isBoardPending,
@@ -97,7 +111,6 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
     restoreOriginalState();
     toggleUpdateForm();
   };
-
   const isUserBoard = userId === board.userId;
   return (
     <div>
