@@ -21,19 +21,18 @@ const getPostersOfFollowedUsers = async ({
     },
     include: {
       user: true,
+      likes: true,
     },
   });
 
 export async function GET(request: Request) {
   const session = await getServerAuthSession();
   const userId = session?.user.id;
-  console.log("userId :", userId);
 
   try {
     const posters = await getPostersOfFollowedUsers({ userId });
-    console.log("posters from server component:", posters);
 
-    return NextResponse.json({ status: 200, posters: mappedPosters });
+    return NextResponse.json({ status: 200, posters });
   } catch (error: unknown) {
     return NextResponse.json({
       status: 500,

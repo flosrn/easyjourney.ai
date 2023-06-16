@@ -15,7 +15,6 @@ const getNewPosters = async () =>
 
 export default async function NewPage() {
   const posters = await getNewPosters();
-
   return (
     <>
       <section className="container mt-6 grid items-center justify-center gap-6 pb-8">
