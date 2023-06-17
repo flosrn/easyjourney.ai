@@ -214,9 +214,12 @@ export async function POST(request: Request) {
         stream.enqueue(encoder.encode(JSON.stringify(message)));
 
         console.log("decrementing credits");
-        console.log("ddddd", `${env.NEXTAUTH_URL}/api/users/decrementCredits`);
+        console.log(
+          "ddddd",
+          `${env.NEXT_PUBLIC_URL}/api/users/decrementCredits`
+        );
 
-        await fetch(`${env.NEXTAUTH_URL}/api/users/decrementCredits`, {
+        await fetch(`${env.NEXT_PUBLIC_URL}/api/users/decrementCredits`, {
           method: "POST",
           headers: {
             // Include the `Cookie` header from the original request to maintain session
