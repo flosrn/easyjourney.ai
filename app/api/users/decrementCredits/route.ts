@@ -53,6 +53,8 @@ export async function POST(request: Request) {
       data: updatedData,
     });
 
+    console.log("user.credits :", user.credits);
+
     return NextResponse.json({ success: true, credits: user.credits });
   } catch (error: unknown) {
     console.log("error :", error);
