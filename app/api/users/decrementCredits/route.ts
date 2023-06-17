@@ -5,7 +5,7 @@ import { prisma } from "~/server/db/prisma";
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
 
-  if (!session) {
+  if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -18,6 +18,8 @@ export async function POST(request: Request) {
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
+
+    console.log("user :", user);
 
     let updatedData = {};
 
@@ -39,6 +41,8 @@ export async function POST(request: Request) {
         { status: 403 }
       );
     }
+
+    console.log("updatedData :", updatedData);
 
     await prisma.user.update({
       where: {

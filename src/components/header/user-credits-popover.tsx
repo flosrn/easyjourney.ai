@@ -89,7 +89,7 @@ const UserCreditsPopover = () => {
           <Separator />
           <div className="mt-2">
             <Button href="/pricing" variant="outline" className="w-full">
-              Buy more credits
+              Upgrade plan
             </Button>
           </div>
         </div>
