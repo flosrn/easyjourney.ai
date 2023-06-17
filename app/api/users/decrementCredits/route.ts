@@ -21,8 +21,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    console.log("user :", user);
-
     let updatedData = {};
 
     if (user.credits > 0) {
@@ -44,16 +42,12 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log("updatedData :", updatedData);
-
     await prisma.user.update({
       where: {
         id: user.id,
       },
       data: updatedData,
     });
-
-    console.log("user.credits :", user.credits);
 
     return NextResponse.json({ success: true, credits: user.credits });
   } catch (error: unknown) {
