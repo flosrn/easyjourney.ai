@@ -9,9 +9,8 @@ import { proPlan } from "~/config/subscriptions";
 
 export async function GET(request: Request) {
   try {
-    console.log("env.NEXT_PUBLIC_URL :", env.NEXT_PUBLIC_URL);
-    const subscriptionUrl = `${env.NEXT_PUBLIC_URL}"/settings/subscription"`;
     const session = await getServerAuthSession();
+    console.log("session :", session);
 
     if (!session?.user || !session.user.email) {
       return NextResponse.json(null, { status: 403 });
@@ -19,6 +18,9 @@ export async function GET(request: Request) {
 
     const subscriptionPlan = await getUserSubscriptionPlan(session.user.id);
     console.log("subscriptionPlan :", subscriptionPlan);
+
+    console.log("env.NEXT_PUBLIC_URL :", env.NEXT_PUBLIC_URL);
+    const subscriptionUrl = `${env.NEXT_PUBLIC_URL}"/settings/subscription"`;
 
     // The user is on the pro plan.
     // Create a portal session to manage subscription.

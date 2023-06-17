@@ -23,6 +23,8 @@ export async function GET(request: Request) {
       },
     });
 
+    console.log("followers :", followers);
+
     const followerIds = followers?.followers.map(
       (follower) => follower.followerId
     );
