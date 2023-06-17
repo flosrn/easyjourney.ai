@@ -32,7 +32,7 @@ export const Navbar = () => {
                 )}
               >
                 {megaMenuItem.hasLeftImage && (
-                  <li className="row-span-3">
+                  <li className="row-span-4">
                     <NavigationMenuLink asChild>
                       <Link
                         href="/posters/popular"
@@ -49,21 +49,20 @@ export const Navbar = () => {
                     </NavigationMenuLink>
                   </li>
                 )}
-                <div>
-                  {megaMenuItem.menu.map((menuItem) => (
-                    <ListItem
-                      key={menuItem.title}
-                      title={menuItem.title}
-                      href={menuItem.href}
-                      disabled={menuItem.disabled}
-                    >
-                      {menuItem.description}
-                    </ListItem>
-                  ))}
-                  {megaMenuItem.title === "Explorer" && (
-                    <MyFeedMenuItem ListItem={ListItem} />
-                  )}
-                </div>
+
+                {megaMenuItem.menu.map((menuItem) => (
+                  <ListItem
+                    key={menuItem.title}
+                    title={menuItem.title}
+                    href={menuItem.href}
+                    disabled={menuItem.disabled}
+                  >
+                    {menuItem.description}
+                  </ListItem>
+                ))}
+                {megaMenuItem.title === "Explorer" && (
+                  <MyFeedMenuItem ListItem={ListItem} />
+                )}
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
