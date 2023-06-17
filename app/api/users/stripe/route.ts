@@ -1,16 +1,16 @@
 import { NextResponse } from "next/server";
+import { env } from "~/env.mjs";
 import { getServerAuthSession } from "~/server/auth";
-import absoluteUrl from "~/utils/absoluteUrl";
 import { z } from "zod";
 
 import { stripe } from "~/lib/stripe";
 import { getUserSubscriptionPlan } from "~/lib/subscriptions";
 import { proPlan } from "~/config/subscriptions";
 
-const subscriptionUrl = absoluteUrl("/settings/subscription");
-
 export async function GET(request: Request) {
   try {
+    console.log("env.NEXT_PUBLIC_URL :", env.NEXT_PUBLIC_URL);
+    const subscriptionUrl = `${env.NEXT_PUBLIC_URL}"/settings/subscription"`;
     const session = await getServerAuthSession();
 
     if (!session?.user || !session.user.email) {
