@@ -12,7 +12,6 @@ export async function GET(request: Request) {
   try {
     const subscriptionUrl =
       "https://myposter-preview.vercel.app/settings/subscription";
-    console.log("subscriptionUrl :", subscriptionUrl);
     const session = await getServerAuthSession();
     console.log("session :", session);
 

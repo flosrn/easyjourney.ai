@@ -14,8 +14,7 @@ type PricingCardButtonProps = {
 const PricingCardButton = ({ disabled }: PricingCardButtonProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  async function onSubmit(event: React.MouseEvent<HTMLButtonElement>) {
-    event.preventDefault();
+  const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     setIsLoading(!isLoading);
 
     // Get a Stripe session URL.
@@ -35,7 +34,7 @@ const PricingCardButton = ({ disabled }: PricingCardButtonProps) => {
     if (session) {
       // window.location.href = session.url;
     }
-  }
+  };
 
   return (
     <Button
