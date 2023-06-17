@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { env } from "~/env.mjs";
 
 // import { getServerAuthSession } from "~/server/auth";
 // import { z } from "zod";
@@ -11,8 +10,8 @@ import { env } from "~/env.mjs";
 console.log("/api/users/stripe/route.ts");
 
 export async function GET(request: Request) {
-  console.log("env.NEXT_PUBLIC_URL :", env.NEXT_PUBLIC_URL);
-  const subscriptionUrl = `${env.NEXT_PUBLIC_URL}/settings/subscription`;
+  const subscriptionUrl = `https://myposter-preview.vercel.app/settings/subscription`;
+  console.log("subscriptionUrl :", subscriptionUrl);
 
   return NextResponse.json({ url: subscriptionUrl });
 
