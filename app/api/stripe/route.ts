@@ -1,21 +1,19 @@
 import { NextResponse } from "next/server";
-import type { User } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
-import { prisma } from "~/server/db/prisma";
+import absoluteUrl from "~/utils/absoluteUrl";
 
 import { stripe } from "~/lib/stripe";
 import { getUserSubscriptionPlan } from "~/lib/subscriptions";
 import { proPlan } from "~/config/subscriptions";
 
+const subscriptionUrl = absoluteUrl("/settings/subscription");
+
 export async function GET(request: Request) {
   const session = await getServerAuthSession();
-  console.log("session :", session);
 
   if (!session?.user || !session.user.email) {
     return NextResponse.json(null, { status: 403 });
   }
-  const subscriptionUrl =
-    "https://myposter-preview.vercel.app/settings/subscription";
 
   try {
     const subscriptionPlan = await getUserSubscriptionPlan(session.user.id);
