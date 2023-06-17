@@ -19,7 +19,7 @@ const PricingCardButton = ({ disabled }: PricingCardButtonProps) => {
     setIsLoading(!isLoading);
 
     // Get a Stripe session URL.
-    const response = await fetch("/api/stripe");
+    const response = await fetch("/api/users/stripe");
 
     if (!response.ok) {
       return toast.error(

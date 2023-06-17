@@ -1,25 +1,24 @@
 import { NextResponse } from "next/server";
 import { getServerAuthSession } from "~/server/auth";
+import absoluteUrl from "~/utils/absoluteUrl";
 import { z } from "zod";
 
 import { stripe } from "~/lib/stripe";
 import { getUserSubscriptionPlan } from "~/lib/subscriptions";
 import { proPlan } from "~/config/subscriptions";
 
-console.log("/api/users/stripe/route.ts");
+const subscriptionUrl = absoluteUrl("/settings/subscription");
 
 export async function GET(request: Request) {
+  const session = await getServerAuthSession();
+
+  if (!session?.user || !session.user.email) {
+    return NextResponse.json(null, { status: 403 });
+  }
+
   try {
-    const subscriptionUrl =
-      "https://myposter-preview.vercel.app/settings/subscription";
-    const session = await getServerAuthSession();
-    console.log("session :", session);
-
-    if (!session?.user || !session.user.email) {
-      return NextResponse.json(null, { status: 403 });
-    }
-
     const subscriptionPlan = await getUserSubscriptionPlan(session.user.id);
+    console.log("subscriptionPlan :", subscriptionPlan);
 
     // The user is on the pro plan.
     // Create a portal session to manage subscription.
