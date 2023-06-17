@@ -24,7 +24,7 @@ const getFollowersUserList = async (username: string) => {
   });
   const data = await response.json();
 
-  return data.data;
+  return data;
 };
 
 const getFollowedUserList = async (username: string) => {
