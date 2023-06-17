@@ -236,6 +236,7 @@ const MainColumn = () => {
 
   const handleGenerate = async () => {
     handleDisableSelectors(true);
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     await generateImage(prompt);
   };
 
