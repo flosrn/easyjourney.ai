@@ -22,9 +22,9 @@ const getFollowersUserList = async (username: string) => {
       "Content-Type": "application/json",
     },
   });
-  const data = await response.json();
+  const { followerUsers } = await response.json();
 
-  return data;
+  return followerUsers;
 };
 
 const getFollowedUserList = async (username: string) => {
@@ -34,9 +34,9 @@ const getFollowedUserList = async (username: string) => {
       "Content-Type": "application/json",
     },
   });
-  const data = await response.json();
+  const { followingUsers } = await response.json();
 
-  return data.data;
+  return followingUsers;
 };
 
 const getLikesUserList = async (username: string) => {
@@ -46,9 +46,9 @@ const getLikesUserList = async (username: string) => {
       "Content-Type": "application/json",
     },
   });
-  const data = await response.json();
+  const { likesUsers } = await response.json();
 
-  return data.data;
+  return likesUsers;
 };
 
 const CounterBarDialog = ({
