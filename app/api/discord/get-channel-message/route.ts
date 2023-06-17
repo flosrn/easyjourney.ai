@@ -213,6 +213,9 @@ export async function POST(request: Request) {
         const message = { type: getMessageType(option), ...data };
         stream.enqueue(encoder.encode(JSON.stringify(message)));
 
+        console.log("decrementing credits");
+        console.log("ddddd", `${env.NEXTAUTH_URL}/api/users/decrementCredits`);
+
         await fetch(`${env.NEXTAUTH_URL}/api/users/decrementCredits`, {
           method: "POST",
           headers: {
