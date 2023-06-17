@@ -38,7 +38,7 @@ export async function GET(request: Request) {
       },
     });
 
-    return NextResponse.json({ status: 200, data: followerUsers });
+    return NextResponse.json({ status: 200, followerUsers });
   } catch (error: unknown) {
     return NextResponse.json({
       status: 500,

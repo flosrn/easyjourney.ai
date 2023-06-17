@@ -35,7 +35,7 @@ export async function GET(request: Request) {
       .filter((value, index, array) => array.indexOf(value) === index)
       .filter((id) => id !== userId);
 
-    const userLike = await prisma.user.findMany({
+    const likesUsers = await prisma.user.findMany({
       where: {
         id: {
           in: likesId,
@@ -47,7 +47,7 @@ export async function GET(request: Request) {
       },
     });
 
-    return NextResponse.json({ status: 200, data: userLike });
+    return NextResponse.json({ status: 200, likesUsers });
   } catch (error: unknown) {
     return NextResponse.json({
       status: 500,

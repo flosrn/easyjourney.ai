@@ -23,14 +23,14 @@ export async function GET(request: Request) {
       },
     });
 
-    const followerIds = followed?.following.map(
+    const followingId = followed?.following.map(
       (follower) => follower.followingId
     );
 
-    const followerUsers = await prisma.user.findMany({
+    const followingUsers = await prisma.user.findMany({
       where: {
         id: {
-          in: followerIds,
+          in: followingId,
         },
       },
       include: {
@@ -38,7 +38,7 @@ export async function GET(request: Request) {
       },
     });
 
-    return NextResponse.json({ status: 200, data: followerUsers });
+    return NextResponse.json({ status: 200, followingUsers });
   } catch (error: unknown) {
     return NextResponse.json({
       status: 500,
