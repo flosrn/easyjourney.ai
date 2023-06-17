@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getServerAuthSession } from "~/server/auth";
 import absoluteUrl from "~/utils/absoluteUrl";
+import { z } from "zod";
 
 import { stripe } from "~/lib/stripe";
 import { getUserSubscriptionPlan } from "~/lib/subscriptions";
@@ -53,6 +54,10 @@ export async function GET(request: Request) {
     return NextResponse.json({ url: stripeSession.url });
   } catch (error: unknown) {
     console.log("error :", error);
-    return NextResponse.json({ status: 500, message: "Internal Server Error" });
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ status: 422, error: error.issues });
+    }
+
+    return NextResponse.json({ status: 500, error });
   }
 }

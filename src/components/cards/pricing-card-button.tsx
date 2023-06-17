@@ -31,7 +31,6 @@ const PricingCardButton = ({ disabled }: PricingCardButtonProps) => {
     // This could be a checkout page for initial upgrade.
     // Or portal to manage existing subscription.
     const session = await response.json();
-    console.log("session :", session);
     if (session) {
       window.location.href = session.url;
     }
