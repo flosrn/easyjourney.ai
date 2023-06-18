@@ -1,8 +1,12 @@
 {
   "crons": [
     {
-      "path": "/api/cron/reset-users-credits",
+      "path": "/api/cron/reset-free-users-credits",
       "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/reset-pro-users-credits",
+      "schedule": "0 8 1 * *"
     }
   ]
 }

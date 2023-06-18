@@ -8,11 +8,5 @@ export async function GET() {
     data: { credits: 5 },
   });
 
-  // reset credits to 50 for all users in PRO plan
-  await prisma.user.updateMany({
-    where: { plan: "PRO" },
-    data: { credits: 50 },
-  });
-
   return NextResponse.json({ status: 200 });
 }
