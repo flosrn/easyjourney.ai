@@ -10,9 +10,7 @@ import type { Posters as PosterType } from "~/types/poster";
 const getPopularPosters = async () =>
   prisma.poster.findMany({
     orderBy: {
-      likes: {
-        _count: "desc",
-      },
+      createdAt: "desc",
     },
     take: 100,
   });
