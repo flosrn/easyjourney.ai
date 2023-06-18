@@ -78,6 +78,9 @@ const ImageContainer = ({ className }: ImageContainerProps) => {
             "aspect-[4/1]": ratio === "4/1",
             "aspect-[1/2] w-auto h-full": ratio === "1/2",
             "aspect-[2/1]": ratio === "2/1",
+            "aspect-[4/5]": ratio === "4/5",
+            "aspect-[2/3]": ratio === "2/3",
+            "aspect-[9/16]": ratio === "9/16",
           }
         )}
       >
