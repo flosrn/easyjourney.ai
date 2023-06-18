@@ -35,11 +35,11 @@ const TextTitleAnimated = ({}: TextTitleAnimatedProps) => {
           variants={FADE_DOWN_ANIMATION_VARIANTS}
           className="text-center text-5xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
         >
-          myposter.ai
+          easyjourney.ai
         </motion.h1>
         <motion.div
           variants={FADE_DOWN_ANIMATION_VARIANTS}
-          className="mt-3 text-center md:absolute md:right-14 md:top-5 md:mt-0"
+          className="mt-3 text-center md:absolute md:right-0 md:top-5 md:mt-0"
         >
           <BadgeAnimatedBorderGradient label="beta" />
         </motion.div>
