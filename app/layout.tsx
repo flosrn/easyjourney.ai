@@ -20,8 +20,8 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="fr" className={inter.className} suppressHydrationWarning>
-      <body className="bg-background font-sans text-foreground antialiased">
+    <html lang="en" className={inter.className} suppressHydrationWarning>
+      <body className="h-screen bg-background font-sans text-foreground antialiased">
         <Providers>{children}</Providers>
         <Suspense fallback={null}>
           <NavigationEvents />

@@ -19,22 +19,24 @@ export default async function IndexPage() {
   const posters = await getPopularPosters();
   const columns: PosterType[] = [[], [], [], [], [], [], [], [], [], []];
 
-  posters.slice(0, 100).map((poster, index) => {
+  posters.map((poster, index) => {
     columns[index % 10].push(poster);
   });
-  posters.slice(0, 100).map((poster, index) => {
+  posters.map((poster, index) => {
     columns[index % 10].push(poster);
   });
 
   return (
-    <div className="h-screen overflow-hidden">
+    <>
       <Header />
-      <div className="flex-center absolute inset-0 z-10 mt-7 bg-gradient-radial from-background/95 via-background/60 to-background/5 backdrop-blur-[1.5px]">
-        <section className="flex max-w-2xl flex-col items-center gap-2 space-y-2 px-5">
-          <TextTitleAnimated />
-        </section>
+      <div className="relative z-10 h-full w-full overflow-hidden">
+        <AnimatedPosters columns={columns} />
+        <div className="flex-center absolute inset-0 h-full w-full bg-gradient-radial from-background/95 via-background/60 to-background/5 backdrop-blur-[1.5px]">
+          <section className="max-w-2xl px-5">
+            <TextTitleAnimated />
+          </section>
+        </div>
       </div>
-      <AnimatedPosters columns={columns} />
-    </div>
+    </>
   );
 }
