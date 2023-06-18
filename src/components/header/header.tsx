@@ -44,6 +44,7 @@ const Header = ({ expanded }: HeaderProps) => {
               <span className="hidden font-bold md:inline-block">
                 easyjourney.ai
               </span>
+              <span className="font-bold md:hidden">EJ</span>
             </Link>
             <nav
               dir="ltr"
