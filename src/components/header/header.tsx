@@ -42,7 +42,7 @@ const Header = ({ expanded }: HeaderProps) => {
             </div>
             <Link href="/" className="mr-6 flex items-center space-x-2">
               <span className="hidden font-bold md:inline-block">
-                myposter.ai
+                easyjourney.ai
               </span>
             </Link>
             <nav
