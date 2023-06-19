@@ -61,6 +61,8 @@ export async function POST(request: Request) {
         stripeCurrentPeriodEnd: new Date(
           subscription.current_period_end * 1000
         ),
+        credits: 500,
+        freeCredits: 20,
       },
     });
   }
