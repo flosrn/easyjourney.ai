@@ -6,11 +6,11 @@ export async function GET() {
   try {
     await prisma.user.updateMany({
       where: { plan: "FREE" },
-      data: { credits: 5 },
+      data: { credits: 66 },
     });
 
     const dateTime = formatDateToString(Date.now(), "fr-FR");
-    console.log(`FREE plan cron success at ${dateTime}`);
+    console.log(`route FREE plan cron success at ${dateTime}`);
 
     return new Response("OK");
   } catch (error: unknown) {

@@ -13,9 +13,12 @@ export const formatDate = ({ dateObject }: { dateObject?: Date | string }) => {
   return formattedDate;
 };
 
-export const formatDateToString = (input: number | string): string => {
+export const formatDateToString = (
+  input: number | string,
+  locale = "en-US"
+): string => {
   const date = new Date(input);
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString(locale, {
     month: "long",
     day: "numeric",
     year: "numeric",

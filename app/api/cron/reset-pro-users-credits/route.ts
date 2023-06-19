@@ -1,4 +1,5 @@
 import { prisma } from "~/server/db/prisma";
+import { formatDateToString } from "~/utils/formatDate";
 
 export async function GET() {
   // reset credits to 500 for all users in PRO plan
@@ -7,7 +8,10 @@ export async function GET() {
       where: { plan: "PRO" },
       data: { credits: 500 },
     });
-    console.log(`PRO plan cron success at ${new Date().toLocaleString()}`);
+
+    const dateTime = formatDateToString(Date.now(), "fr-FR");
+    console.log(`PRO plan cron success at ${dateTime}`);
+
     return new Response("OK");
   } catch (error: unknown) {
     console.log("cron error:", error);
