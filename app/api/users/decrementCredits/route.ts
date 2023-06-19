@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 
-console.log("decrement route");
-
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
 
@@ -23,7 +21,7 @@ export async function POST(request: Request) {
 
     let updatedData = {};
 
-    if (!user.credits)
+    if (!user.credits || !user.freeCredits)
       return NextResponse.json(
         { error: "Not enough credits" },
         { status: 403 }
