@@ -27,16 +27,16 @@ const UserCreditsPopover = () => {
   const freeCredits = session?.user.freeCredits ?? 0;
   const totalCredits = credits + freeCredits;
 
-  // const refreshSession = async () => {
-  //   await update();
-  // };
+  const refreshSession = async () => {
+    await update();
+  };
 
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          // onClick={refreshSession}
+          onClick={refreshSession}
           className="shrink-0 space-x-1 rounded-3xl px-2"
         >
           <span className="">{totalCredits}</span>

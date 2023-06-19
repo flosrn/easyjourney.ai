@@ -21,12 +21,6 @@ export async function POST(request: Request) {
 
     let updatedData = {};
 
-    if (!user.credits || !user.freeCredits)
-      return NextResponse.json(
-        { error: "Not enough credits" },
-        { status: 403 }
-      );
-
     if (user.credits > 0) {
       updatedData = {
         credits: {
