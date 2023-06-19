@@ -15,7 +15,8 @@ export const formatDate = ({ dateObject }: { dateObject?: Date | string }) => {
 
 export const formatDateToString = (
   input: number | string,
-  locale = "en-US"
+  locale = "en-US",
+  timeZone = "UTC"
 ): string => {
   const date = new Date(input);
   return date.toLocaleDateString(locale, {
@@ -25,5 +26,6 @@ export const formatDateToString = (
     hour: "numeric",
     minute: "numeric",
     second: "numeric",
+    timeZone,
   });
 };
