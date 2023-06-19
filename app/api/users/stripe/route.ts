@@ -18,7 +18,6 @@ export async function GET(request: Request) {
 
   try {
     const subscriptionPlan = await getUserSubscriptionPlan(session.user.id);
-    console.log("subscriptionPlan :", subscriptionPlan);
 
     // The user is on the pro plan.
     // Create a portal session to manage subscription.

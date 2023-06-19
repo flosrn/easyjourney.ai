@@ -4,7 +4,7 @@ import { prisma } from "~/server/db/prisma";
 import type Stripe from "stripe";
 
 import { stripe } from "~/lib/stripe";
-import { proPlan } from "~/config/subscriptions";
+import { freePlan, proPlan } from "~/config/subscriptions";
 
 export async function POST(request: Request) {
   const body = await request.text();
@@ -58,7 +58,9 @@ export async function POST(request: Request) {
       data: {
         plan: proPlan.name,
         credits: proPlan.credits,
-        freeCredits: proPlan.freeCredits,
+        freeCredits: {
+          increment: proPlan.freeCredits,
+        },
         stripeSubscriptionId: subscription.id,
         stripeCustomerId: subscription.customer as string,
         stripePriceId: subscription.items.data[0].price.id,
@@ -85,6 +87,23 @@ export async function POST(request: Request) {
         stripeCurrentPeriodEnd: new Date(
           subscription.current_period_end * 1000
         ),
+      },
+    });
+  }
+
+  if (event.type === "customer.subscription.deleted") {
+    // The object is the subscription itself
+    const subscription = event.data.object as Stripe.Subscription;
+
+    // When the subscription is finally deleted (which should happen at the period end),
+    // we downgrade the user but keep their credits.
+    await prisma.user.update({
+      where: {
+        stripeSubscriptionId: subscription.id,
+      },
+      data: {
+        plan: freePlan.name,
+        stripeSubscriptionId: null,
       },
     });
   }

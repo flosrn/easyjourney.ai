@@ -9,7 +9,13 @@ export async function handler(
   // reset credits to 5 for all users in FREE plan
   try {
     await prisma.user.updateMany({
-      where: { plan: "FREE" },
+      where: {
+        plan: "FREE",
+        OR: [
+          { stripeCurrentPeriodEnd: null }, // For users who never subscribed
+          { stripeCurrentPeriodEnd: { lte: new Date() } }, // For users whose subscription has ended
+        ],
+      },
       data: { credits: 5 },
     });
 

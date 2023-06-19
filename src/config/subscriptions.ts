@@ -4,7 +4,7 @@ import { env } from "~/env.mjs";
 import type { SubscriptionPlanInfo } from "~/types/subscription";
 
 export const freePlan: SubscriptionPlanInfo = {
-  name: "FREE",
+  name: SubscriptionPlan.FREE,
   description:
     "The free plan is limited to 5 posters generation per day. Upgrade to PRO to get 500 posters generation per month.",
   stripePriceId: "",
