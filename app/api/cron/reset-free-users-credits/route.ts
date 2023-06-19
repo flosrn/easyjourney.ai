@@ -6,7 +6,7 @@ export async function GET() {
   try {
     await prisma.user.updateMany({
       where: { plan: "FREE" },
-      data: { credits: 5 },
+      data: { credits: 50 },
     });
     console.log(`FREE plan cron success at ${new Date().toLocaleString()}`);
     return NextResponse.json({ status: 200 });
