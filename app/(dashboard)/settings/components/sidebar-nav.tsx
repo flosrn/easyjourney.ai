@@ -17,7 +17,6 @@ type SidebarNavProps = React.HTMLAttributes<HTMLElement> & {
 
 const SidebarNav = ({ className, items, ...props }: SidebarNavProps) => {
   const pathname = usePathname();
-
   return (
     <nav
       className={cn(
