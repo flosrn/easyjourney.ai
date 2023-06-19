@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 
-import MyFeedMenuItem from "~/components/header/MyFeedMenuItem";
+import MyFeedMenuItem from "~/components/header/my-feed-menu-item";
 import {
   NavigationMenu,
   NavigationMenuContent,

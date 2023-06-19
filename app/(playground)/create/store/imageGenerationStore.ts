@@ -20,6 +20,7 @@ type ImageGenerationState = {
   imageIndex: number;
   imageType: "generation" | "upscale" | "variation" | null;
   isLoading: boolean;
+  isSuccess: boolean;
   error: string | unknown | null;
   message?: string;
   selectedImage: number | null;
@@ -38,6 +39,7 @@ export type ImageGenerationSetAction = {
     imageType: "generation" | "upscale" | "variation" | null
   ) => void;
   setIsLoading: (isLoading: boolean) => void;
+  setIsSuccess: (isSuccess: boolean) => void;
   setError: (error: string | unknown | null) => void;
   setMessage: (message: string) => void;
   setSelectedImage: (imageSelected: number | null) => void;
@@ -97,6 +99,9 @@ export const useImageGenerationStore = create<
   const setMessage = (message: string) => {
     set(() => ({ message }));
   };
+  const setIsSuccess = (isSuccess: boolean) => {
+    set(() => ({ isSuccess }));
+  };
   const setError = (error: string | unknown | null) => {
     set(() => ({ error }));
   };
@@ -107,6 +112,7 @@ export const useImageGenerationStore = create<
     set(() => ({
       images: [],
       isLoading: false,
+      isSuccess: false,
       error: null,
       message: "",
       selectedImage: 0,
@@ -191,6 +197,7 @@ export const useImageGenerationStore = create<
     nextImage,
     setImageType,
     setIsLoading,
+    setIsSuccess,
     setError,
     setMessage,
     setSelectedImage,
@@ -208,6 +215,7 @@ export const useImageGenerationStore = create<
     imageIndex: 0,
     imageType: null,
     isLoading: false,
+    isSuccess: false,
     error: null,
     message: "",
     selectedImage: 0,
@@ -219,6 +227,7 @@ export const useImageGenerationStore = create<
     ...actions,
     generateImage: async (prompt) => {
       setIsLoading(true);
+      setIsSuccess(false);
       setLoadingType("generation");
       setError(null);
       setMessage("");
@@ -238,39 +247,52 @@ export const useImageGenerationStore = create<
         }
       });
 
-      try {
+      const CONTENT_TYPE_JSON = { "Content-Type": "application/json" };
+
+      const fetchImagine = async (promptValue: string) => {
         const response = await fetch("/api/midjourney/imagine", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt }),
+          headers: CONTENT_TYPE_JSON,
+          body: JSON.stringify({ prompt: promptValue }),
         });
-        const { status } = await response.json();
-        if (status === 401) {
-          setMessage(`User not logged in, please authenticate`);
-        } else if (status === 204) {
-          // eslint-disable-next-line no-shadow
-          const response = await fetch("/api/discord/get-channel-message", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt }),
-          });
+
+        const data = await response.json();
+        return data;
+      };
+
+      const fetchChannelMessage = async (promptValue: string) => {
+        const response = await fetch("/api/discord/get-channel-message", {
+          method: "POST",
+          headers: CONTENT_TYPE_JSON,
+          body: JSON.stringify({ prompt: promptValue }),
+        });
+        return response;
+      };
+
+      const handleErrorResponse = (error: unknown) => {
+        console.log("error :", error);
+        setIsLoading(false);
+        setLoadingType(null);
+        setMessage(`Error: ${error}`);
+        toast.error("Something went wrong, please try again.");
+        setError(error);
+      };
+
+      try {
+        const { status, error } = await fetchImagine(prompt);
+        if (error) handleErrorResponse(error);
+
+        if (status === 204) {
+          const response = await fetchChannelMessage(prompt);
 
           if (response.body) {
             setStream(response.body);
             const reader = response.body.getReader();
             await readStreamData(reader, actions);
           }
-        } else {
-          setMessage(
-            `Something went wrong while generating the image, please try again.\n\nStatus code: ${status}`
-          );
-          throw new Error("Something went wrong");
         }
-      } catch (error_: unknown) {
-        setMessage(
-          `Something went wrong while generating the image, please try again.\n\n${error_}`
-        );
-        setError(error_);
+      } catch (error: unknown) {
+        handleErrorResponse(error);
       }
     },
     upscaleImage: async (index, image) => {

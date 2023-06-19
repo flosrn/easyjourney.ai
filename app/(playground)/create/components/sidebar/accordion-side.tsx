@@ -14,6 +14,7 @@ import SeedSelector from "./selectors/seed-selector";
 import StopSelector from "./selectors/stop-selector";
 import StylizeSelector from "./selectors/stylize-selector";
 import TileSelector from "./selectors/tile-selector";
+import VersionSelector from "./selectors/version-selector";
 import TitleComponent from "./title-component";
 
 const AccordionSide = ({}) => {
@@ -28,6 +29,12 @@ const AccordionSide = ({}) => {
         </AccordionTrigger>
         <AccordionContent>
           <div className="space-y-4 px-1">
+            <TitleComponent
+              title="Version"
+              description="Changes the version of Midjourney that is used to generate the image."
+              defaultValue="Default value is Version 5.1"
+            />
+            <VersionSelector />
             <TitleComponent
               title="Quality"
               description="How much rendering quality time you want to spend. Higher values use more GPU minutes, lower values use less."

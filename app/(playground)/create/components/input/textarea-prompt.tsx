@@ -18,11 +18,16 @@ import { useTileStore } from "../../store/tileStore";
 import { useVersionStore } from "../../store/versionStore";
 
 type TextareaPromptProps = {
+  inputRef: React.RefObject<HTMLTextAreaElement>;
   generateHandler: () => void;
   collapse?: boolean;
 };
 
-const TextareaPrompt = ({ generateHandler, collapse }: TextareaPromptProps) => {
+const TextareaPrompt = ({
+  inputRef,
+  generateHandler,
+  collapse,
+}: TextareaPromptProps) => {
   const [promptValue, setPromptValue] = usePromptStore((state) => [
     state.promptValue,
     state.setPromptValue,
@@ -158,11 +163,12 @@ const TextareaPrompt = ({ generateHandler, collapse }: TextareaPromptProps) => {
   return (
     <motion.div layout>
       <Textarea
+        ref={inputRef}
         value={promptValue}
         onChange={handlePromptValue}
         onKeyDown={handleKeyDown}
         placeholder="Tropical rainforest, gloomy, wet after rain, peaceful place 8k, hyper realistic"
-        className={cn("my-5", collapse ? "h-16" : "h-24")}
+        className={cn("my-5 text-md", collapse ? "h-16" : "h-24")}
       />
     </motion.div>
   );

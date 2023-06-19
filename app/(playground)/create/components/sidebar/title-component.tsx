@@ -1,5 +1,7 @@
-import React from "react";
-import { LucideHelpCircle } from "lucide-react";
+"use client";
+
+import React, { useState } from "react";
+import { HelpCircleIcon } from "lucide-react";
 
 import {
   HoverCard,
@@ -23,6 +25,7 @@ const TitleComponent = ({
   defaultValue,
   size,
 }: TitleComponentProps) => {
+  const [open, setOpen] = useState(false);
   return (
     <div className="flex items-center">
       <h2
@@ -33,13 +36,10 @@ const TitleComponent = ({
       >
         {title}
       </h2>
-      <HoverCard>
-        <HoverCardTrigger asChild>
-          <Label htmlFor="model">
-            <LucideHelpCircle
-              color="gray"
-              className="ml-1 hidden h-4 lg:block"
-            />
+      <HoverCard open={open} onOpenChange={setOpen}>
+        <HoverCardTrigger asChild onClick={() => setOpen(!open)}>
+          <Label>
+            <HelpCircleIcon color="gray" className="ml-1 h-4" />
           </Label>
         </HoverCardTrigger>
         <HoverCardContent

@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import { NextResponse } from "next/server";
+import { env } from "~/env.mjs";
 import extractJobId from "~/utils/extractJobId";
 import { retrieveMessages, wait } from "~/utils/midjourneyUtils";
 import type { APIAttachment, APIMessage } from "discord-api-types/v10";
@@ -115,8 +116,6 @@ const findAttachmentInMessages = async ({
     };
   }
 
-  // console.log("initial message :", initialMessage);
-
   while (!attachment?.url.endsWith(".png")) {
     const messages = await retrieveMessages(50);
     const targetMessage = findMessage({ messages, prompt, index, option });
@@ -213,6 +212,21 @@ export async function POST(request: Request) {
       if (data) {
         const message = { type: getMessageType(option), ...data };
         stream.enqueue(encoder.encode(JSON.stringify(message)));
+
+        console.log("decrementing credits");
+        console.log(
+          "ddddd",
+          `${env.NEXT_PUBLIC_URL}/api/users/decrementCredits`
+        );
+
+        await fetch(`${env.NEXT_PUBLIC_URL}/api/users/decrementCredits`, {
+          method: "POST",
+          headers: {
+            // Include the `Cookie` header from the original request to maintain session
+            Cookie: request.headers.get("Cookie") ?? "",
+          },
+        });
+
         stream.close();
       }
     } catch (error: unknown) {

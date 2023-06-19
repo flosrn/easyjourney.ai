@@ -8,7 +8,6 @@ import { cn } from "~/lib/classNames";
 import AccordionSide from "./components/sidebar/accordion-side";
 import AspectRatioSelector from "./components/sidebar/selectors/aspect-ratio-selector";
 import { FilterSelector } from "./components/sidebar/selectors/filter-selector";
-import VersionSelector from "./components/sidebar/selectors/version-selector";
 import TitleComponent from "./components/sidebar/title-component";
 
 type SidebarProps = React.HTMLAttributes<HTMLDivElement> & {};
@@ -21,14 +20,6 @@ const SideColumn = ({ className }: SidebarProps) => (
         description="Experiment with different pre-defined styles that can be applied to your image."
       />
       <FilterSelector />
-      <Separator />
-
-      <TitleComponent
-        title="Version"
-        description="Niji5 produce anime and illustrative styles with vastly more knowledge of anime styles and aesthetics."
-        defaultValue="Default value is Version 5.1"
-      />
-      <VersionSelector />
       <Separator />
 
       <TitleComponent

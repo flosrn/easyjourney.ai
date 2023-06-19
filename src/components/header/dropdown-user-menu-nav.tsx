@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import getFirstLetters from "~/utils/getFirstLetter";
 import { signOut, useSession } from "next-auth/react";
@@ -27,20 +27,16 @@ type DropdownUserMenuNavProps = {};
 
 const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-  const [isDarkTheme, setIsDarkTheme] = React.useState<boolean>(true);
-  const { data: session } = useSession();
   const router = useRouter();
-  const { setTheme } = useTheme();
+  const { data: session } = useSession();
+  const { theme, setTheme } = useTheme();
+  const isDarkTheme = theme === "dark";
   const isAdmin = session?.user.role === "ADMIN";
-
-  useEffect(() => {
-    setTheme(isDarkTheme ? "dark" : "light");
-  }, [isDarkTheme, setTheme]);
 
   if (session === null) {
     return (
       <Button variant="outline" href="/api/auth/signin">
-        Se connecter
+        Login
       </Button>
     );
   }
@@ -60,12 +56,12 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
       }
       case "/theme": {
         event.preventDefault();
-        return setIsDarkTheme(!isDarkTheme);
+        return setTheme(isDarkTheme ? "light" : "dark");
       }
       case "/logout": {
         return signOut({ callbackUrl: "/" });
       }
-      case "/settings": {
+      case "/account": {
         return setIsDialogOpen(true);
       }
       default: {
@@ -76,7 +72,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
 
   return (
     <>
-      <DropdownMenu>
+      <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
           {session !== undefined && (
@@ -98,7 +94,12 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
             </Button>
           )}
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="bottom" align="end" className="w-56">
+        <DropdownMenuContent
+          side="bottom"
+          sideOffset={10}
+          align="end"
+          className="w-56"
+        >
           <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {siteConfig.userMenu.map((group, index) => {

@@ -180,6 +180,13 @@ model User {
   emailVerified DateTime? @map("email_verified")
   image         String?
 
+  coverImage  String?
+  bio         String?
+  twitter     String?
+  instagram   String?
+  discord     String?
+  dateOfBirth DateTime? @map("date_of_birth")
+
   role        UserRole?        @default(USER)
   plan        SubscriptionPlan @default(FREE)
   credits     Int              @default(5)

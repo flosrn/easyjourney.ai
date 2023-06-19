@@ -10,7 +10,7 @@ const LayoutPage = ({ children }: LayoutPageProps) => {
   return (
     <>
       <Header />
-      {children}
+      <div className="pt-[57px]">{children}</div>
     </>
   );
 };

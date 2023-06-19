@@ -83,7 +83,7 @@ const SettingsDialog = ({ open, openChangeHandler }: SettingsDialogProps) => {
     <Dialog open={open} onOpenChange={openChangeHandler}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Settings</DialogTitle>
+          <DialogTitle>My Account</DialogTitle>
           <DialogDescription>Manage your account settings</DialogDescription>
         </DialogHeader>
 

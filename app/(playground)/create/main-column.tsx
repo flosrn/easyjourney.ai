@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import removeSpacesFromString from "~/utils/removeSpacesFromString";
 import { motion } from "framer-motion";
 import {
@@ -61,6 +61,8 @@ const MainColumn = () => {
     message,
     setMessage,
     isImageUploaded,
+    isSuccess,
+    setIsSuccess,
   ] = useImageGenerationStore((state) => [
     state.images,
     state.imageIndex,
@@ -83,6 +85,8 @@ const MainColumn = () => {
     state.message,
     state.setMessage,
     state.isImageUploaded,
+    state.isSuccess,
+    state.setIsSuccess,
   ]);
 
   const [chaosValue, setChaosValue, setIsChaosSelectorDisabled] = useChaosStore(
@@ -151,8 +155,9 @@ const MainColumn = () => {
     state.promptValue,
     state.setPromptValue,
   ]);
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
   const username = session?.user.username;
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const hasImages = images.length > 0;
   const hasFilters = selectedFilters.length > 0;
@@ -231,7 +236,15 @@ const MainColumn = () => {
   };
 
   const handleGenerate = async () => {
+    if (promptValue.length <= 1) {
+      inputRef.current?.focus();
+      setMessage("Please enter a prompt.");
+      return;
+    }
     handleDisableSelectors(true);
+    setTimeout(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }, 100);
     await generateImage(prompt);
   };
 
@@ -252,13 +265,32 @@ const MainColumn = () => {
       setIsLoading,
       setLoadingType,
       setLoadingCount,
+      setIsSuccess,
     }),
-    [setImageType, setMessage, setIsLoading, setLoadingType, setLoadingCount]
+    [
+      setImageType,
+      setMessage,
+      setIsLoading,
+      setLoadingType,
+      setLoadingCount,
+      setIsSuccess,
+    ]
   );
 
   useEffect(() => {
     handleMessageData({ image: currentImage, ...actions });
   }, [currentImage, actions]);
+
+  useEffect(() => {
+    if (!isSuccess) return;
+
+    const timerId = setTimeout(async () => {
+      await update();
+      setIsSuccess(false);
+    }, 2000);
+
+    return () => clearTimeout(timerId);
+  }, [isSuccess, update, setIsSuccess]);
 
   return (
     <main className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">
@@ -313,6 +345,7 @@ const MainColumn = () => {
           <Separator className="my-4" />
           {hasFilters && <FiltersBadge />}
           <TextareaPrompt
+            inputRef={inputRef}
             generateHandler={handleGenerate}
             collapse={hasFilters}
           />
