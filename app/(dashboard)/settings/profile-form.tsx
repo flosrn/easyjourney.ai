@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -22,20 +23,7 @@ import { cn } from "~/lib/classNames";
 
 const profileFormSchema = z.object({
   name: z.string().min(2).max(30),
-  username: z
-    .string()
-    .min(2, {
-      message: "Username must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Username must not be longer than 30 characters.",
-    }),
-  email: z
-    .string({
-      required_error: "Please select an email to display.",
-    })
-    .email(),
-  bio: z.string().max(160).min(4),
+  bio: z.string().max(160).min(10),
   urls: z
     .array(
       z.object({
@@ -47,9 +35,14 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-// This can come from your database or API.
 const defaultValues: Partial<ProfileFormValues> = {
-  urls: [{ value: "" }, { value: "http://twitter.com/" }],
+  name: "",
+  bio: "",
+  urls: [
+    { value: "https://instagram.com/" },
+    { value: "https://twitter.com/" },
+    { value: "https://discord.com/" },
+  ],
 };
 
 const ProfileForm = () => {
@@ -60,8 +53,15 @@ const ProfileForm = () => {
     mode: "onChange",
   });
 
-  const name = session?.user.name;
-  const username = session?.user.username;
+  useEffect(() => {
+    if (session) {
+      form.reset({
+        name: session.user.name!,
+        // bio: session.user.bio,
+        // urls: session.user.urls,
+      });
+    }
+  }, [session, form]);
 
   const { fields, append } = useFieldArray({
     name: "urls",
@@ -83,28 +83,11 @@ const ProfileForm = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder={name ?? "Your name"} {...field} />
+                <Input placeholder="Your name" {...field} />
               </FormControl>
               <FormDescription>
                 This is the name that will be displayed on your profile and in
                 emails.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder={username} {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
               </FormDescription>
               <FormMessage />
             </FormItem>
