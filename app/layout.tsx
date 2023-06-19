@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
+import { ServerThemeProvider } from "next-themes";
 
 import NavigationEvents from "~/components/events/navigation-events";
 
@@ -20,13 +21,15 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body className="h-screen bg-background font-sans text-foreground antialiased">
-        <Providers>{children}</Providers>
-        <Suspense fallback={null}>
-          <NavigationEvents />
-        </Suspense>
-      </body>
-    </html>
+    <ServerThemeProvider attribute="class">
+      <html lang="en" className={inter.className} suppressHydrationWarning>
+        <body className="h-screen bg-background font-sans text-foreground antialiased">
+          <Providers>{children}</Providers>
+          <Suspense fallback={null}>
+            <NavigationEvents />
+          </Suspense>
+        </body>
+      </html>
+    </ServerThemeProvider>
   );
 }
