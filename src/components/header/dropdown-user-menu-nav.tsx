@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import getFirstLetters from "~/utils/getFirstLetter";
 import { signOut, useSession } from "next-auth/react";
@@ -27,15 +27,11 @@ type DropdownUserMenuNavProps = {};
 
 const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-  const [isDarkTheme, setIsDarkTheme] = React.useState<boolean>(true);
-  const { data: session } = useSession();
   const router = useRouter();
-  const { setTheme } = useTheme();
+  const { data: session } = useSession();
+  const { theme, setTheme } = useTheme();
+  const isDarkTheme = theme === "dark";
   const isAdmin = session?.user.role === "ADMIN";
-
-  useEffect(() => {
-    setTheme(isDarkTheme ? "dark" : "light");
-  }, [isDarkTheme, setTheme]);
 
   if (session === null) {
     return (
@@ -60,7 +56,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
       }
       case "/theme": {
         event.preventDefault();
-        return setIsDarkTheme(!isDarkTheme);
+        return setTheme(isDarkTheme ? "light" : "dark");
       }
       case "/logout": {
         return signOut({ callbackUrl: "/" });
