@@ -10,7 +10,7 @@ export async function handler(
   try {
     await prisma.user.updateMany({
       where: { plan: "FREE" },
-      data: { credits: 13 },
+      data: { credits: 5 },
     });
 
     const dateTime = formatDateToString(Date.now(), "fr-FR", "Europe/Paris");
