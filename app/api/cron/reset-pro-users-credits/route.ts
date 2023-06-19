@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import { prisma } from "~/server/db/prisma";
 
 export async function GET() {
@@ -9,9 +8,9 @@ export async function GET() {
       data: { credits: 500 },
     });
     console.log(`PRO plan cron success at ${new Date().toLocaleString()}`);
-    return NextResponse.json({ status: 200 });
+    return new Response("OK");
   } catch (error: unknown) {
     console.log("cron error:", error);
-    return NextResponse.json({ status: 500 });
+    return new Response("ERROR", { status: 500 });
   }
 }
