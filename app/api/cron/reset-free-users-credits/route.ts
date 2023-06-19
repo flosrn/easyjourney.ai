@@ -3,10 +3,15 @@ import { prisma } from "~/server/db/prisma";
 
 export async function GET() {
   // reset credits to 5 for all users in FREE plan
-  await prisma.user.updateMany({
-    where: { plan: "FREE" },
-    data: { credits: 5 },
-  });
-
-  return NextResponse.json({ status: 200 });
+  try {
+    await prisma.user.updateMany({
+      where: { plan: "FREE" },
+      data: { credits: 5 },
+    });
+    console.log(`FREE plan cron success at ${new Date().toLocaleString()}`);
+    return NextResponse.json({ status: 200 });
+  } catch (error: unknown) {
+    console.log("cron error:", error);
+    return NextResponse.json({ status: 500 });
+  }
 }
