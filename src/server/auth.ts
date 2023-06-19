@@ -38,7 +38,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, user }) {
-      console.log("user :", user);
       session.user.id = user.id;
       // @ts-expect-error: to fix later
       session.user.username = user.username;

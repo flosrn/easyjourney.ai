@@ -1,6 +1,6 @@
 import { prisma } from "~/server/db/prisma";
 
-export async function GET(request: Request) {
+export async function GET() {
   // reset credits to 5 for all users in FREE plan
   try {
     await prisma.user.updateMany({
