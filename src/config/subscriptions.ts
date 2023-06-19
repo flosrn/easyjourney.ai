@@ -1,9 +1,10 @@
+import { SubscriptionPlan } from "@prisma/client";
 import { env } from "~/env.mjs";
 
-import type { SubscriptionPlan } from "~/types/subscription";
+import type { SubscriptionPlanInfo } from "~/types/subscription";
 
-export const freePlan: SubscriptionPlan = {
-  name: "Free",
+export const freePlan: SubscriptionPlanInfo = {
+  name: "FREE",
   description:
     "The free plan is limited to 5 posters generation per day. Upgrade to PRO to get 500 posters generation per month.",
   stripePriceId: "",
@@ -11,8 +12,8 @@ export const freePlan: SubscriptionPlan = {
   freeCredits: 10,
 };
 
-export const proPlan: SubscriptionPlan = {
-  name: "PRO",
+export const proPlan: SubscriptionPlanInfo = {
+  name: SubscriptionPlan.PRO,
   description: "The PRO plan gives you 500 posters generation per month.",
   stripePriceId: env.STRIPE_PRO_MONTHLY_PLAN_ID || "",
   credits: 500,

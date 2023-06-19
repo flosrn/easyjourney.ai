@@ -56,14 +56,15 @@ export async function POST(request: Request) {
         id: session.metadata?.userId,
       },
       data: {
+        plan: proPlan.name,
+        credits: proPlan.credits,
+        freeCredits: proPlan.freeCredits,
         stripeSubscriptionId: subscription.id,
         stripeCustomerId: subscription.customer as string,
         stripePriceId: subscription.items.data[0].price.id,
         stripeCurrentPeriodEnd: new Date(
           subscription.current_period_end * 1000
         ),
-        credits: proPlan.credits,
-        freeCredits: proPlan.freeCredits,
       },
     });
   }

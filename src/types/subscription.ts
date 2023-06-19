@@ -1,7 +1,7 @@
-import type { User } from "@prisma/client";
+import type { SubscriptionPlan, User } from "@prisma/client";
 
-export type SubscriptionPlan = {
-  name: string;
+export type SubscriptionPlanInfo = {
+  name: SubscriptionPlan;
   description: string;
   stripePriceId: string;
   credits: number;
@@ -12,7 +12,7 @@ export type UserSubscriptionPlan = Pick<
   User,
   "stripeCustomerId" | "stripeSubscriptionId"
 > &
-  SubscriptionPlan & {
+  SubscriptionPlanInfo & {
     stripeCurrentPeriodEnd: number;
     isPro: boolean;
   };

@@ -6,6 +6,7 @@ import { formatDateToString } from "~/utils/formatDate";
 import { Loader2Icon } from "lucide-react";
 import toast from "react-hot-toast";
 
+import ProPlanText from "~/components/text/pro-plan-text";
 import { buttonVariants } from "~/components/ui/button";
 import {
   Card,
@@ -60,8 +61,8 @@ export function BillingForm({
         <CardHeader>
           <CardTitle>Subscription Plan</CardTitle>
           <CardDescription>
-            You are currently on the <strong>{subscriptionPlan.name}</strong>{" "}
-            plan.
+            You are currently on the{" "}
+            <ProPlanText>{subscriptionPlan.name}</ProPlanText> plan.
           </CardDescription>
         </CardHeader>
         <CardContent>{subscriptionPlan.description}</CardContent>
