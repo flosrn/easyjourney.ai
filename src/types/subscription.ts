@@ -4,6 +4,8 @@ export type SubscriptionPlan = {
   name: string;
   description: string;
   stripePriceId: string;
+  credits: number;
+  freeCredits: number;
 };
 
 export type UserSubscriptionPlan = Pick<

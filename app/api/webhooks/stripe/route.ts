@@ -4,6 +4,7 @@ import { prisma } from "~/server/db/prisma";
 import type Stripe from "stripe";
 
 import { stripe } from "~/lib/stripe";
+import { proPlan } from "~/config/subscriptions";
 
 export async function POST(request: Request) {
   const body = await request.text();
@@ -61,8 +62,8 @@ export async function POST(request: Request) {
         stripeCurrentPeriodEnd: new Date(
           subscription.current_period_end * 1000
         ),
-        credits: 500,
-        freeCredits: 20,
+        credits: proPlan.credits,
+        freeCredits: proPlan.freeCredits,
       },
     });
   }
