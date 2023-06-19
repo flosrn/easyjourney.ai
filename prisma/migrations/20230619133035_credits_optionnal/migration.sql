@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "users" ALTER COLUMN "credits" DROP NOT NULL,
+ALTER COLUMN "credits" DROP DEFAULT,
+ALTER COLUMN "freeCredits" DROP NOT NULL,
+ALTER COLUMN "freeCredits" DROP DEFAULT;
