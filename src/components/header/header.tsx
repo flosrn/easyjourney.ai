@@ -62,7 +62,7 @@ const Header = ({ expanded }: HeaderProps) => {
                 Create
               </Button>
             )}
-            <div className="flex w-[94px] items-center space-x-2 md:w-[102px] md:space-x-4">
+            <div className="flex items-center space-x-2 md:space-x-4">
               {session?.user && <UserCreditsPopover />}
               <DropdownUserMenuNav />
             </div>
