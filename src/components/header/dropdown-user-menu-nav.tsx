@@ -72,7 +72,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
 
   return (
     <>
-      <DropdownMenu>
+      <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
           {session !== undefined && (

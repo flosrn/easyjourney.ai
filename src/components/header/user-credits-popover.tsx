@@ -4,6 +4,7 @@ import React from "react";
 import { GemIcon, Info } from "lucide-react";
 import { useSession } from "next-auth/react";
 
+import ProPlanText from "~/components/text/pro-plan-text";
 import { Button } from "~/components/ui/button";
 import {
   HoverCard,
@@ -21,6 +22,7 @@ import { Separator } from "~/components/ui/separator";
 const UserCreditsPopover = () => {
   const { data: session, update } = useSession();
 
+  const plan = session?.user.plan ?? "FREE";
   const credits = session?.user.credits ?? 0;
   const freeCredits = session?.user.freeCredits ?? 0;
   const totalCredits = credits + freeCredits;
@@ -42,52 +44,66 @@ const UserCreditsPopover = () => {
           <span className="sr-only">Open credits popover</span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent sideOffset={10} align="end" className="w-80">
-        <div className="grid gap-2">
-          <div className="space-y-2">
-            <h4 className="font-medium leading-none">Credits</h4>
-            <p className="text-sm text-muted-foreground">
+      <PopoverContent
+        sideOffset={10}
+        alignOffset={-57}
+        align="end"
+        className="w-80 p-0"
+      >
+        <div className="grid">
+          <div className="space-y-2 p-1">
+            <h4 className="select-none px-2 py-1.5 text-sm font-semibold">
+              Credits
+            </h4>
+          </div>
+          <Separator className="bg-muted" />
+          <div className="px-1 py-2">
+            <p className="px-2 text-sm text-muted-foreground">
               Your total credits. You can use them to generate posters.
             </p>
           </div>
-          <Separator />
-          <div className="grid gap-2">
-            <div className="flex items-center justify-between gap-4">
-              <HoverCard>
-                <HoverCardTrigger>
-                  <div className="flex select-none">
-                    <Label>Daily Credits</Label>
-                    <Info size={13} color="grey" className="ml-1" />
-                  </div>
-                </HoverCardTrigger>
-                <HoverCardContent className="text-sm">
-                  Daily credits are added to your account every day at 08:00.
-                </HoverCardContent>
-              </HoverCard>
-              <span className="font-bold text-violet-400">{credits}</span>
+          <Separator className="bg-muted" />
+          <div className="py-2">
+            <div className="grid gap-2 p-1">
+              <div className="mb-2 px-2 text-sm text-muted-foreground">
+                You are on <ProPlanText>{plan}</ProPlanText> plan
+              </div>
+              <div className="flex items-center justify-between px-2">
+                <HoverCard>
+                  <HoverCardTrigger>
+                    <div className="flex select-none">
+                      <Label>Daily Credits</Label>
+                      <Info size={13} color="grey" className="ml-1" />
+                    </div>
+                  </HoverCardTrigger>
+                  <HoverCardContent className="text-sm">
+                    Daily credits are added to your account every day at 08:00.
+                  </HoverCardContent>
+                </HoverCard>
+                <span className="font-bold text-violet-400">{credits}</span>
+              </div>
+              <div className="flex items-center justify-between px-2">
+                <HoverCard>
+                  <HoverCardTrigger>
+                    <div className="flex select-none">
+                      <Label>Free Credits</Label>
+                      <Info size={13} color="grey" className="ml-1" />
+                    </div>
+                  </HoverCardTrigger>
+                  <HoverCardContent className="text-sm">
+                    Free credits are added to your account when you perform
+                    certain actions, such as sharing myposter.ai on social media
+                    or inviting friends.
+                  </HoverCardContent>
+                </HoverCard>
+                <span className="font-bold text-green-400">{freeCredits}</span>
+              </div>
             </div>
-            <div className="flex items-center justify-between gap-4">
-              <HoverCard>
-                <HoverCardTrigger>
-                  <div className="flex select-none">
-                    <Label>Free Credits</Label>
-                    <Info size={13} color="grey" className="ml-1" />
-                  </div>
-                </HoverCardTrigger>
-                <HoverCardContent className="text-sm">
-                  Free credits are added to your account when you perform
-                  certain actions, such as sharing myposter.ai on social media
-                  or inviting friends.
-                </HoverCardContent>
-              </HoverCard>
-              <span className="font-bold text-green-400">{freeCredits}</span>
-            </div>
+            <span className="flex justify-end px-2 text-right text-xs italic text-muted-foreground/50">
+              1 credit = 1 generation.
+            </span>
           </div>
-          <span className="text-right text-xs italic text-muted-foreground/50">
-            1 credit = 1 generation.
-          </span>
-          <Separator />
-          <div className="mt-2">
+          <div className="mb-2 px-2">
             <Button href="/pricing" variant="outline" className="w-full">
               Upgrade plan
             </Button>
