@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import { Button, buttonVariants } from "~/components/ui/button";
@@ -13,10 +15,16 @@ type PricingCardButtonProps = {
 
 const PricingCardButton = ({ disabled }: PricingCardButtonProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setIsLoading(!isLoading);
+
+    if (!session?.user) {
+      router.push("/api/auth/signin");
+    }
 
     // Get a Stripe session URL.
     const response = await fetch("/api/users/stripe");
@@ -30,9 +38,9 @@ const PricingCardButton = ({ disabled }: PricingCardButtonProps) => {
     // Redirect to the Stripe session.
     // This could be a checkout page for initial upgrade.
     // Or portal to manage existing subscription.
-    const session = await response.json();
+    const stripeSession = await response.json();
     if (session) {
-      window.location.href = session.url;
+      window.location.href = stripeSession.url;
     }
   };
 
