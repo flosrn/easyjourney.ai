@@ -303,7 +303,7 @@ export const useImageGenerationStore = create<
           }
         }
       } catch (error: unknown) {
-        if (error instanceof Error) handleErrorResponse(error);
+        handleErrorResponse({ error });
       }
     },
     upscaleImage: async (index, image) => {
