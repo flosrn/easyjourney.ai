@@ -52,7 +52,12 @@ const imagine = async ({ prompt }: { prompt: string }): Promise<any> => {
       },
     }),
   });
-  return response.status;
+  if (response.status !== 204) {
+    const data = await response.json();
+    console.log("'/api/imagine' 💥 Error:", data);
+    return data;
+  }
+  return { status: response.status };
 };
 
 export async function POST(request: Request) {
@@ -68,8 +73,8 @@ export async function POST(request: Request) {
 
   const { prompt } = await request.json();
   try {
-    const status = await imagine({ prompt });
-    return NextResponse.json({ status });
+    const data = await imagine({ prompt });
+    return NextResponse.json(data);
   } catch (error: unknown) {
     console.log("error :", error);
     return NextResponse.json(

@@ -269,20 +269,21 @@ export const useImageGenerationStore = create<
         return response;
       };
 
-      const handleErrorResponse = (error: unknown) => {
+      // type error
+      const handleErrorResponse = (error: Error) => {
         console.log("error :", error);
         setIsLoading(false);
         setLoadingType(null);
-        setMessage(`Error: ${error}`);
+        setMessage(`Error: ${error.message}`);
         toast.error("Something went wrong, please try again.");
         setError(error);
       };
 
       try {
-        const { status, error } = await fetchImagine(prompt);
-        if (error) handleErrorResponse(error);
+        const data = await fetchImagine(prompt);
+        if (!data.status) handleErrorResponse(data);
 
-        if (status === 204) {
+        if (data.status === 204) {
           const response = await fetchChannelMessage(prompt);
 
           if (response.body) {
@@ -292,7 +293,7 @@ export const useImageGenerationStore = create<
           }
         }
       } catch (error: unknown) {
-        handleErrorResponse(error);
+        if (error instanceof Error) handleErrorResponse(error);
       }
     },
     upscaleImage: async (index, image) => {
