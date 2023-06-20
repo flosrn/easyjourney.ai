@@ -21,6 +21,7 @@ type ImageGenerationState = {
   imageType: "generation" | "upscale" | "variation" | null;
   isLoading: boolean;
   isSuccess: boolean;
+  isError: boolean;
   error: string | unknown | null;
   message?: string;
   selectedImage: number | null;
@@ -40,6 +41,7 @@ export type ImageGenerationSetAction = {
   ) => void;
   setIsLoading: (isLoading: boolean) => void;
   setIsSuccess: (isSuccess: boolean) => void;
+  setIsError: (isError: boolean) => void;
   setError: (error: string | unknown | null) => void;
   setMessage: (message: string) => void;
   setSelectedImage: (imageSelected: number | null) => void;
@@ -102,6 +104,9 @@ export const useImageGenerationStore = create<
   const setIsSuccess = (isSuccess: boolean) => {
     set(() => ({ isSuccess }));
   };
+  const setIsError = (isError: boolean) => {
+    set(() => ({ isError }));
+  };
   const setError = (error: string | unknown | null) => {
     set(() => ({ error }));
   };
@@ -113,6 +118,7 @@ export const useImageGenerationStore = create<
       images: [],
       isLoading: false,
       isSuccess: false,
+      isError: false,
       error: null,
       message: "",
       selectedImage: 0,
@@ -126,7 +132,6 @@ export const useImageGenerationStore = create<
   ) => {
     set(() => ({ loadingType }));
   };
-  // increment loading count
   const setLoadingCount = (loadingCountValue: number) => {
     set(() => ({ loadingCount: loadingCountValue }));
   };
@@ -198,6 +203,7 @@ export const useImageGenerationStore = create<
     setImageType,
     setIsLoading,
     setIsSuccess,
+    setIsError,
     setError,
     setMessage,
     setSelectedImage,
@@ -216,6 +222,7 @@ export const useImageGenerationStore = create<
     imageType: null,
     isLoading: false,
     isSuccess: false,
+    isError: false,
     error: null,
     message: "",
     selectedImage: 0,
@@ -240,9 +247,10 @@ export const useImageGenerationStore = create<
         if (inputWords.includes(word.toLowerCase())) {
           setClear();
           setMessage(
-            `Your prompt contains a blacklisted word: ${word}. Please try again.`
+            `Your prompt contains a blacklisted word: ${word}. please change your prompt and try again.`
           );
-          toast.error(`Your prompt contains a blacklisted word: ${word}`);
+          setIsError(true);
+          toast.error("Something went wrong, please try again.");
           throw new Error("Blacklisted word");
         }
       });
@@ -270,11 +278,13 @@ export const useImageGenerationStore = create<
       };
 
       // type error
-      const handleErrorResponse = (error: Error) => {
+      const handleErrorResponse = ({ error }: { error: unknown }) => {
         console.log("error :", error);
+        setIsError(true);
+        setIsSuccess(false);
         setIsLoading(false);
         setLoadingType(null);
-        setMessage(`Error: ${error.message}`);
+        setMessage(`Error: ${error}`);
         toast.error("Something went wrong, please try again.");
         setError(error);
       };

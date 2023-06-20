@@ -19,6 +19,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 
+import { cn } from "~/lib/classNames";
+
 import FiltersBadge from "./components/badge/filters-badge";
 import FiltersDialog from "./components/dialog/filters-dialog";
 import ImageContainer from "./components/image/image-container";
@@ -63,6 +65,7 @@ const MainColumn = () => {
     isImageUploaded,
     isSuccess,
     setIsSuccess,
+    isError,
   ] = useImageGenerationStore((state) => [
     state.images,
     state.imageIndex,
@@ -87,6 +90,7 @@ const MainColumn = () => {
     state.isImageUploaded,
     state.isSuccess,
     state.setIsSuccess,
+    state.isError,
   ]);
 
   const [chaosValue, setChaosValue, setIsChaosSelectorDisabled] = useChaosStore(
@@ -412,7 +416,13 @@ const MainColumn = () => {
         </div>
       </div>
       <div className="flex-center sticky bottom-0 h-6 border-t bg-background">
-        <p className="px-4 text-xs">{message}</p>
+        <p
+          className={cn("px-4 text-xs", {
+            "text-red-500": isError,
+          })}
+        >
+          {message}
+        </p>
       </div>
       <FiltersDialog />
       <Toaster position="bottom-right" />

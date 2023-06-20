@@ -24,7 +24,7 @@ const serverSchema = z.object({
   STRIPE_SECRET_KEY: z.string().min(1),
   STRIPE_WEBHOOK_SECRET: z.string().min(1),
   STRIPE_PRO_MONTHLY_PLAN_ID: z.string().min(1),
-  UPLOADCARE_PRIVATE_KEY: z.string().min(1),
+  OPENAI_API_KEY: z.string().min(1),
   MIDJOURNEY_CSRF_TOKEN: z.string().min(1),
   MIDJOURNEY_CSRF_SESSION_TOKEN: z.string().min(1),
 });
@@ -36,7 +36,6 @@ const serverSchema = z.object({
 const clientSchema = z.object({
   NEXT_PUBLIC_URL: z.string().url(),
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().min(1),
-  NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY: z.string().min(1),
   NEXT_PUBLIC_DISCORD_SALAI_TOKEN: z.string().min(1),
 });
 
@@ -59,9 +58,7 @@ const processEnv = {
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
   STRIPE_PRO_MONTHLY_PLAN_ID: process.env.STRIPE_PRO_MONTHLY_PLAN_ID,
-  NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY:
-    process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY,
-  UPLOADCARE_PRIVATE_KEY: process.env.UPLOADCARE_PRIVATE_KEY,
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   NEXT_PUBLIC_DISCORD_SALAI_TOKEN: process.env.NEXT_PUBLIC_DISCORD_SALAI_TOKEN,
   MIDJOURNEY_CSRF_TOKEN: process.env.MIDJOURNEY_CSRF_TOKEN,
   MIDJOURNEY_CSRF_SESSION_TOKEN: process.env.MIDJOURNEY_CSRF_SESSION_TOKEN,

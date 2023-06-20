@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { env } from "~/env.mjs";
 import { getServerAuthSession } from "~/server/auth";
 import { channelId, headers, serverId } from "~/utils/midjourneyUtils";
 
@@ -60,10 +61,36 @@ const imagine = async ({ prompt }: { prompt: string }): Promise<any> => {
   return { status: response.status };
 };
 
+const openAiModeration = async ({
+  prompt,
+}: {
+  prompt: string;
+}): Promise<any> => {
+  const response = await fetch("https://api.openai.com/v1/moderations", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${env.OPENAI_API_KEY}`,
+    },
+    body: JSON.stringify({ input: prompt }),
+  });
+  const data = await response.json();
+  return data;
+};
+
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
   if (!session) {
     return NextResponse.json({ status: 401 });
+  }
+  const { prompt } = await request.json();
+  const moderation = await openAiModeration({ prompt });
+
+  const result = moderation.results[0];
+  if (result.flagged) {
+    const error =
+      "Your prompt is detected as inappropriate, please change your prompt and try again.";
+    return NextResponse.json({ error }, { status: 403 });
   }
 
   const hasEnoughCredits = await getUserCredits(session.user.id);
@@ -71,7 +98,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ status: 402, error: "Not enough credits" });
   }
 
-  const { prompt } = await request.json();
   try {
     const data = await imagine({ prompt });
     return NextResponse.json(data);
