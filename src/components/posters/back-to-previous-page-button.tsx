@@ -4,12 +4,16 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeftIcon, ChevronLeftIcon } from "lucide-react";
 
-type BackToPreviousPageButtonProps = {};
+type BackToPreviousPageButtonProps = {
+  className?: string;
+};
 
-const BackToPreviousPageButton = ({}: BackToPreviousPageButtonProps) => {
+const BackToPreviousPageButton = ({
+  className,
+}: BackToPreviousPageButtonProps) => {
   const router = useRouter();
   return (
-    <div className="mb-5">
+    <div className={className}>
       <button
         onClick={() => router.back()}
         className="group relative flex cursor-pointer items-center"

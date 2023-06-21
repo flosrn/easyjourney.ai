@@ -22,7 +22,7 @@ export default async function PosterPage({
   return (
     <>
       <section className="container mt-8 items-center justify-center gap-6 pb-8">
-        <div className="mx-auto max-w-5xl md:flex md:flex-row md:space-x-8">
+        <div className="mx-auto max-w-5xl md:flex md:flex-row md:space-x-8 mb-5">
           <BackToPreviousPageButton />
         </div>
         <div className="mx-auto max-w-5xl md:flex md:flex-row md:space-x-8">

@@ -3,7 +3,6 @@ import type { User } from "@prisma/client";
 import { prisma } from "~/server/db/prisma";
 
 import Posters from "../../posters/components/posters";
-import { SelectBar } from "./components/select-bar";
 
 type UserProfileProps = {
   params: { username: User["username"] };
@@ -31,7 +30,6 @@ export default async function CreatedByUser({
       {user?.posters && (
         <>
           <Posters posters={user.posters} noMargin />
-          <SelectBar />
         </>
       )}
     </Suspense>
