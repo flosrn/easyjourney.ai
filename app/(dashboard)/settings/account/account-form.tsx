@@ -1,7 +1,9 @@
 "use client";
 
+import { METHODS } from "node:http";
 import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -57,9 +59,18 @@ export const AccountForm = () => {
     }
   }, [session, form]);
 
+  const updateUsernameMutation = useMutation(async (username) => {
+    const res = await fetch("/api/profile/update/account", {
+      method: "PATCH",
+      body: JSON.stringify({ username }),
+    });
+    return res.json();
+  });
+
   const onSubmit = (data: AccountFormValues) => {
     console.log(data);
-    // TODO: Submit to API
+    const { username } = data;
+    updateUsernameMutation.mutate({ username });
   };
 
   return (

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -71,6 +72,18 @@ const ProfileForm = () => {
   const onSubmit = (data: ProfileFormValues) => {
     console.log(data);
     // TODO: add logic to update profile
+    const { name, bio, urls } = data;
+    console.log({ name, bio, urls });
+    const updateProfile = useQuery({
+      queryKey: ["updateProfile", { name, bio, urls }],
+      queryFn: async () => {
+        const response = await fetch("/api/user/profile", {
+          method: "PATCH",
+          body: JSON.stringify({ name, bio, urls }),
+        });
+        return response.json();
+      },
+    });
   };
 
   return (
