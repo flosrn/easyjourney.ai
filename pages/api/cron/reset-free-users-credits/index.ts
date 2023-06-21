@@ -11,10 +11,10 @@ export default async function handler(
     await prisma.user.updateMany({
       where: {
         plan: "FREE",
-        // OR: [
-        //   { stripeCurrentPeriodEnd: null }, // For users who never subscribed
-        //   { stripeCurrentPeriodEnd: { lte: new Date() } }, // For users whose subscription has ended
-        // ],
+        OR: [
+          { stripeCurrentPeriodEnd: null }, // For users who never subscribed
+          { stripeCurrentPeriodEnd: { lte: new Date() } }, // For users whose subscription has ended
+        ],
       },
       data: { credits: 5 },
     });
