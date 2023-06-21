@@ -8,15 +8,15 @@ export const handleMessageData = ({
   setImageType,
   setMessage,
   setIsLoading,
-  setLoadingType,
+  setIsSuccess,
 }: {
   image: ImageData | undefined;
   setImageType: ImageGenerationSetAction["setImageType"];
   setMessage: ImageGenerationSetAction["setMessage"];
   setIsLoading: ImageGenerationSetAction["setIsLoading"];
   setLoadingType: ImageGenerationSetAction["setLoadingType"];
+  setIsSuccess: ImageGenerationSetAction["setIsSuccess"];
 }) => {
-  setLoadingType(null);
   switch (image?.type) {
     case "loading": {
       break;
@@ -26,6 +26,7 @@ export const handleMessageData = ({
     }
     case "generation_complete": {
       console.log("generation_complete");
+      setIsSuccess(true);
       setImageType("generation");
       setMessage("Tips: click on one of the four images to continue");
       setIsLoading(false);

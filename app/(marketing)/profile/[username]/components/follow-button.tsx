@@ -6,6 +6,8 @@ import type { User } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 
+import { cn } from "~/lib/classNames";
+
 type FollowButtonProps = {
   userId: User["id"];
   isFollowing: boolean;
@@ -30,7 +32,8 @@ const FollowButton = ({
   const session = useSession();
   const router = useRouter();
 
-  const handleFollowClick = async () => {
+  const handleFollowClick = async (event: React.MouseEvent) => {
+    event.preventDefault();
     if (!session.data) {
       router.push("/api/auth/signin");
     }
@@ -46,14 +49,16 @@ const FollowButton = ({
     <>
       <button
         onClick={handleFollowClick}
-        className={`mt-4 rounded-full px-4 py-2 ${
+        className={cn(
+          "rounded-full px-4 py-2",
           isFollowing ? "bg-blue-500" : "bg-gray-300"
-        }`}
+        )}
       >
         <span
-          className={`text-sm font-semibold ${
+          className={cn(
+            "text-sm font-semibold",
             isFollowing ? "text-white" : "text-gray-700"
-          }`}
+          )}
         >
           {isFollowing ? "Following" : "Follow"}
         </span>

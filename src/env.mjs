@@ -23,7 +23,8 @@ const serverSchema = z.object({
   GOOGLE_CLIENT_SECRET: z.string().min(1),
   STRIPE_SECRET_KEY: z.string().min(1),
   STRIPE_WEBHOOK_SECRET: z.string().min(1),
-  UPLOADCARE_PRIVATE_KEY: z.string().min(1),
+  STRIPE_PRO_MONTHLY_PLAN_ID: z.string().min(1),
+  OPENAI_API_KEY: z.string().min(1),
   MIDJOURNEY_CSRF_TOKEN: z.string().min(1),
   MIDJOURNEY_CSRF_SESSION_TOKEN: z.string().min(1),
 });
@@ -33,8 +34,8 @@ const serverSchema = z.object({
  * built with invalid env vars. To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 const clientSchema = z.object({
+  NEXT_PUBLIC_URL: z.string().url(),
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().min(1),
-  NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY: z.string().min(1),
   NEXT_PUBLIC_DISCORD_SALAI_TOKEN: z.string().min(1),
 });
 
@@ -45,8 +46,9 @@ const clientSchema = z.object({
  * @type {Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | undefined>}
  */
 const processEnv = {
-  DATABASE_URL: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
+  NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
+  DATABASE_URL: process.env.DATABASE_URL,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
@@ -55,9 +57,8 @@ const processEnv = {
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
-  NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY:
-    process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY,
-  UPLOADCARE_PRIVATE_KEY: process.env.UPLOADCARE_PRIVATE_KEY,
+  STRIPE_PRO_MONTHLY_PLAN_ID: process.env.STRIPE_PRO_MONTHLY_PLAN_ID,
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   NEXT_PUBLIC_DISCORD_SALAI_TOKEN: process.env.NEXT_PUBLIC_DISCORD_SALAI_TOKEN,
   MIDJOURNEY_CSRF_TOKEN: process.env.MIDJOURNEY_CSRF_TOKEN,
   MIDJOURNEY_CSRF_SESSION_TOKEN: process.env.MIDJOURNEY_CSRF_SESSION_TOKEN,

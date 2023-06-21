@@ -12,3 +12,20 @@ export const formatDate = ({ dateObject }: { dateObject?: Date | string }) => {
   const formattedDate = `${day}/${month}/${year}, ${hours}:${minutes}`;
   return formattedDate;
 };
+
+export const formatDateToString = (
+  input: number | string,
+  locale = "en-US",
+  timeZone = "UTC"
+): string => {
+  const date = new Date(input);
+  return date.toLocaleDateString(locale, {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    timeZone,
+  });
+};

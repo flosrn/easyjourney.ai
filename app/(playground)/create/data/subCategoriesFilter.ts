@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/text-encoding-identifier-case */
+
 import type { SubCategoryFilter } from "../types/typeFilters";
 
 export const subCategoriesFilter: SubCategoryFilter[] = [

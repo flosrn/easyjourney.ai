@@ -9,9 +9,10 @@ export type ImageData = APIAttachment & {
   type?: string;
   prompt: string;
   messageId: string;
-  messageHash: string;
+  jobId: string;
   referencedImage?: APIAttachment;
   error?: string;
+  isError?: boolean;
 };
 
 type ImageGenerationState = {
@@ -19,12 +20,16 @@ type ImageGenerationState = {
   imageIndex: number;
   imageType: "generation" | "upscale" | "variation" | null;
   isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
   error: string | unknown | null;
   message?: string;
   selectedImage: number | null;
   loadingType: "generation" | "upload" | "upscale" | "variation" | null;
+  loadingCount: number;
   showActionsButtons: boolean;
   isImageUploaded: boolean;
+  stream: ReadableStream<Uint8Array> | null;
 };
 
 export type ImageGenerationSetAction = {
@@ -35,6 +40,8 @@ export type ImageGenerationSetAction = {
     imageType: "generation" | "upscale" | "variation" | null
   ) => void;
   setIsLoading: (isLoading: boolean) => void;
+  setIsSuccess: (isSuccess: boolean) => void;
+  setIsError: (isError: boolean) => void;
   setError: (error: string | unknown | null) => void;
   setMessage: (message: string) => void;
   setSelectedImage: (imageSelected: number | null) => void;
@@ -42,8 +49,10 @@ export type ImageGenerationSetAction = {
   setLoadingType: (
     loadingType: "generation" | "upscale" | "variation" | null
   ) => void;
+  setLoadingCount: (loadingCountValue: number) => void;
   setShowActionsButtons: (showActionsButtons: boolean) => void;
   setIsImageUploaded: (isImageUploaded: boolean) => void;
+  setStream: (stream: ReadableStream<Uint8Array> | null) => void;
   retry: () => void;
 };
 
@@ -92,6 +101,12 @@ export const useImageGenerationStore = create<
   const setMessage = (message: string) => {
     set(() => ({ message }));
   };
+  const setIsSuccess = (isSuccess: boolean) => {
+    set(() => ({ isSuccess }));
+  };
+  const setIsError = (isError: boolean) => {
+    set(() => ({ isError }));
+  };
   const setError = (error: string | unknown | null) => {
     set(() => ({ error }));
   };
@@ -102,11 +117,14 @@ export const useImageGenerationStore = create<
     set(() => ({
       images: [],
       isLoading: false,
+      isSuccess: false,
+      isError: false,
       error: null,
       message: "",
       selectedImage: 0,
       imageType: null,
       isImageUploaded: false,
+      loadingCount: 0,
     }));
   };
   const setLoadingType = (
@@ -114,11 +132,17 @@ export const useImageGenerationStore = create<
   ) => {
     set(() => ({ loadingType }));
   };
+  const setLoadingCount = (loadingCountValue: number) => {
+    set(() => ({ loadingCount: loadingCountValue }));
+  };
   const setShowActionsButtons = (showActionsButtons: boolean) => {
     set(() => ({ showActionsButtons }));
   };
   const setIsImageUploaded = (isImageUploaded: boolean) => {
     set(() => ({ isImageUploaded }));
+  };
+  const setStream = (stream: ReadableStream<Uint8Array> | null) => {
+    set(() => ({ stream }));
   };
   const retry = () => {
     set(() => ({ isLoading: false, error: null }));
@@ -136,7 +160,16 @@ export const useImageGenerationStore = create<
         isGenerated && toast.success("Poster successfully generated!");
         isUpscaled && toast.success("Poster successfully upscaled!");
         isVariation && toast.success("Poster successfully generated!");
-      }, 800);
+      }, 600);
+      if (image.isError) {
+        setIsLoading(false);
+        setLoadingCount(0);
+        setError("Image not found");
+        image.error && setMessage(image.error);
+        toast.error("Something went wrong, please try again.", {
+          duration: 5000,
+        });
+      }
       if (isGenerated || isUpscaled || isVariation) {
         return {
           images: [...state.images, image],
@@ -151,7 +184,10 @@ export const useImageGenerationStore = create<
           ],
         };
       } else if (isLoading) {
-        return { images: [...state.images] };
+        return {
+          images: [...state.images],
+          loadingCount: state.loadingCount + 1,
+        };
       } else if (isIteration) {
         return { images: [image], imageIndex: 0 };
       } else {
@@ -166,13 +202,17 @@ export const useImageGenerationStore = create<
     nextImage,
     setImageType,
     setIsLoading,
+    setIsSuccess,
+    setIsError,
     setError,
     setMessage,
     setSelectedImage,
     setClear,
     setLoadingType,
+    setLoadingCount,
     setShowActionsButtons,
     setIsImageUploaded,
+    setStream,
     retry,
   };
 
@@ -181,15 +221,20 @@ export const useImageGenerationStore = create<
     imageIndex: 0,
     imageType: null,
     isLoading: false,
+    isSuccess: false,
+    isError: false,
     error: null,
     message: "",
     selectedImage: 0,
     loadingType: null,
+    loadingCount: 0,
     showActionsButtons: false,
     isImageUploaded: false,
+    stream: null,
     ...actions,
     generateImage: async (prompt) => {
       setIsLoading(true);
+      setIsSuccess(false);
       setLoadingType("generation");
       setError(null);
       setMessage("");
@@ -202,45 +247,63 @@ export const useImageGenerationStore = create<
         if (inputWords.includes(word.toLowerCase())) {
           setClear();
           setMessage(
-            `Your prompt contains a blacklisted word: ${word}. Please try again.`
+            `Your prompt contains a blacklisted word: ${word}. please change your prompt and try again.`
           );
-          toast.error(`Your prompt contains a blacklisted word: ${word}`);
+          setIsError(true);
+          toast.error("Something went wrong, please try again.");
           throw new Error("Blacklisted word");
         }
       });
 
-      try {
+      const CONTENT_TYPE_JSON = { "Content-Type": "application/json" };
+
+      const fetchImagine = async (promptValue: string) => {
         const response = await fetch("/api/midjourney/imagine", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt }),
+          headers: CONTENT_TYPE_JSON,
+          body: JSON.stringify({ prompt: promptValue }),
         });
-        const { status } = await response.json();
-        if (status === 401) {
-          setMessage(`User not logged in, please authenticate`);
-        } else if (status === 204) {
-          // eslint-disable-next-line no-shadow
-          const response = await fetch("/api/get-messages", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt }),
-          });
+
+        const data = await response.json();
+        return data;
+      };
+
+      const fetchChannelMessage = async (promptValue: string) => {
+        const response = await fetch("/api/discord/get-channel-message", {
+          method: "POST",
+          headers: CONTENT_TYPE_JSON,
+          body: JSON.stringify({ prompt: promptValue }),
+        });
+        return response;
+      };
+
+      // type error
+      const handleErrorResponse = ({ error }: { error: unknown }) => {
+        console.log("error :", error);
+        setIsError(true);
+        setIsSuccess(false);
+        setIsLoading(false);
+        setLoadingType(null);
+        setMessage(`Error: ${error}`);
+        toast.error("Something went wrong, please try again.");
+        setError(error);
+      };
+
+      try {
+        const data = await fetchImagine(prompt);
+        if (!data.status) handleErrorResponse(data);
+
+        if (data.status === 204) {
+          const response = await fetchChannelMessage(prompt);
 
           if (response.body) {
+            setStream(response.body);
             const reader = response.body.getReader();
             await readStreamData(reader, actions);
           }
-        } else {
-          setMessage(
-            `Something went wrong while generating the image, please try again.\n\nStatus code: ${status}`
-          );
-          throw new Error("Something went wrong");
         }
-      } catch (error_: unknown) {
-        setMessage(
-          `Something went wrong while generating the image, please try again.\n\n${error_}`
-        );
-        setError(error_);
+      } catch (error: unknown) {
+        handleErrorResponse({ error });
       }
     },
     upscaleImage: async (index, image) => {
@@ -251,38 +314,20 @@ export const useImageGenerationStore = create<
       setImageType(null);
       setIsImageUploaded(false);
 
-      const { prompt, messageId, messageHash } = image;
+      const { jobId } = image;
 
       try {
-        const { status } = await fetch("/api/midjourney/upscale", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            index,
-            messageId,
-            messageHash,
-          }),
-        });
-
-        if (status === 401) {
-          setMessage(`User not logged in, please authenticate`);
-        } else if (status === 200) {
-          const response = await fetch("/api/get-messages", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt, index, option: "upscale" }),
+        if (!index) return;
+        setTimeout(() => {
+          actions.addImage({
+            ...image,
+            type: "image_upscaled",
+            url: `https://cdn.midjourney.com/${jobId}/0_${index - 1}.webp`,
           });
-
-          if (response.body) {
-            const reader = response.body.getReader();
-            await readStreamData(reader, actions);
-          }
-        } else {
-          setMessage(
-            `Something went wrong while upscaling the image, please try again.\n\nStatus code: ${status}`
-          );
-          throw new Error("Something went wrong");
-        }
+          setImageType("upscale");
+          setMessage("");
+          setIsLoading(false);
+        }, 1000);
       } catch (error_: unknown) {
         setMessage(
           `Something went wrong while upscaling the image, please try again.\n\n${error_}`
@@ -299,7 +344,7 @@ export const useImageGenerationStore = create<
       setImageType(null);
       setIsImageUploaded(false);
 
-      const { prompt, messageId, messageHash } = image;
+      const { prompt, messageId, jobId } = image;
 
       try {
         const { status } = await fetch("/api/midjourney/variation", {
@@ -308,20 +353,21 @@ export const useImageGenerationStore = create<
           body: JSON.stringify({
             index,
             messageId,
-            messageHash,
+            jobId,
           }),
         });
 
         if (status === 401) {
           setMessage(`User not logged in, please authenticate`);
         } else if (status === 200) {
-          const response = await fetch("/api/get-messages", {
+          const response = await fetch("/api/discord/get-channel-message", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ prompt, index, option: "variation" }),
           });
 
           if (response.body) {
+            setStream(response.body);
             const reader = response.body.getReader();
             await readStreamData(reader, actions);
           }

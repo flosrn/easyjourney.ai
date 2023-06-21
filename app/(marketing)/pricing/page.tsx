@@ -3,44 +3,85 @@ import PricingCard from "~/components/cards/pricing-card";
 const pricingData = [
   {
     title: "Free",
+    plan: "FREE",
     price: "$0",
-    description: "For small teams or hobby projects",
-    features: ["Up to 5 users", "Basic support", "All core features"],
+    description: "For newbies users of Midjourney",
+    features: [
+      <p key="0">
+        Generate <strong>5</strong> posters per day
+      </p>,
+      <p key="1">
+        Generate posters in <strong>relaxed mode</strong>
+      </p>,
+      <p key="2">
+        Create up to <strong>2</strong> boards
+      </p>,
+      <p key="3">Basic support</p>,
+    ],
   },
   {
     title: "Pro",
-    price: "$15",
-    description: "Most popular choice",
+    plan: "PRO",
+    price: "$10",
+    description: "For regular users of Midjourney",
     features: [
-      "Up to 20 users",
-      "Priority email support",
-      "All core features",
-      "Enhanced security",
+      <p key="0">
+        Generate{" "}
+        <strong className="text-gradient-hyper animate-text">500</strong>{" "}
+        posters per month
+      </p>,
+      <p key="1">
+        Generate posters in{" "}
+        <strong className="text-gradient-hyper animate-text">fast mode</strong>
+      </p>,
+      <p key="2">
+        Create up to <strong>10</strong> boards
+      </p>,
+      <p key="3">
+        Collaborative boards up to <strong>5</strong> members
+      </p>,
+      <p key="4">Private posters</p>,
+      <p key="5">Private boards</p>,
+      <p key="6">Priority support</p>,
     ],
   },
   {
-    title: "Enterprise",
+    title: "Elite",
+    plan: "ELITE",
     price: "$30",
-    description: "For large teams or enterprises",
+    description: "For power users of Midjourney",
     features: [
-      "Unlimited users",
-      "Phone & email support",
-      "All core features",
-      "Enhanced security",
-      "Custom integrations",
-      "double line checked if this is very long then what will happen ? Will this bug ? Will this broke ? I don't know",
+      <p key="0">
+        Generate <strong>2000</strong> posters per month
+      </p>,
+      <p key="1">
+        Generate posters in <strong>fast mode</strong>
+      </p>,
+      <p key="2">
+        Create <strong>unlimited</strong> boards
+      </p>,
+      <p key="3">
+        Collaborative boards with <strong>unlimited members</strong>
+      </p>,
+      <p key="4">Private posters</p>,
+      <p key="5">Private boards</p>,
+      <p key="6">
+        Generate posters with <strong>AI</strong>
+      </p>,
+      <p key="7">More coming soon...</p>,
     ],
+    disabled: true,
   },
 ];
 
 export default function PricingPage() {
   return (
-    <div className="flex-center mt-6 flex flex-col">
-      <h2 className="text-xl font-light uppercase tracking-wider ">Pricing</h2>
-      <span className="mt-6 text-4xl font-extrabold ">
-        Choose the way you make Art
+    <div className="flex-center container mt-10 flex flex-col">
+      <h2 className="text-xl font-light uppercase tracking-wider">Pricing</h2>
+      <span className="mt-6 text-center text-4xl font-extrabold ">
+        Choose the way you want to make art
       </span>
-      <div className="mx-auto grid max-w-screen-lg gap-4 px-5 py-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto grid max-w-screen-lg gap-4 py-10 md:grid-cols-2 lg:grid-cols-3">
         {pricingData.map((pricing) => (
           <PricingCard key={pricing.title} {...pricing} />
         ))}

@@ -1,6 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 
+import MyFeedMenuItem from "~/components/header/my-feed-menu-item";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -31,7 +32,7 @@ export const Navbar = () => {
                 )}
               >
                 {megaMenuItem.hasLeftImage && (
-                  <li className="row-span-3">
+                  <li className="row-span-4">
                     <NavigationMenuLink asChild>
                       <Link
                         href="/posters/popular"
@@ -48,6 +49,7 @@ export const Navbar = () => {
                     </NavigationMenuLink>
                   </li>
                 )}
+
                 {megaMenuItem.menu.map((menuItem) => (
                   <ListItem
                     key={menuItem.title}
@@ -58,6 +60,9 @@ export const Navbar = () => {
                     {menuItem.description}
                   </ListItem>
                 ))}
+                {megaMenuItem.title === "Explorer" && (
+                  <MyFeedMenuItem ListItem={ListItem} />
+                )}
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>

@@ -39,13 +39,17 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, user }) {
       session.user.id = user.id;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
+      // @ts-expect-error: to fix later
       session.user.username = user.username;
       session.user.image = user.image;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
+      // @ts-expect-error: to fix later
       session.user.role = user.role;
+      // @ts-expect-error: to fix later
+      session.user.credits = user.credits;
+      // @ts-expect-error: to fix later
+      session.user.freeCredits = user.freeCredits;
+      // @ts-expect-error: to fix later
+      session.user.plan = user.plan;
       return session;
     },
   },

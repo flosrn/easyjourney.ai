@@ -9,6 +9,7 @@ import {
 } from "../../types/typeFilters";
 import EmojiIcon from "../dialog/emoji-icon";
 
+// eslint-disable-next-line no-shadow
 export enum CategoryFilterType {
   "CATEGORY" = "CATEGORY",
   "SUBCATEGORY" = "SUBCATEGORY",

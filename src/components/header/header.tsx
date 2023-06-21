@@ -2,13 +2,13 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import DropdownUserMenuNav from "~/components/header/dropdown-user-menu-nav";
 import { Navbar } from "~/components/header/navbar";
-import { CartDrawer } from "~/components/shopping-cart/cart-drawer";
+import UserCreditsPopover from "~/components/header/user-credits-popover";
 import { Button } from "~/components/ui/button";
 
 import { cn } from "~/lib/classNames";
@@ -21,10 +21,9 @@ const Header = ({ expanded }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const pathname = usePathname();
   const isCreatePage = pathname === "/create";
-  const router = useRouter();
   const { data: session } = useSession();
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/95 shadow-sm">
+    <header className="supports-backdrop-blur:bg-background/10 fixed top-0 z-40 w-full border-b bg-background/90 shadow-sm backdrop-blur">
       <div
         className={cn(
           "flex h-14 items-center",
@@ -43,8 +42,9 @@ const Header = ({ expanded }: HeaderProps) => {
             </div>
             <Link href="/" className="mr-6 flex items-center space-x-2">
               <span className="hidden font-bold md:inline-block">
-                myposter.ai
+                easyjourney.ai
               </span>
+              <span className="font-bold md:hidden">EJ</span>
             </Link>
             <nav
               dir="ltr"
@@ -56,17 +56,16 @@ const Header = ({ expanded }: HeaderProps) => {
               <div className="absolute left-0 top-full flex justify-center" />
             </nav>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 md:space-x-4">
             {!isCreatePage && (
-              <Button
-                href={session ? "/create" : "/api/auth/signin"}
-                className="mr-2"
-              >
+              <Button href={session ? "/create" : "/api/auth/signin"}>
                 Create
               </Button>
             )}
-            <DropdownUserMenuNav />
-            <CartDrawer />
+            <div className="flex items-center space-x-2 md:space-x-4">
+              {session?.user && <UserCreditsPopover />}
+              <DropdownUserMenuNav />
+            </div>
           </div>
         </div>
       </div>

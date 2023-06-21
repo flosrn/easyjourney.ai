@@ -3,7 +3,7 @@ import type { LucideIcon } from "lucide-react";
 export type Hero = {
   title: string;
   subtitle: string;
-  description: string;
+  description?: string;
 };
 
 export type NavItem = {

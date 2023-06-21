@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
+import type { SubscriptionPlan, UserRole } from "@prisma/client";
 import type { DefaultSession } from "next-auth";
-
-/* eslint-disable no-shadow */
-export enum UserRole {
-  USER = "USER",
-  ADMIN = "ADMIN",
-}
-/* eslint-enable no-shadow */
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -20,6 +14,9 @@ declare module "next-auth" {
       id: string;
       username: string;
       role?: UserRole;
+      plan?: SubscriptionPlan;
+      credits?: number;
+      freeCredits?: number;
       // ...other properties
     };
   }

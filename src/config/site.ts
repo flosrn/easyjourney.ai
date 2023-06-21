@@ -8,7 +8,6 @@ import {
   LogOut,
   Palette,
   Settings,
-  ShoppingCart,
   User,
 } from "lucide-react";
 
@@ -142,22 +141,9 @@ const userMenu: NavItem[][] = [
   ],
   [
     {
-      title: "Gains",
-      href: "/dashboard/rewards",
-      icon: DollarSign,
-      disabled: true,
-    },
-    {
       title: "Abonnement",
-      href: "/dashboard/subscription",
+      href: "/settings/subscription",
       icon: CalendarCheck2,
-      disabled: true,
-    },
-    {
-      title: "Méthodes de paiement",
-      href: "/dashboard/payments",
-      icon: CreditCard,
-      disabled: true,
     },
     {
       title: "Historique des transactions",
@@ -186,8 +172,6 @@ const userMenu: NavItem[][] = [
 export const siteConfig: SiteConfig = {
   title: "myposter.ai",
   subtitle: "Generate beautiful posters in seconds with AI",
-  description:
-    "Unlock the power of Midjourney with a beautiful and user-friendly interface. Create stunning visuals with ease, no AI or prompt engineering expertise required",
   megaMenu,
   userMenu,
 };

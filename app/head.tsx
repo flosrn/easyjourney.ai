@@ -8,7 +8,11 @@ export default function Head() {
         name="description"
         content="Next.js template for building apps with Radix UI and Tailwind CSS"
       />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+      />
+
       <link rel="icon" href="/favicon.ico" />
     </>
   );
