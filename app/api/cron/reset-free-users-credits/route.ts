@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "~/server/db/prisma";
 import { formatDateToString } from "~/utils/formatDate";
 
-export async function GET() {
+export async function POST() {
   // reset credits to 5 for all users in FREE plan
   try {
     await prisma.user.updateMany({
