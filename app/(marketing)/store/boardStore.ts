@@ -6,6 +6,7 @@ type BoardState = {
   boardIcon?: string;
   boardDescription?: string;
   boardIsPublic: boolean;
+  originalState?: Partial<BoardState>;
 };
 
 type BoardAction = {
@@ -15,6 +16,8 @@ type BoardAction = {
   setBoardIcon: (value: string) => void;
   setBoardDescription: (value: string) => void;
   setBoardForm: (name: string, value: boolean | string) => void;
+  saveOriginalState: () => void;
+  restoreOriginalState: () => void;
 };
 
 export const useBoardStore = create<BoardAction & BoardState>()((set) => ({
@@ -27,4 +30,6 @@ export const useBoardStore = create<BoardAction & BoardState>()((set) => ({
   setBoardDescription: (value) => set(() => ({ boardDescription: value })),
   setBoardIsPublic: (value) => set(() => ({ boardIsPublic: value })),
   setBoardForm: (name, value) => set(() => ({ [name]: value })),
+  saveOriginalState: () => set((state) => ({ originalState: { ...state } })),
+  restoreOriginalState: () => set((state) => state.originalState ?? {}),
 }));

@@ -3,13 +3,13 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
+import { useSelectPosterStore } from "~/store/selectPosterStore";
 import toast from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
 
-type RemoveFomBoardButtonProps = {
-  posterId: string;
-  boardId: string;
+type RemoveFromBoardButtonProps = {
+  isSelectedPostersEmpty: boolean;
 };
 
 const removeFromBoard = async ({
@@ -17,7 +17,7 @@ const removeFromBoard = async ({
   boardId,
 }: {
   posterId: string;
-  boardId: string;
+  boardId: string[] | string;
 }) => {
   const response = await fetch("/api/boards/remove", {
     method: "POST",
@@ -27,19 +27,35 @@ const removeFromBoard = async ({
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
-  return response.json();
+  const data = await response.json();
+  return data;
 };
 
 const RemoveFromBoardButton = ({
-  posterId,
-  boardId,
-}: RemoveFomBoardButtonProps) => {
+  isSelectedPostersEmpty,
+}: RemoveFromBoardButtonProps) => {
+  const { boardId } = useParams() ?? {};
+  const [
+    selectedPosters,
+    clearSelectedPosters,
+    addToRemoveFromBoard,
+    clearToRemoveFromBoard,
+  ] = useSelectPosterStore((state) => [
+    state.selectedPosters,
+    state.clearSelectedPosters,
+    state.addToRemoveFromBoard,
+    state.clearToRemoveFromBoard,
+  ]);
+
   const removeFromMutation = useMutation({
     mutationFn: removeFromBoard,
     onSuccess: async (data) => {
       if (data.status === 400) {
         toast.error("You already added this poster");
       }
+      selectedPosters.length > 1
+        ? toast.success("Posters have been removed")
+        : toast.success("Poster have been removed");
     },
   });
 
@@ -48,15 +64,27 @@ const RemoveFromBoardButton = ({
   ) => {
     event.preventDefault();
     try {
-      await removeFromMutation.mutateAsync({
-        posterId,
-        boardId,
+      selectedPosters.map(async (posterId) => {
+        addToRemoveFromBoard(posterId);
+        await removeFromMutation.mutateAsync({
+          posterId,
+          boardId,
+        });
       });
+      clearSelectedPosters();
+      clearToRemoveFromBoard();
     } catch {
       toast.error("Something went removing this poster, please try again");
     }
   };
-  return <Button onClick={handleRemoveFromBoardButton}>Remove Poster</Button>;
+  return (
+    <Button
+      onClick={handleRemoveFromBoardButton}
+      disabled={isSelectedPostersEmpty}
+    >
+      Remove Poster
+    </Button>
+  );
 };
 
 export default RemoveFromBoardButton;

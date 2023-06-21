@@ -3,9 +3,11 @@ import Image from "next/image";
 import type { User } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
+import { Toaster } from "react-hot-toast";
 
 import { CounterBar } from "./components/counter-bar";
 import FollowButton from "./components/follow-button";
+import { SelectBar } from "./components/select-bar";
 import TabsHeader from "./components/tabs-header";
 
 type LayoutProfileHeaderProps = {
@@ -37,7 +39,10 @@ export default async function LayoutProfileHeader({
     return <div>User not found</div>;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+  const isAdmin = session?.user.role === "ADMIN";
   const isCurrentUser = session?.user.id === user.id;
+  const isValidUser = isAdmin || isCurrentUser;
   const totalPosters = user.posters.length;
   const totalLikes = user.posters.reduce(
     (total, poster) => total + poster.likes.length,
@@ -82,8 +87,10 @@ export default async function LayoutProfileHeader({
         </div>
       </div>
       <div className="container max-w-6xl">
-        <TabsHeader username={username} isCurrentUser={isCurrentUser} />
+        <TabsHeader username={username} isValidUser={isValidUser} />
         {children}
+        <SelectBar isValidUser={isValidUser} />
+        <Toaster position="bottom-right" />
       </div>
     </>
   );

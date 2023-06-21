@@ -55,7 +55,7 @@ export async function POST(request: Request) {
       });
     }
 
-    await prisma.boardPoster.delete({
+    const posters = await prisma.boardPoster.delete({
       where: {
         boardId_posterId: {
           boardId,
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({ status: 204 });
+    return NextResponse.json(posters);
   } catch {
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }

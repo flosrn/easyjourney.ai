@@ -18,22 +18,22 @@ type SelectBoardProps = {
   onCloseHandler: () => void;
 };
 
+const fetchUserBoards = async (username: string[] | string) => {
+  const response = await fetch(`/api/boards/?username=${username}`);
+  return response.json();
+};
+
 const SelectBoard = ({ onCloseHandler }: SelectBoardProps) => {
   const { username } = useParams() ?? {};
 
-  const { status, data } = useQuery({
+  const { status, data: boards } = useQuery({
     queryKey: ["board", username],
-    queryFn: async () => {
-      const response = await fetch(`/api/boards/?username=${username}`);
-      return response.json();
-    },
+    queryFn: async () => fetchUserBoards(username),
   });
 
   if (status === "error") {
     toast.error("Something went wrong getting thoose board, please try again");
   }
-
-  const boards: Board[] = data?.userBoards || [];
 
   return (
     <>
@@ -45,7 +45,7 @@ const SelectBoard = ({ onCloseHandler }: SelectBoardProps) => {
       {status === "success" && (
         <CommandGroup>
           {boards.length > 0 ? (
-            boards.map((board) => (
+            boards.map((board: Board) => (
               <CommandItem
                 key={board.id}
                 onSelect={() => {
