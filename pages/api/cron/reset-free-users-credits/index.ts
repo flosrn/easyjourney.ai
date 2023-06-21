@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next/types";
 import { prisma } from "~/server/db/prisma";
 import { formatDateToString } from "~/utils/formatDate";
 
-export async function handler(
+export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
@@ -20,7 +20,7 @@ export async function handler(
     });
 
     const dateTime = formatDateToString(Date.now(), "fr-FR", "Europe/Paris");
-    console.log(`FREE plan cron success at ${dateTime}`);
+    console.log(`FREE plan cron success the ${dateTime}`);
 
     response.status(200).json({ success: true });
   } catch (error: unknown) {

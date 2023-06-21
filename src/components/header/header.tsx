@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { GemIcon, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import DropdownUserMenuNav from "~/components/header/dropdown-user-menu-nav";
