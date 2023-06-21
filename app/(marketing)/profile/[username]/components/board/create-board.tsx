@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
@@ -57,6 +57,7 @@ const addToBoard = async ({
 
 const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
   const { username } = useParams() ?? {};
+  const router = useRouter();
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
@@ -85,7 +86,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
       if (data.status === 400) {
         toast.error(
           selectedPosters.length > 1
-            ? "You already added thoose posters"
+            ? "You already added those posters"
             : "You already added this poster"
         );
       }
@@ -120,6 +121,7 @@ const CreateBoard = ({ onCloseHandler }: CreateBoardProps) => {
               addToMutation.mutateAsync({ posterId, boardId })
             )
           );
+          router.push(`/profile/${username}/boards/${boardId}`);
           toast.success(
             selectedPosters.length > 1
               ? "Posters have been added"

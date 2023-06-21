@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useMutation } from "@tanstack/react-query";
+import { SaveIcon } from "lucide-react";
 import toast from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
@@ -85,7 +86,8 @@ const UpdateBoardButton = ({
   };
 
   return (
-    <Button onClick={handleBoardUpdateForm} variant="secondary">
+    <Button onClick={handleBoardUpdateForm} variant="success">
+      <SaveIcon className="mr-2 h-4 w-4" />
       Save
     </Button>
   );

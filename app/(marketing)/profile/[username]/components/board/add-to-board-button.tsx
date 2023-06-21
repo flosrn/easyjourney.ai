@@ -36,12 +36,12 @@ const addToBoard = async ({
 
 const AddToBoardButton = ({ boardId, name, icon }: AddToBoardButtonProps) => {
   const session = useSession();
-  const username = session.data?.user.username;
   const router = useRouter();
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
   const toggleSelectBar = useSelectBarStore((state) => state.toggleSelectBar);
+  const username = session.data?.user.username;
 
   const addToMutation = useMutation({
     mutationFn: addToBoard,
@@ -49,7 +49,7 @@ const AddToBoardButton = ({ boardId, name, icon }: AddToBoardButtonProps) => {
       if (data.status === 400) {
         toast.error("You already added this poster");
       }
-      router.push(`/profile/${username}/boards/${boardId}`);
+      // router.push(`/profile/${username}/boards/${boardId}`);
     },
   });
 
@@ -65,6 +65,7 @@ const AddToBoardButton = ({ boardId, name, icon }: AddToBoardButtonProps) => {
           addToMutation.mutateAsync({ posterId, boardId })
         )
       );
+      router.push(`/profile/${username}/boards/${boardId}`);
       toast.success(
         selectedPosters.length > 1
           ? "Posters have been added"
@@ -73,14 +74,19 @@ const AddToBoardButton = ({ boardId, name, icon }: AddToBoardButtonProps) => {
     } catch {
       toast.error(
         selectedPosters.length > 1
-          ? "Something went wrong adding thoose posters, please try again"
+          ? "Something went wrong adding those posters, please try again"
           : "Something went wrong adding this poster, please try again"
       );
     }
   };
   return (
-    <Button onClick={handleAddToBoard} variant="ghost" className="truncate">
-      {icon} {name}
+    <Button
+      href={`/profile/${username}/boards/${boardId}`}
+      onClick={handleAddToBoard}
+      variant="ghost"
+      className="truncate"
+    >
+      {name}
     </Button>
   );
 };

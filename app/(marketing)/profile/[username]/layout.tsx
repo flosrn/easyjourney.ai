@@ -39,7 +39,6 @@ export default async function LayoutProfileHeader({
     return <div>User not found</div>;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
   const isAdmin = session?.user.role === "ADMIN";
   const isCurrentUser = session?.user.id === user.id;
   const isValidUser = isAdmin || isCurrentUser;
@@ -86,7 +85,7 @@ export default async function LayoutProfileHeader({
           />
         </div>
       </div>
-      <div className="container max-w-6xl">
+      <div className="container max-w-6xl pb-56">
         <TabsHeader username={username} isValidUser={isValidUser} />
         {children}
         <SelectBar isValidUser={isValidUser} />

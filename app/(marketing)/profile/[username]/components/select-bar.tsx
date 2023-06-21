@@ -84,13 +84,6 @@ export const SelectBar = ({ isValidUser }: SelectBarProps) => {
                   isSelectedPostersEmpty={isSelectedPostersEmpty}
                 />
               )}
-              <Button
-                variant="secondary"
-                className="ml-2"
-                onClick={handleClose}
-              >
-                Cancel
-              </Button>
             </div>
           </div>
         </motion.div>

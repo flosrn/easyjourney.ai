@@ -3,6 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
+import { Trash2Icon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
@@ -49,6 +50,7 @@ const DeleteBoardButton = ({ boardId }: deleteBoardProps) => {
 
   return (
     <Button onClick={handleDeleteBoard} className="mr-2">
+      <Trash2Icon className="mr-2 h-4 w-4" />
       Delete
     </Button>
   );

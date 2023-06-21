@@ -40,35 +40,21 @@ const UpdateBoardForm = () => {
   };
 
   return (
-    <>
-      <div className="mb-2 flex">
-        <Label htmlFor="IsPublic" className="mr-2 text-left">
-          Public :
+    <div className="space-y-2">
+      <div className="flex">
+        <Label htmlFor="isPublic" className="mr-2">
+          Public
         </Label>
         <Checkbox
           name="boardIsPublic"
-          id="IsPublic"
+          id="isPublic"
           checked={boardIsPublic}
           onCheckedChange={handleIsPublicChange}
         />
       </div>
-      <div className="mb-2 flex items-center justify-between">
-        <Label htmlFor="boardIcon" className="mr-2">
-          Icon :
-        </Label>
-        <Input
-          id="boardIcon"
-          name="boardIcon"
-          placeholder="icon"
-          value={boardIcon}
-          required
-          onChange={handleInputChange}
-          className="w-[90%]"
-        />
-      </div>
-      <div className="mb-2 flex items-center justify-between">
+      <div className="">
         <Label htmlFor="boardName" className="mr-2">
-          Name :
+          Name
         </Label>
         <Input
           id="boardName"
@@ -77,12 +63,12 @@ const UpdateBoardForm = () => {
           value={boardName}
           required
           onChange={handleInputChange}
-          className="w-[90%]"
+          className=""
         />
       </div>
-      <div className="mb-2 flex items-center justify-between">
+      <div className="">
         <Label htmlFor="boardDescription" className="mr-2">
-          Description :
+          Description
         </Label>
         <Input
           id="boardDescription"
@@ -91,10 +77,10 @@ const UpdateBoardForm = () => {
           value={boardDescription}
           required
           onChange={handleInputChange}
-          className="w-[90%]"
+          className=""
         />
       </div>
-    </>
+    </div>
   );
 };
 

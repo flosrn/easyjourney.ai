@@ -4,7 +4,7 @@ import React from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
-import { Loader2Icon } from "lucide-react";
+import { Loader2Icon, Trash2Icon } from "lucide-react";
 import toast from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
@@ -61,6 +61,7 @@ const DeleteButton = ({ isSelectedPostersEmpty }: DeleteButtonProps) => {
       {deleteMutation.isPending && (
         <Loader2Icon className="mr-2 h-5 animate-spin" />
       )}
+      <Trash2Icon className="mr-2 h-4 w-4" />
       Delete
     </Button>
   );

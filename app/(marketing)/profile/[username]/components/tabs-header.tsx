@@ -3,7 +3,9 @@
 import React from "react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
-import { BadgePlusIcon, HeartIcon, LucideBookOpen } from "lucide-react";
+import { StackIcon } from "@radix-ui/react-icons";
+import { HeartIcon, StarIcon } from "lucide-react";
+import { useInView } from "react-intersection-observer";
 
 import { Tabs, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
@@ -29,15 +31,20 @@ const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
   const { boardId } = useParams() ?? {};
   const pathname = usePathname();
   const value = getTabsValue(pathname);
+  const { ref, inView, entry } = useInView({
+    threshold: 0,
+  });
+
+  console.log("inView : ", inView);
 
   const boardWithoutId = !!pathname?.includes("boards") && !boardId;
   return (
     <div className="my-4 flex items-center justify-between space-x-3">
-      <Tabs value={value} className="w-[300px]">
+      <Tabs ref={ref} value={value} className="w-[300px]">
         <TabsList className="w-full">
           <Link href={`/profile/${username}`} className="w-1/3">
             <TabsTrigger value="created" className="w-full">
-              <BadgePlusIcon className="mr-2 h-5 w-5 shrink-0" />
+              <StarIcon className="mr-2 h-5 w-5 shrink-0" />
               New
             </TabsTrigger>
           </Link>
@@ -49,12 +56,17 @@ const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
           </Link>
           <Link href={`/profile/${username}/boards`} className="w-1/3">
             <TabsTrigger value="boards" className="w-full">
-              <LucideBookOpen className="mr-2 h-5 w-5 shrink-0" />
+              <StackIcon className="mr-2 h-5 w-5 shrink-0" />
               Boards
             </TabsTrigger>
           </Link>
         </TabsList>
       </Tabs>
+      {!inView && (
+        <div className="fixed bottom-2 z-50 right-5">
+          <SelectButton rounded />
+        </div>
+      )}
       {isValidUser && !boardWithoutId && (
         <div className="flex text-center">
           <SelectButton />

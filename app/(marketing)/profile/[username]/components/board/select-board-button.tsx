@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { LucideBookPlus, LucideStepBack } from "lucide-react";
+import { LucideBookPlus, LucideStepBack, PlusSquareIcon } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 import { Command, CommandInput } from "~/components/ui/command";
@@ -43,6 +43,7 @@ const SelectBoardButton = ({
           disabled={isSelectedPostersEmpty}
           className="truncate"
         >
+          <PlusSquareIcon className="mr-2 h-4 w-4" />
           Add to board
         </Button>
       </PopoverTrigger>

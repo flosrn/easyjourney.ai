@@ -16,12 +16,18 @@ const TitleBoard = () => {
 
   return (
     <>
-      <div className="mb-4 flex w-full justify-center text-center text-4xl">
-        <h1>{boardIcon}</h1>
-        <h1>{boardName}</h1>
-        {/* <div>{boardIsPublic ? "Public" : "Private"}</div> */}
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">{boardName}</h1>
+        <div>
+          {boardIsPublic ? (
+            <span className="text-green-400">Public</span>
+          ) : (
+            <span className="text-red-400">Private</span>
+          )}{" "}
+          board
+        </div>
       </div>
-      <div className=" text-2xl">{boardDescription}</div>
+      <div className="">{boardDescription}</div>
     </>
   );
 };

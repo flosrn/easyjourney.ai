@@ -3,10 +3,11 @@
 import React, { useEffect, useState } from "react";
 import type { Board, User } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
-import { useSelectPosterStore } from "~/store/selectPosterStore";
+import { EditIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
+import BackToPreviousPageButton from "~/components/posters/back-to-previous-page-button";
 import { Button } from "~/components/ui/button";
 
 import Posters from "../../../../posters/components/posters";
@@ -31,6 +32,8 @@ const fetchBoardPosters = async (boardId: string) => {
 };
 
 const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
+  const [isUpdateForm, setIsUpdateForm] = useState<boolean>(false);
+  const { data: session } = useSession();
   const [
     setBoardIsPublic,
     setBoardName,
@@ -44,22 +47,7 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
     state.setBoardDescription,
     state.restoreOriginalState,
   ]);
-  const user = useSession();
-  const userId = user.data?.user.id;
-  const [isUpdateForm, setIsUpdateForm] = useState(false);
-  const [
-    selectedPosters,
-    toRemove,
-    addToRemove,
-    clearSelectedPosters,
-    clearToRemove,
-  ] = useSelectPosterStore((state) => [
-    state.selectedPosters,
-    state.toRemove,
-    state.addToRemoveFromBoard,
-    state.clearSelectedPosters,
-    state.clearToRemoveFromBoard,
-  ]);
+  const userId = session?.user.id;
 
   const {
     isPending: isBoardPending,
@@ -113,31 +101,35 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
   };
   const isUserBoard = userId === board.userId;
   return (
-    <div>
-      <div className="mb-2 flex h-48 w-full flex-col rounded-xl p-2 ring-2 ring-offset-highlight">
-        {isUpdateForm ? <UpdateBoardForm /> : <TitleBoard />}
-      </div>
-      <div className="mb-2 flex flex-row-reverse">
-        {isUserBoard && isUpdateForm ? (
-          <>
-            <UpdateBoardButton
-              boardId={board.id}
-              toggleUpdateFormHandler={toggleUpdateForm}
-            />
-            <Button onClick={handleCancel} variant="secondary" className="mr-2">
-              Cancel
+    <div className="flex flex-col">
+      <BackToPreviousPageButton />
+      <div className="my-5 flex space-x-5">
+        <div className="w-full">
+          {isUpdateForm ? <UpdateBoardForm /> : <TitleBoard />}
+        </div>
+        <div className="mb-2 flex flex-row-reverse">
+          {isUserBoard && isUpdateForm ? (
+            <>
+              <UpdateBoardButton
+                boardId={board.id}
+                toggleUpdateFormHandler={toggleUpdateForm}
+              />
+              <Button
+                onClick={handleCancel}
+                variant="secondary"
+                className="mr-2"
+              >
+                Cancel
+              </Button>
+              <DeleteBoardButton boardId={board.id} />
+            </>
+          ) : (
+            <Button onClick={toggleUpdateForm} variant="secondary" className="">
+              <EditIcon className="mr-1 h-4 w-4" />
+              Edit
             </Button>
-            <DeleteBoardButton boardId={board.id} />
-          </>
-        ) : (
-          <Button
-            onClick={toggleUpdateForm}
-            variant="secondary"
-            className=" float-left"
-          >
-            Update
-          </Button>
-        )}
+          )}
+        </div>
       </div>
       <Posters posters={posters} noMargin />
     </div>
