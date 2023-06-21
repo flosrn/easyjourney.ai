@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
+import { Toast, toast } from "react-hot-toast";
 import * as z from "zod";
 
 import {
@@ -68,12 +69,18 @@ export const AccountForm = () => {
         },
         body: JSON.stringify(data),
       });
-      return response.json();
+      const responseData = await response.json();
+      if (responseData.status === 200) {
+        toast.success(responseData.message);
+      }
+      if (responseData.status !== 200) {
+        toast.error(responseData.message);
+      }
+      return responseData();
     },
   });
 
   const onSubmit = (data: AccountFormValues) => {
-    console.log(data);
     const { username } = data;
     updateUsernameMutation.mutate({ username });
   };

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -69,21 +69,22 @@ const ProfileForm = () => {
     control: form.control,
   });
 
+  const updateProfile = useMutation({
+    mutationFn: async (name, bio, urls) => {
+      const response = await fetch("/api/user/profile", {
+        method: "PATCH",
+        body: JSON.stringify({ name, bio, urls }),
+      });
+      const responseData = await response.json();
+      return responseData;
+    },
+  });
+
   const onSubmit = (data: ProfileFormValues) => {
-    console.log(data);
+    console.log("datafront", data);
     // TODO: add logic to update profile
     const { name, bio, urls } = data;
-    console.log({ name, bio, urls });
-    const updateProfile = useQuery({
-      queryKey: ["updateProfile", { name, bio, urls }],
-      queryFn: async () => {
-        const response = await fetch("/api/user/profile", {
-          method: "PATCH",
-          body: JSON.stringify({ name, bio, urls }),
-        });
-        return response.json();
-      },
-    });
+    updateProfile.mutate({ name, bio, urls });
   };
 
   return (
@@ -150,15 +151,6 @@ const ProfileForm = () => {
               )}
             />
           ))}
-          <Button
-            type="button"
-            variant="link"
-            size="sm"
-            className="mt-1"
-            onClick={() => append({ value: "" })}
-          >
-            Add URL
-          </Button>
         </div>
         <Button type="submit">Update profile</Button>
       </form>
