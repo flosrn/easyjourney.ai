@@ -31,11 +31,9 @@ const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
   const { boardId } = useParams() ?? {};
   const pathname = usePathname();
   const value = getTabsValue(pathname);
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     threshold: 0,
   });
-
-  console.log("inView : ", inView);
 
   const boardWithoutId = !!pathname?.includes("boards") && !boardId;
   return (
@@ -63,7 +61,7 @@ const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
         </TabsList>
       </Tabs>
       {!inView && (
-        <div className="fixed bottom-2 z-50 right-5">
+        <div className="fixed bottom-2 right-5 z-50">
           <SelectButton rounded />
         </div>
       )}

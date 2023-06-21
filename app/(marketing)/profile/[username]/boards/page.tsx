@@ -26,7 +26,7 @@ function Boards({ params: { username } }: UserProfileProps) {
     isPending,
     isError,
     data: boards,
-  } = useQuery({
+  } = useQuery<Board[]>({
     queryKey: ["boards", username],
     queryFn: async () => fetchUserBoards(username),
   });
@@ -39,14 +39,15 @@ function Boards({ params: { username } }: UserProfileProps) {
     toast.error("Something went wrong getting thoose board, please try again");
   }
 
-  const columns = [[], [], [], []];
-  boards.map((board, index) => {
+  const columns: Board[][] = [[], [], [], []];
+  boards?.map((board, index) => {
     columns[index % 4].push(board);
   });
 
   return (
     <div className={cn("grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4")}>
-      {boards.length > 0 &&
+      {boards &&
+        boards.length > 0 &&
         columns.map((column, index) => (
           <div className="grid h-fit gap-3" key={index}>
             {column.map((board: Board) => (
@@ -60,6 +61,7 @@ function Boards({ params: { username } }: UserProfileProps) {
                   name={board.name}
                   icon={board.icon}
                   isPublic={board.isPublic}
+                  // @ts-expect-error: TODO: fix this
                   collection={board.boardPosters.length}
                   isUserBoard={userId === board.userId}
                 />

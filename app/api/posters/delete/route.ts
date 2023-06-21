@@ -27,7 +27,6 @@ export async function POST(request: Request) {
     }
 
     if (
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
       session.user.role !== UserRole.ADMIN &&
       session.user.id !== poster.userId
     ) {
