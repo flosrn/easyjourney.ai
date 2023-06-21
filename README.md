@@ -1,8 +1,8 @@
-# myposter.ai
+# easyjourney.ai
 
-myposter.ai is a web application that allows users to browse and purchase
-AI-generated posters. With a sleek user interface and seamless integration with
-cutting-edge AI technology, myposter.ai aims to be the leader in its sector.
+Unlock the power of Midjourney with a beautiful and user-friendly interface.
+Create stunning visuals with ease, no AI or prompt engineering expertise
+required
 
 ## Features
 
@@ -10,14 +10,12 @@ cutting-edge AI technology, myposter.ai aims to be the leader in its sector.
 - Custom poster generation based on user input
 - User accounts with authentication and personalization
 - Social features such as likes, follows, and sharing
-- Shopping cart functionality
 - Secure payment processing with Stripe
-- Admin dashboard for order management and shipping
 
 ## Tech Stack
 
-- 🎨 **Frontend**: [Next.js v13 (beta app directory)](https://beta.nextjs.org/docs/getting-started), [React.js v18](https://react.dev/)
-- ⚙️ **Backend**: Next.js serverless functions (API routes)
+- 🎨 **Frontend**: [Next.js v13 (app directory)](https://beta.nextjs.org/docs/getting-started), [React.js v18](https://react.dev/)
+- ⚙️ **Backend**: Next.js serverless functions ([Route handlers](https://nextjs.org/docs/app/building-your-application/routing/router-handlers))
 - 💅 **Design system**: [Tailwind CSS v3](https://tailwindcss.com/)
 - 🧩 **UI components**: [Radix UI](https://www.radix-ui.com/) components designed
   by [shadcn](https://ui.shadcn.com/)
@@ -33,7 +31,6 @@ cutting-edge AI technology, myposter.ai aims to be the leader in its sector.
 - 🚀 Content Delivery System (**CDN**): [Vercel](https://vercel.com/)
 - 🐘 **Database**: [PostgresSQL](https://www.postgresql.org/) hosted
   on [Railway](https://railway.app/)
-- 🖼️ **Image** storage & processing: [Uploadcare](https://uploadcare.com/)
 - 📚 **Language**: [TypeScript](https://www.typescriptlang.org/)
 - 🧹 **Linting** & **Formatting**: [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
 

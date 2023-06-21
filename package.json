@@ -1,6 +1,6 @@
 {
-  "name": "myposter.ai",
-  "description": "Myposter.ai is a platform for creating and selling generative art posters. It is built with Next.js, Prisma, and Tailwind CSS.",
+  "name": "easyjourney.ai",
+  "description": "easyjourney.ai is a website that allows you to create stunning image with Midjourney's AI",
   "version": "0.0.1",
   "private": true,
   "scripts": {

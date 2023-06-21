@@ -1,7 +1,5 @@
 import {
   CalendarCheck2,
-  CreditCard,
-  DollarSign,
   Heart,
   History,
   LayoutDashboard,
@@ -170,7 +168,7 @@ const userMenu: NavItem[][] = [
 ];
 
 export const siteConfig: SiteConfig = {
-  title: "myposter.ai",
+  title: "easyjourney.ai",
   subtitle: "Generate beautiful posters in seconds with AI",
   megaMenu,
   userMenu,
