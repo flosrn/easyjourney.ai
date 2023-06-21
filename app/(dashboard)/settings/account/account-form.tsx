@@ -59,12 +59,17 @@ export const AccountForm = () => {
     }
   }, [session, form]);
 
-  const updateUsernameMutation = useMutation(async (username) => {
-    const res = await fetch("/api/profile/update/account", {
-      method: "PATCH",
-      body: JSON.stringify({ username }),
-    });
-    return res.json();
+  const updateUsernameMutation = useMutation({
+    mutationFn: async (data: { username: string }) => {
+      const response = await fetch("/api/profile/update/account", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      return response.json();
+    },
   });
 
   const onSubmit = (data: AccountFormValues) => {
