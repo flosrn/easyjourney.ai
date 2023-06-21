@@ -2,9 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { BadgePlusIcon, HeartIcon } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { useParams, usePathname } from "next/navigation";
+import { StackIcon } from "@radix-ui/react-icons";
+import { HeartIcon, StarIcon } from "lucide-react";
+import { useInView } from "react-intersection-observer";
 
 import { Tabs, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
@@ -12,35 +13,63 @@ import SelectButton from "./select-button";
 
 type TabsHeaderProps = {
   username: string;
-  isCurrentUser?: boolean;
+  isValidUser?: boolean;
 };
 
-const TabsHeader = ({ username, isCurrentUser }: TabsHeaderProps) => {
-  const { data: session } = useSession();
+const getTabsValue = (pathname: string | null) => {
+  switch (true) {
+    case pathname?.includes("likes"):
+      return "liked";
+    case pathname?.includes("boards"):
+      return "boards";
+    default:
+      return "created";
+  }
+};
+
+const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
+  const { boardId } = useParams() ?? {};
   const pathname = usePathname();
-  const isLikePage = pathname?.includes("likes");
-  const value = isLikePage ? "liked" : "created";
-  const isAdmin = session?.user.role === "ADMIN";
-  const showSelectButton = (isCurrentUser || isAdmin) && !isLikePage;
+  const value = getTabsValue(pathname);
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  const boardWithoutId = !!pathname?.includes("boards") && !boardId;
   return (
     <div className="my-4 flex items-center justify-between space-x-3">
-      <Tabs value={value} className="w-[263px]">
+      <Tabs ref={ref} value={value} className="w-[300px]">
         <TabsList className="w-full">
-          <Link href={`/profile/${username}`} className="w-1/2">
+          <Link href={`/profile/${username}`} className="w-1/3">
             <TabsTrigger value="created" className="w-full">
-              <BadgePlusIcon className="mr-2 h-5 w-5 shrink-0" />
+              <StarIcon className="mr-2 h-5 w-5 shrink-0" />
               New
             </TabsTrigger>
           </Link>
-          <Link href={`/profile/${username}/likes`} className="w-1/2">
+          <Link href={`/profile/${username}/likes`} className="w-1/3">
             <TabsTrigger value="liked" className="w-full">
               <HeartIcon className="mr-2 h-5 w-5 shrink-0" />
               Favorite
             </TabsTrigger>
           </Link>
+          <Link href={`/profile/${username}/boards`} className="w-1/3">
+            <TabsTrigger value="boards" className="w-full">
+              <StackIcon className="mr-2 h-5 w-5 shrink-0" />
+              Boards
+            </TabsTrigger>
+          </Link>
         </TabsList>
       </Tabs>
-      {showSelectButton && <SelectButton />}
+      {!inView && (
+        <div className="fixed bottom-2 right-5 z-50">
+          <SelectButton rounded />
+        </div>
+      )}
+      {isValidUser && !boardWithoutId && (
+        <div className="flex text-center">
+          <SelectButton />
+        </div>
+      )}
     </div>
   );
 };
