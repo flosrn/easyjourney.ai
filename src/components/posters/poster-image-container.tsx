@@ -25,20 +25,22 @@ const PosterImageContainer = ({
   filename,
   children,
 }: PosterImageContainerProps) => (
-  <div
-    className={cn("flex relative justify-start flex-col", {
-      "sm:max-w-[90%]": ratio === "2/3",
-      "sm:max-w-[80%]": ratio === "4/7",
-    })}
-  >
-    <Image
-      src={image}
-      alt={prompt}
-      width={width ?? 500}
-      height={height ?? 500}
-      className="h-auto max-h-[85vh] w-full object-cover"
-    />
-    <ZoomImage imageUrl={image} alt={prompt} />
+  <div className="">
+    <div
+      className={cn("flex relative justify-start flex-col overflow-hidden", {
+        "sm:max-w-[90%]": ratio === "2/3",
+        "sm:max-w-[80%]": ratio === "4/7",
+      })}
+    >
+      <Image
+        src={image}
+        alt={prompt}
+        width={width ?? 500}
+        height={height ?? 500}
+        className="h-auto max-h-[85vh] w-full object-cover"
+      />
+      <ZoomImage imageUrl={image} alt={prompt} />
+    </div>
     <div className="my-2 flex justify-between">
       <LikeButton id={id} likes={likes} />
       <div className="grid grid-flow-col gap-1">
