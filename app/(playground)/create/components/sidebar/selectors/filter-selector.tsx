@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { PopoverProps } from "@radix-ui/react-popover";
-import { Check, ChevronsUpDown, LayoutListIcon } from "lucide-react";
+import { Check, ChevronsUpDown, LayoutListIcon, StarIcon } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -262,6 +262,7 @@ const FilterItem = ({
   className,
 }: ModelItemProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
+  const isMostPopular = filter.id === "0";
   return (
     <>
       <CommandItem
@@ -277,6 +278,7 @@ const FilterItem = ({
           className
         )}
       >
+        {isMostPopular && <StarIcon className="mr-2 h-4 w-4 text-amber-500" />}
         {filter.name}
         <Check
           className={cn(

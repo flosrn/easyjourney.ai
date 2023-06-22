@@ -4,6 +4,64 @@ import type { SubCategoryFilter } from "../types/typeFilters";
 
 export const subCategoriesFilter: SubCategoryFilter[] = [
   {
+    id: "0",
+    icon: "🎭⛱",
+    name: "Most Popular filters",
+    options: [
+      {
+        id: "Photography_1_9_1",
+        name: "Photography",
+        description:
+          "Capture stunning moments with artistic flair and precision.",
+        style: "Photography",
+        image: "/images/filters/Photography.webp",
+        isSelected: false,
+      },
+      {
+        id: "Portrait_1_57_1",
+        name: "Portrait",
+        description:
+          "Highlight the beauty and character of your subjects in portraits.",
+        style: "Portrait",
+        image: "/images/filters/Portrait.webp",
+        isSelected: false,
+      },
+      {
+        id: "Cinematic_1_21_3",
+        name: "Cinematic",
+        description: "Transform your visuals into a cinematic masterpiece.",
+        style: "Cinematic",
+        image: "/images/filters/Cinematic.webp",
+        isSelected: false,
+      },
+      {
+        id: "Golden Hour_1_33_1",
+        name: "Golden Hour",
+        description: "Bask in the warm and magical light of golden hour.",
+        style: "Golden Hour",
+        image: "/images/filters/Golden_Hour.webp",
+        isSelected: false,
+      },
+      {
+        id: "Depth of Field_8_3_2",
+        name: "Depth of Field",
+        description:
+          "Achieve a selective focus effect with this depth of field filter.",
+        style: "Depth of Field",
+        image: "/images/filters/Depth_of_Field.webp",
+        isSelected: false,
+      },
+      {
+        id: "Unreal Engine_1_15_1",
+        name: "Unreal Engine",
+        description: "Filter for Unreal Engine-related images.",
+        style: "Unreal Engine",
+        image: "/images/filters/Unreal_Engine.webp",
+        isSelected: false,
+      },
+    ],
+  },
+  {
     id: "1",
     icon: "🎭⛱",
     name: "Realism and Abstraction",
