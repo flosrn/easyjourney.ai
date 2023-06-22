@@ -1,6 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
+import DownloadButton from "~/components/posters/download-button";
+import ExpandButton from "~/components/posters/expand-button";
+import ExternalLinkButton from "~/components/posters/external-link-button";
 import LikeButton from "~/components/posters/like-button";
 import ZoomImage from "~/components/posters/zoom-image";
 
@@ -19,6 +22,7 @@ const PosterImageContainer = ({
   width,
   height,
   ratio,
+  filename,
   children,
 }: PosterImageContainerProps) => (
   <div
@@ -35,9 +39,12 @@ const PosterImageContainer = ({
       className="h-auto max-h-[85vh] w-full object-cover"
     />
     <ZoomImage imageUrl={image} alt={prompt} />
-    <div>
-      <div className="mt-2 inline-block max-w-max rounded-3xl border bg-gray-700/20 px-2 py-1 hover:bg-gray-700/80">
-        <LikeButton id={id} likes={likes} />
+    <div className="my-2 flex justify-between">
+      <LikeButton id={id} likes={likes} />
+      <div className="grid grid-flow-col gap-1">
+        <DownloadButton imageUrl={image} filename={filename} />
+        <ExternalLinkButton imageUrl={image} />
+        <ExpandButton />
       </div>
       {children}
     </div>

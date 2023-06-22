@@ -10,12 +10,14 @@ import { HeartIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
+import { Button } from "~/components/ui/button";
+
 import { cn } from "~/lib/classNames";
 
 type LikeButtonProps = {
   id: string;
   likes?: Like[];
-  hasHoverAnim?: boolean;
+  ghost?: boolean;
 };
 
 const likePoster = async (posterId: string) => {
@@ -27,7 +29,7 @@ const likePoster = async (posterId: string) => {
   return response;
 };
 
-const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
+const LikeButton = ({ id, likes, ghost }: LikeButtonProps) => {
   const [likesCount, setLikesCount] = useState<number>(likes?.length ?? 0);
   const [userHasLiked, setUserHasLiked] = useState<boolean>(false);
   const { data: session } = useSession();
@@ -68,21 +70,23 @@ const LikeButton = ({ id, likes, hasHoverAnim }: LikeButtonProps) => {
     }
   };
 
+  const MotionButton = motion(Button);
+
   return (
-    <motion.button
+    <MotionButton
+      variant={ghost ? "ghost" : "outline"}
       onClick={handleLike}
-      whileHover={hasHoverAnim ? { scale: 1.1 } : {}}
+      whileHover={ghost ? { scale: 1.1 } : {}}
       whileTap={{ scale: 0.9 }}
-      className="flex select-none items-center space-x-2 p-1 outline-none focus:outline-none"
+      className="space-x-1 rounded-3xl"
     >
       <HeartIcon
-        className={cn(
-          "h-5 w-5",
-          userHasLiked ? "text-red-500 fill-current" : "text-white"
-        )}
+        className={cn("h-5 w-5", {
+          "text-red-500 fill-current": userHasLiked,
+        })}
       />
       <span className="text-sm">{likesCount}</span>
-    </motion.button>
+    </MotionButton>
   );
 };
 

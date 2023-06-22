@@ -4,6 +4,7 @@ import { formatDate } from "~/utils/formatDate";
 import getFirstLetters from "~/utils/getFirstLetter";
 import { Info } from "lucide-react";
 
+import CopyButton from "~/components/posters/copy-button";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
   HoverCard,
@@ -61,8 +62,9 @@ const PosterInfoContainer = ({
         <span className="text-gray-500">Prompt</span>
         <span className="tracking-wider">{prompt}</span>
       </div>
+      <CopyButton text={prompt} />
 
-      <div className="mt-8 grid w-full grid-cols-2 gap-4 border-t border-gray-500 pt-4">
+      <div className="mt-5 grid w-full grid-cols-2 gap-4 border-t border-gray-500 pt-4">
         <div className="flex flex-col">
           <span className="select-none text-gray-500">Resolution</span>
           <span>
