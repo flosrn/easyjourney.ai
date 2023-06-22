@@ -8,9 +8,9 @@ import LikeButton from "~/components/posters/buttons/like-button";
 import ZoomImage from "~/components/posters/zoom-image";
 
 import { cn } from "~/lib/classNames";
-import type { PosterType } from "~/types/poster";
+import type { Poster } from "~/types/poster";
 
-type PosterImageContainerProps = PosterType & {
+type PosterImageContainerProps = Poster & {
   children?: React.ReactNode;
 };
 

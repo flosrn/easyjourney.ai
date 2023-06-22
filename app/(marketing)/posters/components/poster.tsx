@@ -7,11 +7,11 @@ import CheckboxSelect from "~/components/posters/checkbox-select";
 import ImageAnimationSelect from "~/components/posters/image-animation-select";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
-import type { PosterType } from "~/types/poster";
+import type { Poster } from "~/types/poster";
 
 import BottomPosterPrompt from "./bottom-poster-prompt";
 
-type PostersProps = PosterType;
+type PostersProps = Poster;
 
 const Poster = ({
   id,

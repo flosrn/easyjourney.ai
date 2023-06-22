@@ -7,12 +7,12 @@ import BackToPreviousPageButton from "~/components/posters/buttons/back-to-previ
 import PosterImageContainer from "~/components/posters/poster-image-container";
 import PosterInfoContainer from "~/components/posters/poster-info-container";
 
-import type { PosterType, UserWithFollowStatus } from "~/types/poster";
+import type { Poster, UserWithFollowStatus } from "~/types/poster";
 
 const getCurrentPoster = async (
-  posterId: PosterType["id"],
+  posterId: Poster["id"],
   currentUserId?: string
-): Promise<PosterType | null> => {
+): Promise<Poster | null> => {
   const poster = await prisma.poster.findUnique({
     where: { id: posterId },
     include: {
@@ -35,7 +35,7 @@ const getCurrentPoster = async (
       isFollowing,
     };
 
-    return { ...poster, user: userWithFollowStatus } as PosterType;
+    return { ...poster, user: userWithFollowStatus } as Poster;
   }
 
   return null;
@@ -44,7 +44,7 @@ const getCurrentPoster = async (
 export default async function PosterPage({
   params: { posterId },
 }: {
-  params: { posterId: PosterType["id"] };
+  params: { posterId: Poster["id"] };
 }) {
   const user = await getCurrentUser();
   const poster = await getCurrentPoster(posterId, user?.id);

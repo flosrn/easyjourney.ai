@@ -14,9 +14,9 @@ import {
   HoverCardTrigger,
 } from "~/components/ui/hover-card";
 
-import type { PosterType } from "~/types/poster";
+import type { Poster } from "~/types/poster";
 
-type PosterInfoContainerProps = PosterType & {
+type PosterInfoContainerProps = Poster & {
   children?: React.ReactNode;
 };
 
