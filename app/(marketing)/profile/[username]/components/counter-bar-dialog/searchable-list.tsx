@@ -41,7 +41,7 @@ const SearchableList = ({
     <>
       <Command className="h-full">
         <CommandInput placeholder="Search for a user" />
-        <ScrollArea className="h-56 pr-3 sm:h-[500px]">
+        <ScrollArea className="h-[300px] pr-3">
           <CommandList className="max-h-full ">
             {!isLoading && <CommandEmpty>No user found.</CommandEmpty>}
             <CommandGroup className="pt-2">
