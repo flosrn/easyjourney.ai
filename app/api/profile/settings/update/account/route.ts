@@ -35,7 +35,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({
       status: 200,
       data: updateUser,
-      message: "profile updated",
+      message: "username updated",
     });
   } catch (error: unknown) {
     return NextResponse.json({

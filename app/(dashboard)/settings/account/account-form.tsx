@@ -62,7 +62,7 @@ export const AccountForm = () => {
 
   const updateUsernameMutation = useMutation({
     mutationFn: async (data: { username: string }) => {
-      const response = await fetch("/api/profile/update/account", {
+      const response = await fetch("/api/profile/settings/update/account", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

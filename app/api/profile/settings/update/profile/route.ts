@@ -8,6 +8,7 @@ export async function PATCH(request: Request) {
   const { instagram, twitter, discord } = urls;
   console.log("name", name);
   console.log("bio", bio);
+  console.log("urls", urls);
   console.log("instagram", instagram);
   console.log("twitter", twitter);
   console.log("discord", discord);
@@ -17,7 +18,7 @@ export async function PATCH(request: Request) {
 
     const updateUser = await prisma.user.update({
       where: { id: profileId },
-      data: { name, bio },
+      data: { name, bio, instagram, twitter, discord },
     });
 
     return NextResponse.json({

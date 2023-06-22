@@ -2,9 +2,10 @@
 
 import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useFieldArray, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import * as z from "zod";
 
 import {
@@ -24,7 +25,7 @@ import { cn } from "~/lib/classNames";
 
 const profileFormSchema = z.object({
   name: z.string().min(2).max(30),
-  bio: z.string().max(160).min(10),
+  bio: z.string().max(160).min(0).optional(),
   urls: z
     .array(
       z.object({
@@ -48,34 +49,55 @@ const defaultValues: Partial<ProfileFormValues> = {
 
 const ProfileForm = () => {
   const { data: session } = useSession();
+  const username = session?.user.username;
+
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues,
     mode: "onChange",
   });
 
-  useEffect(() => {
-    if (session) {
-      form.reset({
-        name: session.user.name!,
-        // bio: session.user.bio,
-        // urls: session.user.urls,
-      });
-    }
-  }, [session, form]);
-
   const { fields, append } = useFieldArray({
     name: "urls",
     control: form.control,
   });
 
+  const userInfo = useQuery({
+    queryKey: ["userProfileInfo", username],
+    queryFn: async () => {
+      console.log("username from userinfo", username);
+      const response = await fetch(
+        `/api/profile/settings/read/profile?username=${username}`
+      );
+      const { data } = await response.json();
+      return data;
+    },
+    enabled: !!username,
+  });
+
+  useEffect(() => {
+    if (session && userInfo.data) {
+      form.reset({
+        name: session.user.name!,
+        bio: userInfo.data?.bio,
+      });
+    }
+  }, [session, userInfo.data]);
+
+  console.log("userinfo", userInfo.data);
+
   const updateProfile = useMutation({
-    mutationFn: async (name, bio, urls) => {
-      const response = await fetch("/api/user/profile", {
+    mutationFn: async ({ data }) => {
+      const response = await fetch("/api/profile/settings/update/profile", {
         method: "PATCH",
-        body: JSON.stringify({ name, bio, urls }),
+        body: JSON.stringify(data),
       });
       const responseData = await response.json();
+      if (response.status === 200) {
+        toast.success(responseData.message);
+      } else {
+        toast.error(responseData.message);
+      }
       return responseData;
     },
   });
@@ -84,7 +106,7 @@ const ProfileForm = () => {
     console.log("datafront", data);
     // TODO: add logic to update profile
     const { name, bio, urls } = data;
-    updateProfile.mutate({ name, bio, urls });
+    updateProfile.mutate({ data });
   };
 
   return (
