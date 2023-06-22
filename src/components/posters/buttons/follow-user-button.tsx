@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
+import { useFollowStore } from "~/store/followStore";
 import { UserCheck2Icon, UserPlus2Icon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
@@ -32,20 +33,28 @@ const FollowUserButton = ({
   userId,
   isFollowing: isFollowingInitial,
 }: FollowUserButtonProps) => {
-  const [isFollowing, setIsFollowing] = useState(isFollowingInitial);
+  const [isFollowing, setIsFollowing] = useFollowStore((state) => [
+    state.isFollowing,
+    state.setIsFollowing,
+  ]);
   const session = useSession();
   const router = useRouter();
+  const isUser = session.data?.user.id === userId;
+
+  useEffect(() => {
+    setIsFollowing(isFollowingInitial);
+  }, [isFollowingInitial, setIsFollowing]);
 
   const { mutate } = useMutation({
     mutationFn: async () => followUser(userId),
     onMutate: () => {
-      setIsFollowing((prev) => !prev);
+      setIsFollowing(!isFollowing);
     },
     onSuccess: ({ status }) => {
       toast.success(`User successfully ${status}`);
     },
     onError: () => {
-      setIsFollowing((prev) => !prev);
+      setIsFollowing(!isFollowing);
       toast.error("Something went wrong");
     },
   });
@@ -55,6 +64,8 @@ const FollowUserButton = ({
     if (!session.data) router.push("/api/auth/signin");
     await mutate();
   };
+
+  if (isUser) return null;
 
   return (
     <TooltipButton

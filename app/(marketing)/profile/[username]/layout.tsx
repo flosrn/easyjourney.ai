@@ -5,6 +5,8 @@ import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 import { Toaster } from "react-hot-toast";
 
+import FollowUserButton from "~/components/posters/buttons/follow-user-button";
+
 import { CounterBar } from "./components/counter-bar";
 import FollowButton from "./components/follow-button";
 import { SelectBar } from "./components/select-bar";
@@ -71,7 +73,7 @@ export default async function LayoutProfileHeader({
 
           <div className="pt-4">
             {!isCurrentUser && (
-              <FollowButton userId={user.id} isFollowing={isFollowing} />
+              <FollowUserButton userId={user.id} isFollowing={isFollowing} />
             )}
           </div>
 
