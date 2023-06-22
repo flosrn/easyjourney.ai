@@ -7,7 +7,7 @@ import { EditIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
-import BackToPreviousPageButton from "~/components/posters/back-to-previous-page-button";
+import BackToPreviousPageButton from "~/components/posters/buttons/back-to-previous-page-button";
 import { Button } from "~/components/ui/button";
 
 import Posters from "../../../../posters/components/posters";

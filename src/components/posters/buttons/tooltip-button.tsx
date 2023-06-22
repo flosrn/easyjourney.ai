@@ -1,9 +1,6 @@
-"use client";
-
 import React from "react";
-import { useZoomStore } from "~/store/zoomStore";
 import { motion } from "framer-motion";
-import { ExpandIcon } from "lucide-react";
+import type { LucideProps } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -13,10 +10,17 @@ import {
   TooltipTrigger,
 } from "~/components/ui/tooltip";
 
-type ExpandButtonProps = {};
+type TooltipButtonProps = {
+  children: React.ReactNode;
+  Icon: React.ComponentType<LucideProps>;
+  clickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void;
+};
 
-const ExpandButton = ({}: ExpandButtonProps) => {
-  const setIsZoomed = useZoomStore((state) => state.setIsZoomed);
+const TooltipButton = ({
+  children,
+  Icon,
+  clickHandler,
+}: TooltipButtonProps) => {
   const MotionButton = motion(Button);
   return (
     <TooltipProvider delayDuration={300}>
@@ -24,19 +28,20 @@ const ExpandButton = ({}: ExpandButtonProps) => {
         <TooltipTrigger asChild>
           <MotionButton
             variant="outline"
-            onClick={() => setIsZoomed(true)}
+            onClick={clickHandler}
+            onMouseDown={(event) => event.preventDefault()}
             whileTap={{ scale: 0.9 }}
             className="rounded-3xl"
           >
-            <ExpandIcon className="h-4 w-4" />
+            <Icon className="h-4 w-4" />
           </MotionButton>
         </TooltipTrigger>
         <TooltipContent sideOffset={10} side="bottom" className="bg-accent">
-          <p>Expand</p>
+          {children}
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );
 };
 
-export default ExpandButton;
+export default TooltipButton;

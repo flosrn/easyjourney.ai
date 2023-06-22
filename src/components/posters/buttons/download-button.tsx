@@ -3,17 +3,10 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { saveAs } from "file-saver";
-import { motion } from "framer-motion";
 import { DownloadIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 
-import { Button } from "~/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "~/components/ui/tooltip";
+import TooltipButton from "~/components/posters/buttons/tooltip-button";
 
 type DownloadButtonProps = {
   imageUrl: string;
@@ -21,11 +14,7 @@ type DownloadButtonProps = {
   hasHoverAnim?: boolean;
 };
 
-const DownloadButton = ({
-  imageUrl,
-  filename,
-  hasHoverAnim,
-}: DownloadButtonProps) => {
+const DownloadButton = ({ imageUrl, filename }: DownloadButtonProps) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -42,27 +31,10 @@ const DownloadButton = ({
     saveAs(imageInPng, filenameInPng);
   };
 
-  const MotionButton = motion(Button);
-
   return (
-    <TooltipProvider delayDuration={300}>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <MotionButton
-            variant="outline"
-            onClick={handleDownload}
-            whileHover={hasHoverAnim ? { scale: 1.1 } : {}}
-            whileTap={{ scale: 0.9 }}
-            className="rounded-3xl"
-          >
-            <DownloadIcon className="h-4 w-4" />
-          </MotionButton>
-        </TooltipTrigger>
-        <TooltipContent sideOffset={10} side="bottom" className="bg-accent">
-          <p>Download</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <TooltipButton Icon={DownloadIcon} clickHandler={handleDownload}>
+      Download
+    </TooltipButton>
   );
 };
 

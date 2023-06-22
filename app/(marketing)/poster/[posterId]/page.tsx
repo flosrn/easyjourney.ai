@@ -3,7 +3,7 @@ import type { Poster } from "@prisma/client";
 import { prisma } from "~/server/db/prisma";
 import { Toaster } from "react-hot-toast";
 
-import BackToPreviousPageButton from "~/components/posters/back-to-previous-page-button";
+import BackToPreviousPageButton from "~/components/posters/buttons/back-to-previous-page-button";
 import PosterImageContainer from "~/components/posters/poster-image-container";
 import PosterInfoContainer from "~/components/posters/poster-info-container";
 

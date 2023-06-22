@@ -22,6 +22,7 @@ const ExternalLinkButton = ({ imageUrl }: ExternalLinkButtonProps) => {
         <TooltipTrigger asChild>
           <motion.a
             href={imageUrl}
+            onMouseDown={(event) => event.preventDefault()}
             whileTap={{ scale: 0.9 }}
             target="_blank"
             rel="noopener noreferrer"

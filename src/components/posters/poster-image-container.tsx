@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-import DownloadButton from "~/components/posters/download-button";
-import ExpandButton from "~/components/posters/expand-button";
-import ExternalLinkButton from "~/components/posters/external-link-button";
-import LikeButton from "~/components/posters/like-button";
+import DownloadButton from "~/components/posters/buttons/download-button";
+import ExpandButton from "~/components/posters/buttons/expand-button";
+import ExternalLinkButton from "~/components/posters/buttons/external-link-button";
+import LikeButton from "~/components/posters/buttons/like-button";
 import ZoomImage from "~/components/posters/zoom-image";
 
 import { cn } from "~/lib/classNames";
@@ -21,23 +21,17 @@ const PosterImageContainer = ({
   id,
   width,
   height,
-  ratio,
   filename,
   children,
 }: PosterImageContainerProps) => (
   <div className="">
-    <div
-      className={cn("flex relative justify-start flex-col overflow-hidden", {
-        "sm:max-w-[90%]": ratio === "2/3",
-        "sm:max-w-[80%]": ratio === "4/7",
-      })}
-    >
+    <div className={cn("flex relative justify-star flex-col overflow-hidden")}>
       <Image
         src={image}
         alt={prompt}
         width={width ?? 500}
         height={height ?? 500}
-        className="h-auto max-h-[85vh] w-full object-cover"
+        className="h-auto w-full object-cover"
       />
       <ZoomImage imageUrl={image} alt={prompt} />
     </div>

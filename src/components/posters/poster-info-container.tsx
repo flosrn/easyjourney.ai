@@ -4,7 +4,7 @@ import { formatDate } from "~/utils/formatDate";
 import getFirstLetters from "~/utils/getFirstLetter";
 import { Info } from "lucide-react";
 
-import CopyButton from "~/components/posters/copy-button";
+import CopyButton from "~/components/posters/buttons/copy-button";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
   HoverCard,

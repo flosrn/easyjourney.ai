@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import getFirstLetters from "~/utils/getFirstLetter";
 
+import LikeButton from "~/components/posters/buttons/like-button";
 import CheckboxSelect from "~/components/posters/checkbox-select";
 import ImageAnimationSelect from "~/components/posters/image-animation-select";
-import LikeButton from "~/components/posters/like-button";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 import type { PosterType } from "~/types/poster";
