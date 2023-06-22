@@ -24,7 +24,7 @@ const followUser = async (followerId: string, followingId: string) => {
         id: existingFollow.id,
       },
     });
-    return { id: existingFollow.id };
+    return { id: existingFollow.id, status: "unfollowed" };
   } else {
     // Create a new follow
     const newFollow = await prisma.follow.create({
@@ -33,7 +33,7 @@ const followUser = async (followerId: string, followingId: string) => {
         following: { connect: { id: followingId } },
       },
     });
-    return newFollow;
+    return { ...newFollow, status: "followed" };
   }
 };
 

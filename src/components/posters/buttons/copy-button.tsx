@@ -18,7 +18,11 @@ const CopyButton = ({ text }: CopyButtonProps) => {
   };
 
   return (
-    <TooltipButton Icon={CopyIcon} clickHandler={handleDownload}>
+    <TooltipButton
+      Icon={CopyIcon}
+      clickHandler={handleDownload}
+      className="w-fit"
+    >
       Copy prompt
     </TooltipButton>
   );

@@ -5,6 +5,8 @@ import getFirstLetters from "~/utils/getFirstLetter";
 import { Info } from "lucide-react";
 
 import CopyButton from "~/components/posters/buttons/copy-button";
+import FollowUserButton from "~/components/posters/buttons/follow-user-button";
+import SharePosterButton from "~/components/posters/buttons/share-poster-button";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
   HoverCard,
@@ -39,10 +41,10 @@ const PosterInfoContainer = ({
     <div className="w-full pt-4">
       <div>
         {author && (
-          <p className="left-2 top-1 z-10 w-full text-sm font-extrabold md:group-hover:block">
+          <div className="flex items-center justify-between">
             <Link
               href={`/profile/${author}`}
-              className="flex items-center text-gray-300"
+              className="flex items-center font-bold text-muted-foreground"
             >
               {user.image && (
                 <Avatar className="mr-2 h-7 w-7 cursor-pointer">
@@ -52,28 +54,37 @@ const PosterInfoContainer = ({
               )}
               <span className="hover:underline">{author}</span>
             </Link>
-          </p>
+            <div className="grid grid-flow-col gap-1">
+              <FollowUserButton
+                userId={user.id}
+                isFollowing={user.isFollowing}
+              />
+              <SharePosterButton />
+            </div>
+          </div>
         )}
       </div>
-      <div className="mt-8 line-clamp-2 break-words text-3xl font-bold">
+      <div className="mt-8 line-clamp-2 break-words text-2xl font-bold md:text-3xl">
         {title ?? prompt}
       </div>
       <div className="my-2 mt-8 flex flex-col">
-        <span className="text-gray-500">Prompt</span>
-        <span className="tracking-wider">{prompt}</span>
+        <span className="text-xl font-bold text-muted-foreground">Prompt</span>
+        <div className="grid grid-flow-col items-center justify-between gap-5">
+          <span className="text-sm md:text-base">{prompt}</span>
+          <CopyButton text={prompt} />
+        </div>
       </div>
-      <CopyButton text={prompt} />
 
       <div className="mt-5 grid w-full grid-cols-2 gap-4 border-t border-gray-500 pt-4">
         <div className="flex flex-col">
-          <span className="select-none text-gray-500">Resolution</span>
+          <span className="select-none text-muted-foreground">Resolution</span>
           <span>
             {width}px / {height}px
           </span>
         </div>
 
         <div className="flex flex-col">
-          <span className="select-none text-gray-500">Created at</span>
+          <span className="select-none text-muted-foreground">Created at</span>
           <span>{date}</span>
         </div>
 
@@ -81,7 +92,7 @@ const PosterInfoContainer = ({
           <HoverCard>
             <HoverCardTrigger>
               <div className="flex select-none">
-                <span className="text-gray-500 ">Aspect Ratio</span>
+                <span className="text-muted-foreground">Aspect Ratio</span>
                 <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>
@@ -96,7 +107,7 @@ const PosterInfoContainer = ({
           <HoverCard>
             <HoverCardTrigger>
               <div className="flex select-none">
-                <span className="text-gray-500 ">Model Version</span>
+                <span className="text-muted-foreground">Model Version</span>
                 <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>
@@ -112,7 +123,7 @@ const PosterInfoContainer = ({
           <HoverCard>
             <HoverCardTrigger>
               <div className="flex select-none">
-                <span className="text-gray-500 ">Filter Style</span>
+                <span className="text-muted-foreground">Filter Style</span>
                 <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>
@@ -130,7 +141,7 @@ const PosterInfoContainer = ({
           <HoverCard>
             <HoverCardTrigger>
               <div className="flex select-none">
-                <span className="text-gray-500">Chaos</span>
+                <span className="text-muted-foreground">Chaos</span>
                 <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>
@@ -146,7 +157,7 @@ const PosterInfoContainer = ({
           <HoverCard>
             <HoverCardTrigger>
               <div className="flex select-none">
-                <span className="text-gray-500">Quality</span>
+                <span className="text-muted-foreground">Quality</span>
                 <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>
@@ -162,7 +173,7 @@ const PosterInfoContainer = ({
           <HoverCard>
             <HoverCardTrigger>
               <div className="flex select-none">
-                <span className="text-gray-500">Stylise</span>
+                <span className="text-muted-foreground">Stylise</span>
                 <Info size={13} color="grey" className="ml-1" />
               </div>
             </HoverCardTrigger>

@@ -1,5 +1,5 @@
 import React from "react";
-import type { Poster } from "@prisma/client";
+import { getCurrentUser } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 import { Toaster } from "react-hot-toast";
 
@@ -7,18 +7,47 @@ import BackToPreviousPageButton from "~/components/posters/buttons/back-to-previ
 import PosterImageContainer from "~/components/posters/poster-image-container";
 import PosterInfoContainer from "~/components/posters/poster-info-container";
 
-const getCurrentPoster = async (posterId: Poster["id"]) =>
-  prisma.poster.findUnique({
+import type { PosterType, UserWithFollowStatus } from "~/types/poster";
+
+const getCurrentPoster = async (
+  posterId: PosterType["id"],
+  currentUserId?: string
+): Promise<PosterType | null> => {
+  const poster = await prisma.poster.findUnique({
     where: { id: posterId },
-    include: { user: true, likes: true },
+    include: {
+      user: {
+        include: {
+          followers: true,
+        },
+      },
+      likes: true,
+    },
   });
+
+  if (poster?.user) {
+    const isFollowing = poster.user.followers.some(
+      (follower) => follower.followerId === currentUserId
+    );
+
+    const userWithFollowStatus: UserWithFollowStatus = {
+      ...poster.user,
+      isFollowing,
+    };
+
+    return { ...poster, user: userWithFollowStatus } as PosterType;
+  }
+
+  return null;
+};
 
 export default async function PosterPage({
   params: { posterId },
 }: {
-  params: { posterId: Poster["id"] };
+  params: { posterId: PosterType["id"] };
 }) {
-  const poster = await getCurrentPoster(posterId);
+  const user = await getCurrentUser();
+  const poster = await getCurrentPoster(posterId, user?.id);
   return (
     <>
       <section className="container mt-8 items-center justify-center gap-6 pb-8">
