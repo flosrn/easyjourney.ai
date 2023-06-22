@@ -80,6 +80,11 @@ const ProfileForm = () => {
       form.reset({
         name: session.user.name!,
         bio: userInfo.data?.bio,
+        urls: [
+          { value: userInfo.data.instagram, key: "instagram" },
+          { value: userInfo.data.twitter, key: "twitter" },
+          { value: userInfo.data.discord, key: "discord" },
+        ],
       });
     }
   }, [session, userInfo.data]);
@@ -106,7 +111,24 @@ const ProfileForm = () => {
     console.log("datafront", data);
     // TODO: add logic to update profile
     const { name, bio, urls } = data;
-    updateProfile.mutate({ data });
+    const keyedUrls = urls.map((url, index) => {
+      let key;
+      switch (index) {
+        case 0:
+          key = "instagram";
+          break;
+        case 1:
+          key = "twitter";
+          break;
+        case 2:
+          key = "discord";
+          break;
+        default:
+          key = `url${index}`;
+      }
+      return { ...url, key };
+    });
+    updateProfile.mutate({ data: { name, bio, urls: keyedUrls } });
   };
 
   return (
