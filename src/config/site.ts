@@ -1,12 +1,13 @@
 import {
-  CalendarCheck2,
-  Heart,
-  History,
-  LayoutDashboard,
-  LogOut,
-  Palette,
-  Settings,
-  User,
+  BookMarkedIcon,
+  CalendarCheck2Icon,
+  HeartIcon,
+  HistoryIcon,
+  LayoutDashboardIcon,
+  LogOutIcon,
+  PaletteIcon,
+  SettingsIcon,
+  UserIcon,
 } from "lucide-react";
 
 import type { Hero, MegaMenu, NavItem } from "~/types/nav";
@@ -111,57 +112,63 @@ const megaMenu: MegaMenu[] = [
 const userMenu: NavItem[][] = [
   [
     {
-      title: "Mon profil",
+      title: "My profile",
       href: "/profile",
-      icon: User,
+      icon: UserIcon,
       onClick: () => null,
     },
     {
-      title: "Mes favoris",
+      title: "My likes",
       href: "/profile/likes",
-      icon: Heart,
+      icon: HeartIcon,
       onClick: () => null,
     },
     {
-      title: "Paramètres",
-      href: "/settings",
-      icon: Settings,
+      title: "My boards",
+      href: "/profile/boards",
+      icon: BookMarkedIcon,
+      onClick: () => null,
     },
   ],
   [
     {
       title: "Dashboard",
       href: "/dashboard",
-      icon: LayoutDashboard,
+      icon: LayoutDashboardIcon,
       onClick: () => null,
       adminOnly: true,
     },
   ],
   [
     {
-      title: "Abonnement",
+      title: "Subscription",
       href: "/settings/subscription",
-      icon: CalendarCheck2,
+      icon: CalendarCheck2Icon,
     },
     {
-      title: "Historique des transactions",
+      title: "Payment history",
       href: "/dashboard/transactions",
-      icon: History,
+      icon: HistoryIcon,
       disabled: true,
     },
   ],
   [
     {
+      title: "Settings",
+      href: "/settings",
+      icon: SettingsIcon,
+    },
+    {
       title: "Dark mode",
       href: "/theme",
-      icon: Palette,
+      icon: PaletteIcon,
     },
   ],
   [
     {
       title: "Déconnexion",
       href: "/logout",
-      icon: LogOut,
+      icon: LogOutIcon,
       onClick: () => null,
     },
   ],

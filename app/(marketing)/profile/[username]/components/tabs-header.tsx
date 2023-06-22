@@ -3,8 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
-import { StackIcon } from "@radix-ui/react-icons";
-import { HeartIcon, StarIcon } from "lucide-react";
+import { BookMarkedIcon, HeartIcon, StarIcon } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 import { Tabs, TabsList, TabsTrigger } from "~/components/ui/tabs";
@@ -54,7 +53,7 @@ const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
           </Link>
           <Link href={`/profile/${username}/boards`} className="w-1/3">
             <TabsTrigger value="boards" className="w-full">
-              <StackIcon className="mr-2 h-5 w-5 shrink-0" />
+              <BookMarkedIcon className="mr-2 h-5 w-5 shrink-0" />
               Boards
             </TabsTrigger>
           </Link>

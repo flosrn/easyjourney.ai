@@ -54,6 +54,10 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
         const username = session.user.username;
         return router.push(`/profile/${username}/likes`);
       }
+      case "/profile/boards": {
+        const username = session.user.username;
+        return router.push(`/profile/${username}/boards`);
+      }
       case "/theme": {
         event.preventDefault();
         return setTheme(isDarkTheme ? "light" : "dark");
@@ -100,7 +104,7 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
           align="end"
           className="w-56"
         >
-          <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
+          <DropdownMenuLabel>My account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {siteConfig.userMenu.map((group, index) => {
             if (group[0].adminOnly && !isAdmin) {
