@@ -39,7 +39,7 @@ export default function PricingCard({
       )}
       <h2
         className={cn("mb-2 text-xl font-bold", {
-          "font-black animate-text text-gradient-hyper text-2xl": isPro,
+          "font-black animate-text text-gradient-hyper": isPro,
         })}
       >
         {title}
@@ -50,18 +50,28 @@ export default function PricingCard({
       </span>
       <div className="flex h-full w-full justify-normal pt-4 text-left">
         <ul>
-          {features.map((feature) => (
-            <li key={feature.key} className="my-2 flex leading-5">
-              <span className="">
-                <CheckCircle2Icon
-                  className={cn("mr-2 h-5 w-5", {
-                    "text-green-400": isPro,
+          {features.map((feature) => {
+            const isLast = feature.key === features.at(-1)?.key;
+            return (
+              <li key={feature.key} className="my-2 flex leading-5">
+                <span>
+                  <CheckCircle2Icon
+                    className={cn("mr-2 h-5 w-5", {
+                      "text-green-400": isPro,
+                      "text-muted-foreground/50": isLast && isPro,
+                    })}
+                  />
+                </span>
+                <span
+                  className={cn({
+                    "text-muted-foreground/50": isLast && isPro,
                   })}
-                />
-              </span>
-              {feature}
-            </li>
-          ))}
+                >
+                  {feature}
+                </span>
+              </li>
+            );
+          })}
         </ul>
       </div>
       {plan !== "FREE" && <PricingCardButton disabled={disabled} />}

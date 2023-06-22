@@ -43,6 +43,7 @@ const pricingData = [
       <p key="4">Private posters</p>,
       <p key="5">Private boards</p>,
       <p key="6">Priority support</p>,
+      <p key="7">More coming soon...</p>,
     ],
   },
   {
