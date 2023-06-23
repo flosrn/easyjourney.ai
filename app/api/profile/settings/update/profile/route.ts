@@ -5,9 +5,7 @@ import { prisma } from "~/server/db/prisma";
 export async function PATCH(request: Request) {
   const session = await getServerAuthSession();
   const { name, bio, urls } = await request.json();
-  console.log("name", name);
-  console.log("bio", bio);
-  console.log("urls", urls);
+
   let discord = "";
   let instagram = "";
   let twitter = "";

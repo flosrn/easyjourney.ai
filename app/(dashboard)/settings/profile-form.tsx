@@ -30,6 +30,7 @@ const profileFormSchema = z.object({
     .array(
       z.object({
         value: z.string().url({ message: "Please enter a valid URL." }),
+        key: z.string().optional(),
       })
     )
     .optional(),
@@ -65,7 +66,6 @@ const ProfileForm = () => {
   const userInfo = useQuery({
     queryKey: ["userProfileInfo", username],
     queryFn: async () => {
-      console.log("username from userinfo", username);
       const response = await fetch(
         `/api/profile/settings/read/profile?username=${username}`
       );
@@ -89,8 +89,6 @@ const ProfileForm = () => {
     }
   }, [session, userInfo.data]);
 
-  console.log("userinfo", userInfo.data);
-
   const updateProfile = useMutation({
     mutationFn: async ({ data }) => {
       const response = await fetch("/api/profile/settings/update/profile", {
@@ -108,7 +106,6 @@ const ProfileForm = () => {
   });
 
   const onSubmit = (data: ProfileFormValues) => {
-    console.log("datafront", data);
     // TODO: add logic to update profile
     const { name, bio, urls } = data;
     const keyedUrls = urls.map((url, index) => {
