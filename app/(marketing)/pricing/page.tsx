@@ -35,20 +35,20 @@ const pricingData = [
         <strong className="text-gradient-hyper animate-text">fast mode</strong>
       </p>,
       <p key="2">
-        Create up to <strong>10</strong> boards
-      </p>,
-      <p key="3">
-        Collaborative boards up to <strong>5</strong> members
+        Create up to <strong>5</strong> boards
       </p>,
       <p key="4">Private posters</p>,
       <p key="5">Private boards</p>,
       <p key="6">Priority support</p>,
+      <p key="3" datatype="soon">
+        Collaborative boards up to <strong>3</strong> members
+      </p>,
       <p key="7">More coming soon...</p>,
     ],
   },
   {
-    title: "Elite",
-    plan: "ELITE",
+    title: "Ultimate",
+    plan: "ULTIMATE",
     price: "$30",
     description: "For power users of Midjourney",
     features: [

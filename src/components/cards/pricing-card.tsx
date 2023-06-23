@@ -52,22 +52,28 @@ export default function PricingCard({
         <ul>
           {features.map((feature) => {
             const isLast = feature.key === features.at(-1)?.key;
+            const isFeatureNotAvailable = feature.props.datatype === "soon";
+            const isDisabled = (isLast && isPro) || isFeatureNotAvailable;
+            const disabledColor = { "text-muted-foreground/50": isDisabled };
             return (
               <li key={feature.key} className="my-2 flex leading-5">
                 <span>
                   <CheckCircle2Icon
-                    className={cn("mr-2 h-5 w-5", {
+                    className={cn("mr-2 h-5 w-5", disabledColor, {
                       "text-green-400": isPro,
-                      "text-muted-foreground/50": isLast && isPro,
                     })}
                   />
                 </span>
-                <span
-                  className={cn({
-                    "text-muted-foreground/50": isLast && isPro,
-                  })}
-                >
+                <span className={cn("flex items-center", disabledColor)}>
                   {feature}
+                  {isFeatureNotAvailable && (
+                    <Badge
+                      variant="outline"
+                      className={cn("ml-2 h-5", disabledColor)}
+                    >
+                      Soon
+                    </Badge>
+                  )}
                 </span>
               </li>
             );
