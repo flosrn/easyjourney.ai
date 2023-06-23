@@ -12,6 +12,7 @@ import {
   SaveIcon,
   Trash2Icon,
   UndoIcon,
+  ZoomOutIcon,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
@@ -356,36 +357,85 @@ const MainColumn = () => {
           <SideColumn className="lg:hidden" />
           <ImageContainer className="" />
           <motion.div layout className="flex justify-center space-x-2">
-            <motion.div layout className="flex-center mt-4">
-              <Button
-                onClick={async () =>
-                  variationImage(imageSelected, currentImage)
-                }
-                disabled={isLoading || imageSelected === 0 || isImageUpscaled}
-                variant="outline"
-              >
-                {isVariationLoading ? (
-                  <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <IterationCcwIcon className="mr-2 h-4 w-4" />
-                )}
-                Variation
-              </Button>
-            </motion.div>
-            <motion.div layout className="flex-center mt-4">
-              <Button
-                onClick={async () => upscaleImage(imageSelected, currentImage)}
-                disabled={isLoading || imageSelected === 0 || isImageUpscaled}
-                variant="secondary"
-              >
-                {isUpscaleLoading ? (
-                  <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <ArrowBigUpIcon className="mr-2 h-4 w-4" />
-                )}
-                Upscale
-              </Button>
-            </motion.div>
+            {isImageUpscaled ? (
+              <>
+                <motion.div layout className="flex-center mt-4">
+                  <Button
+                    onClick={async () =>
+                      variationImage(
+                        imageSelected,
+                        currentImage,
+                        "zoom-out x1.5"
+                      )
+                    }
+                    disabled={isLoading || imageSelected === 0}
+                    variant="outline"
+                  >
+                    {isVariationLoading ? (
+                      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      <ZoomOutIcon className="mr-2 h-4 w-4" />
+                    )}
+                    Zoom out x1.5
+                  </Button>
+                </motion.div>
+                <motion.div layout className="flex-center mt-4">
+                  <Button
+                    onClick={async () =>
+                      variationImage(imageSelected, currentImage, "zoom-out x2")
+                    }
+                    disabled={isLoading || imageSelected === 0}
+                    variant="secondary"
+                  >
+                    {isUpscaleLoading ? (
+                      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      <ZoomOutIcon className="mr-2 h-4 w-4" />
+                    )}
+                    Zoom out x2
+                  </Button>
+                </motion.div>
+              </>
+            ) : (
+              <>
+                <motion.div layout className="flex-center mt-4">
+                  <Button
+                    onClick={async () =>
+                      variationImage(imageSelected, currentImage)
+                    }
+                    disabled={
+                      isLoading || imageSelected === 0 || isImageUpscaled
+                    }
+                    variant="outline"
+                  >
+                    {isVariationLoading ? (
+                      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      <IterationCcwIcon className="mr-2 h-4 w-4" />
+                    )}
+                    Variation
+                  </Button>
+                </motion.div>
+                <motion.div layout className="flex-center mt-4">
+                  <Button
+                    onClick={async () =>
+                      upscaleImage(prompt, imageSelected, currentImage)
+                    }
+                    disabled={
+                      isLoading || imageSelected === 0 || isImageUpscaled
+                    }
+                    variant="secondary"
+                  >
+                    {isUpscaleLoading ? (
+                      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      <ArrowBigUpIcon className="mr-2 h-4 w-4" />
+                    )}
+                    Upscale
+                  </Button>
+                </motion.div>
+              </>
+            )}
             {isImageUpscaled && (
               <motion.div layout className="flex-center mt-4">
                 <Button

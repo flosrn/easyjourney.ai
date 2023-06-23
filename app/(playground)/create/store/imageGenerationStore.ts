@@ -74,10 +74,20 @@ type UploadImage = (
   username?: string
 ) => Promise<void>;
 
+type VariationType = "zoom-out x1.5" | "zoom-out x2";
+
 type ImageGenerationAction = ImageGenerationSetAction & {
   generateImage: (prompt: string) => Promise<void>;
-  upscaleImage: (index: number | null, image: ImageData) => Promise<void>;
-  variationImage: (index: number | null, image: ImageData) => Promise<void>;
+  upscaleImage: (
+    prompt: string,
+    index: number | null,
+    image: ImageData
+  ) => Promise<void>;
+  variationImage: (
+    index: number | null,
+    image: ImageData,
+    type?: VariationType
+  ) => Promise<void>;
   uploadImage: UploadImage;
 };
 
@@ -216,6 +226,20 @@ export const useImageGenerationStore = create<
     retry,
   };
 
+  // type error
+  const handleErrorResponse = ({ error }: { error: unknown }) => {
+    console.log("error :", error);
+    setIsError(true);
+    setIsSuccess(false);
+    setIsLoading(false);
+    setLoadingType(null);
+    setMessage(`Error: ${error}`);
+    toast.error("Something went wrong, please try again.");
+    setError(error);
+  };
+
+  const CONTENT_TYPE_JSON = { "Content-Type": "application/json" };
+
   return {
     images: [],
     imageIndex: 0,
@@ -255,8 +279,6 @@ export const useImageGenerationStore = create<
         }
       });
 
-      const CONTENT_TYPE_JSON = { "Content-Type": "application/json" };
-
       const fetchImagine = async (promptValue: string) => {
         const response = await fetch("/api/midjourney/imagine", {
           method: "POST",
@@ -277,18 +299,6 @@ export const useImageGenerationStore = create<
         return response;
       };
 
-      // type error
-      const handleErrorResponse = ({ error }: { error: unknown }) => {
-        console.log("error :", error);
-        setIsError(true);
-        setIsSuccess(false);
-        setIsLoading(false);
-        setLoadingType(null);
-        setMessage(`Error: ${error}`);
-        toast.error("Something went wrong, please try again.");
-        setError(error);
-      };
-
       try {
         const data = await fetchImagine(prompt);
         if (!data.status) handleErrorResponse(data);
@@ -306,13 +316,33 @@ export const useImageGenerationStore = create<
         handleErrorResponse({ error });
       }
     },
-    upscaleImage: async (index, image) => {
+    upscaleImage: async (prompt, index, image) => {
       setIsLoading(true);
       setLoadingType("upscale");
       setError(null);
       setMessage("");
       setImageType(null);
       setIsImageUploaded(false);
+
+      const fetchUpscale = async () => {
+        const response = await fetch("/api/midjourney/upscale", {
+          method: "POST",
+          headers: CONTENT_TYPE_JSON,
+          body: JSON.stringify({ ...image, index }),
+        });
+
+        const data = await response.json();
+        return data;
+      };
+
+      const fetchChannelMessage = async () => {
+        const response = await fetch("/api/discord/get-channel-message", {
+          method: "POST",
+          headers: CONTENT_TYPE_JSON,
+          body: JSON.stringify({ prompt, index, option: "upscale" }),
+        });
+        return response;
+      };
 
       const { jobId } = image;
 
@@ -324,9 +354,9 @@ export const useImageGenerationStore = create<
             type: "image_upscaled",
             url: `https://cdn.midjourney.com/${jobId}/0_${index - 1}.webp`,
           });
+          setIsLoading(true);
           setImageType("upscale");
           setMessage("");
-          setIsLoading(false);
         }, 1000);
       } catch (error_: unknown) {
         setMessage(
@@ -334,8 +364,24 @@ export const useImageGenerationStore = create<
         );
         setError(error_);
       }
+      try {
+        const data = await fetchUpscale();
+        if (!data.status) handleErrorResponse(data);
+
+        if (data.status === 204) {
+          const response = await fetchChannelMessage();
+
+          if (response.body) {
+            setStream(response.body);
+            const reader = response.body.getReader();
+            await readStreamData(reader, actions);
+          }
+        }
+      } catch (error: unknown) {
+        handleErrorResponse({ error });
+      }
     },
-    variationImage: async (index, image) => {
+    variationImage: async (index, image, type) => {
       setIsLoading(true);
       setLoadingType("variation");
       setError(null);
@@ -345,21 +391,31 @@ export const useImageGenerationStore = create<
       setIsImageUploaded(false);
 
       const { prompt, messageId, jobId } = image;
+      console.log("messageId :", messageId);
+      console.log("jobId :", jobId);
 
       try {
-        const { status } = await fetch("/api/midjourney/variation", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            index,
-            messageId,
-            jobId,
-          }),
-        });
+        const fetchVariation = async () => {
+          const response = await fetch("/api/midjourney/variation", {
+            method: "POST",
+            headers: CONTENT_TYPE_JSON,
+            body: JSON.stringify({
+              index,
+              messageId,
+              jobId,
+              type,
+            }),
+          });
 
-        if (status === 401) {
+          const data = await response.json();
+          return data;
+        };
+
+        const data = await fetchVariation();
+        if (!data.status) handleErrorResponse(data);
+        if (data.status === 401) {
           setMessage(`User not logged in, please authenticate`);
-        } else if (status === 200) {
+        } else if (data.status === 204) {
           const response = await fetch("/api/discord/get-channel-message", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
