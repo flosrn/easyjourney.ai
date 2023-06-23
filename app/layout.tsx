@@ -23,7 +23,7 @@ export default async function RootLayout({
   return (
     <ServerThemeProvider attribute="class">
       <html lang="en" className={inter.className} suppressHydrationWarning>
-        <body className="h-screen bg-background font-sans text-foreground antialiased">
+        <body className="h-screen bg-background font-sans text-foreground antialiased transition-all duration-200 ease-in-out">
           <Providers>{children}</Providers>
           <Suspense fallback={null}>
             <NavigationEvents />

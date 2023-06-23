@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
@@ -19,9 +19,21 @@ type HeaderProps = {
 
 const Header = ({ expanded }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const pathname = usePathname();
-  const isCreatePage = pathname === "/create";
   const { data: session } = useSession();
+  const pathname = usePathname();
+
+  const handleBurgerMenuClick = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add("pt-12");
+    } else {
+      document.body.classList.remove("pt-12");
+    }
+  }, [isMobileMenuOpen]);
+
   return (
     <header className="supports-backdrop-blur:bg-background/10 fixed top-0 z-40 w-full border-b bg-background shadow-sm backdrop-blur">
       <div
@@ -34,7 +46,7 @@ const Header = ({ expanded }: HeaderProps) => {
           <div className="flex">
             <div className="md:hidden">
               <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                onClick={handleBurgerMenuClick}
                 className="rounded p-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
                 <Menu size={24} />
@@ -57,7 +69,7 @@ const Header = ({ expanded }: HeaderProps) => {
             </nav>
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
-            {!isCreatePage && (
+            {pathname !== "/create" && (
               <Button asChild>
                 <Link href={session ? "/create" : "/api/auth/signin"}>
                   Create
@@ -73,7 +85,7 @@ const Header = ({ expanded }: HeaderProps) => {
       </div>
       {isMobileMenuOpen && (
         <div className="md:hidden">
-          <nav aria-label="Mobile Main" className="w-full">
+          <nav aria-label="Mobile Main" className="w-full pb-2">
             <Navbar />
           </nav>
         </div>
