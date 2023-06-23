@@ -90,7 +90,7 @@ const ProfileForm = () => {
   }, [session, userInfo.data]);
 
   const updateProfile = useMutation({
-    mutationFn: async ({ data }) => {
+    mutationFn: async (data: any) => {
       const response = await fetch("/api/profile/settings/update/profile", {
         method: "PATCH",
         body: JSON.stringify(data),
@@ -108,7 +108,7 @@ const ProfileForm = () => {
   const onSubmit = (data: ProfileFormValues) => {
     // TODO: add logic to update profile
     const { name, bio, urls } = data;
-    const keyedUrls = urls.map((url, index) => {
+    const keyedUrls = urls?.map((url, index) => {
       let key;
       switch (index) {
         case 0:
@@ -125,7 +125,7 @@ const ProfileForm = () => {
       }
       return { ...url, key };
     });
-    updateProfile.mutate({ data: { name, bio, urls: keyedUrls } });
+    updateProfile.mutate({ name, bio, urls: keyedUrls });
   };
 
   return (
