@@ -1,9 +1,12 @@
 "use client";
 
+import { METHODS } from "node:http";
 import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
+import { Toast, toast } from "react-hot-toast";
 import * as z from "zod";
 
 import { Button } from "~/components/ui/button";
@@ -57,9 +60,29 @@ export const AccountForm = () => {
     }
   }, [session, form]);
 
+  const updateUsernameMutation = useMutation({
+    mutationFn: async (data: { username: string }) => {
+      const response = await fetch("/api/profile/settings/update/account", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const responseData = await response.json();
+      if (responseData.status === 200) {
+        toast.success(responseData.message);
+      }
+      if (responseData.status !== 200) {
+        toast.error(responseData.message);
+      }
+      return responseData();
+    },
+  });
+
   const onSubmit = (data: AccountFormValues) => {
-    console.log(data);
-    // TODO: Submit to API
+    const { username } = data;
+    updateUsernameMutation.mutate({ username });
   };
 
   return (
