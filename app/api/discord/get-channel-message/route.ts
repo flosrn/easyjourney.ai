@@ -194,7 +194,7 @@ export async function POST(request: Request) {
           if (!isVariation && !attachment) {
             failCount = failCount + 1;
           }
-          const isError = failCount > 5;
+          const isError = failCount > 30;
           // Enfile les données dans le contrôleur de flux
           const message = {
             type: attachment ? "image_iteration" : "loading",
