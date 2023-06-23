@@ -16,7 +16,7 @@ import { cn } from "~/lib/classNames";
 type TooltipButtonProps = {
   children: React.ReactNode;
   Icon: React.ComponentType<LucideProps>;
-  iconSize: "lg" | "md" | "sm" | "xl" | "xs";
+  iconSize?: "lg" | "md" | "sm" | "xl" | "xs";
   clickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   contentClassName?: string;
