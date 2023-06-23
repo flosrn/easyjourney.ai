@@ -31,7 +31,11 @@ const ExternalLinkButton = ({ imageUrl }: ExternalLinkButtonProps) => {
             <ExternalLinkIcon className="h-4 w-4" />
           </motion.a>
         </TooltipTrigger>
-        <TooltipContent sideOffset={10} side="bottom" className="bg-accent">
+        <TooltipContent
+          sideOffset={10}
+          side="bottom"
+          className="bg-accent text-secondary"
+        >
           <p>Open in a new tab</p>
         </TooltipContent>
       </Tooltip>

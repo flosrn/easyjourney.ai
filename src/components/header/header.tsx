@@ -23,7 +23,7 @@ const Header = ({ expanded }: HeaderProps) => {
   const isCreatePage = pathname === "/create";
   const { data: session } = useSession();
   return (
-    <header className="supports-backdrop-blur:bg-background/10 fixed top-0 z-40 w-full border-b bg-background/90 shadow-sm backdrop-blur">
+    <header className="supports-backdrop-blur:bg-background/10 fixed top-0 z-40 w-full border-b bg-background shadow-sm backdrop-blur">
       <div
         className={cn(
           "flex h-14 items-center",
@@ -58,8 +58,10 @@ const Header = ({ expanded }: HeaderProps) => {
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
             {!isCreatePage && (
-              <Button href={session ? "/create" : "/api/auth/signin"}>
-                Create
+              <Button asChild>
+                <Link href={session ? "/create" : "/api/auth/signin"}>
+                  Create
+                </Link>
               </Button>
             )}
             <div className="flex items-center space-x-2 md:space-x-4">

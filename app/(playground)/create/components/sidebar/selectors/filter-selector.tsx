@@ -203,7 +203,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
               </HoverCardContent>
             )}
             <Command loop>
-              <CommandList className="h-[var(--cmdk-list-height)] max-h-[400px]">
+              <CommandList className="h-[var(--cmdk-list-height)] max-h-[400px] overflow-hidden">
                 <CommandInput placeholder="Search Filter Categories..." />
                 <CommandEmpty>No Filters found.</CommandEmpty>
                 <HoverCardTrigger />
@@ -218,7 +218,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                     ))}
                   </ScrollArea>
                   <CommandSeparator alwaysRender />
-                  <CommandGroup className="-mx-1 -mb-1">
+                  <CommandGroup className="-mx-1 -mb-1 h-14">
                     <CommandItem
                       onSelect={() => router.push("/create?filterCategory")}
                       className="flex-center cursor-pointer text-sm text-muted-foreground"

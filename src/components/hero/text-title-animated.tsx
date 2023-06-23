@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 import BadgeAnimatedBorderGradient from "~/components/hero/badge-animated-border-gradient";
@@ -59,8 +60,8 @@ const TextTitleAnimated = ({}: TextTitleAnimatedProps) => {
         variants={FADE_DOWN_ANIMATION_VARIANTS}
         className="mx-auto mt-6 flex items-center justify-center space-x-5"
       >
-        <Button href="/posters/new" variant="secondary" className="mt-5">
-          Explore
+        <Button asChild variant="secondary" className="mt-5">
+          <Link href="/posters/new">Explore</Link>
         </Button>
       </motion.div>
     </motion.div>

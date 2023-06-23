@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { Button, buttonVariants } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,8 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "~/components/react-hook-form/form";
-import { Button, buttonVariants } from "~/components/ui/button";
+} from "~/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "~/components/ui/radio-group";
 
 import { cn } from "~/lib/classNames";
