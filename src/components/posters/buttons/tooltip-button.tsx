@@ -37,7 +37,7 @@ const iconSizeVariants = cva("", {
 const TooltipButton = ({
   children,
   Icon,
-  iconSize = "md",
+  iconSize = "sm",
   clickHandler,
   className,
   contentClassName,

@@ -4,7 +4,8 @@ import { formatDate } from "~/utils/formatDate";
 import getFirstLetters from "~/utils/getFirstLetter";
 import { Info } from "lucide-react";
 
-import CopyButton from "~/components/posters/buttons/copy-button";
+import CopyPromptButton from "~/components/posters/buttons/copy-prompt-button";
+import EditPromptButton from "~/components/posters/buttons/edit-prompt-button";
 import FollowUserButton from "~/components/posters/buttons/follow-user-button";
 import SharePosterButton from "~/components/posters/buttons/share-poster-button";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
@@ -71,7 +72,10 @@ const PosterInfoContainer = ({
         <span className="text-xl font-bold text-muted-foreground">Prompt</span>
         <div className="grid grid-flow-col items-center justify-between gap-5">
           <span className="text-sm md:text-base">{prompt}</span>
-          <CopyButton text={prompt} />
+          <div className="grid grid-flow-col items-center justify-between gap-1">
+            <CopyPromptButton prompt={prompt} />
+            <EditPromptButton prompt={prompt} />
+          </div>
         </div>
       </div>
 

@@ -6,14 +6,14 @@ import toast from "react-hot-toast";
 
 import TooltipButton from "~/components/posters/buttons/tooltip-button";
 
-type CopyButtonProps = {
-  text: string;
+type CopyPromptButtonProps = {
+  prompt: string;
 };
 
-const CopyButton = ({ text }: CopyButtonProps) => {
+const CopyPromptButton = ({ prompt }: CopyPromptButtonProps) => {
   const handleDownload = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(prompt);
     toast("Prompt copied to clipboard", {
       icon: "📋",
     });
@@ -31,4 +31,4 @@ const CopyButton = ({ text }: CopyButtonProps) => {
   );
 };
 
-export default CopyButton;
+export default CopyPromptButton;
