@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { GemIcon, Info } from "lucide-react";
 import { useSession } from "next-auth/react";
 
@@ -104,8 +105,8 @@ const UserCreditsPopover = () => {
             </span>
           </div>
           <div className="mb-2 px-2">
-            <Button href="/pricing" variant="outline" className="w-full">
-              Upgrade plan
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/pricing">Upgrade plan</Link>
             </Button>
           </div>
         </div>

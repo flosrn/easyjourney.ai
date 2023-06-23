@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import { XCircleIcon } from "lucide-react";
 
 import { cn } from "~/lib/classNames";
 
@@ -24,11 +25,26 @@ const badgeVariants = cva(
 );
 
 export type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof badgeVariants> & {};
+  VariantProps<typeof badgeVariants> & {
+    hasClose?: boolean;
+  };
 
-function Badge({ className, variant, ...props }: BadgeProps) {
+function Badge({
+  className,
+  variant,
+  children,
+  hasClose,
+  ...props
+}: BadgeProps) {
   return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    <div className={cn(badgeVariants({ variant }), className)} {...props}>
+      {hasClose && (
+        <span className="absolute -right-1 -top-1 hidden group-hover:block">
+          <XCircleIcon className="h-3 w-3" />
+        </span>
+      )}
+      {children}
+    </div>
   );
 }
 

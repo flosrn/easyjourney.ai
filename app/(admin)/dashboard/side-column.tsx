@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 import { Button } from "~/components/ui/button";
 import { ScrollArea } from "~/components/ui/scroll-area";
@@ -17,15 +18,11 @@ const SideColumn = ({ className }: SidebarProps) => (
               Getting Started
             </h4>
             <div className="grid grid-flow-row auto-rows-max text-sm">
-              <Button href="/dashboard" variant="link" className="px-2 py-1">
-                Home
+              <Button asChild variant="link" className="px-2 py-1">
+                <Link href="/dashboard">Home</Link>
               </Button>
-              <Button
-                href="/dashboard/search-posters"
-                variant="link"
-                className="px-2 py-1"
-              >
-                Search Posters
+              <Button variant="link" className="px-2 py-1">
+                <Link href="/dashboard/search-posters">Search Posters</Link>
               </Button>
             </div>
           </div>

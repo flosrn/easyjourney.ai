@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import getFirstLetters from "~/utils/getFirstLetter";
 import { signOut, useSession } from "next-auth/react";
@@ -35,8 +36,8 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
 
   if (session === null) {
     return (
-      <Button variant="outline" href="/api/auth/signin">
-        Login
+      <Button asChild variant="outline">
+        <Link href="/api/auth/signin">Login</Link>
       </Button>
     );
   }

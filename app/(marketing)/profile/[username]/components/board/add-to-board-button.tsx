@@ -1,6 +1,7 @@
-"use client;";
+"use client";
 
 import React from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { useSelectBarStore } from "~/store/selectBarStore";
@@ -81,12 +82,12 @@ const AddToBoardButton = ({ boardId, name, icon }: AddToBoardButtonProps) => {
   };
   return (
     <Button
-      href={`/profile/${username}/boards/${boardId}`}
+      asChild
       onClick={handleAddToBoard}
       variant="ghost"
       className="truncate"
     >
-      {name}
+      <Link href={`/profile/${username}/boards/${boardId}`}>{name}</Link>
     </Button>
   );
 };
