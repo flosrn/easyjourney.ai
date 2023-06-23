@@ -5,9 +5,7 @@ import { usePathname } from "next/navigation";
 import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
 import { motion } from "framer-motion";
-import { LucideX } from "lucide-react";
-
-import { Button } from "~/components/ui/button";
+import { InspectIcon, LucideX } from "lucide-react";
 
 import RemoveFromBoardButton from "./board/remove-from-board-button";
 import SelectBoardButton from "./board/select-board-button";
@@ -68,7 +66,11 @@ export const SelectBar = ({ isValidUser }: SelectBarProps) => {
               >
                 <LucideX className="mr-1 h-5" />
               </button>
-              <div>{numberOfPosters}</div>
+              <div className="hidden md:block">{numberOfPosters}</div>
+              <div className="flex items-center space-x-2 md:hidden">
+                <InspectIcon className="h-4 w-4" />
+                <span>{selectedPosters.length}</span>
+              </div>
             </div>
             <div className="mr-2 flex">
               {!boards && !likes && isValidUser && (

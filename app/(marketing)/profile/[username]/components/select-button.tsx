@@ -3,7 +3,8 @@
 import React from "react";
 import { useSelectBarStore } from "~/store/selectBarStore";
 import { useSelectPosterStore } from "~/store/selectPosterStore";
-import { MousePointerClick } from "lucide-react";
+import { motion } from "framer-motion";
+import { MousePointerClickIcon, XIcon } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 
@@ -27,9 +28,13 @@ const SelectButton = ({ rounded }: SelectButtonProps) => {
       ? (clearSelectedPosters(), toggleModalSelectOpen())
       : toggleModalSelectOpen();
 
+  const MotionButton = motion(Button);
+
   return (
-    <Button
+    <MotionButton
       onClick={toggleModal}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
       variant="outline"
       className={cn("shrink-0 bg-background", {
         "outline outline-highlight outline-offset-2 outline-2":
@@ -37,9 +42,13 @@ const SelectButton = ({ rounded }: SelectButtonProps) => {
         "rounded-full px-3": rounded,
       })}
     >
-      <MousePointerClick className="h-4 w-4" />
+      {isModalSelectOpen ? (
+        <XIcon className="h-4 w-4" />
+      ) : (
+        <MousePointerClickIcon className="h-4 w-4" />
+      )}
       {!rounded && <span className="ml-2 hidden sm:block">Select Images</span>}
-    </Button>
+    </MotionButton>
   );
 };
 

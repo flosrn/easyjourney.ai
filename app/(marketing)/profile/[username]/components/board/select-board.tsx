@@ -11,6 +11,7 @@ import {
   CommandGroup,
   CommandItem,
 } from "~/components/ui/command";
+import { ScrollArea } from "~/components/ui/scroll-area";
 
 import AddToBoardButton from "./add-to-board-button";
 
@@ -44,24 +45,27 @@ const SelectBoard = ({ onCloseHandler }: SelectBoardProps) => {
       )}
       {status === "success" && (
         <CommandGroup>
-          {boards.length > 0 ? (
-            boards.map((board: Board) => (
-              <CommandItem
-                key={board.id}
-                onSelect={() => {
-                  onCloseHandler();
-                }}
-              >
-                <AddToBoardButton
-                  boardId={board.id}
-                  name={board.name}
-                  icon={board.icon}
-                />
-              </CommandItem>
-            ))
-          ) : (
-            <CommandEmpty>No board found.</CommandEmpty>
-          )}
+          <ScrollArea>
+            {boards.length > 0 ? (
+              boards.map((board: Board) => (
+                <CommandItem
+                  key={board.id}
+                  onSelect={() => {
+                    onCloseHandler();
+                  }}
+                  className="h-10 truncate"
+                >
+                  <AddToBoardButton
+                    boardId={board.id}
+                    name={board.name}
+                    icon={board.icon}
+                  />
+                </CommandItem>
+              ))
+            ) : (
+              <CommandEmpty>No board found.</CommandEmpty>
+            )}
+          </ScrollArea>
         </CommandGroup>
       )}
     </>

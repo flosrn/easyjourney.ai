@@ -103,11 +103,11 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
   return (
     <div className="flex flex-col">
       <BackToPreviousPageButton />
-      <div className="my-5 flex space-x-5">
+      <div className="my-5 flex space-x-5 -md:flex-col">
         <div className="w-full">
           {isUpdateForm ? <UpdateBoardForm /> : <TitleBoard />}
         </div>
-        <div className="mb-2 flex flex-row-reverse">
+        <div className="mb-2 flex flex-row-reverse -md:mt-4">
           {isUserBoard && isUpdateForm ? (
             <>
               <UpdateBoardButton

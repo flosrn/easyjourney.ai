@@ -47,7 +47,11 @@ const SelectBoardButton = ({
           Add to board
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-screen p-0 md:w-52">
+      <PopoverContent
+        sideOffset={10}
+        align="end"
+        className="w-screen p-0 md:w-72"
+      >
         <Command>
           {!openForm && <CommandInput placeholder="Search a board" />}
           <ScrollArea className="h-80">

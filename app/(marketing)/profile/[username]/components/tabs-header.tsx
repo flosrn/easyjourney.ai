@@ -3,10 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
+import { useSelectBarStore } from "~/store/selectBarStore";
 import { BookMarkedIcon, HeartIcon, StarIcon } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 import { Tabs, TabsList, TabsTrigger } from "~/components/ui/tabs";
+
+import { cn } from "~/lib/classNames";
 
 import SelectButton from "./select-button";
 
@@ -27,6 +30,7 @@ const getTabsValue = (pathname: string | null) => {
 };
 
 const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
+  const isSelectBarOpen = useSelectBarStore((state) => state.isSelectBarOpen);
   const { boardId } = useParams() ?? {};
   const pathname = usePathname();
   const value = getTabsValue(pathname);
@@ -60,7 +64,11 @@ const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
         </TabsList>
       </Tabs>
       {!inView && (
-        <div className="fixed bottom-2 right-5 z-50">
+        <div
+          className={cn("fixed right-2 md:right-5 z-50 bottom-2 md:bottom-2", {
+            "bottom-16": isSelectBarOpen,
+          })}
+        >
           <SelectButton rounded />
         </div>
       )}

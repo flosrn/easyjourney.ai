@@ -72,7 +72,7 @@ const PosterInfoContainer = ({
         <span className="text-xl font-bold text-muted-foreground">Prompt</span>
         <div className="grid grid-flow-col items-center justify-between gap-5">
           <span className="text-sm md:text-base">{prompt}</span>
-          <div className="grid grid-flow-col items-center justify-between gap-1">
+          <div className="grid items-center justify-between gap-1 md:grid-flow-col">
             <CopyPromptButton prompt={prompt} />
             <EditPromptButton prompt={prompt} />
           </div>
