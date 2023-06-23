@@ -14,12 +14,15 @@ const CopyButton = ({ text }: CopyButtonProps) => {
   const handleDownload = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     await navigator.clipboard.writeText(text);
-    toast.success("Prompt copied to clipboard");
+    toast("Prompt copied to clipboard", {
+      icon: "📋",
+    });
   };
 
   return (
     <TooltipButton
       Icon={CopyIcon}
+      iconSize="xs"
       clickHandler={handleDownload}
       className="w-fit"
     >
