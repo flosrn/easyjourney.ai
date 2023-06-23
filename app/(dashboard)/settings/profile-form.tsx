@@ -36,6 +36,12 @@ const profileFormSchema = z.object({
     .optional(),
 });
 
+type updateProfileMutationVariables = {
+  name: string;
+  bio?: string;
+  urls: { value?: string; key: string }[];
+};
+
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 const defaultValues: Partial<ProfileFormValues> = {
@@ -90,7 +96,7 @@ const ProfileForm = () => {
   }, [session, userInfo.data]);
 
   const updateProfile = useMutation({
-    mutationFn: async (data: any) => {
+    mutationFn: async (data: updateProfileMutationVariables) => {
       const response = await fetch("/api/profile/settings/update/profile", {
         method: "PATCH",
         body: JSON.stringify(data),
@@ -107,8 +113,8 @@ const ProfileForm = () => {
 
   const onSubmit = (data: ProfileFormValues) => {
     // TODO: add logic to update profile
-    const { name, bio, urls } = data;
-    const keyedUrls = urls?.map((url, index) => {
+    const { name, bio, urls = [] } = data;
+    const keyedUrls = urls.map((url, index) => {
       let key;
       switch (index) {
         case 0:
