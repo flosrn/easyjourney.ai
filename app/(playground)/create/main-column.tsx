@@ -450,7 +450,7 @@ const MainColumn = () => {
                       username
                     )
                   }
-                  disabled={isUploadLoading || isImageUploaded}
+                  disabled={isUploadLoading}
                   variant="success"
                 >
                   {isUploadLoading ? (

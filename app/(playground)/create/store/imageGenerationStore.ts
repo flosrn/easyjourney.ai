@@ -161,6 +161,7 @@ export const useImageGenerationStore = create<
   const addImage = (image: ImageData) => {
     set((state) => {
       const isGenerated = image.type === "generation_complete";
+      const isFirstUpscaled = image.type === "image_first_upscaled";
       const isUpscaled = image.type === "image_upscaled";
       const isVariation = image.type === "variation_complete";
       const isIteration = image.type === "image_iteration";
@@ -344,26 +345,26 @@ export const useImageGenerationStore = create<
         return response;
       };
 
-      const { jobId } = image;
+      // const { jobId } = image;
 
-      try {
-        if (!index) return;
-        setTimeout(() => {
-          actions.addImage({
-            ...image,
-            type: "image_upscaled",
-            url: `https://cdn.midjourney.com/${jobId}/0_${index - 1}.webp`,
-          });
-          setIsLoading(true);
-          setImageType("upscale");
-          setMessage("");
-        }, 1000);
-      } catch (error_: unknown) {
-        setMessage(
-          `Something went wrong while upscaling the image, please try again.\n\n${error_}`
-        );
-        setError(error_);
-      }
+      // try {
+      //   if (!index) return;
+      //   setTimeout(() => {
+      //     actions.addImage({
+      //       ...image,
+      //       type: "image_upscaled",
+      //       url: `https://cdn.midjourney.com/${jobId}/0_${index - 1}.webp`,
+      //     });
+      //     setIsLoading(true);
+      //     setImageType("upscale");
+      //     setMessage("");
+      //   }, 1000);
+      // } catch (error_: unknown) {
+      //   setMessage(
+      //     `Something went wrong while upscaling the image, please try again.\n\n${error_}`
+      //   );
+      //   setError(error_);
+      // }
       try {
         const data = await fetchUpscale();
         if (!data.status) handleErrorResponse(data);
@@ -477,7 +478,6 @@ export const useImageGenerationStore = create<
         setIsLoading(false);
         setLoadingType(null);
         setIsImageUploaded(true);
-        setSelectedImage(0);
         await fetch("/api/revalidate?path=/posters/new");
         username && (await fetch(`/api/revalidate?path=/profile/${username}`));
       } else {
