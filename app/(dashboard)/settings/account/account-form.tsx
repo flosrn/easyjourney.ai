@@ -1,12 +1,11 @@
 "use client";
 
-import { METHODS } from "node:http";
 import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { Toast, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import * as z from "zod";
 
 import { Button } from "~/components/ui/button";
