@@ -53,12 +53,17 @@ const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
   const isSelectBarOpen = useSelectBarStore((state) => state.isSelectBarOpen);
   const { boardId } = useParams() ?? {};
   const pathname = usePathname();
+
   const value = getTabsValue(pathname);
+  const isNew = value === "created";
+  const isFavorite = value === "liked";
+  const isBoard = value === "boards" && !!boardId;
+  const showSelectButton = isNew || isFavorite || isBoard;
+
   const { ref, inView } = useInView({
     threshold: 0,
   });
 
-  const boardWithoutId = !!pathname?.includes("boards") && !boardId;
   return (
     <div className="my-4 flex items-center justify-between space-x-3">
       <Tabs ref={ref} value={value} className="w-[300px]">
@@ -83,17 +88,21 @@ const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
           </Link>
         </TabsList>
       </Tabs>
-      {!inView && (
-        <AbsolutePositionedSelectButton isSelectBarOpen={isSelectBarOpen} />
-      )}
-      <AbsolutePositionedSelectButton
-        isSelectBarOpen={isSelectBarOpen}
-        className="sm:hidden"
-      />
-      {isValidUser && !boardWithoutId && (
-        <div className="flex text-center -sm:hidden">
-          <SelectButton />
-        </div>
+      {showSelectButton && (
+        <>
+          {!inView && (
+            <AbsolutePositionedSelectButton isSelectBarOpen={isSelectBarOpen} />
+          )}
+          <AbsolutePositionedSelectButton
+            isSelectBarOpen={isSelectBarOpen}
+            className="sm:hidden"
+          />
+          {isValidUser && (
+            <div className="flex text-center -sm:hidden">
+              <SelectButton />
+            </div>
+          )}
+        </>
       )}
     </div>
   );

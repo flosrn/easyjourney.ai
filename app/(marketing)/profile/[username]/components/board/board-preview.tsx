@@ -42,7 +42,7 @@ const BoardPreview = ({
   }
 
   return (
-    <div className="flex w-full flex-col rounded-xl ring-2 ring-offset-card hover:ring-offset-highlight">
+    <div className="flex w-full flex-col rounded-md ring-1 ring-offset-card hover:ring-offset-highlight">
       <div className="flex h-10 w-full items-center truncate px-2">
         <div className="mr-2 w-6 rounded-xl text-center ring">{collection}</div>
         <div>

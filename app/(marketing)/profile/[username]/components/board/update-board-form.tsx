@@ -40,7 +40,7 @@ const UpdateBoardForm = () => {
   };
 
   return (
-    <div className="space-y-2 -md:flex -md:items-center -md:justify-around">
+    <div className="space-y-2 md:w-1/2 -md:flex -md:flex-col">
       <div className="flex">
         <Label htmlFor="isPublic" className="mr-2">
           Public
