@@ -7,6 +7,9 @@ export const revalidate = 5;
 
 const getNewPosters = async () =>
   prisma.poster.findMany({
+    where: {
+      isPublic: true,
+    },
     orderBy: {
       createdAt: "desc",
     },

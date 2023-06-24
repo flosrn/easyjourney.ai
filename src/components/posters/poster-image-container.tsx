@@ -25,7 +25,11 @@ const PosterImageContainer = ({
   children,
 }: PosterImageContainerProps) => (
   <div className="">
-    <div className={cn("flex relative justify-star flex-col overflow-hidden")}>
+    <div
+      className={cn(
+        "flex group relative justify-star flex-col overflow-hidden"
+      )}
+    >
       <Image
         src={image}
         alt={prompt}

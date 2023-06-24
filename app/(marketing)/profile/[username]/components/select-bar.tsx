@@ -72,7 +72,7 @@ export const SelectBar = ({ isValidUser }: SelectBarProps) => {
                 <span>{selectedPosters.length}</span>
               </div>
             </div>
-            <div className="mr-2 flex">
+            <div className="mr-5 flex">
               {!boards && !likes && isValidUser && (
                 <DeleteButton isSelectedPostersEmpty={isSelectedPostersEmpty} />
               )}

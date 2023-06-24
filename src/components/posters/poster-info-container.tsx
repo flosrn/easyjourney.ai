@@ -7,6 +7,7 @@ import { Info } from "lucide-react";
 import CopyPromptButton from "~/components/posters/buttons/copy-prompt-button";
 import EditPromptButton from "~/components/posters/buttons/edit-prompt-button";
 import FollowUserButton from "~/components/posters/buttons/follow-user-button";
+import MoreButton from "~/components/posters/buttons/more-button";
 import SharePosterButton from "~/components/posters/buttons/share-poster-button";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
@@ -22,6 +23,7 @@ type PosterInfoContainerProps = Poster & {
 };
 
 const PosterInfoContainer = ({
+  id,
   title,
   prompt,
   user,
@@ -34,6 +36,7 @@ const PosterInfoContainer = ({
   chaos,
   quality,
   stylize,
+  isPublic,
   children,
 }: PosterInfoContainerProps) => {
   const author = user?.username;
@@ -56,11 +59,12 @@ const PosterInfoContainer = ({
               <span className="hover:underline">{author}</span>
             </Link>
             <div className="grid grid-flow-col gap-1">
-              <FollowUserButton
-                userId={user.id}
-                isFollowing={user.isFollowing}
-              />
+              {/*<FollowUserButton*/}
+              {/*  userId={user.id}*/}
+              {/*  isFollowing={user.isFollowing}*/}
+              {/*/>*/}
               <SharePosterButton />
+              <MoreButton posterId={id} userId={user.id} isPublic={isPublic} />
             </div>
           </div>
         )}

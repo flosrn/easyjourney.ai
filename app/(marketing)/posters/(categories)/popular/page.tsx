@@ -5,6 +5,9 @@ import Posters from "../../components/posters";
 
 const getPopularPosters = async () =>
   prisma.poster.findMany({
+    where: {
+      isPublic: true,
+    },
     orderBy: {
       likes: {
         _count: "desc",
