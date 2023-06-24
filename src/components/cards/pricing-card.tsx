@@ -48,7 +48,7 @@ export default function PricingCard({
       <span className="w-full border-b-2 border-stone-200 pb-4 text-center text-sm">
         {description}
       </span>
-      <div className="flex h-full w-full justify-normal pt-4 text-left">
+      <div className="mb-5 flex h-full w-full justify-normal pt-4 text-left">
         <ul>
           {features.map((feature) => {
             const isLast = feature.key === features.at(-1)?.key;
