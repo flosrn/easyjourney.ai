@@ -108,7 +108,7 @@ const accordionData = [
 export default function faqPage() {
   return (
     <>
-      <div className="container">
+      <div className="container my-8">
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-center text-4xl font-bold">
             Frequently Asked Questions
