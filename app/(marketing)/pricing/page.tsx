@@ -8,7 +8,7 @@ const pricingData = [
     description: "For newbies users of Midjourney",
     features: [
       <p key="0">
-        Generate <strong>5</strong> posters per day
+        <strong>5</strong> posters per day
       </p>,
       <p key="1">
         Generate posters in <strong>relaxed mode</strong>
@@ -26,7 +26,6 @@ const pricingData = [
     description: "For regular users of Midjourney",
     features: [
       <p key="0">
-        Generate{" "}
         <strong className="text-gradient-hyper animate-text">500</strong>{" "}
         posters per month
       </p>,
@@ -53,7 +52,7 @@ const pricingData = [
     description: "For power users of Midjourney",
     features: [
       <p key="0">
-        Generate <strong>2000</strong> posters per month
+        <strong>2000</strong> posters per month
       </p>,
       <p key="1">
         Generate posters in <strong>fast mode</strong>

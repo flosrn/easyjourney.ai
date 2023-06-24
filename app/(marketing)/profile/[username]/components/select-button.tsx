@@ -47,7 +47,7 @@ const SelectButton = ({ rounded }: SelectButtonProps) => {
       ) : (
         <MousePointerClickIcon className="h-4 w-4" />
       )}
-      {!rounded && <span className="ml-2 hidden sm:block">Select Images</span>}
+      {!rounded && <span className="ml-2 hidden sm:block">Select posters</span>}
     </MotionButton>
   );
 };

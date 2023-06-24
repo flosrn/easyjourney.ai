@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { SubscriptionPlan } from "@prisma/client";
 import { GemIcon, Info } from "lucide-react";
 import { useSession } from "next-auth/react";
 
@@ -23,7 +24,8 @@ import { Separator } from "~/components/ui/separator";
 const UserCreditsPopover = () => {
   const { data: session, update } = useSession();
 
-  const plan = session?.user.plan ?? "FREE";
+  const plan = session?.user.plan ?? SubscriptionPlan.FREE;
+  const isFree = plan === SubscriptionPlan.FREE;
   const credits = session?.user.credits ?? 0;
   const freeCredits = session?.user.freeCredits ?? 0;
   const totalCredits = credits + freeCredits;
@@ -73,12 +75,13 @@ const UserCreditsPopover = () => {
                 <HoverCard>
                   <HoverCardTrigger>
                     <div className="flex select-none">
-                      <Label>Daily Credits</Label>
+                      <Label>{isFree ? "Daily" : "Monthly"} Credits</Label>
                       <Info size={13} color="grey" className="ml-1" />
                     </div>
                   </HoverCardTrigger>
                   <HoverCardContent className="text-sm">
-                    Daily credits are added to your account every day at 08:00.
+                    {isFree ? "Daily" : "Monthly"} credits are added to your
+                    account every {isFree ? "day" : "month"}.
                   </HoverCardContent>
                 </HoverCard>
                 <span className="font-bold text-violet-400">{credits}</span>
@@ -101,7 +104,7 @@ const UserCreditsPopover = () => {
               </div>
             </div>
             <span className="flex justify-end px-2 text-right text-xs italic text-muted-foreground/50">
-              1 credit = 1 generation.
+              1 credit = 1 poster.
             </span>
           </div>
           <div className="mb-2 px-2">
