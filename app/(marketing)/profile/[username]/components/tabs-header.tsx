@@ -29,6 +29,26 @@ const getTabsValue = (pathname: string | null) => {
   }
 };
 
+const AbsolutePositionedSelectButton = ({
+  isSelectBarOpen,
+  className,
+}: {
+  isSelectBarOpen: boolean;
+  className?: string;
+}) => (
+  <div
+    className={cn(
+      "fixed right-2 md:right-5 z-50 bottom-2 md:bottom-2",
+      {
+        "bottom-16": isSelectBarOpen,
+      },
+      className
+    )}
+  >
+    <SelectButton rounded />
+  </div>
+);
+
 const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
   const isSelectBarOpen = useSelectBarStore((state) => state.isSelectBarOpen);
   const { boardId } = useParams() ?? {};
@@ -64,16 +84,14 @@ const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
         </TabsList>
       </Tabs>
       {!inView && (
-        <div
-          className={cn("fixed right-2 md:right-5 z-50 bottom-2 md:bottom-2", {
-            "bottom-16": isSelectBarOpen,
-          })}
-        >
-          <SelectButton rounded />
-        </div>
+        <AbsolutePositionedSelectButton isSelectBarOpen={isSelectBarOpen} />
       )}
+      <AbsolutePositionedSelectButton
+        isSelectBarOpen={isSelectBarOpen}
+        className="sm:hidden"
+      />
       {isValidUser && !boardWithoutId && (
-        <div className="flex text-center">
+        <div className="flex text-center -sm:hidden">
           <SelectButton />
         </div>
       )}

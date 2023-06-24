@@ -33,7 +33,7 @@ const SelectButton = ({ rounded }: SelectButtonProps) => {
   return (
     <MotionButton
       onClick={toggleModal}
-      whileHover={{ scale: 1.1 }}
+      whileHover={rounded ? { scale: 1.1 } : {}}
       whileTap={{ scale: 0.9 }}
       variant="outline"
       className={cn("shrink-0 bg-background", {
