@@ -69,7 +69,7 @@ const megaMenu: MegaMenu[] = [
     menu: [
       {
         title: "Pricing",
-        href: "/pricing",
+        href: "/about/pricing",
         description: "Découvrez nos plans et tarifs",
       },
       {
@@ -94,9 +94,7 @@ const megaMenu: MegaMenu[] = [
       {
         title: "FAQ",
         href: "/about/faq",
-        description:
-          "Consultez les questions fréquemment posées par nos utilisateurs",
-        disabled: true,
+        description: "Got a question ? Here is the asnwer !",
       },
       {
         title: "Contactez-nous",
