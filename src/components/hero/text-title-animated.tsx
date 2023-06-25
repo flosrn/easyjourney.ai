@@ -1,15 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 
 import BadgeAnimatedBorderGradient from "~/components/hero/badge-animated-border-gradient";
 import TextAnimatedGradient from "~/components/hero/text-animated-gradient";
 import { Button } from "~/components/ui/button";
 
-import logo from "../../../public/images/logo/easyjourney_logo.svg";
+import logoBlack from "../../../public/images/logo/easyjourney_logo_black.svg";
+import logoWhite from "../../../public/images/logo/easyjourney_logo.svg";
 
 const FADE_DOWN_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: -10 },
@@ -19,6 +21,15 @@ const FADE_DOWN_ANIMATION_VARIANTS = {
 type TextTitleAnimatedProps = {};
 
 const TextTitleAnimated = ({}: TextTitleAnimatedProps) => {
+  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
+  const isDarkTheme = theme === "dark";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
   return (
     <motion.div
       initial="hidden"
@@ -39,7 +50,11 @@ const TextTitleAnimated = ({}: TextTitleAnimatedProps) => {
           variants={FADE_DOWN_ANIMATION_VARIANTS}
           className="text-center text-5xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
         >
-          <Image priority src={logo} alt="Easyjourney.ai" />
+          <Image
+            priority
+            src={isDarkTheme ? logoWhite : logoBlack}
+            alt="Easyjourney.ai"
+          />
         </motion.h1>
         <motion.div
           variants={FADE_DOWN_ANIMATION_VARIANTS}

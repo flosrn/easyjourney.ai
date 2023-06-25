@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMobileMenuStore } from "~/store/mobileMenuStore";
 import { Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useTheme } from "next-themes";
 
 import DropdownUserMenuNav from "~/components/header/dropdown-user-menu-nav";
 import { Navbar } from "~/components/header/navbar";
@@ -15,16 +16,21 @@ import { Button } from "~/components/ui/button";
 
 import { cn } from "~/lib/classNames";
 
-import fullLogo from "../../../public/images/logo/easyjourney_logo.svg";
-import logo from "../../../public/images/logo/easyjourney_white.svg";
+import fullLogoBlack from "../../../public/images/logo/easyjourney_logo_black.svg";
+import fullLogoWhite from "../../../public/images/logo/easyjourney_logo.svg";
+import logoBlack from "../../../public/images/logo/flyingfish_black.svg";
+import logoWhite from "../../../public/images/logo/flyingfish_white.svg";
 
 type HeaderProps = {
   expanded?: boolean;
 };
 
 const Header = ({ expanded }: HeaderProps) => {
+  const [mounted, setMounted] = useState(false);
   const { data: session } = useSession();
   const pathname = usePathname();
+  const { theme } = useTheme();
+  const isDarkTheme = theme === "dark";
   const [isMobileMenuOpen, toggleMobileMenu] = useMobileMenuStore((state) => [
     state.isMobileMenuOpen,
     state.toggleMobileMenu,
@@ -42,6 +48,12 @@ const Header = ({ expanded }: HeaderProps) => {
     }
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <header className="supports-backdrop-blur:bg-background/10 fixed top-0 z-40 w-full border-b bg-background shadow-sm backdrop-blur">
       <div
@@ -58,13 +70,13 @@ const Header = ({ expanded }: HeaderProps) => {
             >
               <Image
                 priority
-                src={fullLogo}
+                src={isDarkTheme ? fullLogoWhite : fullLogoBlack}
                 alt="Easyjourney.ai"
                 className="mb-3 h-8 w-full -md:hidden"
               />
               <Image
                 priority
-                src={logo}
+                src={isDarkTheme ? logoWhite : logoBlack}
                 alt="Easyjourney.ai"
                 className="h-8 w-8 md:hidden"
               />
