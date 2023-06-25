@@ -19,88 +19,80 @@ type SiteConfig = Hero & {
 
 const megaMenu: MegaMenu[] = [
   {
-    title: "Explorer",
+    title: "Explore",
     menu: [
       {
-        title: "Par nouveauté",
+        title: "Most recent",
         href: "/posters/new",
-        description:
-          "Découvrez les dernières créations des membres de la communauté",
+        description: "Check the last posters created by our community",
       },
       {
-        title: "Par popularité",
+        title: "Most popular",
         href: "/posters/popular",
         description:
-          "Parcourez les posters les plus populaires et les mieux notés",
+          "Check the posters that have been liked the most by our community",
       },
       {
-        title: "Par catégories",
+        title: "By category",
         href: "/posters/categories",
-        description: "Explorez les posters par catégories, thèmes et styles",
+        description: "Explore posters sorted by categories ",
         disabled: true,
       },
     ],
     hasLeftImage: true,
   },
   {
-    title: "Créer un poster",
+    title: "Create a poster",
     menu: [
       {
-        title: "Générateur",
+        title: "Generator",
         href: "/create",
-        description: "Personnalisez un poster en quelques clics",
+        description: "Personalize and create your own poster in seconds",
       },
       {
-        title: "Tutoriels et astuces",
+        title: "Tutorials and tips",
         href: "/posters/tutorials",
-        description: "Apprenez à créer des posters uniques et efficaces",
-        disabled: true,
-      },
-      {
-        title: "Galerie de créations",
-        href: "/posters/gallery",
-        description: "Admirez les créations des membres de la communauté",
+        description: "Learn how to create the best posters, in the best way",
         disabled: true,
       },
     ],
   },
   {
-    title: "À propos",
+    title: "About",
     menu: [
       {
         title: "Pricing",
         href: "/pricing",
-        description: "Découvrez nos plans et tarifs",
+        description: "Find out about our different plans and pricing",
       },
       {
-        title: "Notre histoire",
+        title: "Our history",
         href: "/about/history",
-        description: "Découvrez l'origine et l'évolution de notre plateforme",
+        description: "Discover the history of easyjourney.ai",
         disabled: true,
       },
       {
-        title: "L'équipe",
+        title: "The team",
         href: "/about/team",
-        description: "Rencontrez les personnes derrière ce projet innovant",
+        description: "Find out more about the team behind easyjourney.ai",
         disabled: true,
       },
       {
-        title: "Technologie IA",
+        title: "IA technology",
         href: "/about/technology",
-        description:
-          "Apprenez-en davantage sur l'intelligence artificielle utilisée pour générer les posters",
+        description: "Learn more about the technology behind easyjourney.ai",
         disabled: true,
       },
       {
         title: "FAQ",
         href: "/about/faq",
-        description: "Got a question ? Here is the asnwer !",
+        description: "Got a question ? Here is the answer !",
       },
       {
-        title: "Contactez-nous",
+        title: "Contact us",
         href: "/about/contact",
         description:
-          "N'hésitez pas à nous contacter pour toute question ou suggestion",
+          "You can contact us for any question, suggestion or partnership",
         disabled: true,
       },
     ],

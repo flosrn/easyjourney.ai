@@ -60,7 +60,7 @@ export const Navbar = () => {
                     {menuItem.description}
                   </ListItem>
                 ))}
-                {megaMenuItem.title === "Explorer" && (
+                {megaMenuItem.title === "Explore" && (
                   <MyFeedMenuItem ListItem={ListItem} />
                 )}
               </ul>
