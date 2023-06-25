@@ -28,7 +28,12 @@ const accordionData = [
     value: "item-4",
     trigger: "Can I use the generated images for commercial use ?",
     content:
-      "The paid plan allows you to use the generated images for commercial use. The free plan allows you to use the generated images for personal use only.",
+      "The paid plan allows you to use the generated images for commercial use.  The free plan allows you to use the generated images for personal use only.",
+  },
+  {
+    value: "item-5",
+    trigger: "How to contact us ?",
+    content: "You can contact us through our Discord server.",
   },
 ];
 
