@@ -21,7 +21,11 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <ServerThemeProvider attribute="class">
+    <ServerThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem={false}
+    >
       <html lang="en" className={inter.className} suppressHydrationWarning>
         <body className="h-screen bg-background font-sans text-foreground antialiased transition-all duration-200 ease-in-out">
           <Providers>{children}</Providers>
