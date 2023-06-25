@@ -17,8 +17,6 @@ type SelectBarProps = {
 
 export const SelectBar = ({ isValidUser }: SelectBarProps) => {
   const pathname = usePathname();
-  const boards = pathname?.includes("boards");
-  const likes = pathname?.includes("likes");
   const [isModalSelectOpen, toggleModalSelectOpen, closeSelectBar] =
     useSelectBarStore((state) => [
       state.isSelectBarOpen,
@@ -28,6 +26,8 @@ export const SelectBar = ({ isValidUser }: SelectBarProps) => {
   const [selectedPosters, clearSelectedPosters] = useSelectPosterStore(
     (state) => [state.selectedPosters, state.clearSelectedPosters]
   );
+  const boards = pathname?.includes("boards");
+  const likes = pathname?.includes("likes");
   const isSelectedPostersEmpty = selectedPosters.length === 0;
 
   let numberOfPosters;

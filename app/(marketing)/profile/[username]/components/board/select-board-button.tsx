@@ -50,10 +50,13 @@ const SelectBoardButton = ({
       <PopoverContent
         sideOffset={10}
         align="end"
+        onOpenAutoFocus={(event) => event.preventDefault()}
         className="w-screen p-0 md:w-72"
       >
         <Command>
-          {!openForm && <CommandInput placeholder="Search a board" />}
+          {!openForm && (
+            <CommandInput placeholder="Search a board" className="text-md" />
+          )}
           <ScrollArea className="h-80">
             {openForm ? (
               <CreateBoard onCloseHandler={handleClose} />
