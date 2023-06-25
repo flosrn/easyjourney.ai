@@ -1,12 +1,15 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 import BadgeAnimatedBorderGradient from "~/components/hero/badge-animated-border-gradient";
 import TextAnimatedGradient from "~/components/hero/text-animated-gradient";
 import { Button } from "~/components/ui/button";
+
+import logo from "../../../public/images/logo/easyjourney_logo.svg";
 
 const FADE_DOWN_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: -10 },
@@ -36,11 +39,11 @@ const TextTitleAnimated = ({}: TextTitleAnimatedProps) => {
           variants={FADE_DOWN_ANIMATION_VARIANTS}
           className="text-center text-5xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
         >
-          easyjourney.ai
+          <Image priority src={logo} alt="Easyjourney.ai" />
         </motion.h1>
         <motion.div
           variants={FADE_DOWN_ANIMATION_VARIANTS}
-          className="mt-3 text-center md:absolute md:right-0 md:top-5 md:mt-0"
+          className="mt-3 text-center md:absolute md:-right-16 md:top-12 md:mt-0"
         >
           <BadgeAnimatedBorderGradient label="beta" />
         </motion.div>
@@ -48,7 +51,7 @@ const TextTitleAnimated = ({}: TextTitleAnimatedProps) => {
 
       <motion.p
         variants={FADE_DOWN_ANIMATION_VARIANTS}
-        className="mt-6 text-center md:text-2xl"
+        className="mt-6 px-8 text-center text-lg sm:text-xl md:text-2xl"
       >
         Unlock the power of{" "}
         <TextAnimatedGradient>Midjourney</TextAnimatedGradient> with a beautiful

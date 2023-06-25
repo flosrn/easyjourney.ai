@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMobileMenuStore } from "~/store/mobileMenuStore";
@@ -13,6 +14,9 @@ import UserCreditsPopover from "~/components/header/user-credits-popover";
 import { Button } from "~/components/ui/button";
 
 import { cn } from "~/lib/classNames";
+
+import fullLogo from "../../../public/images/logo/easyjourney_logo.svg";
+import logo from "../../../public/images/logo/easyjourney_white.svg";
 
 type HeaderProps = {
   expanded?: boolean;
@@ -48,19 +52,22 @@ const Header = ({ expanded }: HeaderProps) => {
       >
         <div className="flex flex-1 items-center justify-between">
           <div className="flex">
-            <div className="md:hidden">
-              <button
-                onClick={handleBurgerMenuClick}
-                className="rounded p-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              >
-                <Menu size={24} />
-              </button>
-            </div>
-            <Link href="/" className="mr-6 flex items-center space-x-2">
-              <span className="hidden font-bold md:inline-block">
-                easyjourney.ai
-              </span>
-              <span className="font-bold md:hidden">EJ</span>
+            <Link
+              href="/"
+              className="mr-2 flex items-center space-x-2 -md:-ml-3"
+            >
+              <Image
+                priority
+                src={fullLogo}
+                alt="Easyjourney.ai"
+                className="mb-3 h-8 w-full -md:hidden"
+              />
+              <Image
+                priority
+                src={logo}
+                alt="Easyjourney.ai"
+                className="h-8 w-8 md:hidden"
+              />
             </Link>
             <nav
               dir="ltr"
@@ -83,6 +90,14 @@ const Header = ({ expanded }: HeaderProps) => {
             <div className="flex items-center space-x-2 md:space-x-4">
               {session?.user && <UserCreditsPopover />}
               <DropdownUserMenuNav />
+              <div className="md:hidden">
+                <button
+                  onClick={handleBurgerMenuClick}
+                  className="rounded p-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                >
+                  <Menu size={24} />
+                </button>
+              </div>
             </div>
           </div>
         </div>

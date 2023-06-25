@@ -2,8 +2,9 @@ import type { LucideIcon } from "lucide-react";
 
 export type Hero = {
   title: string;
-  subtitle: string;
   description?: string;
+  url?: string;
+  ogImage?: string;
 };
 
 export type NavItem = {

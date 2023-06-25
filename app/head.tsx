@@ -3,17 +3,24 @@ import React from "react";
 export default function Head() {
   return (
     <>
-      <title>Next.js</title>
-      <meta
-        name="description"
-        content="Next.js template for building apps with Radix UI and Tailwind CSS"
-      />
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
       />
 
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+      <link
+        rel="icon"
+        href="/icon?<generated>"
+        type="image/<generated>"
+        sizes="<generated>"
+      />
+      <link
+        rel="apple-touch-icon"
+        href="/apple-icon?<generated>"
+        type="image/<generated>"
+        sizes="<generated>"
+      />
     </>
   );
 }
