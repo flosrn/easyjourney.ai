@@ -80,8 +80,9 @@ const UserCreditsPopover = () => {
                     </div>
                   </HoverCardTrigger>
                   <HoverCardContent className="text-sm">
-                    {isFree ? "Daily" : "Monthly"} credits are added to your
-                    account every {isFree ? "day" : "month"}.
+                    {isFree ? "5 daily" : "500 monthly"} credits are added to
+                    your account every{" "}
+                    {isFree ? "day on FREE plan" : "month on PRO plan"}.
                   </HoverCardContent>
                 </HoverCard>
                 <span className="font-bold text-violet-400">{credits}</span>
@@ -96,7 +97,7 @@ const UserCreditsPopover = () => {
                   </HoverCardTrigger>
                   <HoverCardContent className="text-sm">
                     Free credits are added to your account when you perform
-                    certain actions, such as sharing myposter.ai on social media
+                    certain actions, such as sharing easyjourney on social media
                     or inviting friends.
                   </HoverCardContent>
                 </HoverCard>
