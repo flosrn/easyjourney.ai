@@ -18,7 +18,7 @@ import { Icons } from "../ui/icons";
 
 export const Navbar = () => {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="max-w-full">
       <NavigationMenuList>
         {siteConfig.megaMenu.map((megaMenuItem) => (
           <NavigationMenuItem key={megaMenuItem.title}>
@@ -43,7 +43,7 @@ export const Navbar = () => {
                           EXPLORER
                         </div>
                         <p className="text-sm leading-tight text-white/90">
-                          Explorez les posters par thèmes, styles et popularité
+                          Discover posters from the community.
                         </p>
                       </Link>
                     </NavigationMenuLink>
