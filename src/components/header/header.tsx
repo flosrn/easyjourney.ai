@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useMobileMenuStore } from "~/store/mobileMenuStore";
 import { Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
 
@@ -18,12 +19,15 @@ type HeaderProps = {
 };
 
 const Header = ({ expanded }: HeaderProps) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const { data: session } = useSession();
   const pathname = usePathname();
+  const [isMobileMenuOpen, toggleMobileMenu] = useMobileMenuStore((state) => [
+    state.isMobileMenuOpen,
+    state.toggleMobileMenu,
+  ]);
 
   const handleBurgerMenuClick = () => {
-    setIsMobileMenuOpen((prev) => !prev);
+    toggleMobileMenu();
   };
 
   useEffect(() => {
