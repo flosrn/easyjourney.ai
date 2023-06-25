@@ -307,7 +307,7 @@ const MainColumn = () => {
         <div className="h-full flex-col border-none p-0">
           <div
             className={cn(
-              "flex w-full items-center justify-between bg-background -lg:fixed -lg:left-0 -lg:z-10 -lg:h-[80px] -lg:border -lg:px-4 -lg:py-6",
+              "flex w-full items-center justify-between bg-background -lg:fixed -lg:left-0 -lg:z-10 -lg:h-[80px] -lg:border-b -lg:px-4 -lg:py-6",
               {
                 "-lg:top-14": !isMobileMenuOpen,
                 "-lg:top-[6.5rem]": isMobileMenuOpen,
