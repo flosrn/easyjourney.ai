@@ -1,9 +1,22 @@
 import { ImageResponse } from "next/server";
-import { prisma } from "~/server/db/prisma";
 
 export const runtime = "edge";
 
-export default async function LocationOG({
+// Image metadata
+export const alt = "About Acme";
+export const size = {
+  width: 1200,
+  height: 630,
+};
+
+export const contentType = "image/png";
+
+// Font
+const interSemiBold = fetch(
+  new URL("Inter-SemiBold.ttf", import.meta.url)
+).then(async (res) => res.arrayBuffer());
+
+export default async function PosterImage({
   params: { posterId },
 }: {
   params: { posterId: string };
@@ -62,9 +75,15 @@ export default async function LocationOG({
       </div>
     ),
     {
-      width: 1200,
-      height: 600,
-      fonts: [],
+      ...size,
+      fonts: [
+        {
+          name: "Inter",
+          data: await interSemiBold,
+          style: "normal",
+          weight: 400,
+        },
+      ],
       emoji: "blobmoji",
     }
   );
