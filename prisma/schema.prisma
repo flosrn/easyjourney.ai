@@ -17,6 +17,7 @@ model Poster {
   id              String  @id @default(uuid())
   title           String?
   prompt          String
+  fullPrompt      String? @map(name: "full_prompt")
   image           String
   isPublic        Boolean @default(true) @map(name: "is_public")
   filename        String?
@@ -100,7 +101,8 @@ model Board {
   description String?
   isPublic    Boolean @default(true) @map(name: "is_public")
 
-  boardPosters BoardPoster[]
+  boardPosters  BoardPoster[]
+  collaborators Collaborator[]
 
   user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String? @map(name: "user_id")
@@ -109,6 +111,26 @@ model Board {
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
   @@map("boards")
+}
+
+// -----------------------------------------------------------------------------
+// Collaborator
+// Represents a collaboration relationship between a user and a board
+// -----------------------------------------------------------------------------
+model Collaborator {
+  id String @id @default(uuid())
+
+  userId  String @map(name: "user_id")
+  boardId String @map(name: "board_id")
+
+  user  User  @relation(fields: [userId], references: [id])
+  board Board @relation(fields: [boardId], references: [id])
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@unique([userId, boardId])
+  @@map("collaborators")
 }
 
 // -----------------------------------------------------------------------------
@@ -197,10 +219,11 @@ model User {
   stripePriceId          String?   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 
-  accounts Account[]
-  sessions Session[]
-  posters  Poster[]
-  boards   Board[]
+  accounts      Account[]
+  sessions      Session[]
+  posters       Poster[]
+  boards        Board[]
+  collaborators Collaborator[]
 
   likes     Like[]   @relation("userLikes")
   followers Follow[] @relation("following")
