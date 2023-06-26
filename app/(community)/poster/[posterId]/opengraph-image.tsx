@@ -24,7 +24,8 @@ export default async function PosterImage({
   //   where: { id: posterId },
   // });
 
-  // console.log("poster :", poster);
+  const response = await fetch(`/api/posters/${posterId}`);
+  const poster = await response.json();
 
   return new ImageResponse(
     (
@@ -49,7 +50,7 @@ export default async function PosterImage({
           <div tw="bg-gray-50 flex w-full">
             <div tw="flex flex-col md:flex-row w-full py-12 px-4 md:items-center justify-between p-8">
               <h2 tw="flex flex-col text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 text-left">
-                <span>Ready to dive in?</span>
+                <span>{poster.title}</span>
                 <span tw="text-indigo-600">Start your free trial today.</span>
               </h2>
               <div tw="mt-8 flex md:mt-0">
