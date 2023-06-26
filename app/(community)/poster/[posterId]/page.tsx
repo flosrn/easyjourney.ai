@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata, ResolvingMetadata } from "next";
 import { getCurrentUser } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 import { Toaster } from "react-hot-toast";
@@ -8,6 +9,38 @@ import PosterImageContainer from "~/components/posters/poster-image-container";
 import PosterInfoContainer from "~/components/posters/poster-info-container";
 
 import type { Poster, UserWithFollowStatus } from "~/types/poster";
+
+type Props = {
+  params: { posterId: string };
+  searchParams: Record<string, string[] | string | undefined>;
+};
+
+export async function generateMetadata(
+  { params: { posterId }, searchParams }: Props,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  const poster = await prisma.poster.findUnique({
+    where: { id: posterId },
+  });
+
+  // optionally access and extend (rather than replace) parent metadata
+
+  // const previousImages = (await parent)?.openGraph?.images ?? [];
+
+  return {
+    title: poster?.title ? `Poster - ${poster.title}` : "Poster",
+    twitter: {
+      card: "summary_large_image",
+      title: `${poster?.title} - Easyjourney Poster`,
+      description: poster?.prompt ?? "twitter description",
+      creator: "@flosrn",
+    },
+    themeColor: "#FFF",
+    // openGraph: {
+    //   images: [...previousImages],
+    // },
+  };
+}
 
 const getCurrentPoster = async (
   posterId: Poster["id"],
