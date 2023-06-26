@@ -66,6 +66,11 @@ const megaMenu: MegaMenu[] = [
         description: "Find out about our different plans and pricing",
       },
       {
+        title: "FAQ",
+        href: "/about/faq",
+        description: "Got a question ? Here is the answer !",
+      },
+      {
         title: "Our history",
         href: "/about/history",
         description: "Discover the history of easyjourney.ai",
@@ -82,11 +87,6 @@ const megaMenu: MegaMenu[] = [
         href: "/about/technology",
         description: "Learn more about the technology behind easyjourney.ai",
         disabled: true,
-      },
-      {
-        title: "FAQ",
-        href: "/about/faq",
-        description: "Got a question ? Here is the answer !",
       },
       {
         title: "Contact us",
