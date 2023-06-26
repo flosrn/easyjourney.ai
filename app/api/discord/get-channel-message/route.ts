@@ -100,6 +100,7 @@ const findAttachmentInMessages = async ({
   });
   console.log("initial message found");
   let attachment: APIAttachment | undefined;
+  let referencedImage: APIAttachment | undefined;
 
   if (
     isUpscaleOrVariation &&
@@ -107,12 +108,15 @@ const findAttachmentInMessages = async ({
     initialMessage.attachments[0].url.endsWith(".png")
   ) {
     attachment = initialMessage.attachments[0];
+    referencedImage = initialMessage.referenced_message?.attachments[0];
     console.log("variation or upscale found");
+    const jobId = extractJobId(attachment.url);
     return {
       ...attachment,
+      referencedImage,
       prompt: initialMessage.content.split("**")[1],
       messageId: initialMessage.id,
-      jobId: extractJobId(attachment.url),
+      jobId,
     };
   }
 
@@ -133,6 +137,7 @@ const findAttachmentInMessages = async ({
       loading(targetMessage as any);
     } else if (targetMessage) {
       attachment = targetMessage.attachments[0];
+      referencedImage = targetMessage.referenced_message?.attachments[0];
       if (
         attachment.url.endsWith("grid_0.webp") &&
         attachment.filename === "grid_0.webp" &&
@@ -147,6 +152,7 @@ const findAttachmentInMessages = async ({
           const jobId = extractJobId(attachment.url);
           return {
             ...attachment,
+            referencedImage,
             url: `https://cdn.midjourney.com/${jobId}/grid_0.webp`,
             prompt: initialMessage.content.split("**")[1],
             messageId: targetMessage.id,
@@ -210,8 +216,27 @@ export async function POST(request: Request) {
         option,
       });
       if (data) {
-        const message = { type: getMessageType(option), ...data };
+        const message = {
+          type: getMessageType(option),
+          ...data,
+          referencedImage: undefined,
+        };
         stream.enqueue(encoder.encode(JSON.stringify(message)));
+
+        const hasReferencedImage = !!data.referencedImage;
+        if (hasReferencedImage) {
+          const messageWithReferencedImage = JSON.stringify({
+            type: "referenced_image",
+            ...data.referencedImage,
+          });
+          setTimeout(() => {
+            stream.enqueue(encoder.encode(messageWithReferencedImage));
+            stream.close();
+          }, 1000);
+        } else {
+          // Ferme le flux une fois que toutes les données ont été insérées
+          stream.close();
+        }
 
         await fetch(`${env.NEXT_PUBLIC_URL}/api/users/decrementCredits`, {
           method: "POST",

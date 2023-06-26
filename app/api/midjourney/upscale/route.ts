@@ -41,10 +41,9 @@ const upscale = async ({
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
   if (!session) {
-    return NextResponse.json({ status: 401 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const body = await request.json();
-  console.log("body :", body);
   const data = await upscale(body);
   return NextResponse.json(data);
 }
