@@ -11,11 +11,6 @@ export const size = {
 
 export const contentType = "image/png";
 
-// Font
-const interSemiBold = fetch(
-  new URL("Inter-SemiBold.ttf", import.meta.url)
-).then(async (res) => res.arrayBuffer());
-
 export default async function PosterImage({
   params: { posterId },
 }: {
@@ -76,14 +71,6 @@ export default async function PosterImage({
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: "Inter",
-          data: await interSemiBold,
-          style: "normal",
-          weight: 400,
-        },
-      ],
       emoji: "blobmoji",
     }
   );
