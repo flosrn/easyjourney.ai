@@ -26,17 +26,13 @@ export default async function PosterImage({
       <div tw="flex flex-col w-full h-full items-center justify-center bg-white">
         <div tw="bg-gray-50 flex w-full">
           <div tw="flex flex-col md:flex-row w-full py-12 px-4 md:items-center justify-between p-8">
-            <img
-              src={poster.image}
-              alt={poster.title}
-              width={poster.width}
-              height={poster.height}
-              tw="object-cover"
-            />
             <h2 tw="absolute z-10 w-full flex flex-col text-3xl sm:text-4xl font-bold tracking-tight text-white text-center justify-end items-center">
               <span>Easyjourney.ai</span>
               <span tw="text-indigo-500">Unlock the power of Midjourney.</span>
             </h2>
+            <div tw="flex flex-col items-center justify-center">
+              <h2>{poster.title}</h2>
+            </div>
           </div>
         </div>
       </div>
