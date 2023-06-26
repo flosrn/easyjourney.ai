@@ -9,6 +9,10 @@ import type { ImageData } from "../../../(playground)/create/store/imageGenerati
 
 export const runtime = "edge";
 
+const MAX_FAILURE_COUNT = 30;
+let ATTEMPTS = 0;
+const MAX_ATTEMPTS = 100;
+
 const findMessage = ({
   messages,
   prompt,
@@ -109,18 +113,26 @@ const findAttachmentInMessages = async ({
   ) {
     attachment = initialMessage.attachments[0];
     referencedImage = initialMessage.referenced_message?.attachments[0];
+    console.log("referencedImage :", referencedImage);
     console.log("variation or upscale found");
     const jobId = extractJobId(attachment.url);
+    const referencedJobId =
+      referencedImage && extractJobId(referencedImage.url);
     return {
       ...attachment,
-      referencedImage,
+      referencedImage: {
+        ...referencedImage,
+        //@ts-expect-error: to fix
+        image: `https://cdn.midjourney.com/${referencedJobId}/grid_0.webp`,
+      },
       prompt: initialMessage.content.split("**")[1],
       messageId: initialMessage.id,
       jobId,
     };
   }
 
-  while (!attachment?.url.endsWith(".png")) {
+  while (!attachment?.url.endsWith(".png") && ATTEMPTS < MAX_ATTEMPTS) {
+    ATTEMPTS += 1;
     const messages = await retrieveMessages(50);
     const targetMessage = findMessage({ messages, prompt, index, option });
 
@@ -162,6 +174,11 @@ const findAttachmentInMessages = async ({
       }
     }
   }
+
+  if (ATTEMPTS >= MAX_ATTEMPTS) {
+    console.log("max attempts reached");
+    throw new Error("max attempts reached");
+  }
 };
 
 const getMessageType = (option?: "upscale" | "variation") => {
@@ -200,7 +217,7 @@ export async function POST(request: Request) {
           if (!isVariation && !attachment) {
             failCount = failCount + 1;
           }
-          const isError = failCount > 30;
+          const isError = failCount > MAX_FAILURE_COUNT;
           // Enfile les données dans le contrôleur de flux
           const message = {
             type: attachment ? "image_iteration" : "loading",
@@ -231,11 +248,7 @@ export async function POST(request: Request) {
           });
           setTimeout(() => {
             stream.enqueue(encoder.encode(messageWithReferencedImage));
-            stream.close();
           }, 1000);
-        } else {
-          // Ferme le flux une fois que toutes les données ont été insérées
-          stream.close();
         }
 
         await fetch(`${env.NEXT_PUBLIC_URL}/api/users/decrementCredits`, {
@@ -249,6 +262,7 @@ export async function POST(request: Request) {
         stream.close();
       }
     } catch (error: unknown) {
+      console.error("generation failed:", error);
       const message = {
         type: "generation_failed",
         isError: true,

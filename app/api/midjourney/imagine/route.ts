@@ -95,7 +95,7 @@ export async function POST(request: Request) {
 
   const hasEnoughCredits = await getUserCredits(session.user.id);
   if (!hasEnoughCredits) {
-    return NextResponse.json({ status: 402, error: "Not enough credits" });
+    return NextResponse.json({ error: "Not enough credits" }, { status: 402 });
   }
 
   try {

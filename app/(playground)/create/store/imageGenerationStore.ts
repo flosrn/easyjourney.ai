@@ -8,6 +8,7 @@ import readStreamData from "../lib/readStreamData";
 export type ImageData = APIAttachment & {
   type?: string;
   prompt: string;
+  fullPrompt?: string;
   messageId: string;
   jobId: string;
   referencedImage?: APIAttachment;
@@ -280,6 +281,8 @@ export const useImageGenerationStore = create<
         }
       });
 
+      console.log("prompt :", prompt);
+
       const fetchImagine = async (promptValue: string) => {
         const response = await fetch("/api/midjourney/imagine", {
           method: "POST",
@@ -392,8 +395,6 @@ export const useImageGenerationStore = create<
       setIsImageUploaded(false);
 
       const { prompt, messageId, jobId } = image;
-      console.log("messageId :", messageId);
-      console.log("jobId :", jobId);
 
       try {
         const fetchVariation = async () => {

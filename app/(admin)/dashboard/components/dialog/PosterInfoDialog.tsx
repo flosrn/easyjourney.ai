@@ -67,6 +67,24 @@ const PosterInfoDialog = ({
                           </a>
                         )}
                       </div>
+                      <div className="flex">
+                        <span className="mr-2 shrink-0 font-bold">
+                          discord url:{" "}
+                        </span>
+                        {poster.discordImageUrl && (
+                          <a
+                            href={poster.discordImageUrl}
+                            className="break-words hover:underline"
+                          >
+                            {poster.discordImageUrl}
+                          </a>
+                        )}
+                      </div>
+                      <div className="mt-8 border-t border-gray-500 pt-4">
+                        <pre>
+                          {JSON.stringify(poster.referencedImage, null, 2)}
+                        </pre>
+                      </div>
                     </div>
                   </>
                 </PosterInfoContainer>
