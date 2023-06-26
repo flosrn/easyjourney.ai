@@ -27,7 +27,7 @@ export async function generateMetadata({
   // const previousImages = (await parent)?.openGraph?.images ?? [];
 
   return {
-    title: poster?.title ? `Poster - ${poster.title}` : "Poster",
+    title: poster?.title ? `Easyjourney.ai - ${poster.title}` : "Poster",
     twitter: {
       card: "summary_large_image",
       title: `${poster?.title} - Easyjourney Poster`,
