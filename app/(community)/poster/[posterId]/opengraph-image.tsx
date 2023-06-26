@@ -12,11 +12,11 @@ export default async function LocationOG({
   //   new URL("../fonts/ClashDisplay-Semibold.otf", import.meta.url)
   // ).then(async (res) => res.arrayBuffer());
 
-  const poster = await prisma.poster.findUnique({
-    where: { id: posterId },
-  });
+  // const poster = await prisma.poster.findUnique({
+  //   where: { id: posterId },
+  // });
 
-  console.log("poster :", poster);
+  // console.log("poster :", poster);
 
   return new ImageResponse(
     (

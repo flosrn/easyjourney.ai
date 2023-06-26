@@ -1,5 +1,4 @@
 import React from "react";
-import type { Metadata, ResolvingMetadata } from "next";
 import { getCurrentUser } from "~/server/auth";
 import { prisma } from "~/server/db/prisma";
 import { Toaster } from "react-hot-toast";
@@ -15,10 +14,10 @@ type Props = {
   searchParams: Record<string, string[] | string | undefined>;
 };
 
-export async function generateMetadata(
-  { params: { posterId }, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({
+  params: { posterId },
+  searchParams,
+}: Props) {
   const poster = await prisma.poster.findUnique({
     where: { id: posterId },
   });
