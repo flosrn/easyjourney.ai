@@ -4,12 +4,12 @@ import { env } from "~/env.mjs";
 export const runtime = "edge";
 
 // Image metadata
-export const size = {
-  width: 1200,
-  height: 630,
-};
+// export const size = {
+//   width: 1200,
+//   height: 630,
+// };
 
-export const contentType = "image/png";
+// export const contentType = "image/png";
 
 export default async function PosterImage({
   params: { posterId },
@@ -49,9 +49,6 @@ export default async function PosterImage({
           </div>
         </div>
       </div>
-    ),
-    {
-      ...size,
-    }
+    )
   );
 }
