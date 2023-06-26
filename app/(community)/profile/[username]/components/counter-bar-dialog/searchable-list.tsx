@@ -13,7 +13,8 @@ import {
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { Skeleton } from "~/components/ui/skeleton";
 
-import type { UserWithFollowers } from "../../types/user";
+import type { UserWithFollowers } from "~/types/user";
+
 import SelectedUser from "./selected-user";
 
 type SearchableListProps = {

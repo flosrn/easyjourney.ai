@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useBoardStore } from "../../../../store/boardStore";
+import { useBoardStore } from "../../store/boardStore";
 
 const TitleBoard = () => {
   const [boardIcon, boardName, boardDescription, boardIsPublic] = useBoardStore(

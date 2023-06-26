@@ -3,25 +3,25 @@ import { prisma } from "~/server/db/prisma";
 
 import Posters from "../../components/posters";
 
-const getPopularPosters = async () =>
+export const revalidate = 5;
+
+const getNewPosters = async () =>
   prisma.poster.findMany({
     where: {
       isPublic: true,
     },
     orderBy: {
-      likes: {
-        _count: "desc",
-      },
+      createdAt: "desc",
     },
     include: { user: true, likes: true },
   });
 
-export default async function PopularPage() {
-  const posters = await getPopularPosters();
+export default async function NewPage() {
+  const posters = await getNewPosters();
   return (
     <>
       <section className="container mt-6 grid items-center justify-center gap-6 pb-8">
-        <h1 className="text-3xl font-bold">Posters les plus populaires</h1>
+        <h1 className="text-3xl font-bold">Most recent posters</h1>
         <Suspense fallback={<div>Loading posters...</div>}>
           <Posters posters={posters} />
         </Suspense>

@@ -7,8 +7,9 @@ import toast from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
 
-import { useBoardStore } from "../../../../store/boardStore";
-import type { BoardType } from "../../../../types/typeBoard";
+import type { BoardType } from "~/types/typeBoard";
+
+import { useBoardStore } from "../../store/boardStore";
 
 type UpdateBoardButtonProps = {
   boardId: string;

@@ -12,8 +12,9 @@ import { CommandGroup, CommandItem } from "~/components/ui/command";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 
-import { useBoardStore } from "../../../../store/boardStore";
-import type { BoardType } from "../../../../types/typeBoard";
+import type { BoardType } from "~/types/typeBoard";
+
+import { useBoardStore } from "../../store/boardStore";
 
 type CreateBoardProps = {
   onCloseHandler: () => void;

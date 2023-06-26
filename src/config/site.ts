@@ -156,7 +156,7 @@ const userMenu: NavItem[][] = [
   ],
   [
     {
-      title: "Déconnexion",
+      title: "Logout",
       href: "/logout",
       icon: LogOutIcon,
       onClick: () => null,

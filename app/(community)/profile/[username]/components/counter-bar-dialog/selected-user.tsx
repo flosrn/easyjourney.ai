@@ -5,7 +5,8 @@ import getFirstLetters from "~/utils/getFirstLetter";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
-import type { UserWithFollowers } from "../../types/user";
+import type { UserWithFollowers } from "~/types/user";
+
 import FollowButton from "../follow-button";
 
 type SelectedUserProps = {

@@ -11,11 +11,11 @@ import BackToPreviousPageButton from "~/components/posters/buttons/back-to-previ
 import { Button } from "~/components/ui/button";
 
 import Posters from "../../../../posters/components/posters";
-import { useBoardStore } from "../../../../store/boardStore";
 import DeleteBoardButton from "../../components/board/delete-board-button";
 import TitleBoard from "../../components/board/title-board";
 import UpdateBoardButton from "../../components/board/update-board-button";
 import UpdateBoardForm from "../../components/board/update-board-form";
+import { useBoardStore } from "../../store/boardStore";
 
 type UserBoardPosterProps = {
   params: { username: User["username"]; boardId: Board["id"] };
