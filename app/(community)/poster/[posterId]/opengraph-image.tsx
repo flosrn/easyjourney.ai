@@ -35,7 +35,7 @@ export default async function PosterImage({
             />
             <h2 tw="absolute z-10 w-full flex flex-col text-3xl sm:text-4xl font-bold tracking-tight text-white text-center justify-end items-center">
               <span>Easyjourney.ai</span>
-              <span tw="text-indigo-500">Unlock the power of Midjourey.</span>
+              <span tw="text-indigo-500">Unlock the power of Midjourney.</span>
             </h2>
           </div>
         </div>

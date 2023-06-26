@@ -20,14 +20,15 @@ export async function generateMetadata({
 }: Props) {
   const poster = await prisma.poster.findUnique({
     where: { id: posterId },
+    include: { user: true },
   });
 
-  // optionally access and extend (rather than replace) parent metadata
-
-  // const previousImages = (await parent)?.openGraph?.images ?? [];
+  const author = poster?.user?.username ?? "Unknown";
 
   return {
-    title: poster?.title ? `Easyjourney.ai - ${poster.title}` : "Poster",
+    title: poster?.title
+      ? `Easyjourney.ai - ${poster.title} by @${author}`
+      : "Poster",
     twitter: {
       card: "summary_large_image",
       title: `${poster?.title} - Easyjourney Poster`,
