@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/server";
+import { env } from "~/env.mjs";
 
 export const runtime = "edge";
 
@@ -24,7 +25,9 @@ export default async function PosterImage({
   //   where: { id: posterId },
   // });
 
-  const response = await fetch(`/api/posters/${posterId}`);
+  const response = await fetch(
+    `${env.NEXT_PUBLIC_URL}/api/posters/${posterId}`
+  );
   const poster = await response.json();
 
   return new ImageResponse(
