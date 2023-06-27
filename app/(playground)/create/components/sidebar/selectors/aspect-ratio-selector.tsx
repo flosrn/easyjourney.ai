@@ -70,7 +70,7 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
             variant="outline"
             size="xs"
             className={cn({
-              "outline outline-offset-2 outline-blue-500":
+              "outline outline-offset-2 outline-primary":
                 ratio === selectedAspectRatio.ratio,
             })}
           >
@@ -90,7 +90,7 @@ const AspectRatioSelector = ({}: AspectRatioSelectorProps) => {
               variant="outline"
               size="xs"
               className={cn({
-                "outline outline-offset-2 outline-blue-500":
+                "outline outline-offset-2 outline-primary":
                   ratio === selectedAspectRatio.ratio,
               })}
             >
