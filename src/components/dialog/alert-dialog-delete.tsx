@@ -17,12 +17,14 @@ type AlertDialogDeleteProps = {
   children: React.ReactNode;
   text: string;
   buttonText: string;
+  onClickAction: () => void;
 };
 
 export function AlertDialogDelete({
   children,
   text,
   buttonText,
+  onClickAction,
 }: AlertDialogDeleteProps) {
   return (
     <AlertDialog>
@@ -34,7 +36,9 @@ export function AlertDialogDelete({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>{buttonText}</AlertDialogAction>
+          <AlertDialogAction onClick={onClickAction}>
+            {buttonText}
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -7,6 +7,7 @@ import { useSelectPosterStore } from "~/store/selectPosterStore";
 import { Loader2Icon, Trash2Icon } from "lucide-react";
 import toast from "react-hot-toast";
 
+import { AlertDialogDelete } from "~/components/dialog/alert-dialog-delete";
 import { Button } from "~/components/ui/button";
 
 type DeleteButtonProps = {
@@ -53,17 +54,19 @@ const DeleteButton = ({ isSelectedPostersEmpty }: DeleteButtonProps) => {
     }
   };
   return (
-    <Button
-      onClick={handleDelete}
-      disabled={isSelectedPostersEmpty}
-      className="mx-2"
+    <AlertDialogDelete
+      text="This will erase all the posters selected."
+      buttonText="Delete selected poster(s)"
+      onClickAction={handleDelete}
     >
-      {deleteMutation.isPending && (
-        <Loader2Icon className="mr-2 h-5 animate-spin" />
-      )}
-      <Trash2Icon className="mr-2 h-4 w-4" />
-      Delete
-    </Button>
+      <Button disabled={isSelectedPostersEmpty} className="mx-2">
+        {deleteMutation.isPending && (
+          <Loader2Icon className="mr-2 h-5 animate-spin" />
+        )}
+        <Trash2Icon className="mr-2 h-4 w-4" />
+        Delete
+      </Button>
+    </AlertDialogDelete>
   );
 };
 

@@ -55,6 +55,7 @@ const DeleteBoardButton = ({ boardId }: deleteBoardProps) => {
         <AlertDialogDelete
           text="This will erase the board."
           buttonText="Delete this board"
+          onClickAction={handleDeleteBoard}
         >
           <Button className="mr-2">
             <Trash2Icon className="mr-2 h-4 w-4" />
