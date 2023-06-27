@@ -121,6 +121,7 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
               >
                 Cancel
               </Button>
+
               <DeleteBoardButton boardId={board.id} />
             </>
           ) : (

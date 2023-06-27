@@ -7,6 +7,7 @@ import { Trash2Icon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
+import { AlertDialogDelete } from "~/components/dialog/alert-dialog-delete";
 import { Button } from "~/components/ui/button";
 
 type deleteBoardProps = {
@@ -49,10 +50,19 @@ const DeleteBoardButton = ({ boardId }: deleteBoardProps) => {
   };
 
   return (
-    <Button onClick={handleDeleteBoard} className="mr-2">
-      <Trash2Icon className="mr-2 h-4 w-4" />
-      Delete
-    </Button>
+    <div className="flex">
+      <div className="">
+        <AlertDialogDelete
+          text="This will erase the board."
+          buttonText="Delete this board"
+        >
+          <Button className="mr-2">
+            <Trash2Icon className="mr-2 h-4 w-4" />
+            Delete
+          </Button>
+        </AlertDialogDelete>
+      </div>
+    </div>
   );
 };
 
