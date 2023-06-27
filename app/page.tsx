@@ -190,7 +190,7 @@ export default async function IndexPage() {
               <div className="lg:pl-8 lg:pt-4">
                 <div className="lg:max-w-lg">
                   <h2 className="text-base font-semibold leading-7 text-primary">
-                    Crafted by You
+                    Empower Your Imagination
                   </h2>
                   <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                     Your Art, Your Rules
