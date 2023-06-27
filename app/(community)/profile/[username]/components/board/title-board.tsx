@@ -16,8 +16,7 @@ const TitleBoard = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">{boardName}</h1>
+      <div className="flex flex-col ">
         <div>
           {boardIsPublic ? (
             <span className="text-green-400">Public</span>
@@ -26,6 +25,7 @@ const TitleBoard = () => {
           )}{" "}
           board
         </div>
+        <h1 className="text-2xl font-bold">{boardName}</h1>
       </div>
       <div className="">{boardDescription}</div>
     </>

@@ -45,7 +45,10 @@ const BoardPreview = ({
     <div className="flex w-full flex-col rounded-md ring-1 ring-offset-card hover:ring-offset-highlight">
       <div className="flex h-10 w-full items-center px-2">
         <div className="mr-2 w-6 rounded-xl text-center ring">{collection}</div>
-        <div className="line-clamp-1">{name}</div>
+        <div className="line-clamp-1">
+          {icon}
+          {name}
+        </div>
       </div>
       <Image
         src={poster.image}

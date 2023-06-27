@@ -66,7 +66,7 @@ const TabsHeader = ({ username, isValidUser }: TabsHeaderProps) => {
 
   return (
     <div className="my-4 flex items-center justify-between space-x-3">
-      <Tabs ref={ref} value={value} className="w-[300px]">
+      <Tabs ref={ref} value={value} className="w-full sm:w-[300px]">
         <TabsList className="w-full">
           <Link href={`/profile/${username}`} className="w-1/3">
             <TabsTrigger value="created" className="w-full">
