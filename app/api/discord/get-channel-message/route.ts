@@ -113,6 +113,7 @@ const findAttachmentInMessages = async ({
   ) {
     attachment = initialMessage.attachments[0];
     referencedImage = initialMessage.referenced_message?.attachments[0];
+    console.log("attachment :", attachment);
     console.log("referencedImage :", referencedImage);
     console.log("variation or upscale found");
     const jobId = extractJobId(attachment.url);

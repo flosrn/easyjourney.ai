@@ -10,7 +10,10 @@ export async function POST(request: Request) {
   const session = await getServerAuthSession();
 
   if (!session) {
-    return NextResponse.json({ status: 401, message: "User not logged in" });
+    return NextResponse.json(
+      { message: "User not logged in" },
+      { status: 401 }
+    );
   }
 
   try {
@@ -22,6 +25,10 @@ export async function POST(request: Request) {
     const jobId = referencedImage && extractJobId(referencedImage.filename);
     const mjImageUrl =
       jobId && `${BASE_MIDJOURNEY_URL}${jobId}/0_${imageSelected - 1}.webp`;
+
+    console.log("referencedImage :", referencedImage);
+    console.log("jobId :", jobId);
+    console.log("mjImageUrl :", mjImageUrl);
 
     const referencedImageWithJobId = {
       ...referencedImage,
