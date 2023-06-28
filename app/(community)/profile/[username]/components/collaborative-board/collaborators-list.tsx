@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+
 import {
   CommandEmpty,
   CommandGroup,
@@ -7,6 +9,15 @@ import {
 } from "~/components/ui/command";
 
 export function CollaboratorsList({ boardId }) {
+  const getCollaborators = async ({ boardId }) => {
+    const response = await fetch(`/api/boards/${boardId}/collaborators`);
+    return response.json();
+  };
+
+  const collaborators = useQuery({
+    queryKey: ["collaborators", boardId],
+    queryFn: async () => getCollaborators(boardId),
+  });
   return (
     <>
       <CommandInput placeholder="Type a command or search..." />
