@@ -16,11 +16,11 @@ const readStreamData = async (
 
     // Decode the value and add it to the jsonStringBuffer
     const decodedValue = decoder.decode(value);
-    if (decodedValue === "") {
-      console.log("decodedValue is empty");
-      // close the stream
-      reader.releaseLock();
-    }
+    // if (decodedValue === "") {
+    //   console.log("decodedValue is empty");
+    //   // close the stream
+    //   reader.releaseLock();
+    // }
     jsonStringBuffer += decodedValue;
 
     // Regular expression to find JSON objects in the jsonStringBuffer
