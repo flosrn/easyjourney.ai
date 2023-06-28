@@ -14,18 +14,14 @@ export function AddCollaborators({ boardId }) {
   const [search, setSearch] = useState("");
   console.log("search", search);
 
-  const addCollaborator = async ({ boardId }) => {
-    const response = await fetch(`/api/boards/${boardId}/collaborators/add`);
-    return response.json();
-  };
-
   const searchUser = async ({ queryKey }) => {
     const [_key, search] = queryKey;
     const response = await fetch(
       `/api/boards/collaborators/add/find-users?search=${search}`
     );
-    console.log("response", response);
-    return response.json();
+    const data = await response.json();
+    console.log("data", data);
+    return data.searchUsers;
   };
 
   const { data: users } = useQuery({
@@ -33,16 +29,22 @@ export function AddCollaborators({ boardId }) {
     queryFn: searchUser,
     enabled: search.length > 0,
   });
+  console.log("users", users);
 
   return (
     <>
       <CommandInput
         onValueChange={setSearch}
-        placeholder="search for a username..."
+        placeholder="Search username or email..."
       />
 
       <CommandList>
-        <CommandEmpty></CommandEmpty>
+        <CommandEmpty>No email or username mathching</CommandEmpty>
+        {users?.map((user) => (
+          <CommandItem key={user.id} className="h-10 truncate">
+            <div>{user.username}</div>
+          </CommandItem>
+        ))}
       </CommandList>
     </>
   );

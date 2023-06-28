@@ -27,9 +27,10 @@ export async function GET(request: Request) {
       select: {
         id: true,
         username: true,
-        email: true,
+        name: true,
       },
     });
+    console.log("searchUsers :", searchUsers);
 
     return NextResponse.json({ status: 200, searchUsers });
   } catch (error: unknown) {
