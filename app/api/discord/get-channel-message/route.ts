@@ -193,6 +193,10 @@ const getMessageType = (option?: "upscale" | "variation") => {
   }
 };
 
+async function delay(t: number) {
+  return new Promise((resolve) => setTimeout(resolve, t));
+}
+
 export async function POST(request: Request) {
   const { prompt, index, option } = await request.json();
 
@@ -247,13 +251,12 @@ export async function POST(request: Request) {
             type: "referenced_image",
             ...data.referencedImage,
           });
+          await delay(1000);
           console.log(
             "messageWithReferencedImage :",
             messageWithReferencedImage
           );
-          setTimeout(() => {
-            stream.enqueue(encoder.encode(messageWithReferencedImage));
-          }, 1000);
+          stream.enqueue(encoder.encode(messageWithReferencedImage));
         }
 
         await fetch(`${env.NEXT_PUBLIC_URL}/api/users/decrementCredits`, {
@@ -263,8 +266,6 @@ export async function POST(request: Request) {
             Cookie: request.headers.get("Cookie") ?? "",
           },
         });
-
-        stream.close();
       }
     } catch (error: unknown) {
       console.error("generation failed:", error);
