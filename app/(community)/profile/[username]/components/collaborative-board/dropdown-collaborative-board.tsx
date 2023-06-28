@@ -10,14 +10,16 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
 } from "~/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+
+import { AddCollaborators } from "./add-collaborators";
+import { CollaboratorsList } from "./collaborators-list";
 
 export function DropdownCollaborativeBoard({ children, boardId }) {
   const getCollaborators = async ({ boardId }) => {
@@ -42,20 +44,18 @@ export function DropdownCollaborativeBoard({ children, boardId }) {
       <PopoverTrigger>{children}</PopoverTrigger>
       <PopoverContent className="">
         <Command>
-          <div className="flex">
-            <CommandInput placeholder="Type a command or search..." />
-            <Button>
-              <UserPlus2Icon />
-            </Button>
-          </div>
-          <CommandList>
-            <CommandEmpty>No collaborators on this board</CommandEmpty>
-            <CommandGroup heading="Collaborators">
-              <CommandItem>Calendar</CommandItem>
-              <CommandItem>Search Emoji</CommandItem>
-              <CommandItem>Calculator</CommandItem>
-            </CommandGroup>
-          </CommandList>
+          <Tabs defaultValue="account" className="w-[400px]">
+            <TabsList>
+              <TabsTrigger value="collaborators">collaborators</TabsTrigger>
+              <TabsTrigger value="add">Add new</TabsTrigger>
+            </TabsList>
+            <TabsContent value="collaborators">
+              <CollaboratorsList boardId={boardId} />
+            </TabsContent>
+            <TabsContent value="add">
+              <AddCollaborators boardId={boardId} />
+            </TabsContent>
+          </Tabs>
         </Command>
       </PopoverContent>
     </Popover>
