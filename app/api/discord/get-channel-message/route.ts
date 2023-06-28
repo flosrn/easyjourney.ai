@@ -113,8 +113,6 @@ const findAttachmentInMessages = async ({
   ) {
     attachment = initialMessage.attachments[0];
     referencedImage = initialMessage.referenced_message?.attachments[0];
-    console.log("attachment :", attachment);
-    console.log("referencedImage :", referencedImage);
     console.log("variation or upscale found");
     const jobId = extractJobId(attachment.url);
     const referencedJobId =
@@ -193,10 +191,6 @@ const getMessageType = (option?: "upscale" | "variation") => {
   }
 };
 
-async function delay(t: number) {
-  return new Promise((resolve) => setTimeout(resolve, t));
-}
-
 export async function POST(request: Request) {
   const { prompt, index, option } = await request.json();
 
@@ -251,11 +245,7 @@ export async function POST(request: Request) {
             type: "referenced_image",
             ...data.referencedImage,
           });
-          await delay(1000);
-          console.log(
-            "messageWithReferencedImage :",
-            messageWithReferencedImage
-          );
+          await wait(1000);
           stream.enqueue(encoder.encode(messageWithReferencedImage));
         }
 
@@ -277,6 +267,8 @@ export async function POST(request: Request) {
       stream.enqueue(encoder.encode(JSON.stringify(message)));
       stream.error(error);
       return NextResponse.json(error);
+    } finally {
+      stream.close();
     }
     // eslint-disable-next-line @typescript-eslint/no-empty-function
   })().then(() => {});

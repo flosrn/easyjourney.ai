@@ -26,10 +26,6 @@ export async function POST(request: Request) {
     const mjImageUrl =
       jobId && `${BASE_MIDJOURNEY_URL}${jobId}/0_${imageSelected - 1}.webp`;
 
-    console.log("referencedImage :", referencedImage);
-    console.log("jobId :", jobId);
-    console.log("mjImageUrl :", mjImageUrl);
-
     const referencedImageWithJobId = {
       ...referencedImage,
       jobId,
