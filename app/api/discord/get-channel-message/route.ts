@@ -249,7 +249,7 @@ export async function POST(request: Request) {
           });
           setTimeout(() => {
             stream.enqueue(encoder.encode(messageWithReferencedImage));
-          }, 1000);
+          }, 2000);
         }
 
         await fetch(`${env.NEXT_PUBLIC_URL}/api/users/decrementCredits`, {

@@ -237,7 +237,7 @@ const MainColumn = () => {
     setQualityValue(1);
     setStopValue(100);
     setStylizeValue(100);
-    setVersionValue("--v 5.1");
+    setVersionValue("--v 5.2");
     setSeedValue(undefined);
     resetTileValue();
     clearFilters();
