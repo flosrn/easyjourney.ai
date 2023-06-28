@@ -57,7 +57,7 @@ const DeleteBoardButton = ({ boardId }: deleteBoardProps) => {
           buttonText="Delete this board"
           onClickAction={handleDeleteBoard}
         >
-          <Button className="mr-2">
+          <Button className="mr-2" variant="error">
             <Trash2Icon className="mr-2 h-4 w-4" />
             Delete
           </Button>

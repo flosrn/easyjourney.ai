@@ -59,7 +59,11 @@ const DeleteButton = ({ isSelectedPostersEmpty }: DeleteButtonProps) => {
       buttonText="Delete selected poster(s)"
       onClickAction={handleDelete}
     >
-      <Button disabled={isSelectedPostersEmpty} className="mx-2">
+      <Button
+        disabled={isSelectedPostersEmpty}
+        variant="error"
+        className="mx-2"
+      >
         {deleteMutation.isPending && (
           <Loader2Icon className="mr-2 h-5 animate-spin" />
         )}

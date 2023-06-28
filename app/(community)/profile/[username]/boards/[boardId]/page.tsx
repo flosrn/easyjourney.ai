@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import type { Board, User } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
-import { EditIcon } from "lucide-react";
+import { EditIcon, UsersIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
@@ -15,6 +15,7 @@ import DeleteBoardButton from "../../components/board/delete-board-button";
 import TitleBoard from "../../components/board/title-board";
 import UpdateBoardButton from "../../components/board/update-board-button";
 import UpdateBoardForm from "../../components/board/update-board-form";
+import { DropdownCollaborativeBoard } from "../../components/collaborative-board/dropdown-collaborative-board";
 import { useBoardStore } from "../../store/boardStore";
 
 type UserBoardPosterProps = {
@@ -125,10 +126,22 @@ const UserBoardPoster = ({ params: { boardId } }: UserBoardPosterProps) => {
               <DeleteBoardButton boardId={board.id} />
             </>
           ) : (
-            <Button onClick={toggleUpdateForm} variant="secondary" className="">
-              <EditIcon className="mr-1 h-4 w-4" />
-              Edit
-            </Button>
+            <div className="flex ">
+              <DropdownCollaborativeBoard boardId={boardId}>
+                <Button variant="secondary" className="mx-2">
+                  <UsersIcon className="mr-1 h-4 w-4" />
+                  Share with collaborators
+                </Button>
+              </DropdownCollaborativeBoard>
+              <Button
+                onClick={toggleUpdateForm}
+                variant="secondary"
+                className=""
+              >
+                <EditIcon className="mr-1 h-4 w-4" />
+                Edit
+              </Button>
+            </div>
           )}
         </div>
       </div>

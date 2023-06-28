@@ -13,6 +13,8 @@ import {
   AlertDialogTrigger,
 } from "~/components/ui/alert-dialog";
 
+import { Button } from "../ui/button";
+
 type AlertDialogDeleteProps = {
   children: React.ReactNode;
   text: string;
@@ -36,8 +38,10 @@ export function AlertDialogDelete({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onClickAction}>
-            {buttonText}
+          <AlertDialogAction asChild>
+            <Button variant="error" onClick={onClickAction}>
+              {buttonText}
+            </Button>
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

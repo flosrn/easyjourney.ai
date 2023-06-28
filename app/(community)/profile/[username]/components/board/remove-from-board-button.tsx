@@ -82,7 +82,7 @@ const RemoveFromBoardButton = ({
       onClick={handleRemoveFromBoardButton}
       disabled={isSelectedPostersEmpty}
     >
-      Remove Poster from Board
+      Remove from Board
     </Button>
   );
 };
