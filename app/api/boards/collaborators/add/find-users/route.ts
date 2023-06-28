@@ -28,6 +28,7 @@ export async function GET(request: Request) {
         id: true,
         username: true,
         name: true,
+        image: true,
       },
     });
     console.log("searchUsers :", searchUsers);

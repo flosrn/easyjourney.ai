@@ -10,6 +10,8 @@ import {
   CommandList,
 } from "~/components/ui/command";
 
+import { SelectedUsers } from "./selected-users";
+
 export function AddCollaborators({ boardId }) {
   const [search, setSearch] = useState("");
   console.log("search", search);
@@ -42,7 +44,7 @@ export function AddCollaborators({ boardId }) {
         <CommandEmpty>No email or username mathching</CommandEmpty>
         {users?.map((user) => (
           <CommandItem key={user.id} className="h-10 truncate">
-            <div>{user.username}</div>
+            <SelectedUsers {...user} />
           </CommandItem>
         ))}
       </CommandList>
