@@ -25,7 +25,7 @@ export function DropdownCollaborativeBoard({ children, boardId }) {
   return (
     <Popover>
       <PopoverTrigger>{children}</PopoverTrigger>
-      <PopoverContent className="">
+      <PopoverContent className="h-96">
         <Command>
           <Tabs defaultValue="account" className="w-full">
             <TabsList className="w-full">

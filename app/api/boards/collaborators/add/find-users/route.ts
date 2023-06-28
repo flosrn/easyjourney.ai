@@ -30,6 +30,7 @@ export async function GET(request: Request) {
         name: true,
         image: true,
       },
+      take: 30,
     });
     console.log("searchUsers :", searchUsers);
 
