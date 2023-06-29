@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { prisma } from "~/server/db/prisma";
 import {
   BrushIcon,
@@ -7,17 +8,16 @@ import {
   GlobeIcon,
   LightbulbIcon,
   LogOutIcon,
-  MouseIcon,
   SailboatIcon,
   StickerIcon,
   UsersIcon,
   UserSquareIcon,
 } from "lucide-react";
 
+import FooterWithNewsletter from "~/components/footer/footer-with-newsletter";
 import Header from "~/components/header/header";
-import AnimatedPosters from "~/components/hero/animated-posters";
-import ScrollToSection from "~/components/hero/scroll-to-section";
-import TextTitleAnimated from "~/components/hero/text-title-animated";
+import TextAnimatedGradient from "~/components/hero/text-animated-gradient";
+import { Button } from "~/components/ui/button";
 
 import type { Posters as PosterType } from "~/types/poster";
 
@@ -48,7 +48,7 @@ const featuresSection1 = [
   {
     name: "Art Made Simple",
     description:
-      "From beginners to experts, we've made the creative process enjoyable and accessible for all.",
+      "From beginners to experts,we've made the creative process enjoyable for everyone with a rich set of advanced options.",
     icon: StickerIcon,
   },
 ];
@@ -109,113 +109,141 @@ export default async function IndexPage() {
   return (
     <>
       <Header />
-      <main className="h-full w-full">
+      <main>
         <section
           id="hero-section"
-          className="relative h-full w-full overflow-hidden"
+          className="flex-center container relative w-full bg-background py-16 md:py-32 lg:h-screen -lg:overflow-hidden"
         >
-          <AnimatedPosters columns={columns} />
-          <div className="flex-center absolute inset-0 h-full w-full bg-gradient-radial from-background/95 via-background/60 to-background/5 backdrop-blur-[1.5px]">
-            <div className="max-w-2xl px-5">
-              <TextTitleAnimated />
+          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+            <div className="lg:pr-8">
+              <div className="space-y-6 md:space-y-8 lg:max-w-xl">
+                <Image
+                  alt="Easyjourney Logo - Flying Fish"
+                  src="/images/logo/flyingfish_hero.svg"
+                  width={100}
+                  height={100}
+                  className="-md:hidden"
+                />
+                <h2 className="text-gradient-cosmos text-2xl font-bold lg:text-4xl">
+                  Embrace Simplicity
+                </h2>
+                <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl">
+                  Poster Creation Reinvented
+                </h1>
+                <p className="text-md leading-8 text-gray-600 md:text-lg">
+                  Unlock the power of{" "}
+                  <TextAnimatedGradient>Midjourney</TextAnimatedGradient> with a
+                  beautiful and user-friendly interface. Create stunning visuals
+                  with ease, no AI or prompt engineering expertise required
+                </p>
+                <div className="pt-2 md:pt-6">
+                  <Button asChild>
+                    <Link href="/create">Create Now</Link>
+                  </Button>
+                </div>
+              </div>
             </div>
-            <div className="flex-center absolute inset-x-0 bottom-14">
-              <ScrollToSection id="features-global-section">
-                <MouseIcon className="h-8 w-8" />
-              </ScrollToSection>
-            </div>
+            <Image
+              src="/images/landingpage/easyjourney_create.png"
+              alt="Easyjourney Product screenshot"
+              width={2704}
+              height={2030}
+              className="w-[48rem] max-w-none rounded-xl shadow-[0px_61.366004943847656px_155.088623046875px_-23.43065643310547px_rgba(137,90,246,0.13)] ring-1 ring-border/60 md:-ml-4 xl:-ml-24"
+            />
           </div>
         </section>
         <section
           id="features-global-section"
-          className="flex-center container overflow-hidden bg-background py-24 sm:py-32"
+          className="container overflow-hidden bg-background py-20"
         >
-          <div className="mx-auto">
-            <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-              <div className="lg:pr-8 lg:pt-4">
-                <div className="lg:max-w-lg">
-                  <h2 className="text-base font-semibold leading-7 text-primary">
-                    Embrace Simplicity
-                  </h2>
-                  <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                    Poster Creation Reinvented
-                  </p>
-                  <p className="mt-6 text-lg leading-8 text-gray-600">
-                    Step into an innovative approach to poster creation. Break
-                    free from Discord's restrictions, unlock Midjourney's full
-                    potential, and bring your artistic visions to life
-                    effortlessly.
-                  </p>
-                  <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-muted-foreground lg:max-w-none">
-                    {featuresSection1.map((feature) => (
-                      <div key={feature.name} className="relative pl-9">
-                        <dt className="inline font-semibold text-foreground">
-                          <feature.icon
-                            className="absolute left-1 top-1 h-5 w-5 text-primary"
-                            aria-hidden="true"
-                          />
-                          {feature.name}
-                        </dt>{" "}
-                        <dd className="inline">{feature.description}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              </div>
-              <Image
-                src="/images/landingpage/easyjourney_create.png"
-                alt="Easyjourney Product screenshot"
-                width={2704}
-                height={2030}
-                className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-border/60 md:-ml-4 xl:-ml-24"
-              />
+          <div className="mx-auto max-w-2xl lg:pr-8 lg:pt-4">
+            <div className="space-y-8 text-center lg:max-w-xl">
+              <h2 className="text-gradient-hyper text-base font-bold leading-7 text-primary lg:text-3xl">
+                Design with Ease
+              </h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
+                Art Creation, Simplified
+              </p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                Step into an innovative approach to poster creation. Break free
+                from Discord's restrictions, unlock Midjourney's full potential,
+                and bring your artistic visions to life effortlessly.
+              </p>
             </div>
+          </div>
+          <div className="mt-12 grid gap-4 md:grid-cols-2 xl:gap-8">
+            <dl className="space-y-4 text-base text-muted-foreground xl:space-y-8">
+              {featuresSection1.map((feature) => (
+                <div
+                  key={feature.name}
+                  className="relative flex rounded-lg bg-muted px-6 py-4 xl:p-8"
+                >
+                  <div className="space-y-3">
+                    <feature.icon
+                      className="h-5 w-5 text-primary"
+                      aria-hidden="true"
+                    />
+                    <dt className="font-semibold text-foreground">
+                      {feature.name}
+                    </dt>
+                    <dd className="">{feature.description}</dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
+            <video
+              autoPlay
+              loop
+              muted
+              preload="metadata"
+              className="w-full rounded-xl shadow-xl ring-1 ring-border/60"
+            >
+              <source src="/videos/filters.mp4" />
+            </video>
           </div>
         </section>
         <section
           id="features-filters-section"
-          className="flex-center container overflow-hidden bg-background py-24 sm:py-32"
+          className="container overflow-hidden bg-background py-24 sm:py-32"
         >
-          <div className="mx-auto">
-            <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-              <video
-                autoPlay
-                loop
-                muted
-                preload="metadata"
-                className="w-full rounded-xl shadow-xl ring-1 ring-border/60"
-              >
-                <source src="/videos/filters.mp4" />
-              </video>
-              <div className="lg:pl-8 lg:pt-4">
-                <div className="lg:max-w-lg">
-                  <h2 className="text-base font-semibold leading-7 text-primary">
-                    Empower Your Imagination
-                  </h2>
-                  <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                    Your Art, Your Rules
-                  </p>
-                  <p className="mt-6 text-lg leading-8 text-gray-600">
-                    Harness the power of choice and create with unlimited
-                    freedom. Set your creativity free by perfecting each detail,
-                    from filter selection to image ratios, you have control over
-                    every aspect. Your vision, brought to life.
-                  </p>
-                  <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-muted-foreground lg:max-w-none">
-                    {featuresSection2.map((feature) => (
-                      <div key={feature.name} className="relative pl-9">
-                        <dt className="inline font-semibold text-foreground">
-                          <feature.icon
-                            className="absolute left-1 top-1 h-5 w-5 text-primary"
-                            aria-hidden="true"
-                          />
-                          {feature.name}
-                        </dt>{" "}
-                        <dd className="inline">{feature.description}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
+          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+            <video
+              autoPlay
+              loop
+              muted
+              preload="metadata"
+              className="w-full rounded-xl shadow-xl ring-1 ring-border/60"
+            >
+              <source src="/videos/filters.mp4" />
+            </video>
+            <div className="lg:pl-8 lg:pt-4">
+              <div className="lg:max-w-lg">
+                <h2 className="text-gradient-royal text-base font-semibold leading-7 lg:text-3xl">
+                  Empower Your Imagination
+                </h2>
+                <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
+                  Your Art, Your Rules
+                </p>
+                <p className="mt-6 text-lg leading-8 text-gray-600">
+                  Harness the power of choice and create with unlimited freedom.
+                  Set your creativity free by perfecting each detail, from
+                  filter selection to image ratios, you have control over every
+                  aspect. Your vision, brought to life.
+                </p>
+                <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-muted-foreground lg:max-w-none">
+                  {featuresSection2.map((feature) => (
+                    <div key={feature.name} className="relative pl-9">
+                      <dt className="inline font-semibold text-foreground">
+                        <feature.icon
+                          className="absolute left-1 top-1 h-5 w-5 text-primary"
+                          aria-hidden="true"
+                        />
+                        {feature.name}
+                      </dt>{" "}
+                      <dd className="inline">{feature.description}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             </div>
           </div>
@@ -228,10 +256,10 @@ export default async function IndexPage() {
             <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
               <div className="lg:pr-8 lg:pt-4">
                 <div className="lg:max-w-lg">
-                  <h2 className="text-base font-semibold leading-7 text-primary">
+                  <h2 className="text-gradient-aqua text-base font-semibold leading-7 lg:text-3xl">
                     Build Community
                   </h2>
-                  <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                  <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
                     Connect with Creators
                   </p>
                   <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -268,6 +296,7 @@ export default async function IndexPage() {
           </div>
         </section>
       </main>
+      <FooterWithNewsletter />
     </>
   );
 }
