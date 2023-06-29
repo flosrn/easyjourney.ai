@@ -14,7 +14,8 @@ const getCollaborators = async (boardId: string) => {
     `/api/boards/collaborators/actual-collaborators?boardId=${boardId}`
   );
   const data = await response.json();
-  return data.collaborators;
+  console.log("data", data);
+  return data.users;
 };
 
 export function CollaboratorsList({ boardId }: string) {
@@ -26,13 +27,13 @@ export function CollaboratorsList({ boardId }: string) {
   });
 
   useEffect(() => {
-    if (usersList.length > 0) {
+    if (collaborators) {
       setUsersList(collaborators);
-      console.log("userList", userList);
     }
-  }, [usersList]);
+  }, [collaborators]);
 
   console.log("collaborators", collaborators);
+  console.log("usersList", usersList);
 
   return (
     <>
