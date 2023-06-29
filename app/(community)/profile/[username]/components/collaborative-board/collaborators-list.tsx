@@ -9,6 +9,8 @@ import {
   CommandList,
 } from "~/components/ui/command";
 
+import { SelectedUser } from "./selected-users";
+
 const getCollaborators = async (boardId: string) => {
   const response = await fetch(
     `/api/boards/collaborators/actual-collaborators?boardId=${boardId}`
@@ -42,9 +44,17 @@ export function CollaboratorsList({ boardId }: string) {
       <CommandList>
         <CommandEmpty>No collaborators on this board</CommandEmpty>
         <CommandGroup heading="Collaborators">
-          <CommandItem>Calendar</CommandItem>
-          <CommandItem>Search Emoji</CommandItem>
-          <CommandItem>Calculator</CommandItem>
+          {usersList.map((user) => (
+            <CommandItem key={user.id}>
+              <SelectedUser
+                name={user.name}
+                username={user.username}
+                image={user.image}
+                id={user.id}
+                boardId={boardId}
+              />
+            </CommandItem>
+          ))}
         </CommandGroup>
       </CommandList>
     </>
