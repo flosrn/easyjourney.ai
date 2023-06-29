@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import { UserMinus2, UserPlus2Icon } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 
@@ -19,8 +20,12 @@ export function AddOrDeleteButton({ boardId, userId }) {
 
   return (
     <>
-      <Button variant="success" onClick={handleAddCollaborator}>
-        +
+      <Button
+        className="mr-1 h-9 w-9 p-0"
+        variant="success"
+        onClick={handleAddCollaborator}
+      >
+        <UserPlus2Icon />
       </Button>
     </>
   );
