@@ -21,7 +21,7 @@ const getCollaborators = async (boardId: string) => {
 };
 
 export function CollaboratorsList({ boardId }: string) {
-  const [usersList, setUsersList] = useState([]);
+  const [collaboratorsList, setcollaboratorsList] = useState([]);
 
   const { data: collaborators, isLoading } = useQuery({
     queryKey: ["collaborators", boardId],
@@ -30,12 +30,12 @@ export function CollaboratorsList({ boardId }: string) {
 
   useEffect(() => {
     if (collaborators) {
-      setUsersList(collaborators);
+      setcollaboratorsList(collaborators);
     }
   }, [collaborators]);
 
   console.log("collaborators", collaborators);
-  console.log("usersList", usersList);
+  console.log("collaboratorsList", collaboratorsList);
 
   return (
     <>
@@ -44,7 +44,7 @@ export function CollaboratorsList({ boardId }: string) {
       <CommandList>
         <CommandEmpty>No collaborators on this board</CommandEmpty>
         <CommandGroup heading="Collaborators">
-          {usersList.map((user) => (
+          {collaboratorsList.map((user) => (
             <CommandItem key={user.id}>
               <SelectedUser
                 name={user.name}
