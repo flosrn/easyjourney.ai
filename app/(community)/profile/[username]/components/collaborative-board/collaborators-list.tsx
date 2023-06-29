@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import {
@@ -8,7 +9,31 @@ import {
   CommandList,
 } from "~/components/ui/command";
 
-export function CollaboratorsList({ boardId }) {
+const getCollaborators = async (boardId: string) => {
+  const response = await fetch(
+    `/api/boards/collaborators/actual-collaborators?boardId=${boardId}`
+  );
+  const data = await response.json();
+  return data.collaborators;
+};
+
+export function CollaboratorsList({ boardId }: string) {
+  const [usersList, setUsersList] = useState([]);
+
+  const { data: collaborators, isLoading } = useQuery({
+    queryKey: ["collaborators", boardId],
+    queryFn: async () => getCollaborators(boardId),
+  });
+
+  useEffect(() => {
+    if (usersList.length > 0) {
+      setUsersList(collaborators);
+      console.log("userList", userList);
+    }
+  }, [usersList]);
+
+  console.log("collaborators", collaborators);
+
   return (
     <>
       <CommandInput placeholder="Type a command or search..." />

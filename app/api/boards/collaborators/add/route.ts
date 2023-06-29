@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { UserRole } from "@prisma/client";
+import { PrismaClient, UserRole } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
+// Import PrismaClient
 import { prisma } from "~/server/db/prisma";
 
 type Objet = {
@@ -25,8 +26,41 @@ export async function POST(request: Request) {
     console.log("boardId", boardId);
     console.log("userId", userId);
 
-    return NextResponse.json({ status: 204 });
-  } catch {
-    return NextResponse.json({ status: 500, message: "Internal Server Error" });
+    const board = await prisma.board.findUnique({
+      where: {
+        id: boardId,
+      },
+    });
+
+    if (board && board.userId === actualUserId) {
+      const newCollaborator = await prisma.collaborator.create({
+        data: {
+          userId,
+          boardId,
+        },
+      });
+
+      return newCollaborator
+        ? NextResponse.json(
+            { message: "Collaborator added successfully" },
+            { status: 200 }
+          )
+        : NextResponse.json(
+            { message: "Failed to add collaborator" },
+            { status: 500 }
+          );
+    } else {
+      return NextResponse.json(
+        { message: "User not authorized to add collaborator" },
+        {
+          status: 403,
+        }
+      );
+    }
+  } catch (error: unknown) {
+    return NextResponse.json(
+      { message: `Internal Server Error : ${error}` },
+      { status: 500 }
+    );
   }
 }

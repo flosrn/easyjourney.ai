@@ -21,6 +21,7 @@ const searchUser = async (search: string) => {
   const data = await response.json();
   return data.searchUsers;
 };
+
 const UserSkeleton = () => (
   <div className="flex h-16 items-center space-x-4 px-3">
     <Skeleton className="h-12 w-12 rounded-full" />
