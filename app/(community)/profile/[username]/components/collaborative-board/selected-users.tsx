@@ -5,7 +5,21 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 import { AddOrDeleteButton } from "./add-delete-button";
 
-export function SelectedUsers({ name, username, image, id, boardId }) {
+type selectedUserProps = {
+  name: string;
+  username: string;
+  image: string;
+  id: string;
+  boardId: string;
+};
+
+export function SelectedUser({
+  name,
+  username,
+  image,
+  id,
+  boardId,
+}: selectedUserProps) {
   return (
     <div className="flex h-16 w-full items-center justify-between hover:bg-accent">
       <Link href={`/profile/${username}`}>

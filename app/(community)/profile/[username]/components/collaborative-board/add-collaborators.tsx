@@ -12,7 +12,7 @@ import {
 } from "~/components/ui/command";
 import { Skeleton } from "~/components/ui/skeleton";
 
-import { SelectedUsers } from "./selected-users";
+import { SelectedUser } from "./selected-users";
 
 const searchUser = async (search: string) => {
   const response = await fetch(
@@ -60,7 +60,7 @@ export function AddCollaborators({ boardId }) {
       {userList.length > 0 ? (
         userList.map((user) => {
           return (
-            <SelectedUsers
+            <SelectedUser
               key={user.id}
               name={user.name}
               username={user.username}

@@ -3,25 +3,30 @@ import { UserMinus2, UserPlus2Icon } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 
-const addCollaborator = async (boardId: string, userId: string) => {
-  const response = await fetch(
-    `/api/boards/collaborators/add?boardId=${boardId}&userId=${userId}`
-  );
+const addCollaborator = async ({ boardId, userId }) => {
+  const response = await fetch(`/api/boards/collaborators/add`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userId, boardId }),
+  });
   const data = await response.json();
   return data;
 };
 
 export function AddOrDeleteButton({ boardId, userId }) {
-  const { mutate, isLoading } = useMutation(addCollaborator);
+  const mutation = useMutation({
+    mutationFn: async () => addCollaborator({ boardId, userId }),
+  });
 
   const handleAddCollaborator = () => {
-    mutate({ boardId, userId });
+    console.log("handleAddCollaborator");
+    mutation.mutate({ boardId, userId });
   };
 
   return (
     <>
       <Button
-        className="mr-1 h-9 w-9 p-0"
+        className="mr-1 h-7 w-7 p-1"
         variant="success"
         onClick={handleAddCollaborator}
       >

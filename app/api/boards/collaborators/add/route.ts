@@ -10,72 +10,22 @@ type Objet = {
 
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
+  const actualUserId = session?.user.id;
+  console.log("actualUserId", actualUserId);
 
   if (!session) {
     return NextResponse.json({ status: 401, message: "User not logged in" });
   }
 
   try {
-    const { posterId, boardId } = (await request.json()) as Objet;
+    const { userId, boardId } = (await request.json()) as Objet & {
+      userId: string;
+    };
 
-    const poster = await prisma.poster.findUnique({
-      where: {
-        id: posterId,
-      },
-    });
+    console.log("boardId", boardId);
+    console.log("userId", userId);
 
-    const board = await prisma.board.findUnique({
-      where: {
-        id: boardId,
-      },
-    });
-
-    if (!poster) {
-      return NextResponse.json({
-        status: 404,
-        message: "Poster not found",
-      });
-    }
-
-    if (!board) {
-      return NextResponse.json({
-        status: 404,
-        message: "Board not found",
-      });
-    }
-
-    if (
-      session.user.role !== UserRole.ADMIN &&
-      session.user.id !== poster.userId
-    ) {
-      return NextResponse.json({
-        status: 401,
-        message: "Not enough permission to do this",
-      });
-    }
-
-    const highestPositionBoardPoster = await prisma.boardPoster.findFirst({
-      where: {
-        boardId,
-      },
-      orderBy: {
-        position: "desc",
-      },
-    });
-
-    const newPosition = highestPositionBoardPoster
-      ? highestPositionBoardPoster.position + 1
-      : 1;
-
-    const boardPoster = await prisma.boardPoster.create({
-      data: {
-        posterId,
-        boardId,
-        position: newPosition,
-      },
-    });
-
-    return NextResponse.json({ status: 204, boardPoster });
+    return NextResponse.json({ status: 204 });
   } catch {
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }
