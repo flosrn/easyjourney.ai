@@ -3,13 +3,15 @@ import getFirstLetters from "~/utils/getFirstLetter";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
-export function SelectedUsers({ name, username, image, id }) {
+import { AddOrDeleteButton } from "./add-delete-button";
+
+export function SelectedUsers({ name, username, image, id, boardId }) {
   return (
     <Link
       href={`/profile/${username}`}
       className="flex h-16 w-full justify-between"
     >
-      <div className="flex">
+      <div className="flex w-full hover:bg-accent">
         <div className="mx-2 flex h-full items-center justify-center">
           {image && (
             <Avatar className="h-12 w-12">
@@ -23,6 +25,7 @@ export function SelectedUsers({ name, username, image, id }) {
           <div className="font-bold">{name}</div>
           <div className="truncate text-sm">@{username}</div>
         </div>
+        <AddOrDeleteButton boardId={boardId} userId={id} />
       </div>
     </Link>
   );

@@ -66,6 +66,7 @@ export function AddCollaborators({ boardId }) {
               username={user.username}
               image={user.image}
               id={user.id}
+              boardId={boardId}
             />
           );
         })
@@ -74,7 +75,13 @@ export function AddCollaborators({ boardId }) {
           {isLoading ? (
             <UserSkeleton />
           ) : (
-            <CommandEmpty>No user found.</CommandEmpty>
+            <>
+              {search.length > 0 ? (
+                <CommandEmpty>No user found.</CommandEmpty>
+              ) : (
+                <CommandEmpty>Search for a user</CommandEmpty>
+              )}
+            </>
           )}
         </>
       )}
