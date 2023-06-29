@@ -10,6 +10,7 @@ import {
   CommandItem,
   CommandList,
 } from "~/components/ui/command";
+import { Skeleton } from "~/components/ui/skeleton";
 
 import { SelectedUsers } from "./selected-users";
 
@@ -20,6 +21,15 @@ const searchUser = async (search: string) => {
   const data = await response.json();
   return data.searchUsers;
 };
+const UserSkeleton = () => (
+  <div className="flex h-16 items-center space-x-4 px-3">
+    <Skeleton className="h-12 w-12 rounded-full" />
+    <div className="space-y-2">
+      <Skeleton className="h-4 w-[250px]" />
+      <Skeleton className="h-4 w-[200px]" />
+    </div>
+  </div>
+);
 
 export function AddCollaborators({ boardId }) {
   const [search, setSearch] = useState("");
@@ -60,7 +70,13 @@ export function AddCollaborators({ boardId }) {
           );
         })
       ) : (
-        <div>Y a rien</div>
+        <>
+          {isLoading ? (
+            <UserSkeleton />
+          ) : (
+            <CommandEmpty>No user found.</CommandEmpty>
+          )}
+        </>
       )}
     </>
   );
