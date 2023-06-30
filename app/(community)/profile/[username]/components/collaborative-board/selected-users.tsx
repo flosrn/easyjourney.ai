@@ -11,6 +11,7 @@ type selectedUserProps = {
   image: string;
   id: string;
   boardId: string;
+  isCollaborator: boolean;
 };
 
 export function SelectedUser({
@@ -19,6 +20,7 @@ export function SelectedUser({
   image,
   id,
   boardId,
+  isCollaborator,
 }: selectedUserProps) {
   return (
     <div className="flex h-16 w-full items-center justify-between hover:bg-accent">
@@ -40,7 +42,11 @@ export function SelectedUser({
         </div>
       </Link>
       <div>
-        <AddOrDeleteButton boardId={boardId} userId={id} />
+        <AddOrDeleteButton
+          boardId={boardId}
+          userId={id}
+          isCollaborator={isCollaborator}
+        />
       </div>
     </div>
   );

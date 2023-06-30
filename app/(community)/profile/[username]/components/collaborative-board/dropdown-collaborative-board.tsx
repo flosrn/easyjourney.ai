@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { UserPlus2Icon } from "lucide-react";
 
@@ -21,7 +22,29 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { AddCollaborators } from "./add-collaborators";
 import { CollaboratorsList } from "./collaborators-list";
 
+const getCollaborators = async (boardId: string) => {
+  const response = await fetch(
+    `/api/boards/collaborators/actual-collaborators?boardId=${boardId}`
+  );
+  const data = await response.json();
+  console.log("data", data);
+  return data.users;
+};
+
 export function DropdownCollaborativeBoard({ children, boardId }) {
+  const [collaboratorsList, setcollaboratorsList] = useState([]);
+
+  const { data: collaborators, isLoading } = useQuery({
+    queryKey: ["collaborators", boardId],
+    queryFn: async () => getCollaborators(boardId),
+  });
+
+  useEffect(() => {
+    if (collaborators) {
+      setcollaboratorsList(collaborators);
+    }
+  }, [collaborators]);
+
   return (
     <Popover>
       <PopoverTrigger>{children}</PopoverTrigger>
@@ -37,10 +60,16 @@ export function DropdownCollaborativeBoard({ children, boardId }) {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="collaborators">
-              <CollaboratorsList boardId={boardId} />
+              <CollaboratorsList
+                boardId={boardId}
+                collaborators={collaboratorsList}
+              />
             </TabsContent>
             <TabsContent value="add">
-              <AddCollaborators boardId={boardId} />
+              <AddCollaborators
+                boardId={boardId}
+                collaborators={collaboratorsList}
+              />
             </TabsContent>
           </Tabs>
         </Command>

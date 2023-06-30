@@ -13,7 +13,7 @@ const addCollaborator = async ({ boardId, userId }) => {
   return data;
 };
 
-export function AddOrDeleteButton({ boardId, userId }) {
+export function AddOrDeleteButton({ boardId, userId, isCollaborator }) {
   const mutation = useMutation({
     mutationFn: async () => addCollaborator({ boardId, userId }),
   });
@@ -25,6 +25,8 @@ export function AddOrDeleteButton({ boardId, userId }) {
 
   return (
     <>
+      {isCollaborator ? <Button></Button> : <Button></Button>}
+
       <Button
         className="mr-1 h-7 w-7 p-1"
         variant="success"

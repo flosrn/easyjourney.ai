@@ -32,7 +32,7 @@ const UserSkeleton = () => (
   </div>
 );
 
-export function AddCollaborators({ boardId }) {
+export function AddCollaborators({ boardId, collaborators }) {
   const [search, setSearch] = useState("");
   const [userList, setUserList] = useState([]);
   console.log("search", search);
@@ -46,8 +46,13 @@ export function AddCollaborators({ boardId }) {
 
   useEffect(() => {
     if (users && users.length > 0) {
-      setUserList(users);
-      console.log("userList", userList);
+      const userListWithCollabStatus = users.map((user) => {
+        return {
+          ...user,
+          isCollaborator: collaborators.some((collab) => collab.id === user.id),
+        };
+      });
+      setUserList(userListWithCollabStatus);
     }
   }, [users]);
 
@@ -68,6 +73,7 @@ export function AddCollaborators({ boardId }) {
               image={user.image}
               id={user.id}
               boardId={boardId}
+              isCollaborator={user.isCollaborator}
             />
           );
         })

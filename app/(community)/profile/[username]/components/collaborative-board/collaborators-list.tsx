@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-
 import {
   CommandEmpty,
   CommandGroup,
@@ -11,31 +8,12 @@ import {
 
 import { SelectedUser } from "./selected-users";
 
-const getCollaborators = async (boardId: string) => {
-  const response = await fetch(
-    `/api/boards/collaborators/actual-collaborators?boardId=${boardId}`
-  );
-  const data = await response.json();
-  console.log("data", data);
-  return data.users;
-};
-
-export function CollaboratorsList({ boardId }: string) {
-  const [collaboratorsList, setcollaboratorsList] = useState([]);
-
-  const { data: collaborators, isLoading } = useQuery({
-    queryKey: ["collaborators", boardId],
-    queryFn: async () => getCollaborators(boardId),
-  });
-
-  useEffect(() => {
-    if (collaborators) {
-      setcollaboratorsList(collaborators);
-    }
-  }, [collaborators]);
-
-  console.log("collaborators", collaborators);
-  console.log("collaboratorsList", collaboratorsList);
+export function CollaboratorsList({ boardId, collaborators }) {
+  const collaboratorsWithStatus = collaborators.map((collab) => ({
+    ...collab,
+    isCollaborator: true,
+  }));
+  console.log("collaboratorsWithStatus", collaboratorsWithStatus);
 
   return (
     <>
@@ -44,7 +22,7 @@ export function CollaboratorsList({ boardId }: string) {
       <CommandList>
         <CommandEmpty>No collaborators on this board</CommandEmpty>
         <CommandGroup heading="Collaborators">
-          {collaboratorsList.map((user) => (
+          {collaboratorsWithStatus.map((user) => (
             <CommandItem key={user.id}>
               <SelectedUser
                 name={user.name}
@@ -52,6 +30,7 @@ export function CollaboratorsList({ boardId }: string) {
                 image={user.image}
                 id={user.id}
                 boardId={boardId}
+                isCollaborator={user.isCollaborator}
               />
             </CommandItem>
           ))}
