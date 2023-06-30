@@ -130,7 +130,7 @@ export default async function IndexPage() {
                 <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl">
                   Poster Creation Reinvented
                 </h1>
-                <p className="text-md leading-8 text-gray-600 md:text-lg">
+                <p className="text-md leading-8 text-muted-foreground md:text-lg">
                   Unlock the power of{" "}
                   <TextAnimatedGradient>Midjourney</TextAnimatedGradient> with a
                   beautiful and user-friendly interface. Create stunning visuals
@@ -138,7 +138,7 @@ export default async function IndexPage() {
                 </p>
                 <div className="pt-2 md:pt-6">
                   <Button asChild>
-                    <Link href="/create">Create Now</Link>
+                    <Link href="/create">Create Art</Link>
                   </Button>
                 </div>
               </div>
