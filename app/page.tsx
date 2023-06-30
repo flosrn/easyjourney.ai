@@ -16,6 +16,7 @@ import {
 
 import FooterWithNewsletter from "~/components/footer/footer-with-newsletter";
 import Header from "~/components/header/header";
+import Image3D from "~/components/hero/image-3d";
 import StarsParticles from "~/components/hero/stars-particles";
 import TextAnimatedGradient from "~/components/hero/text-animated-gradient";
 import { Button } from "~/components/ui/button";
@@ -143,13 +144,7 @@ export default async function IndexPage() {
                   </div>
                 </div>
               </div>
-              <Image
-                src="/images/landingpage/easyjourney_create.png"
-                alt="Easyjourney Product screenshot"
-                width={2704}
-                height={2030}
-                className="w-[48rem] max-w-none rounded-xl shadow-[0px_61.366004943847656px_155.088623046875px_-23.43065643310547px_rgba(137,90,246,0.13)] ring-1 ring-border/60 md:-ml-4 xl:-ml-24"
-              />
+              <Image3D />
             </div>
           </div>
           <StarsParticles />
