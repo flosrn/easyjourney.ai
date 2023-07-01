@@ -113,7 +113,6 @@ const findAttachmentInMessages = async ({
   ) {
     attachment = initialMessage.attachments[0];
     referencedImage = initialMessage.referenced_message?.attachments[0];
-    console.log("referencedImage :", referencedImage);
     console.log("variation or upscale found");
     const jobId = extractJobId(attachment.url);
     const referencedJobId =
@@ -246,9 +245,8 @@ export async function POST(request: Request) {
             type: "referenced_image",
             ...data.referencedImage,
           });
-          setTimeout(() => {
-            stream.enqueue(encoder.encode(messageWithReferencedImage));
-          }, 1000);
+          await wait(1000);
+          stream.enqueue(encoder.encode(messageWithReferencedImage));
         }
 
         await fetch(`${env.NEXT_PUBLIC_URL}/api/users/decrementCredits`, {
@@ -258,8 +256,6 @@ export async function POST(request: Request) {
             Cookie: request.headers.get("Cookie") ?? "",
           },
         });
-
-        stream.close();
       }
     } catch (error: unknown) {
       console.error("generation failed:", error);
@@ -271,6 +267,8 @@ export async function POST(request: Request) {
       stream.enqueue(encoder.encode(JSON.stringify(message)));
       stream.error(error);
       return NextResponse.json(error);
+    } finally {
+      stream.close();
     }
     // eslint-disable-next-line @typescript-eslint/no-empty-function
   })().then(() => {});

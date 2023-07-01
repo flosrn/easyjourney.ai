@@ -10,7 +10,10 @@ export async function POST(request: Request) {
   const session = await getServerAuthSession();
 
   if (!session) {
-    return NextResponse.json({ status: 401, message: "User not logged in" });
+    return NextResponse.json(
+      { message: "User not logged in" },
+      { status: 401 }
+    );
   }
 
   try {
