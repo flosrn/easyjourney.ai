@@ -13,27 +13,56 @@ const addCollaborator = async ({ boardId, userId }) => {
   return data;
 };
 
+const deleteCollaborator = async ({ boardId, userId }) => {
+  const response = await fetch(
+    `/api/boards/collaborators/actual-collaborators/delete`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, boardId }),
+    }
+  );
+  const data = await response.json();
+  return data;
+};
+
 export function AddOrDeleteButton({ boardId, userId, isCollaborator }) {
-  const mutation = useMutation({
+  const mutationAdd = useMutation({
     mutationFn: async () => addCollaborator({ boardId, userId }),
   });
 
   const handleAddCollaborator = () => {
     console.log("handleAddCollaborator");
-    mutation.mutate({ boardId, userId });
+    mutationAdd.mutate({ boardId, userId });
+  };
+
+  const mutationDelete = useMutation({
+    mutationFn: async () => deleteCollaborator({ boardId, userId }),
+  });
+
+  const handleDeleteCollaborator = () => {
+    console.log("handleDeleteCollaborator");
   };
 
   return (
     <>
-      {isCollaborator ? <Button></Button> : <Button></Button>}
-
-      <Button
-        className="mr-1 h-7 w-7 p-1"
-        variant="success"
-        onClick={handleAddCollaborator}
-      >
-        <UserPlus2Icon />
-      </Button>
+      {isCollaborator ? (
+        <Button
+          className="mr-1 h-7 w-7 p-1"
+          variant="error"
+          onClick={handleDeleteCollaborator}
+        >
+          <UserMinus2 />
+        </Button>
+      ) : (
+        <Button
+          className="mr-1 h-7 w-7 p-1"
+          variant="success"
+          onClick={handleAddCollaborator}
+        >
+          <UserPlus2Icon />
+        </Button>
+      )}
     </>
   );
 }

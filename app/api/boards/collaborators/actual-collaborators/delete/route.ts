@@ -23,6 +23,9 @@ export async function POST(request: Request) {
       userId: string;
     };
 
+    console.log("boardId", boardId);
+    console.log("userId", userId);
+
     const board = await prisma.board.findUnique({
       where: {
         id: boardId,
@@ -30,25 +33,25 @@ export async function POST(request: Request) {
     });
 
     if (board && board.userId === actualUserId) {
-      const newCollaborator = await prisma.collaborator.create({
+      const deleteCollaborator = await prisma.collaborator.delete({
         data: {
           userId,
           boardId,
         },
       });
 
-      return newCollaborator
+      return deleteCollaborator
         ? NextResponse.json(
-            { message: "Collaborator added successfully" },
+            { message: "Collaborator deleted successfully" },
             { status: 200 }
           )
         : NextResponse.json(
-            { message: "Failed to add collaborator" },
+            { message: "Failed to delete collaborator" },
             { status: 500 }
           );
     } else {
       return NextResponse.json(
-        { message: "User not authorized to add collaborator" },
+        { message: "User not authorized to delete collaborator" },
         {
           status: 403,
         }
