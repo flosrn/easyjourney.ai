@@ -6,6 +6,7 @@ export const runtime = "edge";
 
 export async function POST(request: Request) {
   const { prompt } = await request.json();
+  console.log("prompt :", prompt);
 
   const client = new Midjourney({
     ServerId: serverId,
@@ -16,6 +17,7 @@ export async function POST(request: Request) {
     Ws: true,
   });
   await client.init();
+  console.log("client :", client);
   const encoder = new TextEncoder();
   const readable = new ReadableStream({
     start(controller) {
