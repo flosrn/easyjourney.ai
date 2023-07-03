@@ -192,12 +192,12 @@ const MainColumn = () => {
     handleDisableSelectors(false);
   };
 
-  const imagineMutation = useMutation({
-    mutationFn: async () =>
-      imagine(prompt, (data: MJMessage) => {
-        setMessages(data);
-      }),
-  });
+  // const imagineMutation = useMutation({
+  //   mutationFn: async () =>
+  //     imagine(prompt, (data: MJMessage) => {
+  //       setMessages(data);
+  //     }),
+  // });
 
   const handleGenerate = async () => {
     if (promptValue.length <= 1) {
@@ -208,7 +208,10 @@ const MainColumn = () => {
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }, 100);
-    await imagineMutation.mutateAsync();
+    // await imagineMutation.mutateAsync();
+    await imagine(prompt, (data: MJMessage) => {
+      setMessages(data);
+    });
   };
 
   return (

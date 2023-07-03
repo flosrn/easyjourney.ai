@@ -12,6 +12,7 @@ const midjourneyRequest = async (
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt }),
   });
+  console.log("response :", response);
   const reader = response.body?.getReader();
   if (!reader) {
     throw new Error("Response body is null");
