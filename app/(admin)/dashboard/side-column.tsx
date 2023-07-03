@@ -17,12 +17,27 @@ const SideColumn = ({ className }: SidebarProps) => (
             <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">
               Getting Started
             </h4>
-            <div className="grid grid-flow-row auto-rows-max text-sm">
-              <Button asChild variant="link" className="px-2 py-1">
+            <div className="grid grid-flow-row auto-rows-max justify-start text-sm">
+              <Button
+                asChild
+                variant="link"
+                className="justify-start px-2 py-1"
+              >
                 <Link href="/dashboard">Home</Link>
               </Button>
-              <Button variant="link" className="px-2 py-1">
+              <Button
+                variant="link"
+                asChild
+                className="justify-start px-2 py-1"
+              >
                 <Link href="/dashboard/search-posters">Search Posters</Link>
+              </Button>
+              <Button
+                variant="link"
+                asChild
+                className="justify-start px-2 py-1"
+              >
+                <Link href="/dashboard/fetch">Fetch</Link>
               </Button>
             </div>
           </div>

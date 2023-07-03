@@ -14,6 +14,8 @@ import LoadingDots from "./loading-dots";
 
 import "react-medium-image-zoom/dist/styles.css";
 
+import { useMessageStore } from "../../store/messageStore";
+
 type ImageContainerProps = {
   className?: string;
 };
@@ -40,12 +42,17 @@ const ImageContainer = ({ className }: ImageContainerProps) => {
     state.imageType,
     state.isLoading,
   ]);
+  const [messages, setMessages, clearMessages] = useMessageStore((state) => [
+    state.messages,
+    state.setMessages,
+    state.clearMessages,
+  ]);
   const selectedAspectRatio = useRatioStore(
     (state) => state.selectedAspectRatio
   );
   const { value: ratio } = selectedAspectRatio;
-  const hasImage = images.length > 0;
-  const currentImageUrl = images[imageIndex]?.url;
+  const hasImage = messages.length > 0;
+  const currentImageUrl = messages.at(-1)?.uri;
   const hasImageGrid =
     hasImage &&
     !isLoading &&

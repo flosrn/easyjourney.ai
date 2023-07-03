@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { useMobileMenuStore } from "~/store/mobileMenuStore";
 import removeSpacesFromString from "~/utils/removeSpacesFromString";
 import { motion } from "framer-motion";
@@ -15,6 +16,7 @@ import {
   UndoIcon,
   ZoomOutIcon,
 } from "lucide-react";
+import type { MJMessage } from "midjourney";
 import { useSession } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 
@@ -24,15 +26,16 @@ import { Separator } from "~/components/ui/separator";
 import { cn } from "~/lib/classNames";
 
 import FiltersBadge from "./components/badge/filters-badge";
+import ActionButton from "./components/buttons/action-button";
 import FiltersDialog from "./components/dialog/filters-dialog";
 import ImageContainer from "./components/image/image-container";
 import TextareaPrompt from "./components/input/textarea-prompt";
 import { aspectRatios } from "./data/aspectRatios";
-import { handleMessageData } from "./lib/imageGenerationUtils";
+import { imagine } from "./lib/request";
 import SideColumn from "./side-column";
 import { useChaosStore } from "./store/chaosStore";
 import { useFilterStore } from "./store/filterStore";
-import { useImageGenerationStore } from "./store/imageGenerationStore";
+import { useMessageStore } from "./store/messageStore";
 import { usePromptStore } from "./store/promptStore";
 import { useQualityStore } from "./store/qualityStore";
 import { useRatioStore } from "./store/ratioStore";
@@ -43,56 +46,10 @@ import { useTileStore } from "./store/tileStore";
 import { useVersionStore } from "./store/versionStore";
 
 const MainColumn = () => {
-  const [
-    images,
-    imageIndex,
-    prevImage,
-    nextImage,
-    generateImage,
-    upscaleImage,
-    variationImage,
-    uploadImage,
-    imageSelected,
-    setSelectedImage,
-    setClear,
-    isLoading,
-    loadingType,
-    setIsLoading,
-    setLoadingType,
-    setLoadingCount,
-    imageType,
-    setImageType,
-    message,
-    setMessage,
-    isImageUploaded,
-    isSuccess,
-    setIsSuccess,
-    isError,
-  ] = useImageGenerationStore((state) => [
-    state.images,
-    state.imageIndex,
-    state.prevImage,
-    state.nextImage,
-    state.generateImage,
-    state.upscaleImage,
-    state.variationImage,
-    state.uploadImage,
-    state.selectedImage,
-    state.setSelectedImage,
-    state.setClear,
-    state.isLoading,
-    state.loadingType,
-    state.setIsLoading,
-    state.setLoadingType,
-    state.setLoadingCount,
-    state.imageType,
-    state.setImageType,
-    state.message,
-    state.setMessage,
-    state.isImageUploaded,
-    state.isSuccess,
-    state.setIsSuccess,
-    state.isError,
+  const [messages, setMessages, clearMessages] = useMessageStore((state) => [
+    state.messages,
+    state.setMessages,
+    state.clearMessages,
   ]);
 
   const [chaosValue, setChaosValue, setIsChaosSelectorDisabled] = useChaosStore(
@@ -168,16 +125,7 @@ const MainColumn = () => {
   const username = session?.user.username;
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const hasImages = images.length > 0;
   const hasFilters = selectedFilters.length > 0;
-  const currentImage = images[imageIndex];
-  const isFirst = imageIndex === 0;
-  const isLast = imageIndex === images.length - 1;
-  const isGenerationLoading = isLoading && loadingType === "generation";
-  const isUpscaleLoading = isLoading && loadingType === "upscale";
-  const isVariationLoading = isLoading && loadingType === "variation";
-  const isUploadLoading = isLoading && loadingType === "upload";
-  const isImageUpscaled = imageType === "upscale";
   const { ratio, value: ratioValue } = selectedAspectRatio;
   const styles = selectedFilters
     .map((selectedFilter) => selectedFilter.style)
@@ -230,7 +178,7 @@ const MainColumn = () => {
   };
 
   const handleClear = () => {
-    setClear();
+    clearMessages();
     setPromptValue("");
     setSelectedAspectRatio(aspectRatios[0]);
     setChaosValue(0);
@@ -244,62 +192,24 @@ const MainColumn = () => {
     handleDisableSelectors(false);
   };
 
+  const imagineMutation = useMutation({
+    mutationFn: async () =>
+      imagine(prompt, (data: MJMessage) => {
+        setMessages(data);
+      }),
+  });
+
   const handleGenerate = async () => {
     if (promptValue.length <= 1) {
       inputRef.current?.focus();
-      setMessage("Please enter a prompt.");
       return;
     }
     handleDisableSelectors(true);
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }, 100);
-    await generateImage(prompt);
+    await imagineMutation.mutateAsync();
   };
-
-  const handlePreviousImage = () => {
-    prevImage();
-    setSelectedImage(0);
-  };
-
-  const handleNextImage = () => {
-    nextImage();
-    setSelectedImage(0);
-  };
-
-  const actions = useMemo(
-    () => ({
-      setImageType,
-      setMessage,
-      setIsLoading,
-      setLoadingType,
-      setLoadingCount,
-      setIsSuccess,
-    }),
-    [
-      setImageType,
-      setMessage,
-      setIsLoading,
-      setLoadingType,
-      setLoadingCount,
-      setIsSuccess,
-    ]
-  );
-
-  useEffect(() => {
-    handleMessageData({ image: currentImage, ...actions });
-  }, [currentImage, actions]);
-
-  useEffect(() => {
-    if (!isSuccess) return;
-
-    const timerId = setTimeout(async () => {
-      await update();
-      setIsSuccess(false);
-    }, 2000);
-
-    return () => clearTimeout(timerId);
-  }, [isSuccess, update, setIsSuccess]);
 
   return (
     <main className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">
@@ -324,22 +234,22 @@ const MainColumn = () => {
             </div>
             <div className="ml-auto flex space-x-2">
               <>
-                <Button
-                  onClick={handlePreviousImage}
-                  disabled={isLoading || isFirst}
-                  variant="outline"
-                >
-                  <UndoIcon className="h-4 w-4 md:mr-2" />
-                  <span className="hidden md:block">Undo</span>
-                </Button>
-                <Button
-                  onClick={handleNextImage}
-                  disabled={isLoading || isLast || !hasImages}
-                  variant="outline"
-                >
-                  <RedoIcon className="h-4 w-4 md:mr-2" />
-                  <span className="hidden md:block">Redo</span>
-                </Button>
+                {/*<Button*/}
+                {/*  onClick={handlePreviousImage}*/}
+                {/*  disabled={isLoading || isFirst}*/}
+                {/*  variant="outline"*/}
+                {/*>*/}
+                {/*  <UndoIcon className="h-4 w-4 md:mr-2" />*/}
+                {/*  <span className="hidden md:block">Undo</span>*/}
+                {/*</Button>*/}
+                {/*<Button*/}
+                {/*  onClick={handleNextImage}*/}
+                {/*  disabled={isLoading || isLast || !hasImages}*/}
+                {/*  variant="outline"*/}
+                {/*>*/}
+                {/*  <RedoIcon className="h-4 w-4 md:mr-2" />*/}
+                {/*  <span className="hidden md:block">Redo</span>*/}
+                {/*</Button>*/}
                 <Button
                   onClick={handleClear}
                   variant="secondary"
@@ -349,14 +259,21 @@ const MainColumn = () => {
                   <span className="hidden md:block">Clear</span>
                 </Button>
               </>
-              <Button onClick={handleGenerate} disabled={isLoading}>
-                {isGenerationLoading ? (
-                  <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <BrushIcon className="h-4 w-4 md:mr-2" />
-                )}
-                <span className="hidden md:block">Generate</span>
-              </Button>
+              <ActionButton
+                label="Generate"
+                Icon={BrushIcon}
+                clickHandler={handleGenerate}
+                // isLoading={isLoading}
+                isDisabled={isEmpty}
+              />
+              {/*<Button onClick={handleGenerate} disabled={isLoading}>*/}
+              {/*  {isGenerationLoading ? (*/}
+              {/*    <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
+              {/*  ) : (*/}
+              {/*    <BrushIcon className="h-4 w-4 md:mr-2" />*/}
+              {/*  )}*/}
+              {/*  <span className="hidden md:block">Generate</span>*/}
+              {/*</Button>*/}
             </div>
           </div>
           <Separator className="my-4 -lg:hidden" />
@@ -369,129 +286,129 @@ const MainColumn = () => {
             />
             <SideColumn className="lg:hidden" />
             <ImageContainer className="" />
-            <motion.div layout className="flex justify-center space-x-2">
-              {isImageUpscaled ? (
-                <>
-                  <motion.div layout className="flex-center mt-4">
-                    <Button
-                      onClick={async () =>
-                        variationImage(
-                          imageSelected,
-                          currentImage,
-                          "zoom-out x1.5"
-                        )
-                      }
-                      disabled={isLoading || imageSelected === 0}
-                      variant="outline"
-                    >
-                      {isVariationLoading ? (
-                        <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <ZoomOutIcon className="mr-2 h-4 w-4" />
-                      )}
-                      Zoom out x1.5
-                    </Button>
-                  </motion.div>
-                  <motion.div layout className="flex-center mt-4">
-                    <Button
-                      onClick={async () =>
-                        variationImage(
-                          imageSelected,
-                          currentImage,
-                          "zoom-out x2"
-                        )
-                      }
-                      disabled={isLoading || imageSelected === 0}
-                      variant="secondary"
-                    >
-                      {isUpscaleLoading ? (
-                        <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <ZoomOutIcon className="mr-2 h-4 w-4" />
-                      )}
-                      Zoom out x2
-                    </Button>
-                  </motion.div>
-                </>
-              ) : (
-                <>
-                  <motion.div layout className="flex-center mt-4">
-                    <Button
-                      onClick={async () =>
-                        variationImage(imageSelected, currentImage)
-                      }
-                      disabled={
-                        isLoading || imageSelected === 0 || isImageUpscaled
-                      }
-                      variant="outline"
-                    >
-                      {isVariationLoading ? (
-                        <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <IterationCcwIcon className="mr-2 h-4 w-4" />
-                      )}
-                      Variation
-                    </Button>
-                  </motion.div>
-                  <motion.div layout className="flex-center mt-4">
-                    <Button
-                      onClick={async () =>
-                        upscaleImage(prompt, imageSelected, currentImage)
-                      }
-                      disabled={
-                        isLoading || imageSelected === 0 || isImageUpscaled
-                      }
-                      variant="secondary"
-                    >
-                      {isUpscaleLoading ? (
-                        <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <ArrowBigUpIcon className="mr-2 h-4 w-4" />
-                      )}
-                      Upscale
-                    </Button>
-                  </motion.div>
-                </>
-              )}
-              {isImageUpscaled && (
-                <motion.div layout className="flex-center mt-4">
-                  <Button
-                    onClick={async () =>
-                      uploadImage(
-                        currentImage,
-                        promptValue,
-                        ratioValue,
-                        styles,
-                        imageSelected,
-                        options,
-                        username
-                      )
-                    }
-                    disabled={isUploadLoading}
-                    variant="success"
-                  >
-                    {isUploadLoading ? (
-                      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                    ) : (
-                      <SaveIcon className="mr-2 h-4 w-4" />
-                    )}
-                    Save
-                  </Button>
-                </motion.div>
-              )}
-            </motion.div>
+            {/*<motion.div layout className="flex justify-center space-x-2">*/}
+            {/*  {isImageUpscaled ? (*/}
+            {/*    <>*/}
+            {/*      <motion.div layout className="flex-center mt-4">*/}
+            {/*        <Button*/}
+            {/*          onClick={async () =>*/}
+            {/*            variationImage(*/}
+            {/*              imageSelected,*/}
+            {/*              currentImage,*/}
+            {/*              "zoom-out x1.5"*/}
+            {/*            )*/}
+            {/*          }*/}
+            {/*          disabled={isLoading || imageSelected === 0}*/}
+            {/*          variant="outline"*/}
+            {/*        >*/}
+            {/*          {isVariationLoading ? (*/}
+            {/*            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
+            {/*          ) : (*/}
+            {/*            <ZoomOutIcon className="mr-2 h-4 w-4" />*/}
+            {/*          )}*/}
+            {/*          Zoom out x1.5*/}
+            {/*        </Button>*/}
+            {/*      </motion.div>*/}
+            {/*      <motion.div layout className="flex-center mt-4">*/}
+            {/*        <Button*/}
+            {/*          onClick={async () =>*/}
+            {/*            variationImage(*/}
+            {/*              imageSelected,*/}
+            {/*              currentImage,*/}
+            {/*              "zoom-out x2"*/}
+            {/*            )*/}
+            {/*          }*/}
+            {/*          disabled={isLoading || imageSelected === 0}*/}
+            {/*          variant="secondary"*/}
+            {/*        >*/}
+            {/*          {isUpscaleLoading ? (*/}
+            {/*            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
+            {/*          ) : (*/}
+            {/*            <ZoomOutIcon className="mr-2 h-4 w-4" />*/}
+            {/*          )}*/}
+            {/*          Zoom out x2*/}
+            {/*        </Button>*/}
+            {/*      </motion.div>*/}
+            {/*    </>*/}
+            {/*  ) : (*/}
+            {/*    <>*/}
+            {/*      <motion.div layout className="flex-center mt-4">*/}
+            {/*        <Button*/}
+            {/*          onClick={async () =>*/}
+            {/*            variationImage(imageSelected, currentImage)*/}
+            {/*          }*/}
+            {/*          disabled={*/}
+            {/*            isLoading || imageSelected === 0 || isImageUpscaled*/}
+            {/*          }*/}
+            {/*          variant="outline"*/}
+            {/*        >*/}
+            {/*          {isVariationLoading ? (*/}
+            {/*            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
+            {/*          ) : (*/}
+            {/*            <IterationCcwIcon className="mr-2 h-4 w-4" />*/}
+            {/*          )}*/}
+            {/*          Variation*/}
+            {/*        </Button>*/}
+            {/*      </motion.div>*/}
+            {/*      <motion.div layout className="flex-center mt-4">*/}
+            {/*        <Button*/}
+            {/*          onClick={async () =>*/}
+            {/*            upscaleImage(prompt, imageSelected, currentImage)*/}
+            {/*          }*/}
+            {/*          disabled={*/}
+            {/*            isLoading || imageSelected === 0 || isImageUpscaled*/}
+            {/*          }*/}
+            {/*          variant="secondary"*/}
+            {/*        >*/}
+            {/*          {isUpscaleLoading ? (*/}
+            {/*            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
+            {/*          ) : (*/}
+            {/*            <ArrowBigUpIcon className="mr-2 h-4 w-4" />*/}
+            {/*          )}*/}
+            {/*          Upscale*/}
+            {/*        </Button>*/}
+            {/*      </motion.div>*/}
+            {/*    </>*/}
+            {/*  )}*/}
+            {/*  {isImageUpscaled && (*/}
+            {/*    <motion.div layout className="flex-center mt-4">*/}
+            {/*      <Button*/}
+            {/*        onClick={async () =>*/}
+            {/*          uploadImage(*/}
+            {/*            currentImage,*/}
+            {/*            promptValue,*/}
+            {/*            ratioValue,*/}
+            {/*            styles,*/}
+            {/*            imageSelected,*/}
+            {/*            options,*/}
+            {/*            username*/}
+            {/*          )*/}
+            {/*        }*/}
+            {/*        disabled={isUploadLoading}*/}
+            {/*        variant="success"*/}
+            {/*      >*/}
+            {/*        {isUploadLoading ? (*/}
+            {/*          <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
+            {/*        ) : (*/}
+            {/*          <SaveIcon className="mr-2 h-4 w-4" />*/}
+            {/*        )}*/}
+            {/*        Save*/}
+            {/*      </Button>*/}
+            {/*    </motion.div>*/}
+            {/*  )}*/}
+            {/*</motion.div>*/}
           </div>
         </div>
       </div>
-      <div className="flex-center sticky bottom-0 h-6 border-t bg-background">
-        <p
-          className={cn("px-4 text-xs", {
-            "text-red-500": isError,
-          })}
-        >
-          {message}
-        </p>
-      </div>
+      {/*<div className="flex-center sticky bottom-0 h-6 border-t bg-background">*/}
+      {/*  <p*/}
+      {/*    className={cn("px-4 text-xs", {*/}
+      {/*      "text-red-500": isError,*/}
+      {/*    })}*/}
+      {/*  >*/}
+      {/*    {message}*/}
+      {/*  </p>*/}
+      {/*</div>*/}
       <FiltersDialog />
       <Toaster position="bottom-right" />
     </main>

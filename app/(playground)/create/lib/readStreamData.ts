@@ -1,8 +1,8 @@
-import type { ImageGenerationSetAction } from "../store/imageGenerationStore";
+import type { MJMessage } from "midjourney";
 
 const readStreamData = async (
   reader: ReadableStreamDefaultReader<Uint8Array>,
-  actions: ImageGenerationSetAction
+  loading: (data: MJMessage) => void
 ) => {
   const decoder = new TextDecoder();
 
@@ -16,35 +16,26 @@ const readStreamData = async (
 
     // Decode the value and add it to the jsonStringBuffer
     const decodedValue = decoder.decode(value);
-    // if (decodedValue === "") {
-    //   console.log("decodedValue is empty");
-    //   // close the stream
-    //   reader.releaseLock();
-    // }
     jsonStringBuffer += decodedValue;
 
-    // Regular expression to find JSON objects in the jsonStringBuffer
-    const jsonRegex = /{[^{}]*}/g;
-    let jsonMatch;
-
-    // Extract and process JSON objects from the jsonStringBuffer
-    while ((jsonMatch = jsonRegex.exec(jsonStringBuffer)) !== null) {
-      const jsonString = jsonMatch[0]; // Extract the JSON string
+    // Loop while there are newline characters in jsonStringBuffer
+    let newlineIndex = jsonStringBuffer.indexOf("\n");
+    while (newlineIndex !== -1) {
+      const jsonString = jsonStringBuffer.slice(0, newlineIndex);
+      jsonStringBuffer = jsonStringBuffer.slice(newlineIndex + 1);
 
       try {
-        const data = JSON.parse(jsonString);
+        const parsedMessage = JSON.parse(jsonString);
 
         const debug = process.env.NODE_ENV === "development";
-        console.log("data :", data);
-        data && actions.addImage(data);
+        debug && console.log("parsedMessage :", parsedMessage);
+        loading(parsedMessage);
       } catch (error: unknown) {
         // eslint-disable-next-line no-console
         console.log("readStreamData error :", error);
-        break;
       }
 
-      // Update the jsonStringBuffer to remove the processed JSON object
-      jsonStringBuffer = jsonStringBuffer.slice(jsonRegex.lastIndex);
+      newlineIndex = jsonStringBuffer.indexOf("\n");
     }
   }
 };
