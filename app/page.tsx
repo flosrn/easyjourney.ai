@@ -16,6 +16,8 @@ import {
 
 import FooterWithNewsletter from "~/components/footer/footer-with-newsletter";
 import Header from "~/components/header/header";
+import Image3D from "~/components/hero/image-3d";
+import StarsParticles from "~/components/hero/stars-particles";
 import TextAnimatedGradient from "~/components/hero/text-animated-gradient";
 import { Button } from "~/components/ui/button";
 
@@ -110,50 +112,45 @@ export default async function IndexPage() {
     <>
       <Header />
       <main>
-        <section
-          id="hero-section"
-          className="flex-center container relative w-full bg-background py-16 md:py-32 lg:h-screen -lg:overflow-hidden"
-        >
-          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-            <div className="lg:pr-8">
-              <div className="space-y-6 md:space-y-8 lg:max-w-xl">
-                <Image
-                  alt="Easyjourney Logo - Flying Fish"
-                  src="/images/logo/flyingfish_hero.svg"
-                  width={100}
-                  height={100}
-                  className="-md:hidden"
-                />
-                <h2 className="text-gradient-cosmos text-2xl font-bold lg:text-4xl">
-                  Embrace Simplicity
-                </h2>
-                <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl">
-                  Poster Creation Reinvented
-                </h1>
-                <p className="text-md leading-8 text-gray-600 md:text-lg">
-                  Unlock the power of{" "}
-                  <TextAnimatedGradient>Midjourney</TextAnimatedGradient> with a
-                  beautiful and user-friendly interface. Create stunning visuals
-                  with ease, no AI or prompt engineering expertise required
-                </p>
-                <div className="pt-2 md:pt-6">
-                  <Button asChild>
-                    <Link href="/create">Create Now</Link>
-                  </Button>
+        <section id="hero-section" className="flex-center relative lg:h-screen">
+          <div className="container relative w-full bg-background py-16 md:py-32  -lg:overflow-hidden">
+            <div className="relative z-10 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+              <div className="lg:pr-8">
+                <div className="space-y-6 md:space-y-8 lg:max-w-xl">
+                  <Image
+                    alt="Easyjourney Logo - Flying Fish"
+                    src="/images/logo/flyingfish_hero.svg"
+                    width={100}
+                    height={100}
+                    className="-md:hidden"
+                  />
+                  <h2 className="text-gradient-cosmos text-2xl font-bold lg:text-4xl">
+                    Embrace Simplicity
+                  </h2>
+                  <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl">
+                    Poster Creation Reinvented
+                  </h1>
+                  <p className="text-md leading-8 text-muted-foreground md:text-lg">
+                    Unlock the power of{" "}
+                    <TextAnimatedGradient>Midjourney</TextAnimatedGradient> with
+                    a beautiful and user-friendly interface. Create stunning
+                    visuals with ease, no AI or prompt engineering expertise
+                    required
+                  </p>
+                  <div className="pt-2 md:pt-6">
+                    <Button asChild>
+                      <Link href="/create">Create Art</Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
+              <Image3D />
             </div>
-            <Image
-              src="/images/landingpage/easyjourney_create.png"
-              alt="Easyjourney Product screenshot"
-              width={2704}
-              height={2030}
-              className="w-[48rem] max-w-none rounded-xl shadow-[0px_61.366004943847656px_155.088623046875px_-23.43065643310547px_rgba(137,90,246,0.13)] ring-1 ring-border/60 md:-ml-4 xl:-ml-24"
-            />
           </div>
+          <StarsParticles />
         </section>
         <section
-          id="features-global-section"
+          id="features-easy-section"
           className="container overflow-hidden bg-background py-20"
         >
           <div className="mx-auto max-w-2xl lg:pr-8 lg:pt-4">
@@ -203,7 +200,7 @@ export default async function IndexPage() {
           </div>
         </section>
         <section
-          id="features-filters-section"
+          id="features-creativity-section"
           className="container overflow-hidden bg-background py-24 sm:py-32"
         >
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
@@ -249,7 +246,7 @@ export default async function IndexPage() {
           </div>
         </section>
         <section
-          id="features-global-section"
+          id="features-community-section"
           className="flex-center container overflow-hidden bg-background py-24 sm:py-32"
         >
           <div className="mx-auto">

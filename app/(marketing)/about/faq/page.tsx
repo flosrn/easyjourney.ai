@@ -7,6 +7,12 @@ import {
 
 const accordionData = [
   {
+    value: "item-0",
+    trigger: "What is a poster?",
+    content:
+      "While 'image' is a general term, we believe that the term 'poster' better captures the potential of what you can create with Easyjourney. A 'poster' in this context isn't just any image; it's a piece of art that you can proudly display in the gallery or on your public profile. Our platform empowers you to create stunning posters, transforming a simple image generation process into an artistic journey.",
+  },
+  {
     value: "item-1",
     trigger: 'How does "credits" work ?',
     content:
@@ -16,7 +22,7 @@ const accordionData = [
     value: "item-2",
     trigger: "Is the website is in Beta ?",
     content:
-      "Yes, the website is in Beta and is still under development, so you may encounter some bugs or glitches, potentially when a new Midjourney update is released. Please report any issues you encounter through our Discord server. We're continually working to improve our services and we appreciate your feedback. Beta also means there is so much more to come and more features will be added soon, so stay tuned!",
+      "Yes, the website is in Beta and is still under development, so you may encounter some bugs, potentially when a new Midjourney update is released. Please report any issues you encounter through our Discord server. We're continually working to improve our services and we appreciate your feedback. Beta also means there is so much more to come and more features will be added soon, so stay tuned!",
   },
   {
     value: "item-3",
