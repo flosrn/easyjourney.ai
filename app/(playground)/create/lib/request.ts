@@ -24,7 +24,7 @@ export const imagine = async (
   prompt: string,
   loading: (data: MJMessage) => void
 ) => {
-  await midjourneyRequest("/api/midjourney/imagine", prompt, loading);
+  await midjourneyRequest("/api/imagine", prompt, loading);
 };
 
 export const upscale = async (
