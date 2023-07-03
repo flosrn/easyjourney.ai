@@ -33,10 +33,16 @@ export async function POST(request: Request) {
     });
 
     if (board && board.userId === actualUserId) {
-      const deleteCollaborator = await prisma.collaborator.delete({
-        data: {
+      const collaborator = await prisma.collaborator.findFirst({
+        where: {
           userId,
           boardId,
+        },
+      });
+
+      const deleteCollaborator = await prisma.collaborator.delete({
+        where: {
+          id: collaborator?.id,
         },
       });
 

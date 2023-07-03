@@ -42,6 +42,7 @@ export function AddOrDeleteButton({ boardId, userId, isCollaborator }) {
 
   const handleDeleteCollaborator = () => {
     console.log("handleDeleteCollaborator");
+    mutationDelete.mutate({ boardId, userId });
   };
 
   return (
