@@ -1,6 +1,6 @@
-// import { env } from "~/env.mjs";
-// import { channelId, serverId } from "~/utils/midjourneyUtils";
-// import { Midjourney } from "midjourney";
+import { env } from "~/env.mjs";
+import { channelId, serverId } from "~/utils/midjourneyUtils";
+import { Midjourney } from "midjourney";
 
 export const runtime = "edge";
 
@@ -10,16 +10,16 @@ export async function POST(request: Request) {
   const { prompt } = await request.json();
   console.log("prompt :", prompt);
 
-  // const client = new Midjourney({
-  //   ServerId: serverId,
-  //   ChannelId: channelId,
-  //   SalaiToken: env.DISCORD_SALAI_TOKEN,
-  //   HuggingFaceToken: env.HUGGINGFACE_TOKEN,
-  //   Debug: true,
-  //   Ws: true,
-  // });
-  // await client.init();
-  // console.log("client :", client);
+  const client = new Midjourney({
+    ServerId: serverId,
+    ChannelId: channelId,
+    SalaiToken: env.DISCORD_SALAI_TOKEN,
+    HuggingFaceToken: env.HUGGINGFACE_TOKEN,
+    Debug: true,
+    Ws: true,
+  });
+  await client.init();
+  console.log("client :", client);
   const encoder = new TextEncoder();
   const readable = new ReadableStream({
     start(controller) {
