@@ -26,7 +26,7 @@ export function SelectedUser({
 }: selectedUserProps) {
   return (
     <div className="flex h-16 w-full items-center justify-between border-2 border-solid border-red-600 hover:bg-accent">
-      <Link href={`/profile/${username}`} className="w-[85%]">
+      <Link href={`/profile/${username}`} className="w-[80%]">
         <div className="flex border-2">
           <div className=" flex h-full items-center justify-center">
             {image && (

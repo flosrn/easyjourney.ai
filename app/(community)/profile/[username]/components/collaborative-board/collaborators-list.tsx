@@ -5,6 +5,7 @@ import {
   CommandItem,
   CommandList,
 } from "~/components/ui/command";
+import { ScrollArea } from "~/components/ui/scroll-area";
 
 import { SelectedUser } from "./selected-users";
 
@@ -18,10 +19,10 @@ export function CollaboratorsList({ boardId, collaborators }) {
   return (
     <>
       <CommandInput placeholder="Type a command or search..." />
+      <ScrollArea className="w-full" type="always">
+        <CommandList>
+          <CommandEmpty>No collaborators on this board</CommandEmpty>
 
-      <CommandList>
-        <CommandEmpty>No collaborators on this board</CommandEmpty>
-        <CommandGroup heading="Collaborators">
           {collaboratorsWithStatus.map((user) => (
             <CommandItem key={user.id}>
               <SelectedUser
@@ -35,8 +36,8 @@ export function CollaboratorsList({ boardId, collaborators }) {
               />
             </CommandItem>
           ))}
-        </CommandGroup>
-      </CommandList>
+        </CommandList>
+      </ScrollArea>
     </>
   );
 }
