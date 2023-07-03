@@ -16,35 +16,34 @@ export async function POST(request: Request) {
     SalaiToken: env.DISCORD_SALAI_TOKEN,
     HuggingFaceToken: env.HUGGINGFACE_TOKEN,
     Debug: true,
-    Ws: true,
+    Ws: false,
   });
   await client.init();
-  console.log("client :", client);
   const encoder = new TextEncoder();
   const readable = new ReadableStream({
     start(controller) {
       console.log("imagine.start", prompt);
 
-      controller.enqueue(encoder.encode(`${JSON.stringify({ prompt })}\n`));
+      // controller.enqueue(encoder.encode(`${JSON.stringify({ prompt })}\n`));
 
-      // client
-      //   .Imagine(prompt, (uri: string, progress: string) => {
-      //     console.log("imagine.loading", uri);
-      //     controller.enqueue(
-      //       encoder.encode(`${JSON.stringify({ uri, progress })}\n`)
-      //     );
-      //   })
-      //   .then((msg) => {
-      //     console.log("imagine.done", msg);
-      //     controller.enqueue(encoder.encode(`${JSON.stringify(msg)}\n`));
-      //     client.Close();
-      //     controller.close();
-      //   })
-      //   .catch((error) => {
-      //     console.log("imagine.error", error);
-      //     client.Close();
-      //     controller.close();
-      //   });
+      client
+        .Imagine(prompt, (uri: string, progress: string) => {
+          console.log("imagine.loading", uri);
+          controller.enqueue(
+            encoder.encode(`${JSON.stringify({ uri, progress })}\n`)
+          );
+        })
+        .then((msg) => {
+          console.log("imagine.done", msg);
+          controller.enqueue(encoder.encode(`${JSON.stringify(msg)}\n`));
+          client.Close();
+          controller.close();
+        })
+        .catch((error) => {
+          console.log("imagine.error", error);
+          client.Close();
+          controller.close();
+        });
     },
   });
   return new Response(readable, {
