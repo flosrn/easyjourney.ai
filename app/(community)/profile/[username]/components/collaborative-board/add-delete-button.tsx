@@ -26,7 +26,12 @@ const deleteCollaborator = async ({ boardId, userId }) => {
   return data;
 };
 
-export function AddOrDeleteButton({ boardId, userId, isCollaborator }) {
+export function AddOrDeleteButton({
+  boardId,
+  userId,
+  isCollaborator,
+  collaborators,
+}) {
   const mutationAdd = useMutation({
     mutationFn: async () => addCollaborator({ boardId, userId }),
   });
@@ -38,6 +43,16 @@ export function AddOrDeleteButton({ boardId, userId, isCollaborator }) {
 
   const mutationDelete = useMutation({
     mutationFn: async () => deleteCollaborator({ boardId, userId }),
+    OnMutate: () => {
+      console.log("Mutation delete : OnMutate");
+      c;
+    },
+    onSuccess: () => {
+      console.log("Mutation delete : onSuccess");
+    },
+    OnError: () => {
+      console.log("Mutation delete : OnError");
+    },
   });
 
   const handleDeleteCollaborator = () => {
@@ -57,7 +72,7 @@ export function AddOrDeleteButton({ boardId, userId, isCollaborator }) {
         </Button>
       ) : (
         <Button
-          className="mr-1 h-7 w-7 p-1"
+          className="mr-1 h-7 w-7 shrink-0 p-1"
           variant="success"
           onClick={handleAddCollaborator}
         >

@@ -12,6 +12,7 @@ type selectedUserProps = {
   id: string;
   boardId: string;
   isCollaborator: boolean;
+  collaboratorsWithStatus?: any;
 };
 
 export function SelectedUser({
@@ -21,12 +22,13 @@ export function SelectedUser({
   id,
   boardId,
   isCollaborator,
+  collaborators,
 }: selectedUserProps) {
   return (
-    <div className="flex h-16 w-full items-center justify-between hover:bg-accent">
-      <Link href={`/profile/${username}`}>
-        <div className="flex">
-          <div className="mx-2 flex h-full items-center justify-center">
+    <div className="flex h-16 w-full items-center justify-between border-2 border-solid border-red-600 hover:bg-accent">
+      <Link href={`/profile/${username}`} className="w-[85%]">
+        <div className="flex border-2">
+          <div className=" flex h-full items-center justify-center">
             {image && (
               <Avatar className="h-12 w-12">
                 <AvatarImage src={image} referrerPolicy="no-referrer" />
@@ -35,17 +37,18 @@ export function SelectedUser({
             )}
           </div>
 
-          <div className="ml-2 flex flex-col justify-center">
-            <div className="font-bold">{name}</div>
-            <div className="truncate text-sm">@{username}</div>
+          <div className="ml-2 w-[70%] min-w-0 shrink-0 grow-0 flex-col justify-center border-2 border-red-400">
+            <div className="truncate font-bold">{name}</div>
+            <div className="truncate border-2 text-sm">@{username}</div>
           </div>
         </div>
       </Link>
-      <div>
+      <div className="w-[20%]">
         <AddOrDeleteButton
           boardId={boardId}
           userId={id}
           isCollaborator={isCollaborator}
+          collaborators={collaborators}
         />
       </div>
     </div>

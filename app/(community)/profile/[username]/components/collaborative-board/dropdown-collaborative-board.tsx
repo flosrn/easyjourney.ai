@@ -27,7 +27,7 @@ const getCollaborators = async (boardId: string) => {
     `/api/boards/collaborators/actual-collaborators?boardId=${boardId}`
   );
   const data = await response.json();
-  console.log("data", data);
+
   return data.users;
 };
 

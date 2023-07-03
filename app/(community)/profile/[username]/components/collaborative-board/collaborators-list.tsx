@@ -31,6 +31,7 @@ export function CollaboratorsList({ boardId, collaborators }) {
                 id={user.id}
                 boardId={boardId}
                 isCollaborator={user.isCollaborator}
+                collaborators={collaborators}
               />
             </CommandItem>
           ))}

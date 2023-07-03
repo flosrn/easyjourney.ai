@@ -35,14 +35,12 @@ const UserSkeleton = () => (
 export function AddCollaborators({ boardId, collaborators }) {
   const [search, setSearch] = useState("");
   const [userList, setUserList] = useState([]);
-  console.log("search", search);
 
   const { data: users, isLoading } = useQuery({
     queryKey: ["search-user", search],
     queryFn: async () => searchUser(search),
     enabled: search.length > 0,
   });
-  console.log("users", users);
 
   useEffect(() => {
     if (users && users.length > 0) {
