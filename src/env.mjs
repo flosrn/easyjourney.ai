@@ -27,6 +27,8 @@ const serverSchema = z.object({
   OPENAI_API_KEY: z.string().min(1),
   MIDJOURNEY_CSRF_TOKEN: z.string().min(1),
   MIDJOURNEY_CSRF_SESSION_TOKEN: z.string().min(1),
+  DISCORD_SALAI_TOKEN: z.string().min(1),
+  HUGGINGFACE_TOKEN: z.string().min(1),
 });
 
 /**
@@ -36,7 +38,6 @@ const serverSchema = z.object({
 const clientSchema = z.object({
   NEXT_PUBLIC_URL: z.string().url(),
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().min(1),
-  NEXT_PUBLIC_DISCORD_SALAI_TOKEN: z.string().min(1),
 });
 
 /**
@@ -59,9 +60,10 @@ const processEnv = {
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
   STRIPE_PRO_MONTHLY_PLAN_ID: process.env.STRIPE_PRO_MONTHLY_PLAN_ID,
   OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-  NEXT_PUBLIC_DISCORD_SALAI_TOKEN: process.env.NEXT_PUBLIC_DISCORD_SALAI_TOKEN,
   MIDJOURNEY_CSRF_TOKEN: process.env.MIDJOURNEY_CSRF_TOKEN,
   MIDJOURNEY_CSRF_SESSION_TOKEN: process.env.MIDJOURNEY_CSRF_SESSION_TOKEN,
+  DISCORD_SALAI_TOKEN: process.env.DISCORD_SALAI_TOKEN,
+  HUGGINGFACE_TOKEN: process.env.HUGGINGFACE_TOKEN,
 };
 
 // Don't touch the part below

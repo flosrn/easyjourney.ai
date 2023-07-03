@@ -4,6 +4,8 @@ import { Midjourney } from "midjourney";
 
 export const runtime = "edge";
 
+console.log("api/midjourney/imagine/route.ts");
+
 export async function POST(request: Request) {
   const { prompt } = await request.json();
   console.log("prompt :", prompt);
@@ -11,8 +13,8 @@ export async function POST(request: Request) {
   const client = new Midjourney({
     ServerId: serverId,
     ChannelId: channelId,
-    SalaiToken: env.NEXT_PUBLIC_DISCORD_SALAI_TOKEN,
-    HuggingFaceToken: process.env.HUGGINGFACE_TOKEN,
+    SalaiToken: env.DISCORD_SALAI_TOKEN,
+    HuggingFaceToken: env.HUGGINGFACE_TOKEN,
     Debug: true,
     Ws: true,
   });

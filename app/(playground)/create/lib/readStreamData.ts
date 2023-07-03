@@ -28,7 +28,7 @@ const readStreamData = async (
         const parsedMessage = JSON.parse(jsonString);
 
         const debug = process.env.NODE_ENV === "development";
-        debug && console.log("parsedMessage :", parsedMessage);
+        console.log("parsedMessage :", parsedMessage);
         loading(parsedMessage);
       } catch (error: unknown) {
         // eslint-disable-next-line no-console

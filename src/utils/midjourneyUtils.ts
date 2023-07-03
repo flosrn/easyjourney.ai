@@ -5,7 +5,7 @@ export const serverId = "1100971215138594907";
 export const channelId = "1100971252304330814";
 
 export const headers = {
-  Authorization: env.NEXT_PUBLIC_DISCORD_SALAI_TOKEN,
+  Authorization: env.DISCORD_SALAI_TOKEN,
 };
 
 export const retrieveMessages = async (limit = 50): Promise<APIMessage[]> => {
