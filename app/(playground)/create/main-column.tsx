@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import type { MJMessage } from "midjourney";
 import { useSession } from "next-auth/react";
+import Pusher from "pusher-js";
 import { Toaster } from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
@@ -192,6 +193,8 @@ const MainColumn = () => {
     handleDisableSelectors(false);
   };
 
+  const [ws, setWs] = React.useState<WebSocket | null>(null);
+
   // const imagineMutation = useMutation({
   //   mutationFn: async () =>
   //     imagine(prompt, (data: MJMessage) => {
@@ -212,7 +215,35 @@ const MainColumn = () => {
     await imagine(prompt, (data: MJMessage) => {
       setMessages(data);
     });
+
+    // if (ws) {
+    //   ws.send(prompt); // envoyer les données à votre serveur WebSocket
+    // } else {
+    //   console.log("WebSocket is not connected");
+    // }
   };
+
+  // useEffect(() => {
+  //   const socket = new WebSocket("ws://localhost:3002");
+  //   setWs(socket);
+  //
+  //   socket.addEventListener("open", () => {
+  //     console.log("WebSocket is connected");
+  //   });
+  //
+  //   socket.onmessage = (event) => {
+  //     console.log("Received:", event.data);
+  //     const data = JSON.parse(event.data);
+  //     console.log("data :", data);
+  //     // you can now use this data to update your UI
+  //     setMessages(data);
+  //   };
+  //
+  //   // Close the connection when the component is unmounted
+  //   return () => {
+  //     socket.close();
+  //   };
+  // }, []);
 
   return (
     <main className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">

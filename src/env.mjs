@@ -37,6 +37,7 @@ const serverSchema = z.object({
  */
 const clientSchema = z.object({
   NEXT_PUBLIC_URL: z.string().url(),
+  NEXT_PUBLIC_MIDJOURNEY_DOMAIN: z.string().min(1),
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().min(1),
 });
 
@@ -50,6 +51,7 @@ const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
   NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
   DATABASE_URL: process.env.DATABASE_URL,
+  NEXT_PUBLIC_MIDJOURNEY_DOMAIN: process.env.NEXT_PUBLIC_MIDJOURNEY_DOMAIN,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,

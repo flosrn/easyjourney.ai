@@ -12,7 +12,9 @@ const midjourneyRequest = async (
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt }),
   });
-  console.log("response :", response);
+  // console.log("response :", response);
+  // const data = await response.json();
+  // console.log("data :", data);
   const reader = response.body?.getReader();
   if (!reader) {
     throw new Error("Response body is null");
@@ -24,7 +26,7 @@ export const imagine = async (
   prompt: string,
   loading: (data: MJMessage) => void
 ) => {
-  await midjourneyRequest("/api/imagine", prompt, loading);
+  await midjourneyRequest("/api/pusher", prompt, loading);
 };
 
 export const upscale = async (

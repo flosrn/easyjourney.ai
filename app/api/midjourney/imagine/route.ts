@@ -4,11 +4,8 @@ import { Midjourney } from "midjourney";
 
 export const runtime = "edge";
 
-console.log("api/midjourney/imagine/route.ts");
-
 export async function POST(request: Request) {
   const { prompt } = await request.json();
-  console.log("prompt :", prompt);
 
   const client = new Midjourney({
     ServerId: serverId,
@@ -23,9 +20,6 @@ export async function POST(request: Request) {
   const readable = new ReadableStream({
     start(controller) {
       console.log("imagine.start", prompt);
-
-      // controller.enqueue(encoder.encode(`${JSON.stringify({ prompt })}\n`));
-
       client
         .Imagine(prompt, (uri: string, progress: string) => {
           console.log("imagine.loading", uri);
