@@ -1,31 +1,33 @@
 import { env } from "~/env.mjs";
 
+const isDev = process.env.NODE_ENV === "development";
+const websocketUrl = isDev
+  ? "ws://localhost:3002"
+  : `ws://${env.NEXT_PUBLIC_MIDJOURNEY_DOMAIN}`;
+
 export const runtime = "edge";
 
 export async function POST(request: Request) {
   const { prompt } = await request.json();
-  const isDev = process.env.NODE_ENV === "development";
-  const websocketUrl = isDev
-    ? "ws://localhost:3002"
-    : `ws://${env.NEXT_PUBLIC_MIDJOURNEY_DOMAIN}`;
+
   console.log("websocketUrl :", websocketUrl);
+
   const socket = new WebSocket(websocketUrl);
 
   socket.addEventListener("open", () => {
     console.log("WebSocket is connected");
-    socket.send(prompt);
+    prompt && socket.send(prompt);
   });
 
   const encoder = new TextEncoder();
 
   const readable = new ReadableStream({
     start(controller) {
-      // eslint-disable-next-line unicorn/prefer-add-event-listener
-      socket.onmessage = (event) => {
+      socket.addEventListener("message", (event) => {
         const data = JSON.parse(event.data);
         console.log("data :", data);
         controller.enqueue(encoder.encode(`${JSON.stringify(data)}\n`));
-      };
+      });
 
       socket.addEventListener("close", () => {
         console.log("WebSocket is closed");
