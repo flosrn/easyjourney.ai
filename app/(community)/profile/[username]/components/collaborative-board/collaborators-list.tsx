@@ -19,12 +19,13 @@ export function CollaboratorsList({ boardId, collaborators }) {
   return (
     <>
       <CommandInput placeholder="Type a command or search..." />
-      <ScrollArea className="w-full" type="always">
-        <CommandList>
+
+      <CommandList className=" border-2 border-red-500">
+        <ScrollArea className="h-64 w-full border-2" type="always">
           <CommandEmpty>No collaborators on this board</CommandEmpty>
 
           {collaboratorsWithStatus.map((user) => (
-            <CommandItem key={user.id}>
+            <CommandItem key={user.id} className="p-0">
               <SelectedUser
                 name={user.name}
                 username={user.username}
@@ -36,8 +37,8 @@ export function CollaboratorsList({ boardId, collaborators }) {
               />
             </CommandItem>
           ))}
-        </CommandList>
-      </ScrollArea>
+        </ScrollArea>
+      </CommandList>
     </>
   );
 }

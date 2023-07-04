@@ -25,9 +25,9 @@ export function SelectedUser({
   collaborators,
 }: selectedUserProps) {
   return (
-    <div className="flex h-16 w-full items-center justify-between border-2 border-solid border-red-600 hover:bg-accent">
+    <div className="flex h-16 w-full items-center justify-between hover:bg-accent">
       <Link href={`/profile/${username}`} className="w-[80%]">
-        <div className="flex border-2">
+        <div className="flex ">
           <div className=" flex h-full items-center justify-center">
             {image && (
               <Avatar className="h-12 w-12">
@@ -37,9 +37,9 @@ export function SelectedUser({
             )}
           </div>
 
-          <div className="ml-2 w-[70%] min-w-0 shrink-0 grow-0 flex-col justify-center border-2 border-red-400">
+          <div className="ml-2 w-[70%] min-w-0 shrink-0 grow-0 flex-col justify-center ">
             <div className="truncate font-bold">{name}</div>
-            <div className="truncate border-2 text-sm">@{username}</div>
+            <div className="truncate text-sm">@{username}</div>
           </div>
         </div>
       </Link>
