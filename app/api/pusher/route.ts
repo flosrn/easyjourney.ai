@@ -3,14 +3,12 @@ import { env } from "~/env.mjs";
 const isDev = process.env.NODE_ENV === "development";
 const websocketUrl = isDev
   ? "ws://localhost:3002"
-  : `ws://${env.NEXT_PUBLIC_MIDJOURNEY_DOMAIN}`;
+  : `wss://${env.NEXT_PUBLIC_MIDJOURNEY_DOMAIN}`;
 
 export const runtime = "edge";
 
 export async function POST(request: Request) {
   const { prompt } = await request.json();
-
-  console.log("websocketUrl :", websocketUrl);
 
   const socket = new WebSocket(websocketUrl);
 
