@@ -1,9 +1,4 @@
-import { env } from "~/env.mjs";
-
-const isDev = process.env.NODE_ENV === "development";
-const websocketUrl = isDev
-  ? "ws://localhost:3002"
-  : `wss://${env.NEXT_PUBLIC_MIDJOURNEY_DOMAIN}`;
+import { websocketUrl } from "./utils";
 
 export const runtime = "edge";
 
@@ -46,6 +41,7 @@ export async function POST(request: Request) {
 
         // If the message indicates the end of the stream, close the controller and clear the interval
         if (data.done) {
+          console.log("WebSocket is done");
           controller.close();
           clearInterval(intervalId);
           return;
@@ -54,10 +50,24 @@ export async function POST(request: Request) {
         controller.enqueue(encoder.encode(`${JSON.stringify(data)}\n`));
       });
 
+      socket.addEventListener("error", (error) => {
+        console.log("WebSocket encountered an error:", error);
+        const errorResponse = {
+          type: "error",
+          message: "An error occurred with the WebSocket connection.",
+          error,
+        };
+        controller.enqueue(
+          encoder.encode(`${JSON.stringify(errorResponse)}\n`)
+        );
+        controller.close();
+        clearInterval(intervalId);
+      });
+
       socket.addEventListener("close", () => {
         console.log("WebSocket is closed");
         controller.close();
-        clearInterval(intervalId); // clear the interval when the connection is closed
+        clearInterval(intervalId);
       });
     },
   });

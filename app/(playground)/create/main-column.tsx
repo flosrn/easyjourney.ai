@@ -193,14 +193,12 @@ const MainColumn = () => {
     handleDisableSelectors(false);
   };
 
-  const [ws, setWs] = React.useState<WebSocket | null>(null);
-
-  // const imagineMutation = useMutation({
-  //   mutationFn: async () =>
-  //     imagine(prompt, (data: MJMessage) => {
-  //       setMessages(data);
-  //     }),
-  // });
+  const imagineMutation = useMutation({
+    mutationFn: async () =>
+      imagine(prompt, (data: MJMessage) => {
+        setMessages(data);
+      }),
+  });
 
   const handleGenerate = async () => {
     if (promptValue.length <= 1) {
@@ -211,39 +209,8 @@ const MainColumn = () => {
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }, 100);
-    // await imagineMutation.mutateAsync();
-    await imagine(prompt, (data: MJMessage) => {
-      setMessages(data);
-    });
-
-    // if (ws) {
-    //   ws.send(prompt); // envoyer les données à votre serveur WebSocket
-    // } else {
-    //   console.log("WebSocket is not connected");
-    // }
+    await imagineMutation.mutateAsync();
   };
-
-  // useEffect(() => {
-  //   const socket = new WebSocket("ws://localhost:3002");
-  //   setWs(socket);
-  //
-  //   socket.addEventListener("open", () => {
-  //     console.log("WebSocket is connected");
-  //   });
-  //
-  //   socket.onmessage = (event) => {
-  //     console.log("Received:", event.data);
-  //     const data = JSON.parse(event.data);
-  //     console.log("data :", data);
-  //     // you can now use this data to update your UI
-  //     setMessages(data);
-  //   };
-  //
-  //   // Close the connection when the component is unmounted
-  //   return () => {
-  //     socket.close();
-  //   };
-  // }, []);
 
   return (
     <main className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">
@@ -297,7 +264,7 @@ const MainColumn = () => {
                 label="Generate"
                 Icon={BrushIcon}
                 clickHandler={handleGenerate}
-                // isLoading={isLoading}
+                isLoading={imagineMutation.isPending}
                 isDisabled={isEmpty}
               />
               {/*<Button onClick={handleGenerate} disabled={isLoading}>*/}
