@@ -21,7 +21,25 @@ export async function POST(request: Request) {
 
   const readable = new ReadableStream({
     start(controller) {
+      let intervalId: number | undefined = undefined;
+
+      const startInterval = () => {
+        // if a message is not received within 9.5 seconds, send loading
+        intervalId = setInterval(() => {
+          controller.enqueue(
+            encoder.encode(`${JSON.stringify({ progress: "loading" })}\n`)
+          );
+        }, 9500) as unknown as number;
+      };
+
+      // Start the interval when the ReadableStream is started
+      startInterval();
+
       socket.addEventListener("message", (event) => {
+        // When a message is received, clear the current interval and start a new one
+        clearInterval(intervalId);
+        startInterval();
+
         const data = JSON.parse(event.data);
         console.log("data :", data);
         controller.enqueue(encoder.encode(`${JSON.stringify(data)}\n`));
@@ -30,6 +48,7 @@ export async function POST(request: Request) {
       socket.addEventListener("close", () => {
         console.log("WebSocket is closed");
         controller.close();
+        clearInterval(intervalId); // clear the interval when the connection is closed
       });
     },
   });
