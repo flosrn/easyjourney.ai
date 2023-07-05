@@ -26,6 +26,7 @@ export async function POST(request: Request) {
       const startInterval = () => {
         // if a message is not received within 9.5 seconds, send loading
         intervalId = setInterval(() => {
+          console.log("Waiting for message...");
           controller.enqueue(
             encoder.encode(`${JSON.stringify({ progress: "loading" })}\n`)
           );
@@ -42,6 +43,14 @@ export async function POST(request: Request) {
 
         const data = JSON.parse(event.data);
         console.log("data :", data);
+
+        // If the message indicates the end of the stream, close the controller and clear the interval
+        if (data.done) {
+          controller.close();
+          clearInterval(intervalId);
+          return;
+        }
+
         controller.enqueue(encoder.encode(`${JSON.stringify(data)}\n`));
       });
 
