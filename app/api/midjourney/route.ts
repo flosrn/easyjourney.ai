@@ -1,4 +1,4 @@
-import { websocketUrl } from "./utils";
+import { errorResponse, websocketUrl } from "./utils";
 
 export const runtime = "edge";
 
@@ -37,7 +37,6 @@ export async function POST(request: Request) {
         startInterval();
 
         const data = JSON.parse(event.data);
-        console.log("data :", data);
 
         // If the message indicates the end of the stream, close the controller and clear the interval
         if (data.done) {
@@ -47,19 +46,24 @@ export async function POST(request: Request) {
           return;
         }
 
+        // If the message indicates an error, close the controller and clear the interval
+        if (data.error) {
+          console.log("WebSocket encountered an error:", data.error);
+          const error = errorResponse(data.error);
+          controller.enqueue(encoder.encode(`${JSON.stringify(error)}\n`));
+          controller.close();
+          clearInterval(intervalId);
+          return;
+        }
+
+        console.log("data :", data);
         controller.enqueue(encoder.encode(`${JSON.stringify(data)}\n`));
       });
 
-      socket.addEventListener("error", (error) => {
-        console.log("WebSocket encountered an error:", error);
-        const errorResponse = {
-          type: "error",
-          message: "An error occurred with the WebSocket connection.",
-          error,
-        };
-        controller.enqueue(
-          encoder.encode(`${JSON.stringify(errorResponse)}\n`)
-        );
+      socket.addEventListener("error", (errorEvent) => {
+        console.log("WebSocket encountered an error:", errorEvent);
+        const error = errorResponse(errorEvent);
+        controller.enqueue(encoder.encode(`${JSON.stringify(error)}\n`));
         controller.close();
         clearInterval(intervalId);
       });

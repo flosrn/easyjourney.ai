@@ -28,13 +28,13 @@ const readStreamData = async (
 
         const parsedMessage = JSON.parse(jsonString);
 
-        const debug = process.env.NODE_ENV === "development";
-        console.log("parsedMessage :", parsedMessage);
-
         if (parsedMessage.type === "error") {
-          onError(new Error(parsedMessage.message));
+          onError(new Error(parsedMessage.error));
           return;
         }
+
+        const debug = process.env.NODE_ENV === "development";
+        console.log("parsedMessage :", parsedMessage);
 
         loading(parsedMessage);
 
