@@ -44,7 +44,7 @@ const ImageAnimationSelect = ({
       >
         <Image
           alt={prompt}
-          src={image ?? discordImageUrl}
+          src={image}
           width={width ?? 500}
           height={height ?? 500}
           unoptimized
