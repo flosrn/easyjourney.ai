@@ -68,7 +68,7 @@
     "lucide-react": "0.258.0",
     "micro": "^10.0.1",
     "micro-cors": "^0.1.1",
-    "midjourney": "github:flosrn/midjourney-client#main",
+    "midjourney": "github:flosrn/midjourney-api",
     "next": "13.4.8",
     "next-auth": "^4.22.1",
     "next-themes": "npm:@wits/next-themes@^0.2.16",
