@@ -1,18 +1,21 @@
 import type { MJMessage } from "midjourney";
 import { toast } from "react-hot-toast";
 
+import type { GenerationType } from "../store/midjourneyStore";
 import readStreamData from "./readStreamData";
 
 const midjourneyRequest = async (
-  url: string,
+  generationType: GenerationType,
   prompt: string,
+  content: MJMessage | undefined,
+  index: number | null,
   loading: (data: MJMessage) => void,
   onError: (error: Error) => void
 ) => {
-  const response = await fetch(url, {
+  const response = await fetch("/api/midjourney", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ prompt }),
+    body: JSON.stringify({ generationType, prompt, index, content }),
   });
 
   if (!response.ok) {
@@ -30,31 +33,64 @@ const midjourneyRequest = async (
   await readStreamData(reader, loading, onError);
 };
 
-export const imagine = async (
-  prompt: string,
-  loading: (data: MJMessage) => void
-) => {
+export const generate = async ({
+  generationType,
+  prompt,
+  content,
+  index,
+  loading,
+}: {
+  generationType: GenerationType;
+  prompt: string;
+  content?: MJMessage;
+  index: number | null;
+  loading: (data: MJMessage) => void;
+}) => {
   try {
-    await midjourneyRequest("/api/midjourney", prompt, loading, (error) => {
-      console.error("An error occurred while reading the stream", error);
-      toast.error("An error occurred, please try again.");
-    });
+    await midjourneyRequest(
+      generationType,
+      prompt,
+      content,
+      index,
+      loading,
+      (error) => {
+        console.error("An error occurred while reading the stream", error);
+        toast.error("An error occurred, please try again.");
+      }
+    );
   } catch (error: unknown) {
     console.error("A network error occurred", error);
     // errorHandler(error);  // Call an error handler function
   }
 };
 
-// export const upscale = async (
-//   prompt: string,
-//   loading: (data: MJMessage) => void
-// ) => {
-//   await midjourneyRequest("/api/midjourney/upscale", prompt, loading);
-// };
-//
-// export const variation = async (
-//   prompt: string,
-//   loading: (data: MJMessage) => void
-// ) => {
-//   await midjourneyRequest("/api/midjourney/variation", prompt, loading);
-// };
+export const savePoster = async ({
+  poster,
+  options,
+  selectedImage,
+}: {
+  poster: MJMessage;
+  options: Record<string, boolean | number | string | null | undefined>;
+  selectedImage: number | null;
+}) => {
+  try {
+    console.log("poster :", poster);
+    const response = await fetch("/api/posters/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...poster, options, selectedImage }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error during save! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("save data :", data);
+    return data;
+  } catch (error: unknown) {
+    console.error("A network error occurred", error);
+    // errorHandler(error);  // Call an error handler function
+    throw error;
+  }
+};

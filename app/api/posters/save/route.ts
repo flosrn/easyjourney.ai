@@ -18,37 +18,45 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { prompt, filename, referencedImage } = body;
-    const { image, imageSelected, version, ...rest } = body;
+    console.log("body :", body);
+    const { fullPrompt, filename, jobId, uri, referencedMessage } = body;
+    const { image, selectedImage, options } = body;
+    const { textPrompt, ...restOptions } = options;
 
-    const title = getPosterTitle(prompt);
-    const jobId = referencedImage && extractJobId(referencedImage.filename);
+    const title = getPosterTitle(textPrompt);
+    const baseJobId =
+      referencedMessage && extractJobId(referencedMessage.filename);
     const mjImageUrl =
-      jobId && `${BASE_MIDJOURNEY_URL}${jobId}/0_${imageSelected - 1}.webp`;
+      jobId && `${BASE_MIDJOURNEY_URL}${baseJobId}/0_${selectedImage - 1}.webp`;
 
-    const referencedImageWithJobId = {
-      ...referencedImage,
-      jobId,
+    console.log("mjImageUrl :", mjImageUrl);
+
+    const referencedMessageWithJobId = {
+      ...referencedMessage,
+      jobId: baseJobId,
     };
 
     const data = await prisma.poster.create({
       data: {
-        ...rest,
-        image: mjImageUrl || image,
+        ...restOptions,
+        prompt: textPrompt,
+        image: mjImageUrl || uri,
         title,
-        prompt,
+        fullPrompt,
         filename,
         jobId,
-        discordImageUrl: image,
+        discordImageUrl: uri,
         mjImageUrl,
-        model: version,
         userId: session.user.id,
-        referencedImage: referencedImageWithJobId,
+        referencedImage: referencedMessageWithJobId,
       },
     });
-    return NextResponse.json({ status: 201, data });
+    return NextResponse.json({ data }, { status: 201 });
   } catch (error: unknown) {
     console.error(error);
-    return NextResponse.json({ status: 500, message: "Internal Server Error" });
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

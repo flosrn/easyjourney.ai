@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import type { MJMessage } from "midjourney";
 import { useSession } from "next-auth/react";
-import Pusher from "pusher-js";
 import { Toaster } from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
@@ -28,15 +27,17 @@ import { cn } from "~/lib/classNames";
 
 import FiltersBadge from "./components/badge/filters-badge";
 import ActionButton from "./components/buttons/action-button";
+import ActionButtonsContainer from "./components/buttons/action-buttons-container";
 import FiltersDialog from "./components/dialog/filters-dialog";
 import ImageContainer from "./components/image/image-container";
 import TextareaPrompt from "./components/input/textarea-prompt";
 import { aspectRatios } from "./data/aspectRatios";
-import { imagine } from "./lib/request";
+import { generate, savePoster } from "./lib/request";
 import SideColumn from "./side-column";
 import { useChaosStore } from "./store/chaosStore";
 import { useFilterStore } from "./store/filterStore";
 import { useMessageStore } from "./store/messageStore";
+import { useMidjourneyStore } from "./store/midjourneyStore";
 import { usePromptStore } from "./store/promptStore";
 import { useQualityStore } from "./store/qualityStore";
 import { useRatioStore } from "./store/ratioStore";
@@ -47,11 +48,36 @@ import { useTileStore } from "./store/tileStore";
 import { useVersionStore } from "./store/versionStore";
 
 const MainColumn = () => {
-  const [messages, setMessages, clearMessages] = useMessageStore((state) => [
+  const [
+    messages,
+    setMessages,
+    currentMessageIndex,
+    setCurrentMessageIndex,
+    clearMessages,
+  ] = useMessageStore((state) => [
     state.messages,
     state.setMessages,
+    state.currentMessageIndex,
+    state.setCurrentMessageIndex,
     state.clearMessages,
   ]);
+
+  const [
+    generationType,
+    { isLoading, isSuccess, isError },
+    setRequestState,
+    selectedImage,
+  ] = useMidjourneyStore((state) => [
+    state.generationType,
+    state.requestState,
+    state.setRequestState,
+    state.selectedImage,
+  ]);
+
+  // console.log("selectedImage :", selectedImage);
+  // console.log("isLoading :", isLoading);
+  // console.log("isSuccess :", isSuccess);
+  // console.log("isError :", isError);
 
   const [chaosValue, setChaosValue, setIsChaosSelectorDisabled] = useChaosStore(
     (state) => [
@@ -143,11 +169,14 @@ const MainColumn = () => {
   const ratioTrim = ratio ? ` ${ratio}` : "";
   const seed = seedValue ? ` --seed ${seedValue}` : "";
   const options = {
+    textPrompt: promptValue,
+    style: styles,
+    ratio: ratioValue,
     chaos: chaosValue,
     stylize: stylizeValue,
     stop: stopValue,
     quality: qualityValue,
-    version: versionValue,
+    model: versionValue,
     tile: tileValue,
     seed: seedValue,
   };
@@ -193,11 +222,44 @@ const MainColumn = () => {
     handleDisableSelectors(false);
   };
 
-  const imagineMutation = useMutation({
-    mutationFn: async () =>
-      imagine(prompt, (data: MJMessage) => {
-        setMessages(data);
-      }),
+  const isImagine = generationType === "imagine";
+  const isImagineLoading = isLoading && isImagine;
+
+  const generationMutation = useMutation({
+    mutationFn: async () => {
+      await (generationType === "save"
+        ? savePoster({
+            poster: messages[currentMessageIndex],
+            options,
+            selectedImage,
+          })
+        : generate({
+            generationType,
+            prompt,
+            content: messages[currentMessageIndex],
+            index: selectedImage,
+            loading: (data: MJMessage) => {
+              if (data.progress === "waiting") return;
+              setMessages(data);
+            },
+          }));
+    },
+    onMutate: () => {
+      console.log("onMutate");
+      setRequestState({ isLoading: true, isSuccess: false, isError: false });
+    },
+    onError: (error) => {
+      console.log("onError:", error);
+      setRequestState({ isError: true, isLoading: false });
+    },
+    onSuccess: () => {
+      console.log("onSuccess");
+      setRequestState({ isSuccess: true, isLoading: false });
+    },
+    onSettled: () => {
+      console.log("onSettled");
+      setRequestState({ isLoading: false });
+    },
   });
 
   const handleGenerate = async () => {
@@ -209,7 +271,7 @@ const MainColumn = () => {
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }, 100);
-    await imagineMutation.mutateAsync();
+    await generationMutation.mutateAsync();
   };
 
   return (
@@ -261,11 +323,12 @@ const MainColumn = () => {
                 </Button>
               </>
               <ActionButton
+                type="imagine"
                 label="Generate"
                 Icon={BrushIcon}
                 clickHandler={handleGenerate}
-                isLoading={imagineMutation.isPending}
-                isDisabled={isEmpty}
+                // isLoading={isLoading}
+                isDisabled={isEmpty || isImagineLoading}
               />
               {/*<Button onClick={handleGenerate} disabled={isLoading}>*/}
               {/*  {isGenerationLoading ? (*/}
@@ -287,117 +350,7 @@ const MainColumn = () => {
             />
             <SideColumn className="lg:hidden" />
             <ImageContainer className="" />
-            {/*<motion.div layout className="flex justify-center space-x-2">*/}
-            {/*  {isImageUpscaled ? (*/}
-            {/*    <>*/}
-            {/*      <motion.div layout className="flex-center mt-4">*/}
-            {/*        <Button*/}
-            {/*          onClick={async () =>*/}
-            {/*            variationImage(*/}
-            {/*              imageSelected,*/}
-            {/*              currentImage,*/}
-            {/*              "zoom-out x1.5"*/}
-            {/*            )*/}
-            {/*          }*/}
-            {/*          disabled={isLoading || imageSelected === 0}*/}
-            {/*          variant="outline"*/}
-            {/*        >*/}
-            {/*          {isVariationLoading ? (*/}
-            {/*            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
-            {/*          ) : (*/}
-            {/*            <ZoomOutIcon className="mr-2 h-4 w-4" />*/}
-            {/*          )}*/}
-            {/*          Zoom out x1.5*/}
-            {/*        </Button>*/}
-            {/*      </motion.div>*/}
-            {/*      <motion.div layout className="flex-center mt-4">*/}
-            {/*        <Button*/}
-            {/*          onClick={async () =>*/}
-            {/*            variationImage(*/}
-            {/*              imageSelected,*/}
-            {/*              currentImage,*/}
-            {/*              "zoom-out x2"*/}
-            {/*            )*/}
-            {/*          }*/}
-            {/*          disabled={isLoading || imageSelected === 0}*/}
-            {/*          variant="secondary"*/}
-            {/*        >*/}
-            {/*          {isUpscaleLoading ? (*/}
-            {/*            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
-            {/*          ) : (*/}
-            {/*            <ZoomOutIcon className="mr-2 h-4 w-4" />*/}
-            {/*          )}*/}
-            {/*          Zoom out x2*/}
-            {/*        </Button>*/}
-            {/*      </motion.div>*/}
-            {/*    </>*/}
-            {/*  ) : (*/}
-            {/*    <>*/}
-            {/*      <motion.div layout className="flex-center mt-4">*/}
-            {/*        <Button*/}
-            {/*          onClick={async () =>*/}
-            {/*            variationImage(imageSelected, currentImage)*/}
-            {/*          }*/}
-            {/*          disabled={*/}
-            {/*            isLoading || imageSelected === 0 || isImageUpscaled*/}
-            {/*          }*/}
-            {/*          variant="outline"*/}
-            {/*        >*/}
-            {/*          {isVariationLoading ? (*/}
-            {/*            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
-            {/*          ) : (*/}
-            {/*            <IterationCcwIcon className="mr-2 h-4 w-4" />*/}
-            {/*          )}*/}
-            {/*          Variation*/}
-            {/*        </Button>*/}
-            {/*      </motion.div>*/}
-            {/*      <motion.div layout className="flex-center mt-4">*/}
-            {/*        <Button*/}
-            {/*          onClick={async () =>*/}
-            {/*            upscaleImage(prompt, imageSelected, currentImage)*/}
-            {/*          }*/}
-            {/*          disabled={*/}
-            {/*            isLoading || imageSelected === 0 || isImageUpscaled*/}
-            {/*          }*/}
-            {/*          variant="secondary"*/}
-            {/*        >*/}
-            {/*          {isUpscaleLoading ? (*/}
-            {/*            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
-            {/*          ) : (*/}
-            {/*            <ArrowBigUpIcon className="mr-2 h-4 w-4" />*/}
-            {/*          )}*/}
-            {/*          Upscale*/}
-            {/*        </Button>*/}
-            {/*      </motion.div>*/}
-            {/*    </>*/}
-            {/*  )}*/}
-            {/*  {isImageUpscaled && (*/}
-            {/*    <motion.div layout className="flex-center mt-4">*/}
-            {/*      <Button*/}
-            {/*        onClick={async () =>*/}
-            {/*          uploadImage(*/}
-            {/*            currentImage,*/}
-            {/*            promptValue,*/}
-            {/*            ratioValue,*/}
-            {/*            styles,*/}
-            {/*            imageSelected,*/}
-            {/*            options,*/}
-            {/*            username*/}
-            {/*          )*/}
-            {/*        }*/}
-            {/*        disabled={isUploadLoading}*/}
-            {/*        variant="success"*/}
-            {/*      >*/}
-            {/*        {isUploadLoading ? (*/}
-            {/*          <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
-            {/*        ) : (*/}
-            {/*          <SaveIcon className="mr-2 h-4 w-4" />*/}
-            {/*        )}*/}
-            {/*        Save*/}
-            {/*      </Button>*/}
-            {/*    </motion.div>*/}
-            {/*  )}*/}
-            {/*</motion.div>*/}
+            <ActionButtonsContainer clickHandler={handleGenerate} />
           </div>
         </div>
       </div>

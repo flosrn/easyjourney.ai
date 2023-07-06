@@ -3,13 +3,13 @@ import { errorResponse, websocketUrl } from "./utils";
 export const runtime = "edge";
 
 export async function POST(request: Request) {
-  const { prompt } = await request.json();
+  const body = await request.json();
 
   const socket = new WebSocket(websocketUrl);
 
   socket.addEventListener("open", () => {
     console.log("WebSocket is connected");
-    prompt && socket.send(prompt);
+    socket.send(JSON.stringify(body));
   });
 
   const encoder = new TextEncoder();
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
         intervalId = setInterval(() => {
           console.log("Waiting for message...");
           controller.enqueue(
-            encoder.encode(`${JSON.stringify({ progress: "loading" })}\n`)
+            encoder.encode(`${JSON.stringify({ progress: "waiting" })}\n`)
           );
         }, 9500) as unknown as number;
       };
@@ -38,14 +38,6 @@ export async function POST(request: Request) {
 
         const data = JSON.parse(event.data);
 
-        // If the message indicates the end of the stream, close the controller and clear the interval
-        if (data.done) {
-          console.log("WebSocket is done");
-          controller.close();
-          clearInterval(intervalId);
-          return;
-        }
-
         // If the message indicates an error, close the controller and clear the interval
         if (data.error) {
           console.log("WebSocket encountered an error:", data.error);
@@ -56,7 +48,21 @@ export async function POST(request: Request) {
           return;
         }
 
-        console.log("data :", data);
+        // If the message indicates the end of the stream, close the controller and clear the interval
+        if (data.progress === "done") {
+          const formattedData = {
+            ...data,
+            fullPrompt: data.content.split("**")[1],
+            jobId: data.hash,
+          };
+          const message = `${JSON.stringify(formattedData)}\n`;
+          controller.enqueue(encoder.encode(message));
+          console.log("WebSocket is done");
+          controller.close();
+          clearInterval(intervalId);
+          return;
+        }
+
         controller.enqueue(encoder.encode(`${JSON.stringify(data)}\n`));
       });
 

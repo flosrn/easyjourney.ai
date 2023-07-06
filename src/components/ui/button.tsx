@@ -4,6 +4,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "~/lib/classNames";
 
+export type ButtonVariant =
+  | "default"
+  | "destructive"
+  | "error"
+  | "ghost"
+  | "link"
+  | "outline"
+  | "secondary"
+  | "success"
+  | null;
+
 const buttonVariants = cva(
   "inline-flex select-none items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {

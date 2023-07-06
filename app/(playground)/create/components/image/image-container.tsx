@@ -7,7 +7,6 @@ import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 
 import { cn } from "~/lib/classNames";
 
-import { useImageGenerationStore } from "../../store/imageGenerationStore";
 import { useRatioStore } from "../../store/ratioStore";
 import { ImageGrid } from "./image-grid";
 import LoadingDots from "./loading-dots";
@@ -15,6 +14,7 @@ import LoadingDots from "./loading-dots";
 import "react-medium-image-zoom/dist/styles.css";
 
 import { useMessageStore } from "../../store/messageStore";
+import { useMidjourneyStore } from "../../store/midjourneyStore";
 
 type ImageContainerProps = {
   className?: string;
@@ -27,36 +27,27 @@ const ImageContainer = ({ className }: ImageContainerProps) => {
     setIsZoomed(shouldZoom);
   }, []);
 
-  const [
-    images,
-    imageIndex,
-    selectedImage,
-    setSelectedImage,
-    imageType,
-    isLoading,
-  ] = useImageGenerationStore((state) => [
-    state.images,
-    state.imageIndex,
-    state.selectedImage,
-    state.setSelectedImage,
-    state.imageType,
-    state.isLoading,
-  ]);
-  const [messages, setMessages, clearMessages] = useMessageStore((state) => [
+  const [messages, currentMessageIndex] = useMessageStore((state) => [
     state.messages,
-    state.setMessages,
-    state.clearMessages,
+    state.currentMessageIndex,
   ]);
+  const [generationType, { isLoading }, selectedImage, setSelectedImage] =
+    useMidjourneyStore((state) => [
+      state.generationType,
+      state.requestState,
+      state.selectedImage,
+      state.setSelectedImage,
+    ]);
   const selectedAspectRatio = useRatioStore(
     (state) => state.selectedAspectRatio
   );
   const { value: ratio } = selectedAspectRatio;
   const hasImage = messages.length > 0;
-  const currentImageUrl = messages.at(-1)?.uri;
-  const hasImageGrid =
-    hasImage &&
-    !isLoading &&
-    (imageType === "generation" || imageType === "variation");
+  const currentImageUrl = messages[currentMessageIndex]?.uri;
+  const isImagine = generationType === "imagine";
+  const hasImageGrid = hasImage && !isLoading && isImagine;
+
+  // console.log("currentImageUrl :", currentImageUrl);
 
   return (
     <div
@@ -97,14 +88,14 @@ const ImageContainer = ({ className }: ImageContainerProps) => {
               "overflow-hidden": hasImageGrid,
             })}
           >
-            {currentImageUrl && (
+            {currentImageUrl ? (
               <ControlledZoom
                 isZoomed={isZoomed}
                 onZoomChange={handleZoomChange}
               >
                 <img src={currentImageUrl} alt="" className="rounded-md" />
               </ControlledZoom>
-            )}
+            ) : null}
             {!isLoading && (
               <div
                 onClick={() => setIsZoomed(true)}
