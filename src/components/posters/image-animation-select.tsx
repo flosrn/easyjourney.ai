@@ -12,6 +12,7 @@ type ImageAnimationSelectProps = {
   prompt: string;
   image: string;
   width?: number;
+  discordImageUrl: string | null;
   height?: number;
 };
 
@@ -20,6 +21,7 @@ const ImageAnimationSelect = ({
   prompt,
   image,
   width,
+  discordImageUrl,
   height,
 }: ImageAnimationSelectProps) => {
   const selectedPosters = useSelectPosterStore(
@@ -42,9 +44,10 @@ const ImageAnimationSelect = ({
       >
         <Image
           alt={prompt}
-          src={image}
+          src={image ?? discordImageUrl}
           width={width ?? 500}
           height={height ?? 500}
+          unoptimized
           className="rounded-lg"
         />
       </motion.div>

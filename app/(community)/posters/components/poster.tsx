@@ -17,6 +17,7 @@ const Poster = ({
   id,
   prompt,
   image,
+  discordImageUrl,
   width,
   height,
   likes,
@@ -31,6 +32,7 @@ const Poster = ({
           id={id}
           prompt={prompt}
           image={image}
+          discordImageUrl={discordImageUrl}
           width={width ?? 500}
           height={height ?? 500}
         />

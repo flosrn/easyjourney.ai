@@ -19,8 +19,9 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     console.log("body :", body);
-    const { fullPrompt, filename, jobId, uri, referencedMessage } = body;
-    const { image, selectedImage, options } = body;
+    const { fullPrompt, filename, jobId, uri, attachment, referencedMessage } =
+      body;
+    const { selectedImage, options } = body;
     const { textPrompt, ...restOptions } = options;
 
     const title = getPosterTitle(textPrompt);
@@ -41,6 +42,8 @@ export async function POST(request: Request) {
         ...restOptions,
         prompt: textPrompt,
         image: mjImageUrl || uri,
+        width: attachment.width,
+        height: attachment.height,
         title,
         fullPrompt,
         filename,

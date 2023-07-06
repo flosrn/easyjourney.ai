@@ -50,6 +50,7 @@ export async function POST(request: Request) {
 
         // If the message indicates the end of the stream, close the controller and clear the interval
         if (data.progress === "done") {
+          console.log("data :", data);
           const formattedData = {
             ...data,
             fullPrompt: data.content.split("**")[1],
