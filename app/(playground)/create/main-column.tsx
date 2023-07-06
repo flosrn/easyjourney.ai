@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import type { MJMessage } from "midjourney";
 import { useSession } from "next-auth/react";
-import { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 
 import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
@@ -67,11 +67,13 @@ const MainColumn = () => {
     { isLoading, isSuccess, isError },
     setRequestState,
     selectedImage,
+    setGenerationType,
   ] = useMidjourneyStore((state) => [
     state.generationType,
     state.requestState,
     state.setRequestState,
     state.selectedImage,
+    state.setGenerationType,
   ]);
 
   // console.log("selectedImage :", selectedImage);
@@ -222,6 +224,7 @@ const MainColumn = () => {
     handleDisableSelectors(false);
   };
 
+  const currentMessage = messages[currentMessageIndex];
   const isImagine = generationType === "imagine";
   const isImagineLoading = isLoading && isImagine;
 
@@ -229,14 +232,14 @@ const MainColumn = () => {
     mutationFn: async () => {
       await (generationType === "save"
         ? savePoster({
-            poster: messages[currentMessageIndex],
+            poster: currentMessage,
             options,
             selectedImage,
           })
         : generate({
             generationType,
             prompt,
-            content: messages[currentMessageIndex],
+            content: currentMessage,
             index: selectedImage,
             loading: (data: MJMessage) => {
               if (data.progress === "waiting") return;
@@ -250,11 +253,18 @@ const MainColumn = () => {
     },
     onError: (error) => {
       console.log("onError:", error);
+      const currentGenerationType = currentMessage.referencedMessage
+        ? "upscale"
+        : "imagine";
+      setGenerationType(currentGenerationType);
       setRequestState({ isError: true, isLoading: false });
+      toast.error(error.message);
     },
     onSuccess: () => {
       console.log("onSuccess");
       setRequestState({ isSuccess: true, isLoading: false });
+      toast.success(`
+        ${generationType === "save" ? "Poster saved!" : "Poster generated!"}`);
     },
     onSettled: () => {
       console.log("onSettled");
@@ -327,7 +337,6 @@ const MainColumn = () => {
                 label="Generate"
                 Icon={BrushIcon}
                 clickHandler={handleGenerate}
-                // isLoading={isLoading}
                 isDisabled={isEmpty || isImagineLoading}
               />
               {/*<Button onClick={handleGenerate} disabled={isLoading}>*/}

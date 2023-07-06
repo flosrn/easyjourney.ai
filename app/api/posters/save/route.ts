@@ -18,7 +18,6 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    console.log("body :", body);
     const { fullPrompt, filename, jobId, uri, attachment, referencedMessage } =
       body;
     const { selectedImage, options } = body;
@@ -29,8 +28,6 @@ export async function POST(request: Request) {
       referencedMessage && extractJobId(referencedMessage.filename);
     const mjImageUrl =
       jobId && `${BASE_MIDJOURNEY_URL}${baseJobId}/0_${selectedImage - 1}.webp`;
-
-    console.log("mjImageUrl :", mjImageUrl);
 
     const referencedMessageWithJobId = {
       ...referencedMessage,

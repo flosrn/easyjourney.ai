@@ -21,10 +21,8 @@ const ActionButtonsContainer = ({
   const isImagine = generationType === "imagine";
   const isUpscale = generationType === "upscale";
 
-  console.log("generationType :", generationType);
-
   return (
-    <div className="mt-2 grid grid-flow-col justify-center gap-2">
+    <div className="mt-4 grid grid-flow-col justify-center gap-2">
       <ActionButton
         type="upscale"
         label="Upscale"
