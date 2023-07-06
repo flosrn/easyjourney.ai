@@ -9,6 +9,9 @@ export async function POST(request: Request) {
 
   socket.addEventListener("open", () => {
     console.log("WebSocket is connected");
+    if (body.attachment) {
+      body.attachment = undefined;
+    }
     socket.send(JSON.stringify(body));
   });
 
