@@ -157,7 +157,7 @@ dependencies:
     version: 0.1.1
   midjourney:
     specifier: github:flosrn/midjourney-api
-    version: github.com/flosrn/midjourney-api/be37c6df386b2c085abcf553f373d01943940d73(bufferutil@4.0.7)(utf-8-validate@6.0.3)
+    version: github.com/flosrn/midjourney-api/ebabcd7c5dd96fbc913727cb93cd92bf303a9820(bufferutil@4.0.7)(utf-8-validate@6.0.3)
   next:
     specifier: 13.4.9
     version: 13.4.9(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)
@@ -2984,6 +2984,10 @@ packages:
     resolution: {integrity: sha512-eBvWn1lvIApYMhzQMsu9ciLfkBY499mFZlNqG+/9WR7PVlroQw0vG30cOQQbaKz3sCEc44TAOu2ykzqXSNnwag==}
     dev: true
 
+  /async@3.2.4:
+    resolution: {integrity: sha512-iAB+JbDEGXhyIUavoDl9WP/Jj106Kz9DEn1DPgYw5ruDn0e3Wgi3sKFm55sASdGBNOQB8F59d9qQ7deqrHA8wQ==}
+    dev: false
+
   /asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: false
@@ -4185,10 +4189,6 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /eventemitter3@4.0.7:
-    resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
-    dev: false
-
   /execa@5.1.1:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
     engines: {node: '>=10'}
@@ -5263,12 +5263,6 @@ packages:
       mime-db: 1.52.0
     dev: false
 
-  /mime@3.0.0:
-    resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    dev: false
-
   /mimic-fn@2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
     engines: {node: '>=6'}
@@ -5606,11 +5600,6 @@ packages:
       type-check: 0.4.0
     dev: true
 
-  /p-finally@1.0.0:
-    resolution: {integrity: sha512-LICb2p9CB7FS+0eR1oqWnHhp0FljGLZCWBE9aix0Uye9W8LTQPwMTYVGWQWIw9RdQiDg4+epXQODwIYJtSJaow==}
-    engines: {node: '>=4'}
-    dev: false
-
   /p-limit@2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
     engines: {node: '>=6'}
@@ -5638,21 +5627,6 @@ packages:
     dependencies:
       p-limit: 3.1.0
     dev: true
-
-  /p-queue@6.6.2:
-    resolution: {integrity: sha512-RwFpb72c/BhQLEXIZ5K2e+AhgNVmIejGlTgiB9MzZ0e93GRvqZ7uSi0dvRF7/XIXDeNkra2fNHBxTyPDGySpjQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      eventemitter3: 4.0.7
-      p-timeout: 3.2.0
-    dev: false
-
-  /p-timeout@3.2.0:
-    resolution: {integrity: sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg==}
-    engines: {node: '>=8'}
-    dependencies:
-      p-finally: 1.0.0
-    dev: false
 
   /p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
@@ -7509,17 +7483,16 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  github.com/flosrn/midjourney-api/be37c6df386b2c085abcf553f373d01943940d73(bufferutil@4.0.7)(utf-8-validate@6.0.3):
-    resolution: {tarball: https://codeload.github.com/flosrn/midjourney-api/tar.gz/be37c6df386b2c085abcf553f373d01943940d73}
-    id: github.com/flosrn/midjourney-api/be37c6df386b2c085abcf553f373d01943940d73
+  github.com/flosrn/midjourney-api/ebabcd7c5dd96fbc913727cb93cd92bf303a9820(bufferutil@4.0.7)(utf-8-validate@6.0.3):
+    resolution: {tarball: https://codeload.github.com/flosrn/midjourney-api/tar.gz/ebabcd7c5dd96fbc913727cb93cd92bf303a9820}
+    id: github.com/flosrn/midjourney-api/ebabcd7c5dd96fbc913727cb93cd92bf303a9820
     name: midjourney-api
     version: 4.0.0
     engines: {node: '>=18'}
     dependencies:
       '@huggingface/inference': 2.6.1
+      async: 3.2.4
       isomorphic-ws: 5.0.0(ws@8.13.0)
-      mime: 3.0.0
-      p-queue: 6.6.2
       snowyflake: 2.0.0
       tslib: 2.6.0
       ws: 8.13.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)

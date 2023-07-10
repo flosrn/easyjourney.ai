@@ -14,6 +14,7 @@ export const ImageGrid = ({ selectedImage, clickHandler }: ImageGridProps) => {
         <button
           key={part}
           onClick={() => clickHandler(part)}
+          onTouchStart={() => clickHandler(part)}
           className={cn(
             "focus:outline-none focus:bg-blue-400/40",
             selectedImage === part

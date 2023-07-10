@@ -40,7 +40,7 @@ const ImageContainer = ({ className }: ImageContainerProps) => {
             aspectRatio
           )}
         >
-          <div className="flex-center h-full max-w-[420px] flex-col">
+          <div className="flex-center h-full max-w-[420px] flex-col text-center">
             {isLoading ? (
               <div className="flex-center flex-col">
                 <LoadingDots />
