@@ -17,12 +17,14 @@ type MidjourneyState = {
   generationType: GenerationType;
   requestState: RequestState;
   selectedImage: number | null;
+  msg: string;
 };
 
 type MidjourneyAction = {
   setGenerationType: (type: GenerationType) => void;
   setRequestState: (state: RequestState) => void;
   setSelectedImage: (image: number) => void;
+  setMsg: (msg: string) => void;
 };
 
 export const useMidjourneyStore = create<MidjourneyAction & MidjourneyState>()(
@@ -34,6 +36,7 @@ export const useMidjourneyStore = create<MidjourneyAction & MidjourneyState>()(
       isSuccess: false,
     },
     selectedImage: null,
+    msg: "",
     setGenerationType: (type) => {
       set({ generationType: type });
     },
@@ -47,6 +50,9 @@ export const useMidjourneyStore = create<MidjourneyAction & MidjourneyState>()(
     },
     setSelectedImage: (image) => {
       set({ selectedImage: image });
+    },
+    setMsg: (msg) => {
+      set({ msg });
     },
   })
 );

@@ -1,0 +1,72 @@
+:root {
+  /* actually sets slide shadow that should match background color of the element behind th slider */
+  --posters-slider-shadow-bg-color: #000;
+  /* width of the swiper container (image) */
+  --posters-slider-width: 265px;
+  /* height of the swiper container (image) */
+  --posters-slider-height: 392px;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.posters-slider {
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.posters-slider .swiper {
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .posters-slider .swiper {
+    width: var(--posters-slider-width);
+    height: var(--posters-slider-height);
+  }
+
+  .posters-slider {
+    --posters-slider-width: 95vw;
+  }
+}
+
+
+.posters-slider .swiper-slide {
+  border-radius: 10px;
+  justify-content: center;
+  display: flex;
+}
+
+.posters-slider .swiper-slide-shadow {
+  background: transparent ;
+}
+
+.posters-slider img {
+  width: 100%;
+  height: 100%;
+  /*object-fit: cover;*/
+}
+
+/*@media (orientation: portrait) {*/
+/*  .posters-slider {*/
+/*    --posters-slider-width: 95vw;*/
+/*    !*--posters-slider-height: 68vw;*!*/
+/*  }*/
+/*}*/
+
+/*@media (orientation: landscape) {*/
+/*  .posters-slider {*/
+/*    --posters-slider-width: calc(80vh / 1.48);*/
+/*    --posters-slider-height: 80vh;*/
+/*  }*/
+/*}*/
+ 

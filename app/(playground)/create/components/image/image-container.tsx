@@ -1,118 +1,46 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
-import { ZoomInIcon } from "@radix-ui/react-icons";
+import React from "react";
 import { ImageIcon } from "lucide-react";
-import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 
 import { cn } from "~/lib/classNames";
 
 import { useRatioStore } from "../../store/ratioStore";
-import { ImageGrid } from "./image-grid";
 import LoadingDots from "./loading-dots";
 
 import "react-medium-image-zoom/dist/styles.css";
 
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
+import Slider from "../slider/slider";
+import { getTwAspectRatio } from "./aspectRatioUtils";
 
 type ImageContainerProps = {
   className?: string;
 };
 
 const ImageContainer = ({ className }: ImageContainerProps) => {
-  const [isZoomed, setIsZoomed] = useState<boolean>(false);
-
-  const handleZoomChange = useCallback((shouldZoom: boolean) => {
-    setIsZoomed(shouldZoom);
-  }, []);
-
-  const [messages, currentMessageIndex] = useMessageStore((state) => [
-    state.messages,
-    state.currentMessageIndex,
-  ]);
-  const [generationType, { isLoading }, selectedImage, setSelectedImage] =
-    useMidjourneyStore((state) => [
-      state.generationType,
-      state.requestState,
-      state.selectedImage,
-      state.setSelectedImage,
-    ]);
+  const [messages] = useMessageStore((state) => [state.messages]);
+  const [{ isLoading }] = useMidjourneyStore((state) => [state.requestState]);
   const selectedAspectRatio = useRatioStore(
     (state) => state.selectedAspectRatio
   );
   const { value: ratio } = selectedAspectRatio;
   const hasImage = messages.length > 0;
-  const currentImageUrl = messages[currentMessageIndex]?.uri;
-  const isImagine = generationType === "imagine";
-  const hasImageGrid = hasImage && !isLoading && isImagine;
-
-  // console.log("currentImageUrl :", currentImageUrl);
+  const aspectRatio = getTwAspectRatio(ratio);
 
   return (
-    <div
-      className={cn(
-        "flex-center min-h-[70vh] rounded-md border p-4 lg:min-h-[calc(100vh-410px)]",
-        className
-      )}
-    >
-      <div
-        className={cn(
-          "flex-center max-w-full lg:h-[500px] rounded-md border border-dashed p-4",
-          {
-            "aspect-[1/1]": ratio === "1/1",
-            "aspect-[4/7] w-auto h-full": ratio === "4/7",
-            "aspect-[2/3] w-auto h-full": ratio === "2/3",
-            "aspect-[4/5] w-auto h-full": ratio === "4/5",
-            "aspect-[5/4]": ratio === "5/4",
-            "aspect-[4/3]": ratio === "4/3",
-            "aspect-[3/2]": ratio === "3/2",
-            "aspect-[16/10]": ratio === "16/10",
-            "aspect-[7/4]": ratio === "7/4",
-            "aspect-[16/9]": ratio === "16/9",
-            "aspect-[17/9]": ratio === "17/9",
-            "aspect-[21/9]": ratio === "21/9",
-            "aspect-[32/9]": ratio === "32/9",
-            "aspect-[4/1]": ratio === "4/1",
-            "aspect-[1/2] w-auto h-full": ratio === "1/2",
-            "aspect-[2/1]": ratio === "2/1",
-            "aspect-[4/5]": ratio === "4/5",
-            "aspect-[2/3]": ratio === "2/3",
-            "aspect-[9/16]": ratio === "9/16",
-          }
-        )}
-      >
-        {hasImage ? (
-          <div
-            className={cn("flex-center group relative", {
-              "overflow-hidden": hasImageGrid,
-            })}
-          >
-            {currentImageUrl ? (
-              <ControlledZoom
-                isZoomed={isZoomed}
-                onZoomChange={handleZoomChange}
-              >
-                <img src={currentImageUrl} alt="" className="rounded-md" />
-              </ControlledZoom>
-            ) : null}
-            {!isLoading && (
-              <div
-                onClick={() => setIsZoomed(true)}
-                className="absolute inset-0 left-1/2 top-1/2 z-10 hidden h-min w-min -translate-x-1/2 -translate-y-1/2 cursor-zoom-in p-3 group-hover:flex"
-              >
-                <ZoomInIcon className="h-10 w-10 text-white opacity-30" />
-              </div>
-            )}
-            {hasImageGrid && (
-              <ImageGrid
-                selectedImage={selectedImage}
-                clickHandler={setSelectedImage}
-              />
-            )}
-          </div>
-        ) : (
-          <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
+    <>
+      {hasImage ? (
+        <Slider />
+      ) : (
+        <div
+          className={cn(
+            "flex-center group relative border border-dashed rounded-md lg:h-[500px] mx-auto max-w-full",
+            aspectRatio
+          )}
+        >
+          <div className="flex-center h-full max-w-[420px] flex-col">
             {isLoading ? (
               <div className="flex-center flex-col">
                 <LoadingDots />
@@ -133,9 +61,9 @@ const ImageContainer = ({ className }: ImageContainerProps) => {
               </>
             )}
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 

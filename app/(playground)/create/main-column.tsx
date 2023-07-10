@@ -31,6 +31,7 @@ import ActionButtonsContainer from "./components/buttons/action-buttons-containe
 import FiltersDialog from "./components/dialog/filters-dialog";
 import ImageContainer from "./components/image/image-container";
 import TextareaPrompt from "./components/input/textarea-prompt";
+import Slider from "./components/slider/slider";
 import { aspectRatios } from "./data/aspectRatios";
 import { generate, savePoster } from "./lib/request";
 import SideColumn from "./side-column";
@@ -68,12 +69,16 @@ const MainColumn = () => {
     setRequestState,
     selectedImage,
     setGenerationType,
+    msg,
+    setMsg,
   ] = useMidjourneyStore((state) => [
     state.generationType,
     state.requestState,
     state.setRequestState,
     state.selectedImage,
     state.setGenerationType,
+    state.msg,
+    state.setMsg,
   ]);
 
   // console.log("selectedImage :", selectedImage);
@@ -150,8 +155,8 @@ const MainColumn = () => {
   const isMobileMenuOpen = useMobileMenuStore(
     (state) => state.isMobileMenuOpen
   );
-  const { data: session, update } = useSession();
-  const username = session?.user.username;
+  // const { data: session, update } = useSession();
+  // const username = session?.user.username;
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const hasFilters = selectedFilters.length > 0;
@@ -243,6 +248,15 @@ const MainColumn = () => {
             index: selectedImage,
             loading: (data: MJMessage) => {
               if (data.progress === "waiting") return;
+              if (data.progress === "done" && data.referencedMessage) {
+                setMsg("Poster upscaled!");
+              } else if (data.progress === "done") {
+                setMsg(
+                  "Generating poster done, click on one of the 4 images and upscale it!"
+                );
+              } else {
+                setMsg(`Generating poster ${data.progress}`);
+              }
               setMessages(data);
             },
           }));
@@ -358,20 +372,21 @@ const MainColumn = () => {
               collapse={hasFilters}
             />
             <SideColumn className="lg:hidden" />
-            <ImageContainer className="" />
+            <ImageContainer />
+
             <ActionButtonsContainer clickHandler={handleGenerate} />
           </div>
         </div>
       </div>
-      {/*<div className="flex-center sticky bottom-0 h-6 border-t bg-background">*/}
-      {/*  <p*/}
-      {/*    className={cn("px-4 text-xs", {*/}
-      {/*      "text-red-500": isError,*/}
-      {/*    })}*/}
-      {/*  >*/}
-      {/*    {message}*/}
-      {/*  </p>*/}
-      {/*</div>*/}
+      <div className="flex-center sticky bottom-0 h-6 border-t bg-background">
+        <p
+          className={cn("px-4 text-xs", {
+            "text-red-500": isError,
+          })}
+        >
+          {msg}
+        </p>
+      </div>
       <FiltersDialog />
       <Toaster position="bottom-right" />
     </main>
