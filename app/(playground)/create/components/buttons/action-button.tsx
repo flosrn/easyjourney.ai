@@ -43,7 +43,7 @@ const ActionButton = ({
   ]);
 
   const handleClick = () => {
-    if (type === "imagine" && selectedImage === null) {
+    if (generationType === "imagine" && selectedImage === null) {
       toast.error("Please select an image first.");
       return;
     }
