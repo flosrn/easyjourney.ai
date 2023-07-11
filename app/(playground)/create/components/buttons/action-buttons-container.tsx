@@ -27,14 +27,14 @@ const ActionButtonsContainer = ({
   const isSave = currentGenerationType === "save";
 
   return (
-    <div className="mt-4 grid grid-flow-col justify-center gap-2">
+    <div className="my-2 grid grid-flow-col justify-center gap-2">
       <ActionButton
         type="upscale"
         label="Upscale"
         variant="secondary"
         Icon={ArrowBigUpIcon}
         clickHandler={clickHandler}
-        isDisabled={isEmpty || isUpscale || isLoading}
+        isDisabled={isEmpty || isUpscale || isSave || isLoading}
       />
       <ActionButton
         type="save"

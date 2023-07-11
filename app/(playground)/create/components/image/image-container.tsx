@@ -36,7 +36,7 @@ const ImageContainer = ({ className }: ImageContainerProps) => {
       ) : (
         <div
           className={cn(
-            "flex-center group relative border border-dashed rounded-md lg:h-[500px] mx-auto max-w-full",
+            "flex-center group relative border border-dashed rounded-md h-[400px] lg:h-[500px] mx-auto max-w-full",
             aspectRatio
           )}
         >

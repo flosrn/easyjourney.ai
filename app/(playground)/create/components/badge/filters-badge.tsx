@@ -35,7 +35,7 @@ const FiltersBadge = () => {
     state.removeFilter,
   ]);
   return (
-    <div className="mt-4">
+    <div>
       <Swiper
         slidesPerView="auto"
         spaceBetween={5}

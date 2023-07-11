@@ -249,6 +249,7 @@ const MainColumn = () => {
             content: currentMessage,
             index: selectedImage,
             loading: (data: MJMessage) => {
+              console.log("data :", data);
               if (data.progress === "waiting") return;
               if (data.progress === "done" && data.referencedMessage) {
                 setMsg("Poster upscaled!");
@@ -269,17 +270,26 @@ const MainColumn = () => {
     onError: (error) => {
       console.log("onError:", error);
       setMsg(`Error: ${error.message}`);
-      setGenerationType(currentGenerationType);
+      // setGenerationType(currentGenerationType);
       setRequestState({ isError: true, isLoading: false });
       toast.error("An error occurred, please try again.");
     },
     onSuccess: (data) => {
       console.log("onSuccess:", data);
-      const isSave = data?.generationType === "save";
       setRequestState({ isSuccess: true, isLoading: false });
-      toast.success(`${isSave ? "Poster saved!" : "Poster generated!"}`);
-      data && setMsg("");
-      if (isSave) {
+      let actionWord = "generated";
+      const isDataImagine = data?.generationType === "imagine";
+      const isDataUpscale = data?.generationType === "upscale";
+      const isDataSave = data?.generationType === "save";
+      if (isDataImagine) {
+        actionWord = "generated";
+      } else if (isDataUpscale) {
+        actionWord = "upscaled";
+      } else if (isDataSave) {
+        actionWord = "saved";
+      }
+      toast.success(`Poster successfully ${actionWord}!`);
+      if (isDataSave) {
         const savedMessage = messages.find(
           (message) => message.jobId === data.jobId
         );
@@ -306,12 +316,25 @@ const MainColumn = () => {
   };
 
   useEffect(() => {
-    currentGenerationType && setGenerationType(currentGenerationType);
-  }, [currentGenerationType, setGenerationType]);
+    switch (currentGenerationType) {
+      case "imagine":
+        setMsg("Click on one of the 4 images and upscale it!");
+        break;
+      case "upscale":
+        setMsg("Poster upscaled!");
+        break;
+      case "save":
+        setMsg("Poster saved!");
+        break;
+      default:
+        setMsg("");
+        break;
+    }
+  }, [currentGenerationType, setMsg]);
 
   return (
     <main className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">
-      <div className="h-full grow px-4 py-6 xl:px-8">
+      <div className="h-full p-4 lg:py-6 xl:px-8">
         <div className="h-full flex-col border-none p-0">
           <div
             className={cn(
@@ -332,22 +355,6 @@ const MainColumn = () => {
             </div>
             <div className="ml-auto flex space-x-2">
               <>
-                {/*<Button*/}
-                {/*  onClick={handlePreviousImage}*/}
-                {/*  disabled={isLoading || isFirst}*/}
-                {/*  variant="outline"*/}
-                {/*>*/}
-                {/*  <UndoIcon className="h-4 w-4 md:mr-2" />*/}
-                {/*  <span className="hidden md:block">Undo</span>*/}
-                {/*</Button>*/}
-                {/*<Button*/}
-                {/*  onClick={handleNextImage}*/}
-                {/*  disabled={isLoading || isLast || !hasImages}*/}
-                {/*  variant="outline"*/}
-                {/*>*/}
-                {/*  <RedoIcon className="h-4 w-4 md:mr-2" />*/}
-                {/*  <span className="hidden md:block">Redo</span>*/}
-                {/*</Button>*/}
                 <Button
                   onClick={handleClear}
                   variant="secondary"
@@ -364,18 +371,10 @@ const MainColumn = () => {
                 clickHandler={handleGenerate}
                 isDisabled={isEmpty || isImagineLoading}
               />
-              {/*<Button onClick={handleGenerate} disabled={isLoading}>*/}
-              {/*  {isGenerationLoading ? (*/}
-              {/*    <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />*/}
-              {/*  ) : (*/}
-              {/*    <BrushIcon className="h-4 w-4 md:mr-2" />*/}
-              {/*  )}*/}
-              {/*  <span className="hidden md:block">Generate</span>*/}
-              {/*</Button>*/}
             </div>
           </div>
           <Separator className="my-4 -lg:hidden" />
-          <div className="-lg:mt-20">
+          <div className="flex h-[calc(100%-80px)] flex-col space-y-4 -lg:mt-20">
             {hasFilters && <FiltersBadge />}
             <TextareaPrompt
               inputRef={inputRef}
@@ -383,13 +382,18 @@ const MainColumn = () => {
               collapse={hasFilters}
             />
             <SideColumn className="lg:hidden" />
-            <ImageContainer />
+            <motion.div
+              layout
+              className="flex max-h-full grow items-center justify-center rounded-md border p-5 lg:py-1"
+            >
+              <ImageContainer />
+            </motion.div>
 
             <ActionButtonsContainer clickHandler={handleGenerate} />
           </div>
         </div>
       </div>
-      <div className="flex-center sticky bottom-0 h-6 border-t bg-background">
+      <div className="flex-center sticky bottom-0 z-10 h-6 border-t bg-background">
         <p
           className={cn("px-4 text-xs", {
             "text-red-500": isError,

@@ -27,16 +27,17 @@ const ActionButton = ({
   isDisabled,
   clickHandler,
 }: ActionButtonProps) => {
-  const [generationType, { isLoading }, setGenerationType] = useMidjourneyStore(
-    (state) => [
+  const [generationType, { isLoading }, setGenerationType, setMsg] =
+    useMidjourneyStore((state) => [
       state.generationType,
       state.requestState,
       state.setGenerationType,
-    ]
-  );
+      state.setMsg,
+    ]);
 
   const handleClick = () => {
     setGenerationType(type);
+    setMsg("Generating...");
     clickHandler();
   };
 

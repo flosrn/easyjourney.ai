@@ -55,6 +55,7 @@ export const generate = async ({
       (error) => {
         console.error("An error occurred while reading the stream", error);
         toast.error("An error occurred, please try again.");
+        throw error;
       }
     );
   } catch (error: unknown) {

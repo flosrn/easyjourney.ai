@@ -118,8 +118,11 @@ const Slider = ({}: SliderProps) => {
           prev: {
             shadow: true,
             translate: ["-10%", 0, -200],
+            opacity: 0.8,
           },
-          next: {},
+          next: {
+            opacity: 0.8,
+          },
         }}
         modules={[Parallax, EffectCreative, Navigation]}
         onSlideChange={(swiper) => setCurrentMessageIndex(swiper.activeIndex)}
@@ -140,7 +143,7 @@ const Slider = ({}: SliderProps) => {
                       onZoomChange={handleZoomChange}
                       zoomMargin={30}
                     >
-                      <img src={message.uri} alt="" />
+                      <img src={message.uri} alt="" className="rounded-md" />
                     </ControlledZoom>
                     <motion.button
                       whileHover={{ scale: 1.1 }}
@@ -154,7 +157,12 @@ const Slider = ({}: SliderProps) => {
                 </>
               )}
 
-              <img data-swiper-parallax-scale={1.1} src={message.uri} alt="" />
+              <img
+                data-swiper-parallax-scale={1.1}
+                src={message.uri}
+                alt=""
+                className="rounded-md"
+              />
 
               {showImageGrid && hasImageGrid && message.attachment && (
                 <ImageGrid
