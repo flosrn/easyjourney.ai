@@ -278,12 +278,13 @@ const MainColumn = () => {
       const isSave = data?.generationType === "save";
       setRequestState({ isSuccess: true, isLoading: false });
       toast.success(`${isSave ? "Poster saved!" : "Poster generated!"}`);
+      data && setMsg("");
       if (isSave) {
         const savedMessage = messages.find(
           (message) => message.jobId === data.jobId
         );
         const index = savedMessage && messages.indexOf(savedMessage);
-        index && setMessage(index, savedMessage);
+        index && setMessage(index, { ...savedMessage, generationType: "save" });
       }
     },
     onSettled: () => {

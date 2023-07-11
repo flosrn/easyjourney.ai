@@ -16,6 +16,7 @@ import {
   ArrowRightCircleIcon,
   ExpandIcon,
 } from "lucide-react";
+import type { MJMessage } from "midjourney";
 
 import { Button } from "~/components/ui/button";
 
@@ -31,6 +32,7 @@ type SliderProps = {};
 
 const Slider = ({}: SliderProps) => {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
+  const [showImageGrid, setShowImageGrid] = useState<boolean>(false);
 
   const handleZoomChange = useCallback((shouldZoom: boolean) => {
     setIsZoomed(shouldZoom);
@@ -41,18 +43,21 @@ const Slider = ({}: SliderProps) => {
       state.currentMessageIndex,
       state.setCurrentMessageIndex,
     ]);
-  const [generationType, { isLoading }, selectedImage, setSelectedImage] =
-    useMidjourneyStore((state) => [
-      state.generationType,
-      state.requestState,
-      state.selectedImage,
-      state.setSelectedImage,
-    ]);
+  const [{ isLoading }, selectedImage, setSelectedImage] = useMidjourneyStore(
+    (state) => [state.requestState, state.selectedImage, state.setSelectedImage]
+  );
   const selectedAspectRatio = useRatioStore(
     (state) => state.selectedAspectRatio
   );
   const { value: ratio } = selectedAspectRatio;
   const swiperRef = React.useRef<any | null>(null);
+
+  const hasImage = messages.length > 0;
+  const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
+  const currentGenerationType = currentMessage?.generationType;
+  const isImagine = currentGenerationType === "imagine";
+  const hasImageGrid = hasImage && !isLoading && isImagine;
+  const aspectRatio = getTwAspectRatio(ratio);
 
   const calcNextOffset = () => {
     const parentWidth = swiperRef.current?.parentElement.offsetWidth;
@@ -79,9 +84,19 @@ const Slider = ({}: SliderProps) => {
     }
   }, [swiperRef]);
 
-  const hasImage = messages.length > 0;
-  const hasImageGrid = hasImage && !isLoading;
-  const aspectRatio = getTwAspectRatio(ratio);
+  useEffect(() => {
+    if (hasImageGrid) {
+      const timer = setTimeout(() => {
+        setShowImageGrid(true);
+      }, 500);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    } else {
+      setShowImageGrid(false);
+    }
+  }, [hasImageGrid]);
 
   return (
     <div className="posters-slider">
@@ -141,14 +156,12 @@ const Slider = ({}: SliderProps) => {
 
               <img data-swiper-parallax-scale={1.1} src={message.uri} alt="" />
 
-              {hasImageGrid &&
-                message.attachment &&
-                !message.referencedMessage && (
-                  <ImageGrid
-                    selectedImage={selectedImage}
-                    clickHandler={setSelectedImage}
-                  />
-                )}
+              {showImageGrid && hasImageGrid && message.attachment && (
+                <ImageGrid
+                  selectedImage={selectedImage}
+                  clickHandler={setSelectedImage}
+                />
+              )}
             </div>
           </SwiperSlide>
         ))}
