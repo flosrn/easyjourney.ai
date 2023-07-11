@@ -4,6 +4,7 @@ import React from "react";
 import type { LucideProps } from "lucide-react";
 import { Loader2Icon } from "lucide-react";
 import type { GenerationType } from "midjourney";
+import { toast } from "react-hot-toast";
 
 import type { ButtonVariant } from "~/components/ui/button";
 import { Button } from "~/components/ui/button";
@@ -27,15 +28,25 @@ const ActionButton = ({
   isDisabled,
   clickHandler,
 }: ActionButtonProps) => {
-  const [generationType, { isLoading }, setGenerationType, setMsg] =
-    useMidjourneyStore((state) => [
-      state.generationType,
-      state.requestState,
-      state.setGenerationType,
-      state.setMsg,
-    ]);
+  const [
+    generationType,
+    { isLoading },
+    setGenerationType,
+    setMsg,
+    selectedImage,
+  ] = useMidjourneyStore((state) => [
+    state.generationType,
+    state.requestState,
+    state.setGenerationType,
+    state.setMsg,
+    state.selectedImage,
+  ]);
 
   const handleClick = () => {
+    if (selectedImage === null) {
+      toast.error("Please select an image first.");
+      return;
+    }
     setGenerationType(type);
     setMsg("Generating...");
     clickHandler();

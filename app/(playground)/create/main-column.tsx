@@ -1,21 +1,11 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useMobileMenuStore } from "~/store/mobileMenuStore";
 import removeSpacesFromString from "~/utils/removeSpacesFromString";
 import { motion } from "framer-motion";
-import {
-  ArrowBigUpIcon,
-  BrushIcon,
-  IterationCcwIcon,
-  Loader2Icon,
-  RedoIcon,
-  SaveIcon,
-  Trash2Icon,
-  UndoIcon,
-  ZoomOutIcon,
-} from "lucide-react";
+import { BrushIcon, Trash2Icon } from "lucide-react";
 import type { MJMessage } from "midjourney";
 import { useSession } from "next-auth/react";
 import { toast, Toaster } from "react-hot-toast";
@@ -72,6 +62,7 @@ const MainColumn = () => {
     setGenerationType,
     msg,
     setMsg,
+    setSelectedImage,
   ] = useMidjourneyStore((state) => [
     state.generationType,
     state.requestState,
@@ -80,12 +71,8 @@ const MainColumn = () => {
     state.setGenerationType,
     state.msg,
     state.setMsg,
+    state.setSelectedImage,
   ]);
-
-  // console.log("selectedImage :", selectedImage);
-  // console.log("isLoading :", isLoading);
-  // console.log("isSuccess :", isSuccess);
-  // console.log("isError :", isError);
 
   const [chaosValue, setChaosValue, setIsChaosSelectorDisabled] = useChaosStore(
     (state) => [
@@ -251,14 +238,12 @@ const MainColumn = () => {
             loading: (data: MJMessage) => {
               console.log("data :", data);
               if (data.progress === "waiting") return;
-              if (data.progress === "done" && data.referencedMessage) {
-                setMsg("Poster upscaled!");
+              setMsg(`Generating poster ${data.progress}`);
+              if (generationType !== "variation") {
+                addMessage(data);
               } else if (data.progress === "done") {
-                setMsg("Click on one of the 4 images and upscale it!");
-              } else {
-                setMsg(`Generating poster ${data.progress}`);
+                addMessage(data);
               }
-              addMessage(data);
             },
           }));
       return result;
@@ -270,25 +255,26 @@ const MainColumn = () => {
     onError: (error) => {
       console.log("onError:", error);
       setMsg(`Error: ${error.message}`);
-      // setGenerationType(currentGenerationType);
       setRequestState({ isError: true, isLoading: false });
       toast.error("An error occurred, please try again.");
     },
     onSuccess: (data) => {
       console.log("onSuccess:", data);
+      setSelectedImage(null);
       setRequestState({ isSuccess: true, isLoading: false });
       let actionWord = "generated";
       const isDataImagine = data?.generationType === "imagine";
       const isDataUpscale = data?.generationType === "upscale";
+      const isDataVariation = data?.generationType === "variation";
       const isDataSave = data?.generationType === "save";
-      if (isDataImagine) {
+      if (isDataImagine || isDataVariation) {
         actionWord = "generated";
       } else if (isDataUpscale) {
         actionWord = "upscaled";
       } else if (isDataSave) {
         actionWord = "saved";
       }
-      toast.success(`Poster successfully ${actionWord}!`);
+      data && toast.success(`Poster successfully ${actionWord}!`);
       if (isDataSave) {
         const savedMessage = messages.find(
           (message) => message.jobId === data.jobId
@@ -316,8 +302,12 @@ const MainColumn = () => {
   };
 
   useEffect(() => {
+    setSelectedImage(null);
     switch (currentGenerationType) {
       case "imagine":
+        setMsg("Click on one of the 4 images and upscale it!");
+        break;
+      case "variation":
         setMsg("Click on one of the 4 images and upscale it!");
         break;
       case "upscale":
@@ -330,7 +320,7 @@ const MainColumn = () => {
         setMsg("");
         break;
     }
-  }, [currentGenerationType, setMsg]);
+  }, [currentGenerationType, setSelectedImage, setMsg]);
 
   return (
     <main className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">

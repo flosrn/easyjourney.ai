@@ -1,4 +1,4 @@
-import type { GenerationType, LoadingHandler } from "midjourney";
+import type { GenerationType } from "midjourney";
 import { create } from "zustand";
 
 export type RequestState = {
@@ -17,7 +17,7 @@ type MidjourneyState = {
 type MidjourneyAction = {
   setGenerationType: (type?: GenerationType) => void;
   setRequestState: (state: RequestState) => void;
-  setSelectedImage: (image: number) => void;
+  setSelectedImage: (image: number | null) => void;
   setMsg: (msg: string) => void;
 };
 

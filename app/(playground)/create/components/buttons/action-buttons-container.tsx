@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowBigUpIcon, SaveIcon } from "lucide-react";
+import { ArrowBigUpIcon, RefreshCcwIcon, SaveIcon } from "lucide-react";
 import type { MJMessage } from "midjourney";
 
 import { useMessageStore } from "../../store/messageStore";
@@ -28,6 +28,14 @@ const ActionButtonsContainer = ({
 
   return (
     <div className="my-2 grid grid-flow-col justify-center gap-2">
+      <ActionButton
+        type="variation"
+        label="Variation"
+        variant="secondary"
+        Icon={RefreshCcwIcon}
+        clickHandler={clickHandler}
+        isDisabled={isEmpty || isUpscale || isSave || isLoading}
+      />
       <ActionButton
         type="upscale"
         label="Upscale"

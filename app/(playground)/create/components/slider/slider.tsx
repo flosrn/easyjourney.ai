@@ -56,7 +56,8 @@ const Slider = ({}: SliderProps) => {
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   const currentGenerationType = currentMessage?.generationType;
   const isImagine = currentGenerationType === "imagine";
-  const hasImageGrid = hasImage && !isLoading && isImagine;
+  const isVariation = currentGenerationType === "variation";
+  const hasImageGrid = hasImage && !isLoading && (isImagine || isVariation);
   const aspectRatio = getTwAspectRatio(ratio);
 
   const calcNextOffset = () => {
@@ -164,12 +165,15 @@ const Slider = ({}: SliderProps) => {
                 className="rounded-md"
               />
 
-              {showImageGrid && hasImageGrid && message.attachment && (
-                <ImageGrid
-                  selectedImage={selectedImage}
-                  clickHandler={setSelectedImage}
-                />
-              )}
+              {showImageGrid &&
+                hasImageGrid &&
+                message.attachment &&
+                index === currentMessageIndex && (
+                  <ImageGrid
+                    selectedImage={selectedImage}
+                    clickHandler={setSelectedImage}
+                  />
+                )}
             </div>
           </SwiperSlide>
         ))}
