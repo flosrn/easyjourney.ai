@@ -271,7 +271,7 @@ const MainColumn = () => {
       setMsg(`Error: ${error.message}`);
       setGenerationType(currentGenerationType);
       setRequestState({ isError: true, isLoading: false });
-      toast.error(error.message);
+      toast.error("An error occurred, please try again.");
     },
     onSuccess: (data) => {
       console.log("onSuccess:", data);
