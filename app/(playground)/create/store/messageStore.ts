@@ -7,7 +7,9 @@ type MessageState = {
 };
 
 type MessageAction = {
-  setMessages: (newMessage: MJMessage) => void;
+  addMessage: (newMessage: MJMessage) => void;
+  setMessage: (index: number, newMessage: MJMessage) => void;
+  setMessages: (messages: MJMessage[]) => void;
   clearMessages: () => void;
   setCurrentMessageIndex: (index: number) => void;
 };
@@ -16,10 +18,24 @@ export const useMessageStore = create<MessageAction & MessageState>()(
   (set) => ({
     messages: [],
     currentMessageIndex: 0,
-    setMessages: (newMessage) =>
+    addMessage: (newMessage) =>
       set((state) => ({
         messages: [...state.messages, newMessage],
         currentMessageIndex: state.messages.length,
+      })),
+    setMessage: (index, newMessage) =>
+      set((state) => {
+        const messages = [...state.messages];
+        messages[index] = newMessage;
+        return {
+          messages,
+          currentMessageIndex: index,
+        };
+      }),
+    setMessages: (messages) =>
+      set(() => ({
+        messages,
+        currentMessageIndex: messages.length,
       })),
     setCurrentMessageIndex: (index) => set({ currentMessageIndex: index }),
     clearMessages: () => set({ messages: [] }),

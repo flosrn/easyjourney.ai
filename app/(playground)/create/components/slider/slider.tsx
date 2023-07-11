@@ -35,10 +35,12 @@ const Slider = ({}: SliderProps) => {
   const handleZoomChange = useCallback((shouldZoom: boolean) => {
     setIsZoomed(shouldZoom);
   }, []);
-  const [messages, currentMessageIndex] = useMessageStore((state) => [
-    state.messages,
-    state.currentMessageIndex,
-  ]);
+  const [messages, currentMessageIndex, setCurrentMessageIndex] =
+    useMessageStore((state) => [
+      state.messages,
+      state.currentMessageIndex,
+      state.setCurrentMessageIndex,
+    ]);
   const [generationType, { isLoading }, selectedImage, setSelectedImage] =
     useMidjourneyStore((state) => [
       state.generationType,
@@ -105,6 +107,7 @@ const Slider = ({}: SliderProps) => {
           next: {},
         }}
         modules={[Parallax, EffectCreative, Navigation]}
+        onSlideChange={(swiper) => setCurrentMessageIndex(swiper.activeIndex)}
       >
         {messages.map((message, index) => (
           <SwiperSlide key={index}>

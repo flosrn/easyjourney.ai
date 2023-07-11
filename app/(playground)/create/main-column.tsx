@@ -31,7 +31,6 @@ import ActionButtonsContainer from "./components/buttons/action-buttons-containe
 import FiltersDialog from "./components/dialog/filters-dialog";
 import ImageContainer from "./components/image/image-container";
 import TextareaPrompt from "./components/input/textarea-prompt";
-import Slider from "./components/slider/slider";
 import { aspectRatios } from "./data/aspectRatios";
 import { generate, savePoster } from "./lib/request";
 import SideColumn from "./side-column";
@@ -51,13 +50,15 @@ import { useVersionStore } from "./store/versionStore";
 const MainColumn = () => {
   const [
     messages,
-    setMessages,
+    addMessage,
+    setMessage,
     currentMessageIndex,
     setCurrentMessageIndex,
     clearMessages,
   ] = useMessageStore((state) => [
     state.messages,
-    state.setMessages,
+    state.addMessage,
+    state.setMessage,
     state.currentMessageIndex,
     state.setCurrentMessageIndex,
     state.clearMessages,
@@ -229,13 +230,14 @@ const MainColumn = () => {
     handleDisableSelectors(false);
   };
 
-  const currentMessage = messages[currentMessageIndex];
-  const isImagine = generationType === "imagine";
+  const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
+  const currentGenerationType = currentMessage?.generationType;
+  const isImagine = currentGenerationType === "imagine";
   const isImagineLoading = isLoading && isImagine;
 
   const generationMutation = useMutation({
     mutationFn: async () => {
-      await (generationType === "save"
+      const result = await (currentMessage && generationType === "save"
         ? savePoster({
             poster: currentMessage,
             options,
@@ -251,15 +253,14 @@ const MainColumn = () => {
               if (data.progress === "done" && data.referencedMessage) {
                 setMsg("Poster upscaled!");
               } else if (data.progress === "done") {
-                setMsg(
-                  "Generating poster done, click on one of the 4 images and upscale it!"
-                );
+                setMsg("Click on one of the 4 images and upscale it!");
               } else {
                 setMsg(`Generating poster ${data.progress}`);
               }
-              setMessages(data);
+              addMessage(data);
             },
           }));
+      return result;
     },
     onMutate: () => {
       console.log("onMutate");
@@ -267,18 +268,23 @@ const MainColumn = () => {
     },
     onError: (error) => {
       console.log("onError:", error);
-      const currentGenerationType = currentMessage.referencedMessage
-        ? "upscale"
-        : "imagine";
+      setMsg(`Error: ${error.message}`);
       setGenerationType(currentGenerationType);
       setRequestState({ isError: true, isLoading: false });
       toast.error(error.message);
     },
-    onSuccess: () => {
-      console.log("onSuccess");
+    onSuccess: (data) => {
+      console.log("onSuccess:", data);
+      const isSave = data?.generationType === "save";
       setRequestState({ isSuccess: true, isLoading: false });
-      toast.success(`
-        ${generationType === "save" ? "Poster saved!" : "Poster generated!"}`);
+      toast.success(`${isSave ? "Poster saved!" : "Poster generated!"}`);
+      if (isSave) {
+        const savedMessage = messages.find(
+          (message) => message.jobId === data.jobId
+        );
+        const index = savedMessage && messages.indexOf(savedMessage);
+        index && setMessage(index, savedMessage);
+      }
     },
     onSettled: () => {
       console.log("onSettled");
@@ -297,6 +303,10 @@ const MainColumn = () => {
     }, 100);
     await generationMutation.mutateAsync();
   };
+
+  useEffect(() => {
+    currentGenerationType && setGenerationType(currentGenerationType);
+  }, [currentGenerationType, setGenerationType]);
 
   return (
     <main className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">

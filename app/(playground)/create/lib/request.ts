@@ -1,7 +1,6 @@
-import type { MJMessage } from "midjourney";
+import type { GenerationType, MJMessage } from "midjourney";
 import { toast } from "react-hot-toast";
 
-import type { GenerationType } from "../store/midjourneyStore";
 import readStreamData from "./readStreamData";
 
 const midjourneyRequest = async (
@@ -74,7 +73,6 @@ export const savePoster = async ({
   selectedImage: number | null;
 }) => {
   try {
-    console.log("poster :", poster);
     const response = await fetch("/api/posters/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

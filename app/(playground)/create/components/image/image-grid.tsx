@@ -16,9 +16,9 @@ export const ImageGrid = ({ selectedImage, clickHandler }: ImageGridProps) => {
           onClick={() => clickHandler(part)}
           onTouchStart={() => clickHandler(part)}
           className={cn(
-            "focus:outline-none focus:bg-blue-400/40",
+            "focus:outline-none",
             selectedImage === part
-              ? "border-[1.5px] border-dashed border-blue-400/60"
+              ? "border-[1.5px] border-dashed border-blue-400/60 bg-blue-400/40"
               : "hover:bg-white/10 rounded-md"
           )}
         />

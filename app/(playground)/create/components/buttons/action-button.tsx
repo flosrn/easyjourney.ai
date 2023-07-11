@@ -3,11 +3,11 @@
 import React from "react";
 import type { LucideProps } from "lucide-react";
 import { Loader2Icon } from "lucide-react";
+import type { GenerationType } from "midjourney";
 
 import type { ButtonVariant } from "~/components/ui/button";
 import { Button } from "~/components/ui/button";
 
-import type { GenerationType } from "../../store/midjourneyStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 
 type ActionButtonProps = {

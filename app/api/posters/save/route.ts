@@ -18,9 +18,16 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { fullPrompt, filename, jobId, uri, attachment, referencedMessage } =
-      body;
-    const { selectedImage, options } = body;
+    const {
+      fullPrompt,
+      filename,
+      jobId,
+      uri,
+      attachment,
+      referencedMessage,
+      selectedImage,
+      options,
+    } = body;
     const { textPrompt, ...restOptions } = options;
 
     const title = getPosterTitle(textPrompt);
@@ -51,7 +58,10 @@ export async function POST(request: Request) {
         referencedImage: referencedMessageWithJobId,
       },
     });
-    return NextResponse.json({ data }, { status: 201 });
+    return NextResponse.json(
+      { ...data, generationType: "save" },
+      { status: 201 }
+    );
   } catch (error: unknown) {
     console.error(error);
     return NextResponse.json(

@@ -1,6 +1,8 @@
 import React from "react";
 import { ArrowBigUpIcon, SaveIcon } from "lucide-react";
+import type { MJMessage } from "midjourney";
 
+import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 import ActionButton from "./action-button";
 
@@ -11,15 +13,18 @@ type ActionButtonsContainerProps = {
 const ActionButtonsContainer = ({
   clickHandler,
 }: ActionButtonsContainerProps) => {
-  const [generationType, { isLoading }] = useMidjourneyStore((state) => [
-    state.generationType,
-    state.requestState,
-    state.setRequestState,
+  const [messages, currentMessageIndex] = useMessageStore((state) => [
+    state.messages,
+    state.currentMessageIndex,
   ]);
+  const [{ isLoading }] = useMidjourneyStore((state) => [state.requestState]);
 
-  const isEmpty = generationType === null;
-  const isImagine = generationType === "imagine";
-  const isUpscale = generationType === "upscale";
+  const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
+  const currentGenerationType = currentMessage?.generationType;
+  const isEmpty = !currentGenerationType;
+  const isImagine = currentGenerationType === "imagine";
+  const isUpscale = currentGenerationType === "upscale";
+  const isSave = currentGenerationType === "save";
 
   return (
     <div className="mt-4 grid grid-flow-col justify-center gap-2">
@@ -37,7 +42,7 @@ const ActionButtonsContainer = ({
         variant="success"
         Icon={SaveIcon}
         clickHandler={clickHandler}
-        isDisabled={isEmpty || !isUpscale || isLoading}
+        isDisabled={isEmpty || !isUpscale || isSave || isLoading}
       />
     </div>
   );
