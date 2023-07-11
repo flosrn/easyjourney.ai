@@ -119,10 +119,10 @@ const Slider = ({}: SliderProps) => {
           prev: {
             shadow: true,
             translate: ["-10%", 0, -200],
-            opacity: 0.8,
+            // opacity: 0.8,
           },
           next: {
-            opacity: 0.8,
+            // opacity: 0.8,
           },
         }}
         modules={[Parallax, EffectCreative, Navigation]}
@@ -162,7 +162,9 @@ const Slider = ({}: SliderProps) => {
                 data-swiper-parallax-scale={1.1}
                 src={message.uri}
                 alt=""
-                className="rounded-md"
+                className={cn("rounded-md", {
+                  "img-dimmed": index !== currentMessageIndex,
+                })}
               />
 
               {showImageGrid &&

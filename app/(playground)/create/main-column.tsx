@@ -7,10 +7,8 @@ import removeSpacesFromString from "~/utils/removeSpacesFromString";
 import { motion } from "framer-motion";
 import { BrushIcon, Trash2Icon } from "lucide-react";
 import type { MJMessage } from "midjourney";
-import { useSession } from "next-auth/react";
 import { toast, Toaster } from "react-hot-toast";
 
-import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 
 import { cn } from "~/lib/classNames";
@@ -143,9 +141,9 @@ const MainColumn = () => {
   const isMobileMenuOpen = useMobileMenuStore(
     (state) => state.isMobileMenuOpen
   );
-  // const { data: session, update } = useSession();
-  // const username = session?.user.username;
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
+  const currentGenerationType = currentMessage?.generationType;
 
   const hasFilters = selectedFilters.length > 0;
   const { ratio, value: ratioValue } = selectedAspectRatio;
@@ -203,6 +201,8 @@ const MainColumn = () => {
   };
 
   const handleClear = () => {
+    setSelectedImage(null);
+    setMsg("");
     clearMessages();
     setPromptValue("");
     setSelectedAspectRatio(aspectRatios[0]);
@@ -216,11 +216,6 @@ const MainColumn = () => {
     clearFilters();
     handleDisableSelectors(false);
   };
-
-  const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
-  const currentGenerationType = currentMessage?.generationType;
-  const isImagine = currentGenerationType === "imagine";
-  const isImagineLoading = isLoading && isImagine;
 
   const generationMutation = useMutation({
     mutationFn: async () => {
@@ -344,22 +339,19 @@ const MainColumn = () => {
               </p>
             </div>
             <div className="ml-auto flex space-x-2">
-              <>
-                <Button
-                  onClick={handleClear}
-                  variant="secondary"
-                  disabled={isEmpty}
-                >
-                  <Trash2Icon className="h-4 w-4 md:mr-2" />
-                  <span className="hidden md:block">Clear</span>
-                </Button>
-              </>
+              <ActionButton
+                variant="secondary"
+                label="Clear"
+                Icon={Trash2Icon}
+                clickHandler={handleClear}
+                isDisabled={isEmpty}
+              />
               <ActionButton
                 type="imagine"
                 label="Generate"
                 Icon={BrushIcon}
                 clickHandler={handleGenerate}
-                isDisabled={isEmpty || isImagineLoading}
+                isDisabled={isEmpty || !!generationType}
               />
             </div>
           </div>

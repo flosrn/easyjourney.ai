@@ -12,7 +12,7 @@ import { Button } from "~/components/ui/button";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 
 type ActionButtonProps = {
-  type: GenerationType;
+  type?: GenerationType;
   label: string;
   variant?: ButtonVariant;
   Icon: React.ComponentType<LucideProps>;
@@ -43,13 +43,29 @@ const ActionButton = ({
   ]);
 
   const handleClick = () => {
-    if (selectedImage === null) {
+    if (type === "imagine" && selectedImage === null) {
       toast.error("Please select an image first.");
       return;
     }
     setGenerationType(type);
-    setMsg("Generating...");
     clickHandler();
+    switch (type) {
+      case "save": {
+        setMsg("Saving...");
+        break;
+      }
+      case "upscale": {
+        setMsg("Upscaling...");
+        break;
+      }
+      case "imagine": {
+        setMsg("Generating...");
+        break;
+      }
+      default: {
+        setMsg("Generating...");
+      }
+    }
   };
 
   const isButtonLoading = isLoading && generationType === type;

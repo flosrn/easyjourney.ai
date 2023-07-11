@@ -39,6 +39,10 @@
   }
 }
 
+.img-dimmed {
+  filter: brightness(50%);
+}
+
 
 .posters-slider .swiper-slide {
   border-radius: 10px;
