@@ -19,6 +19,7 @@ import ActionButtonsContainer from "./components/buttons/action-buttons-containe
 import FiltersDialog from "./components/dialog/filters-dialog";
 import ImageContainer from "./components/image/image-container";
 import TextareaPrompt from "./components/input/textarea-prompt";
+import MoreOptions from "./components/popover/more-options";
 import { aspectRatios } from "./data/aspectRatios";
 import { generate, savePoster } from "./lib/request";
 import SideColumn from "./side-column";
@@ -355,6 +356,7 @@ const MainColumn = () => {
                 clickHandler={handleGenerate}
                 isDisabled={isEmpty || !!generationType}
               />
+              <MoreOptions />
             </div>
           </div>
           <Separator className="my-4 -lg:hidden" />
