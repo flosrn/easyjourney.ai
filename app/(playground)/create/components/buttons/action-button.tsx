@@ -99,6 +99,7 @@ const ActionButton = ({
       ) : (
         <Icon className="h-4 w-4" />
       )}
+      {dataOption && <span className="ml-2 block md:hidden">{dataOption}</span>}
       <span className="ml-2 hidden md:block">{label}</span>
     </Button>
   );

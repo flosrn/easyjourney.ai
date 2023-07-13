@@ -33,7 +33,7 @@ const ActionButtonsContainer = ({
   const isSave = currentGenerationType === "save";
 
   return (
-    <div className="my-2 grid grid-flow-col justify-center gap-2">
+    <div className="my-2 flex flex-wrap justify-center gap-2">
       {!isUpscale && !isSave && (
         <>
           <ActionButton
