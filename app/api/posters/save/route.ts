@@ -19,22 +19,23 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const {
+      index,
       fullPrompt,
       filename,
       jobId,
       uri,
       attachment,
       referencedMessage,
-      selectedImage,
       options,
     } = body;
     const { textPrompt, ...restOptions } = options;
+    console.log("body :", body);
 
     const title = getPosterTitle(textPrompt);
     const baseJobId =
       referencedMessage && extractJobId(referencedMessage.filename);
     const mjImageUrl =
-      jobId && `${BASE_MIDJOURNEY_URL}${baseJobId}/0_${selectedImage - 1}.webp`;
+      jobId && `${BASE_MIDJOURNEY_URL}${baseJobId}/0_${index - 1}.webp`;
 
     const referencedMessageWithJobId = {
       ...referencedMessage,
@@ -58,6 +59,8 @@ export async function POST(request: Request) {
         referencedImage: referencedMessageWithJobId,
       },
     });
+
+    // const data = { msg: "test" };
     return NextResponse.json(
       { ...data, generationType: "save" },
       { status: 201 }

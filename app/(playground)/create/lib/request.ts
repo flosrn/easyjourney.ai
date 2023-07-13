@@ -9,12 +9,13 @@ const midjourneyRequest = async (
   content: MJMessage | undefined,
   index: number | null,
   loading: (data: MJMessage) => void,
-  onError: (error: Error) => void
+  onError: (error: Error) => void,
+  option?: string
 ) => {
   const response = await fetch("/api/midjourney", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ generationType, prompt, index, content }),
+    body: JSON.stringify({ generationType, prompt, index, content, option }),
   });
 
   if (!response.ok) {
@@ -38,12 +39,14 @@ export const generate = async ({
   content,
   index,
   loading,
+  option,
 }: {
   generationType: GenerationType;
   prompt: string;
   content?: MJMessage;
   index: number | null;
   loading: (data: MJMessage) => void;
+  option?: string;
 }) => {
   try {
     await midjourneyRequest(
@@ -56,7 +59,8 @@ export const generate = async ({
         console.error("An error occurred while reading the stream", error);
         toast.error("An error occurred, please try again.");
         throw error;
-      }
+      },
+      option
     );
   } catch (error: unknown) {
     console.error("A network error occurred", error);

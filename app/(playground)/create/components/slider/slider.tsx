@@ -57,7 +57,10 @@ const Slider = ({}: SliderProps) => {
   const currentGenerationType = currentMessage?.generationType;
   const isImagine = currentGenerationType === "imagine";
   const isVariation = currentGenerationType === "variation";
-  const hasImageGrid = hasImage && !isLoading && (isImagine || isVariation);
+  const isVary = currentGenerationType === "vary";
+  const isZoomOut = currentGenerationType === "zoomOut";
+  const hasImageGrid =
+    hasImage && !isLoading && (isImagine || isVariation || isVary || isZoomOut);
   const aspectRatio = getTwAspectRatio(ratio);
 
   const calcNextOffset = () => {

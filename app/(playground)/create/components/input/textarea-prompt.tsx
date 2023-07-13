@@ -8,6 +8,7 @@ import { Textarea } from "~/components/ui/textarea";
 import { cn } from "~/lib/classNames";
 
 import { useChaosStore } from "../../store/chaosStore";
+import { useMidjourneyStore } from "../../store/midjourneyStore";
 import { usePromptStore } from "../../store/promptStore";
 import { useQualityStore } from "../../store/qualityStore";
 import { useRatioStore } from "../../store/ratioStore";
@@ -28,6 +29,9 @@ const TextareaPrompt = ({
   generateHandler,
   collapse,
 }: TextareaPromptProps) => {
+  const [setGenerationType] = useMidjourneyStore((state) => [
+    state.setGenerationType,
+  ]);
   const [promptValue, setPromptValue] = usePromptStore((state) => [
     state.promptValue,
     state.setPromptValue,
@@ -155,6 +159,7 @@ const TextareaPrompt = ({
     if (event.key === "Enter") {
       event.preventDefault();
       if (promptValue.length > 0) {
+        setGenerationType("imagine");
         generateHandler();
       }
     }

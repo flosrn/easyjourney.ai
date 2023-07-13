@@ -218,7 +218,7 @@ const MainColumn = () => {
   };
 
   const generationMutation = useMutation({
-    mutationFn: async () => {
+    mutationFn: async (option?: string) => {
       const result = await (currentMessage && generationType === "save"
         ? savePoster({
             poster: currentMessage,
@@ -230,11 +230,11 @@ const MainColumn = () => {
             prompt,
             content: currentMessage,
             index: selectedImage,
+            option,
             loading: (data: MJMessage) => {
-              console.log("data :", data);
               if (data.progress === "waiting") return;
               setMsg(`Generating poster ${data.progress}`);
-              if (generationType !== "variation") {
+              if (generationType === "imagine") {
                 addMessage(data);
               } else if (data.progress === "done") {
                 addMessage(data);
@@ -271,6 +271,7 @@ const MainColumn = () => {
         actionWord = "saved";
       }
       data && toast.success(`Poster successfully ${actionWord}!`);
+      // if (!data) setMsg("Something went wrong, please try again.");
       if (isDataSave) {
         const savedMessage = messages.find(
           (message) => message.jobId === data.jobId
@@ -285,7 +286,7 @@ const MainColumn = () => {
     },
   });
 
-  const handleGenerate = async () => {
+  const handleGenerate = async (option?: string) => {
     if (promptValue.length <= 1) {
       inputRef.current?.focus();
       return;
@@ -294,7 +295,7 @@ const MainColumn = () => {
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }, 100);
-    await generationMutation.mutateAsync();
+    await generationMutation.mutateAsync(option);
   };
 
   useEffect(() => {
