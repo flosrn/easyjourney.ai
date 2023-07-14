@@ -18,12 +18,14 @@ import ActionButton from "./components/buttons/action-button";
 import ActionButtonsContainer from "./components/buttons/action-buttons-container";
 import FiltersDialog from "./components/dialog/filters-dialog";
 import ImageContainer from "./components/image/image-container";
+import ImageContainerGrid from "./components/image/image-container-grid";
 import TextareaPrompt from "./components/input/textarea-prompt";
 import MoreOptions from "./components/popover/more-options";
 import { aspectRatios } from "./data/aspectRatios";
 import { generate, savePoster } from "./lib/request";
 import SideColumn from "./side-column";
 import { useChaosStore } from "./store/chaosStore";
+import { DisplayMode, useDisplayStore } from "./store/displayStore";
 import { useFilterStore } from "./store/filterStore";
 import { useMessageStore } from "./store/messageStore";
 import { useMidjourneyStore } from "./store/midjourneyStore";
@@ -142,6 +144,10 @@ const MainColumn = () => {
   const isMobileMenuOpen = useMobileMenuStore(
     (state) => state.isMobileMenuOpen
   );
+  const [displayMode, setDisplayMode] = useDisplayStore((state) => [
+    state.displayMode,
+    state.setDisplayMode,
+  ]);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   const currentGenerationType = currentMessage?.generationType;
@@ -372,7 +378,11 @@ const MainColumn = () => {
               layout
               className="flex max-h-full grow items-center justify-center rounded-md border p-5 lg:py-1"
             >
-              <ImageContainer />
+              {displayMode === DisplayMode.STACK ? (
+                <ImageContainer />
+              ) : (
+                <ImageContainerGrid />
+              )}
             </motion.div>
 
             <ActionButtonsContainer clickHandler={handleGenerate} />

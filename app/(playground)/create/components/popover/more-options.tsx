@@ -27,10 +27,10 @@ const MoreOptions = ({}: MoreOptionsProps) => {
       </PopoverTrigger>
       <PopoverContent align="end" className="w-56">
         <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          Mode ({displayMode.toLowerCase()})
+          Mode ({displayMode})
         </span>
         <Tabs
-          defaultValue="stack"
+          value={displayMode}
           onValueChange={(mode) => setDisplayMode(mode as DisplayMode)}
           className="mt-1 flex-1"
         >

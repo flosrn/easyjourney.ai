@@ -2,8 +2,8 @@ import { create } from "zustand";
 
 // eslint-disable-next-line no-shadow
 export enum DisplayMode {
-  "STACK" = "STACK",
-  "GRID" = "GRID",
+  "STACK" = "stack",
+  "GRID" = "grid",
 }
 
 type DisplayState = {
