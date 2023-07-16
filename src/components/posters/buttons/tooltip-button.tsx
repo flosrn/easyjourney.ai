@@ -1,7 +1,7 @@
 import React from "react";
 import { cva } from "class-variance-authority";
 import { motion } from "framer-motion";
-import type { LucideProps } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -15,7 +15,7 @@ import { cn } from "~/lib/classNames";
 
 type TooltipButtonProps = {
   children: React.ReactNode;
-  Icon: React.ComponentType<LucideProps>;
+  Icon: LucideIcon;
   iconSize?: "lg" | "md" | "sm" | "xl" | "xs";
   clickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
