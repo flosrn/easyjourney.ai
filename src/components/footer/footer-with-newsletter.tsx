@@ -7,30 +7,6 @@ import { cn } from "~/lib/classNames";
 import { siteConfig } from "~/config/site";
 
 const navigation = {
-  explore: [
-    { name: "Marketing", href: "#" },
-    { name: "Analytics", href: "#" },
-    { name: "Commerce", href: "#" },
-    { name: "Insights", href: "#" },
-  ],
-  support: [
-    { name: "Pricing", href: "#" },
-    { name: "Documentation", href: "#" },
-    { name: "Guides", href: "#" },
-    { name: "API Status", href: "#" },
-  ],
-  company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Partners", href: "#" },
-  ],
-  legal: [
-    { name: "Claim", href: "#" },
-    { name: "Privacy", href: "#" },
-    { name: "Terms", href: "#" },
-  ],
   social: [
     {
       name: "Instagram",
@@ -76,7 +52,7 @@ const FooterWithNewsletter = () => {
         <div className="xl:grid xl:grid-cols-4">
           {siteConfig.megaMenu.map((megaMenuItem) => (
             <div key={megaMenuItem.title} className="mt-12 first:mt-0 lg:mt-0">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              <h3 className="text-sm font-semibold uppercase tracking-wider">
                 {megaMenuItem.title}
               </h3>
               <ul role="list" className="mt-4 space-y-4">
@@ -85,7 +61,7 @@ const FooterWithNewsletter = () => {
                     <Link
                       href={menuItem.href}
                       className={cn(
-                        "text-base text-foreground hover:text-white",
+                        "text-base text-muted-foreground hover:text-primary-foreground",
                         {
                           "pointer-events-none opacity-50": menuItem.disabled,
                         }
@@ -99,10 +75,10 @@ const FooterWithNewsletter = () => {
             </div>
           ))}
           <div className="mt-8 xl:mt-0">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400">
+            <h3 className="text-sm font-semibold uppercase tracking-wider">
               Subscribe to our newsletter
             </h3>
-            <p className="mt-4 text-base text-gray-300">
+            <p className="mt-4 text-base text-muted-foreground">
               The latest news, articles, and resources, sent to your inbox
               weekly.
             </p>
@@ -110,19 +86,19 @@ const FooterWithNewsletter = () => {
           </div>
         </div>
         <div className="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
-          <div className="flex space-x-6 md:order-2">
+          <div className="flex-center space-x-6 md:order-2">
             {navigation.social.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-400 hover:text-gray-300"
+                className="text-muted-foreground hover:text-primary-foreground"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />
               </a>
             ))}
           </div>
-          <p className="mt-8 text-base text-gray-400 md:order-1 md:mt-0">
+          <p className="mt-8 text-base text-muted-foreground md:order-1 md:mt-0">
             &copy; {new Date().getFullYear()} Easyjourney, Inc. All rights
             reserved.
           </p>
