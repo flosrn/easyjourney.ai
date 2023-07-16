@@ -12,6 +12,7 @@ const Image3D = ({}: Image3DProps) => {
   return (
     <Atropos
       highlight={false}
+      rotateTouch={false}
       innerClassName="rounded-xl ring-1 ring-border/60 bg-background"
       className="w-[48rem] max-w-none rounded-xl shadow-[0px_61.366004943847656px_155.088623046875px_-23.43065643310547px_rgba(137,90,246,0.13)] md:-ml-4 xl:-ml-24"
     >
