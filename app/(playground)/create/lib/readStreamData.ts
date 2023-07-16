@@ -38,6 +38,10 @@ const readStreamData = async (
 
         loading(parsedMessage);
 
+        if (parsedMessage.progress === "done") {
+          return parsedMessage;
+        }
+
         newlineIndex = jsonStringBuffer.indexOf("\n");
       }
     }

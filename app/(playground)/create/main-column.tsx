@@ -320,6 +320,12 @@ const MainColumn = () => {
       case "save":
         setMsg("Poster saved!");
         break;
+      case "zoomOut":
+        setMsg("Poster unZoomed! Click on one of the 4 images and upscale it!");
+        break;
+      case "vary":
+        setMsg("Poster varied! Click on one of the 4 images and upscale it!");
+        break;
       default:
         setMsg("");
         break;

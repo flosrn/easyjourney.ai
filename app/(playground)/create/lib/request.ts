@@ -30,7 +30,8 @@ const midjourneyRequest = async (
     return;
   }
 
-  await readStreamData(reader, loading, onError);
+  const result = await readStreamData(reader, loading, onError);
+  return result;
 };
 
 export const generate = async ({
@@ -49,7 +50,7 @@ export const generate = async ({
   option?: string;
 }) => {
   try {
-    await midjourneyRequest(
+    return await midjourneyRequest(
       generationType,
       prompt,
       content,

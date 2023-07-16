@@ -132,13 +132,13 @@ const Slider = ({}: SliderProps) => {
           <SwiperSlide key={index}>
             <div
               className={cn(
-                "flex-center lg:h-[500px] rounded-md relative",
+                "flex-center lg:h-[500px] rounded-md relative w-[80%] h-[80%] sm:h-auto sm:w-auto mr-12 sm:mr-0",
                 aspectRatio
               )}
             >
               {index === messages.length - 1 && message.attachment && (
                 <>
-                  <div className="absolute left-0 top-0">
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                     <ControlledZoom
                       isZoomed={isZoomed}
                       onZoomChange={handleZoomChange}

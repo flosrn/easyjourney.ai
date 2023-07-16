@@ -8,6 +8,12 @@ import { useFilterStore } from "../../store/filterStore";
 
 import "swiper/css";
 
+import { cn } from "~/lib/classNames";
+
+type FiltersBadgeProps = {
+  className?: string;
+};
+
 const badgeVariants = {
   hidden: { opacity: 0, scale: 0.5 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.35 } },
@@ -28,7 +34,7 @@ const wobble = {
   },
 };
 
-const FiltersBadge = () => {
+const FiltersBadge = ({ className }: FiltersBadgeProps) => {
   const [selectedFilters, addFilter, removeFilter] = useFilterStore((state) => [
     state.selectedFilters,
     state.addFilter,
@@ -39,7 +45,7 @@ const FiltersBadge = () => {
       <Swiper
         slidesPerView="auto"
         spaceBetween={5}
-        className="relative h-7 !px-1"
+        className={cn("relative h-7 !px-1", className)}
       >
         <AnimatePresence initial={false}>
           {selectedFilters.map((filter) => {
@@ -68,7 +74,7 @@ const FiltersBadge = () => {
                         : addFilter(filter);
                     }}
                     variant="outline"
-                    className="shrink-0 cursor-pointer"
+                    className="shrink-0 cursor-pointer bg-primary"
                   >
                     {filter.name}
                   </Badge>
