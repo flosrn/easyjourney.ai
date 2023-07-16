@@ -8,6 +8,7 @@ import {
   GlobeIcon,
   LightbulbIcon,
   LogOutIcon,
+  MouseIcon,
   SailboatIcon,
   StickerIcon,
   UsersIcon,
@@ -17,6 +18,7 @@ import {
 import FooterWithNewsletter from "~/components/footer/footer-with-newsletter";
 import Header from "~/components/header/header";
 import Image3D from "~/components/hero/image-3d";
+import ScrollToSection from "~/components/hero/scroll-to-section";
 import StarsParticles from "~/components/hero/stars-particles";
 import TextAnimatedGradient from "~/components/hero/text-animated-gradient";
 import { Button } from "~/components/ui/button";
@@ -148,6 +150,12 @@ export default async function IndexPage() {
             </div>
           </div>
           <StarsParticles />
+          <ScrollToSection
+            id="features-easy-section"
+            className="absolute bottom-10 left-1/2 h-8 w-8 -translate-x-1/2 animate-bounce text-foreground"
+          >
+            <MouseIcon />
+          </ScrollToSection>
         </section>
         <section
           id="features-easy-section"

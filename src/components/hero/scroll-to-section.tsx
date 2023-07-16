@@ -3,12 +3,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+import { cn } from "~/lib/classNames";
+
 type ScrollToSectionProps = {
   id: string;
   children: React.ReactNode;
+  className?: string;
 };
 
-const ScrollToSection = ({ id, children }: ScrollToSectionProps) => {
+const ScrollToSection = ({ id, children, className }: ScrollToSectionProps) => {
   const handleClick = () => {
     const section = document.querySelector(`#${id}`);
     if (section) {
@@ -31,7 +34,7 @@ const ScrollToSection = ({ id, children }: ScrollToSectionProps) => {
         },
       }}
       onClick={handleClick}
-      className="p-2 opacity-70 hover:opacity-90"
+      className={cn("p-2 opacity-50 hover:opacity-90", className)}
     >
       {children}
     </motion.button>
