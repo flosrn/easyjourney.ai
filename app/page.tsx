@@ -254,7 +254,55 @@ export default async function IndexPage() {
           </div>
         </section>
 
-        <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+        <section
+          id="features-community-section"
+          className="flex-center container overflow-hidden bg-background py-24 sm:py-32"
+        >
+          <div className="mx-auto">
+            <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+              <div className="lg:pr-8 lg:pt-4">
+                <div className="lg:max-w-lg">
+                  <h2 className="text-gradient-aqua text-base font-semibold leading-7 lg:text-3xl">
+                    Build Community
+                  </h2>
+                  <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
+                    Connect with Creators
+                  </p>
+                  <p className="mt-6 text-lg leading-8 text-gray-600">
+                    Dive into a network of artists. Display your unique posters
+                    on your profile, engage with other creators, and collaborate
+                    on shared boards. Welcome to the social side of AI art.
+                  </p>
+                  <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-muted-foreground lg:max-w-none">
+                    {featuresSection3.map((feature) => (
+                      <div key={feature.name} className="relative pl-9">
+                        <dt className="inline font-semibold text-foreground">
+                          <feature.icon
+                            className="absolute left-1 top-1 h-5 w-5 text-primary"
+                            aria-hidden="true"
+                          />
+                          {feature.name}
+                        </dt>
+                        <dd className="inline">{feature.description}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </div>
+              <video
+                autoPlay
+                loop
+                muted
+                preload="metadata"
+                className="w-full rounded-xl shadow-xl ring-1 ring-border/60"
+              >
+                <source src="/videos/filters.mp4" />
+              </video>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl pt-24 sm:px-6 sm:pt-32 lg:px-8">
           <div className="relative isolate overflow-hidden bg-muted px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
             <svg
               viewBox="0 0 1024 1024"
@@ -305,54 +353,6 @@ export default async function IndexPage() {
                 width={3110}
                 height={1988}
               />
-            </div>
-          </div>
-        </div>
-
-        <section
-          id="features-community-section"
-          className="flex-center container overflow-hidden bg-background py-24 sm:py-32"
-        >
-          <div className="mx-auto">
-            <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-              <div className="lg:pr-8 lg:pt-4">
-                <div className="lg:max-w-lg">
-                  <h2 className="text-gradient-aqua text-base font-semibold leading-7 lg:text-3xl">
-                    Build Community
-                  </h2>
-                  <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
-                    Connect with Creators
-                  </p>
-                  <p className="mt-6 text-lg leading-8 text-gray-600">
-                    Dive into a network of artists. Display your unique posters
-                    on your profile, engage with other creators, and collaborate
-                    on shared boards. Welcome to the social side of AI art.
-                  </p>
-                  <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-muted-foreground lg:max-w-none">
-                    {featuresSection3.map((feature) => (
-                      <div key={feature.name} className="relative pl-9">
-                        <dt className="inline font-semibold text-foreground">
-                          <feature.icon
-                            className="absolute left-1 top-1 h-5 w-5 text-primary"
-                            aria-hidden="true"
-                          />
-                          {feature.name}
-                        </dt>
-                        <dd className="inline">{feature.description}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              </div>
-              <video
-                autoPlay
-                loop
-                muted
-                preload="metadata"
-                className="w-full rounded-xl shadow-xl ring-1 ring-border/60"
-              >
-                <source src="/videos/filters.mp4" />
-              </video>
             </div>
           </div>
         </section>
