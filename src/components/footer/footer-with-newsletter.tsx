@@ -1,6 +1,8 @@
 import type { SVGProps } from "react";
+import React from "react";
 import Link from "next/link";
 
+import FooterLogo from "~/components/footer/footer-logo";
 import NewsletterForm from "~/components/footer/newsletter-form";
 
 import { cn } from "~/lib/classNames";
@@ -49,6 +51,7 @@ const FooterWithNewsletter = () => {
       aria-labelledby="footer-heading"
     >
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <FooterLogo />
         <div className="xl:grid xl:grid-cols-4">
           {siteConfig.megaMenu.map((megaMenuItem) => (
             <div key={megaMenuItem.title} className="mt-12 first:mt-0 lg:mt-0">
