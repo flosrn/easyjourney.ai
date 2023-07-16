@@ -1,51 +1,54 @@
-import type { ImageGenerationSetAction } from "../store/imageGenerationStore";
+import type { MJMessage } from "midjourney";
 
 const readStreamData = async (
   reader: ReadableStreamDefaultReader<Uint8Array>,
-  actions: ImageGenerationSetAction
+  loading: (data: MJMessage) => void,
+  onError: (error: Error) => void
 ) => {
   const decoder = new TextDecoder();
 
   let done = false;
   let jsonStringBuffer = ""; // Buffer to store the decoded JSON strings
 
-  while (!done) {
-    // eslint-disable-next-line no-await-in-loop
-    const { value, done: doneReading } = await reader.read();
-    done = doneReading;
+  try {
+    while (!done) {
+      // eslint-disable-next-line no-await-in-loop
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
 
-    // Decode the value and add it to the jsonStringBuffer
-    const decodedValue = decoder.decode(value);
-    // if (decodedValue === "") {
-    //   console.log("decodedValue is empty");
-    //   // close the stream
-    //   reader.releaseLock();
-    // }
-    jsonStringBuffer += decodedValue;
+      // Decode the value and add it to the jsonStringBuffer
+      const decodedValue = decoder.decode(value);
+      jsonStringBuffer += decodedValue;
 
-    // Regular expression to find JSON objects in the jsonStringBuffer
-    const jsonRegex = /{[^{}]*}/g;
-    let jsonMatch;
+      // Loop while there are newline characters in jsonStringBuffer
+      let newlineIndex = jsonStringBuffer.indexOf("\n");
+      while (newlineIndex !== -1) {
+        const jsonString = jsonStringBuffer.slice(0, newlineIndex);
+        jsonStringBuffer = jsonStringBuffer.slice(newlineIndex + 1);
 
-    // Extract and process JSON objects from the jsonStringBuffer
-    while ((jsonMatch = jsonRegex.exec(jsonStringBuffer)) !== null) {
-      const jsonString = jsonMatch[0]; // Extract the JSON string
+        const parsedMessage = JSON.parse(jsonString);
 
-      try {
-        const data = JSON.parse(jsonString);
+        if (parsedMessage.type === "error") {
+          onError(new Error(parsedMessage.error));
+          return;
+        }
 
         const debug = process.env.NODE_ENV === "development";
-        console.log("data :", data);
-        data && actions.addImage(data);
-      } catch (error: unknown) {
-        // eslint-disable-next-line no-console
-        console.log("readStreamData error :", error);
-        break;
-      }
+        console.log("parsedMessage :", parsedMessage);
 
-      // Update the jsonStringBuffer to remove the processed JSON object
-      jsonStringBuffer = jsonStringBuffer.slice(jsonRegex.lastIndex);
+        loading(parsedMessage);
+
+        if (parsedMessage.progress === "done") {
+          return parsedMessage;
+        }
+
+        newlineIndex = jsonStringBuffer.indexOf("\n");
+      }
     }
+  } catch (error: unknown) {
+    // eslint-disable-next-line no-console
+    console.log("readStreamData error :", error);
+    throw error; // Propagate the error further up
   }
 };
 

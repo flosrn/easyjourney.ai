@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-// @ts-expect-error: Atropos is not typed
 import Atropos from "atropos/react";
 
 import "atropos/css";

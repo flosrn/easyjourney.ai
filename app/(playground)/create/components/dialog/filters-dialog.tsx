@@ -68,15 +68,15 @@ const FiltersDialog = ({}: FilterDialogProps) => {
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={handleDialogChange}>
-      <DialogContent className="flex h-[95svh] w-[90vw] flex-col overflow-hidden md:max-h-[85svh] md:max-w-[80vw] lg:max-w-5xl">
+      <DialogContent className="flex h-[95svh] w-[90vw] flex-col overflow-hidden rounded-lg md:max-h-[85svh] md:max-w-[80vw] lg:max-w-5xl">
         <DialogHeader className="max-h-[10vh] pl-1 md:h-[10]">
           <DialogTitle>
             <Breadcrumbs
               category={selectedCategory}
               subCategory={selectedSubCategory}
             />
-            <FiltersBadge />
           </DialogTitle>
+          <FiltersBadge className="mt-2 !px-0" />
         </DialogHeader>
         <div>
           <ScrollArea className="h-[calc(70vh+82px)] md:h-[calc(56vh+82px)]">
@@ -119,8 +119,8 @@ const FiltersDialog = ({}: FilterDialogProps) => {
             </div>
           </ScrollArea>
         </div>
-        <DialogFooter className="absolute bottom-0 left-0 h-16 w-full rounded-xl bg-background md:h-20">
-          <div className="relative flex w-full items-center justify-between px-10">
+        <DialogFooter className="flex-center absolute bottom-0 left-0 h-16 w-full rounded-xl bg-background md:h-20">
+          <div className="relative flex w-full items-center justify-between px-10 py-2">
             <Separator className="absolute left-0 top-0 w-full" />
             <Button
               disabled={isHomeDialog}

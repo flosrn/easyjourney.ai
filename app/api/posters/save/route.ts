@@ -18,37 +18,58 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { prompt, filename, referencedImage } = body;
-    const { image, imageSelected, version, ...rest } = body;
-
-    const title = getPosterTitle(prompt);
-    const jobId = referencedImage && extractJobId(referencedImage.filename);
-    const mjImageUrl =
-      jobId && `${BASE_MIDJOURNEY_URL}${jobId}/0_${imageSelected - 1}.webp`;
-
-    const referencedImageWithJobId = {
-      ...referencedImage,
+    const {
+      index,
+      fullPrompt,
+      filename,
       jobId,
+      uri,
+      attachment,
+      referencedMessage,
+      options,
+    } = body;
+    const { textPrompt, ...restOptions } = options;
+    console.log("body :", body);
+
+    const title = getPosterTitle(textPrompt);
+    const baseJobId =
+      referencedMessage && extractJobId(referencedMessage.filename);
+    const mjImageUrl =
+      jobId && `${BASE_MIDJOURNEY_URL}${baseJobId}/0_${index - 1}.webp`;
+
+    const referencedMessageWithJobId = {
+      ...referencedMessage,
+      jobId: baseJobId,
     };
 
     const data = await prisma.poster.create({
       data: {
-        ...rest,
-        image: mjImageUrl || image,
+        ...restOptions,
+        prompt: textPrompt,
+        image: mjImageUrl || uri,
+        width: attachment.width,
+        height: attachment.height,
         title,
-        prompt,
+        fullPrompt,
         filename,
         jobId,
-        discordImageUrl: image,
+        discordImageUrl: uri,
         mjImageUrl,
-        model: version,
         userId: session.user.id,
-        referencedImage: referencedImageWithJobId,
+        referencedImage: referencedMessageWithJobId,
       },
     });
-    return NextResponse.json({ status: 201, data });
+
+    // const data = { msg: "test" };
+    return NextResponse.json(
+      { ...data, generationType: "save" },
+      { status: 201 }
+    );
   } catch (error: unknown) {
     console.error(error);
-    return NextResponse.json({ status: 500, message: "Internal Server Error" });
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

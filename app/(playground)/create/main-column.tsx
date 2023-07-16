@@ -1,38 +1,34 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { useMobileMenuStore } from "~/store/mobileMenuStore";
 import removeSpacesFromString from "~/utils/removeSpacesFromString";
 import { motion } from "framer-motion";
-import {
-  ArrowBigUpIcon,
-  BrushIcon,
-  IterationCcwIcon,
-  Loader2Icon,
-  RedoIcon,
-  SaveIcon,
-  Trash2Icon,
-  UndoIcon,
-  ZoomOutIcon,
-} from "lucide-react";
-import { useSession } from "next-auth/react";
-import { Toaster } from "react-hot-toast";
+import { BrushIcon, Trash2Icon } from "lucide-react";
+import type { MJMessage } from "midjourney";
+import { toast, Toaster } from "react-hot-toast";
 
-import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 
 import { cn } from "~/lib/classNames";
 
 import FiltersBadge from "./components/badge/filters-badge";
+import ActionButton from "./components/buttons/action-button";
+import ActionButtonsContainer from "./components/buttons/action-buttons-container";
 import FiltersDialog from "./components/dialog/filters-dialog";
 import ImageContainer from "./components/image/image-container";
+import ImageContainerGrid from "./components/image/image-container-grid";
 import TextareaPrompt from "./components/input/textarea-prompt";
+import MoreOptions from "./components/popover/more-options";
 import { aspectRatios } from "./data/aspectRatios";
-import { handleMessageData } from "./lib/imageGenerationUtils";
+import { generate, savePoster } from "./lib/request";
 import SideColumn from "./side-column";
 import { useChaosStore } from "./store/chaosStore";
+import { DisplayMode, useDisplayStore } from "./store/displayStore";
 import { useFilterStore } from "./store/filterStore";
-import { useImageGenerationStore } from "./store/imageGenerationStore";
+import { useMessageStore } from "./store/messageStore";
+import { useMidjourneyStore } from "./store/midjourneyStore";
 import { usePromptStore } from "./store/promptStore";
 import { useQualityStore } from "./store/qualityStore";
 import { useRatioStore } from "./store/ratioStore";
@@ -44,55 +40,39 @@ import { useVersionStore } from "./store/versionStore";
 
 const MainColumn = () => {
   const [
-    images,
-    imageIndex,
-    prevImage,
-    nextImage,
-    generateImage,
-    upscaleImage,
-    variationImage,
-    uploadImage,
-    imageSelected,
-    setSelectedImage,
-    setClear,
-    isLoading,
-    loadingType,
-    setIsLoading,
-    setLoadingType,
-    setLoadingCount,
-    imageType,
-    setImageType,
-    message,
+    messages,
+    addMessage,
     setMessage,
-    isImageUploaded,
-    isSuccess,
-    setIsSuccess,
-    isError,
-  ] = useImageGenerationStore((state) => [
-    state.images,
-    state.imageIndex,
-    state.prevImage,
-    state.nextImage,
-    state.generateImage,
-    state.upscaleImage,
-    state.variationImage,
-    state.uploadImage,
-    state.selectedImage,
-    state.setSelectedImage,
-    state.setClear,
-    state.isLoading,
-    state.loadingType,
-    state.setIsLoading,
-    state.setLoadingType,
-    state.setLoadingCount,
-    state.imageType,
-    state.setImageType,
-    state.message,
+    currentMessageIndex,
+    setCurrentMessageIndex,
+    clearMessages,
+  ] = useMessageStore((state) => [
+    state.messages,
+    state.addMessage,
     state.setMessage,
-    state.isImageUploaded,
-    state.isSuccess,
-    state.setIsSuccess,
-    state.isError,
+    state.currentMessageIndex,
+    state.setCurrentMessageIndex,
+    state.clearMessages,
+  ]);
+
+  const [
+    generationType,
+    { isLoading, isSuccess, isError },
+    setRequestState,
+    selectedImage,
+    setGenerationType,
+    msg,
+    setMsg,
+    setSelectedImage,
+  ] = useMidjourneyStore((state) => [
+    state.generationType,
+    state.requestState,
+    state.setRequestState,
+    state.selectedImage,
+    state.setGenerationType,
+    state.msg,
+    state.setMsg,
+    state.setSelectedImage,
   ]);
 
   const [chaosValue, setChaosValue, setIsChaosSelectorDisabled] = useChaosStore(
@@ -164,20 +144,15 @@ const MainColumn = () => {
   const isMobileMenuOpen = useMobileMenuStore(
     (state) => state.isMobileMenuOpen
   );
-  const { data: session, update } = useSession();
-  const username = session?.user.username;
+  const [displayMode, setDisplayMode] = useDisplayStore((state) => [
+    state.displayMode,
+    state.setDisplayMode,
+  ]);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
+  const currentGenerationType = currentMessage?.generationType;
 
-  const hasImages = images.length > 0;
   const hasFilters = selectedFilters.length > 0;
-  const currentImage = images[imageIndex];
-  const isFirst = imageIndex === 0;
-  const isLast = imageIndex === images.length - 1;
-  const isGenerationLoading = isLoading && loadingType === "generation";
-  const isUpscaleLoading = isLoading && loadingType === "upscale";
-  const isVariationLoading = isLoading && loadingType === "variation";
-  const isUploadLoading = isLoading && loadingType === "upload";
-  const isImageUpscaled = imageType === "upscale";
   const { ratio, value: ratioValue } = selectedAspectRatio;
   const styles = selectedFilters
     .map((selectedFilter) => selectedFilter.style)
@@ -194,11 +169,14 @@ const MainColumn = () => {
   const ratioTrim = ratio ? ` ${ratio}` : "";
   const seed = seedValue ? ` --seed ${seedValue}` : "";
   const options = {
+    textPrompt: promptValue,
+    style: styles,
+    ratio: ratioValue,
     chaos: chaosValue,
     stylize: stylizeValue,
     stop: stopValue,
     quality: qualityValue,
-    version: versionValue,
+    model: versionValue,
     tile: tileValue,
     seed: seedValue,
   };
@@ -230,7 +208,9 @@ const MainColumn = () => {
   };
 
   const handleClear = () => {
-    setClear();
+    setSelectedImage(null);
+    setMsg("");
+    clearMessages();
     setPromptValue("");
     setSelectedAspectRatio(aspectRatios[0]);
     setChaosValue(0);
@@ -244,66 +224,117 @@ const MainColumn = () => {
     handleDisableSelectors(false);
   };
 
-  const handleGenerate = async () => {
+  const generationMutation = useMutation({
+    mutationFn: async (option?: string) => {
+      const result = await (currentMessage && generationType === "save"
+        ? savePoster({
+            poster: currentMessage,
+            options,
+            selectedImage,
+          })
+        : generate({
+            generationType,
+            prompt,
+            content: currentMessage,
+            index: selectedImage,
+            option,
+            loading: (data: MJMessage) => {
+              if (data.progress === "waiting") return;
+              setMsg(`Generating poster ${data.progress}`);
+              if (generationType === "imagine") {
+                addMessage(data);
+              } else if (data.progress === "done") {
+                addMessage(data);
+              }
+            },
+          }));
+      return result;
+    },
+    onMutate: () => {
+      console.log("onMutate");
+      setRequestState({ isLoading: true, isSuccess: false, isError: false });
+    },
+    onError: (error) => {
+      console.log("onError:", error);
+      setMsg(`Error: ${error.message}`);
+      setRequestState({ isError: true, isLoading: false });
+      setGenerationType(null);
+      toast.error("An error occurred, please try again.");
+    },
+    onSuccess: (data) => {
+      console.log("onSuccess:", data);
+      setSelectedImage(null);
+      setRequestState({ isSuccess: true, isLoading: false });
+      let actionWord = "generated";
+      const isDataImagine = data?.generationType === "imagine";
+      const isDataUpscale = data?.generationType === "upscale";
+      const isDataVariation = data?.generationType === "variation";
+      const isDataSave = data?.generationType === "save";
+      if (isDataImagine || isDataVariation) {
+        actionWord = "generated";
+      } else if (isDataUpscale) {
+        actionWord = "upscaled";
+      } else if (isDataSave) {
+        actionWord = "saved";
+      }
+      data && toast.success(`Poster successfully ${actionWord}!`);
+      // if (!data) setMsg("Something went wrong, please try again.");
+      if (isDataSave) {
+        const savedMessage = messages.find(
+          (message) => message.jobId === data.jobId
+        );
+        const index = savedMessage && messages.indexOf(savedMessage);
+        index && setMessage(index, { ...savedMessage, generationType: "save" });
+      }
+    },
+    onSettled: () => {
+      console.log("onSettled");
+      setRequestState({ isLoading: false });
+    },
+  });
+
+  const handleGenerate = async (option?: string) => {
     if (promptValue.length <= 1) {
       inputRef.current?.focus();
-      setMessage("Please enter a prompt.");
       return;
     }
     handleDisableSelectors(true);
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }, 100);
-    await generateImage(prompt);
+    await generationMutation.mutateAsync(option);
   };
-
-  const handlePreviousImage = () => {
-    prevImage();
-    setSelectedImage(0);
-  };
-
-  const handleNextImage = () => {
-    nextImage();
-    setSelectedImage(0);
-  };
-
-  const actions = useMemo(
-    () => ({
-      setImageType,
-      setMessage,
-      setIsLoading,
-      setLoadingType,
-      setLoadingCount,
-      setIsSuccess,
-    }),
-    [
-      setImageType,
-      setMessage,
-      setIsLoading,
-      setLoadingType,
-      setLoadingCount,
-      setIsSuccess,
-    ]
-  );
 
   useEffect(() => {
-    handleMessageData({ image: currentImage, ...actions });
-  }, [currentImage, actions]);
-
-  useEffect(() => {
-    if (!isSuccess) return;
-
-    const timerId = setTimeout(async () => {
-      await update();
-      setIsSuccess(false);
-    }, 2000);
-
-    return () => clearTimeout(timerId);
-  }, [isSuccess, update, setIsSuccess]);
+    setSelectedImage(null);
+    switch (currentGenerationType) {
+      case "imagine":
+        setMsg("Click on one of the 4 images and upscale it!");
+        break;
+      case "variation":
+        setMsg("Click on one of the 4 images and upscale it!");
+        break;
+      case "upscale":
+        setMsg("Poster upscaled!");
+        break;
+      case "save":
+        setMsg("Poster saved!");
+        break;
+      case "zoomOut":
+        setMsg("Poster unZoomed! Click on one of the 4 images and upscale it!");
+        break;
+      case "vary":
+        setMsg("Poster varied! Click on one of the 4 images and upscale it!");
+        break;
+      default:
+        setMsg("");
+        break;
+    }
+  }, [currentGenerationType, setSelectedImage, setMsg]);
 
   return (
     <main className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">
-      <div className="h-full grow px-4 py-6 xl:px-8">
+      <div className="h-full p-4 lg:py-6 xl:px-8">
         <div className="h-full flex-col border-none p-0">
           <div
             className={cn(
@@ -323,44 +354,25 @@ const MainColumn = () => {
               </p>
             </div>
             <div className="ml-auto flex space-x-2">
-              <>
-                <Button
-                  onClick={handlePreviousImage}
-                  disabled={isLoading || isFirst}
-                  variant="outline"
-                >
-                  <UndoIcon className="h-4 w-4 md:mr-2" />
-                  <span className="hidden md:block">Undo</span>
-                </Button>
-                <Button
-                  onClick={handleNextImage}
-                  disabled={isLoading || isLast || !hasImages}
-                  variant="outline"
-                >
-                  <RedoIcon className="h-4 w-4 md:mr-2" />
-                  <span className="hidden md:block">Redo</span>
-                </Button>
-                <Button
-                  onClick={handleClear}
-                  variant="secondary"
-                  disabled={isEmpty}
-                >
-                  <Trash2Icon className="h-4 w-4 md:mr-2" />
-                  <span className="hidden md:block">Clear</span>
-                </Button>
-              </>
-              <Button onClick={handleGenerate} disabled={isLoading}>
-                {isGenerationLoading ? (
-                  <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <BrushIcon className="h-4 w-4 md:mr-2" />
-                )}
-                <span className="hidden md:block">Generate</span>
-              </Button>
+              <ActionButton
+                variant="secondary"
+                label="Clear"
+                Icon={Trash2Icon}
+                clickHandler={handleClear}
+                isDisabled={isEmpty}
+              />
+              <ActionButton
+                type="imagine"
+                label="Generate"
+                Icon={BrushIcon}
+                clickHandler={handleGenerate}
+                isDisabled={isEmpty || !!generationType}
+              />
+              <MoreOptions />
             </div>
           </div>
           <Separator className="my-4 -lg:hidden" />
-          <div className="-lg:mt-20">
+          <div className="flex h-[calc(100%-80px)] flex-col space-y-4 -lg:mt-20">
             {hasFilters && <FiltersBadge />}
             <TextareaPrompt
               inputRef={inputRef}
@@ -368,128 +380,28 @@ const MainColumn = () => {
               collapse={hasFilters}
             />
             <SideColumn className="lg:hidden" />
-            <ImageContainer className="" />
-            <motion.div layout className="flex justify-center space-x-2">
-              {isImageUpscaled ? (
-                <>
-                  <motion.div layout className="flex-center mt-4">
-                    <Button
-                      onClick={async () =>
-                        variationImage(
-                          imageSelected,
-                          currentImage,
-                          "zoom-out x1.5"
-                        )
-                      }
-                      disabled={isLoading || imageSelected === 0}
-                      variant="outline"
-                    >
-                      {isVariationLoading ? (
-                        <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <ZoomOutIcon className="mr-2 h-4 w-4" />
-                      )}
-                      Zoom out x1.5
-                    </Button>
-                  </motion.div>
-                  <motion.div layout className="flex-center mt-4">
-                    <Button
-                      onClick={async () =>
-                        variationImage(
-                          imageSelected,
-                          currentImage,
-                          "zoom-out x2"
-                        )
-                      }
-                      disabled={isLoading || imageSelected === 0}
-                      variant="secondary"
-                    >
-                      {isUpscaleLoading ? (
-                        <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <ZoomOutIcon className="mr-2 h-4 w-4" />
-                      )}
-                      Zoom out x2
-                    </Button>
-                  </motion.div>
-                </>
+            <motion.div
+              layout
+              className="flex max-h-full grow items-center justify-center rounded-md border p-5 lg:py-1"
+            >
+              {displayMode === DisplayMode.STACK ? (
+                <ImageContainer />
               ) : (
-                <>
-                  <motion.div layout className="flex-center mt-4">
-                    <Button
-                      onClick={async () =>
-                        variationImage(imageSelected, currentImage)
-                      }
-                      disabled={
-                        isLoading || imageSelected === 0 || isImageUpscaled
-                      }
-                      variant="outline"
-                    >
-                      {isVariationLoading ? (
-                        <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <IterationCcwIcon className="mr-2 h-4 w-4" />
-                      )}
-                      Variation
-                    </Button>
-                  </motion.div>
-                  <motion.div layout className="flex-center mt-4">
-                    <Button
-                      onClick={async () =>
-                        upscaleImage(prompt, imageSelected, currentImage)
-                      }
-                      disabled={
-                        isLoading || imageSelected === 0 || isImageUpscaled
-                      }
-                      variant="secondary"
-                    >
-                      {isUpscaleLoading ? (
-                        <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <ArrowBigUpIcon className="mr-2 h-4 w-4" />
-                      )}
-                      Upscale
-                    </Button>
-                  </motion.div>
-                </>
-              )}
-              {isImageUpscaled && (
-                <motion.div layout className="flex-center mt-4">
-                  <Button
-                    onClick={async () =>
-                      uploadImage(
-                        currentImage,
-                        promptValue,
-                        ratioValue,
-                        styles,
-                        imageSelected,
-                        options,
-                        username
-                      )
-                    }
-                    disabled={isUploadLoading}
-                    variant="success"
-                  >
-                    {isUploadLoading ? (
-                      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                    ) : (
-                      <SaveIcon className="mr-2 h-4 w-4" />
-                    )}
-                    Save
-                  </Button>
-                </motion.div>
+                <ImageContainerGrid />
               )}
             </motion.div>
+
+            <ActionButtonsContainer clickHandler={handleGenerate} />
           </div>
         </div>
       </div>
-      <div className="flex-center sticky bottom-0 h-6 border-t bg-background">
+      <div className="flex-center sticky bottom-0 z-10 h-6 border-t bg-background">
         <p
           className={cn("px-4 text-xs", {
             "text-red-500": isError,
           })}
         >
-          {message}
+          {msg}
         </p>
       </div>
       <FiltersDialog />

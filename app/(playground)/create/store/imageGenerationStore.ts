@@ -3,7 +3,15 @@ import type { APIAttachment } from "discord-api-types/v10";
 import toast from "react-hot-toast";
 import { create } from "zustand";
 
-import readStreamData from "../lib/readStreamData";
+export type Message = {
+  text: string;
+  img: string;
+  msgID?: string;
+  msgHash?: string;
+  content?: string;
+  hasTag: boolean;
+  progress?: string;
+};
 
 export type ImageData = APIAttachment & {
   type?: string;
@@ -284,14 +292,14 @@ export const useImageGenerationStore = create<
       console.log("prompt :", prompt);
 
       const fetchImagine = async (promptValue: string) => {
-        const response = await fetch("/api/midjourney/imagine", {
+        const response = await fetch("/api/midjourney/new", {
           method: "POST",
           headers: CONTENT_TYPE_JSON,
           body: JSON.stringify({ prompt: promptValue }),
         });
 
-        const data = await response.json();
-        return data;
+        // const data = await response.json();
+        return response;
       };
 
       const fetchChannelMessage = async (promptValue: string) => {
@@ -305,7 +313,7 @@ export const useImageGenerationStore = create<
 
       try {
         const data = await fetchImagine(prompt);
-        if (!data.status) handleErrorResponse(data);
+        // if (!data.status) handleErrorResponse(data);
 
         if (data.status === 204) {
           const response = await fetchChannelMessage(prompt);
@@ -313,7 +321,7 @@ export const useImageGenerationStore = create<
           if (response.body) {
             setStream(response.body);
             const reader = response.body.getReader();
-            await readStreamData(reader, actions);
+            // await readStreamData(reader, actions);
           }
         }
       } catch (error: unknown) {
@@ -378,7 +386,7 @@ export const useImageGenerationStore = create<
           if (response.body) {
             setStream(response.body);
             const reader = response.body.getReader();
-            await readStreamData(reader, actions);
+            // await readStreamData(reader, actions);
           }
         }
       } catch (error: unknown) {
@@ -427,7 +435,7 @@ export const useImageGenerationStore = create<
           if (response.body) {
             setStream(response.body);
             const reader = response.body.getReader();
-            await readStreamData(reader, actions);
+            // await readStreamData(reader, actions);
           }
         } else {
           setMessage(
