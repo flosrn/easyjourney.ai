@@ -368,7 +368,9 @@ const MainColumn = () => {
                 clickHandler={handleGenerate}
                 isDisabled={isEmpty || !!generationType}
               />
-              <MoreOptions />
+              <div className="hidden lg:block">
+                <MoreOptions />
+              </div>
             </div>
           </div>
           <Separator className="my-4 -lg:hidden" />
