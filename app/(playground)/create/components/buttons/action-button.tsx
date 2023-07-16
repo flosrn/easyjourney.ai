@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import type { LucideProps } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Loader2Icon } from "lucide-react";
 import type { GenerationType, MJMessage } from "midjourney";
 import { toast } from "react-hot-toast";
@@ -19,7 +19,7 @@ type ActionButtonProps = {
   label: string;
   showLabelOnMobile?: boolean;
   variant?: ButtonVariant;
-  Icon: React.ComponentType<LucideProps>;
+  Icon: LucideIcon;
   isDisabled?: boolean;
   clickHandler: (option?: string) => void;
   dataOption?: string;

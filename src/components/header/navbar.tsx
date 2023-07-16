@@ -14,8 +14,6 @@ import {
 import { cn } from "~/lib/classNames";
 import { siteConfig } from "~/config/site";
 
-import { Icons } from "../ui/icons";
-
 export const Navbar = () => {
   return (
     <NavigationMenu className="max-w-full">
@@ -38,7 +36,6 @@ export const Navbar = () => {
                         href="/posters/popular"
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-rose-500 to-indigo-700 p-6 no-underline outline-none focus:shadow-md"
                       >
-                        <Icons.logo className="h-6 w-6 text-white" />
                         <div className="mb-2 mt-4 text-lg font-medium text-white">
                           EXPLORER
                         </div>
