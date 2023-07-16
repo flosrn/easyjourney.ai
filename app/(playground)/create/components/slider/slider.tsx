@@ -136,9 +136,9 @@ const Slider = ({}: SliderProps) => {
                 aspectRatio
               )}
             >
-              {index === messages.length - 1 && message.attachment && (
+              {message.attachment && index === currentMessageIndex && (
                 <>
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <div className="absolute right-0 top-0">
                     <ControlledZoom
                       isZoomed={isZoomed}
                       onZoomChange={handleZoomChange}
@@ -150,7 +150,7 @@ const Slider = ({}: SliderProps) => {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => setIsZoomed(!isZoomed)}
-                      className="flex-center absolute right-0 top-0 z-50 p-2 opacity-50 hover:opacity-100"
+                      className="flex-center absolute right-0 top-0 z-50 p-2 opacity-80 hover:opacity-100"
                     >
                       <ExpandIcon className="h-4 w-4" />
                     </motion.button>
