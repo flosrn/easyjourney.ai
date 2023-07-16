@@ -3,6 +3,8 @@
 import React from "react";
 import { toast, Toaster } from "react-hot-toast";
 
+import { Button } from "~/components/ui/button";
+
 type NewsletterFormProps = {};
 
 const NewsletterForm = ({}: NewsletterFormProps) => {
@@ -21,16 +23,15 @@ const NewsletterForm = ({}: NewsletterFormProps) => {
         placeholder="Enter your email"
       />
       <div className="mt-3 rounded-md sm:ml-3 sm:mt-0 sm:shrink-0">
-        <button
+        <Button
           type="submit"
           onClick={(event) => {
             event.preventDefault();
             toast("⚠️ Coming soon!");
           }}
-          className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800"
         >
           Subscribe
-        </button>
+        </Button>
       </div>
       <Toaster position="bottom-right" />
     </form>
