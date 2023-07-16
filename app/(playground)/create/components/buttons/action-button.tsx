@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import type { LucideProps } from "lucide-react";
 import { Loader2Icon } from "lucide-react";
-import type { GenerationType } from "midjourney";
-import type { MJMessage } from "midjourney-api";
+import type { GenerationType, MJMessage } from "midjourney";
 import { toast } from "react-hot-toast";
 
 import type { ButtonVariant } from "~/components/ui/button";
