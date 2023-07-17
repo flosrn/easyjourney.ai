@@ -29,6 +29,7 @@ const serverSchema = z.object({
   MIDJOURNEY_CSRF_SESSION_TOKEN: z.string().min(1),
   DISCORD_SALAI_TOKEN: z.string().min(1),
   HUGGINGFACE_TOKEN: z.string().min(1),
+  DISCORD_BOT_TOKEN: z.string().min(1),
 });
 
 /**
@@ -66,6 +67,7 @@ const processEnv = {
   MIDJOURNEY_CSRF_SESSION_TOKEN: process.env.MIDJOURNEY_CSRF_SESSION_TOKEN,
   DISCORD_SALAI_TOKEN: process.env.DISCORD_SALAI_TOKEN,
   HUGGINGFACE_TOKEN: process.env.HUGGINGFACE_TOKEN,
+  DISCORD_BOT_TOKEN: process.env.DISCORD_BOT_TOKEN,
 };
 
 // Don't touch the part below
