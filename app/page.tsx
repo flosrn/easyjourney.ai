@@ -335,7 +335,7 @@ export default async function IndexPage() {
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                 <Button asChild>
-                  <Link href="/create">Join now</Link>
+                  <Link href="/pricing">Join now</Link>
                 </Button>
                 <Link
                   href="/about/faq"
