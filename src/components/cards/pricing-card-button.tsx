@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
@@ -17,13 +17,14 @@ const PricingCardButton = ({ disabled }: PricingCardButtonProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { data: session } = useSession();
   const router = useRouter();
+  const pathname = usePathname();
 
   const onSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setIsLoading(!isLoading);
 
     if (!session?.user) {
-      router.push("/api/auth/signin");
+      router.push(`/api/auth/signin?callbackUrl=/${pathname}`);
     }
 
     // Get a Stripe session URL.

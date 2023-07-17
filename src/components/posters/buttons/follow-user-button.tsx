@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { useFollowStore } from "~/store/followStore";
 import { UserCheck2Icon, UserPlus2Icon } from "lucide-react";
@@ -39,6 +39,7 @@ const FollowUserButton = ({
   ]);
   const session = useSession();
   const router = useRouter();
+  const pathname = usePathname();
   const isUser = session.data?.user.id === userId;
 
   useEffect(() => {
@@ -61,7 +62,7 @@ const FollowUserButton = ({
 
   const handleFollowClick = async (event: React.MouseEvent) => {
     event.preventDefault();
-    if (!session.data) router.push("/api/auth/signin");
+    if (!session.data) router.push(`/api/auth/signin?callbackUrl=/${pathname}`);
     await mutate();
   };
 

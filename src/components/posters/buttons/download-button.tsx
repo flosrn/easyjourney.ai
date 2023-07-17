@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { saveAs } from "file-saver";
 import { DownloadIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -18,10 +18,13 @@ type DownloadButtonProps = {
 const DownloadButton = ({ imageUrl, filename }: DownloadButtonProps) => {
   const { data: session } = useSession();
   const router = useRouter();
+  const pathname = usePathname();
 
   const fakeDownload = async () => {
     if (!imageUrl) return;
-    if (!session) return router.push("/api/auth/signin");
+    if (!session) {
+      return router.push(`/api/auth/signin?callbackUrl=/${pathname}`);
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         try {

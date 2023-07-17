@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import type { User } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
@@ -31,11 +31,12 @@ const FollowButton = ({
   const [isFollowing, setIsFollowing] = useState(isUserFollowing);
   const session = useSession();
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleFollowClick = async (event: React.MouseEvent) => {
     event.preventDefault();
     if (!session.data) {
-      router.push("/api/auth/signin");
+      router.push(`/api/auth/signin?callbackUrl=/${pathname}`);
     }
     setIsFollowing(!isFollowing);
     const data = await followUser(userId);
