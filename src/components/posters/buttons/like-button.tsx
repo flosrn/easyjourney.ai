@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import type { Like } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import useThrottle from "~/hooks/use-throtle";
@@ -34,6 +34,7 @@ const LikeButton = ({ id, likes, ghost }: LikeButtonProps) => {
   const [userHasLiked, setUserHasLiked] = useState<boolean>(false);
   const { data: session } = useSession();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     setUserHasLiked(!!likes?.some((like) => like.userId === session?.user.id));
@@ -52,7 +53,7 @@ const LikeButton = ({ id, likes, ghost }: LikeButtonProps) => {
   const handleLike = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!session) {
-      return router.push("/api/auth/signin");
+      return router.push(`/api/auth/signin?callbackUrl=/${pathname}`);
     }
 
     if (userHasLiked) {

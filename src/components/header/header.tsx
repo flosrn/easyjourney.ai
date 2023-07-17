@@ -94,9 +94,7 @@ const Header = ({ expanded }: HeaderProps) => {
           <div className="flex items-center space-x-2 md:space-x-4">
             {pathname !== "/create" && (
               <Button asChild>
-                <Link href={session ? "/create" : "/api/auth/signin"}>
-                  Create
-                </Link>
+                <Link href="/create">Create</Link>
               </Button>
             )}
             <div className="flex items-center space-x-2 md:space-x-4">
