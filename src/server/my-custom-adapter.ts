@@ -17,7 +17,7 @@ export const MyCustomAdapter = (prisma: PrismaClient): Adapter => ({
       },
     });
 
-    await fetch(`${env.NEXTAUTH_URL}/api/discord/send-message/new-user`, {
+    await fetch(`${env.NEXT_PUBLIC_URL}/api/discord/send-message/new-user`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user }),
