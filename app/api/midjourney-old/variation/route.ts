@@ -12,7 +12,7 @@ const variation = async ({
   messageId: string;
   jobId: string;
   type: string;
-}): Promise<any> => {
+}) => {
   console.log("variation index", index);
   console.log("variation messageId", messageId);
   console.log("variation jobId", jobId);

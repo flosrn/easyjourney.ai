@@ -41,7 +41,7 @@ const imaginePayload = {
   },
 };
 
-const imagine = async ({ prompt }: { prompt: string }): Promise<any> => {
+const imagine = async ({ prompt }: { prompt: string }) => {
   const response = await fetch("https://discord.com/api/v9/interactions", {
     method: "POST",
     headers: { ...headers, "Content-Type": "application/json" },
@@ -61,11 +61,7 @@ const imagine = async ({ prompt }: { prompt: string }): Promise<any> => {
   return { status: response.status };
 };
 
-const openAiModeration = async ({
-  prompt,
-}: {
-  prompt: string;
-}): Promise<any> => {
+const openAiModeration = async ({ prompt }: { prompt: string }) => {
   const response = await fetch("https://api.openai.com/v1/moderations", {
     method: "POST",
     headers: {

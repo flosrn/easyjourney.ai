@@ -84,7 +84,7 @@ const ProfileForm = () => {
   useEffect(() => {
     if (session && userInfo.data) {
       form.reset({
-        name: session.user.name!,
+        name: session.user.name ?? "",
         bio: userInfo.data?.bio,
         urls: [
           { value: userInfo.data.instagram, key: "instagram" },

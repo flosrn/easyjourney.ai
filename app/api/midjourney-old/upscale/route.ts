@@ -10,7 +10,7 @@ const upscale = async ({
   index: number;
   messageId: string;
   jobId: string;
-}): Promise<any> => {
+}) => {
   const response = await fetch("https://discord.com/api/v9/interactions", {
     method: "POST",
     headers: { ...headers, "Content-Type": "application/json" },

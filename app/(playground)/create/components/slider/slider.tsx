@@ -2,21 +2,16 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Controlled as ControlledZoom } from "react-medium-image-zoom";
-import { EffectCreative, Navigation, Parallax } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/effect-creative";
-import "swiper/css/parallax";
-import "./styles.css";
-
 import {
   ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
   ExpandIcon,
 } from "lucide-react";
 import type { MJMessage } from "midjourney";
+import { Controlled as ControlledZoom } from "react-medium-image-zoom";
+import { EffectCreative, Navigation, Parallax } from "swiper/modules";
+import type { SwiperRef } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Button } from "~/components/ui/button";
 
@@ -27,6 +22,11 @@ import { useMidjourneyStore } from "../../store/midjourneyStore";
 import { useRatioStore } from "../../store/ratioStore";
 import { getTwAspectRatio } from "../image/aspectRatioUtils";
 import { ImageGrid } from "../image/image-grid";
+
+import "swiper/css";
+import "swiper/css/effect-creative";
+import "swiper/css/parallax";
+import "./styles.css";
 
 type SliderProps = {};
 
@@ -50,7 +50,7 @@ const Slider = ({}: SliderProps) => {
     (state) => state.selectedAspectRatio
   );
   const { value: ratio } = selectedAspectRatio;
-  const swiperRef = React.useRef<any | null>(null);
+  const swiperRef = React.useRef<SwiperRef | null>(null);
 
   const hasImage = messages.length > 0;
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
@@ -64,7 +64,9 @@ const Slider = ({}: SliderProps) => {
   const aspectRatio = getTwAspectRatio(ratio);
 
   const calcNextOffset = () => {
+    // @ts-expect-error: swiperRef need to be extended with HTMLElement
     const parentWidth = swiperRef.current?.parentElement.offsetWidth;
+    // @ts-expect-error: swiperRef need to be extended with HTMLElement
     const swiperWidth = swiperRef.current?.offsetWidth;
     let nextOffset =
       (parentWidth - (parentWidth - swiperWidth) / 2) / swiperWidth;
@@ -80,6 +82,7 @@ const Slider = ({}: SliderProps) => {
 
   useEffect(() => {
     if (swiperRef.current?.swiper) {
+      // @ts-expect-error: swiperRef need to be extended with HTMLElement
       swiperRef.current.swiper.params.creativeEffect.next.translate = [
         calcNextOffset(),
         0,

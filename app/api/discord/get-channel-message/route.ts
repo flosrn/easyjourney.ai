@@ -145,7 +145,7 @@ const findAttachmentInMessages = async ({
 
     if (targetMessage && targetMessage.attachments.length === 0) {
       console.log("no attachment found");
-      loading(targetMessage as any);
+      loading(targetMessage as never);
     } else if (targetMessage) {
       attachment = targetMessage.attachments[0];
       referencedImage = targetMessage.referenced_message?.attachments[0];
@@ -270,7 +270,6 @@ export async function POST(request: Request) {
     } finally {
       stream.close();
     }
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
   })().then(() => {});
 
   return new Response(readableStream, {
