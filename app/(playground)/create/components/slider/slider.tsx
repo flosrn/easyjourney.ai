@@ -111,6 +111,7 @@ const Slider = ({}: SliderProps) => {
 
   return (
     <div className="posters-slider">
+      <span className="flex-center mb-2 h-6">{msg}</span>
       <Swiper
         ref={swiperRef}
         effect="creative"
@@ -196,7 +197,6 @@ const Slider = ({}: SliderProps) => {
             <ArrowRightCircleIcon className="h-6 w-6" />
           </Button>
         </div>
-        <span className="h-6">{msg}</span>
       </div>
     </div>
   );

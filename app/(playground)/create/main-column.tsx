@@ -368,7 +368,7 @@ const MainColumn = () => {
                 variant="default"
                 Icon={BrushIcon}
                 clickHandler={handleGenerate}
-                isDisabled={isEmpty || !!generationType}
+                isDisabled={isLoading}
               />
               <div className="hidden lg:block">
                 <MoreOptions />

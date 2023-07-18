@@ -47,7 +47,6 @@ const DownloadButton = ({ isDisabled }: DownloadButtonProps) => {
       ) : (
         <DownloadIcon className="h-4 w-4" />
       )}
-      <span className="ml-2">Download</span>
     </Button>
   );
 };
