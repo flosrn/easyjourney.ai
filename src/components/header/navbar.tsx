@@ -14,9 +14,13 @@ import {
 import { cn } from "~/lib/classNames";
 import { siteConfig } from "~/config/site";
 
-export const Navbar = () => {
+type NavbarProps = {
+  className?: string;
+};
+
+export const Navbar = ({ className }: NavbarProps) => {
   return (
-    <NavigationMenu className="max-w-full">
+    <NavigationMenu className={cn("max-w-full", className)}>
       <NavigationMenuList>
         {siteConfig.megaMenu.map((megaMenuItem) => (
           <NavigationMenuItem key={megaMenuItem.title}>

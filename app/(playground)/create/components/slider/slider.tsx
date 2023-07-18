@@ -110,8 +110,8 @@ const Slider = ({}: SliderProps) => {
   }, [hasImageGrid]);
 
   return (
-    <div className="posters-slider">
-      <span className="flex-center mb-2 h-6">{msg}</span>
+    <div className="posters-slider w-full">
+      <span className="flex-center mb-2 h-6 text-xs sm:text-sm">{msg}</span>
       <Swiper
         ref={swiperRef}
         effect="creative"
@@ -140,7 +140,7 @@ const Slider = ({}: SliderProps) => {
           <SwiperSlide key={index}>
             <div
               className={cn(
-                "flex-center lg:h-[500px] rounded-md relative w-[80%] h-[80%] sm:h-auto sm:w-auto mr-12 sm:mr-0",
+                "flex-center md:h-[450px] rounded-md relative",
                 aspectRatio
               )}
             >

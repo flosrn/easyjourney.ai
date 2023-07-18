@@ -55,7 +55,11 @@ const ImageContainerGrid = ({}: ImageContainerGridProps) => {
   }, []);
 
   return (
-    <ScrollArea ref={scrollAreaRef} type="always" className="h-[600px]">
+    <ScrollArea
+      ref={scrollAreaRef}
+      type="always"
+      className="h-[400px] lg:h-[500px]"
+    >
       <ul className="flex flex-row flex-wrap content-end justify-center gap-4">
         {messages.map((message, index) => (
           <li className="relative flex h-1/4 w-1/4 rounded-md" key={index}>
