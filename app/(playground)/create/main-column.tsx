@@ -306,6 +306,7 @@ const MainColumn = () => {
   };
 
   useEffect(() => {
+    if (isLoading) return;
     setSelectedImage(null);
     switch (currentGenerationType) {
       case "imagine":
