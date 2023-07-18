@@ -65,14 +65,17 @@ const ActionButton = ({
       | undefined;
     const currentGenerationType = currentMessage?.generationType;
     console.log("currentGenerationType :", currentGenerationType);
+    console.log("type :", type);
     const isImagine = currentGenerationType === "imagine";
     const isVariation = currentGenerationType === "variation";
     const isVary = currentGenerationType === "vary";
     const isZoomOut = currentGenerationType === "zoomOut";
+    const isUpscaleButton = type === "upscale";
+    const isVariationButton = type === "variation";
     const noSelectedImage = selectedImage === null;
     const showWarning =
       (isImagine || isVariation || isVary || isZoomOut) && noSelectedImage;
-    if (showWarning && type) {
+    if (showWarning && type && (isUpscaleButton || isVariationButton)) {
       toast.error("Please select an image first.");
       return;
     }

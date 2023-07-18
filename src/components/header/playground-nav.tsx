@@ -56,7 +56,7 @@ const PlaygroundNav = ({}: PlaygroundNavProps) => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         {siteConfig.megaMenu.map((megaMenuItem) => (
-          <>
+          <React.Fragment key={megaMenuItem.title}>
             {megaMenuItem.menu.map((menuItem) => (
               <DropdownMenuItem
                 key={menuItem.title}
@@ -68,7 +68,7 @@ const PlaygroundNav = ({}: PlaygroundNavProps) => {
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
-          </>
+          </React.Fragment>
         ))}
         <Link
           href="/"
