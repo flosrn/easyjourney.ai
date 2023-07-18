@@ -43,9 +43,13 @@ const Slider = ({}: SliderProps) => {
       state.currentMessageIndex,
       state.setCurrentMessageIndex,
     ]);
-  const [{ isLoading }, selectedImage, setSelectedImage] = useMidjourneyStore(
-    (state) => [state.requestState, state.selectedImage, state.setSelectedImage]
-  );
+  const [{ isLoading }, selectedImage, setSelectedImage, msg] =
+    useMidjourneyStore((state) => [
+      state.requestState,
+      state.selectedImage,
+      state.setSelectedImage,
+      state.msg,
+    ]);
   const selectedAspectRatio = useRatioStore(
     (state) => state.selectedAspectRatio
   );
@@ -183,13 +187,16 @@ const Slider = ({}: SliderProps) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="flex-center mt-2 space-x-10">
-        <Button variant="ghost" className="swiper-button-prev">
-          <ArrowLeftCircleIcon className="h-6 w-6" />
-        </Button>
-        <Button variant="ghost" className="swiper-button-next">
-          <ArrowRightCircleIcon className="h-6 w-6" />
-        </Button>
+      <div className="flex-center mt-2 flex-col space-y-2">
+        <div className="flex-center space-x-10">
+          <Button variant="ghost" className="swiper-button-prev">
+            <ArrowLeftCircleIcon className="h-6 w-6" />
+          </Button>
+          <Button variant="ghost" className="swiper-button-next">
+            <ArrowRightCircleIcon className="h-6 w-6" />
+          </Button>
+        </div>
+        <span className="h-6">{msg}</span>
       </div>
     </div>
   );

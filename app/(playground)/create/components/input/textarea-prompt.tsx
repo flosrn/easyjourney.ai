@@ -159,8 +159,10 @@ const TextareaPrompt = ({
     if (event.key === "Enter") {
       event.preventDefault();
       if (promptValue.length > 0) {
-        setGenerationType("imagine");
-        generateHandler();
+        const imagineButton = document.querySelector(
+          "#imagine"
+        ) as HTMLButtonElement;
+        imagineButton.click();
       }
     }
   };

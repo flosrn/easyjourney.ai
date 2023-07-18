@@ -37,6 +37,7 @@ const ActionButtonsContainer = ({
       {!isUpscale && !isSave && (
         <>
           <ActionButton
+            id="variation"
             type="variation"
             label="Variation"
             variant="secondary"
@@ -45,6 +46,7 @@ const ActionButtonsContainer = ({
             isDisabled={isEmpty || isLoading}
           />
           <ActionButton
+            id="upscale"
             type="upscale"
             label="Upscale"
             variant="secondary"
@@ -57,6 +59,7 @@ const ActionButtonsContainer = ({
       {(isUpscale || isSave) && (
         <>
           <ActionButton
+            id="vary-strong"
             type="vary"
             label="Vary (Strong)"
             dataOption="strong"
@@ -66,6 +69,7 @@ const ActionButtonsContainer = ({
             isDisabled={isEmpty || isLoading}
           />
           <ActionButton
+            id="vary-subtle"
             type="vary"
             label="Vary (Subtle)"
             dataOption="subtle"
@@ -75,6 +79,7 @@ const ActionButtonsContainer = ({
             isDisabled={isEmpty || isLoading}
           />
           <ActionButton
+            id="zoom-out-2x"
             type="zoomOut"
             label="Zoom Out 2x"
             dataOption="2x"
@@ -84,6 +89,7 @@ const ActionButtonsContainer = ({
             isDisabled={isEmpty || isLoading}
           />
           <ActionButton
+            id="zoom-out-1.5x"
             type="zoomOut"
             label="Zoom Out 1.5x"
             dataOption="1.5x"
@@ -93,6 +99,7 @@ const ActionButtonsContainer = ({
             isDisabled={isEmpty || isLoading}
           />
           <ActionButton
+            id="save"
             type="save"
             label="Save"
             variant="success"
