@@ -25,7 +25,7 @@ const PlaygroundNav = ({}: PlaygroundNavProps) => {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
       <DropdownMenuTrigger>
-        <div className="flex items-center space-x-2 pr-8">
+        <div className="flex items-center space-x-2 pr-10">
           <PlaygroundLogo />
           <ChevronDownIcon
             className={cn(
