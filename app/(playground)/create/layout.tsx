@@ -2,7 +2,7 @@ import React from "react";
 import { redirect } from "next/navigation";
 import { getServerAuthSession } from "~/server/auth";
 
-import Header from "~/components/header/header";
+import PlaygroundHeader from "~/components/header/playground-header";
 
 type LayoutPageProps = {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ const LayoutPage = async ({ children }: LayoutPageProps) => {
 
   return (
     <>
-      <Header expanded />
+      <PlaygroundHeader />
       {children}
     </>
   );
