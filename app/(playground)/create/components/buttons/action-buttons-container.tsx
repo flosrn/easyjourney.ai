@@ -34,7 +34,7 @@ const ActionButtonsContainer = ({
   const isSave = currentGenerationType === "save";
 
   return (
-    <div className="my-2 flex flex-wrap justify-center gap-2 lg:justify-between">
+    <div className="my-2 flex flex-wrap justify-center gap-2 xl:justify-between">
       <div className="flex gap-2">
         <ActionButton
           id="variation"

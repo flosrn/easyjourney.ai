@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useSession } from "next-auth/react";
 
 import DropdownUserMenuNav from "~/components/header/dropdown-user-menu-nav";
@@ -22,16 +22,10 @@ const PlaygroundHeader = ({}: PlaygroundHeaderProps) => {
           </h2>
         </div>
         <div className="ml-auto flex w-full justify-end space-x-2">
-          {/*<PresetSelector presets={presets} />*/}
           <div className="flex items-center space-x-2">
             {session?.user && <UserCreditsPopover />}
             <DropdownUserMenuNav />
           </div>
-          {/*<PresetSave />*/}
-          {/*<div className="hidden space-x-2 md:flex">*/}
-          {/*  <PresetShare />*/}
-          {/*</div>*/}
-          {/*<PresetActions />*/}
         </div>
       </div>
     </header>

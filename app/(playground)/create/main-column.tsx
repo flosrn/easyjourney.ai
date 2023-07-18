@@ -333,14 +333,14 @@ const MainColumn = () => {
   }, [currentGenerationType, setSelectedImage, setMsg]);
 
   return (
-    <main className="relative flex flex-col md:border-l">
+    <main className="relative flex flex-col overflow-x-hidden md:border-l">
       <div className="h-full p-4 md:p-6">
         <div className="h-full flex-col border-none p-0">
           <div
             className={cn(
               "flex w-full items-center justify-between bg-background -md:fixed -md:left-0 -md:z-10 -md:h-[80px] -md:border-b -md:px-4 -md:py-6",
               {
-                "-lg:top-14": !isMobileMenuOpen,
+                "-lg:top-16": !isMobileMenuOpen,
                 "-lg:top-[6.5rem]": isMobileMenuOpen,
               }
             )}
@@ -370,13 +370,10 @@ const MainColumn = () => {
                 clickHandler={handleGenerate}
                 isDisabled={isLoading}
               />
-              <div className="hidden lg:block">
-                <MoreOptions />
-              </div>
             </div>
           </div>
           <Separator className="my-4 -md:hidden" />
-          <div className="flex h-[calc(100%-80px)] flex-col space-y-4">
+          <div className="flex h-[calc(100%-80px)] min-h-[676px] flex-col space-y-4">
             {hasFilters && <FiltersBadge />}
             <TextareaPrompt
               inputRef={inputRef}
@@ -388,10 +385,10 @@ const MainColumn = () => {
               layout
               className="flex max-h-full grow items-center justify-center rounded-md border p-5 lg:py-1"
             >
-              <TabsContent value={DisplayMode.STACK}>
+              <TabsContent value={DisplayMode.STACK} className="w-full">
                 <ImageContainer />
               </TabsContent>
-              <TabsContent value={DisplayMode.GRID}>
+              <TabsContent value={DisplayMode.GRID} className="w-full">
                 <ImageContainerGrid />
               </TabsContent>
             </motion.div>
@@ -400,15 +397,6 @@ const MainColumn = () => {
           </div>
         </div>
       </div>
-      {/*<div className="flex-center sticky bottom-0 z-10 h-6 border-t bg-background">*/}
-      {/*  <p*/}
-      {/*    className={cn("px-4 text-xs", {*/}
-      {/*      "text-red-500": isError,*/}
-      {/*    })}*/}
-      {/*  >*/}
-      {/*    {msg}*/}
-      {/*  </p>*/}
-      {/*</div>*/}
       <FiltersDialog />
       <Toaster position="bottom-right" />
     </main>

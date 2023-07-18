@@ -17,13 +17,10 @@ type SidebarProps = React.HTMLAttributes<HTMLDivElement> & {};
 
 const SideColumn = ({ className }: SidebarProps) => (
   <ScrollArea className={cn("w-full", className)}>
-    <div className="z-10 space-y-4 bg-background p-4 md:p-6">
+    <div className="z-10 mt-20 space-y-4 bg-background p-4 md:mt-0 md:p-6">
       <SelectorComponent
         title="Display Mode"
-        description="Choose the interface that best suits your task. You can
-                      provide: a simple prompt to complete, starting and ending
-                      text to insert a completion within, or some text with
-                      instructions to edit it."
+        description="Choose the interface that best suits you. You can choose between a stack or grid layout."
       />
       <TabsList className="grid grid-cols-2">
         <TabsTrigger value={DisplayMode.STACK}>

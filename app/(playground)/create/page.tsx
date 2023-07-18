@@ -11,7 +11,7 @@ export default async function CreatePage() {
     <div className="h-screen bg-background pt-[57px]">
       <Tabs
         defaultValue={DisplayMode.STACK}
-        className="md:grid md:h-full md:grid-cols-[265px_1fr]"
+        className="md:grid md:h-full md:grid-cols-[265px,minmax(auto,1fr)]"
       >
         <SideColumn />
         <MainColumn />

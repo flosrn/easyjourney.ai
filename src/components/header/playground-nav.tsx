@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { ChevronDownIcon } from "lucide-react";
 
 import PlaygroundLogo from "~/components/header/playground-logo";
@@ -12,6 +14,9 @@ import {
 } from "~/components/ui/dropdown-menu";
 
 import { cn } from "~/lib/classNames";
+import { siteConfig } from "~/config/site";
+
+import fullLogoWhite from "../../../public/images/logo/easyjourney_logo.svg";
 
 type PlaygroundNavProps = {};
 
@@ -34,17 +39,43 @@ const PlaygroundNav = ({}: PlaygroundNavProps) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         side="bottom"
-        sideOffset={5}
+        sideOffset={2}
         align="start"
-        alignOffset={-20}
+        alignOffset={-22}
         className="w-56"
       >
-        <DropdownMenuLabel>Menu</DropdownMenuLabel>
+        <DropdownMenuLabel className="flex">
+          <Link href="/">
+            <Image
+              priority
+              src={fullLogoWhite}
+              alt="Easyjourney.ai"
+              className="h-6 w-full"
+            />
+          </Link>
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
+        {siteConfig.megaMenu.map((megaMenuItem) => (
+          <>
+            {megaMenuItem.menu.map((menuItem) => (
+              <DropdownMenuItem
+                key={menuItem.title}
+                disabled={menuItem.disabled}
+              >
+                <Link href={menuItem.href}>
+                  <span>{menuItem.title}</span>
+                </Link>
+              </DropdownMenuItem>
+            ))}
+            <DropdownMenuSeparator />
+          </>
+        ))}
+        <Link
+          href="/"
+          className="flex-center relative cursor-pointer select-none items-center rounded-sm px-2 text-xs outline-none"
+        >
+          Easyjourney.ai
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   );
