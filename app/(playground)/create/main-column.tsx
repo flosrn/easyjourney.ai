@@ -10,6 +10,7 @@ import type { MJMessage } from "midjourney";
 import { toast, Toaster } from "react-hot-toast";
 
 import { Separator } from "~/components/ui/separator";
+import { TabsContent } from "~/components/ui/tabs";
 
 import { cn } from "~/lib/classNames";
 
@@ -23,7 +24,6 @@ import TextareaPrompt from "./components/input/textarea-prompt";
 import MoreOptions from "./components/popover/more-options";
 import { aspectRatios } from "./data/aspectRatios";
 import { generate, savePoster } from "./lib/request";
-import SideColumn from "./side-column";
 import { useChaosStore } from "./store/chaosStore";
 import { DisplayMode, useDisplayStore } from "./store/displayStore";
 import { useFilterStore } from "./store/filterStore";
@@ -333,12 +333,12 @@ const MainColumn = () => {
   }, [currentGenerationType, setSelectedImage, setMsg]);
 
   return (
-    <main className="relative col-span-3 flex flex-col lg:col-span-4 lg:border-l">
-      <div className="h-full p-4 lg:py-6 xl:px-8">
+    <main className="relative flex flex-col md:border-l">
+      <div className="h-full p-4 md:p-6">
         <div className="h-full flex-col border-none p-0">
           <div
             className={cn(
-              "flex w-full items-center justify-between bg-background -lg:fixed -lg:left-0 -lg:z-10 -lg:h-[80px] -lg:border-b -lg:px-4 -lg:py-6",
+              "flex w-full items-center justify-between bg-background -md:fixed -md:left-0 -md:z-10 -md:h-[80px] -md:border-b -md:px-4 -md:py-6",
               {
                 "-lg:top-14": !isMobileMenuOpen,
                 "-lg:top-[6.5rem]": isMobileMenuOpen,
@@ -373,24 +373,25 @@ const MainColumn = () => {
               </div>
             </div>
           </div>
-          <Separator className="my-4 -lg:hidden" />
-          <div className="flex h-[calc(100%-80px)] flex-col space-y-4 -lg:mt-20">
+          <Separator className="my-4 -md:hidden" />
+          <div className="flex h-[calc(100%-80px)] flex-col space-y-4">
             {hasFilters && <FiltersBadge />}
             <TextareaPrompt
               inputRef={inputRef}
               generateHandler={handleGenerate}
               collapse={hasFilters}
             />
-            <SideColumn className="lg:hidden" />
+
             <motion.div
               layout
               className="flex max-h-full grow items-center justify-center rounded-md border p-5 lg:py-1"
             >
-              {displayMode === DisplayMode.STACK ? (
+              <TabsContent value={DisplayMode.STACK}>
                 <ImageContainer />
-              ) : (
+              </TabsContent>
+              <TabsContent value={DisplayMode.GRID}>
                 <ImageContainerGrid />
-              )}
+              </TabsContent>
             </motion.div>
 
             <ActionButtonsContainer clickHandler={handleGenerate} />

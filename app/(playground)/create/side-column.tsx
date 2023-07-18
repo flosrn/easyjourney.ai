@@ -1,28 +1,46 @@
 import React from "react";
+import { LayersIcon, LayoutGridIcon } from "lucide-react";
 
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { Separator } from "~/components/ui/separator";
+import { TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 import { cn } from "~/lib/classNames";
 
 import AccordionSide from "./components/sidebar/accordion-side";
+import SelectorComponent from "./components/sidebar/selector-component";
 import AspectRatioSelector from "./components/sidebar/selectors/aspect-ratio-selector";
 import { FilterSelector } from "./components/sidebar/selectors/filter-selector";
-import TitleComponent from "./components/sidebar/title-component";
+import { DisplayMode } from "./store/displayStore";
 
 type SidebarProps = React.HTMLAttributes<HTMLDivElement> & {};
 
 const SideColumn = ({ className }: SidebarProps) => (
-  <ScrollArea className={cn("w-full lg:h-full", className)}>
-    <div className="z-10 mx-2 space-y-4 bg-background lg:mx-4 lg:mt-6 xl:mx-8">
-      <TitleComponent
+  <ScrollArea className={cn("w-full", className)}>
+    <div className="z-10 space-y-4 bg-background p-4 md:p-6">
+      <SelectorComponent
+        title="Display Mode"
+        description="Choose the interface that best suits your task. You can
+                      provide: a simple prompt to complete, starting and ending
+                      text to insert a completion within, or some text with
+                      instructions to edit it."
+      />
+      <TabsList className="grid grid-cols-2">
+        <TabsTrigger value={DisplayMode.STACK}>
+          <LayersIcon className="h-4 w-4" />
+        </TabsTrigger>
+        <TabsTrigger value={DisplayMode.GRID}>
+          <LayoutGridIcon className="h-4 w-4" />
+        </TabsTrigger>
+      </TabsList>
+      <SelectorComponent
         title="Style Filter"
         description="Experiment with different pre-defined styles that can be applied to your image."
       />
       <FilterSelector />
       <Separator />
 
-      <TitleComponent
+      <SelectorComponent
         title="Aspect Ratio"
         description="Changes the aspect ratio of the generated image."
       />

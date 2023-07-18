@@ -10,35 +10,26 @@ import {
 } from "~/components/ui/hover-card";
 import { Label } from "~/components/ui/label";
 
-import { cn } from "~/lib/classNames";
-
-type TitleComponentProps = {
+type SelectorComponentProps = {
   title: string;
   description: string;
   defaultValue?: string;
   size?: "medium" | "small";
 };
 
-const TitleComponent = ({
+const SelectorComponent = ({
   title,
   description,
   defaultValue,
   size,
-}: TitleComponentProps) => {
+}: SelectorComponentProps) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="flex items-center">
-      <h2
-        className={cn(
-          "relative text-lg font-semibold truncate tracking-tight",
-          size === "small" ? "text-[16px]" : "text-lg"
-        )}
-      >
-        {title}
-      </h2>
+    <div className="grid gap-2">
       <HoverCard open={open} onOpenChange={setOpen}>
         <HoverCardTrigger asChild onClick={() => setOpen(!open)}>
-          <Label>
+          <Label className="flex w-fit">
+            {title}
             <HelpCircleIcon color="gray" className="ml-1 h-4" />
           </Label>
         </HoverCardTrigger>
@@ -61,4 +52,4 @@ const TitleComponent = ({
   );
 };
 
-export default TitleComponent;
+export default SelectorComponent;
