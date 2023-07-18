@@ -11,6 +11,7 @@ import type { MJMessage } from "midjourney";
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 import ActionButton from "./action-button";
+import DownloadButton from "./download-button";
 
 type ActionButtonsContainerProps = {
   clickHandler: () => void;
@@ -33,75 +34,77 @@ const ActionButtonsContainer = ({
   const isSave = currentGenerationType === "save";
 
   return (
-    <div className="my-2 flex flex-wrap justify-center gap-2">
-      {!isUpscale && !isSave && (
-        <>
-          <ActionButton
-            type="variation"
-            label="Variation"
-            variant="secondary"
-            Icon={RefreshCcwIcon}
-            clickHandler={clickHandler}
-            isDisabled={isEmpty || isLoading}
-          />
-          <ActionButton
-            type="upscale"
-            label="Upscale"
-            variant="secondary"
-            Icon={ArrowBigUpIcon}
-            clickHandler={clickHandler}
-            isDisabled={isEmpty || isLoading}
-          />
-        </>
-      )}
+    <div className="my-2 flex flex-wrap justify-center gap-2 lg:justify-between">
+      <div className="flex gap-2">
+        <ActionButton
+          id="variation"
+          type="variation"
+          label="Variation"
+          Icon={RefreshCcwIcon}
+          clickHandler={clickHandler}
+          isDisabled={isUpscale || isEmpty || isSave || isLoading}
+        />
+        <ActionButton
+          id="upscale"
+          type="upscale"
+          label="Upscale"
+          Icon={ArrowBigUpIcon}
+          clickHandler={clickHandler}
+          isDisabled={isUpscale || isEmpty || isSave || isLoading}
+        />
+      </div>
       {(isUpscale || isSave) && (
-        <>
+        <div className="flex flex-wrap justify-center gap-2">
           <ActionButton
+            id="vary-strong"
             type="vary"
             label="Vary (Strong)"
             dataOption="strong"
-            variant="secondary"
             Icon={Wand2Icon}
             clickHandler={clickHandler}
             isDisabled={isEmpty || isLoading}
           />
           <ActionButton
+            id="vary-subtle"
             type="vary"
             label="Vary (Subtle)"
             dataOption="subtle"
-            variant="secondary"
             Icon={Wand2Icon}
             clickHandler={clickHandler}
             isDisabled={isEmpty || isLoading}
           />
           <ActionButton
+            id="zoom-out-2x"
             type="zoomOut"
             label="Zoom Out 2x"
             dataOption="2x"
-            variant="secondary"
             Icon={ZoomOutIcon}
             clickHandler={clickHandler}
             isDisabled={isEmpty || isLoading}
           />
           <ActionButton
+            id="zoom-out-1.5x"
             type="zoomOut"
             label="Zoom Out 1.5x"
             dataOption="1.5x"
-            variant="secondary"
             Icon={ZoomOutIcon}
             clickHandler={clickHandler}
             isDisabled={isEmpty || isLoading}
           />
-          <ActionButton
-            type="save"
-            label="Save"
-            variant="success"
-            Icon={SaveIcon}
-            clickHandler={clickHandler}
-            isDisabled={isEmpty || isSave || isLoading}
-          />
-        </>
+        </div>
       )}
+      <div className="flex gap-2">
+        <ActionButton
+          id="save"
+          type="save"
+          label="Save"
+          variant="success"
+          Icon={SaveIcon}
+          clickHandler={clickHandler}
+          isDisabled={!isUpscale || isEmpty || isSave || isLoading}
+        />
+        <DownloadButton isDisabled={!isUpscale || isEmpty || isLoading} />
+      </div>
     </div>
   );
 };

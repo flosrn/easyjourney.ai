@@ -355,18 +355,20 @@ const MainColumn = () => {
             </div>
             <div className="ml-auto flex space-x-2">
               <ActionButton
-                variant="secondary"
+                id="clear"
                 label="Clear"
                 Icon={Trash2Icon}
                 clickHandler={handleClear}
                 isDisabled={isEmpty}
               />
               <ActionButton
+                id="imagine"
                 type="imagine"
                 label="Generate"
+                variant="default"
                 Icon={BrushIcon}
                 clickHandler={handleGenerate}
-                isDisabled={isEmpty || !!generationType}
+                isDisabled={isLoading}
               />
               <div className="hidden lg:block">
                 <MoreOptions />
@@ -398,15 +400,15 @@ const MainColumn = () => {
           </div>
         </div>
       </div>
-      <div className="flex-center sticky bottom-0 z-10 h-6 border-t bg-background">
-        <p
-          className={cn("px-4 text-xs", {
-            "text-red-500": isError,
-          })}
-        >
-          {msg}
-        </p>
-      </div>
+      {/*<div className="flex-center sticky bottom-0 z-10 h-6 border-t bg-background">*/}
+      {/*  <p*/}
+      {/*    className={cn("px-4 text-xs", {*/}
+      {/*      "text-red-500": isError,*/}
+      {/*    })}*/}
+      {/*  >*/}
+      {/*    {msg}*/}
+      {/*  </p>*/}
+      {/*</div>*/}
       <FiltersDialog />
       <Toaster position="bottom-right" />
     </main>

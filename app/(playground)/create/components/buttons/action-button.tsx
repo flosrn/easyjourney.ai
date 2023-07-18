@@ -15,6 +15,7 @@ import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 
 type ActionButtonProps = {
+  id: string;
   type?: GenerationType;
   label: string;
   showLabelOnMobile?: boolean;
@@ -26,10 +27,11 @@ type ActionButtonProps = {
 };
 
 const ActionButton = ({
+  id,
   type,
   label,
   showLabelOnMobile = true,
-  variant,
+  variant = "outline",
   Icon,
   isDisabled,
   clickHandler,
@@ -70,7 +72,7 @@ const ActionButton = ({
     const noSelectedImage = selectedImage === null;
     const showWarning =
       (isImagine || isVariation || isVary || isZoomOut) && noSelectedImage;
-    if (showWarning) {
+    if (showWarning && type) {
       toast.error("Please select an image first.");
       return;
     }
@@ -88,11 +90,11 @@ const ActionButton = ({
         break;
       }
       case "imagine": {
-        setMsg("Generating...");
+        setMsg("Waiting to start...");
         break;
       }
       default: {
-        setMsg("Generating...");
+        setMsg("Waiting to start...");
       }
     }
   };
@@ -104,6 +106,7 @@ const ActionButton = ({
 
   return (
     <Button
+      id={id}
       data-option={dataOption}
       variant={variant}
       onClick={handleClick}
