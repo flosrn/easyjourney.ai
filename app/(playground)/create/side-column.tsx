@@ -21,8 +21,9 @@ const SideColumn = ({ className }: SidebarProps) => (
       <SelectorComponent
         title="Display Mode"
         description="Choose the interface that best suits you. You can choose between a stack or grid layout."
+        className="hidden md:block"
       />
-      <TabsList className="grid grid-cols-2">
+      <TabsList className="hidden grid-cols-2 md:grid">
         <TabsTrigger value={DisplayMode.STACK}>
           <LayersIcon className="h-4 w-4" />
         </TabsTrigger>

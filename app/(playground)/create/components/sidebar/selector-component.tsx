@@ -10,11 +10,14 @@ import {
 } from "~/components/ui/hover-card";
 import { Label } from "~/components/ui/label";
 
+import { cn } from "~/lib/classNames";
+
 type SelectorComponentProps = {
   title: string;
   description: string;
   defaultValue?: string;
   size?: "medium" | "small";
+  className?: string;
 };
 
 const SelectorComponent = ({
@@ -22,10 +25,11 @@ const SelectorComponent = ({
   description,
   defaultValue,
   size,
+  className,
 }: SelectorComponentProps) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="grid gap-2">
+    <div className={cn("grid gap-2", className)}>
       <HoverCard open={open} onOpenChange={setOpen}>
         <HoverCardTrigger asChild onClick={() => setOpen(!open)}>
           <Label className="flex w-fit">
