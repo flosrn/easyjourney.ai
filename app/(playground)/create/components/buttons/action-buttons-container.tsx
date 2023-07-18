@@ -53,46 +53,44 @@ const ActionButtonsContainer = ({
           isDisabled={isUpscale || isEmpty || isSave || isLoading}
         />
       </div>
-      {(isUpscale || isSave) && (
-        <div className="flex flex-wrap justify-center gap-2">
-          <ActionButton
-            id="vary-strong"
-            type="vary"
-            label="Vary (Strong)"
-            dataOption="strong"
-            Icon={Wand2Icon}
-            clickHandler={clickHandler}
-            isDisabled={isEmpty || isLoading}
-          />
-          <ActionButton
-            id="vary-subtle"
-            type="vary"
-            label="Vary (Subtle)"
-            dataOption="subtle"
-            Icon={Wand2Icon}
-            clickHandler={clickHandler}
-            isDisabled={isEmpty || isLoading}
-          />
-          <ActionButton
-            id="zoom-out-2x"
-            type="zoomOut"
-            label="Zoom Out 2x"
-            dataOption="2x"
-            Icon={ZoomOutIcon}
-            clickHandler={clickHandler}
-            isDisabled={isEmpty || isLoading}
-          />
-          <ActionButton
-            id="zoom-out-1.5x"
-            type="zoomOut"
-            label="Zoom Out 1.5x"
-            dataOption="1.5x"
-            Icon={ZoomOutIcon}
-            clickHandler={clickHandler}
-            isDisabled={isEmpty || isLoading}
-          />
-        </div>
-      )}
+      <div className="flex flex-wrap justify-center gap-2">
+        <ActionButton
+          id="vary-strong"
+          type="vary"
+          label="Vary (Strong)"
+          dataOption="strong"
+          Icon={Wand2Icon}
+          clickHandler={clickHandler}
+          isDisabled={!isUpscale || isEmpty || isLoading}
+        />
+        <ActionButton
+          id="vary-subtle"
+          type="vary"
+          label="Vary (Subtle)"
+          dataOption="subtle"
+          Icon={Wand2Icon}
+          clickHandler={clickHandler}
+          isDisabled={!isUpscale || isEmpty || isLoading}
+        />
+        <ActionButton
+          id="zoom-out-2x"
+          type="zoomOut"
+          label="Zoom Out 2x"
+          dataOption="2x"
+          Icon={ZoomOutIcon}
+          clickHandler={clickHandler}
+          isDisabled={!isUpscale || isEmpty || isLoading}
+        />
+        <ActionButton
+          id="zoom-out-1.5x"
+          type="zoomOut"
+          label="Zoom Out 1.5x"
+          dataOption="1.5x"
+          Icon={ZoomOutIcon}
+          clickHandler={clickHandler}
+          isDisabled={!isUpscale || isEmpty || isLoading}
+        />
+      </div>
       <div className="flex gap-2">
         <ActionButton
           id="save"
