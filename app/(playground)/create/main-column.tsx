@@ -21,7 +21,6 @@ import FiltersDialog from "./components/dialog/filters-dialog";
 import ImageContainer from "./components/image/image-container";
 import ImageContainerGrid from "./components/image/image-container-grid";
 import TextareaPrompt from "./components/input/textarea-prompt";
-import MoreOptions from "./components/popover/more-options";
 import { aspectRatios } from "./data/aspectRatios";
 import { generate, savePoster } from "./lib/request";
 import { useChaosStore } from "./store/chaosStore";
@@ -307,8 +306,10 @@ const MainColumn = () => {
 
   useEffect(() => {
     if (isLoading) return;
+    const message = messages[currentMessageIndex] as MJMessage | undefined;
+    const msgGenerationType = message?.generationType;
     setSelectedImage(null);
-    switch (currentGenerationType) {
+    switch (msgGenerationType) {
       case "imagine":
         setMsg("Click on one of the 4 images and upscale it!");
         break;
@@ -331,7 +332,14 @@ const MainColumn = () => {
         setMsg("");
         break;
     }
-  }, [currentGenerationType, setSelectedImage, setMsg]);
+  }, [
+    messages,
+    currentMessageIndex,
+    setSelectedImage,
+    setMsg,
+    isLoading,
+    isSuccess,
+  ]);
 
   return (
     <main className="relative flex flex-col overflow-x-hidden md:border-l">
