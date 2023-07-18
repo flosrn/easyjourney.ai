@@ -1,6 +1,7 @@
 import React from "react";
 import {
   ArrowBigUpIcon,
+  DownloadIcon,
   RefreshCcwIcon,
   SaveIcon,
   Wand2Icon,
@@ -11,6 +12,7 @@ import type { MJMessage } from "midjourney";
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 import ActionButton from "./action-button";
+import DownloadButton from "./download-button";
 
 type ActionButtonsContainerProps = {
   clickHandler: () => void;
@@ -40,7 +42,6 @@ const ActionButtonsContainer = ({
             id="variation"
             type="variation"
             label="Variation"
-            variant="secondary"
             Icon={RefreshCcwIcon}
             clickHandler={clickHandler}
             isDisabled={isEmpty || isLoading}
@@ -49,7 +50,6 @@ const ActionButtonsContainer = ({
             id="upscale"
             type="upscale"
             label="Upscale"
-            variant="secondary"
             Icon={ArrowBigUpIcon}
             clickHandler={clickHandler}
             isDisabled={isEmpty || isLoading}
@@ -63,7 +63,6 @@ const ActionButtonsContainer = ({
             type="vary"
             label="Vary (Strong)"
             dataOption="strong"
-            variant="secondary"
             Icon={Wand2Icon}
             clickHandler={clickHandler}
             isDisabled={isEmpty || isLoading}
@@ -73,7 +72,6 @@ const ActionButtonsContainer = ({
             type="vary"
             label="Vary (Subtle)"
             dataOption="subtle"
-            variant="secondary"
             Icon={Wand2Icon}
             clickHandler={clickHandler}
             isDisabled={isEmpty || isLoading}
@@ -83,7 +81,6 @@ const ActionButtonsContainer = ({
             type="zoomOut"
             label="Zoom Out 2x"
             dataOption="2x"
-            variant="secondary"
             Icon={ZoomOutIcon}
             clickHandler={clickHandler}
             isDisabled={isEmpty || isLoading}
@@ -93,7 +90,6 @@ const ActionButtonsContainer = ({
             type="zoomOut"
             label="Zoom Out 1.5x"
             dataOption="1.5x"
-            variant="secondary"
             Icon={ZoomOutIcon}
             clickHandler={clickHandler}
             isDisabled={isEmpty || isLoading}
@@ -107,6 +103,7 @@ const ActionButtonsContainer = ({
             clickHandler={clickHandler}
             isDisabled={isEmpty || isSave || isLoading}
           />
+          <DownloadButton isDisabled={isEmpty || isLoading} />
         </>
       )}
     </div>

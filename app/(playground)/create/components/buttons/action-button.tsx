@@ -31,7 +31,7 @@ const ActionButton = ({
   type,
   label,
   showLabelOnMobile = true,
-  variant,
+  variant = "outline",
   Icon,
   isDisabled,
   clickHandler,

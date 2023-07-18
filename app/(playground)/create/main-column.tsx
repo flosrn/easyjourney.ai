@@ -358,7 +358,6 @@ const MainColumn = () => {
                 id="clear"
                 label="Clear"
                 Icon={Trash2Icon}
-                variant="secondary"
                 clickHandler={handleClear}
                 isDisabled={isEmpty}
               />
@@ -366,6 +365,7 @@ const MainColumn = () => {
                 id="imagine"
                 type="imagine"
                 label="Generate"
+                variant="default"
                 Icon={BrushIcon}
                 clickHandler={handleGenerate}
                 isDisabled={isEmpty || !!generationType}
