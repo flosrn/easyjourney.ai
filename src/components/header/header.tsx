@@ -51,7 +51,7 @@ const Header = ({ expanded }: HeaderProps) => {
         <div className="flex flex-1 items-center justify-between">
           <div className="flex">
             <HeaderLogo />
-            <Navbar />
+            <Navbar className="hidden md:block" />
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
             {pathname !== "/create" && (
@@ -74,13 +74,7 @@ const Header = ({ expanded }: HeaderProps) => {
           </div>
         </div>
       </div>
-      {isMobileMenuOpen && (
-        <div className="md:hidden">
-          <nav aria-label="Mobile Main" className="w-full pb-2">
-            <Navbar />
-          </nav>
-        </div>
-      )}
+      {isMobileMenuOpen && <Navbar className="md:hidden" />}
     </header>
   );
 };

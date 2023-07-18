@@ -33,7 +33,7 @@ export default function PlaygroundPage() {
   return (
     <>
       <div className="flex h-full flex-col pt-[57px]">
-        <div className="flex flex-col items-start justify-between space-y-2 px-6 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
+        <div className="flex flex-col items-start justify-between space-y-2 p-4 md:h-16 md:flex-row md:items-center md:space-y-0 md:px-6">
           <h2 className="text-lg font-semibold">Playground</h2>
           <div className="ml-auto flex w-full space-x-2 sm:justify-end">
             <PresetSelector presets={presets} />
@@ -47,9 +47,9 @@ export default function PlaygroundPage() {
         </div>
         <Separator />
         <Tabs defaultValue="complete" className="flex-1">
-          <div className="h-full p-6">
+          <div className="mt-4 h-full px-4 md:mt-0 md:p-6">
             <div className="grid h-full items-stretch gap-6 md:grid-cols-[200px_1fr]">
-              <div className="hidden flex-col space-y-4 sm:flex">
+              <div className="flex flex-col space-y-4">
                 <div className="grid gap-2">
                   <HoverCard openDelay={200}>
                     <HoverCardTrigger asChild>
