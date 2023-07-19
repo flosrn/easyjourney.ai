@@ -10,6 +10,7 @@ import { cn } from "~/lib/classNames";
 
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
+import ImageContainerNoPoster from "./image-container-no-poster";
 import { ImageGrid } from "./image-grid";
 
 type ImageContainerGridProps = {};
@@ -22,9 +23,14 @@ const ImageContainerGrid = ({}: ImageContainerGridProps) => {
       state.currentMessageIndex,
       state.setCurrentMessageIndex,
     ]);
-  const [{ isLoading }, selectedImage, setSelectedImage] = useMidjourneyStore(
-    (state) => [state.requestState, state.selectedImage, state.setSelectedImage]
-  );
+  const [{ isLoading }, selectedImage, setSelectedImage, msg, generationType] =
+    useMidjourneyStore((state) => [
+      state.requestState,
+      state.selectedImage,
+      state.setSelectedImage,
+      state.msg,
+      state.generationType,
+    ]);
   const scrollAreaRef = useRef<HTMLDivElement | null>(null);
 
   const hasImage = messages.length > 0;
@@ -41,10 +47,13 @@ const ImageContainerGrid = ({}: ImageContainerGridProps) => {
     if (messages.length > 0 && scrollAreaRef.current) {
       const scrollAreaElement = scrollAreaRef.current;
       setTimeout(() => {
-        scrollAreaElement.scrollTo(0, scrollAreaElement.scrollHeight);
+        scrollAreaElement.scrollTo({
+          top: scrollAreaElement.scrollHeight,
+          behavior: "smooth",
+        });
       }, 300);
     }
-  }, [messages.length, currentMessageIndex]);
+  }, [messages.length, isLoading]);
 
   const handleImageClick = (index: number) => {
     setCurrentMessageIndex(index);
@@ -55,51 +64,60 @@ const ImageContainerGrid = ({}: ImageContainerGridProps) => {
   }, []);
 
   return (
-    <ScrollArea
-      ref={scrollAreaRef}
-      type="always"
-      className="h-[400px] lg:h-[500px]"
-    >
-      <ul className="flex flex-row flex-wrap content-end justify-center gap-4">
-        {messages.map((message, index) => (
-          <li className="relative flex h-1/4 w-1/4 rounded-md" key={index}>
-            <ControlledZoom
-              isZoomed={isZoomed[index]}
-              onZoomChange={() => handleZoomChange(index, false)}
-              zoomMargin={30}
-            >
-              <img
-                src={message.uri}
-                onClick={() => handleImageClick(index)}
-                alt=""
-                className={cn("!cursor-pointer rounded-md", {
-                  "border border-primary": index === currentMessageIndex,
-                  "opacity-80": index !== currentMessageIndex,
-                })}
-              />
-              {message.attachment && (
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => handleZoomChange(index, true)}
-                  className="flex-center absolute right-0 top-0 z-50 p-2 opacity-50 hover:opacity-100"
-                >
-                  <ExpandIcon className="h-4 w-4" />
-                </motion.button>
-              )}
-              {hasImageGrid &&
-                message.attachment &&
-                index === currentMessageIndex && (
-                  <ImageGrid
-                    selectedImage={selectedImage}
-                    clickHandler={setSelectedImage}
-                  />
+    <>
+      {generationType === "save" && isLoading && (
+        <span className="flex-center absolute left-1/2 top-3 z-10 mb-2 h-6 w-full -translate-x-1/2 text-xs sm:text-sm">
+          {msg}
+        </span>
+      )}
+      <ScrollArea ref={scrollAreaRef} type="always" className="h-[518px]">
+        <ul className="flex flex-wrap gap-4">
+          {!hasImage && !isLoading && (
+            <ImageContainerNoPoster className="h-[300px]" />
+          )}
+          {messages.map((message, index) => (
+            <li className="relative flex h-1/4 w-1/4 rounded-md" key={index}>
+              <ControlledZoom
+                isZoomed={isZoomed[index]}
+                onZoomChange={() => handleZoomChange(index, false)}
+                zoomMargin={30}
+              >
+                <img
+                  src={message.uri}
+                  onClick={() => handleImageClick(index)}
+                  alt=""
+                  className={cn("!cursor-pointer rounded-md", {
+                    "border border-primary": index === currentMessageIndex,
+                    "opacity-80": index !== currentMessageIndex,
+                  })}
+                />
+                {message.attachment && (
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => handleZoomChange(index, true)}
+                    className="flex-center absolute right-0 top-0 z-50 p-2 opacity-50 hover:opacity-100"
+                  >
+                    <ExpandIcon className="h-4 w-4" />
+                  </motion.button>
                 )}
-            </ControlledZoom>
-          </li>
-        ))}
-      </ul>
-    </ScrollArea>
+                {hasImageGrid &&
+                  message.attachment &&
+                  index === currentMessageIndex && (
+                    <ImageGrid
+                      selectedImage={selectedImage}
+                      clickHandler={setSelectedImage}
+                    />
+                  )}
+              </ControlledZoom>
+            </li>
+          ))}
+          {isLoading && generationType !== "save" && (
+            <ImageContainerNoPoster size="sm" className="flex w-1/4" />
+          )}
+        </ul>
+      </ScrollArea>
+    </>
   );
 };
 

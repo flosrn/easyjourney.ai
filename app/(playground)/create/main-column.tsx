@@ -392,7 +392,7 @@ const MainColumn = () => {
 
             <motion.div
               layout
-              className="flex max-h-full grow items-center justify-center rounded-md border p-5 lg:py-1"
+              className="relative flex max-h-full grow items-center justify-center rounded-md border p-5 lg:py-1"
             >
               <TabsContent value={DisplayMode.STACK} className="w-full">
                 <ImageContainer />
