@@ -168,8 +168,7 @@ export const siteConfig: SiteConfig = {
   title: "easyjourney.ai",
   description:
     "Unlock the power of Midjourney with a beautiful and user-friendly interface. Create stunning visuals with ease, no AI or prompt engineering expertise required",
-  url: "https://easyjourney.vercel.app",
-  // ogImage: "https://easyjourney.vercel.app/og.jpg",
+  url: "https://easyjourney.ai",
   megaMenu,
   userMenu,
 };

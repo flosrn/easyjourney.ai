@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  metadataBase: new URL("https://easyjourney.vercel.app"),
+  metadataBase: new URL(siteConfig.url),
   // manifest: `${siteConfig.url}/site.webmanifest`,
 };
 

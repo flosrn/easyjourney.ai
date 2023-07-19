@@ -3,7 +3,7 @@ import type { LucideIcon } from "lucide-react";
 export type Hero = {
   title: string;
   description?: string;
-  url?: string;
+  url: string;
   ogImage?: string;
 };
 
