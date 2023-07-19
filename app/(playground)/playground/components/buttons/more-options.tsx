@@ -7,7 +7,6 @@ import {
   ChevronUpSquareIcon,
   Loader2Icon,
   MoreHorizontalIcon,
-  SearchCodeIcon,
   SearchIcon,
   Wand2Icon,
   ZoomOutIcon,
@@ -24,6 +23,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
+import { Option, useOptionStore } from "../../store/optionStore";
 import LabelWithTooltip from "../sidebar/label-with-tooltip";
 import ActionButton from "./action-button";
 import CustomZoom from "./custom-zoom-button";
@@ -33,6 +33,10 @@ type MoreOptionsProps = {
 };
 
 const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
+  const [option, setOption] = useOptionStore((state) => [
+    state.option,
+    state.setOption,
+  ]);
   const [messages, currentMessageIndex] = useMessageStore((state) => [
     state.messages,
     state.currentMessageIndex,
@@ -71,51 +75,26 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
         sideOffset={20}
         className="h-56 w-screen sm:w-96"
       >
-        <Tabs defaultValue="vary" className="flex-1">
+        <Tabs
+          value={option}
+          onValueChange={(opt) => setOption(opt as Option)}
+          className="flex-1"
+        >
           <TabsList className="grid grid-cols-3">
-            <TabsTrigger value="vary" className="space-x-2">
-              <Wand2Icon className="h-4 w-4" />
-              <span>Vary</span>
-            </TabsTrigger>
-            <TabsTrigger value="zoom" className="space-x-2">
+            <TabsTrigger value={Option.ZOOM} className="space-x-2">
               <SearchIcon className="h-4 w-4" />
               <span>Zoom</span>
             </TabsTrigger>
-            <TabsTrigger value="pan" className="space-x-2">
+            <TabsTrigger value={Option.PAN} className="space-x-2">
               <ChevronLeftSquareIcon className="h-4 w-4" />
               <span>Pan</span>
             </TabsTrigger>
+            <TabsTrigger value={Option.VARY} className="space-x-2">
+              <Wand2Icon className="h-4 w-4" />
+              <span>Vary</span>
+            </TabsTrigger>
           </TabsList>
-          <TabsContent value="vary">
-            <LabelWithTooltip
-              title="Vary options"
-              size="xs"
-              description="Generates four new images with slight variations but an overall style similar to the upscaled image. There are two options:
-              Vary(Strong) which give more different output, and Vary(Subtle) which give less different output."
-              className="py-4"
-            />
-            <div className="grid grid-cols-2 gap-1">
-              <ActionButton
-                id="vary-strong"
-                type="vary"
-                label="Vary (Strong)"
-                dataOption="Strong"
-                Icon={Wand2Icon}
-                clickHandler={clickHandler}
-                isDisabled={isNotUpscale || isEmpty || isLoading}
-              />
-              <ActionButton
-                id="vary-subtle"
-                type="vary"
-                label="Vary (Subtle)"
-                dataOption="Subtle"
-                Icon={Wand2Icon}
-                clickHandler={clickHandler}
-                isDisabled={isNotUpscale || isEmpty || isLoading}
-              />
-            </div>
-          </TabsContent>
-          <TabsContent value="zoom">
+          <TabsContent value={Option.ZOOM}>
             <LabelWithTooltip
               title="ZoomOut options"
               size="xs"
@@ -158,7 +137,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
               />
             </div>
           </TabsContent>
-          <TabsContent value="pan">
+          <TabsContent value={Option.PAN}>
             <LabelWithTooltip
               title="Pan options"
               size="xs"
@@ -199,6 +178,35 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan down"
                 dataOption="pan_down"
                 Icon={ChevronDownSquareIcon}
+                clickHandler={clickHandler}
+                isDisabled={isNotUpscale || isEmpty || isLoading}
+              />
+            </div>
+          </TabsContent>
+          <TabsContent value={Option.VARY}>
+            <LabelWithTooltip
+              title="Vary options"
+              size="xs"
+              description="Generates four new images with slight variations but an overall style similar to the upscaled image. There are two options:
+              Vary(Strong) which give more different output, and Vary(Subtle) which give less different output."
+              className="py-4"
+            />
+            <div className="grid grid-cols-2 gap-1">
+              <ActionButton
+                id="vary-strong"
+                type="vary"
+                label="Vary (Strong)"
+                dataOption="Strong"
+                Icon={Wand2Icon}
+                clickHandler={clickHandler}
+                isDisabled={isNotUpscale || isEmpty || isLoading}
+              />
+              <ActionButton
+                id="vary-subtle"
+                type="vary"
+                label="Vary (Subtle)"
+                dataOption="Subtle"
+                Icon={Wand2Icon}
                 clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />

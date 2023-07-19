@@ -28,7 +28,7 @@ const ActionButtonsContainer = ({
   const isSave = currentGenerationType === "save";
 
   return (
-    <div className="my-2 flex flex-wrap justify-center gap-2 xl:justify-between">
+    <div className="my-2 grid flex-wrap gap-2 sm:flex sm:justify-between">
       <div className="flex flex-wrap justify-center gap-2">
         <ActionButton
           id="variation"
@@ -48,7 +48,7 @@ const ActionButtonsContainer = ({
         />
         <MoreOptions clickHandler={clickHandler} />
       </div>
-      <div className="flex gap-2">
+      <div className="flex flex-wrap justify-center gap-2">
         <ActionButton
           id="save"
           type="save"
