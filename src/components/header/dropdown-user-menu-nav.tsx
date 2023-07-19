@@ -24,9 +24,15 @@ import { siteConfig } from "~/config/site";
 
 import SettingsDialog from "./settings-dialog/settings-dialog";
 
-type DropdownUserMenuNavProps = {};
+type DropdownUserMenuNavProps = {
+  sideOffset?: number;
+  alignOffset?: number;
+};
 
-const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
+const DropdownUserMenuNav = ({
+  sideOffset = 10,
+  alignOffset = 0,
+}: DropdownUserMenuNavProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const router = useRouter();
   const { data: session } = useSession();
@@ -101,7 +107,8 @@ const DropdownUserMenuNav = ({}: DropdownUserMenuNavProps) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           side="bottom"
-          sideOffset={10}
+          sideOffset={sideOffset}
+          alignOffset={alignOffset}
           align="end"
           className="w-56"
         >

@@ -21,7 +21,15 @@ import {
 } from "~/components/ui/popover";
 import { Separator } from "~/components/ui/separator";
 
-const UserCreditsPopover = () => {
+type UserCreditsPopoverProps = {
+  sideOffset?: number;
+  alignOffset?: number;
+};
+
+const UserCreditsPopover = ({
+  sideOffset = 10,
+  alignOffset = -57,
+}: UserCreditsPopoverProps) => {
   const { data: session, update } = useSession();
 
   const plan = session?.user.plan ?? SubscriptionPlan.FREE;
@@ -48,8 +56,8 @@ const UserCreditsPopover = () => {
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        sideOffset={10}
-        alignOffset={-57}
+        sideOffset={sideOffset}
+        alignOffset={alignOffset}
         align="end"
         className="w-80 p-0"
       >

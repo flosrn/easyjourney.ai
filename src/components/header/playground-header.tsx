@@ -14,18 +14,18 @@ const PlaygroundHeader = ({}: PlaygroundHeaderProps) => {
 
   return (
     <header className="supports-backdrop-blur:bg-background/10 fixed top-0 z-40 w-full border-b bg-background shadow-sm backdrop-blur">
-      <div className="flex h-16 flex-row items-center justify-between space-y-2 px-4 md:px-6">
+      <div className="flex h-16 flex-row items-center justify-between px-4 md:px-6">
         <div className="flex h-full divide-x divide-accent">
           <PlaygroundNav />
           <h2 className="flex items-center pl-4 text-lg font-semibold">
             Playground
           </h2>
         </div>
-        <div className="ml-auto flex w-full justify-end space-x-2">
-          <div className="flex items-center space-x-2">
-            {session?.user && <UserCreditsPopover />}
-            <DropdownUserMenuNav />
-          </div>
+        <div className="flex items-center space-x-2">
+          {session?.user && (
+            <UserCreditsPopover sideOffset={15} alignOffset={-50} />
+          )}
+          <DropdownUserMenuNav sideOffset={15} />
         </div>
       </div>
     </header>
