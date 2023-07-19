@@ -157,7 +157,7 @@ dependencies:
     version: 0.1.1
   midjourney:
     specifier: github:flosrn/midjourney-api
-    version: github.com/flosrn/midjourney-api/d22fb70cb71209ea139044cfdde992285e180be5(bufferutil@4.0.7)(utf-8-validate@6.0.3)
+    version: github.com/flosrn/midjourney-api/7fc4c8d6fa77d43284e8ba65cbb8b9894bfc36e7(bufferutil@4.0.7)(utf-8-validate@6.0.3)
   next:
     specifier: 13.4.10
     version: 13.4.10(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
@@ -7518,9 +7518,9 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  github.com/flosrn/midjourney-api/d22fb70cb71209ea139044cfdde992285e180be5(bufferutil@4.0.7)(utf-8-validate@6.0.3):
-    resolution: {tarball: https://codeload.github.com/flosrn/midjourney-api/tar.gz/d22fb70cb71209ea139044cfdde992285e180be5}
-    id: github.com/flosrn/midjourney-api/d22fb70cb71209ea139044cfdde992285e180be5
+  github.com/flosrn/midjourney-api/7fc4c8d6fa77d43284e8ba65cbb8b9894bfc36e7(bufferutil@4.0.7)(utf-8-validate@6.0.3):
+    resolution: {tarball: https://codeload.github.com/flosrn/midjourney-api/tar.gz/7fc4c8d6fa77d43284e8ba65cbb8b9894bfc36e7}
+    id: github.com/flosrn/midjourney-api/7fc4c8d6fa77d43284e8ba65cbb8b9894bfc36e7
     name: midjourney-api
     version: 4.0.0
     engines: {node: '>=18'}

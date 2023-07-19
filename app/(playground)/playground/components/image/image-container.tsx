@@ -20,7 +20,7 @@ const ImageContainer = ({}: ImageContainerProps) => {
       {hasImage ? (
         <Slider />
       ) : (
-        <ImageContainerNoPoster className="mx-auto h-[400px] lg:h-[500px]" />
+        <ImageContainerNoPoster className="mx-auto h-[400px] max-w-full lg:h-[500px]" />
       )}
     </>
   );

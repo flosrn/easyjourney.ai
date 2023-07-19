@@ -63,8 +63,12 @@ const Slider = ({}: SliderProps) => {
   const isVariation = currentGenerationType === "variation";
   const isVary = currentGenerationType === "vary";
   const isZoomOut = currentGenerationType === "zoomOut";
+  const isPan = currentGenerationType === "pan";
+  const isSquare = currentGenerationType === "square";
   const hasImageGrid =
-    hasImage && !isLoading && (isImagine || isVariation || isVary || isZoomOut);
+    hasImage &&
+    !isLoading &&
+    (isImagine || isVariation || isVary || isZoomOut || isPan || isSquare);
   const aspectRatio = getTwAspectRatio(ratio);
 
   const calcNextOffset = () => {
@@ -111,7 +115,9 @@ const Slider = ({}: SliderProps) => {
 
   return (
     <div className="posters-slider w-full">
-      <span className="flex-center mb-2 h-6 text-xs sm:text-sm">{msg}</span>
+      <span className="flex-center mb-2 h-7 text-center text-xs sm:text-sm md:h-6">
+        {msg}
+      </span>
       <Swiper
         ref={swiperRef}
         effect="creative"

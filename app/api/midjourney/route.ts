@@ -4,6 +4,7 @@ export const runtime = "edge";
 
 export async function POST(request: Request) {
   const body = await request.json();
+  console.log("body :", body);
 
   const socket = new WebSocket(websocketUrl);
 

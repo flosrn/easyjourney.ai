@@ -10,12 +10,20 @@ const midjourneyRequest = async (
   index: number | null,
   loading: (data: MJMessage) => void,
   onError: (error: Error) => void,
-  option?: string
+  option?: string,
+  newPrompt?: string
 ) => {
   const response = await fetch("/api/midjourney", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ generationType, prompt, index, content, option }),
+    body: JSON.stringify({
+      generationType,
+      prompt,
+      index,
+      content,
+      option,
+      newPrompt,
+    }),
   });
 
   if (!response.ok) {
@@ -41,6 +49,7 @@ export const generate = async ({
   index,
   loading,
   option,
+  newPrompt,
 }: {
   generationType: GenerationType;
   prompt: string;
@@ -48,6 +57,7 @@ export const generate = async ({
   index: number | null;
   loading: (data: MJMessage) => void;
   option?: string;
+  newPrompt?: string;
 }) => {
   try {
     return await midjourneyRequest(
@@ -61,7 +71,8 @@ export const generate = async ({
         toast.error("An error occurred, please try again.");
         throw error;
       },
-      option
+      option,
+      newPrompt
     );
   } catch (error: unknown) {
     console.error("A network error occurred", error);

@@ -22,8 +22,10 @@ type ActionButtonProps = {
   variant?: ButtonVariant;
   Icon: LucideIcon;
   isDisabled?: boolean;
-  clickHandler: (option?: string) => void;
+  clickHandler: (option?: string, newPrompt?: string) => void;
   dataOption?: string;
+  dataOptionValue?: string;
+  className?: string;
 };
 
 const ActionButton = ({
@@ -36,6 +38,8 @@ const ActionButton = ({
   isDisabled,
   clickHandler,
   dataOption,
+  dataOptionValue,
+  className,
 }: ActionButtonProps) => {
   const [option, setOption] = useState<string>("");
   const [messages, currentMessageIndex, setCurrentMessageIndex] =
@@ -80,9 +84,11 @@ const ActionButton = ({
       return;
     }
     const currentOption = event.currentTarget.dataset.option;
+    const currentOptionValue = event.currentTarget.dataset.optionValue;
+    console.log("currentOptionValue :", currentOptionValue);
     currentOption && setOption(currentOption);
     setGenerationType(type);
-    clickHandler(currentOption);
+    clickHandler(currentOption, currentOptionValue);
     switch (type) {
       case "save": {
         setMsg("Saving...");
@@ -111,9 +117,11 @@ const ActionButton = ({
     <Button
       id={id}
       data-option={dataOption}
+      data-option-value={dataOptionValue}
       variant={variant}
       onClick={handleClick}
       disabled={isDisabled}
+      className={className}
     >
       {isButtonLoading ? (
         <Loader2Icon className="h-4 w-4 animate-spin" />

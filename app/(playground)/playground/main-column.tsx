@@ -37,22 +37,20 @@ import { useStylizeStore } from "./store/stylizeStore";
 import { useTileStore } from "./store/tileStore";
 import { useVersionStore } from "./store/versionStore";
 
+type MutationParams = {
+  option?: string;
+  newPrompt?: string;
+};
+
 const MainColumn = () => {
-  const [
-    messages,
-    addMessage,
-    setMessage,
-    currentMessageIndex,
-    setCurrentMessageIndex,
-    clearMessages,
-  ] = useMessageStore((state) => [
-    state.messages,
-    state.addMessage,
-    state.setMessage,
-    state.currentMessageIndex,
-    state.setCurrentMessageIndex,
-    state.clearMessages,
-  ]);
+  const [messages, addMessage, setMessage, currentMessageIndex, clearMessages] =
+    useMessageStore((state) => [
+      state.messages,
+      state.addMessage,
+      state.setMessage,
+      state.currentMessageIndex,
+      state.clearMessages,
+    ]);
 
   const [
     generationType,
@@ -60,7 +58,6 @@ const MainColumn = () => {
     setRequestState,
     selectedImage,
     setGenerationType,
-    msg,
     setMsg,
     setSelectedImage,
   ] = useMidjourneyStore((state) => [
@@ -69,7 +66,6 @@ const MainColumn = () => {
     state.setRequestState,
     state.selectedImage,
     state.setGenerationType,
-    state.msg,
     state.setMsg,
     state.setSelectedImage,
   ]);
@@ -223,8 +219,12 @@ const MainColumn = () => {
     handleDisableSelectors(false);
   };
 
-  const generationMutation = useMutation({
-    mutationFn: async (option?: string) => {
+  const generationMutation = useMutation<
+    MJMessage | undefined,
+    Error,
+    MutationParams
+  >({
+    mutationFn: async ({ option, newPrompt }) => {
       const result = await (currentMessage && generationType === "save"
         ? savePoster({
             poster: currentMessage,
@@ -237,6 +237,7 @@ const MainColumn = () => {
             content: currentMessage,
             index: selectedImage,
             option,
+            newPrompt,
             loading: (data: MJMessage) => {
               if (data.progress === "waiting") return;
               setMsg(`Generating poster ${data.progress}`);
@@ -292,16 +293,17 @@ const MainColumn = () => {
     },
   });
 
-  const handleGenerate = async (option?: string) => {
+  const handleGenerate = async (option?: string, newPrompt?: string) => {
     if (promptValue.length <= 1) {
       inputRef.current?.focus();
       return;
     }
+    console.log("newPrompt :", newPrompt);
     handleDisableSelectors(true);
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }, 100);
-    await generationMutation.mutateAsync(option);
+    await generationMutation.mutateAsync({ option, newPrompt });
   };
 
   useEffect(() => {

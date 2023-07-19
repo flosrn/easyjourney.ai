@@ -12,21 +12,21 @@ import { Label } from "~/components/ui/label";
 
 import { cn } from "~/lib/classNames";
 
-type SelectorComponentProps = {
+type LabelWithTooltipProps = {
   title: string;
   description: string;
   defaultValue?: string;
-  size?: "medium" | "small";
+  size?: "sm" | "xs";
   className?: string;
 };
 
-const SelectorComponent = ({
+const LabelWithTooltip = ({
   title,
   description,
   defaultValue,
-  size,
+  size = "sm",
   className,
-}: SelectorComponentProps) => {
+}: LabelWithTooltipProps) => {
   const [open, setOpen] = useState(false);
   return (
     <div className={cn("grid gap-2", className)}>
@@ -41,7 +41,10 @@ const SelectorComponent = ({
           align="start"
           side="right"
           sideOffset={10}
-          className="w-[260px] text-left text-sm"
+          className={cn("w-[260px] text-left", {
+            "text-sm": size === "sm",
+            "text-xs": size === "xs",
+          })}
         >
           {description}
           {defaultValue && (
@@ -56,4 +59,4 @@ const SelectorComponent = ({
   );
 };
 
-export default SelectorComponent;
+export default LabelWithTooltip;
