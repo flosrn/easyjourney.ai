@@ -54,9 +54,9 @@ const Header = ({ expanded }: HeaderProps) => {
             <Navbar className="hidden md:block" />
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
-            {pathname !== "/create" && (
+            {pathname !== "/playground" && (
               <Button asChild>
-                <Link href="/create">Create</Link>
+                <Link href="/playground">Create</Link>
               </Button>
             )}
             <div className="flex items-center space-x-2 md:space-x-4">

@@ -6,7 +6,7 @@ import { EditIcon } from "lucide-react";
 
 import TooltipButton from "~/components/posters/buttons/tooltip-button";
 
-import { usePromptStore } from "../../../../app/(playground)/create/store/promptStore";
+import { usePromptStore } from "../../../../app/(playground)/playground/store/promptStore";
 
 type EditPromptButtonProps = {
   prompt: string;
@@ -19,7 +19,7 @@ const EditPromptButton = ({ prompt }: EditPromptButtonProps) => {
   const handleDownload = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setPromptValue(prompt);
-    router.push("/create");
+    router.push("/playground");
   };
 
   return (

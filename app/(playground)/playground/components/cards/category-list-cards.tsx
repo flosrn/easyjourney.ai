@@ -31,7 +31,7 @@ const getHref = ({
   selectedCategory?: string;
 }) => {
   const isSubCategory = type === CategoryFilterType.SUBCATEGORY;
-  return `/create?filterCategory=${
+  return `/playground?filterCategory=${
     selectedCategory ?? category.name.toLowerCase()
   }${isSubCategory ? `&filterSubCategory=${category.name.toLowerCase()}` : ""}`;
 };

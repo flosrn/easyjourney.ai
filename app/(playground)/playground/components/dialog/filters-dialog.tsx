@@ -43,7 +43,7 @@ const FiltersDialog = ({}: FilterDialogProps) => {
 
   const handleDialogChange = (isOpen: boolean) => {
     setIsDialogOpen(isOpen);
-    !isOpen && router.push("/create");
+    !isOpen && router.push("/playground");
   };
 
   const [selectedFilters, addFilter, removeFilter] = useFilterStore((state) => [

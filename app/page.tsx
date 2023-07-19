@@ -141,7 +141,7 @@ export default async function IndexPage() {
                   </p>
                   <div className="pt-2 md:pt-6">
                     <Button asChild>
-                      <Link href="/create">Create Art</Link>
+                      <Link href="/playground">Create Art</Link>
                     </Button>
                   </div>
                 </div>

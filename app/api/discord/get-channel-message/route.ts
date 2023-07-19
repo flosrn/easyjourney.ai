@@ -5,7 +5,7 @@ import extractJobId from "~/utils/extractJobId";
 import { retrieveMessages, wait } from "~/utils/midjourneyUtils";
 import type { APIAttachment, APIMessage } from "discord-api-types/v10";
 
-import type { ImageData } from "../../../(playground)/create/store/imageGenerationStore";
+import type { ImageData } from "../../../(playground)/playground/store/imageGenerationStore";
 
 export const runtime = "edge";
 

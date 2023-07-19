@@ -45,8 +45,8 @@ const megaMenu: MegaMenu[] = [
     title: "Create a poster",
     menu: [
       {
-        title: "Generator",
-        href: "/create",
+        title: "Playground",
+        href: "/playground",
         description: "Personalize and create your own poster in seconds",
       },
       {

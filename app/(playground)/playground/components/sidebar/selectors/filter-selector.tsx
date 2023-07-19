@@ -220,7 +220,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                   <CommandSeparator alwaysRender />
                   <CommandGroup className="-mx-1 -mb-1 h-14">
                     <CommandItem
-                      onSelect={() => router.push("/create?filterCategory")}
+                      onSelect={() => router.push("/playground?filterCategory")}
                       className="flex-center cursor-pointer text-sm text-muted-foreground"
                     >
                       <LayoutListIcon className="mr-2 h-4 w-4" />
@@ -235,7 +235,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
       </Popover>
       <Button
         variant="outline"
-        onClick={() => router.push("/create?filterCategory")}
+        onClick={() => router.push("/playground?filterCategory")}
         aria-label="Select a filter"
         className="flex justify-between sm:hidden"
       >

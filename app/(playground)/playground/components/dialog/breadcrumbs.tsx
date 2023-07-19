@@ -25,7 +25,7 @@ const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
     <div className="flex items-center space-x-2 text-xs text-muted-foreground md:text-lg">
       <button
         disabled={isHomeDialog}
-        onClick={() => router.push("/create?filterCategory")}
+        onClick={() => router.push("/playground?filterCategory")}
         className={cn("focus-visible:outline-none", {
           "text-foreground": isHomeDialog,
           "hover:text-foreground hover:underline": !isHomeDialog,
@@ -39,7 +39,7 @@ const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
           <button
             disabled={!!filterCategory && !subCategory}
             onClick={() =>
-              router.push(`/create?filterCategory=${categoryName}`)
+              router.push(`/playground?filterCategory=${categoryName}`)
             }
             className={cn("flex items-center", {
               "text-foreground": filterCategory && !subCategory,
@@ -59,7 +59,7 @@ const Breadcrumbs = ({ category, subCategory }: BreadcrumbsProps) => {
             disabled={!!subCategory}
             onClick={() =>
               router.push(
-                `/create?filterCategory=${categoryName}&filterSubCategory=${subCategoryName}`
+                `/playground?filterCategory=${categoryName}&filterSubCategory=${subCategoryName}`
               )
             }
             className={cn("flex items-center", {
