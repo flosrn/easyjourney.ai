@@ -64,7 +64,7 @@
     "date-fns": "^2.30.0",
     "discord-api-types": "^0.37.49",
     "file-saver": "^2.0.5",
-    "framer-motion": "^10.12.22",
+    "framer-motion": "^10.13.0",
     "lucide-react": "0.261.0",
     "micro": "^10.0.1",
     "micro-cors": "^0.1.1",
@@ -95,8 +95,8 @@
     "zustand": "^4.3.9"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.6",
-    "@commitlint/config-conventional": "^17.6.6",
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
     "@ianvs/prettier-plugin-sort-imports": "^4.0.2",
     "@tanstack/eslint-plugin-query": "5.0.0-alpha.47",
     "@types/file-saver": "^2.0.5",
