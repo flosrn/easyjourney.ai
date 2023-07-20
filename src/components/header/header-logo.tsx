@@ -1,19 +1,28 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useTheme } from "next-themes";
 
-import fullLogoBlack from "../../../public/images/logo/easyjourney_logo_black.svg";
-import fullLogoWhite from "../../../public/images/logo/easyjourney_logo.svg";
-import logoBlack from "../../../public/images/logo/flyingfish_black.svg";
-import logoWhite from "../../../public/images/logo/flyingfish_white.svg";
+import { cn } from "~/lib/classNames";
 
-type HeaderLogoProps = {};
+import logoBlackDesktop from "../../../public/images/logo/easyjourney_logo_black.svg";
+import logoWhiteDesktop from "../../../public/images/logo/easyjourney_logo.svg";
+import logoBlackMobile from "../../../public/images/logo/flyingfish_black.svg";
+import logoWhiteMobile from "../../../public/images/logo/flyingfish_white.svg";
 
-const HeaderLogo = ({}: HeaderLogoProps) => {
+type HeaderLogoProps = {
+  isMobile?: boolean;
+  className?: string;
+};
+
+const HeaderLogo = ({ isMobile, className }: HeaderLogoProps) => {
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
   const isDarkTheme = theme === "dark";
+
+  const logoWhite = isMobile ? logoWhiteMobile : logoWhiteDesktop;
+  const logoBlack = isMobile ? logoBlackMobile : logoBlackDesktop;
 
   useEffect(() => {
     setMounted(true);
@@ -21,31 +30,21 @@ const HeaderLogo = ({}: HeaderLogoProps) => {
 
   if (!mounted)
     return (
-      <Link href="/" className="mr-2 flex items-center space-x-2 -md:-ml-3">
-        <Image
-          priority
-          src={fullLogoWhite}
-          alt="Easyjourney.ai"
-          className="mb-3 h-8 w-full -md:hidden"
-        />
-      </Link>
+      <Image
+        priority
+        src={logoWhite}
+        alt="Easyjourney.ai"
+        className={cn("h-8 w-full", className)}
+      />
     );
 
   return (
-    <Link href="/" className="mr-2 flex  items-center space-x-2 -md:-ml-3">
-      <Image
-        priority
-        src={isDarkTheme ? fullLogoWhite : fullLogoBlack}
-        alt="Easyjourney.ai"
-        className="mb-3 h-8 w-full -md:hidden"
-      />
-      <Image
-        priority
-        src={isDarkTheme ? logoWhite : logoBlack}
-        alt="Easyjourney.ai"
-        className="h-8 w-8 md:hidden"
-      />
-    </Link>
+    <Image
+      priority
+      src={isDarkTheme ? logoWhite : logoBlack}
+      alt="Easyjourney.ai"
+      className={cn("h-8 w-full", className)}
+    />
   );
 };
 

@@ -1,6 +1,9 @@
-import * as React from "react";
+"use client";
+
+import React from "react";
 import Link from "next/link";
 
+import DesktopNavItem from "~/components/header/menu/desktop-nav-item";
 import MyFeedMenuItem from "~/components/header/my-feed-menu-item";
 import {
   NavigationMenu,
@@ -18,7 +21,7 @@ type NavbarProps = {
   className?: string;
 };
 
-export const Navbar = ({ className }: NavbarProps) => {
+export const DesktopNav = ({ className }: NavbarProps) => {
   return (
     <NavigationMenu className={cn("max-w-full", className)}>
       <NavigationMenuList>
@@ -52,17 +55,17 @@ export const Navbar = ({ className }: NavbarProps) => {
                 )}
 
                 {megaMenuItem.menu.map((menuItem) => (
-                  <ListItem
+                  <DesktopNavItem
                     key={menuItem.title}
                     title={menuItem.title}
                     href={menuItem.href}
                     disabled={menuItem.disabled}
                   >
                     {menuItem.description}
-                  </ListItem>
+                  </DesktopNavItem>
                 ))}
                 {megaMenuItem.title === "Explore" && (
-                  <MyFeedMenuItem ListItem={ListItem} />
+                  <MyFeedMenuItem ListItem={DesktopNavItem} />
                 )}
               </ul>
             </NavigationMenuContent>
@@ -70,45 +73,5 @@ export const Navbar = ({ className }: NavbarProps) => {
         ))}
       </NavigationMenuList>
     </NavigationMenu>
-  );
-};
-
-const ListItem = ({
-  title,
-  href,
-  disabled,
-  children,
-  ref,
-  className,
-}: {
-  title: string;
-  href: string;
-  disabled?: boolean;
-  children: React.ReactNode;
-  ref?: React.Ref<HTMLAnchorElement>;
-  className?: string;
-}) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          ref={ref}
-          href={href}
-          onClick={(event) => disabled && event.preventDefault()}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
-            disabled
-              ? "opacity-50 pointer-events-none"
-              : "hover:text-slate-900 dark:hover:text-slate-100 focus:text-slate-900 dark:focus:text-slate-100",
-            className
-          )}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-slate-500 dark:text-slate-400">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
   );
 };

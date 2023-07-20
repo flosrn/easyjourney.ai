@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import getFirstLetters from "~/utils/getFirstLetter";
@@ -22,18 +22,15 @@ import { Switch } from "~/components/ui/switch";
 
 import { siteConfig } from "~/config/site";
 
-import SettingsDialog from "./settings-dialog/settings-dialog";
-
 type DropdownUserMenuNavProps = {
   sideOffset?: number;
   alignOffset?: number;
 };
 
 const DropdownUserMenuNav = ({
-  sideOffset = 10,
+  sideOffset = 15,
   alignOffset = 0,
 }: DropdownUserMenuNavProps) => {
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const router = useRouter();
   const { data: session } = useSession();
   const { theme, setTheme } = useTheme();
@@ -71,9 +68,6 @@ const DropdownUserMenuNav = ({
       }
       case "/logout": {
         return signOut({ callbackUrl: "/" });
-      }
-      case "/account": {
-        return setIsDialogOpen(true);
       }
       default: {
         return href && router.push(href);
@@ -146,7 +140,6 @@ const DropdownUserMenuNav = ({
           })}
         </DropdownMenuContent>
       </DropdownMenu>
-      <SettingsDialog open={isDialogOpen} openChangeHandler={setIsDialogOpen} />
     </>
   );
 };

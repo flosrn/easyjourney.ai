@@ -115,7 +115,7 @@ export default async function IndexPage() {
       <Header />
       <main>
         <section id="hero-section" className="flex-center relative lg:h-screen">
-          <div className="container relative w-full bg-background py-16 md:py-32  -lg:overflow-hidden">
+          <div className="container relative w-full bg-background py-16 md:py-32 -lg:overflow-hidden">
             <div className="relative z-10 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
               <div className="lg:pr-8">
                 <div className="space-y-6 md:space-y-8 lg:max-w-xl">

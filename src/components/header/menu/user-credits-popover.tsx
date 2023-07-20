@@ -27,7 +27,7 @@ type UserCreditsPopoverProps = {
 };
 
 const UserCreditsPopover = ({
-  sideOffset = 10,
+  sideOffset = 15,
   alignOffset = -57,
 }: UserCreditsPopoverProps) => {
   const { data: session, update } = useSession();
@@ -41,6 +41,8 @@ const UserCreditsPopover = ({
   const refreshSession = async () => {
     await update();
   };
+
+  if (!session?.user) return null;
 
   return (
     <Popover>

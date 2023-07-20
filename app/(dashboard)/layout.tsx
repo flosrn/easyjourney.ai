@@ -10,7 +10,7 @@ type LayoutPageProps = {
 const LayoutPage = ({ children }: LayoutPageProps) => {
   return (
     <>
-      <Header expanded />
+      <Header />
       <div className="pt-[57px]">{children}</div>
       <Toaster />
     </>

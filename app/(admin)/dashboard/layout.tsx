@@ -22,7 +22,7 @@ const LayoutPage = async ({ children }: LayoutPageProps) => {
   }
   return (
     <>
-      <Header expanded />
+      <Header variant="playground" />
       <div className="h-screen pt-[57px]">
         <div className="h-full bg-background">
           <div className="grid h-full lg:grid-cols-5">

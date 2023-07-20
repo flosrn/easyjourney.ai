@@ -1,9 +1,10 @@
+"use client";
+
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ChevronDownIcon } from "lucide-react";
 
-import PlaygroundLogo from "~/components/header/playground-logo";
+import HeaderLogo from "~/components/header/header-logo";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,17 +17,22 @@ import {
 import { cn } from "~/lib/classNames";
 import { siteConfig } from "~/config/site";
 
-import fullLogoWhite from "../../../public/images/logo/easyjourney_logo.svg";
+type PlaygroundNavProps = {
+  className?: string;
+};
 
-type PlaygroundNavProps = {};
-
-const PlaygroundNav = ({}: PlaygroundNavProps) => {
+const MobileNav = ({ className }: PlaygroundNavProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
-      <DropdownMenuTrigger>
-        <div className="flex shrink-0 items-center space-x-2 pr-2 md:pr-4">
-          <PlaygroundLogo />
+      <DropdownMenuTrigger asChild>
+        <div
+          className={cn(
+            "flex-center shrink-0 items-center h-full space-x-1",
+            className
+          )}
+        >
+          <HeaderLogo isMobile />
           <ChevronDownIcon
             className={cn(
               "w-5 h-5 shrink-0 transition-transform duration-200 ease-in-out",
@@ -39,19 +45,14 @@ const PlaygroundNav = ({}: PlaygroundNavProps) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         side="bottom"
-        sideOffset={2}
+        sideOffset={3}
         align="start"
-        alignOffset={-22}
+        alignOffset={-15}
         className="w-56"
       >
         <DropdownMenuLabel className="flex">
           <Link href="/">
-            <Image
-              priority
-              src={fullLogoWhite}
-              alt="Easyjourney.ai"
-              className="h-6 w-full"
-            />
+            <HeaderLogo className="mb-1 h-6" />
           </Link>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -81,4 +82,4 @@ const PlaygroundNav = ({}: PlaygroundNavProps) => {
   );
 };
 
-export default PlaygroundNav;
+export default MobileNav;
