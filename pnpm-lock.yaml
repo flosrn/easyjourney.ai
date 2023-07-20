@@ -143,6 +143,9 @@ dependencies:
   discord-api-types:
     specifier: ^0.37.50
     version: 0.37.50
+  driver.js:
+    specifier: ^1.0.5
+    version: 1.0.5
   file-saver:
     specifier: ^2.0.5
     version: 2.0.5
@@ -3647,6 +3650,10 @@ packages:
     dependencies:
       is-obj: 2.0.0
     dev: true
+
+  /driver.js@1.0.5:
+    resolution: {integrity: sha512-yLue+o82AeEnKrG77n1LZBygsc2T/F0txMxhXj2vA8E0VtzObpWqN+VMOp1uQsVFh582eA+1x07lM5o6IKtX3g==}
+    dev: false
 
   /electron-to-chromium@1.4.447:
     resolution: {integrity: sha512-sxX0LXh+uL41hSJsujAN86PjhrV/6c79XmpY0TvjZStV6VxIgarf8SRkUoUTuYmFcZQTemsoqo8qXOGw5npWfw==}

@@ -64,6 +64,7 @@
     "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
     "discord-api-types": "^0.37.50",
+    "driver.js": "^1.0.5",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.13.0",
     "is-ua-webview": "^1.1.2",
