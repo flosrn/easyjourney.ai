@@ -28,7 +28,7 @@ const MobileNav = ({ className }: PlaygroundNavProps) => {
       <DropdownMenuTrigger asChild>
         <div
           className={cn(
-            "flex-center shrink-0 items-center h-full space-x-1",
+            "flex-center h-full space-x-1 cursor-pointer",
             className
           )}
         >

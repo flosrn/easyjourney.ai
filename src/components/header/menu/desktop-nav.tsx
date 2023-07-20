@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 
 import DesktopNavItem from "~/components/header/menu/desktop-nav-item";
-import MyFeedMenuItem from "~/components/header/my-feed-menu-item";
+import MyFeedMenuItem from "~/components/header/menu/my-feed-menu-item";
 import {
   NavigationMenu,
   NavigationMenuContent,

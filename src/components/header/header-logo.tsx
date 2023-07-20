@@ -34,7 +34,7 @@ const HeaderLogo = ({ isMobile, className }: HeaderLogoProps) => {
         priority
         src={logoWhite}
         alt="Easyjourney.ai"
-        className={cn("h-8 w-full", className)}
+        className={cn("h-8 shrink-0", isMobile ? "w-8" : "w-full", className)}
       />
     );
 
@@ -43,7 +43,7 @@ const HeaderLogo = ({ isMobile, className }: HeaderLogoProps) => {
       priority
       src={isDarkTheme ? logoWhite : logoBlack}
       alt="Easyjourney.ai"
-      className={cn("h-8 w-full", className)}
+      className={cn("h-8 shrink-0", isMobile ? "w-8" : "w-full", className)}
     />
   );
 };
