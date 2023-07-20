@@ -32,6 +32,7 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 import { cn } from "~/lib/classNames";
 
 import { useFilterStore } from "../../../store/filterStore";
+import { useTourStore } from "../../../store/tourStore";
 import {
   type Filter,
   type SubCategoryFilter,
@@ -74,11 +75,22 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     !open && setPeekedFilter(null);
   }, [open, setPeekedFilter]);
 
+  const [driverObj, isTourActive] = useTourStore((state) => [
+    state.driverObj,
+    state.isTourActive,
+  ]);
+
   return (
     <div className="grid gap-2">
       <Popover open={open} onOpenChange={setOpen} {...props}>
         <PopoverTrigger asChild>
           <Button
+            id="filter-selector"
+            onClick={() => {
+              setTimeout(() => {
+                isTourActive && driverObj?.moveNext();
+              }, 200);
+            }}
             variant="outline"
             role="combobox"
             aria-expanded={open}
@@ -149,6 +161,13 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                         <div className="p-4">
                           {peekedFilter.image && (
                             <Image
+                              onClick={() => {
+                                setTimeout(() => {
+                                  if (!isTourActive) return;
+                                  driverObj?.moveNext();
+                                  setOpen(false);
+                                }, 200);
+                              }}
                               src={peekedFilter.image}
                               alt={peekedFilter.name}
                               width={200}
@@ -261,8 +280,13 @@ const FilterItem = ({
   onSelect,
   className,
 }: ModelItemProps) => {
+  const [driverObj, isTourActive] = useTourStore((state) => [
+    state.driverObj,
+    state.isTourActive,
+  ]);
   const ref = React.useRef<HTMLDivElement>(null);
   const isMostPopular = filter.id === "0";
+  const isGoldenHour = filter.id === "Golden Hour_1_33_1";
   return (
     <>
       <CommandItem
@@ -271,6 +295,11 @@ const FilterItem = ({
         onSelect={onSelect}
         onMouseEnter={(event) => {
           event.preventDefault();
+          if (isMostPopular || isGoldenHour) {
+            setTimeout(() => {
+              isTourActive && driverObj?.moveNext();
+            }, 200);
+          }
           onPeek(filter);
         }}
         className={cn(

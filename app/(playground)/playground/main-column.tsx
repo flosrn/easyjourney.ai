@@ -17,8 +17,11 @@ import ImageContainerGrid from "./components/image/image-container-grid";
 import TextareaPrompt from "./components/input/textarea-prompt";
 import useGeneration from "./hooks/useGeneration";
 import useSelectors from "./hooks/useSelectors";
+import useTour from "./hooks/useTour";
 import { DisplayMode } from "./store/displayStore";
 import { useMidjourneyStore } from "./store/midjourneyStore";
+
+import "driver.js/dist/driver.css";
 
 const MainColumn = () => {
   const [{ isLoading }] = useMidjourneyStore((state) => [state.requestState]);
@@ -31,6 +34,7 @@ const MainColumn = () => {
     handleDisableSelectors,
   } = useSelectors();
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const driverObj = useTour({});
 
   const handleGenerate = async (option?: string, newPrompt?: string) => {
     if (promptValue.length <= 1) {
@@ -50,7 +54,10 @@ const MainColumn = () => {
         <div className="h-full flex-col border-none p-0">
           <div className="flex w-full items-center justify-between bg-background -md:fixed -md:left-0 -md:z-10 -md:h-[80px] -md:border-b -md:px-4 -md:py-6">
             <div className="space-y-1 -xs:hidden">
-              <h2 className="text-xl font-semibold tracking-tight lg:text-2xl">
+              <h2
+                id="title"
+                className="text-xl font-semibold tracking-tight lg:text-2xl"
+              >
                 Poster generation
               </h2>
               <p className="text-sm text-muted-foreground">
@@ -84,7 +91,11 @@ const MainColumn = () => {
               layout
               className="relative flex max-h-full grow items-center justify-center rounded-md border p-5 lg:py-1"
             >
-              <TabsContent value={DisplayMode.STACK} className="w-full">
+              <TabsContent
+                id="main-panel"
+                value={DisplayMode.STACK}
+                className="w-full"
+              >
                 <ImageContainer />
               </TabsContent>
               <TabsContent value={DisplayMode.GRID} className="w-full">

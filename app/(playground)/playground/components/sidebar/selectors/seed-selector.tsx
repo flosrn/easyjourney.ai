@@ -36,7 +36,10 @@ const SeedSelector = () => {
   };
 
   return (
-    <div className="flex w-full items-center justify-between space-x-2">
+    <div
+      id="seed-selector"
+      className="flex w-full items-center justify-between space-x-2"
+    >
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}

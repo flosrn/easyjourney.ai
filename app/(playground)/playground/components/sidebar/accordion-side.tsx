@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import {
@@ -8,6 +10,7 @@ import {
 } from "~/components/ui/accordion";
 import { Separator } from "~/components/ui/separator";
 
+import { useTourStore } from "../../store/tourStore";
 import LabelWithTooltip from "./label-with-tooltip";
 import ChaosSelector from "./selectors/chaos-selector";
 import QualitySelector from "./selectors/quality-selector";
@@ -18,16 +21,26 @@ import TileSelector from "./selectors/tile-selector";
 import VersionSelector from "./selectors/version-selector";
 
 const AccordionSide = ({}) => {
+  const [driverObj, isTourActive] = useTourStore((state) => [
+    state.driverObj,
+    state.isTourActive,
+  ]);
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1" className="border-b-0 lg:border-b">
-        <AccordionTrigger className="pt-0">
+        <AccordionTrigger
+          id="advanced"
+          onClick={() => {
+            isTourActive && driverObj?.moveNext();
+          }}
+          className="pt-0"
+        >
           <LabelWithTooltip
             title="Advanced"
             description="Select advanced options like quality, chaos, stylize and more."
           />
         </AccordionTrigger>
-        <AccordionContent>
+        <AccordionContent id="advanced-content">
           <div className="space-y-4 px-1">
             <LabelWithTooltip
               title="Version"

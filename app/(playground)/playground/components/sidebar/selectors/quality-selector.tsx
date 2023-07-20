@@ -32,7 +32,7 @@ const QualitySelector = () => {
       value={qualityValue.toString()}
     >
       <SelectTrigger>
-        <SelectValue placeholder="Quality 1" />
+        <SelectValue id="quality-selector" placeholder="Quality 1" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

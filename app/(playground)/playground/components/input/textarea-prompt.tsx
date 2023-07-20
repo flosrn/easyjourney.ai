@@ -165,6 +165,7 @@ const TextareaPrompt = ({ inputRef, collapse }: TextareaPromptProps) => {
   return (
     <motion.div layout>
       <Textarea
+        id="prompt"
         ref={inputRef}
         value={promptValue}
         onChange={handlePromptValue}

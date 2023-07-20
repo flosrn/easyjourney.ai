@@ -37,7 +37,7 @@ const StopSelector = ({ className, ...props }: SliderProps) => {
   };
 
   return (
-    <div className="flex justify-between space-x-2">
+    <div id="stop-selector" className="flex justify-between space-x-2">
       <Slider
         onValueChange={handleChaosValueChange}
         defaultValue={[stopValue]}

@@ -38,6 +38,7 @@ const StylizeSelector = ({ className, ...props }: SliderProps) => {
   return (
     <div className="flex justify-between space-x-2">
       <Slider
+        id="stylize-selector"
         onValueChange={handleStylizeValueChange}
         defaultValue={[stylizeValue]}
         value={[stylizeValue]}
