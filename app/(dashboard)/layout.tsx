@@ -1,5 +1,4 @@
 import React from "react";
-import { Toaster } from "react-hot-toast";
 
 import Header from "~/components/header/header";
 
@@ -12,7 +11,6 @@ const LayoutPage = ({ children }: LayoutPageProps) => {
     <>
       <Header />
       <div className="pt-[57px]">{children}</div>
-      <Toaster />
     </>
   );
 };

@@ -20,15 +20,10 @@ import { useVersionStore } from "../../store/versionStore";
 
 type TextareaPromptProps = {
   inputRef: React.RefObject<HTMLTextAreaElement>;
-  generateHandler: () => void;
   collapse?: boolean;
 };
 
-const TextareaPrompt = ({
-  inputRef,
-  generateHandler,
-  collapse,
-}: TextareaPromptProps) => {
+const TextareaPrompt = ({ inputRef, collapse }: TextareaPromptProps) => {
   const [setGenerationType] = useMidjourneyStore((state) => [
     state.setGenerationType,
   ]);
