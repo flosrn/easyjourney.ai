@@ -2,8 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { useMobileMenuStore } from "~/store/mobileMenuStore";
-import removeSpacesFromString from "~/utils/removeSpacesFromString";
 import { motion } from "framer-motion";
 import { BrushIcon, Trash2Icon } from "lucide-react";
 import type { MJMessage } from "midjourney";
@@ -21,21 +19,11 @@ import FiltersDialog from "./components/dialog/filters-dialog";
 import ImageContainer from "./components/image/image-container";
 import ImageContainerGrid from "./components/image/image-container-grid";
 import TextareaPrompt from "./components/input/textarea-prompt";
-import { aspectRatios } from "./data/aspectRatios";
+import useSelectors from "./hooks/useSelectors";
 import { generate, savePoster } from "./lib/request";
-import { useChaosStore } from "./store/chaosStore";
-import { DisplayMode, useDisplayStore } from "./store/displayStore";
-import { useFilterStore } from "./store/filterStore";
+import { DisplayMode } from "./store/displayStore";
 import { useMessageStore } from "./store/messageStore";
 import { useMidjourneyStore } from "./store/midjourneyStore";
-import { usePromptStore } from "./store/promptStore";
-import { useQualityStore } from "./store/qualityStore";
-import { useRatioStore } from "./store/ratioStore";
-import { useSeedStore } from "./store/seedStore";
-import { useStopStore } from "./store/stopStore";
-import { useStylizeStore } from "./store/stylizeStore";
-import { useTileStore } from "./store/tileStore";
-import { useVersionStore } from "./store/versionStore";
 
 type MutationParams = {
   option?: string;
@@ -43,18 +31,17 @@ type MutationParams = {
 };
 
 const MainColumn = () => {
-  const [messages, addMessage, setMessage, currentMessageIndex, clearMessages] =
+  const [messages, addMessage, setMessage, currentMessageIndex] =
     useMessageStore((state) => [
       state.messages,
       state.addMessage,
       state.setMessage,
       state.currentMessageIndex,
-      state.clearMessages,
     ]);
 
   const [
     generationType,
-    { isLoading, isSuccess, isError },
+    { isLoading, isSuccess },
     setRequestState,
     selectedImage,
     setGenerationType,
@@ -70,154 +57,19 @@ const MainColumn = () => {
     state.setSelectedImage,
   ]);
 
-  const [chaosValue, setChaosValue, setIsChaosSelectorDisabled] = useChaosStore(
-    (state) => [
-      state.chaosValue,
-      state.setChaosValue,
-      state.setIsChaosSelectorDisabled,
-      state.isChaosSelectorDisabled,
-    ]
-  );
-  const [qualityValue, setQualityValue, setIsQualitySelectorDisabled] =
-    useQualityStore((state) => [
-      state.qualityValue,
-      state.setQualityValue,
-      state.setIsQualitySelectorDisabled,
-    ]);
-  const [stopValue, setStopValue, setIsStopSelectorDisabled] = useStopStore(
-    (state) => [
-      state.stopValue,
-      state.setStopValue,
-      state.setIsStopSelectorDisabled,
-    ]
-  );
-  const [stylizeValue, setStylizeValue, setIsStylizeSelectorDisabled] =
-    useStylizeStore((state) => [
-      state.stylizeValue,
-      state.setStylizeValue,
-      state.setIsStylizeSelectorDisabled,
-    ]);
-  const [tileValue, resetTileValue, setIsTileSelectorDisabled] = useTileStore(
-    (state) => [
-      state.tileValue,
-      state.resetTileValue,
-      state.setIsTileSelectorDisabled,
-    ]
-  );
-  const [versionValue, setVersionValue, setIsVersionSelectorDisabled] =
-    useVersionStore((state) => [
-      state.versionValue,
-      state.setVersionValue,
-      state.setIsVersionSelectorDisabled,
-    ]);
-  const [seedValue, setSeedValue, setIsSeedSelectorDisabled] = useSeedStore(
-    (state) => [
-      state.seedValue,
-      state.setSeedValue,
-      state.setIsSeedSelectorDisabled,
-    ]
-  );
-  const [
-    selectedAspectRatio,
-    setSelectedAspectRatio,
-    setIsAspectRatioSelectorDisabled,
-  ] = useRatioStore((state) => [
-    state.selectedAspectRatio,
-    state.setSelectedAspectRatio,
-    state.setIsAspectRatioSelectorDisabled,
-  ]);
-  const [selectedFilters, clearFilters, setIsFilterSelectorDisabled] =
-    useFilterStore((state) => [
-      state.selectedFilters,
-      state.clearFilters,
-      state.setIsFilterSelectorDisabled,
-    ]);
-  const [promptValue, setPromptValue] = usePromptStore((state) => [
-    state.promptValue,
-    state.setPromptValue,
-  ]);
-  const isMobileMenuOpen = useMobileMenuStore(
-    (state) => state.isMobileMenuOpen
-  );
-  const [displayMode, setDisplayMode] = useDisplayStore((state) => [
-    state.displayMode,
-    state.setDisplayMode,
-  ]);
+  const {
+    prompt,
+    promptValue,
+    options,
+    hasFilters,
+    isEmpty,
+    handleClear,
+    handleDisableSelectors,
+  } = useSelectors();
+
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   const currentGenerationType = currentMessage?.generationType;
-
-  const hasFilters = selectedFilters.length > 0;
-  const { ratio, value: ratioValue } = selectedAspectRatio;
-  const styles = selectedFilters
-    .map((selectedFilter) => selectedFilter.style)
-    .join(", ")
-    .toLowerCase();
-
-  // OPTIONS
-  const chaos = chaosValue === 0 ? "" : ` --c ${chaosValue}`;
-  const stylize = stylizeValue === 100 ? "" : ` --stylize ${stylizeValue}`;
-  const stop = stopValue === 100 ? "" : ` --stop ${stopValue}`;
-  const quality = qualityValue === 1 ? "" : ` --quality ${qualityValue}`;
-  const version = versionValue === "--v 5.2" ? "" : ` ${versionValue}`;
-  const tile = tileValue ? ` --tile` : "";
-  const ratioTrim = ratio ? ` ${ratio}` : "";
-  const seed = seedValue ? ` --seed ${seedValue}` : "";
-  const options = {
-    textPrompt: promptValue,
-    style: styles,
-    ratio: ratioValue,
-    chaos: chaosValue,
-    stylize: stylizeValue,
-    stop: stopValue,
-    quality: qualityValue,
-    model: versionValue,
-    tile: tileValue,
-    seed: seedValue,
-  };
-
-  const hasOption =
-    chaos || stylize || stop || quality || version || tile || ratio;
-
-  const trimmedPromptValue = removeSpacesFromString(promptValue);
-
-  // FINAL PROMPT
-  const prompt = `${trimmedPromptValue}${
-    styles.length > 0 ? `, ${styles}` : ""
-  }${
-    hasOption ? "," : ""
-  }${ratioTrim}${chaos}${quality}${stop}${stylize}${tile}${version}${seed}`;
-
-  const isEmpty = !prompt || prompt.length <= 1;
-
-  const handleDisableSelectors = (value: boolean) => {
-    setIsChaosSelectorDisabled(value);
-    setIsQualitySelectorDisabled(value);
-    setIsStopSelectorDisabled(value);
-    setIsStylizeSelectorDisabled(value);
-    setIsTileSelectorDisabled(value);
-    setIsVersionSelectorDisabled(value);
-    setIsSeedSelectorDisabled(value);
-    setIsAspectRatioSelectorDisabled(value);
-    setIsFilterSelectorDisabled(value);
-  };
-
-  const handleClear = () => {
-    setSelectedImage(null);
-    setMsg("");
-    clearMessages();
-    setPromptValue("");
-    setSelectedAspectRatio(aspectRatios[0]);
-    setChaosValue(0);
-    setQualityValue(1);
-    setStopValue(100);
-    setStylizeValue(100);
-    setVersionValue("--v 5.2");
-    setSeedValue(undefined);
-    resetTileValue();
-    clearFilters();
-    handleDisableSelectors(false);
-  };
 
   const generationMutation = useMutation<
     MJMessage | undefined,
@@ -298,7 +150,6 @@ const MainColumn = () => {
       inputRef.current?.focus();
       return;
     }
-    console.log("newPrompt :", newPrompt);
     handleDisableSelectors(true);
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
@@ -349,11 +200,7 @@ const MainColumn = () => {
         <div className="h-full flex-col border-none p-0">
           <div
             className={cn(
-              "flex w-full items-center justify-between bg-background -md:fixed -md:left-0 -md:z-10 -md:h-[80px] -md:border-b -md:px-4 -md:py-6",
-              {
-                "-lg:top-16": !isMobileMenuOpen,
-                "-lg:top-[6.5rem]": isMobileMenuOpen,
-              }
+              "flex w-full items-center justify-between bg-background -md:fixed -md:left-0 -md:z-10 -md:h-[80px] -md:border-b -md:px-4 -md:py-6"
             )}
           >
             <div className="space-y-1 -xs:hidden">
