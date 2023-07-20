@@ -66,6 +66,7 @@
     "discord-api-types": "^0.37.50",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.13.0",
+    "is-ua-webview": "^1.1.2",
     "lucide-react": "0.262.0",
     "micro": "^10.0.1",
     "micro-cors": "^0.1.1",

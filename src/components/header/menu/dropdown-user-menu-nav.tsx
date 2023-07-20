@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import getFirstLetters from "~/utils/getFirstLetter";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
+import { Toaster } from "react-hot-toast";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
@@ -20,6 +20,7 @@ import {
 } from "~/components/ui/dropdown-menu";
 import { Switch } from "~/components/ui/switch";
 
+import { login } from "~/lib/login";
 import { siteConfig } from "~/config/site";
 
 type DropdownUserMenuNavProps = {
@@ -39,10 +40,15 @@ const DropdownUserMenuNav = ({
 
   if (session === null) {
     return (
-      <Button asChild variant="outline">
-        <Link href="/api/auth/signin">Login</Link>
+      <Button onClick={login} variant="outline">
+        Login
       </Button>
     );
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (!session?.user) {
+    return <div className="h-[40px] w-[70.83px]" />;
   }
 
   const handleItemClick = async (
@@ -140,6 +146,7 @@ const DropdownUserMenuNav = ({
           })}
         </DropdownMenuContent>
       </DropdownMenu>
+      <Toaster position="bottom-right" />
     </>
   );
 };
