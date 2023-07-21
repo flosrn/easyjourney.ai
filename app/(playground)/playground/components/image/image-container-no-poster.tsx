@@ -29,6 +29,7 @@ const ImageContainerNoPoster = ({
 
   return (
     <div
+      id="waiting-poster"
       className={cn(
         "flex-center group relative border border-dashed rounded-md",
         className,

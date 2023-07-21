@@ -43,18 +43,23 @@ const ActionButtonsContainer = ({
           type="upscale"
           label="Upscale"
           Icon={ArrowBigUpIcon}
+          tourAction="destroy"
           clickHandler={clickHandler}
           isDisabled={isUpscale || isEmpty || isSave || isLoading}
         />
         <MoreOptions clickHandler={clickHandler} />
       </div>
-      <div className="flex flex-wrap justify-center gap-2">
+      <div
+        id="save-or-download"
+        className="flex flex-wrap justify-center gap-2"
+      >
         <ActionButton
           id="save"
           type="save"
           label="Save"
           variant="success"
           Icon={SaveIcon}
+          tourAction="moveNext"
           clickHandler={clickHandler}
           isDisabled={!isUpscale || isEmpty || isSave || isLoading}
         />

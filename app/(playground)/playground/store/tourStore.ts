@@ -4,18 +4,18 @@ import { create } from "zustand";
 type DriverInstance = ReturnType<typeof driver>;
 
 type TourState = {
-  driverObj: DriverInstance | null;
+  driverJs: DriverInstance | null;
   isTourActive: boolean;
 };
 
 type TourActions = {
-  setDriverObj: (value: DriverInstance | null) => void;
+  setDriverJs: (value: DriverInstance | null) => void;
   setIsTourActive: (value: boolean) => void;
 };
 
 export const useTourStore = create<TourState & TourActions>((set) => ({
-  driverObj: null,
+  driverJs: null,
   isTourActive: false,
-  setDriverObj: (value) => set(() => ({ driverObj: value })),
+  setDriverJs: (value) => set(() => ({ driverJs: value })),
   setIsTourActive: (value) => set(() => ({ isTourActive: value })),
 }));

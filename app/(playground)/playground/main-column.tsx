@@ -20,11 +20,16 @@ import useSelectors from "./hooks/useSelectors";
 import useTour from "./hooks/useTour";
 import { DisplayMode } from "./store/displayStore";
 import { useMidjourneyStore } from "./store/midjourneyStore";
+import { useTourStore } from "./store/tourStore";
 
 import "driver.js/dist/driver.css";
 
 const MainColumn = () => {
   const [{ isLoading }] = useMidjourneyStore((state) => [state.requestState]);
+  const [driverJs, isTourActive] = useTourStore((state) => [
+    state.driverJs,
+    state.isTourActive,
+  ]);
   const { generationMutation } = useGeneration();
   const {
     promptValue,
@@ -34,7 +39,7 @@ const MainColumn = () => {
     handleDisableSelectors,
   } = useSelectors();
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const driverObj = useTour({});
+  useTour({ inputRef });
 
   const handleGenerate = async (option?: string, newPrompt?: string) => {
     if (promptValue.length <= 1) {

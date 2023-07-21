@@ -76,7 +76,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
   }, [open, setPeekedFilter]);
 
   const [driverObj, isTourActive] = useTourStore((state) => [
-    state.driverObj,
+    state.driverJs,
     state.isTourActive,
   ]);
 
@@ -281,7 +281,7 @@ const FilterItem = ({
   className,
 }: ModelItemProps) => {
   const [driverObj, isTourActive] = useTourStore((state) => [
-    state.driverObj,
+    state.driverJs,
     state.isTourActive,
   ]);
   const ref = React.useRef<HTMLDivElement>(null);

@@ -13,6 +13,7 @@ import { cn } from "~/lib/classNames";
 
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
+import { useTourStore } from "../../store/tourStore";
 
 type ActionButtonProps = {
   id: string;
@@ -22,6 +23,7 @@ type ActionButtonProps = {
   variant?: ButtonVariant;
   Icon: LucideIcon;
   isDisabled?: boolean;
+  tourAction?: "moveNext" | "destroy";
   clickHandler: (option?: string, newPrompt?: string) => void;
   dataOption?: string;
   dataOptionValue?: string;
@@ -36,6 +38,7 @@ const ActionButton = ({
   variant = "outline",
   Icon,
   isDisabled,
+  tourAction,
   clickHandler,
   dataOption,
   dataOptionValue,
@@ -60,6 +63,10 @@ const ActionButton = ({
     state.setGenerationType,
     state.setMsg,
     state.selectedImage,
+  ]);
+  const [driverJs, isTourActive] = useTourStore((state) => [
+    state.driverJs,
+    state.isTourActive,
   ]);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -104,6 +111,13 @@ const ActionButton = ({
       }
       default: {
         setMsg("Waiting to start...");
+      }
+    }
+    if (isTourActive) {
+      if (tourAction === "moveNext") {
+        driverJs?.moveNext();
+      } else if (tourAction === "destroy") {
+        driverJs?.destroy();
       }
     }
   };

@@ -145,6 +145,7 @@ const Slider = ({}: SliderProps) => {
         {messages.map((message, index) => (
           <SwiperSlide key={index}>
             <div
+              id="poster"
               className={cn(
                 "flex-center md:h-[450px] rounded-md relative",
                 aspectRatio

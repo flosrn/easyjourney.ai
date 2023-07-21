@@ -6,6 +6,7 @@ import type { MJMessage } from "midjourney";
 import { Button } from "~/components/ui/button";
 
 import { useMessageStore } from "../../store/messageStore";
+import { useTourStore } from "../../store/tourStore";
 
 type DownloadButtonProps = { isDisabled?: boolean };
 
@@ -14,10 +15,17 @@ const DownloadButton = ({ isDisabled }: DownloadButtonProps) => {
     state.messages,
     state.currentMessageIndex,
   ]);
+  const [driverJs, isTourActive] = useTourStore((state) => [
+    state.driverJs,
+    state.isTourActive,
+  ]);
   const [isLoading, setIsLoading] = React.useState(false);
 
   const fakeDownload = async () => {
     setIsLoading(true);
+    if (isTourActive) {
+      driverJs?.moveNext();
+    }
     const currentMessage = messages[currentMessageIndex] as
       | MJMessage
       | undefined;

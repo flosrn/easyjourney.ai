@@ -24,6 +24,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 import { Option, useOptionStore } from "../../store/optionStore";
+import { useTourStore } from "../../store/tourStore";
 import LabelWithTooltip from "../sidebar/label-with-tooltip";
 import ActionButton from "./action-button";
 import CustomZoom from "./custom-zoom-button";
@@ -45,6 +46,10 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
     state.requestState,
     state.generationType,
   ]);
+  const [driverJs, isTourActive] = useTourStore((state) => [
+    state.driverJs,
+    state.isTourActive,
+  ]);
 
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   const currentGenerationType = currentMessage?.generationType;
@@ -62,7 +67,17 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline">
+        <Button
+          id="more-options"
+          variant="outline"
+          onClick={() => {
+            if (isTourActive) {
+              setTimeout(() => {
+                driverJs?.moveNext();
+              }, 300);
+            }
+          }}
+        >
           {isLoading && (isPan || isZoom || isVary || isSquare) ? (
             <Loader2Icon className="h-4 w-4 animate-spin" />
           ) : (
@@ -71,6 +86,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent
+        data-id="more-options"
         align="end"
         sideOffset={20}
         className="h-56 w-screen sm:w-96"

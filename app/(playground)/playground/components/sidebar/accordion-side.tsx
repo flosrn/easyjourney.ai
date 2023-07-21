@@ -22,7 +22,7 @@ import VersionSelector from "./selectors/version-selector";
 
 const AccordionSide = ({}) => {
   const [driverObj, isTourActive] = useTourStore((state) => [
-    state.driverObj,
+    state.driverJs,
     state.isTourActive,
   ]);
   return (
