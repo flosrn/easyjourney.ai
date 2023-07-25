@@ -1,5 +1,6 @@
 import type React from "react";
 import { useEffect } from "react";
+import wait from "~/utils/wait";
 import { driver } from "driver.js";
 import JSConfetti from "js-confetti";
 
@@ -15,6 +16,28 @@ type DriverInstance = ReturnType<typeof driver>;
 
 type UseTourProps = {
   inputRef?: React.RefObject<HTMLTextAreaElement>;
+};
+
+export const moveNextTourStep = async ({
+  driverJs,
+  elDestination,
+  time,
+}: {
+  driverJs: DriverInstance | null;
+  elDestination?: string;
+  time?: number;
+}) => {
+  if (elDestination) {
+    time && driverJs?.destroy();
+    const tourSteps = driverJs?.getConfig().steps;
+    const stepIndex = tourSteps?.findIndex(
+      (tourStep) => tourStep.element === elDestination
+    );
+    time && (await wait(time));
+    driverJs?.drive(stepIndex);
+  } else {
+    driverJs?.moveNext();
+  }
 };
 
 const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
@@ -36,12 +59,24 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
     }
 
     const driverObj = driver({
-      showProgress: true,
+      showProgress: false,
+      smoothScroll: true,
+      prevBtnText: "← Back",
       steps: [
+        {
+          element: "#demo",
+          popover: {
+            title: "Welcome to the EasyJourney Tutorial",
+            description:
+              "We will guide you step by step so you can create yur most beautiful posters.",
+            side: "over",
+            align: "center",
+          },
+        },
         {
           element: "#main-panel",
           popover: {
-            title: "Welcome to the EasyJourney Playground",
+            title: "This is your playground",
             description:
               "Here is a quick tour to get you started with the easyjourney playground!",
             side: "left",
@@ -56,17 +91,17 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
               "Type whatever you want or click on 'Add prompt' to automatically add your first prompt.",
             side: "bottom",
             align: "start",
-            onPopoverRender: (popover) => {
-              const previousButton = popover.previousButton;
-              const promptButton = document.createElement("button");
-              promptButton.textContent = "Add prompt";
-              previousButton.after(promptButton);
-              promptButton.addEventListener("click", () => {
-                setPromptValue(PROMPT);
-                promptButton.remove();
-              });
-            },
-            onNextClick: (element, step) => {
+            // onPopoverRender: (popover) => {
+            //   const previousButton = popover.previousButton;
+            //   const promptButton = document.createElement("button");
+            //   promptButton.textContent = "Add prompt";
+            //   previousButton.after(promptButton);
+            //   promptButton.addEventListener("click", () => {
+            //     setPromptValue(PROMPT);
+            //     promptButton.remove();
+            //   });
+            // },
+            onNextClick: async (element, step, { config, state }) => {
               const input = inputRef?.current;
               if (input && input.value.length === 0) {
                 setPromptValue(PROMPT);
@@ -98,28 +133,32 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
           },
         },
         {
-          element: "div[data-value='most popular filters']",
+          element: "div[data-id='categories']",
           popover: {
             title:
-              "Select 'Most popular filters' category to see the most used filters",
+              "Hover 'Most popular filters' category to see the most used filters",
             side: "left",
             align: "start",
+            disableButtons: ["next"],
           },
         },
         {
-          element: "div[data-value='golden hour']",
+          element: "div[data-id='subcategories']",
           popover: {
-            title: "Select 'Golden hour' to see the golden hour filter",
+            title: "Hover 'Golden hour' to see the golden hour filter",
             side: "left",
             align: "start",
+            disableButtons: ["next"],
           },
         },
         {
-          element: "img[alt='Golden Hour']",
+          element: "div[data-id='peeked-filter']",
           popover: {
-            title: "This is the golden hour filter, click on it to apply it",
+            title:
+              "This is the filter preview, click on it to apply the Golden Hour filter",
             side: "right",
             align: "start",
+            disableButtons: ["next"],
           },
         },
         {
@@ -127,25 +166,8 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
           popover: {
             title:
               "Well done! You have applied your first filter, you can see it here",
-            side: "right",
-            align: "start",
-          },
-        },
-        {
-          element: "#advanced",
-          popover: {
-            title: "Now click on 'Advanced' button to see more options",
-            side: "right",
-            align: "start",
-            disableButtons: ["next"],
-          },
-        },
-        {
-          element: "#advanced-content",
-          popover: {
-            title: "You can now choose between a lot of advanced options",
-            side: "right",
-            align: "start",
+            side: "bottom",
+            align: "center",
           },
         },
         {
@@ -155,27 +177,15 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
               "When you are ready, click on 'Imagine' to generate your first poster! ✨",
             side: "right",
             align: "start",
+            disableButtons: ["next"],
             onNextClick: () => {
               handleImagineButtonClick();
-              driverObj.moveNext();
-            },
-          },
-        },
-        {
-          element: "#waiting-poster",
-          popover: {
-            title:
-              "Now you just have to wait a few seconds, your poster is coming! 🚀",
-            side: "right",
-            align: "start",
-            nextBtnText: "Ok",
-            onNextClick: () => {
               driverObj.destroy();
             },
           },
         },
         {
-          element: ".swiper-slide-visible > #poster",
+          element: ".swiper-slide-visible > #poster-imagine",
           popover: {
             title:
               "Your first poster generation is ready! You can select which one you want to upscale",
@@ -188,24 +198,36 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
         {
           element: "#upscale",
           popover: {
-            title: "You can now click on 'Upscale' to upscale your poster",
+            title: "Now, click on 'Upscale'.",
             side: "top",
             align: "center",
             disableButtons: ["next"],
           },
         },
         {
-          element: ".swiper-slide-visible > #poster",
+          element: "#slider-arrows",
           popover: {
-            title: "Fantastic! Your poster is now upscaled! 🎉",
+            title:
+              "Good job! Want to make a variation or another upscale? That's possible. Click on left arrow to go back!",
             side: "left",
-            align: "start",
+            align: "end",
+            disableButtons: ["next"],
+          },
+        },
+        {
+          element: "#slider-arrows",
+          popover: {
+            title:
+              "Now go back to the upscaled image by clicking on the right arrow",
+            side: "right",
+            align: "end",
+            disableButtons: ["next"],
           },
         },
         {
           element: "#save-or-download",
           popover: {
-            title: "You can now save or download your poster",
+            title: "You can now save or download your upscaled poster",
             description:
               "The save button will save your poster on your profile, you will be able to find it in the 'My profile' section",
             side: "top",
@@ -227,7 +249,7 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
           element: "div[data-id='more-options']",
           popover: {
             title:
-              "Discover many new options to customize your poster, enjoy! 🎉",
+              "Play with many new options to customize your poster, enjoy! 🎉",
             description: "",
             side: "top",
             align: "start",
@@ -248,12 +270,10 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
           },
         },
       ],
-      // onNextClick: (element, step, { config, state }) => {
-      //   console.log("onNextClick");
-      //   console.log("state :", state);
-      //   // setActiveStep(step.index);
-      //   driverObj.moveNext();
-      // },
+      onNextClick: (element, step, { config, state }) => {
+        console.log("onNextClick");
+        driverObj.moveNext();
+      },
       onCloseClick: () => {
         console.log("onCloseClick");
         driverObj.destroy();

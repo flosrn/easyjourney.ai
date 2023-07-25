@@ -9,6 +9,7 @@ import { useMidjourneyStore } from "../store/midjourneyStore";
 import { useTourStore } from "../store/tourStore";
 import useMsg from "./useMsg";
 import useSelectors from "./useSelectors";
+import { moveNextTourStep } from "./useTour";
 
 type MutationParams = {
   option?: string;
@@ -39,14 +40,7 @@ const useGeneration = () => {
     state.setMsg,
     state.setSelectedImage,
   ]);
-  const [driverJs, setDriverJs, isTourActive, setIsTourActive] = useTourStore(
-    (state) => [
-      state.driverJs,
-      state.setDriverJs,
-      state.isTourActive,
-      state.setIsTourActive,
-    ]
-  );
+  const [driverJs] = useTourStore((state) => [state.driverJs]);
   const { prompt, options } = useSelectors();
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   useMsg();
@@ -102,11 +96,6 @@ const useGeneration = () => {
     },
     onSuccess: async (data) => {
       console.log("onSuccess:", data);
-      let tourSteps = undefined;
-      if (isTourActive) {
-        tourSteps = driverJs?.getConfig().steps;
-      }
-      console.log("tourSteps :", tourSteps);
       setSelectedImage(null);
       setRequestState({ isSuccess: true, isLoading: false });
       let actionWord = "generated";
@@ -116,24 +105,18 @@ const useGeneration = () => {
       const isDataSave = data?.generationType === "save";
       if (isDataImagine || isDataVariation) {
         actionWord = "generated";
-        if (isTourActive && tourSteps) {
-          const stepIndex = tourSteps.findIndex(
-            (step) => step.element === ".swiper-slide-visible > #poster"
-          );
-          setTimeout(() => {
-            driverJs?.drive(stepIndex);
-          }, 2000);
-        }
+        await moveNextTourStep({
+          driverJs,
+          elDestination: ".swiper-slide-visible > #poster-imagine",
+          time: 2000,
+        });
       } else if (isDataUpscale) {
         actionWord = "upscaled";
-        if (isTourActive && tourSteps) {
-          const stepIndex = tourSteps.findIndex(
-            (step) => step.element === "#upscale"
-          );
-          setTimeout(() => {
-            driverJs?.drive(stepIndex + 1);
-          }, 1500);
-        }
+        await moveNextTourStep({
+          driverJs,
+          elDestination: "#slider-arrows",
+          time: 2000,
+        });
       } else if (isDataSave) {
         actionWord = "saved";
       }

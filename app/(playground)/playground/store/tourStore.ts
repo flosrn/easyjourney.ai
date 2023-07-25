@@ -16,6 +16,7 @@ type TourActions = {
 export const useTourStore = create<TourState & TourActions>((set) => ({
   driverJs: null,
   isTourActive: false,
-  setDriverJs: (value) => set(() => ({ driverJs: value })),
+  setDriverJs: (value) =>
+    set((state) => (state.isTourActive ? { driverJs: value } : state)),
   setIsTourActive: (value) => set(() => ({ isTourActive: value })),
 }));

@@ -42,8 +42,8 @@ const ActionButtonsContainer = ({
           id="upscale"
           type="upscale"
           label="Upscale"
-          Icon={ArrowBigUpIcon}
           tourAction="destroy"
+          Icon={ArrowBigUpIcon}
           clickHandler={clickHandler}
           isDisabled={isUpscale || isEmpty || isSave || isLoading}
         />
@@ -58,8 +58,8 @@ const ActionButtonsContainer = ({
           type="save"
           label="Save"
           variant="success"
-          Icon={SaveIcon}
           tourAction="moveNext"
+          Icon={SaveIcon}
           clickHandler={clickHandler}
           isDisabled={!isUpscale || isEmpty || isSave || isLoading}
         />

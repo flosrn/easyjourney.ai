@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
+import wait from "~/utils/wait";
 import { motion } from "framer-motion";
 import {
   ArrowLeftCircleIcon,
@@ -17,9 +18,11 @@ import { Button } from "~/components/ui/button";
 
 import { cn } from "~/lib/classNames";
 
+import { moveNextTourStep } from "../../hooks/useTour";
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 import { useRatioStore } from "../../store/ratioStore";
+import { useTourStore } from "../../store/tourStore";
 import { getTwAspectRatio } from "../image/aspectRatioUtils";
 import { ImageGrid } from "../image/image-grid";
 
@@ -33,6 +36,7 @@ type SliderProps = {};
 const Slider = ({}: SliderProps) => {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [showImageGrid, setShowImageGrid] = useState<boolean>(false);
+  const [driverJs] = useTourStore((state) => [state.driverJs]);
 
   const handleZoomChange = useCallback((shouldZoom: boolean) => {
     setIsZoomed(shouldZoom);
@@ -80,6 +84,22 @@ const Slider = ({}: SliderProps) => {
       (parentWidth - (parentWidth - swiperWidth) / 2) / swiperWidth;
     nextOffset = Math.max(nextOffset, 1);
     return `${nextOffset * 100}%`;
+  };
+
+  const handleArrowClick = async (event: React.MouseEvent) => {
+    event.preventDefault();
+    const { classList } = event.currentTarget as HTMLButtonElement;
+    const isPrev = classList.contains("swiper-button-prev");
+    const isNext = classList.contains("swiper-button-next");
+    if (isPrev) {
+      driverJs?.moveNext();
+    } else if (isNext) {
+      await moveNextTourStep({
+        driverJs,
+        elDestination: "#save-or-download",
+        time: 2000,
+      });
+    }
   };
 
   useEffect(() => {
@@ -145,7 +165,7 @@ const Slider = ({}: SliderProps) => {
         {messages.map((message, index) => (
           <SwiperSlide key={index}>
             <div
-              id="poster"
+              id={`poster-${message.generationType}`}
               className={cn(
                 "flex-center md:h-[450px] rounded-md relative",
                 aspectRatio
@@ -196,11 +216,19 @@ const Slider = ({}: SliderProps) => {
         ))}
       </Swiper>
       <div className="flex-center mt-2 flex-col space-y-2">
-        <div className="flex-center space-x-10">
-          <Button variant="ghost" className="swiper-button-prev">
+        <div id="slider-arrows" className="flex-center space-x-10">
+          <Button
+            onClick={handleArrowClick}
+            variant="ghost"
+            className="swiper-button-prev"
+          >
             <ArrowLeftCircleIcon className="h-6 w-6" />
           </Button>
-          <Button variant="ghost" className="swiper-button-next">
+          <Button
+            onClick={handleArrowClick}
+            variant="ghost"
+            className="swiper-button-next"
+          >
             <ArrowRightCircleIcon className="h-6 w-6" />
           </Button>
         </div>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { PopoverProps } from "@radix-ui/react-popover";
+import wait from "~/utils/wait";
 import { Check, ChevronsUpDown, LayoutListIcon, StarIcon } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
@@ -31,6 +32,7 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 
 import { cn } from "~/lib/classNames";
 
+import { moveNextTourStep } from "../../../hooks/useTour";
 import { useFilterStore } from "../../../store/filterStore";
 import { useTourStore } from "../../../store/tourStore";
 import {
@@ -75,10 +77,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     !open && setPeekedFilter(null);
   }, [open, setPeekedFilter]);
 
-  const [driverObj, isTourActive] = useTourStore((state) => [
-    state.driverJs,
-    state.isTourActive,
-  ]);
+  const [driverJs] = useTourStore((state) => [state.driverJs]);
 
   return (
     <div className="grid gap-2">
@@ -86,11 +85,13 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
         <PopoverTrigger asChild>
           <Button
             id="filter-selector"
-            onClick={() => {
-              setTimeout(() => {
-                isTourActive && driverObj?.moveNext();
-              }, 200);
-            }}
+            onClick={async () =>
+              await moveNextTourStep({
+                driverJs,
+                elDestination: "div[data-id='categories']",
+                time: 2000,
+              })
+            }
             variant="outline"
             role="combobox"
             aria-expanded={open}
@@ -127,6 +128,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
           <HoverCard>
             {peekedSubCategory && (
               <HoverCardContent
+                data-id="subcategories"
                 side="right"
                 align="start"
                 sideOffset={260}
@@ -136,6 +138,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                 <HoverCard>
                   {peekedFilter && (
                     <HoverCardContent
+                      data-id="peeked-filter"
                       side="right"
                       align="start"
                       onClick={() => {
@@ -161,12 +164,13 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                         <div className="p-4">
                           {peekedFilter.image && (
                             <Image
-                              onClick={() => {
-                                setTimeout(() => {
-                                  if (!isTourActive) return;
-                                  driverObj?.moveNext();
-                                  setOpen(false);
-                                }, 200);
+                              onClick={async () => {
+                                setOpen(false);
+                                await moveNextTourStep({
+                                  driverJs,
+                                  elDestination: "#filter-badge",
+                                  time: 1000,
+                                });
                               }}
                               src={peekedFilter.image}
                               alt={peekedFilter.name}
@@ -222,7 +226,10 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
               </HoverCardContent>
             )}
             <Command loop>
-              <CommandList className="h-[var(--cmdk-list-height)] max-h-[400px] overflow-hidden">
+              <CommandList
+                data-id="categories"
+                className="h-[var(--cmdk-list-height)] max-h-[400px] overflow-hidden"
+              >
                 <CommandInput placeholder="Search Filter Categories..." />
                 <CommandEmpty>No Filters found.</CommandEmpty>
                 <HoverCardTrigger />
@@ -280,10 +287,7 @@ const FilterItem = ({
   onSelect,
   className,
 }: ModelItemProps) => {
-  const [driverObj, isTourActive] = useTourStore((state) => [
-    state.driverJs,
-    state.isTourActive,
-  ]);
+  const [driverJs] = useTourStore((state) => [state.driverJs]);
   const ref = React.useRef<HTMLDivElement>(null);
   const isMostPopular = filter.id === "0";
   const isGoldenHour = filter.id === "Golden Hour_1_33_1";
@@ -293,14 +297,14 @@ const FilterItem = ({
         key={filter.id}
         ref={ref}
         onSelect={onSelect}
-        onMouseEnter={(event) => {
+        onMouseEnter={async (event) => {
           event.preventDefault();
+          onPeek(filter);
           if (isMostPopular || isGoldenHour) {
             setTimeout(() => {
-              isTourActive && driverObj?.moveNext();
+              driverJs?.moveNext();
             }, 200);
           }
-          onPeek(filter);
         }}
         className={cn(
           "aria-selected:bg-primary aria-selected:text-primary-foreground",

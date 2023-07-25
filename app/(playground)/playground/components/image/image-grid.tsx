@@ -2,6 +2,7 @@ import React from "react";
 
 import { cn } from "~/lib/classNames";
 
+import { moveNextTourStep } from "../../hooks/useTour";
 import { useTourStore } from "../../store/tourStore";
 
 type ImageGridProps = {
@@ -15,14 +16,11 @@ export const ImageGrid = ({
   clickHandler,
   className,
 }: ImageGridProps) => {
-  const [driverJs, isTourActive] = useTourStore((state) => [
-    state.driverJs,
-    state.isTourActive,
-  ]);
+  const [driverJs] = useTourStore((state) => [state.driverJs]);
 
-  const handleClick = (part: number) => {
+  const handleClick = async (part: number) => {
     clickHandler(part);
-    isTourActive && driverJs?.moveNext();
+    await moveNextTourStep({ driverJs });
   };
 
   return (
@@ -35,8 +33,8 @@ export const ImageGrid = ({
       {Array.from({ length: 4 }, (_, i) => i + 1).map((part) => (
         <button
           key={part}
-          onClick={() => handleClick(part)}
-          onTouchStart={() => handleClick(part)}
+          onClick={async () => handleClick(part)}
+          onTouchStart={async () => handleClick(part)}
           className={cn(
             "focus:outline-none",
             selectedImage === part

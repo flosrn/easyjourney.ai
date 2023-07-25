@@ -64,10 +64,7 @@ const ActionButton = ({
     state.setMsg,
     state.selectedImage,
   ]);
-  const [driverJs, isTourActive] = useTourStore((state) => [
-    state.driverJs,
-    state.isTourActive,
-  ]);
+  const [driverJs] = useTourStore((state) => [state.driverJs]);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -113,12 +110,10 @@ const ActionButton = ({
         setMsg("Waiting to start...");
       }
     }
-    if (isTourActive) {
-      if (tourAction === "moveNext") {
-        driverJs?.moveNext();
-      } else if (tourAction === "destroy") {
-        driverJs?.destroy();
-      }
+    if (tourAction === "moveNext") {
+      driverJs?.moveNext();
+    } else if (tourAction === "destroy") {
+      driverJs?.destroy();
     }
   };
 

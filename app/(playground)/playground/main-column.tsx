@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
+import wait from "~/utils/wait";
 import { motion } from "framer-motion";
 import { BrushIcon, Trash2Icon } from "lucide-react";
 import { Toaster } from "react-hot-toast";
@@ -20,16 +21,11 @@ import useSelectors from "./hooks/useSelectors";
 import useTour from "./hooks/useTour";
 import { DisplayMode } from "./store/displayStore";
 import { useMidjourneyStore } from "./store/midjourneyStore";
-import { useTourStore } from "./store/tourStore";
 
 import "driver.js/dist/driver.css";
 
 const MainColumn = () => {
   const [{ isLoading }] = useMidjourneyStore((state) => [state.requestState]);
-  const [driverJs, isTourActive] = useTourStore((state) => [
-    state.driverJs,
-    state.isTourActive,
-  ]);
   const { generationMutation } = useGeneration();
   const {
     promptValue,
@@ -47,9 +43,8 @@ const MainColumn = () => {
       return;
     }
     handleDisableSelectors(true);
-    setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    }, 100);
+    await wait(100);
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     await generationMutation.mutateAsync({ option, newPrompt });
   };
 
@@ -82,6 +77,7 @@ const MainColumn = () => {
                 type="imagine"
                 label="Generate"
                 variant="default"
+                tourAction="destroy"
                 Icon={BrushIcon}
                 clickHandler={handleGenerate}
                 isDisabled={isLoading}
