@@ -1,4 +1,5 @@
 import React from "react";
+import wait from "~/utils/wait";
 import { saveAs } from "file-saver";
 import { DownloadIcon, Loader2Icon } from "lucide-react";
 import type { MJMessage } from "midjourney";
@@ -24,7 +25,7 @@ const DownloadButton = ({ isDisabled }: DownloadButtonProps) => {
   const fakeDownload = async () => {
     setIsLoading(true);
     if (isTourActive) {
-      driverJs?.moveNext();
+      driverJs?.destroy();
     }
     const currentMessage = messages[currentMessageIndex] as
       | MJMessage
@@ -32,10 +33,16 @@ const DownloadButton = ({ isDisabled }: DownloadButtonProps) => {
     const imageInPng = currentMessage?.attachment?.url;
     const filename = currentMessage?.attachment?.filename;
     return new Promise((resolve) => {
-      setTimeout(() => {
+      setTimeout(async () => {
         try {
           imageInPng && saveAs(imageInPng, filename ?? "poster.png");
           resolve(true);
+          const tourSteps = driverJs?.getConfig().steps;
+          const stepIndex = tourSteps?.findIndex(
+            (tourStep) => tourStep.element === "#slider-arrows"
+          );
+          await wait(1000);
+          driverJs?.drive(stepIndex);
         } catch {
           resolve(false);
         }

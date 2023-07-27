@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { PopoverProps } from "@radix-ui/react-popover";
-import wait from "~/utils/wait";
 import { Check, ChevronsUpDown, LayoutListIcon, StarIcon } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
@@ -68,6 +67,21 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     state.setPeekedFilter,
     state.isFilterSelectorDisabled,
   ]);
+  const [driverJs, isTourActive] = useTourStore((state) => [
+    state.driverJs,
+    state.isTourActive,
+  ]);
+
+  const handleOpenChange = async (nextOpen: boolean) => {
+    setOpen(nextOpen);
+    if (!nextOpen && selectedFilters.length === 0) {
+      await moveNextTourStep({
+        driverJs,
+        elDestination: "#imagine",
+        time: 2000,
+      });
+    }
+  };
 
   useEffect(() => {
     hasFilter && setOpen(false);
@@ -77,21 +91,31 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     !open && setPeekedFilter(null);
   }, [open, setPeekedFilter]);
 
-  const [driverJs] = useTourStore((state) => [state.driverJs]);
+  useEffect(() => {
+    if (!isTourActive) return;
+    const moveNextStep = async () => {
+      if (selectedFilters.length === 1) {
+        setOpen(false);
+        await moveNextTourStep({
+          driverJs,
+          elDestination: "#filter-badge",
+          time: 1000,
+        });
+      }
+    };
+
+    void moveNextStep();
+  }, [selectedFilters, driverJs, isTourActive]);
 
   return (
     <div className="grid gap-2">
-      <Popover open={open} onOpenChange={setOpen} {...props}>
+      <Popover open={open} onOpenChange={handleOpenChange} {...props}>
         <PopoverTrigger asChild>
           <Button
             id="filter-selector"
-            onClick={async () =>
-              await moveNextTourStep({
-                driverJs,
-                elDestination: "div[data-id='categories']",
-                time: 2000,
-              })
-            }
+            onClick={() => {
+              driverJs?.destroy();
+            }}
             variant="outline"
             role="combobox"
             aria-expanded={open}
@@ -164,14 +188,6 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                         <div className="p-4">
                           {peekedFilter.image && (
                             <Image
-                              onClick={async () => {
-                                setOpen(false);
-                                await moveNextTourStep({
-                                  driverJs,
-                                  elDestination: "#filter-badge",
-                                  time: 1000,
-                                });
-                              }}
                               src={peekedFilter.image}
                               alt={peekedFilter.name}
                               width={200}
@@ -287,10 +303,8 @@ const FilterItem = ({
   onSelect,
   className,
 }: ModelItemProps) => {
-  const [driverJs] = useTourStore((state) => [state.driverJs]);
   const ref = React.useRef<HTMLDivElement>(null);
   const isMostPopular = filter.id === "0";
-  const isGoldenHour = filter.id === "Golden Hour_1_33_1";
   return (
     <>
       <CommandItem
@@ -300,11 +314,6 @@ const FilterItem = ({
         onMouseEnter={async (event) => {
           event.preventDefault();
           onPeek(filter);
-          if (isMostPopular || isGoldenHour) {
-            setTimeout(() => {
-              driverJs?.moveNext();
-            }, 200);
-          }
         }}
         className={cn(
           "aria-selected:bg-primary aria-selected:text-primary-foreground",

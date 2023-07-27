@@ -96,8 +96,8 @@ const Slider = ({}: SliderProps) => {
     } else if (isNext) {
       await moveNextTourStep({
         driverJs,
-        elDestination: "#save-or-download",
-        time: 2000,
+        elDestination: "#more-options",
+        time: 3000,
       });
     }
   };

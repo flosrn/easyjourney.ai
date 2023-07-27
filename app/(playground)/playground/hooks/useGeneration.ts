@@ -114,11 +114,16 @@ const useGeneration = () => {
         actionWord = "upscaled";
         await moveNextTourStep({
           driverJs,
-          elDestination: "#slider-arrows",
+          elDestination: ".swiper-slide-visible > #poster-upscale",
           time: 2000,
         });
       } else if (isDataSave) {
         actionWord = "saved";
+        await moveNextTourStep({
+          driverJs,
+          elDestination: "#slider-arrows",
+          time: 1000,
+        });
       }
       data && toast.success(`Poster successfully ${actionWord}!`);
       if (!data) setMsg("Something went wrong, please try again.");

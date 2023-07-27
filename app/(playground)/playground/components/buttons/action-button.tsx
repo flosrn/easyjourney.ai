@@ -76,8 +76,8 @@ const ActionButton = ({
     console.log("type :", type);
     const isImagine = currentGenerationType === "imagine";
     const isVariation = currentGenerationType === "variation";
-    const isVary = currentGenerationType === "vary";
     const isZoomOut = currentGenerationType === "zoomOut";
+    const isVary = currentGenerationType === "vary";
     const isUpscaleButton = type === "upscale";
     const isVariationButton = type === "variation";
     const noSelectedImage = selectedImage === null;

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import wait from "~/utils/wait";
 import {
   ChevronDownSquareIcon,
   ChevronLeftSquareIcon,
@@ -34,6 +35,7 @@ type MoreOptionsProps = {
 };
 
 const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [option, setOption] = useOptionStore((state) => [
     state.option,
     state.setOption,
@@ -64,8 +66,27 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
   const isSquare = generationType === "square";
   const isSquareImage =
     currentMessage?.attachment?.width === currentMessage?.attachment?.height;
+
+  const handleNextStep = useCallback(() => {
+    driverJs?.destroy();
+    const tourSteps = driverJs?.getConfig().steps;
+    const stepIndex = tourSteps?.findIndex(
+      (tourStep) => tourStep.element === "#final"
+    );
+    setTimeout(() => {
+      setIsOpen(false);
+      driverJs?.drive(stepIndex);
+    }, 2000);
+  }, [driverJs]);
+
+  useEffect(() => {
+    if (isTourActive && (isPan || isZoom || isVary)) {
+      handleNextStep();
+    }
+  }, [isTourActive, isPan, isZoom, isVary, driverJs, handleNextStep]);
+
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
           id="more-options"
@@ -74,7 +95,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
             if (isTourActive) {
               setTimeout(() => {
                 driverJs?.moveNext();
-              }, 300);
+              }, 100);
             }
           }}
         >
