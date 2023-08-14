@@ -2,7 +2,6 @@ import React from "react";
 
 import { cn } from "~/lib/classNames";
 
-import { moveNextTourStep } from "../../hooks/useTour";
 import { useTourStore } from "../../store/tourStore";
 
 type ImageGridProps = {
@@ -16,11 +15,11 @@ export const ImageGrid = ({
   clickHandler,
   className,
 }: ImageGridProps) => {
-  const [driverJs] = useTourStore((state) => [state.driverJs]);
+  const [moveNextTourStep] = useTourStore((state) => [state.moveNextTourStep]);
 
   const handleClick = async (part: number) => {
     clickHandler(part);
-    await moveNextTourStep({ driverJs });
+    moveNextTourStep({});
   };
 
   return (

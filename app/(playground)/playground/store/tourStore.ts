@@ -16,8 +16,8 @@ type TourActions = {
     elDestination,
     timeout,
   }: {
-    elDestination: string;
-    timeout: number;
+    elDestination?: string;
+    timeout?: number;
   }) => void;
 };
 
@@ -31,6 +31,7 @@ export const useTourStore = create<TourState & TourActions>((set) => ({
     set((state) => {
       const { driverJs, isTourActive } = state;
       if (!isTourActive) return state;
+      if (!elDestination) driverJs?.moveNext();
       if (elDestination) {
         timeout && driverJs?.destroy();
         const tourSteps = driverJs?.getConfig().steps;
@@ -40,8 +41,6 @@ export const useTourStore = create<TourState & TourActions>((set) => ({
         setTimeout(() => {
           driverJs?.drive(stepIndex);
         }, timeout);
-      } else {
-        driverJs?.moveNext();
       }
       return state;
     }),

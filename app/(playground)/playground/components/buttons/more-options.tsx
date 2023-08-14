@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
-import wait from "~/utils/wait";
+import React, { useState } from "react";
 import {
   ChevronDownSquareIcon,
   ChevronLeftSquareIcon,
@@ -48,10 +47,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
     state.requestState,
     state.generationType,
   ]);
-  const [driverJs, isTourActive] = useTourStore((state) => [
-    state.driverJs,
-    state.isTourActive,
-  ]);
+  const [moveNextTourStep] = useTourStore((state) => [state.moveNextTourStep]);
 
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   const currentGenerationType = currentMessage?.generationType;
@@ -67,23 +63,10 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
   const isSquareImage =
     currentMessage?.attachment?.width === currentMessage?.attachment?.height;
 
-  const handleNextStep = useCallback(() => {
-    driverJs?.destroy();
-    const tourSteps = driverJs?.getConfig().steps;
-    const stepIndex = tourSteps?.findIndex(
-      (tourStep) => tourStep.element === "#final"
-    );
-    setTimeout(() => {
-      setIsOpen(false);
-      driverJs?.drive(stepIndex);
-    }, 2000);
-  }, [driverJs]);
-
-  useEffect(() => {
-    if (isTourActive && (isPan || isZoom || isVary)) {
-      handleNextStep();
-    }
-  }, [isTourActive, isPan, isZoom, isVary, driverJs, handleNextStep]);
+  const handleButtonClick = () => {
+    moveNextTourStep({});
+    clickHandler();
+  };
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -92,11 +75,10 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
           id="more-options"
           variant="outline"
           onClick={() => {
-            if (isTourActive) {
-              setTimeout(() => {
-                driverJs?.moveNext();
-              }, 100);
-            }
+            moveNextTourStep({
+              elDestination: "div[data-id='more-options']",
+              timeout: 800,
+            });
           }}
         >
           {isLoading && (isPan || isZoom || isVary || isSquare) ? (
@@ -110,6 +92,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
         data-id="more-options"
         align="end"
         sideOffset={20}
+        onFocusOutside={(event) => event.preventDefault()}
         className="h-56 w-screen sm:w-96"
       >
         <Tabs
@@ -145,7 +128,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Zoom Out 2x"
                 dataOption="2x"
                 Icon={ZoomOutIcon}
-                clickHandler={clickHandler}
+                clickHandler={handleButtonClick}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -154,11 +137,11 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Zoom Out 1.5x"
                 dataOption="1.5x"
                 Icon={ZoomOutIcon}
-                clickHandler={clickHandler}
+                clickHandler={handleButtonClick}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <CustomZoom
-                clickHandler={clickHandler}
+                clickHandler={handleButtonClick}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -167,7 +150,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Make Square"
                 dataOption="Make Square"
                 Icon={ChevronsLeftRightIcon}
-                clickHandler={clickHandler}
+                clickHandler={handleButtonClick}
                 isDisabled={
                   isNotUpscale || isSquareImage || isEmpty || isLoading
                 }
@@ -188,7 +171,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan left"
                 dataOption="pan_left"
                 Icon={ChevronLeftSquareIcon}
-                clickHandler={clickHandler}
+                clickHandler={handleButtonClick}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -197,7 +180,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan right"
                 dataOption="pan_right"
                 Icon={ChevronRightSquareIcon}
-                clickHandler={clickHandler}
+                clickHandler={handleButtonClick}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -206,7 +189,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan up"
                 dataOption="pan_up"
                 Icon={ChevronUpSquareIcon}
-                clickHandler={clickHandler}
+                clickHandler={handleButtonClick}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -215,7 +198,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan down"
                 dataOption="pan_down"
                 Icon={ChevronDownSquareIcon}
-                clickHandler={clickHandler}
+                clickHandler={handleButtonClick}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
             </div>
@@ -235,7 +218,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Vary (Strong)"
                 dataOption="Strong"
                 Icon={Wand2Icon}
-                clickHandler={clickHandler}
+                clickHandler={handleButtonClick}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -244,7 +227,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Vary (Subtle)"
                 dataOption="Subtle"
                 Icon={Wand2Icon}
-                clickHandler={clickHandler}
+                clickHandler={handleButtonClick}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
             </div>

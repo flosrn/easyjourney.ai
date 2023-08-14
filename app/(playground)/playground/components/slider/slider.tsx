@@ -18,7 +18,6 @@ import { Button } from "~/components/ui/button";
 
 import { cn } from "~/lib/classNames";
 
-import { moveNextTourStep } from "../../hooks/useTour";
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 import { useRatioStore } from "../../store/ratioStore";
@@ -36,7 +35,11 @@ type SliderProps = {};
 const Slider = ({}: SliderProps) => {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [showImageGrid, setShowImageGrid] = useState<boolean>(false);
-  const [driverJs] = useTourStore((state) => [state.driverJs]);
+  const [driverJs, moveNextTourStep, isTourActive] = useTourStore((state) => [
+    state.driverJs,
+    state.moveNextTourStep,
+    state.isTourActive,
+  ]);
 
   const handleZoomChange = useCallback((shouldZoom: boolean) => {
     setIsZoomed(shouldZoom);
@@ -94,10 +97,9 @@ const Slider = ({}: SliderProps) => {
     if (isPrev) {
       driverJs?.moveNext();
     } else if (isNext) {
-      await moveNextTourStep({
-        driverJs,
+      moveNextTourStep({
         elDestination: "#more-options",
-        time: 3000,
+        timeout: 2000,
       });
     }
   };
@@ -181,14 +183,16 @@ const Slider = ({}: SliderProps) => {
                     >
                       <img src={message.uri} alt="" className="rounded-md" />
                     </ControlledZoom>
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => setIsZoomed(!isZoomed)}
-                      className="flex-center absolute right-0 top-0 z-50 p-2 opacity-80 hover:opacity-100"
-                    >
-                      <ExpandIcon className="h-4 w-4" />
-                    </motion.button>
+                    {!isTourActive && (
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => setIsZoomed(!isZoomed)}
+                        className="flex-center absolute right-0 top-0 z-50 p-2 opacity-80 hover:opacity-100"
+                      >
+                        <ExpandIcon className="h-4 w-4" />
+                      </motion.button>
+                    )}
                   </div>
                 </>
               )}

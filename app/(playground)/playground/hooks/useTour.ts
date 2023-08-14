@@ -68,9 +68,22 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
           popover: {
             title: "EasyJourney Tutorial ✨",
             description:
-              "We will guide you step by step to create your most beautiful posters.",
+              "Do you want to discover all the possibilities of EasyJourney? <strong>Click on Yes</strong> to start the tutorial.",
             side: "over",
             align: "center",
+            nextBtnText: "Yes!",
+            prevBtnText: "No, thanks",
+            showButtons: ["next"],
+            onPopoverRender: (popover, { config, state }) => {
+              const customButton = document.createElement(
+                "button"
+              ) as HTMLButtonElement;
+              customButton.innerHTML = "No, thanks";
+              popover.nextButton.before(customButton);
+              customButton.addEventListener("click", () => {
+                driverObj.destroy();
+              });
+            },
           },
         },
         {
@@ -87,7 +100,7 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
           popover: {
             title: "Prompt area ✍️",
             description:
-              "Type whatever you want or click on 'Add prompt' to automatically add your first prompt.",
+              "Type whatever you want or go next to automatically add your first prompt.",
             side: "bottom",
             align: "start",
             onNextClick: async (element, step, { config, state }) => {
@@ -133,6 +146,8 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
           element: "#imagine",
           popover: {
             title: "3, 2, 1... Generate! 🪄",
+            description:
+              "Now, <strong>click on Generate</strong> to see magic happen!",
             side: "right",
             align: "start",
             disableButtons: ["next"],
@@ -145,7 +160,7 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
         {
           element: ".swiper-slide-visible > #poster-imagine",
           popover: {
-            title: "This is your grid! 💪",
+            title: "This is your poster grid! 💪",
             description:
               "<strong>Select the poster</strong> you want to upscale",
             side: "left",
