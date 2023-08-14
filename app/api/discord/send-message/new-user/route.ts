@@ -7,6 +7,7 @@ const API_URL = `https://discord.com/api/channels/${DISCORD_CHANNEL_ID}/messages
 export async function POST(request: Request) {
   try {
     const { user } = await request.json();
+    console.log("user :", user);
 
     await fetch(API_URL, {
       method: "POST",
