@@ -102,7 +102,7 @@ const megaMenu: MegaMenu[] = [
 const userMenu: NavItem[][] = [
   [
     {
-      title: "My profile",
+      title: "My posters",
       href: "/profile",
       icon: UserIcon,
       onClick: () => null,
