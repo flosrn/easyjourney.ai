@@ -22,8 +22,6 @@ const sendDiscordMessage = async (user: AdapterUser) => {
       body: JSON.stringify({ user }),
     }
   );
-
-  console.log("Message sent to Discord successfully");
 };
 
 export const MyCustomAdapter = (prisma: PrismaClient): Adapter => ({
