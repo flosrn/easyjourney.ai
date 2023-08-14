@@ -3,15 +3,19 @@ import type { PrismaClient } from "@prisma/client";
 import { env } from "~/env.mjs";
 import { getUniqueUsername } from "~/utils/getUniqueUsername";
 import type { Adapter, AdapterUser } from "next-auth/adapters";
+import { z } from "zod";
 
-type DiscordResponse = {
-  ok?: boolean;
-  error?: string;
-  status?: number;
-};
+import { safeFetch } from "~/lib/safeFetch";
+
+const schema = z.object({
+  success: z.boolean().optional(),
+  error: z.string().optional(),
+});
 
 const sendDiscordMessage = async (user: AdapterUser) => {
-  const response = await fetch(
+  console.log("env.NEXT_PUBLIC_URL :", env.NEXT_PUBLIC_URL);
+  const response = await safeFetch(
+    schema,
     `${env.NEXT_PUBLIC_URL}/api/discord/send-message/new-user`,
     {
       method: "POST",
@@ -20,18 +24,7 @@ const sendDiscordMessage = async (user: AdapterUser) => {
     }
   );
 
-  if (!response.ok) {
-    console.error(
-      `Failed to send message to Discord. Status: ${response.status}`
-    );
-    return;
-  }
-
-  const data: DiscordResponse = await response.json();
-  if (data.error) {
-    console.error(`Error from Discord: ${data.error}`);
-    return;
-  }
+  console.log("response :", response);
 
   console.log("Message sent to Discord successfully");
 };
