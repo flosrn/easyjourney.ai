@@ -13,18 +13,15 @@ const schema = z.object({
 });
 
 const sendDiscordMessage = async (user: AdapterUser) => {
-  console.log("env.NEXT_PUBLIC_URL :", env.NEXT_PUBLIC_URL);
-  const response = await safeFetch(
+  await safeFetch(
     schema,
-    `https://www.easyjourney.ai/api/discord/send-message/new-user`,
+    `${env.NEXT_PUBLIC_URL}/api/discord/send-message/new-user`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user }),
     }
   );
-
-  console.log("response :", response);
 
   console.log("Message sent to Discord successfully");
 };
