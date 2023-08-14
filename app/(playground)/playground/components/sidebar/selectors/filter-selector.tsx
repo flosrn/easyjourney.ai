@@ -31,7 +31,6 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 
 import { cn } from "~/lib/classNames";
 
-import { moveNextTourStep } from "../../../hooks/useTour";
 import { useFilterStore } from "../../../store/filterStore";
 import { useTourStore } from "../../../store/tourStore";
 import {
@@ -67,18 +66,18 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     state.setPeekedFilter,
     state.isFilterSelectorDisabled,
   ]);
-  const [driverJs, isTourActive] = useTourStore((state) => [
+  const [driverJs, isTourActive, moveNextTourStep] = useTourStore((state) => [
     state.driverJs,
     state.isTourActive,
+    state.moveNextTourStep,
   ]);
 
   const handleOpenChange = async (nextOpen: boolean) => {
     setOpen(nextOpen);
     if (!nextOpen && selectedFilters.length === 0) {
-      await moveNextTourStep({
-        driverJs,
+      moveNextTourStep({
         elDestination: "#imagine",
-        time: 2000,
+        timeout: 2000,
       });
     }
   };
@@ -96,16 +95,15 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     const moveNextStep = async () => {
       if (selectedFilters.length === 1) {
         setOpen(false);
-        await moveNextTourStep({
-          driverJs,
+        moveNextTourStep({
           elDestination: "#filter-badge",
-          time: 1000,
+          timeout: 1000,
         });
       }
     };
 
     void moveNextStep();
-  }, [selectedFilters, driverJs, isTourActive]);
+  }, [isTourActive, selectedFilters, moveNextTourStep]);
 
   return (
     <div className="grid gap-2">
@@ -114,7 +112,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
           <Button
             id="filter-selector"
             onClick={() => {
-              driverJs?.destroy();
+              isTourActive && driverJs?.destroy();
             }}
             variant="outline"
             role="combobox"

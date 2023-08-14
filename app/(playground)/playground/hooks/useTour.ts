@@ -90,16 +90,6 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
               "Type whatever you want or click on 'Add prompt' to automatically add your first prompt.",
             side: "bottom",
             align: "start",
-            // onPopoverRender: (popover) => {
-            //   const previousButton = popover.previousButton;
-            //   const promptButton = document.createElement("button");
-            //   promptButton.textContent = "Add prompt";
-            //   previousButton.after(promptButton);
-            //   promptButton.addEventListener("click", () => {
-            //     setPromptValue(PROMPT);
-            //     promptButton.remove();
-            //   });
-            // },
             onNextClick: async (element, step, { config, state }) => {
               const input = inputRef?.current;
               if (input && input.value.length === 0) {
@@ -260,8 +250,9 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
               "You have discovered all the possibilities of EasyJourney. Now, enjoy your journey!",
             side: "over",
             align: "center",
-            onPopoverRender: async (popover) => {
+            onPopoverRender: async () => {
               const jsConfetti = new JSConfetti();
+              await wait(1000);
               await jsConfetti.addConfetti();
             },
           },
@@ -270,18 +261,18 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
       onNextClick: (element, step, { config, state }) => {
         console.log("onNextClick");
         if (step.popover?.disableButtons?.includes("next")) return;
-        const currentStep = step.element;
-        const isMoreOptionsStep = currentStep === "div[data-id='more-options']";
-        if (isMoreOptionsStep) {
-          driverJs?.destroy();
-          const tourSteps = driverJs?.getConfig().steps;
-          const stepIndex = tourSteps?.findIndex(
-            (tourStep) => tourStep.element === "#final"
-          );
-          setTimeout(() => {
-            driverJs?.drive(stepIndex);
-          }, 2000);
-        }
+        // const currentStep = step.element;
+        // const isMoreOptionsStep = currentStep === "div[data-id='more-options']";
+        // if (isMoreOptionsStep) {
+        //   driverJs?.destroy();
+        //   const tourSteps = driverJs?.getConfig().steps;
+        //   const stepIndex = tourSteps?.findIndex(
+        //     (tourStep) => tourStep.element === "#final"
+        //   );
+        //   setTimeout(() => {
+        //     driverJs?.drive(stepIndex);
+        //   }, 2000);
+        // }
         driverObj.moveNext();
       },
       onCloseClick: () => {

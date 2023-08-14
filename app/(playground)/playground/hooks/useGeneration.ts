@@ -9,7 +9,6 @@ import { useMidjourneyStore } from "../store/midjourneyStore";
 import { useTourStore } from "../store/tourStore";
 import useMsg from "./useMsg";
 import useSelectors from "./useSelectors";
-import { moveNextTourStep } from "./useTour";
 
 type MutationParams = {
   option?: string;
@@ -40,7 +39,7 @@ const useGeneration = () => {
     state.setMsg,
     state.setSelectedImage,
   ]);
-  const [driverJs] = useTourStore((state) => [state.driverJs]);
+  const [moveNextTourStep] = useTourStore((state) => [state.moveNextTourStep]);
   const { prompt, options } = useSelectors();
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   useMsg();
@@ -105,24 +104,21 @@ const useGeneration = () => {
       const isDataSave = data?.generationType === "save";
       if (isDataImagine || isDataVariation) {
         actionWord = "generated";
-        await moveNextTourStep({
-          driverJs,
+        moveNextTourStep({
           elDestination: ".swiper-slide-visible > #poster-imagine",
-          time: 2000,
+          timeout: 2000,
         });
       } else if (isDataUpscale) {
         actionWord = "upscaled";
-        await moveNextTourStep({
-          driverJs,
+        moveNextTourStep({
           elDestination: ".swiper-slide-visible > #poster-upscale",
-          time: 2000,
+          timeout: 2000,
         });
       } else if (isDataSave) {
         actionWord = "saved";
-        await moveNextTourStep({
-          driverJs,
+        moveNextTourStep({
           elDestination: "#slider-arrows",
-          time: 1000,
+          timeout: 1000,
         });
       }
       data && toast.success(`Poster successfully ${actionWord}!`);
