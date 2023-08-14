@@ -47,7 +47,10 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
     state.requestState,
     state.generationType,
   ]);
-  const [moveNextTourStep] = useTourStore((state) => [state.moveNextTourStep]);
+  const [isTourActive, moveNextTourStep] = useTourStore((state) => [
+    state.isTourActive,
+    state.moveNextTourStep,
+  ]);
 
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   const currentGenerationType = currentMessage?.generationType;
@@ -62,11 +65,6 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
   const isSquare = generationType === "square";
   const isSquareImage =
     currentMessage?.attachment?.width === currentMessage?.attachment?.height;
-
-  const handleButtonClick = () => {
-    moveNextTourStep({});
-    clickHandler();
-  };
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -128,7 +126,8 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Zoom Out 2x"
                 dataOption="2x"
                 Icon={ZoomOutIcon}
-                clickHandler={handleButtonClick}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -137,12 +136,15 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Zoom Out 1.5x"
                 dataOption="1.5x"
                 Icon={ZoomOutIcon}
-                clickHandler={handleButtonClick}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <CustomZoom
-                clickHandler={handleButtonClick}
-                isDisabled={isNotUpscale || isEmpty || isLoading}
+                clickHandler={clickHandler}
+                isDisabled={
+                  isNotUpscale || isEmpty || isLoading || isTourActive
+                }
               />
               <ActionButton
                 id="square"
@@ -150,7 +152,8 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Make Square"
                 dataOption="Make Square"
                 Icon={ChevronsLeftRightIcon}
-                clickHandler={handleButtonClick}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
                 isDisabled={
                   isNotUpscale || isSquareImage || isEmpty || isLoading
                 }
@@ -171,7 +174,8 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan left"
                 dataOption="pan_left"
                 Icon={ChevronLeftSquareIcon}
-                clickHandler={handleButtonClick}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -180,7 +184,8 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan right"
                 dataOption="pan_right"
                 Icon={ChevronRightSquareIcon}
-                clickHandler={handleButtonClick}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -189,7 +194,8 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan up"
                 dataOption="pan_up"
                 Icon={ChevronUpSquareIcon}
-                clickHandler={handleButtonClick}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -198,7 +204,8 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan down"
                 dataOption="pan_down"
                 Icon={ChevronDownSquareIcon}
-                clickHandler={handleButtonClick}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
             </div>
@@ -218,7 +225,8 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Vary (Strong)"
                 dataOption="Strong"
                 Icon={Wand2Icon}
-                clickHandler={handleButtonClick}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <ActionButton
@@ -227,7 +235,8 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Vary (Subtle)"
                 dataOption="Subtle"
                 Icon={Wand2Icon}
-                clickHandler={handleButtonClick}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
             </div>

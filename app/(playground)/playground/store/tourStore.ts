@@ -1,4 +1,3 @@
-import wait from "~/utils/wait";
 import type { driver } from "driver.js";
 import { create } from "zustand";
 

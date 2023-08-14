@@ -18,28 +18,6 @@ type UseTourProps = {
   inputRef?: React.RefObject<HTMLTextAreaElement>;
 };
 
-export const moveNextTourStep = async ({
-  driverJs,
-  elDestination,
-  time,
-}: {
-  driverJs: DriverInstance | null;
-  elDestination?: string;
-  time?: number;
-}) => {
-  if (elDestination) {
-    time && driverJs?.destroy();
-    const tourSteps = driverJs?.getConfig().steps;
-    const stepIndex = tourSteps?.findIndex(
-      (tourStep) => tourStep.element === elDestination
-    );
-    time && (await wait(time));
-    driverJs?.drive(stepIndex);
-  } else {
-    driverJs?.moveNext();
-  }
-};
-
 const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
   const [driverJs, setDriverJs, setIsTourActive] = useTourStore((state) => [
     state.driverJs,
@@ -82,6 +60,8 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
               popover.nextButton.before(customButton);
               customButton.addEventListener("click", () => {
                 driverObj.destroy();
+                setIsTourActive(false);
+                localStorage.setItem("playground.tour", "true");
               });
             },
           },
@@ -269,6 +249,8 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
               const jsConfetti = new JSConfetti();
               await wait(1000);
               await jsConfetti.addConfetti();
+              setIsTourActive(false);
+              localStorage.setItem("playground.tour", "true");
             },
           },
         },
@@ -326,11 +308,8 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
       },
       // onDestroyed: () => {
       //   console.log("onDestroyed");
-      //   // driverObj.destroy();
-      //   // console.log("driverObj :", driverObj);
-      //   // driverObj.moveNext();
-      //   // localStorage.setItem("playground.tour", "true");
-      //   // setIsTourActive(false);
+      //   localStorage.setItem("playground.tour", "true");
+      //   setIsTourActive(false);
       // },
     });
 

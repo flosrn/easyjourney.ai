@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import wait from "~/utils/wait";
 import { motion } from "framer-motion";
 import {
   ArrowLeftCircleIcon,
