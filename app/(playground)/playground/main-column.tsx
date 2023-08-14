@@ -52,7 +52,7 @@ const MainColumn = () => {
     <main className="relative flex flex-col overflow-x-hidden md:border-l">
       <div className="h-full p-4 md:p-6">
         <div className="h-full flex-col border-none p-0">
-          <div className="flex w-full items-center justify-between bg-background -md:fixed -md:left-0 -md:z-10 -md:h-[80px] -md:border-b -md:px-4 -md:py-6">
+          <div className="flex w-full items-center justify-between bg-background -md:fixed -md:left-0 -md:top-16 -md:z-10 -md:border-b -md:p-3">
             <div className="space-y-1 -xs:hidden">
               <h2
                 id="title"
