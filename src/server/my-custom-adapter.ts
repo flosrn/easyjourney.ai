@@ -1,6 +1,5 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import type { PrismaClient } from "@prisma/client";
-import { env } from "~/env.mjs";
 import { getUniqueUsername } from "~/utils/getUniqueUsername";
 import type { Adapter, AdapterUser } from "next-auth/adapters";
 import { z } from "zod";
@@ -13,10 +12,9 @@ const schema = z.object({
 });
 
 const sendDiscordMessage = async (user: AdapterUser) => {
-  console.log("env.NEXT_PUBLIC_URL :", env.NEXT_PUBLIC_URL);
   const response = await safeFetch(
     schema,
-    `${env.NEXT_PUBLIC_URL}/api/discord/send-message/new-user`,
+    `/api/discord/send-message/new-user`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
