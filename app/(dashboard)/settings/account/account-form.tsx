@@ -41,7 +41,7 @@ const defaultValues: Partial<AccountFormValues> = {
   // dob: new Date(),
 };
 
-export const AccountForm = () => {
+const AccountForm = () => {
   const { data: session } = useSession();
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),

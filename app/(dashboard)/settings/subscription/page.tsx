@@ -6,7 +6,7 @@ import { Separator } from "~/components/ui/separator";
 import { stripe } from "~/lib/stripe";
 import { getUserSubscriptionPlan } from "~/lib/subscriptions";
 
-import { BillingForm } from "./billing-form";
+import BillingForm from "./billing-form";
 
 export default async function SettingsAccountPage() {
   const user = await getCurrentUser();

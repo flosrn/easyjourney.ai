@@ -31,17 +31,23 @@ const appearanceFormSchema = z.object({
 
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>;
 
-export const AppearanceForm = () => {
+const AppearanceForm = () => {
   const { theme, setTheme } = useTheme();
+  const [tutorial, setTutorial] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const isDark = theme === "dark";
+
+  useEffect(() => {
+    setTutorial(localStorage.getItem("tutorial") === "true");
+  }, []);
+
   const form = useForm<AppearanceFormValues>({
     resolver: zodResolver(appearanceFormSchema),
     defaultValues: {
       theme: isDark ? "dark" : "light",
-      tutorial: localStorage.getItem("tutorial") === "true",
+      tutorial,
     },
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     form.setValue("theme", isDark ? "dark" : "light");
