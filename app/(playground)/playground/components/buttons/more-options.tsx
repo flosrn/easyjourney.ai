@@ -142,7 +142,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
               <CustomZoom
                 clickHandler={clickHandler}
                 isDisabled={
-                  isNotUpscale || isEmpty || isLoading || isTutorialEnabled
+                  isTutorialEnabled || isNotUpscale || isEmpty || isLoading
                 }
               />
               <ActionButton
