@@ -1,11 +1,15 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChevronDown } from "lucide-react";
+import wait from "~/utils/wait";
+import { Loader2Icon } from "lucide-react";
+import { useTheme } from "next-themes";
 import { useForm } from "react-hook-form";
+import { toast, Toaster } from "react-hot-toast";
 import * as z from "zod";
 
-import { Button, buttonVariants } from "~/components/ui/button";
+import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -16,72 +20,66 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "~/components/ui/radio-group";
-
-import { cn } from "~/lib/classNames";
+import { Switch } from "~/components/ui/switch";
 
 const appearanceFormSchema = z.object({
   theme: z.enum(["light", "dark"], {
     required_error: "Please select a theme.",
   }),
-  font: z.enum(["inter", "manrope", "system"], {
-    invalid_type_error: "Select a font",
-    required_error: "Please select a font.",
-  }),
+  tutorial: z.boolean().default(false),
 });
 
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>;
 
-// This can come from your database or API.
-const defaultValues: Partial<AppearanceFormValues> = {
-  theme: "light",
-};
-
 export const AppearanceForm = () => {
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark";
   const form = useForm<AppearanceFormValues>({
     resolver: zodResolver(appearanceFormSchema),
-    defaultValues,
+    defaultValues: {
+      theme: isDark ? "dark" : "light",
+      tutorial: localStorage.getItem("tutorial") === "true",
+    },
   });
+  const [isLoading, setIsLoading] = useState(false);
 
-  function onSubmit(data: AppearanceFormValues) {
-    // toast({
-    //   title: "You submitted the following values:",
-    //   description: (
-    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // });
-  }
+  useEffect(() => {
+    form.setValue("theme", isDark ? "dark" : "light");
+  }, [form, isDark]);
+
+  const onSubmit = async (data: AppearanceFormValues) => {
+    setIsLoading(true);
+    await wait(1000);
+    localStorage.setItem("tutorial", data.tutorial.toString());
+    setIsLoading(false);
+    toast.success("Preferences updated successfully.");
+    form.reset({
+      theme: isDark ? "dark" : "light",
+      tutorial: localStorage.getItem("tutorial") === "true",
+    });
+  };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="font"
+          name="tutorial"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Font</FormLabel>
-              <div className="relative w-max">
-                <FormControl>
-                  <select
-                    className={cn(
-                      buttonVariants({ variant: "outline" }),
-                      "w-[200px] appearance-none bg-transparent font-normal"
-                    )}
-                    {...field}
-                  >
-                    <option value="inter">Inter</option>
-                    <option value="manrope">Manrope</option>
-                    <option value="system">System</option>
-                  </select>
-                </FormControl>
-                <ChevronDown className="absolute right-3 top-3 h-4 w-4 opacity-50" />
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">Tutorial</FormLabel>
+                <FormDescription>
+                  Enable the tutorial to learn how to use Easyjourney.
+                </FormDescription>
               </div>
-              <FormDescription>
-                Set the font you want to use in the dashboard.
-              </FormDescription>
-              <FormMessage />
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  aria-readonly
+                />
+              </FormControl>
             </FormItem>
           )}
         />
@@ -96,10 +94,11 @@ export const AppearanceForm = () => {
               </FormDescription>
               <FormMessage />
               <RadioGroup
-                onValueChange={(event: "dark" | "light") =>
-                  field.onChange(event)
-                }
-                defaultValue={field.value}
+                onValueChange={(event: "dark" | "light") => {
+                  field.onChange(event);
+                  setTheme(event);
+                }}
+                value={field.value}
                 className="grid max-w-md grid-cols-2 gap-8 pt-2"
               >
                 <FormItem>
@@ -159,8 +158,12 @@ export const AppearanceForm = () => {
           )}
         />
 
-        <Button type="submit">Update preferences</Button>
+        <Button type="submit" disabled={!form.formState.isDirty}>
+          {isLoading && <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />}
+          Update preferences
+        </Button>
       </form>
+      <Toaster position="bottom-right" />
     </Form>
   );
 };

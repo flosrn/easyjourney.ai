@@ -5,7 +5,7 @@ import { driver } from "driver.js";
 import JSConfetti from "js-confetti";
 
 import { usePromptStore } from "../store/promptStore";
-import { useTourStore } from "../store/tourStore";
+import { useTutorialStore } from "../store/tutorialStore";
 import useGeneration from "./useGeneration";
 
 const PROMPT =
@@ -18,12 +18,10 @@ type UseTourProps = {
   inputRef?: React.RefObject<HTMLTextAreaElement>;
 };
 
-const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
-  const [driverJs, setDriverJs, setIsTourActive] = useTourStore((state) => [
-    state.driverJs,
-    state.setDriverJs,
-    state.setIsTourActive,
-  ]);
+const useTutorial = ({ inputRef }: UseTourProps): DriverInstance | null => {
+  const [driverJs, setDriverJs, setIsTutorialEnabled] = useTutorialStore(
+    (state) => [state.driverJs, state.setDriverJs, state.setIsTutorialEnabled]
+  );
   const [promptValue, setPromptValue] = usePromptStore((state) => [
     state.promptValue,
     state.setPromptValue,
@@ -31,8 +29,9 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
   const { handleImagineButtonClick } = useGeneration();
 
   useEffect(() => {
-    if (localStorage.getItem("playground.tour")) {
-      setIsTourActive(false);
+    const localTutorial = localStorage.getItem("tutorial");
+    if (localTutorial === null || localTutorial === "false") {
+      setIsTutorialEnabled(false);
       return;
     }
 
@@ -60,8 +59,8 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
               popover.nextButton.before(customButton);
               customButton.addEventListener("click", () => {
                 driverObj.destroy();
-                setIsTourActive(false);
-                localStorage.setItem("playground.tour", "true");
+                setIsTutorialEnabled(false);
+                localStorage.setItem("tutorial", "false");
               });
             },
           },
@@ -226,10 +225,6 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
             side: "top",
             align: "end",
             onNextClick: async (element, step, { config, state }) => {
-              console.log("element :", element);
-              console.log("step :", step);
-              console.log("config :", config);
-              console.log("state :", state);
               const currentIndex = state.activeIndex;
               driverObj.destroy();
               await wait(1500);
@@ -242,15 +237,15 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
           popover: {
             title: "Here we go! 🚀",
             description:
-              "You have discovered all the possibilities of EasyJourney. Now, enjoy your journey!",
+              "You have discovered the main possibilities of EasyJourney. Now, enjoy your journey and let's create!",
             side: "over",
             align: "center",
             onPopoverRender: async () => {
               const jsConfetti = new JSConfetti();
               await wait(1000);
               await jsConfetti.addConfetti();
-              setIsTourActive(false);
-              localStorage.setItem("playground.tour", "true");
+              setIsTutorialEnabled(false);
+              localStorage.setItem("tutorial", "false");
             },
           },
         },
@@ -277,9 +272,6 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
         driverObj.destroy();
       },
       onDestroyStarted: (element, step, { config, state }) => {
-        console.log("onDestroyStarted");
-        console.log("step :", step);
-        console.log("state :", state);
         const currentStep = step.element;
         const isWaitingPosterStep = currentStep === "#waiting-poster";
         const isPromptStep = currentStep === "#prompt";
@@ -316,10 +308,10 @@ const useTour = ({ inputRef }: UseTourProps): DriverInstance | null => {
     driverObj.drive();
 
     setDriverJs(driverObj);
-    setIsTourActive(true);
+    setIsTutorialEnabled(true);
   }, []);
 
   return driverJs;
 };
 
-export default useTour;
+export default useTutorial;

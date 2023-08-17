@@ -32,7 +32,7 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 import { cn } from "~/lib/classNames";
 
 import { useFilterStore } from "../../../store/filterStore";
-import { useTourStore } from "../../../store/tourStore";
+import { useTutorialStore } from "../../../store/tutorialStore";
 import {
   type Filter,
   type SubCategoryFilter,
@@ -66,16 +66,18 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     state.setPeekedFilter,
     state.isFilterSelectorDisabled,
   ]);
-  const [driverJs, isTourActive, moveNextTourStep] = useTourStore((state) => [
-    state.driverJs,
-    state.isTourActive,
-    state.moveNextTourStep,
-  ]);
+  const [driverJs, isTutorialEnabled, moveNextTutorialStep] = useTutorialStore(
+    (state) => [
+      state.driverJs,
+      state.isTutorialEnabled,
+      state.moveNextTutorialStep,
+    ]
+  );
 
   const handleOpenChange = async (nextOpen: boolean) => {
     setOpen(nextOpen);
     if (!nextOpen && selectedFilters.length === 0) {
-      moveNextTourStep({
+      moveNextTutorialStep({
         elDestination: "#imagine",
         timeout: 2000,
       });
@@ -91,11 +93,11 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
   }, [open, setPeekedFilter]);
 
   useEffect(() => {
-    if (!isTourActive) return;
+    if (!isTutorialEnabled) return;
     const moveNextStep = async () => {
       if (selectedFilters.length === 1) {
         setOpen(false);
-        moveNextTourStep({
+        moveNextTutorialStep({
           elDestination: "#filter-badge",
           timeout: 1000,
         });
@@ -103,7 +105,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     };
 
     void moveNextStep();
-  }, [isTourActive, selectedFilters, moveNextTourStep]);
+  }, [isTutorialEnabled, selectedFilters, moveNextTutorialStep]);
 
   return (
     <div className="grid gap-2">
@@ -112,7 +114,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
           <Button
             id="filter-selector"
             onClick={() => {
-              isTourActive && driverJs?.destroy();
+              isTutorialEnabled && driverJs?.destroy();
             }}
             variant="outline"
             role="combobox"

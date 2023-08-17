@@ -18,7 +18,7 @@ import ImageContainerGrid from "./components/image/image-container-grid";
 import TextareaPrompt from "./components/input/textarea-prompt";
 import useGeneration from "./hooks/useGeneration";
 import useSelectors from "./hooks/useSelectors";
-import useTour from "./hooks/useTour";
+import useTutorial from "./hooks/useTutorial";
 import { DisplayMode } from "./store/displayStore";
 import { useMidjourneyStore } from "./store/midjourneyStore";
 
@@ -35,7 +35,7 @@ const MainColumn = () => {
     handleDisableSelectors,
   } = useSelectors();
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  useTour({ inputRef });
+  useTutorial({ inputRef });
 
   const handleGenerate = async (option?: string, newPrompt?: string) => {
     if (promptValue.length <= 1) {

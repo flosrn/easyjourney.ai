@@ -24,7 +24,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 import { Option, useOptionStore } from "../../store/optionStore";
-import { useTourStore } from "../../store/tourStore";
+import { useTutorialStore } from "../../store/tutorialStore";
 import LabelWithTooltip from "../sidebar/label-with-tooltip";
 import ActionButton from "./action-button";
 import CustomZoom from "./custom-zoom-button";
@@ -47,10 +47,9 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
     state.requestState,
     state.generationType,
   ]);
-  const [isTourActive, moveNextTourStep] = useTourStore((state) => [
-    state.isTourActive,
-    state.moveNextTourStep,
-  ]);
+  const [isTutorialEnabled, moveNextTutorialStep] = useTutorialStore(
+    (state) => [state.isTutorialEnabled, state.moveNextTutorialStep]
+  );
 
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   const currentGenerationType = currentMessage?.generationType;
@@ -73,7 +72,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
           id="more-options"
           variant="outline"
           onClick={() => {
-            moveNextTourStep({
+            moveNextTutorialStep({
               elDestination: "div[data-id='more-options']",
               timeout: 800,
             });
@@ -143,7 +142,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
               <CustomZoom
                 clickHandler={clickHandler}
                 isDisabled={
-                  isNotUpscale || isEmpty || isLoading || isTourActive
+                  isNotUpscale || isEmpty || isLoading || isTutorialEnabled
                 }
               />
               <ActionButton

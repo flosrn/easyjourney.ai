@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { generate, savePoster } from "../lib/request";
 import { useMessageStore } from "../store/messageStore";
 import { useMidjourneyStore } from "../store/midjourneyStore";
-import { useTourStore } from "../store/tourStore";
+import { useTutorialStore } from "../store/tutorialStore";
 import useMsg from "./useMsg";
 import useSelectors from "./useSelectors";
 
@@ -39,7 +39,9 @@ const useGeneration = () => {
     state.setMsg,
     state.setSelectedImage,
   ]);
-  const [moveNextTourStep] = useTourStore((state) => [state.moveNextTourStep]);
+  const [moveNextTutorialStep] = useTutorialStore((state) => [
+    state.moveNextTutorialStep,
+  ]);
   const { prompt, options } = useSelectors();
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   useMsg();
@@ -104,19 +106,19 @@ const useGeneration = () => {
       const isDataSave = data?.generationType === "save";
       if (isDataImagine || isDataVariation) {
         actionWord = "generated";
-        moveNextTourStep({
+        moveNextTutorialStep({
           elDestination: ".swiper-slide-visible > #poster-imagine",
           timeout: 2000,
         });
       } else if (isDataUpscale) {
         actionWord = "upscaled";
-        moveNextTourStep({
+        moveNextTutorialStep({
           elDestination: ".swiper-slide-visible > #poster-upscale",
           timeout: 2000,
         });
       } else if (isDataSave) {
         actionWord = "saved";
-        moveNextTourStep({
+        moveNextTutorialStep({
           elDestination: "#slider-arrows",
           timeout: 1000,
         });

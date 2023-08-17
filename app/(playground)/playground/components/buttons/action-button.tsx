@@ -13,7 +13,7 @@ import { cn } from "~/lib/classNames";
 
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
-import { useTourStore } from "../../store/tourStore";
+import { useTutorialStore } from "../../store/tutorialStore";
 
 type ActionButtonProps = {
   id: string;
@@ -64,7 +64,7 @@ const ActionButton = ({
     state.setMsg,
     state.selectedImage,
   ]);
-  const [driverJs] = useTourStore((state) => [state.driverJs]);
+  const [driverJs] = useTutorialStore((state) => [state.driverJs]);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();

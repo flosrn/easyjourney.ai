@@ -2,7 +2,7 @@ import React from "react";
 
 import { cn } from "~/lib/classNames";
 
-import { useTourStore } from "../../store/tourStore";
+import { useTutorialStore } from "../../store/tutorialStore";
 
 type ImageGridProps = {
   selectedImage: number | null;
@@ -15,11 +15,13 @@ export const ImageGrid = ({
   clickHandler,
   className,
 }: ImageGridProps) => {
-  const [moveNextTourStep] = useTourStore((state) => [state.moveNextTourStep]);
+  const [moveNextTutorialStep] = useTutorialStore((state) => [
+    state.moveNextTutorialStep,
+  ]);
 
   const handleClick = async (part: number) => {
     clickHandler(part);
-    moveNextTourStep({});
+    moveNextTutorialStep({});
   };
 
   return (

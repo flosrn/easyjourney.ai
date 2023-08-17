@@ -20,7 +20,7 @@ import { cn } from "~/lib/classNames";
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 import { useRatioStore } from "../../store/ratioStore";
-import { useTourStore } from "../../store/tourStore";
+import { useTutorialStore } from "../../store/tutorialStore";
 import { getTwAspectRatio } from "../image/aspectRatioUtils";
 import { ImageGrid } from "../image/image-grid";
 
@@ -34,11 +34,13 @@ type SliderProps = {};
 const Slider = ({}: SliderProps) => {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [showImageGrid, setShowImageGrid] = useState<boolean>(false);
-  const [driverJs, moveNextTourStep, isTourActive] = useTourStore((state) => [
-    state.driverJs,
-    state.moveNextTourStep,
-    state.isTourActive,
-  ]);
+  const [driverJs, moveNextTutorialStep, isTutorialEnabled] = useTutorialStore(
+    (state) => [
+      state.driverJs,
+      state.moveNextTutorialStep,
+      state.isTutorialEnabled,
+    ]
+  );
 
   const handleZoomChange = useCallback((shouldZoom: boolean) => {
     setIsZoomed(shouldZoom);
@@ -96,7 +98,7 @@ const Slider = ({}: SliderProps) => {
     if (isPrev) {
       driverJs?.moveNext();
     } else if (isNext) {
-      moveNextTourStep({
+      moveNextTutorialStep({
         elDestination: "#more-options",
         timeout: 2000,
       });
@@ -182,7 +184,7 @@ const Slider = ({}: SliderProps) => {
                     >
                       <img src={message.uri} alt="" className="rounded-md" />
                     </ControlledZoom>
-                    {!isTourActive && (
+                    {!isTutorialEnabled && (
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}

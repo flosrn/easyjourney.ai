@@ -27,10 +27,10 @@ const sidebarNavItems: SidebarNavItems[] = [
     title: "Appearance",
     href: "/settings/appearance",
   },
-  {
-    title: "Notifications",
-    href: "/settings/notifications",
-  },
+  // {
+  //   title: "Notifications",
+  //   href: "/settings/notifications",
+  // },
 ];
 
 type SettingsLayoutProps = {
