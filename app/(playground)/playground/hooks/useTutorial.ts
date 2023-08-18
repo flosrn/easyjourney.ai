@@ -30,7 +30,7 @@ const useTutorial = ({ inputRef }: UseTourProps): DriverInstance | null => {
 
   useEffect(() => {
     const localTutorial = localStorage.getItem("tutorial");
-    if (localTutorial === null || localTutorial === "false") {
+    if (localTutorial === "false") {
       setIsTutorialEnabled(false);
       return;
     }
