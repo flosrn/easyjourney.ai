@@ -34,6 +34,9 @@ const useTutorial = ({ inputRef }: UseTourProps): DriverInstance | null => {
       setIsTutorialEnabled(false);
       return;
     }
+    if (localTutorial === null) {
+      setIsTutorialEnabled(true);
+    }
 
     const driverObj = driver({
       showProgress: false,
@@ -308,7 +311,6 @@ const useTutorial = ({ inputRef }: UseTourProps): DriverInstance | null => {
     driverObj.drive();
 
     setDriverJs(driverObj);
-    setIsTutorialEnabled(true);
   }, []);
 
   return driverJs;
