@@ -2,6 +2,8 @@ import { errorResponse, websocketUrl } from "./utils";
 
 export const runtime = "edge";
 
+const DISCORD_USERNAME = "flosrn";
+
 export async function POST(request: Request) {
   const body = await request.json();
   console.log("body :", body);
@@ -54,11 +56,17 @@ export async function POST(request: Request) {
 
         // If the message indicates the end of the stream, close the controller and clear the interval
         if (data.progress === "done") {
-          console.log("data :", data);
+          // console.log("data :", data);
           const formattedData = {
             ...data,
             fullPrompt: data.content.split("**")[1],
             jobId: data.hash,
+            attachment: {
+              ...data.attachment,
+              filename: data.attachment.filename.split(
+                `${DISCORD_USERNAME}_`
+              )[1],
+            },
           };
           const message = `${JSON.stringify(formattedData)}\n`;
           controller.enqueue(encoder.encode(message));
