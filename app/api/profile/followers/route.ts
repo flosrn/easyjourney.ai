@@ -33,7 +33,10 @@ export async function GET(request: Request) {
           in: followerIds,
         },
       },
-      include: {
+      select: {
+        name: true,
+        username: true,
+        image: true,
         followers: true,
       },
     });
