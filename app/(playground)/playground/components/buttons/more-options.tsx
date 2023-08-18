@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ChevronDownSquareIcon,
   ChevronLeftSquareIcon,
@@ -43,13 +43,16 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
     state.messages,
     state.currentMessageIndex,
   ]);
-  const [{ isLoading }, generationType] = useMidjourneyStore((state) => [
-    state.requestState,
-    state.generationType,
-  ]);
+  const [{ isLoading, isSuccess }, generationType] = useMidjourneyStore(
+    (state) => [state.requestState, state.generationType]
+  );
   const [isTutorialEnabled, moveNextTutorialStep] = useTutorialStore(
     (state) => [state.isTutorialEnabled, state.moveNextTutorialStep]
   );
+
+  useEffect(() => {
+    isSuccess && setIsOpen(false);
+  }, [isSuccess]);
 
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   const currentGenerationType = currentMessage?.generationType;
