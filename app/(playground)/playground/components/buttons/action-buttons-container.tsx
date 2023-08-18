@@ -63,7 +63,9 @@ const ActionButtonsContainer = ({
           clickHandler={clickHandler}
           isDisabled={!isUpscale || isEmpty || isSave || isLoading}
         />
-        <DownloadButton isDisabled={!isUpscale || isEmpty || isLoading} />
+        <DownloadButton
+          isDisabled={(!isUpscale && !isSave) || isEmpty || isLoading}
+        />
       </div>
     </div>
   );
