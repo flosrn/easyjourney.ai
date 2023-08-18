@@ -93,9 +93,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
   }, [open, setPeekedFilter]);
 
   useEffect(() => {
-    console.log("isTutorialEnabled :", isTutorialEnabled);
     if (!isTutorialEnabled) return;
-    console.log("moveNextTutorialStep");
     const moveNextStep = async () => {
       if (selectedFilters.length === 1) {
         setOpen(false);
