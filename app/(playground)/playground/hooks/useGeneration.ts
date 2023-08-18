@@ -1,10 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
+import wait from "~/utils/wait";
 import type { MJMessage } from "midjourney";
 import { toast } from "react-hot-toast";
 
 import { generate, savePoster } from "../lib/request";
 import { useMessageStore } from "../store/messageStore";
 import { useMidjourneyStore } from "../store/midjourneyStore";
+import { useTutorialStore } from "../store/tutorialStore";
 import useMsg from "./useMsg";
 import useSelectors from "./useSelectors";
 
@@ -37,9 +39,19 @@ const useGeneration = () => {
     state.setMsg,
     state.setSelectedImage,
   ]);
+  const [moveNextTutorialStep] = useTutorialStore((state) => [
+    state.moveNextTutorialStep,
+  ]);
   const { prompt, options } = useSelectors();
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   useMsg();
+
+  const handleImagineButtonClick = () => {
+    const imagineButton = document.querySelector(
+      "#imagine"
+    ) as HTMLButtonElement;
+    imagineButton.click();
+  };
 
   const generationMutation = useMutation<
     MJMessage | undefined,
@@ -83,7 +95,7 @@ const useGeneration = () => {
       setGenerationType(null);
       toast.error("An error occurred, please try again.");
     },
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       console.log("onSuccess:", data);
       setSelectedImage(null);
       setRequestState({ isSuccess: true, isLoading: false });
@@ -94,10 +106,22 @@ const useGeneration = () => {
       const isDataSave = data?.generationType === "save";
       if (isDataImagine || isDataVariation) {
         actionWord = "generated";
+        moveNextTutorialStep({
+          elDestination: ".swiper-slide-visible > #poster-imagine",
+          timeout: 2000,
+        });
       } else if (isDataUpscale) {
         actionWord = "upscaled";
+        moveNextTutorialStep({
+          elDestination: ".swiper-slide-visible > #poster-upscale",
+          timeout: 2000,
+        });
       } else if (isDataSave) {
         actionWord = "saved";
+        moveNextTutorialStep({
+          elDestination: "#slider-arrows",
+          timeout: 1000,
+        });
       }
       data && toast.success(`Poster successfully ${actionWord}!`);
       if (!data) setMsg("Something went wrong, please try again.");
@@ -117,6 +141,7 @@ const useGeneration = () => {
 
   return {
     generationMutation,
+    handleImagineButtonClick,
   };
 };
 

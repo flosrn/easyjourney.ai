@@ -67,6 +67,7 @@ const FiltersBadge = ({ className }: FiltersBadgeProps) => {
                   exit="exit"
                 >
                   <Badge
+                    id="filter-badge"
                     hasClose
                     onClick={() => {
                       isAlreadySelected

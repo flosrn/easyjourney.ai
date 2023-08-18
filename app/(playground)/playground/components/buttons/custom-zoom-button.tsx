@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { SearchCodeIcon } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
@@ -22,9 +22,7 @@ type CustomZoomProps = {
 };
 
 const CustomZoom = ({ clickHandler, isDisabled }: CustomZoomProps) => {
-  const [newPrompt, setNewPrompt] = React.useState(
-    "A framed picture on the wall"
-  );
+  const [newPrompt, setNewPrompt] = useState("A framed picture on the wall");
   return (
     <Dialog>
       <DialogTrigger asChild>

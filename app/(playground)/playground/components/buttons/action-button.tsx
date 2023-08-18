@@ -13,6 +13,7 @@ import { cn } from "~/lib/classNames";
 
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
+import { useTutorialStore } from "../../store/tutorialStore";
 
 type ActionButtonProps = {
   id: string;
@@ -22,6 +23,7 @@ type ActionButtonProps = {
   variant?: ButtonVariant;
   Icon: LucideIcon;
   isDisabled?: boolean;
+  tourAction?: "moveNext" | "destroy";
   clickHandler: (option?: string, newPrompt?: string) => void;
   dataOption?: string;
   dataOptionValue?: string;
@@ -36,6 +38,7 @@ const ActionButton = ({
   variant = "outline",
   Icon,
   isDisabled,
+  tourAction,
   clickHandler,
   dataOption,
   dataOptionValue,
@@ -61,6 +64,7 @@ const ActionButton = ({
     state.setMsg,
     state.selectedImage,
   ]);
+  const [driverJs] = useTutorialStore((state) => [state.driverJs]);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -72,8 +76,8 @@ const ActionButton = ({
     console.log("type :", type);
     const isImagine = currentGenerationType === "imagine";
     const isVariation = currentGenerationType === "variation";
-    const isVary = currentGenerationType === "vary";
     const isZoomOut = currentGenerationType === "zoomOut";
+    const isVary = currentGenerationType === "vary";
     const isUpscaleButton = type === "upscale";
     const isVariationButton = type === "variation";
     const noSelectedImage = selectedImage === null;
@@ -105,6 +109,11 @@ const ActionButton = ({
       default: {
         setMsg("Waiting to start...");
       }
+    }
+    if (tourAction === "moveNext") {
+      driverJs?.moveNext();
+    } else if (tourAction === "destroy") {
+      driverJs?.destroy();
     }
   };
 

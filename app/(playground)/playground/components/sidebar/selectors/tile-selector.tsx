@@ -36,7 +36,7 @@ const TileSelector = () => {
   return (
     <div className="flex items-center space-x-2">
       <Switch
-        id="tile-mode"
+        id="tile-selector"
         onCheckedChange={toggleTileValue}
         checked={tileValue}
         disabled={isTileSelectorDisabled}

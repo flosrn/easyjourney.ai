@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import wait from "~/utils/wait";
 
 import {
   Accordion,
@@ -21,13 +24,13 @@ const AccordionSide = ({}) => {
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1" className="border-b-0 lg:border-b">
-        <AccordionTrigger className="pt-0">
+        <AccordionTrigger id="advanced" className="pt-0">
           <LabelWithTooltip
             title="Advanced"
             description="Select advanced options like quality, chaos, stylize and more."
           />
         </AccordionTrigger>
-        <AccordionContent>
+        <AccordionContent id="advanced-content">
           <div className="space-y-4 px-1">
             <LabelWithTooltip
               title="Version"

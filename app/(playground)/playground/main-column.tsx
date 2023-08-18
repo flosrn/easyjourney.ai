@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
+import wait from "~/utils/wait";
 import { motion } from "framer-motion";
 import { BrushIcon, Trash2Icon } from "lucide-react";
 import { Toaster } from "react-hot-toast";
@@ -17,8 +18,11 @@ import ImageContainerGrid from "./components/image/image-container-grid";
 import TextareaPrompt from "./components/input/textarea-prompt";
 import useGeneration from "./hooks/useGeneration";
 import useSelectors from "./hooks/useSelectors";
+import useTutorial from "./hooks/useTutorial";
 import { DisplayMode } from "./store/displayStore";
 import { useMidjourneyStore } from "./store/midjourneyStore";
+
+import "driver.js/dist/driver.css";
 
 const MainColumn = () => {
   const [{ isLoading }] = useMidjourneyStore((state) => [state.requestState]);
@@ -31,6 +35,7 @@ const MainColumn = () => {
     handleDisableSelectors,
   } = useSelectors();
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  useTutorial({ inputRef });
 
   const handleGenerate = async (option?: string, newPrompt?: string) => {
     if (promptValue.length <= 1) {
@@ -38,9 +43,8 @@ const MainColumn = () => {
       return;
     }
     handleDisableSelectors(true);
-    setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    }, 100);
+    await wait(100);
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     await generationMutation.mutateAsync({ option, newPrompt });
   };
 
@@ -50,7 +54,10 @@ const MainColumn = () => {
         <div className="h-full flex-col border-none p-0">
           <div className="flex w-full items-center justify-between bg-background -md:fixed -md:left-0 -md:top-16 -md:z-10 -md:border-b -md:p-3">
             <div className="space-y-1 -xs:hidden">
-              <h2 className="text-xl font-semibold tracking-tight lg:text-2xl">
+              <h2
+                id="title"
+                className="text-xl font-semibold tracking-tight lg:text-2xl"
+              >
                 Poster generation
               </h2>
               <p className="text-sm text-muted-foreground">
@@ -70,6 +77,7 @@ const MainColumn = () => {
                 type="imagine"
                 label="Generate"
                 variant="default"
+                tourAction="destroy"
                 Icon={BrushIcon}
                 clickHandler={handleGenerate}
                 isDisabled={isLoading}
@@ -84,7 +92,11 @@ const MainColumn = () => {
               layout
               className="relative flex max-h-full grow items-center justify-center rounded-md border p-5 lg:py-1"
             >
-              <TabsContent value={DisplayMode.STACK} className="w-full">
+              <TabsContent
+                id="main-panel"
+                value={DisplayMode.STACK}
+                className="w-full"
+              >
                 <ImageContainer />
               </TabsContent>
               <TabsContent value={DisplayMode.GRID} className="w-full">

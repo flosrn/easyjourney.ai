@@ -9,11 +9,11 @@ type LayoutPageProps = {
 };
 
 const LayoutPage = async ({ children }: LayoutPageProps) => {
-  const session = await getServerAuthSession();
-
-  if (!session) {
-    redirect("/api/auth/signin?callbackUrl=/playground");
-  }
+  // const session = await getServerAuthSession();
+  //
+  // if (!session) {
+  //   redirect("/api/auth/signin?callbackUrl=/playground");
+  // }
 
   return (
     <>

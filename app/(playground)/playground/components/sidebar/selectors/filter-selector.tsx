@@ -32,6 +32,7 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 import { cn } from "~/lib/classNames";
 
 import { useFilterStore } from "../../../store/filterStore";
+import { useTutorialStore } from "../../../store/tutorialStore";
 import {
   type Filter,
   type SubCategoryFilter,
@@ -65,6 +66,23 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     state.setPeekedFilter,
     state.isFilterSelectorDisabled,
   ]);
+  const [driverJs, isTutorialEnabled, moveNextTutorialStep] = useTutorialStore(
+    (state) => [
+      state.driverJs,
+      state.isTutorialEnabled,
+      state.moveNextTutorialStep,
+    ]
+  );
+
+  const handleOpenChange = async (nextOpen: boolean) => {
+    setOpen(nextOpen);
+    if (!nextOpen && selectedFilters.length === 0) {
+      moveNextTutorialStep({
+        elDestination: "#imagine",
+        timeout: 2000,
+      });
+    }
+  };
 
   useEffect(() => {
     hasFilter && setOpen(false);
@@ -74,11 +92,30 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
     !open && setPeekedFilter(null);
   }, [open, setPeekedFilter]);
 
+  useEffect(() => {
+    if (!isTutorialEnabled) return;
+    const moveNextStep = async () => {
+      if (selectedFilters.length === 1) {
+        setOpen(false);
+        moveNextTutorialStep({
+          elDestination: "#filter-badge",
+          timeout: 1000,
+        });
+      }
+    };
+
+    void moveNextStep();
+  }, [isTutorialEnabled, selectedFilters, moveNextTutorialStep]);
+
   return (
     <div className="grid gap-2">
-      <Popover open={open} onOpenChange={setOpen} {...props}>
+      <Popover open={open} onOpenChange={handleOpenChange} {...props}>
         <PopoverTrigger asChild>
           <Button
+            id="filter-selector"
+            onClick={() => {
+              isTutorialEnabled && driverJs?.destroy();
+            }}
             variant="outline"
             role="combobox"
             aria-expanded={open}
@@ -115,6 +152,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
           <HoverCard>
             {peekedSubCategory && (
               <HoverCardContent
+                data-id="subcategories"
                 side="right"
                 align="start"
                 sideOffset={260}
@@ -124,6 +162,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
                 <HoverCard>
                   {peekedFilter && (
                     <HoverCardContent
+                      data-id="peeked-filter"
                       side="right"
                       align="start"
                       onClick={() => {
@@ -203,7 +242,10 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
               </HoverCardContent>
             )}
             <Command loop>
-              <CommandList className="h-[var(--cmdk-list-height)] max-h-[400px] overflow-hidden">
+              <CommandList
+                data-id="categories"
+                className="h-[var(--cmdk-list-height)] max-h-[400px] overflow-hidden"
+              >
                 <CommandInput placeholder="Search Filter Categories..." />
                 <CommandEmpty>No Filters found.</CommandEmpty>
                 <HoverCardTrigger />
@@ -269,7 +311,7 @@ const FilterItem = ({
         key={filter.id}
         ref={ref}
         onSelect={onSelect}
-        onMouseEnter={(event) => {
+        onMouseEnter={async (event) => {
           event.preventDefault();
           onPeek(filter);
         }}

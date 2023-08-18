@@ -68,6 +68,7 @@
     "file-saver": "^2.0.5",
     "framer-motion": "^10.15.2",
     "is-ua-webview": "^1.1.2",
+    "js-confetti": "^0.11.0",
     "lucide-react": "0.263.1",
     "micro": "^10.0.1",
     "micro-cors": "^0.1.1",

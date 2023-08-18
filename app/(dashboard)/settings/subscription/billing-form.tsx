@@ -26,11 +26,11 @@ type BillingFormProps = React.HTMLAttributes<HTMLFormElement> & {
   };
 };
 
-export function BillingForm({
+const BillingForm = ({
   subscriptionPlan,
   className,
   ...props
-}: BillingFormProps) {
+}: BillingFormProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -87,4 +87,6 @@ export function BillingForm({
       </Card>
     </form>
   );
-}
+};
+
+export default BillingForm;

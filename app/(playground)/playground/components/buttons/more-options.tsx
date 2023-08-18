@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ChevronDownSquareIcon,
   ChevronLeftSquareIcon,
@@ -24,6 +24,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
 import { Option, useOptionStore } from "../../store/optionStore";
+import { useTutorialStore } from "../../store/tutorialStore";
 import LabelWithTooltip from "../sidebar/label-with-tooltip";
 import ActionButton from "./action-button";
 import CustomZoom from "./custom-zoom-button";
@@ -33,6 +34,7 @@ type MoreOptionsProps = {
 };
 
 const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [option, setOption] = useOptionStore((state) => [
     state.option,
     state.setOption,
@@ -45,6 +47,9 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
     state.requestState,
     state.generationType,
   ]);
+  const [isTutorialEnabled, moveNextTutorialStep] = useTutorialStore(
+    (state) => [state.isTutorialEnabled, state.moveNextTutorialStep]
+  );
 
   const currentMessage = messages[currentMessageIndex] as MJMessage | undefined;
   const currentGenerationType = currentMessage?.generationType;
@@ -59,10 +64,20 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
   const isSquare = generationType === "square";
   const isSquareImage =
     currentMessage?.attachment?.width === currentMessage?.attachment?.height;
+
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button variant="outline">
+        <Button
+          id="more-options"
+          variant="outline"
+          onClick={() => {
+            moveNextTutorialStep({
+              elDestination: "div[data-id='more-options']",
+              timeout: 800,
+            });
+          }}
+        >
           {isLoading && (isPan || isZoom || isVary || isSquare) ? (
             <Loader2Icon className="h-4 w-4 animate-spin" />
           ) : (
@@ -71,8 +86,10 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent
+        data-id="more-options"
         align="end"
         sideOffset={20}
+        onFocusOutside={(event) => event.preventDefault()}
         className="h-56 w-screen sm:w-96"
       >
         <Tabs
@@ -108,6 +125,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Zoom Out 2x"
                 dataOption="2x"
                 Icon={ZoomOutIcon}
+                tourAction="moveNext"
                 clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
@@ -117,12 +135,15 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Zoom Out 1.5x"
                 dataOption="1.5x"
                 Icon={ZoomOutIcon}
+                tourAction="moveNext"
                 clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
               <CustomZoom
                 clickHandler={clickHandler}
-                isDisabled={isNotUpscale || isEmpty || isLoading}
+                isDisabled={
+                  isTutorialEnabled || isNotUpscale || isEmpty || isLoading
+                }
               />
               <ActionButton
                 id="square"
@@ -130,6 +151,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Make Square"
                 dataOption="Make Square"
                 Icon={ChevronsLeftRightIcon}
+                tourAction="moveNext"
                 clickHandler={clickHandler}
                 isDisabled={
                   isNotUpscale || isSquareImage || isEmpty || isLoading
@@ -151,6 +173,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan left"
                 dataOption="pan_left"
                 Icon={ChevronLeftSquareIcon}
+                tourAction="moveNext"
                 clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
@@ -160,6 +183,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan right"
                 dataOption="pan_right"
                 Icon={ChevronRightSquareIcon}
+                tourAction="moveNext"
                 clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
@@ -169,6 +193,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan up"
                 dataOption="pan_up"
                 Icon={ChevronUpSquareIcon}
+                tourAction="moveNext"
                 clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
@@ -178,6 +203,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Pan down"
                 dataOption="pan_down"
                 Icon={ChevronDownSquareIcon}
+                tourAction="moveNext"
                 clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
@@ -198,6 +224,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Vary (Strong)"
                 dataOption="Strong"
                 Icon={Wand2Icon}
+                tourAction="moveNext"
                 clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
@@ -207,6 +234,7 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Vary (Subtle)"
                 dataOption="Subtle"
                 Icon={Wand2Icon}
+                tourAction="moveNext"
                 clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
               />
