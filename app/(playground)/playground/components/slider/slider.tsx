@@ -78,6 +78,7 @@ const Slider = ({}: SliderProps) => {
     !isLoading &&
     (isImagine || isVariation || isVary || isZoomOut || isPan || isSquare);
   const aspectRatio = getTwAspectRatio(ratio);
+  console.log("currentMessage :", currentMessage);
 
   const calcNextOffset = () => {
     // @ts-expect-error: swiperRef need to be extended with HTMLElement
@@ -176,24 +177,20 @@ const Slider = ({}: SliderProps) => {
             >
               {message.attachment && index === currentMessageIndex && (
                 <>
-                  <div className="absolute right-0 top-0">
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2">
                     <ControlledZoom
                       isZoomed={isZoomed}
                       onZoomChange={handleZoomChange}
                       zoomMargin={30}
                     >
-                      <img src={message.uri} alt="" className="rounded-md" />
+                      <img
+                        src={message.uri}
+                        alt=""
+                        className={cn("rounded-md", {
+                          invisible: !isZoomed,
+                        })}
+                      />
                     </ControlledZoom>
-                    {!isTutorialEnabled && (
-                      <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={() => setIsZoomed(!isZoomed)}
-                        className="flex-center absolute right-0 top-0 z-50 p-2 opacity-80 hover:opacity-100"
-                      >
-                        <ExpandIcon className="h-4 w-4" />
-                      </motion.button>
-                    )}
                   </div>
                 </>
               )}
@@ -206,6 +203,17 @@ const Slider = ({}: SliderProps) => {
                   "img-dimmed": index !== currentMessageIndex,
                 })}
               />
+
+              {!isTutorialEnabled && index === currentMessageIndex && (
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setIsZoomed(!isZoomed)}
+                  className="flex-center absolute right-0 top-0 z-50 p-2 opacity-80 hover:opacity-100"
+                >
+                  <ExpandIcon className="h-4 w-4" />
+                </motion.button>
+              )}
 
               {showImageGrid &&
                 hasImageGrid &&
