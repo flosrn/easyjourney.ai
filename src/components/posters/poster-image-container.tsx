@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
+import DeleteButton from "~/components/posters/buttons/delete-button";
 import DownloadButton from "~/components/posters/buttons/download-button";
 import ExpandButton from "~/components/posters/buttons/expand-button";
 import ExternalLinkButton from "~/components/posters/buttons/external-link-button";
@@ -15,13 +16,14 @@ type PosterImageContainerProps = Poster & {
 };
 
 const PosterImageContainer = ({
+  id,
   image,
   prompt,
   likes,
-  id,
   width,
   height,
   filename,
+  user,
   children,
 }: PosterImageContainerProps) => (
   <div className="">
@@ -44,6 +46,7 @@ const PosterImageContainer = ({
       <LikeButton id={id} likes={likes} />
       <div className="grid grid-flow-col gap-1">
         <DownloadButton imageUrl={image} filename={filename} />
+        {user && <DeleteButton id={id} userId={user.id} />}
         <ExternalLinkButton imageUrl={image} />
         <ExpandButton />
       </div>

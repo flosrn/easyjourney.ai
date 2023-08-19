@@ -79,7 +79,9 @@ const LikeButton = ({ id, likes, ghost }: LikeButtonProps) => {
       onClick={handleLike}
       whileHover={ghost ? { scale: 1.1 } : {}}
       whileTap={{ scale: 0.9 }}
-      className="space-x-1 rounded-3xl"
+      className={cn("space-x-1 rounded-3xl", {
+        "hover:bg-transparent": ghost,
+      })}
     >
       <HeartIcon
         className={cn("h-5 w-5", {
