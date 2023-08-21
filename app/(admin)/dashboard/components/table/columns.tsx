@@ -48,6 +48,7 @@ export const columns: ColumnDef<Poster>[] = [
             width={80}
             height={80}
             quality={50}
+            unoptimized
             className="h-20 w-20 rounded-md object-cover"
           />
         </div>

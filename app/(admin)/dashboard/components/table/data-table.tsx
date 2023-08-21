@@ -29,7 +29,7 @@ import {
 } from "~/components/ui/table";
 
 import { useDialogStore } from "../../store/dialogStore";
-import PosterInfoDialog from "../dialog/PosterInfoDialog";
+import PosterInfoDialog from "../dialog/poster-info-dialog";
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
 

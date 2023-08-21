@@ -23,7 +23,14 @@ const SideColumn = ({ className }: SidebarProps) => (
                 variant="link"
                 className="justify-start px-2 py-1"
               >
-                <Link href="/dashboard">Home</Link>
+                <Link href="/dashboard">Posters</Link>
+              </Button>
+              <Button
+                variant="link"
+                asChild
+                className="justify-start px-2 py-1"
+              >
+                <Link href="/dashboard/users">Users</Link>
               </Button>
               <Button
                 variant="link"
