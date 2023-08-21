@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import wait from "~/utils/wait";
 import { driver } from "driver.js";
 import JSConfetti from "js-confetti";
+import type { User } from "next-auth";
 
 import { usePromptStore } from "../store/promptStore";
 import { useTutorialStore } from "../store/tutorialStore";
@@ -16,9 +17,13 @@ type DriverInstance = ReturnType<typeof driver>;
 
 type UseTourProps = {
   inputRef?: React.RefObject<HTMLTextAreaElement>;
+  status?: string;
 };
 
-const useTutorial = ({ inputRef }: UseTourProps): DriverInstance | null => {
+const useTutorial = ({
+  inputRef,
+  status,
+}: UseTourProps): DriverInstance | null => {
   const [driverJs, setDriverJs, setIsTutorialEnabled] = useTutorialStore(
     (state) => [state.driverJs, state.setDriverJs, state.setIsTutorialEnabled]
   );
@@ -29,6 +34,7 @@ const useTutorial = ({ inputRef }: UseTourProps): DriverInstance | null => {
   const { handleImagineButtonClick } = useGeneration();
 
   useEffect(() => {
+    if (status === "unauthenticated") return;
     const localTutorial = localStorage.getItem("tutorial");
     if (localTutorial === "false") {
       setIsTutorialEnabled(false);
@@ -273,6 +279,8 @@ const useTutorial = ({ inputRef }: UseTourProps): DriverInstance | null => {
       onCloseClick: () => {
         console.log("onCloseClick");
         driverObj.destroy();
+        setIsTutorialEnabled(false);
+        localStorage.setItem("tutorial", "false");
       },
       onDestroyStarted: (element, step, { config, state }) => {
         const currentStep = step.element;

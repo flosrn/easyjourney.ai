@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import wait from "~/utils/wait";
 import { motion } from "framer-motion";
 import { BrushIcon, Trash2Icon } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 
 import { Separator } from "~/components/ui/separator";
@@ -13,6 +14,7 @@ import FiltersBadge from "./components/badge/filters-badge";
 import ActionButton from "./components/buttons/action-button";
 import ActionButtonsContainer from "./components/buttons/action-buttons-container";
 import FiltersDialog from "./components/dialog/filters-dialog";
+import LoginDialog from "./components/dialog/login-dialog";
 import ImageContainer from "./components/image/image-container";
 import ImageContainerGrid from "./components/image/image-container-grid";
 import TextareaPrompt from "./components/input/textarea-prompt";
@@ -25,6 +27,8 @@ import { useMidjourneyStore } from "./store/midjourneyStore";
 import "driver.js/dist/driver.css";
 
 const MainColumn = () => {
+  const { status } = useSession();
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [{ isLoading }] = useMidjourneyStore((state) => [state.requestState]);
   const { generationMutation } = useGeneration();
   const {
@@ -35,7 +39,7 @@ const MainColumn = () => {
     handleDisableSelectors,
   } = useSelectors();
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  useTutorial({ inputRef });
+  useTutorial({ inputRef, status });
 
   const handleGenerate = async (option?: string, newPrompt?: string) => {
     if (promptValue.length <= 1) {
@@ -47,6 +51,14 @@ const MainColumn = () => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     await generationMutation.mutateAsync({ option, newPrompt });
   };
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      setTimeout(() => {
+        setIsDialogOpen(true);
+      }, 3000);
+    }
+  }, [status]);
 
   return (
     <main className="relative flex flex-col overflow-x-hidden md:border-l">
@@ -107,6 +119,7 @@ const MainColumn = () => {
           </div>
         </div>
       </div>
+      <LoginDialog isOpen={isDialogOpen} openHandler={setIsDialogOpen} />
       <FiltersDialog />
       <Toaster position="bottom-right" />
     </main>

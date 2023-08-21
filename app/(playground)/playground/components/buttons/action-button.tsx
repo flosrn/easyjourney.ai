@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import wait from "~/utils/wait";
 import type { LucideIcon } from "lucide-react";
 import { Loader2Icon } from "lucide-react";
 import type { GenerationType, MJMessage } from "midjourney";
+import { useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
 
 import type { ButtonVariant } from "~/components/ui/button";
@@ -44,6 +47,8 @@ const ActionButton = ({
   dataOptionValue,
   className,
 }: ActionButtonProps) => {
+  const { data: session } = useSession();
+  const router = useRouter();
   const [option, setOption] = useState<string>("");
   const [messages, currentMessageIndex, setCurrentMessageIndex] =
     useMessageStore((state) => [
@@ -66,8 +71,18 @@ const ActionButton = ({
   ]);
   const [driverJs] = useTutorialStore((state) => [state.driverJs]);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    const isImagineButton = type === "imagine";
+    const isUpscaleButton = type === "upscale";
+    const isVariationButton = type === "variation";
+    const noSelectedImage = selectedImage === null;
+    if (isImagineButton && !session?.user) {
+      toast.error("Please login first.");
+      await wait(2000);
+      router.push(`/api/auth/signin?callbackUrl=/playground`);
+    }
+
     const currentMessage = messages[currentMessageIndex] as
       | MJMessage
       | undefined;
@@ -78,9 +93,6 @@ const ActionButton = ({
     const isVariation = currentGenerationType === "variation";
     const isZoomOut = currentGenerationType === "zoomOut";
     const isVary = currentGenerationType === "vary";
-    const isUpscaleButton = type === "upscale";
-    const isVariationButton = type === "variation";
-    const noSelectedImage = selectedImage === null;
     const showWarning =
       (isImagine || isVariation || isVary || isZoomOut) && noSelectedImage;
     if (showWarning && type && (isUpscaleButton || isVariationButton)) {
