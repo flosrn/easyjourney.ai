@@ -22,7 +22,7 @@ export default function PricingCard({
   disabled?: boolean;
 }) {
   const isPro = plan === "PRO";
-  const isElite = plan === "ELITE";
+  const isUltimate = plan === "ULTIMATE";
   return (
     <div
       className={cn(
@@ -32,7 +32,7 @@ export default function PricingCard({
         }
       )}
     >
-      {isElite && (
+      {isUltimate && (
         <div className="absolute right-2 top-1">
           <Badge variant="outline">Coming soon</Badge>
         </div>

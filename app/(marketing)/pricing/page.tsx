@@ -34,9 +34,8 @@ const pricingData = [
         <strong className="text-gradient-hyper animate-text">fast mode</strong>
       </p>,
       <p key="2">
-        Create up to <strong>5</strong> boards
+        Create up to <strong>3</strong> boards
       </p>,
-      <p key="4">Private posters</p>,
       <p key="5">Private boards</p>,
       <p key="6">Priority support</p>,
       <p key="3" datatype="soon">
@@ -63,7 +62,6 @@ const pricingData = [
       <p key="3">
         Collaborative boards with <strong>unlimited members</strong>
       </p>,
-      <p key="4">Private posters</p>,
       <p key="5">Private boards</p>,
       <p key="6">
         Generate posters with <strong>AI</strong>
