@@ -13,6 +13,7 @@ import type { ButtonVariant } from "~/components/ui/button";
 import { Button } from "~/components/ui/button";
 
 import { cn } from "~/lib/classNames";
+import { login } from "~/lib/login";
 
 import { useMessageStore } from "../../store/messageStore";
 import { useMidjourneyStore } from "../../store/midjourneyStore";
@@ -80,7 +81,7 @@ const ActionButton = ({
     if (isImagineButton && !session?.user) {
       toast.error("Please login first.");
       await wait(2000);
-      router.push(`/api/auth/signin?callbackUrl=/playground`);
+      await login();
     }
 
     const currentMessage = messages[currentMessageIndex] as

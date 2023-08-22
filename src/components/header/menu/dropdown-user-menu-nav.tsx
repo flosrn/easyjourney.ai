@@ -6,6 +6,7 @@ import getFirstLetters from "~/utils/getFirstLetter";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 
+import LoginDialog from "~/components/dialog/login-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
 import {
@@ -19,7 +20,6 @@ import {
 } from "~/components/ui/dropdown-menu";
 import { Switch } from "~/components/ui/switch";
 
-import { login } from "~/lib/login";
 import { siteConfig } from "~/config/site";
 
 type DropdownUserMenuNavProps = {
@@ -39,9 +39,9 @@ const DropdownUserMenuNav = ({
 
   if (session === null) {
     return (
-      <Button onClick={login} variant="outline">
-        Login
-      </Button>
+      <LoginDialog>
+        <Button variant="outline">Login</Button>
+      </LoginDialog>
     );
   }
 

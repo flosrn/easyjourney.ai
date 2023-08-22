@@ -12,5 +12,5 @@ export async function login() {
     );
     return;
   }
-  await signIn();
+  await signIn("google", { callbackUrl: "/playground" });
 }

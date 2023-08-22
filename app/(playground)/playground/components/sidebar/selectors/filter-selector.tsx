@@ -113,9 +113,7 @@ export function FilterSelector({ ...props }: ModelSelectorProps) {
         <PopoverTrigger asChild>
           <Button
             id="filter-selector"
-            onClick={() => {
-              isTutorialEnabled && driverJs?.destroy();
-            }}
+            onClick={() => isTutorialEnabled && driverJs?.destroy()}
             variant="outline"
             role="combobox"
             aria-expanded={open}

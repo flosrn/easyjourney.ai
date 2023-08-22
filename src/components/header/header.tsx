@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
+import CreateButton from "~/components/header/create-button";
 import HeaderLogo from "~/components/header/header-logo";
 import { DesktopNav } from "~/components/header/menu/desktop-nav";
 import DropdownUserMenuNav from "~/components/header/menu/dropdown-user-menu-nav";
@@ -57,11 +58,7 @@ const Header = ({ variant = "default" }: HeaderProps) => {
             )}
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
-            {isDefaultVariant && (
-              <Button asChild>
-                <Link href="/playground">Create</Link>
-              </Button>
-            )}
+            {isDefaultVariant && <CreateButton text="Create" />}
             <div
               className={cn("flex items-center space-x-2", {
                 "md:space-x-4": isDefaultVariant,

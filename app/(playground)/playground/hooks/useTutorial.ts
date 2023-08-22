@@ -40,6 +40,9 @@ const useTutorial = ({
       setIsTutorialEnabled(false);
       return;
     }
+    if (localTutorial === "true") {
+      setIsTutorialEnabled(true);
+    }
     if (localTutorial === null) {
       setIsTutorialEnabled(true);
     }

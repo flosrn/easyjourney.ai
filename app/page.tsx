@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 import FooterWithNewsletter from "~/components/footer/footer-with-newsletter";
+import CreateButton from "~/components/header/create-button";
 import Header from "~/components/header/header";
 import Image3D from "~/components/hero/image-3d";
 import ScrollToSection from "~/components/hero/scroll-to-section";
@@ -140,9 +141,7 @@ export default async function IndexPage() {
                     required
                   </p>
                   <div className="pt-2 md:pt-6">
-                    <Button asChild>
-                      <Link href="/playground">Create Art</Link>
-                    </Button>
+                    <CreateButton text="Get Started" />
                   </div>
                 </div>
               </div>
