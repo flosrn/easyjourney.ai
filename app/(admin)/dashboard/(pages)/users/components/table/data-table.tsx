@@ -28,10 +28,10 @@ import {
   TableRow,
 } from "~/components/ui/table";
 
-import { useDialogStore } from "../../store/dialogStore";
-import PosterInfoDialog from "../dialog/poster-info-dialog";
-import { DataTablePagination } from "./data-table-pagination";
-import { DataTableToolbar } from "./data-table-toolbar";
+import PosterInfoDialog from "../../../../components/dialog/poster-info-dialog";
+import { DataTablePagination } from "../../../../components/table/data-table-pagination";
+import { DataTableToolbar } from "../../../../components/table/data-table-toolbar";
+import { useDialogStore } from "../../../../store/dialogStore";
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
@@ -46,14 +46,14 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
-    title: false,
-    model: false,
-    quality: false,
-    ratio: false,
-    style: false,
-    stylize: false,
-    chaos: false,
-    isPublic: false,
+    // username: false,
+    // model: false,
+    // quality: false,
+    // ratio: false,
+    // style: false,
+    // stylize: false,
+    // chaos: false,
+    // isPublic: false,
   });
   const [rowSelection, setRowSelection] = useState({});
   const [isDialogOpen, setIsDialogOpen] = useDialogStore((state) => [
@@ -82,7 +82,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} />
+      <DataTableToolbar table={table} column="name" />
       <div className="rounded-md border">
         <Table>
           <TableHeader>

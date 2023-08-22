@@ -17,7 +17,7 @@ type SidebarProps = React.HTMLAttributes<HTMLDivElement> & {};
 
 const SideColumn = ({ className }: SidebarProps) => (
   <ScrollArea className={cn("w-full", className)}>
-    <div className="z-10 mt-20 space-y-4 bg-background p-4 md:mt-0 md:p-6">
+    <div className="z-10 mt-20 space-y-4 bg-background p-4 md:mt-2 md:p-6">
       <LabelWithTooltip
         title="Display Mode"
         description="Choose the interface that best suits you. You can choose between a stack or grid layout."

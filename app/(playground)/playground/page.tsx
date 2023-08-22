@@ -8,7 +8,7 @@ import { DisplayMode } from "./store/displayStore";
 
 export default async function CreatePage() {
   return (
-    <div className="h-screen bg-background pt-[57px]">
+    <div className="h-screen bg-background pt-[65px]">
       <Tabs
         defaultValue={DisplayMode.STACK}
         className="md:grid md:h-full md:grid-cols-[265px,minmax(auto,1fr)]"

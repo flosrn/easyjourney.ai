@@ -15,6 +15,7 @@ import type { Hero, MegaMenu, NavItem } from "~/types/nav";
 type SiteConfig = Hero & {
   megaMenu: MegaMenu[];
   userMenu: NavItem[][];
+  adminMenu: NavItem[];
 };
 
 const megaMenu: MegaMenu[] = [
@@ -123,7 +124,7 @@ const userMenu: NavItem[][] = [
   [
     {
       title: "Dashboard",
-      href: "/dashboard",
+      href: "/dashboard/posters",
       icon: LayoutDashboardIcon,
       onClick: () => null,
       adminOnly: true,
@@ -137,7 +138,7 @@ const userMenu: NavItem[][] = [
     },
     {
       title: "Payment history",
-      href: "/dashboard/transactions",
+      href: "/settings/transactions",
       icon: HistoryIcon,
       disabled: true,
     },
@@ -164,6 +165,29 @@ const userMenu: NavItem[][] = [
   ],
 ];
 
+const adminMenu: NavItem[] = [
+  {
+    title: "Posters",
+    href: "/dashboard/posters",
+    icon: SettingsIcon,
+  },
+  {
+    title: "Users",
+    href: "/dashboard/users",
+    icon: SettingsIcon,
+  },
+  {
+    title: "Search Posters",
+    href: "/dashboard/search-posters",
+    icon: SettingsIcon,
+  },
+  {
+    title: "Fetch",
+    href: "/dashboard/fetch",
+    icon: SettingsIcon,
+  },
+];
+
 export const siteConfig: SiteConfig = {
   title: "easyjourney.ai",
   description:
@@ -171,4 +195,5 @@ export const siteConfig: SiteConfig = {
   url: "https://easyjourney.ai",
   megaMenu,
   userMenu,
+  adminMenu,
 };

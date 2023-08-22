@@ -6,9 +6,9 @@ import type { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "~/components/ui/checkbox";
 
-import { dateOptions } from "../../data/data";
-import { DataTableColumnHeader } from "./data-table-column-header";
-import { DataTableRowActions } from "./data-table-row-actions";
+import { DataTableColumnHeader } from "../../../components/table/data-table-column-header";
+import { DataTableRowActions } from "../../../components/table/data-table-row-actions";
+import { dateOptions } from "../../../data/data";
 
 export const columns: ColumnDef<Poster>[] = [
   {

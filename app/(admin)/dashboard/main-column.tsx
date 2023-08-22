@@ -4,6 +4,7 @@ import React from "react";
 import { useSession } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 
+import { ScrollArea } from "~/components/ui/scroll-area";
 import { Separator } from "~/components/ui/separator";
 
 type MainColumnProps = {
