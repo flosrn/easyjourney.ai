@@ -46,9 +46,12 @@ const Slider = ({}: SliderProps) => {
     state.setIsTutorialEnabled,
   ]);
 
+  console.log("isZoomed :", isZoomed);
   const handleZoomChange = useCallback((shouldZoom: boolean) => {
+    console.log("shouldZoom :", shouldZoom);
     setIsZoomed(shouldZoom);
   }, []);
+
   const [messages, currentMessageIndex, setCurrentMessageIndex] =
     useMessageStore((state) => [
       state.messages,
@@ -200,7 +203,7 @@ const Slider = ({}: SliderProps) => {
                         src={message.uri}
                         alt=""
                         className={cn("rounded-md", {
-                          // invisible: !isZoomed,
+                          invisible: !isZoomed,
                         })}
                       />
                     </ControlledZoom>
@@ -221,7 +224,7 @@ const Slider = ({}: SliderProps) => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  onClick={() => setIsZoomed(!isZoomed)}
+                  onClick={() => setIsZoomed((prev) => !prev)}
                   className="flex-center absolute right-0 top-0 z-50 p-2 opacity-80 hover:opacity-100"
                 >
                   <ExpandIcon className="h-4 w-4" />
