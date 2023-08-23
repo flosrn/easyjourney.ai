@@ -46,9 +46,7 @@ const Slider = ({}: SliderProps) => {
     state.setIsTutorialEnabled,
   ]);
 
-  console.log("isZoomed :", isZoomed);
   const handleZoomChange = useCallback((shouldZoom: boolean) => {
-    console.log("shouldZoom :", shouldZoom);
     setIsZoomed(shouldZoom);
   }, []);
 
@@ -220,16 +218,18 @@ const Slider = ({}: SliderProps) => {
                 })}
               />
 
-              {!isTutorialEnabled && index === currentMessageIndex && (
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setIsZoomed((prev) => !prev)}
-                  className="flex-center absolute right-0 top-0 z-50 p-2 opacity-80 hover:opacity-100"
-                >
-                  <ExpandIcon className="h-4 w-4" />
-                </motion.button>
-              )}
+              {/* https://github.com/rpearce/react-medium-image-zoom/issues/429 */}
+
+              {/*{!isTutorialEnabled && index === currentMessageIndex && (*/}
+              {/*  <motion.button*/}
+              {/*    whileHover={{ scale: 1.1 }}*/}
+              {/*    whileTap={{ scale: 0.9 }}*/}
+              {/*    onClick={() => setIsZoomed((prev) => !prev)}*/}
+              {/*    className="flex-center absolute right-0 top-0 z-50 p-2 opacity-80 hover:opacity-100"*/}
+              {/*  >*/}
+              {/*    <ExpandIcon className="h-4 w-4" />*/}
+              {/*  </motion.button>*/}
+              {/*)}*/}
 
               {showImageGrid &&
                 hasImageGrid &&
