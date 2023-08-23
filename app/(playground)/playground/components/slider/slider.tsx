@@ -34,13 +34,17 @@ type SliderProps = {};
 const Slider = ({}: SliderProps) => {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [showImageGrid, setShowImageGrid] = useState<boolean>(false);
-  const [driverJs, moveNextTutorialStep, isTutorialEnabled] = useTutorialStore(
-    (state) => [
-      state.driverJs,
-      state.moveNextTutorialStep,
-      state.isTutorialEnabled,
-    ]
-  );
+  const [
+    driverJs,
+    moveNextTutorialStep,
+    isTutorialEnabled,
+    setIsTutorialEnabled,
+  ] = useTutorialStore((state) => [
+    state.driverJs,
+    state.moveNextTutorialStep,
+    state.isTutorialEnabled,
+    state.setIsTutorialEnabled,
+  ]);
 
   const handleZoomChange = useCallback((shouldZoom: boolean) => {
     setIsZoomed(shouldZoom);
@@ -78,7 +82,16 @@ const Slider = ({}: SliderProps) => {
     !isLoading &&
     (isImagine || isVariation || isVary || isZoomOut || isPan || isSquare);
   const aspectRatio = getTwAspectRatio(ratio);
-  console.log("currentMessage :", currentMessage);
+
+  // useEffect(() => {
+  //   setIsTutorialEnabled(true);
+  //   console.log("isImagine :", isImagine);
+  //   console.log("currentGenerationType :", currentGenerationType);
+  //   moveNextTutorialStep({
+  //     elDestination: ".swiper-slide-visible > #poster-imagine",
+  //     timeout: 2000,
+  //   });
+  // }, [isImagine]);
 
   const calcNextOffset = () => {
     // @ts-expect-error: swiperRef need to be extended with HTMLElement
@@ -187,7 +200,7 @@ const Slider = ({}: SliderProps) => {
                         src={message.uri}
                         alt=""
                         className={cn("rounded-md", {
-                          invisible: !isZoomed,
+                          // invisible: !isZoomed,
                         })}
                       />
                     </ControlledZoom>

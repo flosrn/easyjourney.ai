@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import wait from "~/utils/wait";
 import { driver } from "driver.js";
 import JSConfetti from "js-confetti";
-import type { User } from "next-auth";
 
 import { usePromptStore } from "../store/promptStore";
 import { useTutorialStore } from "../store/tutorialStore";
