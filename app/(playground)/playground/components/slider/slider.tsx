@@ -8,6 +8,7 @@ import {
   ExpandIcon,
 } from "lucide-react";
 import type { MJMessage } from "midjourney";
+import type { ControlledProps } from "react-medium-image-zoom";
 import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 import { EffectCreative, Navigation, Parallax } from "swiper/modules";
 import type { SwiperRef } from "swiper/react";
@@ -141,6 +142,17 @@ const Slider = ({}: SliderProps) => {
     }
   }, [hasImageGrid]);
 
+  const SafeControlledZoom = (
+    props: React.JSX.IntrinsicAttributes & ControlledProps
+  ) => {
+    try {
+      return <ControlledZoom {...props}>{props.children}</ControlledZoom>;
+    } catch (error) {
+      console.error("Erreur avec ControlledZoom :", error);
+      return null;
+    }
+  };
+
   return (
     <div className="posters-slider w-full">
       <span className="flex-center mb-2 h-7 text-center text-xs sm:text-sm md:h-6">
@@ -182,7 +194,7 @@ const Slider = ({}: SliderProps) => {
               {message.attachment && index === currentMessageIndex && (
                 <>
                   <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                    <ControlledZoom
+                    <SafeControlledZoom
                       isZoomed={isZoomed}
                       onZoomChange={handleZoomChange}
                       zoomMargin={30}
@@ -194,7 +206,7 @@ const Slider = ({}: SliderProps) => {
                           invisible: !isZoomed,
                         })}
                       />
-                    </ControlledZoom>
+                    </SafeControlledZoom>
                   </div>
                 </>
               )}
