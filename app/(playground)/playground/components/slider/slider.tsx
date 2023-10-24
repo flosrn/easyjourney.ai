@@ -142,7 +142,8 @@ const Slider = ({}: SliderProps) => {
     }
   }, [hasImageGrid]);
 
-  function fallbackRender({ error, resetErrorBoundary }) {
+  // @ts-expect-error some dumb error
+  function fallbackRender({ error }) {
     // Call resetErrorBoundary() to reset the error boundary and retry the render.
 
     return (
