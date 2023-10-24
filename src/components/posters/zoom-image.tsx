@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useCallback } from "react";
+import { useZoomStore } from "~/store/zoomStore";
+import { ErrorBoundary } from "react-error-boundary";
 import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 
 import "react-medium-image-zoom/dist/styles.css";
-
-import { useZoomStore } from "~/store/zoomStore";
 
 type ZoomImageProps = {
   imageUrl: string;
@@ -26,15 +26,22 @@ const ZoomImage = ({ imageUrl, alt }: ZoomImageProps) => {
   );
 
   return (
-    <div className="absolute left-0 top-0">
-      <ControlledZoom
-        isZoomed={isZoomOpen}
-        onZoomChange={handleZoomChange}
-        zoomMargin={30}
-      >
-        <img src={imageUrl} alt={alt} />
-      </ControlledZoom>
-    </div>
+    <ErrorBoundary
+      fallbackRender={({ resetErrorBoundary }) => {
+        resetErrorBoundary();
+        return null;
+      }}
+    >
+      <div className="absolute left-0 top-0">
+        <ControlledZoom
+          isZoomed={isZoomOpen}
+          onZoomChange={handleZoomChange}
+          zoomMargin={30}
+        >
+          <img src={imageUrl} alt={alt} />
+        </ControlledZoom>
+      </div>
+    </ErrorBoundary>
   );
 };
 
