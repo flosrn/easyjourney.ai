@@ -35,16 +35,16 @@ type Action =
       toast: ToasterToast;
     }
   | {
+      type: ActionType["UPDATE_TOAST"];
+      toast: Partial<ToasterToast>;
+    }
+  | {
       type: ActionType["DISMISS_TOAST"];
       toastId?: ToasterToast["id"];
     }
   | {
       type: ActionType["REMOVE_TOAST"];
       toastId?: ToasterToast["id"];
-    }
-  | {
-      type: ActionType["UPDATE_TOAST"];
-      toast: Partial<ToasterToast>;
     };
 
 type State = {
@@ -122,7 +122,6 @@ export const reducer = (state: State, action: Action): State => {
         ...state,
         toasts: state.toasts.filter((t) => t.id !== action.toastId),
       };
-
     default:
       return state;
   }

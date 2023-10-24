@@ -7,13 +7,12 @@ import { cn } from "~/lib/classNames";
 export type ButtonVariant =
   | "default"
   | "destructive"
-  | "error"
-  | "ghost"
-  | "link"
   | "outline"
   | "secondary"
   | "success"
-  | null;
+  | "error"
+  | "ghost"
+  | "link";
 
 const buttonVariants = cva(
   "inline-flex select-none items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -29,14 +28,14 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         success: "bg-success text-success-foreground hover:bg-success/90",
         error: "bg-error text-error-foreground hover:bg-error/90",
-        link: "text-muted-foreground underline-offset-4 hover:underline",
         ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2",
         xs: "h-9 rounded-md px-2 text-xs",
         sm: "h-9 rounded-md px-3",
-        lg: "h-12 rounded-md px-8",
+        lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
       },
     },
@@ -47,10 +46,11 @@ const buttonVariants = cva(
   }
 );
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  };
+export type ButtonProps = {
+  asChild?: boolean;
+  variant?: ButtonVariant;
+} & React.ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants>;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
