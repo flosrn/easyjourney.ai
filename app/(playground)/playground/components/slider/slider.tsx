@@ -35,7 +35,7 @@ type SliderProps = {};
 const Slider = ({}: SliderProps) => {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [showImageGrid, setShowImageGrid] = useState<boolean>(false);
-  const [errorOccurred, setErrorOccurred] = useState(false);
+  const [errorCount, setErrorCount] = useState(0);
   const [
     driverJs,
     moveNextTutorialStep,
@@ -144,11 +144,10 @@ const Slider = ({}: SliderProps) => {
   }, [hasImageGrid]);
 
   useEffect(() => {
-    console.log("errorOccurred :", errorOccurred);
-    if (errorOccurred) {
-      setErrorOccurred(false);
+    if (errorCount > 0 && errorCount < 5) {
+      setErrorCount(0);
     }
-  }, [errorOccurred]);
+  }, [errorCount]);
 
   return (
     <div className="posters-slider w-full">
@@ -191,7 +190,7 @@ const Slider = ({}: SliderProps) => {
               {message.attachment && index === currentMessageIndex && (
                 <ErrorBoundary
                   fallbackRender={() => {
-                    setErrorOccurred(true);
+                    setErrorCount((prevCount) => prevCount + 1);
                     return null;
                   }}
                 >
