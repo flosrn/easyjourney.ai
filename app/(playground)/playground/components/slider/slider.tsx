@@ -142,18 +142,6 @@ const Slider = ({}: SliderProps) => {
     }
   }, [hasImageGrid]);
 
-  // @ts-expect-error some dumb error
-  function fallbackRender({ error }) {
-    // Call resetErrorBoundary() to reset the error boundary and retry the render.
-
-    return (
-      <div role="alert">
-        <p>Something went wrong:</p>
-        <pre style={{ color: "red" }}>{error.message}</pre>
-      </div>
-    );
-  }
-
   return (
     <div className="posters-slider w-full">
       <span className="flex-center mb-2 h-7 text-center text-xs sm:text-sm md:h-6">
@@ -193,31 +181,28 @@ const Slider = ({}: SliderProps) => {
               )}
             >
               {message.attachment && index === currentMessageIndex && (
-                <>
-                  <ErrorBoundary
-                    fallbackRender={fallbackRender}
-                    onReset={(details) => {
-                      console.log("details :", details);
-                      // Reset the state of your app so the error doesn't happen again
-                    }}
-                  >
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                      <ControlledZoom
-                        isZoomed={isZoomed}
-                        onZoomChange={handleZoomChange}
-                        zoomMargin={30}
-                      >
-                        <img
-                          src={message.uri}
-                          alt=""
-                          className={cn("rounded-md", {
-                            invisible: !isZoomed,
-                          })}
-                        />
-                      </ControlledZoom>
-                    </div>
-                  </ErrorBoundary>
-                </>
+                <ErrorBoundary
+                  fallbackRender={({ resetErrorBoundary }) => {
+                    resetErrorBoundary(); // Réinitialise l'Error Boundary immédiatement
+                    return null; // Ne rends rien
+                  }}
+                >
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2">
+                    <ControlledZoom
+                      isZoomed={isZoomed}
+                      onZoomChange={handleZoomChange}
+                      zoomMargin={30}
+                    >
+                      <img
+                        src={message.uri}
+                        alt=""
+                        className={cn("rounded-md", {
+                          invisible: !isZoomed,
+                        })}
+                      />
+                    </ControlledZoom>
+                  </div>
+                </ErrorBoundary>
               )}
 
               <img
