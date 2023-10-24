@@ -35,7 +35,6 @@ type SliderProps = {};
 const Slider = ({}: SliderProps) => {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [showImageGrid, setShowImageGrid] = useState<boolean>(false);
-  const [errorCount, setErrorCount] = useState(0);
   const [
     driverJs,
     moveNextTutorialStep,
@@ -143,12 +142,6 @@ const Slider = ({}: SliderProps) => {
     }
   }, [hasImageGrid]);
 
-  useEffect(() => {
-    if (errorCount > 0 && errorCount < 5) {
-      setErrorCount(0);
-    }
-  }, [errorCount]);
-
   return (
     <div className="posters-slider w-full">
       <span className="flex-center mb-2 h-7 text-center text-xs sm:text-sm md:h-6">
@@ -188,28 +181,30 @@ const Slider = ({}: SliderProps) => {
               )}
             >
               {message.attachment && index === currentMessageIndex && (
-                <ErrorBoundary
-                  fallbackRender={() => {
-                    setErrorCount((prevCount) => prevCount + 1);
-                    return null;
-                  }}
-                >
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                    <ControlledZoom
-                      isZoomed={isZoomed}
-                      onZoomChange={handleZoomChange}
-                      zoomMargin={30}
-                    >
-                      <img
-                        src={message.uri}
-                        alt=""
-                        className={cn("rounded-md", {
-                          invisible: !isZoomed,
-                        })}
-                      />
-                    </ControlledZoom>
-                  </div>
-                </ErrorBoundary>
+                <>
+                  <ErrorBoundary
+                    fallbackRender={({ resetErrorBoundary }) => {
+                      resetErrorBoundary(); // Réinitialise l'Error Boundary immédiatement
+                      return null; // Ne rends rien
+                    }}
+                  >
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2">
+                      <ControlledZoom
+                        isZoomed={isZoomed}
+                        onZoomChange={handleZoomChange}
+                        zoomMargin={30}
+                      >
+                        <img
+                          src={message.uri}
+                          alt=""
+                          className={cn("rounded-md", {
+                            invisible: !isZoomed,
+                          })}
+                        />
+                      </ControlledZoom>
+                    </div>
+                  </ErrorBoundary>
+                </>
               )}
 
               <img
