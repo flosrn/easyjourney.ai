@@ -8,7 +8,7 @@ import {
   ExpandIcon,
 } from "lucide-react";
 import type { MJMessage } from "midjourney";
-import type { ControlledProps } from "react-medium-image-zoom";
+import { ErrorBoundary } from "react-error-boundary";
 import { Controlled as ControlledZoom } from "react-medium-image-zoom";
 import { EffectCreative, Navigation, Parallax } from "swiper/modules";
 import type { SwiperRef } from "swiper/react";
@@ -142,16 +142,16 @@ const Slider = ({}: SliderProps) => {
     }
   }, [hasImageGrid]);
 
-  const SafeControlledZoom = (
-    props: React.JSX.IntrinsicAttributes & ControlledProps
-  ) => {
-    try {
-      return <ControlledZoom {...props}>{props.children}</ControlledZoom>;
-    } catch (error) {
-      console.error("Erreur avec ControlledZoom :", error);
-      return null;
-    }
-  };
+  function fallbackRender({ error, resetErrorBoundary }) {
+    // Call resetErrorBoundary() to reset the error boundary and retry the render.
+
+    return (
+      <div role="alert">
+        <p>Something went wrong:</p>
+        <pre style={{ color: "red" }}>{error.message}</pre>
+      </div>
+    );
+  }
 
   return (
     <div className="posters-slider w-full">
@@ -193,21 +193,29 @@ const Slider = ({}: SliderProps) => {
             >
               {message.attachment && index === currentMessageIndex && (
                 <>
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                    <SafeControlledZoom
-                      isZoomed={isZoomed}
-                      onZoomChange={handleZoomChange}
-                      zoomMargin={30}
-                    >
-                      <img
-                        src={message.uri}
-                        alt=""
-                        className={cn("rounded-md", {
-                          invisible: !isZoomed,
-                        })}
-                      />
-                    </SafeControlledZoom>
-                  </div>
+                  <ErrorBoundary
+                    fallbackRender={fallbackRender}
+                    onReset={(details) => {
+                      console.log("details :", details);
+                      // Reset the state of your app so the error doesn't happen again
+                    }}
+                  >
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2">
+                      <ControlledZoom
+                        isZoomed={isZoomed}
+                        onZoomChange={handleZoomChange}
+                        zoomMargin={30}
+                      >
+                        <img
+                          src={message.uri}
+                          alt=""
+                          className={cn("rounded-md", {
+                            invisible: !isZoomed,
+                          })}
+                        />
+                      </ControlledZoom>
+                    </div>
+                  </ErrorBoundary>
                 </>
               )}
 
