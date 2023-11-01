@@ -5,6 +5,7 @@ export enum Option {
   "ZOOM" = "zoom",
   "PAN" = "pan",
   "VARY" = "vary",
+  "UPSCALE" = "upscale",
 }
 
 type OptionState = {

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import {
   ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
-  ExpandIcon,
+  Maximize2Icon,
 } from "lucide-react";
 import type { MJMessage } from "midjourney";
 import { ErrorBoundary } from "react-error-boundary";
@@ -184,8 +184,8 @@ const Slider = ({}: SliderProps) => {
                 <>
                   <ErrorBoundary
                     fallbackRender={({ resetErrorBoundary }) => {
-                      resetErrorBoundary(); // Réinitialise l'Error Boundary immédiatement
-                      return null; // Ne rends rien
+                      resetErrorBoundary();
+                      return null;
                     }}
                   >
                     <div className="absolute right-0 top-1/2 -translate-y-1/2">
@@ -225,7 +225,7 @@ const Slider = ({}: SliderProps) => {
                   onClick={() => setIsZoomed((prev) => !prev)}
                   className="flex-center absolute right-0 top-0 z-50 p-2 opacity-80 hover:opacity-100"
                 >
-                  <ExpandIcon className="h-4 w-4" />
+                  <Maximize2Icon className="h-4 w-4" />
                 </motion.button>
               )}
 

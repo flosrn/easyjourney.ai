@@ -4,7 +4,9 @@ import {
   ChevronLeftSquareIcon,
   ChevronRightSquareIcon,
   ChevronsLeftRightIcon,
+  ChevronsUpIcon,
   ChevronUpSquareIcon,
+  ExpandIcon,
   Loader2Icon,
   MoreHorizontalIcon,
   SearchIcon,
@@ -93,17 +95,21 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
         align="end"
         sideOffset={20}
         onFocusOutside={(event) => event.preventDefault()}
-        className="h-56 w-screen sm:w-96"
+        className="h-56 w-screen sm:w-[450px]"
       >
         <Tabs
           value={option}
           onValueChange={(opt) => setOption(opt as Option)}
           className="flex-1"
         >
-          <TabsList className="grid grid-cols-3">
+          <TabsList className="grid grid-cols-4">
             <TabsTrigger value={Option.ZOOM} className="space-x-2">
               <SearchIcon className="h-4 w-4" />
               <span>Zoom</span>
+            </TabsTrigger>
+            <TabsTrigger value={Option.UPSCALE} className="space-x-2">
+              <ExpandIcon className="h-4 w-4" />
+              <span>Upscale</span>
             </TabsTrigger>
             <TabsTrigger value={Option.PAN} className="space-x-2">
               <ChevronLeftSquareIcon className="h-4 w-4" />
@@ -237,6 +243,36 @@ const MoreOptions = ({ clickHandler }: MoreOptionsProps) => {
                 label="Vary (Subtle)"
                 dataOption="Subtle"
                 Icon={Wand2Icon}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
+                isDisabled={isNotUpscale || isEmpty || isLoading}
+              />
+            </div>
+          </TabsContent>
+          <TabsContent value={Option.UPSCALE}>
+            <LabelWithTooltip
+              title="Upscale options"
+              size="xs"
+              description="Upscale your image using midjourney."
+              className="py-4"
+            />
+            <div className="grid grid-cols-2 gap-1">
+              <ActionButton
+                id="upscale-x2"
+                type="upscale"
+                label="Upscale (x2)"
+                dataOption="x2"
+                Icon={ExpandIcon}
+                tourAction="moveNext"
+                clickHandler={clickHandler}
+                isDisabled={isNotUpscale || isEmpty || isLoading}
+              />
+              <ActionButton
+                id="upscale-x4"
+                type="upscale"
+                label="Upscale (x4)"
+                dataOption="x4"
+                Icon={ChevronsUpIcon}
                 tourAction="moveNext"
                 clickHandler={clickHandler}
                 isDisabled={isNotUpscale || isEmpty || isLoading}
