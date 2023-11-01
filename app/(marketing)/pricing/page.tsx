@@ -36,10 +36,13 @@ const pricingData = [
       <p key="2">
         Create up to <strong>3</strong> boards
       </p>,
-      <p key="5">Private boards</p>,
-      <p key="6">Priority support</p>,
-      <p key="3" datatype="soon">
-        Collaborative boards up to <strong>3</strong> members
+      <p key="3">Private boards</p>,
+      <p key="4">Priority support</p>,
+      <p key="5" datatype="soon">
+        Prompts history
+      </p>,
+      <p key="6" datatype="soon">
+        Collaborative boards up to <strong>2</strong> members
       </p>,
       <p key="7">More coming soon...</p>,
     ],
