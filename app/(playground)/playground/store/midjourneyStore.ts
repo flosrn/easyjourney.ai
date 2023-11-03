@@ -12,6 +12,7 @@ type MidjourneyState = {
   requestState: RequestState;
   selectedImage: number | null;
   msg: string;
+  promptHistoryId?: number;
 };
 
 type MidjourneyAction = {
@@ -19,6 +20,7 @@ type MidjourneyAction = {
   setRequestState: (state: RequestState) => void;
   setSelectedImage: (image: number | null) => void;
   setMsg: (msg: string) => void;
+  setPromptHistoryId: (id: number | undefined) => void;
 };
 
 export const useMidjourneyStore = create<MidjourneyAction & MidjourneyState>()(
@@ -31,6 +33,7 @@ export const useMidjourneyStore = create<MidjourneyAction & MidjourneyState>()(
     },
     selectedImage: null,
     msg: "",
+    promptHistoryId: undefined,
     setGenerationType: (type) => {
       set({ generationType: type });
     },
@@ -47,6 +50,9 @@ export const useMidjourneyStore = create<MidjourneyAction & MidjourneyState>()(
     },
     setMsg: (msg) => {
       set({ msg });
+    },
+    setPromptHistoryId: (id) => {
+      set({ promptHistoryId: id });
     },
   })
 );

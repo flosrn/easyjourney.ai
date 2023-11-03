@@ -30,6 +30,8 @@ const useGeneration = () => {
     selectedImage,
     setGenerationType,
     setMsg,
+    promptHistoryId,
+    setPromptHistoryId,
     setSelectedImage,
   ] = useMidjourneyStore((state) => [
     state.generationType,
@@ -37,6 +39,8 @@ const useGeneration = () => {
     state.selectedImage,
     state.setGenerationType,
     state.setMsg,
+    state.promptHistoryId,
+    state.setPromptHistoryId,
     state.setSelectedImage,
   ]);
   const [moveNextTutorialStep] = useTutorialStore((state) => [
@@ -64,6 +68,7 @@ const useGeneration = () => {
             poster: currentMessage,
             options,
             selectedImage,
+            promptHistoryId,
           })
         : generate({
             generationType,
@@ -106,6 +111,14 @@ const useGeneration = () => {
       const isDataSave = data?.generationType === "save";
       if (isDataImagine || isDataVariation) {
         actionWord = "generated";
+        const promptResponse = await fetch(`/api/prompts/add`, {
+          method: "POST",
+          body: JSON.stringify({
+            prompt: data.fullPrompt,
+          }),
+        });
+        const newPrompt = await promptResponse.json();
+        newPrompt && setPromptHistoryId(newPrompt.prompt.id);
         moveNextTutorialStep({
           elDestination: ".swiper-slide-visible > #poster-imagine",
           timeout: 2000,

@@ -40,9 +40,10 @@ model Poster {
 
   referencedImage Json? @map(name: "referenced_image")
 
-  likes        Like[]        @relation("posterLikes")
-  categories   Category[]
-  boardPosters BoardPoster[]
+  likes         Like[]          @relation("posterLikes")
+  categories    Category[]
+  boardPosters  BoardPoster[]
+  promptHistory PromptHistory[]
 
   user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
   userId String? @map(name: "user_id")
@@ -51,6 +52,25 @@ model Poster {
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
   @@map("posters")
+}
+
+// -----------------------------------------------------------------------------
+// PromptHistory
+// Represents a history of prompts written by a user
+// -----------------------------------------------------------------------------
+model PromptHistory {
+  id       String  @id @default(uuid())
+  prompt   String
+  posterId String? @map(name: "poster_id")
+  userId   String  @map(name: "user_id")
+
+  poster Poster? @relation(fields: [posterId], references: [id])
+  user   User    @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@map("prompt_history")
 }
 
 // -----------------------------------------------------------------------------
@@ -224,6 +244,7 @@ model User {
   posters       Poster[]
   boards        Board[]
   collaborators Collaborator[]
+  PromptHistory PromptHistory[]
 
   likes     Like[]   @relation("userLikes")
   followers Follow[] @relation("following")

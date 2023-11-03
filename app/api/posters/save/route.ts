@@ -27,6 +27,7 @@ export async function POST(request: Request) {
       attachment,
       referencedMessage,
       options,
+      promptHistoryId,
     } = body;
     const { textPrompt, ...restOptions } = options;
     console.log("body :", body);
@@ -57,6 +58,11 @@ export async function POST(request: Request) {
         mjImageUrl,
         userId: session.user.id,
         referencedImage: referencedMessageWithJobId,
+        promptHistory: {
+          connect: {
+            id: promptHistoryId,
+          },
+        },
       },
     });
 

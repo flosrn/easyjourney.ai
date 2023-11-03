@@ -84,16 +84,23 @@ export const savePoster = async ({
   poster,
   options,
   selectedImage,
+  promptHistoryId,
 }: {
   poster: MJMessage;
   options: Record<string, boolean | number | string | null | undefined>;
   selectedImage: number | null;
+  promptHistoryId?: number;
 }) => {
   try {
     const response = await fetch("/api/posters/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...poster, options, selectedImage }),
+      body: JSON.stringify({
+        ...poster,
+        options,
+        selectedImage,
+        promptHistoryId,
+      }),
     });
 
     if (!response.ok) {
