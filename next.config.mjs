@@ -3,12 +3,14 @@ import withPlaiceholder from "@plaiceholder/next";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    serverActions: true,
-  },
   images: {
-    domains: ["cdn.discordapp.com", "cdn.midjourney.com"],
     remotePatterns: [
+      {
+        hostname: "cdn.discordapp.com",
+      },
+      {
+        hostname: "cdn.midjourney.com",
+      },
       {
         hostname: "*.googleusercontent.com",
       },
