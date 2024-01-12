@@ -32,10 +32,11 @@ const VersionSelector = () => {
       disabled={isVersionSelectorDisabled}
     >
       <SelectTrigger>
-        <SelectValue id="version-selector" placeholder="Version 5.2" />
+        <SelectValue id="version-selector" placeholder="Version 6" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
+          <SelectItem value="--v 6">Version 6</SelectItem>
           <SelectItem value="--v 5.2">Version 5.2</SelectItem>
           <SelectItem value="--v 5.1">Version 5.1</SelectItem>
           <SelectItem value="--v 5">Version 5</SelectItem>
