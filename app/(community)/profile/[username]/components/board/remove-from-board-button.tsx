@@ -64,13 +64,15 @@ const RemoveFromBoardButton = ({
   ) => {
     event.preventDefault();
     try {
-      selectedPosters.map(async (posterId) => {
-        addToRemoveFromBoard(posterId);
-        await removeFromMutation.mutateAsync({
-          posterId,
-          boardId,
-        });
-      });
+      await Promise.all(
+        selectedPosters.map(async (posterId) => {
+          addToRemoveFromBoard(posterId);
+          await removeFromMutation.mutateAsync({
+            posterId,
+            boardId,
+          });
+        })
+      );
       clearSelectedPosters();
       clearToRemoveFromBoard();
     } catch {

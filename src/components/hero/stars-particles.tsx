@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback } from "react";
-import Particles from "react-particles";
+import { Particles } from "react-particles";
 import { loadFull } from "tsparticles";
 import type { Engine } from "tsparticles-engine";
 
@@ -9,7 +9,8 @@ type StarsParticlesProps = {};
 
 const StarsParticles = ({}: StarsParticlesProps) => {
   const particlesInit = useCallback(async (engine: Engine) => {
-    await loadFull(engine);
+    // @ts-expect-error - no types for this
+    return await loadFull(engine);
   }, []);
 
   return (
