@@ -16,7 +16,7 @@ type LabelWithTooltipProps = {
   title: string;
   description: string;
   defaultValue?: string;
-  size?: "sm" | "xs";
+  size?: "xl" | "sm" | "xs";
   className?: string;
 };
 
@@ -32,7 +32,11 @@ const LabelWithTooltip = ({
     <div className={cn("grid gap-2", className)}>
       <HoverCard open={open} onOpenChange={setOpen}>
         <HoverCardTrigger asChild onClick={() => setOpen(!open)}>
-          <Label className="flex w-fit">
+          <Label
+            className={cn("flex w-fit", {
+              "text-lg": size === "xl",
+            })}
+          >
             {title}
             <HelpCircleIcon color="gray" className="ml-1 h-4" />
           </Label>

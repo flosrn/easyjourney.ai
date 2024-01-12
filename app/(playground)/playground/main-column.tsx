@@ -1,13 +1,17 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import wait from "~/utils/wait";
 import { motion } from "framer-motion";
-import { BrushIcon, Trash2Icon } from "lucide-react";
+import {
+  BrushIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  Trash2Icon,
+} from "lucide-react";
 import { useSession } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 
-import LoginDialog from "~/components/dialog/login-dialog";
 import { Separator } from "~/components/ui/separator";
 import { TabsContent } from "~/components/ui/tabs";
 
@@ -26,6 +30,8 @@ import { useMidjourneyStore } from "./store/midjourneyStore";
 
 import "driver.js/dist/driver.css";
 
+import { useColumnStore } from "./store/columnStore";
+
 const MainColumn = () => {
   const { status } = useSession();
   const [{ isLoading }] = useMidjourneyStore((state) => [state.requestState]);
@@ -37,6 +43,10 @@ const MainColumn = () => {
     handleClear,
     handleDisableSelectors,
   } = useSelectors();
+  const [showRightColumn, setShowRightColumn] = useColumnStore((state) => [
+    state.showRightColumn,
+    state.setShowRightColumn,
+  ]);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   useTutorial({ inputRef, status });
 
@@ -67,7 +77,7 @@ const MainColumn = () => {
                 Create your own poster
               </p>
             </div>
-            <div className="ml-auto flex space-x-2">
+            <div className="ml-auto flex space-x-2 md:mt-3">
               <ActionButton
                 id="clear"
                 label="Clear"
@@ -112,6 +122,16 @@ const MainColumn = () => {
       </div>
       <FiltersDialog />
       <Toaster position="bottom-right" />
+      <button
+        onClick={() => setShowRightColumn(!showRightColumn)}
+        className="absolute right-0 top-2 rounded-l-full border-y border-l bg-background"
+      >
+        {showRightColumn ? (
+          <ChevronRightIcon size={24} className="ml-1" />
+        ) : (
+          <ChevronLeftIcon size={24} className="mr-1" />
+        )}
+      </button>
     </main>
   );
 };
