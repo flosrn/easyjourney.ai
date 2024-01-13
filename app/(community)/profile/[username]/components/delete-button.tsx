@@ -43,9 +43,9 @@ const DeleteButton = ({ isSelectedPostersEmpty }: DeleteButtonProps) => {
   const handleDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
-      // await Promise.all(
-      //   selectedPosters.map(async (id) => deleteMutation.mutateAsync(id))
-      // );
+      await Promise.all(
+        selectedPosters.map(async (id) => deleteMutation.mutateAsync(id))
+      );
       clearSelectedPosters();
       toggleSelectBar();
     } catch {
