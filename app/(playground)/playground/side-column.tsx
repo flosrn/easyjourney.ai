@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { LayersIcon, LayoutGridIcon } from "lucide-react";
 
 import { ScrollArea } from "~/components/ui/scroll-area";
@@ -25,17 +25,19 @@ const SideColumn = ({ className }: SidebarProps) => (
       />
       <TabsList className="hidden grid-cols-2 md:grid">
         <TabsTrigger value={DisplayMode.STACK}>
-          <LayersIcon className="h-4 w-4" />
+          <LayersIcon className="size-4" />
         </TabsTrigger>
         <TabsTrigger value={DisplayMode.GRID}>
-          <LayoutGridIcon className="h-4 w-4" />
+          <LayoutGridIcon className="size-4" />
         </TabsTrigger>
       </TabsList>
       <LabelWithTooltip
         title="Style Filter"
         description="Experiment with different pre-defined styles that can be applied to your image."
       />
-      <FilterSelector />
+      <Suspense>
+        <FilterSelector />
+      </Suspense>
       <Separator />
 
       <LabelWithTooltip

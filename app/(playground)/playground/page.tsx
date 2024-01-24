@@ -13,9 +13,7 @@ export default async function CreatePage() {
         defaultValue={DisplayMode.STACK}
         className="md:grid md:h-full md:grid-cols-[265px,minmax(auto,1fr)]"
       >
-        <Suspense>
-          <SideColumn />
-        </Suspense>
+        <SideColumn />
         <Suspense>
           <MainColumn />
         </Suspense>

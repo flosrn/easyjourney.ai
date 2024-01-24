@@ -12,7 +12,7 @@ type VersionAction = {
 
 export const useVersionStore = create<VersionAction & VersionState>()(
   (set) => ({
-    versionValue: "--v 6",
+    versionValue: "--v 6.0",
     isVersionSelectorDisabled: false,
     setVersionValue: (value) => set(() => ({ versionValue: value })),
     setIsVersionSelectorDisabled: (value) =>
