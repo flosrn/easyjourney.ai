@@ -36,7 +36,7 @@ const VersionSelector = () => {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="--v 6.0">Version 6</SelectItem>
+          <SelectItem value="--v 6.0">Version 6.0</SelectItem>
           <SelectItem value="--v 5.2">Version 5.2</SelectItem>
           <SelectItem value="--v 5.1">Version 5.1</SelectItem>
           <SelectItem value="--v 5">Version 5</SelectItem>
