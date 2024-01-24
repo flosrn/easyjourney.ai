@@ -46,7 +46,7 @@ export async function POST(request: Request) {
       data: {
         ...restOptions,
         prompt: textPrompt,
-        image: mjImageUrl || uri,
+        image: mjImageUrl ?? uri,
         width: attachment.width,
         height: attachment.height,
         title,

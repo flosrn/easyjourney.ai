@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { Tabs } from "~/components/ui/tabs";
 
@@ -13,8 +13,12 @@ export default async function CreatePage() {
         defaultValue={DisplayMode.STACK}
         className="md:grid md:h-full md:grid-cols-[265px,minmax(auto,1fr)]"
       >
-        <SideColumn />
-        <MainColumn />
+        <Suspense>
+          <SideColumn />
+        </Suspense>
+        <Suspense>
+          <MainColumn />
+        </Suspense>
       </Tabs>
     </div>
   );
